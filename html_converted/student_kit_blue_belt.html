@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue Belt Student Kit — The Surf Sequence®</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:#060e1a;color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.05);padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+.top-bar h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:.95rem;color:#fff}
+.top-bar h1 span{color:#1555a0}
+.top-bar .level-badge{padding:4px 14px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;background:#1E6FBF;color:#fff;letter-spacing:.06em}
+
+.hero{padding:40px 20px 32px;text-align:center;background:linear-gradient(135deg,#0A1628 0%,#1555a015 100%);border-bottom:1px solid rgba(255,255,255,.04)}
+.hero .belt-circle{width:80px;height:80px;border-radius:50%;background:#1E6FBF;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.8rem;color:#fff;box-shadow:0 0 30px #1555a033}
+.hero h2{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:4px}
+.hero .level-name{font-size:.85rem;color:#1555a0;font-weight:600;margin-bottom:12px}
+.hero p{font-size:.88rem;color:rgba(255,255,255,.45);max-width:500px;margin:0 auto;line-height:1.7}
+
+.info-bar{padding:16px 20px;background:rgba(21,85,160,.04);border-bottom:1px solid rgba(255,255,255,.03);display:flex;gap:16px;justify-content:center;font-size:.78rem;color:rgba(255,255,255,.35)}
+.info-bar strong{color:#1555a0}
+
+.howto{max-width:700px;margin:20px auto;padding:16px 24px;border-radius:12px;background:rgba(90,195,231,.03);border:1px solid rgba(90,195,231,.08);font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.7}
+.howto strong{color:#5AC3E7}
+
+.progress-bar{max-width:700px;margin:12px auto 20px;padding:0 20px}
+.progress-track{height:6px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:#1555a0;border-radius:3px;transition:width .5s;width:0%}
+.progress-label{font-size:.7rem;color:rgba(255,255,255,.2);margin-top:4px;text-align:center}
+
+.content{max-width:700px;margin:0 auto;padding:0 20px 40px}
+
+.section-card{background:#0d1a2e;border:1px solid rgba(255,255,255,.04);border-radius:12px;margin-bottom:8px;overflow:hidden;transition:all .2s}
+.section-card:hover{border-color:rgba(255,255,255,.08)}
+.section-card.open{border-color:#1555a044}
+.section-card.completed{border-left:3px solid #06D6A0}
+
+.section-header{padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.section-num{width:28px;height:28px;border-radius:8px;background:#1555a015;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:.8rem;color:#1555a0;flex-shrink:0}
+.section-title{font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:600;color:#fff;flex:1}
+.section-arrow{color:rgba(255,255,255,.15);font-size:.7rem;transition:transform .2s}
+.section-card.open .section-arrow{transform:rotate(90deg);color:#1555a0}
+
+.section-body{display:none;padding:0 18px 16px;border-top:1px solid rgba(255,255,255,.03)}
+.section-card.open .section-body{display:block;padding-top:14px}
+
+.footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.03)}
+.footer .tagline{font-family:'Lora',serif;font-style:italic;color:#1555a0;font-size:.85rem;margin-bottom:6px}
+.footer p{font-size:.7rem;color:rgba(255,255,255,.1)}
+
+@media(max-width:600px){.info-bar{flex-direction:column;gap:6px;align-items:center}.hero h2{font-size:1.3rem}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>THE SURF <span>SEQUENCE®</span></h1>
+  <div class="level-badge">LEVEL 3 — STUDENT KIT</div>
+</div>
+
+<div class="hero">
+  <div class="belt-circle">3</div>
+  <h2>Blue Belt</h2>
+  <div class="level-name">Rail Changes & Maneuvers</div>
+  <p>Time to express yourself. Learn 11 named expressions: Cruz, Tapaloco, Granada, Bottom Turn, Cutback. Your surfing gets its own language.</p>
+</div>
+
+<div class="info-bar">
+  <span><strong>Waves:</strong> 4-6 ft</span>
+  <span><strong>Environment:</strong> Real waves, varied conditions</span>
+  <span><strong>Sections:</strong> 15</span>
+</div>
+
+<div class="howto">
+  <strong>How to use this kit:</strong> Blue Belt is where surfing becomes art. Each expression has a name, a technique, and criteria. Master them in sequence. Film yourself. Compare with the standards.
+</div>
+
+<div class="progress-bar">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">0 / 15 sections explored</div>
+</div>
+
+<div class="content">
+
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h3 class="section-title">THE SURF SEQUENCE®</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">STUDENT MANUAL</p><p class="text-white/50 text-sm leading-relaxed mb-2">Sequences #8 – #13</p><p class="text-white/50 text-sm leading-relaxed mb-2">From Attempted Surfing to Reliable Surfing</p><p class="text-white/50 text-sm leading-relaxed mb-2">By Marcelo Castellanos</p><p class="text-white/50 text-sm leading-relaxed mb-2">ISA Olympic Expert Coach | Founder, The Surf Sequence®</p><p class="text-white/50 text-sm leading-relaxed mb-2">Enkrateia SA de CV — All Rights Reserved</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h3 class="section-title">YOUR JOURNEY</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="font-semibold text-white/75 mb-2">Where You Are</p><p class="text-white/50 text-sm leading-relaxed mb-2">You have completed Yellow Belt. You catch green waves, angle your takeoffs, manage paddling speeds, and ride the wave face with intention. Now it is time to transform those skills from attempted to reliable.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Blue Belt is where surfing becomes real surfing. You will learn to link sections together, generate speed through pumping, execute bottom turns with rail engagement, project toward targets on the wave face, and perform your first named maneuvers.</p><p class="font-semibold text-white/75 mb-2">What Changes at Blue Belt</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Yellow Belt, you attempted skills on green waves. At Blue Belt, those skills must become consistent and repeatable across multiple sessions. The standard shifts from &#x27;I can do it sometimes&#x27; to &#x27;I can do it most of the time.&#x27;</p><p class="text-white/50 text-sm leading-relaxed mb-2">You will also take full ownership of your sessions. You analyze the venue, select waves tactically, make decisions during the ride, self-correct between waves, and debrief your own performance. The coach confirms and adjusts — but you lead.</p><p class="font-semibold text-white/75 mb-2">The Progression Map</p><p class="font-semibold text-white/75 mb-2">You are here: Blue Belt — Foundation. Sequences #8 through #13.</p><p class="font-semibold text-white/75 mb-2">How to Use This Manual</p><p class="text-white/50 text-sm leading-relaxed mb-2">This manual follows the same structure as your Yellow Belt manual. Each section covers one part of your progression. Scan QR codes for video explanations. Use mission trackers to record your progress. Review before and after every session.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h3 class="section-title">SECTION 1: THE THREE CIRCLES AT BLUE BELT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">At Blue Belt, the Three Circles of Power are no longer separate lenses. They operate as an integrated system. You feel how body, board, and wave interact in real time.</p><p class="font-semibold text-white/75 mb-2">Circle 1: Body — Rotation as Line Control</p><p class="text-white/50 text-sm leading-relaxed mb-2">Rotation becomes your primary tool for controlling your line on the wave. Compression and extension are now timed to the wave face shape for pumping and bottom turns. Hold — maintaining a position before releasing — becomes a conscious skill.</p><p class="font-semibold text-white/75 mb-2">Circle 2: Board — Rail Engagement</p><p class="text-white/50 text-sm leading-relaxed mb-2">Rail engagement is the defining board skill at Blue Belt. You experience how weighting one rail creates an arc, how foot placement pressure determines turn radius, and how weight distribution between front and back controls whether you accelerate, hold, or brake.</p><p class="font-semibold text-white/75 mb-2">Circle 3: Wave — Real-Time Reading</p><p class="text-white/50 text-sm leading-relaxed mb-2">You read the wave in real time during the ride. You anticipate where the pocket will be in 2-3 seconds and position accordingly. You understand that the wave face changes shape as it breaks and that your line must adapt.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h3 class="section-title">SECTION 2: NEW TECHNIQUES</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Blue Belt introduces the technical elements that transform wave-face riding into connected, expressive surfing.</p><p class="font-semibold text-white/75 mb-2">Pumping for Speed Generation</p><p class="text-white/50 text-sm leading-relaxed mb-2">Pumping is the active version of &#x27;go up and down&#x27; from Yellow Belt. Instead of passively riding the wave face, you generate speed through coordinated compression and extension. Compress as you move down the face, extend as you move up. The timing must match the wave&#x27;s shape.</p><p class="font-semibold text-white/75 mb-2">Medium Bottom Turn</p><p class="text-white/50 text-sm leading-relaxed mb-2">A controlled turn at the bottom of the wave face that engages the rail, generates speed, and creates a line of projection toward the next section. &#x27;Medium&#x27; means clear rail engagement and directional change, but not yet the full vertical power turns of higher belts.</p><p class="text-white/50 text-sm leading-relaxed mb-2">The bottom turn is the setup for everything. Without a good bottom turn, no maneuver works. The bottom turn ends when projection begins.</p><p class="font-semibold text-white/75 mb-2">Hold</p><p class="text-white/50 text-sm leading-relaxed mb-2">Hold is the ability to maintain a position, a line, or a rail engagement for a controlled duration before releasing into the next action. Hold is what separates rushed surfing from intentional surfing.</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Yellow Belt, your turns were quick. At Blue Belt, you learn to hold the bottom turn: compress, engage the rail, look at your target, and WAIT before releasing into projection. The hold is where power accumulates.</p><p class="font-semibold text-white/75 mb-2">Projection</p><p class="text-white/50 text-sm leading-relaxed mb-2">Projection is the direction and energy that a bottom turn generates toward the next section of the wave. A good bottom turn projects you toward a target: the lip (for vertical maneuvers), the pocket (for speed recovery), or the shoulder (for a cutback).</p><p class="text-white/50 text-sm leading-relaxed mb-2">Frontside projection: hips up and forward, touch water and throw ball back, keep scapula locked and chest pointing where you want to go, weight on front foot.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Backside projection: look at the target, straighten front leg, choke and point chest where you want to go.</p><p class="font-semibold text-white/75 mb-2">Recovery After Maneuvers</p><p class="text-white/50 text-sm leading-relaxed mb-2">After every turn or maneuver, you must recover: regain stable posture (Circle 1), re-center weight on the board (Circle 2), and re-orient toward the pocket or next section (Circle 3). Recovery is what connects one action to the next. Without recovery, you cannot link.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h3 class="section-title">SECTION 3: NAMED SEQUENCE EXPRESSIONS</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Blue Belt introduces the first named actions in the TSS system. These are not tricks or casual nicknames. They are official named sequence expressions that describe specific technical executions built on the PRCH framework.</p><p class="font-semibold text-white/75 mb-2">Frontside Expressions</p><p class="text-white/50 text-sm leading-relaxed mb-2">CRUZ SNAP — A controlled frontside snap executed from projection after a medium bottom turn. Rail engagement, directional change at the top of the wave face, and controlled release. The sequence: bottom turn → hold → projection → Cruz Snap → impulse → recovery.</p><p class="text-white/50 text-sm leading-relaxed mb-2">GRENADE — An explosive energy release. The surfer projects through the turn with maximum commitment. Think of it as a Cruz Snap with more power and less control. The sequence structure is the same, but the intensity at the action point is maximum.</p><p class="text-white/50 text-sm leading-relaxed mb-2">CRUZ CUTBACK — A frontside cutback — turning back toward the pocket when drifting to the shoulder. This is your primary tool for maintaining the pocket relationship through full rides. Sections are linked through cutback flow: ride → drift → cutback → return to pocket → continue.</p><p class="font-semibold text-white/75 mb-2">Backside Expressions</p><p class="text-white/50 text-sm leading-relaxed mb-2">CHOKE — A backside compression concept. Compress through the turn, maintaining control and rail engagement with your body facing away from the wave.</p><p class="text-white/50 text-sm leading-relaxed mb-2">TAPALOCO SNAP — A defined backside snap executed from projection. The equivalent of the Cruz Snap on the backside. The sequence: bottom turn → hold → choke → Tapaloco Snap → elbow engagement → impulse → recovery.</p><p class="text-white/50 text-sm leading-relaxed mb-2">TAPALOCO CUTBACK — A backside cutback linking sections. The equivalent of Cruz Cutback on the backside. Used to return toward the pocket when drifting to the shoulder on backside waves.</p><p class="text-white/50 text-sm leading-relaxed mb-2">ELBOW — Upper-body engagement integrated into the backside turn. The elbow and shoulder drive the rotation when you cannot use visual leading as effectively as on frontside.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h3 class="section-title">SECTION 4: THE SEQUENCE AT BLUE BELT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Your entire sequence from Yellow Belt is still active. Every step still applies. What changes at Blue Belt is the depth of execution and the addition of the blocks that produce real surfing.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h3 class="section-title">BLOCK 1-3 — AUTONOMOUS FOUNDATIONS</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Venue Analysis, Goal Setting, Warm-Up, Board Entry, Sweet Spot, Paddle Out, Duck Dive/Turtle Roll, Paddling Speeds, Chase the Pocket, Correct Angle, Cobra — Pick Your Line, Pop-Up, and Foot Position are all expected to be autonomous at Blue Belt. These are your White and Yellow Belt foundations. They should require zero coach direction.</p><p class="font-semibold text-white/75 mb-2">BLOCK 4 — POWER POSTURE (Dynamic Recovery)</p><p class="text-white/50 text-sm leading-relaxed mb-2">Posture at Blue Belt is not just about standing correctly. It is about dynamic recovery. After every turn, every maneuver, every section transition, you must return to power posture. This is the reset that enables the Infinite Circle to continue.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Power posture details: chest points toward the board&#x27;s nose, get low (90 degrees), knee in front of the toe tip, weight on front foot, active scapula, front hand reaches and crosses, activate hands, arms, and core, keep shoulders on top of or forward of your front foot.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h3 class="section-title">BLOCK 5 — ROTATION + BOTTOM TURN</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">This is where Blue Belt diverges most from Yellow Belt. Rotation is no longer just for basic turns. It is now the engine of your bottom turn, and the bottom turn is the setup for everything.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Frontside bottom turn: weight on front foot, elbow and forearm close to the water, palm facing down, engage obliques, HOLD.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Backside bottom turn: weight on front foot, front arm at shoulder height, fingertips close to the water, HOLD.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h3 class="section-title">BLOCK 6 — PROJECTION</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Projection is the direction and force generated by the bottom turn. It aims you at your target on the wave face. The bottom turn ends when projection begins.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Frontside projection: hips up and forward, touch water and throw ball back, scapula locked and chest pointing where you want to go, weight on front foot.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Backside projection: look at the target, straighten front leg, choke and point chest where you want to go.</p><p class="font-semibold text-white/75 mb-2">BLOCK 7 — MANEUVERS (Rail Transitions)</p><p class="text-white/50 text-sm leading-relaxed mb-2">A maneuver is a change of direction, and direction is changed using the rails. To surf well, you must transition from rail to rail.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Frontside: after projection, perform Cruz (Christ Cross), then Grenade (throw the grenade), and return to posture.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Backside: after the Choke, execute Tapaloco, then Elbow (Codazo), and return to posture.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h3 class="section-title">SECTION 5: THE INFINITE CIRCLE AT BLUE BELT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">At Blue Belt, every step of the Infinite Circle is functional and autonomous. The attention shifts from individual steps to the connections between them.</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Yellow Belt, you experienced the circle for the first time. At Blue Belt, you complete multiple loops on a single wave. Each loop connects to the next through recovery. This is wave completion — riding the wave from takeoff to its natural end using all available sections.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h3 class="section-title">SECTION 6: YOUR MISSIONS</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Blue Belt missions are organized by sequence progression. Each mission builds on the previous one. Focus on one mission per session.</p><p class="font-semibold text-white/75 mb-2">MISSION 1  Play with the Pocket</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Go into the water and play with the pocket: stay close, move away, return</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Avoid getting caught in the whitewater</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ When a wave is about to close, play with the pocket ahead of the closing section</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Focus on connecting feet to the board — good foot positioning throughout</p><p class="font-semibold text-white/75 mb-2">MISSION 2  Connect with Board + Foot Positions</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Go into the water, connect with the board</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Move foot to position 1 and return to the whitewater</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Add impulse whenever you need speed (momentum)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Focus on deliberate foot position switches between position 1 and 2</p><p class="font-semibold text-white/75 mb-2">MISSION 3  Pumping + Return to Pocket</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Perform a pump and return to the pocket</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ If the wave is fast, continue pumping to maintain speed</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Practice frontside and backside pumping</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Focus on compression/extension timing with the wave face</p><p class="font-semibold text-white/75 mb-2">MISSION 4  Bottom Turn + Hold (Frontside)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Execute a frontside bottom turn with rail engagement</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ HOLD the compression at the bottom before releasing</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Focus on vision: look where you want to project</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Return to posture after the bottom turn</p><p class="font-semibold text-white/75 mb-2">MISSION 5  Bottom Turn + Hold (Backside)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Execute a backside bottom turn with rail engagement</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ HOLD — trust the rotation with your back to the wave</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Focus on head turn leading the rotation</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Return to posture after the bottom turn</p><p class="font-semibold text-white/75 mb-2">MISSION 6  Bottom Turn + Projection (Frontside)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Bottom turn with hold, then project toward the lip or pocket</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Practice projection: hips up, scapula locked, chest pointing at target</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Feel the energy transfer from bottom turn to projection direction</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Recover after projection: impulse + posture</p><p class="font-semibold text-white/75 mb-2">MISSION 7  Bottom Turn + Projection (Backside)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Backside bottom turn with choke</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Project: look at target, straighten front leg, point chest</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Recovery after projection</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Repeat across multiple waves</p><p class="font-semibold text-white/75 mb-2">MISSION 8  Cruz Snap (Frontside Maneuver)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Bottom turn → hold → projection → Cruz Snap</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Focus on the full sequence, not just the snap</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Cristo Cross: chest aligned with or ahead of hips, look over shoulder, engage obliques</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Recovery: impulse + return to posture</p><p class="font-semibold text-white/75 mb-2">MISSION 9  Tapaloco Snap (Backside Maneuver)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Bottom turn → hold → choke → Tapaloco Snap</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Elbow engagement to drive the rotation</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Touch the board, add impulse</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Recovery: return to posture</p><p class="font-semibold text-white/75 mb-2">MISSION 10  Rail Transitions — Frontside Flow</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Projection → Cruz → Grenade → return to posture</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Focus on rail-to-rail transition fluidity</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Each movement flows into the next — no stops between actions</p><p class="font-semibold text-white/75 mb-2">MISSION 11  Rail Transitions — Backside Flow</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Choke → Tapaloco → Elbow → return to posture</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Focus on backside fluidity</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Trust the rotation even without full visual leading</p><p class="font-semibold text-white/75 mb-2">MISSION 12  Cruz Cutback — Return to Pocket (Frontside)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ When drifting to the shoulder, execute Cruz Cutback</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Turn back toward the pocket</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Re-engage with the energy source</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Continue the ride after the cutback — linking sections</p><p class="font-semibold text-white/75 mb-2">MISSION 13  Tapaloco Cutback — Return to Pocket (Backside)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Backside cutback linking sections</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Turn back toward the pocket on backside waves</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Hold → Elbow → impulse → posture → continue riding</p><p class="font-semibold text-white/75 mb-2">MISSION 14  Complete a Circle (Wave Completion)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Complete one full Infinite Circle loop on a single wave</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Posture → bottom turn → hold → projection → maneuver → recovery → posture</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ If the wave allows, attempt a second loop</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ The mission is the full architecture, not any single move</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h3 class="section-title">SECTION 7: ON-LAND DRILLS</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Blue Belt drills shift from single-skill practice to connected-sequence practice. You are training the full chain, not isolated movements.</p><p class="font-semibold text-white/75 mb-2">Drill L1: Stance + Rotation on Flat Ground</p><p class="text-white/50 text-sm leading-relaxed mb-2">Identify your comfortable stance. Shoulders and hips facing forward, weight on front foot, back knee pointing forward, active scapula, elbows close to ribs. Then practice rotation: look where you want to go, engage obliques, keep weight on front foot, foot centered on board.</p><p class="font-semibold text-white/75 mb-2">Drill L2: Pop-Up + Foot Position Switches</p><p class="text-white/50 text-sm leading-relaxed mb-2">Pop-up and hold for 2 seconds. Switch foot from position 2 to position 1 and back, depending on the line you want to draw. Repeat 5 times.</p><p class="font-semibold text-white/75 mb-2">Drill L3: Rotation on Skateboard</p><p class="text-white/50 text-sm leading-relaxed mb-2">Set up cones and chalk lines. Practice frontside rotation 4-8 times, then backside 4-8 times. Then add a turn followed by impulse + back to posture and continue straight. Chest should be aligned over front foot or slightly forward.</p><p class="font-semibold text-white/75 mb-2">Drill L4: Pumping on Skateboard</p><p class="text-white/50 text-sm leading-relaxed mb-2">Frontside pump: posture → projection + extend front leg → swimming arm motion (elbow higher than head) → get low → back to posture. Backside pump: posture → extend legs → arms straight toward nose direction → switch rails with M-motion → get low → back to posture. Practice 10-20 repetitions without skateboard first, then on the skateboard.</p><p class="font-semibold text-white/75 mb-2">Drill L5: Bottom Turn + Projection (Flat Ground)</p><p class="text-white/50 text-sm leading-relaxed mb-2">Start in posture. Perform simple rotation with deeper flexion and hold the position. Add projection by extending legs and using the arm. Draw a U-shape on the ground and simulate following the line with rotation and projection at the marked spot. Repeat 5 times.</p><p class="font-semibold text-white/75 mb-2">Drill L6: Bottom Turn + Projection on Skateboard</p><p class="text-white/50 text-sm leading-relaxed mb-2">Same exercise on skateboard following chalk line. Execute: Posture + Rotation + Hold + Projection. Finish the maneuver upon completing the rotation. Repeat 4-8 times.</p><p class="font-semibold text-white/75 mb-2">Drill L7: Rail Transition Drill (Full Sequence)</p><p class="text-white/50 text-sm leading-relaxed mb-2">Practice the complete sequence on flat ground, then with chalk line, then on skateboard. The sequence: Bottom Turn + Hold → Projection → Cruz + Granada (frontside) or Tapaloco + Codazo (backside) → Return to posture. Repeat 4-8 times.</p><p class="font-semibold text-white/75 mb-2">Drill L8: Guided Visualization</p><p class="text-white/50 text-sm leading-relaxed mb-2">Visualize yourself doing the maneuver. Focus on the goal you have chosen. Guided group breathing session. 5 minutes of visualization practice. See the wave, see the pocket, see yourself completing the circle.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h3 class="section-title">SECTION 8: KEY CONCEPTS &amp; SELF-IMPROVEMENT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="font-semibold text-white/75 mb-2">Quick Reference: Blue Belt Concepts</p><p class="font-semibold text-white/75 mb-2">Self-Improvement Tool: 3 Questions</p><p class="text-white/50 text-sm leading-relaxed mb-2">Use these three questions after every session to discover what to improve:</p><p class="font-semibold text-white/75 mb-2">1. What do I want to do but can&#x27;t? (Example: I want to turn better but I lose speed.)</p><p class="font-semibold text-white/75 mb-2">2. Is it an execution or decision-making problem? Execution = I&#x27;m not doing it correctly. Decision = I&#x27;m not choosing the right moment or place.</p><p class="font-semibold text-white/75 mb-2">3. What is causing it? Physical (strength, balance, endurance), Mental (hesitation, fear, slow reactions), Technical (mechanical details, timing), or Tactical (wave usage, reading, positioning).</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <h3 class="section-title">SECTION 9: YOUR PROGRESSION</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="font-semibold text-white/75 mb-2">Early Blue Belt (Sequences #8-#9)</p><p class="text-white/50 text-sm leading-relaxed mb-2">You complete recognizable frontside rides on most catchable waves. You attempt backside with intention. Pumping is functional. Takeoff angle is automatic on both sides. Session independence is full.</p><p class="font-semibold text-white/75 mb-2">Mid Blue Belt (Sequences #10-#11)</p><p class="text-white/50 text-sm leading-relaxed mb-2">You execute medium bottom turns with visible rail engagement on frontside. Backside shows intentional rail engagement. You project after the bottom turn toward a recognizable target. First maneuver attempts show connection to the bottom turn. You recover after maneuvers.</p><p class="font-semibold text-white/75 mb-2">Late Blue Belt (Sequences #12-#13)</p><p class="text-white/50 text-sm leading-relaxed mb-2">You link two or more named actions on a single wave. Cutback is active on both sides when drifting to the shoulder. Wave completion is the norm. Self-correction is visible between waves. You can articulate your line plan before paddling.</p><p class="font-semibold text-white/75 mb-2">What Comes Next: Purple Belt (Emerging)</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Purple Belt, you move from consistency to expression. Maneuver variety increases. Snaps, floaters, vertical turns. Personal style emerges. You begin to develop a surfing identity. The fundamentals from Blue Belt are the foundation that makes expression possible.</p><p class="font-semibold text-white/75 mb-2">The Surf Sequence®</p><p class="text-white/50 text-sm leading-relaxed mb-2">By Marcelo Castellanos</p><p class="text-white/50 text-sm leading-relaxed mb-2">Enkrateia SA de CV — All Rights Reserved</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <h3 class="section-title">APPENDIX: VIDEO PRODUCTION GUIDE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">All videos referenced in this manual. Use as your shot list for production.</p><p class="font-semibold text-white/75 mb-2">Total videos: 33. Estimated total production time: 70-80 minutes of finished content.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Recommended format: 1080p vertical (9:16) for mobile scanning, with horizontal (16:9) alternative for classroom projection.</p></div>
+</div>
+</div>
+
+<div class="footer">
+  <div class="tagline">Evolve through play.</div>
+  <p>The Surf Sequence® — Blue Belt Student Kit — Enkrateia SA de CV</p>
+</div>
+
+<script>
+let opened = new Set();
+const total = 15;
+document.querySelectorAll('.section-card').forEach((card, i) => {
+  card.addEventListener('click', () => {
+    opened.add(i);
+    const pct = Math.round(opened.size / total * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = opened.size + ' / ' + total + ' sections explored (' + pct + '%)';
+  });
+});
+</script>
+</body>
+</html>

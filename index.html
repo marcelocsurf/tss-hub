@@ -200,7 +200,10 @@ body{font-family:'Work Sans',sans-serif;background:#060e1a;color:#e0e0e0;min-hei
     <div class="nav-section">
       <div class="nav-section__title">Herramientas de Coach</div>
       <button class="nav-item" onclick="showPage('belts')">
-        <span class="nav-item__icon">🥋</span> Belt Tools <span class="nav-item__badge">6</span>
+        <span class="nav-item__icon">🥋</span> Belt Tools (Coach) <span class="nav-item__badge">6</span>
+      </button>
+      <button class="nav-item" onclick="showPage('studentkits')">
+        <span class="nav-item__icon">🎒</span> Student Kits <span class="nav-item__badge">6</span>
       </button>
       <button class="nav-item" onclick="showPage('seqtool')">
         <span class="nav-item__icon">🔗</span> Sequence Tool <span class="nav-item__badge">439</span>
@@ -742,12 +745,68 @@ body{font-family:'Work Sans',sans-serif;background:#060e1a;color:#e0e0e0;min-hei
     </div>
   </div>
 
+  <!-- ===== STUDENT KITS ===== -->
+  <div class="page" id="page-studentkits">
+    <div class="page__header">
+      <div class="page__overline">Student Products — Sellable Kits</div>
+      <div class="page__title">Student Belt Kits</div>
+      <div class="page__desc">Guías personales de progresión para cada nivel. Diseñadas para el ALUMNO — sin contenido de coach. Se pueden vender como kit digital con cada programa de cinta. Incluyen: descripción del nivel, objetivos, secuencias, expresiones, criterios de autoevaluación, y tracker de progreso.</div>
+    </div>
+    <div style="padding:16px 20px;border-radius:12px;background:rgba(6,214,160,.04);border:1px solid rgba(6,214,160,.1);margin-bottom:20px">
+      <p style="font-size:.85rem;color:rgba(255,255,255,.4)"><strong style="color:var(--green)">Cómo usarlo:</strong> Cada kit es un HTML independiente que el alumno abre en su celular o computadora. Contiene SOLO el contenido de su nivel — sin material de coach, sin herramientas internas. Lo puede usar como referencia personal durante su programa. Ideal para vender como "TSS Belt Kit" junto con el programa de cada cinta.</p>
+    </div>
+    <div class="cards cards--3">
+      <div class="card" onclick="openTool('html_converted/student_kit_white_belt.html')">
+        <div class="card__accent" style="background:#E8E8E8"></div>
+        <div class="card__icon">⬜</div>
+        <div class="card__title">White Belt Kit</div>
+        <div class="card__desc">42 secciones. Fundamentos: postura, pop-up, control de tabla, seguridad básica.</div>
+        <span class="card__tag">▶ Abrir kit</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/student_kit_yellow_belt.html')">
+        <div class="card__accent" style="background:#F5C518"></div>
+        <div class="card__icon">🟡</div>
+        <div class="card__title">Yellow Belt Kit</div>
+        <div class="card__desc">34 secciones. Remo, despegue, identificación de línea, lectura básica de olas.</div>
+        <span class="card__tag">▶ Abrir kit</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/student_kit_blue_belt.html')">
+        <div class="card__accent" style="background:#1E6FBF"></div>
+        <div class="card__icon">🔵</div>
+        <div class="card__title">Blue Belt Kit</div>
+        <div class="card__desc">15 secciones. 11 expresiones nombradas: Cruz, Tapaloco, Granada, Bottom Turn.</div>
+        <span class="card__tag">▶ Abrir kit</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/student_kit_purple_belt.html')">
+        <div class="card__accent" style="background:#7B4FBE"></div>
+        <div class="card__icon">🟣</div>
+        <div class="card__title">Purple Belt Kit</div>
+        <div class="card__desc">25 secciones. 15 expresiones avanzadas: Floater, Snap, Tango, Layback.</div>
+        <span class="card__tag">▶ Abrir kit</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/student_kit_brown_belt.html')">
+        <div class="card__accent" style="background:#7D4E27"></div>
+        <div class="card__icon">🟤</div>
+        <div class="card__title">Brown Belt Kit</div>
+        <div class="card__desc">8 secciones. Sistema aéreo: Aerial 360, Alley-oop, Power Combos.</div>
+        <span class="card__tag">▶ Abrir kit</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/student_kit_black_belt.html')">
+        <div class="card__accent" style="background:#222"></div>
+        <div class="card__icon">⬛</div>
+        <div class="card__title">Black Belt Kit</div>
+        <div class="card__desc">7 secciones. Maestría integral. Círculo Infinito: maestría = transmisión.</div>
+        <span class="card__tag">▶ Abrir kit</span>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== BELT TOOLS ===== -->
   <div class="page" id="page-belts">
     <div class="page__header">
-      <div class="page__overline">Coach Delivery Tools</div>
-      <div class="page__title">Belt Tools</div>
-      <div class="page__desc">Herramientas de entrega por nivel. Cada una contiene secuencias, drills, y criterios de evaluación para su cinta.</div>
+      <div class="page__overline">Coach Delivery Tools — Internal</div>
+      <div class="page__title">Belt Tools (Coach)</div>
+      <div class="page__desc">Herramientas INTERNAS de entrega por nivel para el COACH. Contienen secuencias completas, drills, criterios de evaluación, notas de coach, y material que NO se comparte con el alumno. Usar durante la sesión como referencia de enseñanza.</div>
     </div>
     <div class="cards cards--3">
       <div class="card" onclick="openTool('03_BELTS/01_white_belt/index.html')">
@@ -1408,7 +1467,7 @@ function showPage(id) {
 }
 
 function getNavLabel(id) {
-  const map = { dashboard:'dashboard', 'brand-ext':'brand (ext', 'brand-int':'brand (int', canon:'canon', onewave:'one wave', seqtool:'sequence', drills:'drill', logger:'session logger', belts:'belt', session:'session', ratio:'ratio', conditions:'condition', safety:'safety', inclusion:'learning', quiz:'level', cert:'cert', progress:'student', coachref:'coach quick', bizmodel:'revenue', business:'business', website:'website', diagrams:'diagram', highperf:'high', brain:'brain', masterclass:'masterclass' };
+  const map = { dashboard:'dashboard', 'brand-ext':'brand (ext', 'brand-int':'brand (int', canon:'canon', onewave:'one wave', seqtool:'sequence', drills:'drill', logger:'session logger', studentkits:'student kit', belts:'belt (coach', session:'session', ratio:'ratio', conditions:'condition', safety:'safety', inclusion:'learning', quiz:'level', cert:'cert', progress:'student track', coachref:'coach quick', bizmodel:'revenue', business:'business', website:'website', diagrams:'diagram', highperf:'high', brain:'brain', masterclass:'masterclass' };
   return map[id] || id;
 }
 

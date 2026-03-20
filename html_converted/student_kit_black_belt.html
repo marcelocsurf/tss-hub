@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Black Belt Student Kit — The Surf Sequence®</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:#060e1a;color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.05);padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+.top-bar h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:.95rem;color:#fff}
+.top-bar h1 span{color:#111111}
+.top-bar .level-badge{padding:4px 14px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;background:#222222;color:#fff;letter-spacing:.06em}
+
+.hero{padding:40px 20px 32px;text-align:center;background:linear-gradient(135deg,#0A1628 0%,#11111115 100%);border-bottom:1px solid rgba(255,255,255,.04)}
+.hero .belt-circle{width:80px;height:80px;border-radius:50%;background:#222222;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.8rem;color:#fff;box-shadow:0 0 30px #11111133}
+.hero h2{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:4px}
+.hero .level-name{font-size:.85rem;color:#111111;font-weight:600;margin-bottom:12px}
+.hero p{font-size:.88rem;color:rgba(255,255,255,.45);max-width:500px;margin:0 auto;line-height:1.7}
+
+.info-bar{padding:16px 20px;background:rgba(17,17,17,.04);border-bottom:1px solid rgba(255,255,255,.03);display:flex;gap:16px;justify-content:center;font-size:.78rem;color:rgba(255,255,255,.35)}
+.info-bar strong{color:#111111}
+
+.howto{max-width:700px;margin:20px auto;padding:16px 24px;border-radius:12px;background:rgba(90,195,231,.03);border:1px solid rgba(90,195,231,.08);font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.7}
+.howto strong{color:#5AC3E7}
+
+.progress-bar{max-width:700px;margin:12px auto 20px;padding:0 20px}
+.progress-track{height:6px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:#111111;border-radius:3px;transition:width .5s;width:0%}
+.progress-label{font-size:.7rem;color:rgba(255,255,255,.2);margin-top:4px;text-align:center}
+
+.content{max-width:700px;margin:0 auto;padding:0 20px 40px}
+
+.section-card{background:#0d1a2e;border:1px solid rgba(255,255,255,.04);border-radius:12px;margin-bottom:8px;overflow:hidden;transition:all .2s}
+.section-card:hover{border-color:rgba(255,255,255,.08)}
+.section-card.open{border-color:#11111144}
+.section-card.completed{border-left:3px solid #06D6A0}
+
+.section-header{padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.section-num{width:28px;height:28px;border-radius:8px;background:#11111115;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:.8rem;color:#111111;flex-shrink:0}
+.section-title{font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:600;color:#fff;flex:1}
+.section-arrow{color:rgba(255,255,255,.15);font-size:.7rem;transition:transform .2s}
+.section-card.open .section-arrow{transform:rotate(90deg);color:#111111}
+
+.section-body{display:none;padding:0 18px 16px;border-top:1px solid rgba(255,255,255,.03)}
+.section-card.open .section-body{display:block;padding-top:14px}
+
+.footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.03)}
+.footer .tagline{font-family:'Lora',serif;font-style:italic;color:#111111;font-size:.85rem;margin-bottom:6px}
+.footer p{font-size:.7rem;color:rgba(255,255,255,.1)}
+
+@media(max-width:600px){.info-bar{flex-direction:column;gap:6px;align-items:center}.hero h2{font-size:1.3rem}}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>THE SURF <span>SEQUENCE®</span></h1>
+  <div class="level-badge">LEVEL 6 — STUDENT KIT</div>
+</div>
+
+<div class="hero">
+  <div class="belt-circle">6</div>
+  <h2>Black Belt</h2>
+  <div class="level-name">Mastery & Transmission</div>
+  <p>Full mastery. The Infinite Circle: true mastery is the ability to transmit knowledge. You are now both student and teacher.</p>
+</div>
+
+<div class="info-bar">
+  <span><strong>Waves:</strong> All conditions</span>
+  <span><strong>Environment:</strong> Complete domain</span>
+  <span><strong>Sections:</strong> 7</span>
+</div>
+
+<div class="howto">
+  <strong>How to use this kit:</strong> Black Belt is not an endpoint — it is a beginning. The Infinite Circle means your mastery regenerates through teaching. Share what you know. Evolve through play.
+</div>
+
+<div class="progress-bar">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">0 / 7 sections explored</div>
+</div>
+
+<div class="content">
+
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h3 class="section-title">SECTION 1 — WELCOME TO BLACK BELT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">This is the final belt. But it is not the end — it is the beginning of a deeper journey. You have mastered every sequence, every expression, every condition. Now you master UNDERSTANDING.</p><p class="text-white/50 text-sm leading-relaxed mb-2">The Core Shift: Brown asked &quot;Can you execute at the highest level?&quot; Black asks &quot;Do you understand WHY everything works, and can you help others understand it too?&quot;</p><p class="text-white/50 text-sm leading-relaxed mb-2">Your Sequences: #23-#26. These sequences don&#x27;t add new tricks. They add DEPTH. You will explain the method to others. You will diagnose other surfers&#x27; errors. You will understand the biology of your body. You will develop the psychology toolkit that sustains elite performance. You will build a personal philosophy of what surfing means to you.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Black Belt is not the end of progress — it is the entry into the infinite pursuit of your maximum potential.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h3 class="section-title">SECTION 2 — YOUR SEQUENCES</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">#23. Total Sequence Review at Mastery</p><p class="text-white/50 text-sm leading-relaxed mb-2">Every sequence #1-#22 demonstrated at 8-10/10 mastery. You can articulate what each teaches, why it exists, and how it connects to the whole. When a student watches you, they understand the method. When you explain the method, they understand surfing.</p><p class="text-white/50 text-sm leading-relaxed mb-2">#24. Deep Pillar Integration</p><p class="text-white/50 text-sm leading-relaxed mb-2">All four pillars at their deepest level:</p><p class="text-white/50 text-sm leading-relaxed mb-2">Physical: Recovery protocols, nutrition, sleep, injury prevention. You understand performance science.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Technical: Every maneuver refined to your personal maximum. You know your strengths and your edges.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Tactical: Deep wave reading, competitive strategy, session design for any condition. You can dominate any situation.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Mental: Full psychology toolkit — visualization, focus triggers, relaxation, motivation, goal setting. Your mind is as trained as your body.</p><p class="text-white/50 text-sm leading-relaxed mb-2">#25. Knowledge &amp; Transmission</p><p class="text-white/50 text-sm leading-relaxed mb-2">You can EXPLAIN the method. You can diagnose another surfer&#x27;s errors using Block System. You can correct using Three Circles. You can design a session for someone else. This is pre-coaching competency. The method lives in your mind completely.</p><p class="text-white/50 text-sm leading-relaxed mb-2">#26. Maximum Personal Potential</p><p class="text-white/50 text-sm leading-relaxed mb-2">Define who you are as a surfer. What conditions bring out your best? What expressions define your style? How do you maintain peak performance over time? This sequence never ends. It is the ongoing pursuit of becoming the best surfer you can be.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h3 class="section-title">SECTION 3 — THE PSYCHOLOGY TOOLKIT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">At Black Belt, mental training is daily practice. Elite performance requires elite psychology.</p><p class="text-white/50 text-sm leading-relaxed mb-2">VISUALIZATION</p><p class="text-white/50 text-sm leading-relaxed mb-2">Five minutes before every session. Close your eyes. See the execution chains in your mind. See yourself dropping in, executing fluidly, reading the wave, responding perfectly. Visualization creates neural pathways. Your brain practices the movements. Your body follows.</p><p class="text-white/50 text-sm leading-relaxed mb-2">FOCUS TRIGGERS</p><p class="text-white/50 text-sm leading-relaxed mb-2">Develop your personal cue words that activate concentration. When you paddle out, when you paddle for a wave, when you&#x27;re in the air — you have a word or phrase that brings you present. Mine. Commit. Flow. Choose words that mean something to you.</p><p class="text-white/50 text-sm leading-relaxed mb-2">RELAXATION</p><p class="text-white/50 text-sm leading-relaxed mb-2">Develop breathing patterns for before competition, between waves, after wipeouts. Controlled breathing brings heart rate down. It calms the nervous system. It keeps you from panicking when the moment matters.</p><p class="text-white/50 text-sm leading-relaxed mb-2">MOTIVATION</p><p class="text-white/50 text-sm leading-relaxed mb-2">Why do you surf? Not for sponsors. Not for followers. Why do YOU surf? Keep this answer alive. Intrinsic motivation sustains. External motivation fades. Know your why. Return to it constantly.</p><p class="text-white/50 text-sm leading-relaxed mb-2">GOAL SETTING</p><p class="text-white/50 text-sm leading-relaxed mb-2">Short-term (this session): What are you working on? Mid-term (this month): What are you building? Long-term (this year): Where are you going? Review monthly. Adjust as needed. Goals give direction to effort.</p><p class="text-white/50 text-sm leading-relaxed mb-2">SELF-ANALYSIS</p><p class="text-white/50 text-sm leading-relaxed mb-2">After every session — what worked, what broke, what&#x27;s next. Journal it. Write it down. Your own observations matter more than any coach&#x27;s feedback. You know your body. You know your patterns. Journaling crystallizes insight.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h3 class="section-title">SECTION 4 — BIOLOGY-INFORMED PERFORMANCE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Understanding your body is foundational to sustaining elite performance.</p><p class="text-white/50 text-sm leading-relaxed mb-2">POWER GENERATION</p><p class="text-white/50 text-sm leading-relaxed mb-2">Power flows through a kinetic chain: ankles to knees to hips to obliques to shoulders. Every maneuver uses this chain. When you understand this chain, you understand why your positioning matters. Small positional changes create massive power differences.</p><p class="text-white/50 text-sm leading-relaxed mb-2">RECOVERY</p><p class="text-white/50 text-sm leading-relaxed mb-2">Active recovery beats passive rest. Move on rest days. Light paddling, stretching, low-intensity activity. Nutrition matters — hydrate before sessions, fuel during sessions (not always possible in water), recover after. Post-session food and water reset your system.</p><p class="text-white/50 text-sm leading-relaxed mb-2">SLEEP</p><p class="text-white/50 text-sm leading-relaxed mb-2">Neural pathways strengthen during sleep. Skills consolidate overnight. You improve in your sleep. Seven to eight hours minimum during intensive training. Elite performance requires elite sleep.</p><p class="text-white/50 text-sm leading-relaxed mb-2">LONGEVITY</p><p class="text-white/50 text-sm leading-relaxed mb-2">How to adapt your training as your body changes over years. You are not going to be the same surfer at 40 that you were at 20. Accept this. Adapt. Maintain the standard — adjust the method. You can surf at high levels for decades with proper training, recovery, and body awareness.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h3 class="section-title">SECTION 5 — YOUR PROGRESSION TRACKER</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Black Belt mastery requires deep competency across all four pillars. Track your progress.</p><p class="text-white/50 text-sm leading-relaxed mb-2">All sequences #1-#22 demonstrated at 8-10/10</p><p class="text-white/50 text-sm leading-relaxed mb-2">Can explain TSS methodology structure to a non-surfer</p><p class="text-white/50 text-sm leading-relaxed mb-2">Can diagnose another surfer&#x27;s errors using Block System</p><p class="text-white/50 text-sm leading-relaxed mb-2">Can correct using Three Circles framework</p><p class="text-white/50 text-sm leading-relaxed mb-2">Recovery protocol established and followed consistently</p><p class="text-white/50 text-sm leading-relaxed mb-2">Mental training is regular practice (3+ times per week)</p><p class="text-white/50 text-sm leading-relaxed mb-2">Personal surfing style is fully formed and recognizable</p><p class="text-white/50 text-sm leading-relaxed mb-2">Can design sessions for others and guide their practice</p><p class="text-white/50 text-sm leading-relaxed mb-2">Scores 8+ consistently in competitive simulations</p><p class="text-white/50 text-sm leading-relaxed mb-2">Full pre-competition routine established and practiced</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h3 class="section-title">SECTION 6 — THE COACH CERTIFICATION PATHWAY</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">After Black Belt, you can enter the Coach Formation pathway. The TSS method is transmitted through certified coaches. This is your opportunity to formalize that knowledge and help others find their way.</p><p class="text-white/50 text-sm leading-relaxed mb-2">L1 — Foundation Coach</p><p class="text-white/50 text-sm leading-relaxed mb-2">Teach White &amp; Yellow belts. Minimum requirement: Blue Belt. Focus on fundamentals, posture, board control, foundational psychology.</p><p class="text-white/50 text-sm leading-relaxed mb-2">L2 — Practitioner</p><p class="text-white/50 text-sm leading-relaxed mb-2">Teach up to Blue Belt. Minimum requirement: Purple Belt. You understand progression and can guide students through the early methodology.</p><p class="text-white/50 text-sm leading-relaxed mb-2">L3 — Advanced</p><p class="text-white/50 text-sm leading-relaxed mb-2">Teach up to Brown Belt. Mentor L1/L2 coaches. Minimum requirement: Brown Belt. You can handle competition training and aerials. You can develop other coaches.</p><p class="text-white/50 text-sm leading-relaxed mb-2">L4 — Master</p><p class="text-white/50 text-sm leading-relaxed mb-2">All levels. Minimum requirement: Black Belt. You teach everything. You set the standard for the methodology.</p><p class="text-white/50 text-sm leading-relaxed mb-2">L5 — Coach Educator</p><p class="text-white/50 text-sm leading-relaxed mb-2">Forms and certifies coaches. Minimum requirement: Black Belt + L4 experience. You are responsible for the integrity of the method as it spreads.</p><p class="text-white/50 text-sm leading-relaxed mb-2">&quot;Black Belt is the end of the student journey. It is the beginning of the teacher journey.&quot;</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h3 class="section-title">SECTION 7 — THE INFINITE PURSUIT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">The method does not produce finished surfers. It produces surfers who never stop refining. The ocean changes every day. Your body changes every year. Your understanding deepens with every session. The pursuit of your maximum potential is infinite.</p><p class="text-white/50 text-sm leading-relaxed mb-2">You will return to basics. You will rediscover things in old sequences. You will find new expressions in familiar chains. You will adapt to changing conditions, changing age, changing circumstances. The template stays. Your execution evolves.</p><p class="text-white/50 text-sm leading-relaxed mb-2">This is the beauty of the method. It doesn&#x27;t lock you in. It gives you a framework within which you continuously grow. Every session is an opportunity. Every wipeout is information. Every wave is a chance to refine.</p><p class="text-white/50 text-sm leading-relaxed mb-2">&quot;Mastery is not a destination. It is a standard you hold yourself to every single session.&quot;</p></div>
+</div>
+</div>
+
+<div class="footer">
+  <div class="tagline">Evolve through play.</div>
+  <p>The Surf Sequence® — Black Belt Student Kit — Enkrateia SA de CV</p>
+</div>
+
+<script>
+let opened = new Set();
+const total = 7;
+document.querySelectorAll('.section-card').forEach((card, i) => {
+  card.addEventListener('click', () => {
+    opened.add(i);
+    const pct = Math.round(opened.size / total * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = opened.size + ' / ' + total + ' sections explored (' + pct + '%)';
+  });
+});
+</script>
+</body>
+</html>
