@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Circles of Power — The Surf Sequence®</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0A1628 0%, #0D2D5E 100%);
+            color: #C8D0DC;
+            font-family: 'Work Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-align: center;
+            margin-bottom: 50px;
+            letter-spacing: -0.5px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #5AC3E7;
+            text-align: center;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .circles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .circles-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            height: 500px;
+        }
+
+        svg {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 40px rgba(90, 195, 231, 0.08));
+        }
+
+        .circle-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            fill: #FFFFFF;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+
+        .circle-content {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.8rem;
+            fill: #C8D0DC;
+            text-anchor: middle;
+        }
+
+        .center-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            fill: #5AC3E7;
+            text-anchor: middle;
+            dominant-baseline: middle;
+        }
+
+        /* Descriptions below circles */
+        .circles-description {
+            background: rgba(13, 45, 94, 0.3);
+            border: 1px solid rgba(90, 195, 231, 0.2);
+            border-radius: 8px;
+            padding: 25px;
+            margin-top: 30px;
+            line-height: 1.8;
+        }
+
+        .circles-description h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #5AC3E7;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .circles-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .circles-description li {
+            padding-left: 20px;
+            margin-bottom: 8px;
+            position: relative;
+            color: #C8D0DC;
+            font-size: 0.95rem;
+        }
+
+        .circles-description li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #5AC3E7;
+            font-weight: bold;
+        }
+
+        /* Key concept box */
+        .key-concept {
+            background: linear-gradient(135deg, rgba(90, 195, 231, 0.1) 0%, rgba(13, 45, 94, 0.2) 100%);
+            border: 2px solid #5AC3E7;
+            border-radius: 12px;
+            padding: 40px;
+            margin-top: 60px;
+            text-align: center;
+        }
+
+        .key-concept h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #5AC3E7;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .key-concept p {
+            font-size: 1rem;
+            color: #C8D0DC;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .key-concept strong {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .circles-grid {
+                grid-template-columns: 1fr;
+                gap: 80px;
+            }
+
+            .circles-container {
+                height: 400px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Three Circles of Power</h1>
+
+        <!-- SURFER VERSION -->
+        <div class="section">
+            <h2>Surfer Version</h2>
+            <div class="circles-grid">
+                <div>
+                    <div class="circles-container">
+                        <svg viewBox="0 0 500 500" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <filter id="glow-surfer">
+                                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+
+                            <!-- Circle 1: Body (left) -->
+                            <circle cx="200" cy="250" r="120" fill="rgba(90, 195, 231, 0.15)" stroke="#5AC3E7" stroke-width="2" filter="url(#glow-surfer)"/>
+                            <text x="150" y="180" class="circle-label">BODY</text>
+                            <text x="150" y="210" class="circle-content">Posture</text>
+                            <text x="150" y="230" class="circle-content">Rotation</text>
+                            <text x="150" y="250" class="circle-content">Compression</text>
+                            <text x="150" y="270" class="circle-content">Hold</text>
+
+                            <!-- Circle 2: Board (right) -->
+                            <circle cx="300" cy="250" r="120" fill="rgba(13, 45, 94, 0.15)" stroke="#0D2D5E" stroke-width="2" filter="url(#glow-surfer)"/>
+                            <text x="350" y="180" class="circle-label">BOARD</text>
+                            <text x="350" y="210" class="circle-content">FP1: Full Tail</text>
+                            <text x="350" y="230" class="circle-content">FP2: Neutral</text>
+                            <text x="350" y="260" class="circle-content">FP3: Forward</text>
+
+                            <!-- Circle 3: Wave (bottom) -->
+                            <circle cx="250" cy="330" r="120" fill="rgba(90, 195, 231, 0.08)" stroke="#5AC3E7" stroke-width="2" stroke-dasharray="5,5" filter="url(#glow-surfer)"/>
+                            <text x="250" y="300" class="circle-label" font-size="13">WAVE</text>
+                            <text x="250" y="325" class="circle-content">Energy</text>
+                            <text x="250" y="345" class="circle-content">Direction</text>
+                            <text x="250" y="365" class="circle-content">Section</text>
+
+                            <!-- Center: THE SURF SEQUENCE -->
+                            <text x="250" y="250" class="center-label">THE SURF</text>
+                            <text x="250" y="268" class="center-label">SEQUENCE</text>
+                        </svg>
+                    </div>
+                    <div class="circles-description">
+                        <h3>Body: P·R·C·H</h3>
+                        <ul>
+                            <li>Posture — foundational stance and alignment</li>
+                            <li>Rotation — torso and hip engagement</li>
+                            <li>Compression — knee and ankle flex</li>
+                            <li>Hold — grip and pressure control</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="circles-description" style="margin-top: 0;">
+                        <h3>Board: Feet Position</h3>
+                        <ul>
+                            <li>FP1: Full Tail — maximum control, tight turns</li>
+                            <li>FP2: Neutral — balance point, flow state</li>
+                            <li>FP3: Forward — acceleration, drive, projection</li>
+                        </ul>
+                    </div>
+                    <div class="circles-description">
+                        <h3>Wave: Dynamics</h3>
+                        <ul>
+                            <li>Energy — power and momentum in the section</li>
+                            <li>Direction — line selection and angle</li>
+                            <li>Section — identifying the next expressive zone</li>
+                            <li>Pocket — the sweet spot for maximum performance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COACH VERSION -->
+        <div class="section">
+            <h2>Coach Version</h2>
+            <div class="circles-grid">
+                <div>
+                    <div class="circles-container">
+                        <svg viewBox="0 0 500 500" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <filter id="glow-coach">
+                                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+
+                            <!-- Circle 1: Surfer Level -->
+                            <circle cx="200" cy="250" r="120" fill="rgba(90, 195, 231, 0.15)" stroke="#5AC3E7" stroke-width="2" filter="url(#glow-coach)"/>
+                            <text x="150" y="220" class="circle-label">SURFER</text>
+                            <text x="150" y="245" class="circle-content">Level</text>
+                            <text x="150" y="265" class="circle-content">Requirements</text>
+                            <text x="150" y="285" class="circle-content">Belt Band</text>
+
+                            <!-- Circle 2: Environment -->
+                            <circle cx="300" cy="250" r="120" fill="rgba(13, 45, 94, 0.15)" stroke="#0D2D5E" stroke-width="2" filter="url(#glow-coach)"/>
+                            <text x="350" y="220" class="circle-label">ENVIRONMENT</text>
+                            <text x="350" y="245" class="circle-content">Wave Size</text>
+                            <text x="350" y="265" class="circle-content">Wind / Swell</text>
+                            <text x="350" y="285" class="circle-content">Break Type</text>
+
+                            <!-- Circle 3: Task/Game -->
+                            <circle cx="250" cy="330" r="120" fill="rgba(90, 195, 231, 0.08)" stroke="#5AC3E7" stroke-width="2" stroke-dasharray="5,5" filter="url(#glow-coach)"/>
+                            <text x="250" y="300" class="circle-label" font-size="13">TASK / GAME</text>
+                            <text x="250" y="325" class="circle-content">Objective</text>
+                            <text x="250" y="345" class="circle-content">Constraints</text>
+                            <text x="250" y="365" class="circle-content">Feedback</text>
+
+                            <!-- Center: THE SURF SEQUENCE -->
+                            <text x="250" y="250" class="center-label">THE SURF</text>
+                            <text x="250" y="268" class="center-label">SEQUENCE</text>
+                        </svg>
+                    </div>
+                    <div class="circles-description">
+                        <h3>Surfer</h3>
+                        <ul>
+                            <li>Level — current belt rank and progression</li>
+                            <li>Requirements — what skills must be demonstrated</li>
+                            <li>Belt Band — the zone for targeted development</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="circles-description" style="margin-top: 0;">
+                        <h3>Environment</h3>
+                        <ul>
+                            <li>Wave Size — shoulder to head+ to double overhead</li>
+                            <li>Wind & Swell — direction, period, consistency</li>
+                            <li>Break Type — beach break, reef, point break</li>
+                        </ul>
+                    </div>
+                    <div class="circles-description">
+                        <h3>Task / Game</h3>
+                        <ul>
+                            <li>Objective — the specific skill or maneuver to master</li>
+                            <li>Constraints — rules, zones, or limitations</li>
+                            <li>Feedback — real-time information and cues</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- KEY CONCEPT -->
+        <div class="key-concept">
+            <h3>Foundational Language & Diagnostic Lens</h3>
+            <p><strong>The Three Circles</strong> are the foundational language and diagnostic lens of the method.</p>
+            <p><strong>The Block System</strong> is the functional architecture of surfing.</p>
+            <p><strong>The Infinite Circle</strong> is the operational loop that repeats during every ride.</p>
+            <p style="margin-top: 25px; font-size: 0.95rem; opacity: 0.9;">Together, they form a complete, interconnected system for teaching, coaching, and mastering surfing.</p>
+        </div>
+    </div>
+</body>
+</html>

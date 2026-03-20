@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safety Student Manual v1 — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FF6B6B;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🛡️</span>
+    <div>
+      <div class="top-bar__title">Safety Student Manual v1</div>
+      <div class="top-bar__sub">The Surf Sequence® — SAFETY</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">SAFETY</span>
+    <span>1,553 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">SAFETY STUDENT MANUAL</a><a href="#s3">SECTION 1: HOW THE SURF SEQUENCE® VIEWS SAFETY</a><a href="#s4">SECTION 2: YOUR RESPONSIBILITIES AS A STUDENT</a><a href="#s5">SECTION 3: BEFORE ENTERING THE WATER</a><a href="#s6">The Beach Briefing</a><a href="#s7">Equipment Check</a><a href="#s8">SECTION 4: IN THE WATER</a><a href="#s9">Spacing and Awareness</a><a href="#s10">SECTION 5: WHAT TO DO IF...</a><a href="#s11">You lose your board</a><a href="#s12">You feel scared or panicked</a><a href="#s13">You drift out of your zone</a><a href="#s14">You hear the recall signal</a><a href="#s15">Someone else is in trouble</a><a href="#s16">You get hit by a board</a><a href="#s17">SECTION 6: SURF ETIQUETTE AS SAFETY</a><a href="#s18">SECTION 7: UNDERSTANDING CONDITIONS</a><a href="#s19">What Your Coach Reads</a><a href="#s20">Condition Colors</a><a href="#s21">SECTION 8: YOUR SAFETY QUICK CHECK</a><a href="#s22">SECTION 9: OCEAN RESPECT &amp; ENVIRONMENTAL SAFETY</a><a href="#s23">SECTION 10: MY SAFETY SESSION TRACKER</a><a href="#s24">SESSION 1</a><a href="#s25">SESSION 2</a><a href="#s26">SESSION 3</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">SAFETY STUDENT MANUAL</h1>
+<p>Safety as Applied Intelligence</p>
+<p>Clear rules for learning, behaving well, and progressing safely</p>
+<p>By Marcelo Castellanos</p>
+<p>ISA Olympic Expert Coach | Founder, The Surf Sequence®</p>
+<p>Enkrateia SA de CV — All Rights Reserved</p>
+<p>Version 1.0 — March 2026</p>
+<h1 class="doc-h1" id="s3">SECTION 1: HOW THE SURF SEQUENCE® VIEWS SAFETY</h1>
+<p>Safety is not there to slow you down. It is there to help you learn faster, with better decisions, better awareness, and more consistent progress.</p>
+<p>Your coach is not only teaching technique. Your coach is also reading the ocean, the group, your energy, and the conditions around you. Safety is built into every session — from the moment the venue is analyzed to the moment the last student exits the water.</p>
+<p>This manual gives you everything you need to understand your role in keeping sessions safe, productive, and enjoyable. Read it before your first session. Review it whenever you have questions.</p>
+<h1 class="doc-h1" id="s4">SECTION 2: YOUR RESPONSIBILITIES AS A STUDENT</h1>
+<p>Safety is shared. The coach leads, but you have responsibilities too. These are not optional — they are part of how the method works.</p>
+<ul class="doc-list">
+<li>Tell the truth. Report injuries, fear, fatigue, medication, panic history, or anything that could affect your session. Your coach needs accurate information to make good decisions.</li>
+<li>Follow commands. Once the session is active, follow the coach’s commands quickly and without debate. There will be time for questions before entry — not during a critical moment in the water.</li>
+<li>Respect your level. Do not jump exposure just to prove something. Progression is earned through control, not ambition.</li>
+<li>Control your board. Your board is a projectile. Do not let it become a danger to yourself or others. Hold onto it whenever possible.</li>
+<li>Respect the ocean. Respect the beach, the people surfing around you, and the environment. Leave the beach cleaner than you found it.</li>
+<li>Respect other surfers. Do not create danger through board loss, cutting across entry lines, or ignoring assigned zones. Conflict is never your job to manage — the coach handles it.</li>
+</ul>
+<h1 class="doc-h1" id="s5">SECTION 3: BEFORE ENTERING THE WATER</h1>
+<p>Every session begins with preparation. Do not skip this — it is where safety starts.</p>
+<h2 class="doc-h2" id="s6">The Beach Briefing</h2>
+<p>Before every session, your coach will deliver a beach briefing. This is not a formality. Pay attention.</p>
+<ul class="doc-list">
+<li>Session objective: What you will work on today and what success looks like.</li>
+<li>Where to enter: The exact route into the water.</li>
+<li>Where to stay: Your assigned zone — the area between the flags or markers.</li>
+<li>Where NOT to go: The no-go zone, usually the impact zone where bigger waves break.</li>
+<li>Where to exit: The agreed route back to shore.</li>
+<li>Recall signal: What it sounds or looks like, and what to do when you hear or see it. When the recall signal is given, return to shore immediately through the agreed route.</li>
+<li>What to do if: Your board is lost, if fear spikes, or if the current pulls you sideways.</li>
+</ul>
+<h2 class="doc-h2" id="s7">Equipment Check</h2>
+<ul class="doc-list">
+<li>Check your leash — is it attached securely to your ankle and to the board?</li>
+<li>Check your board — are the fins secure? Is the surface intact?</li>
+<li>Check your wetsuit or rash vest — does it fit properly?</li>
+<li>Apply sunscreen and hydrate before entry.</li>
+</ul>
+<h1 class="doc-h1" id="s8">SECTION 4: IN THE WATER</h1>
+<p>Once you are in the water, these rules protect you, your group, and your learning quality.</p>
+<ul class="doc-list">
+<li>Stay with the group. Remain inside the assigned zone at all times. Do not drift outside the flagged area.</li>
+<li>Hold your board. Whenever possible, maintain contact with your board. During falls, protect your head first, then recover your board.</li>
+<li>Protect your head. After every wipeout, cover your head with your arms before surfacing. This is non-negotiable.</li>
+<li>Respect wave assignments. Do not paddle into waves, sections, or areas your coach has not approved for your level.</li>
+<li>Stay calm. If you lose control, drift out of zone, or get scared, focus on staying calm and following one instruction at a time. Panic increases danger. Breathing reduces it.</li>
+</ul>
+<h2 class="doc-h2" id="s9">Spacing and Awareness</h2>
+<p>Keep enough distance from other surfers to avoid board collisions. Be aware of who is around you, especially behind you. If someone is paddling for a wave and has priority, let them go. Surf etiquette is collision prevention.</p>
+<h1 class="doc-h1" id="s10">SECTION 5: WHAT TO DO IF...</h1>
+<p>Situations will arise. Knowing what to do before they happen is what separates a prepared surfer from a panicked one.</p>
+<h2 class="doc-h2" id="s11">You lose your board</h2>
+<ul class="doc-list">
+<li>Protect your head immediately — arms crossed over your head.</li>
+<li>Swim to shore if your leash breaks.</li>
+<li>Alert your coach as soon as possible.</li>
+<li>Do NOT chase a loose board into deeper water or the impact zone.</li>
+</ul>
+<h2 class="doc-h2" id="s12">You feel scared or panicked</h2>
+<ul class="doc-list">
+<li>Signal the coach — raise one arm.</li>
+<li>Float on your back and focus on breathing.</li>
+<li>Do not fight the water. Let it carry you while you regain composure.</li>
+<li>If you cannot calm down, the coach will come to you. Trust the process.</li>
+</ul>
+<h2 class="doc-h2" id="s13">You drift out of your zone</h2>
+<ul class="doc-list">
+<li>Paddle parallel to shore — not against the current.</li>
+<li>If you cannot get back, signal the coach and stay calm.</li>
+<li>Never exhaust yourself fighting a current. Use the current, do not fight it.</li>
+</ul>
+<h2 class="doc-h2" id="s14">You hear the recall signal</h2>
+<ul class="doc-list">
+<li>Return to shore immediately through the agreed exit route.</li>
+<li>Do not catch one more wave. The signal means NOW.</li>
+<li>Regroup at the meeting point and wait for instructions.</li>
+</ul>
+<h2 class="doc-h2" id="s15">Someone else is in trouble</h2>
+<ul class="doc-list">
+<li>Alert the coach immediately — point and shout.</li>
+<li>Do NOT attempt a rescue unless you are trained. A second person in trouble doubles the emergency.</li>
+<li>Stay visible and stay safe so you do not become a second victim.</li>
+</ul>
+<h2 class="doc-h2" id="s16">You get hit by a board</h2>
+<ul class="doc-list">
+<li>Check yourself: are you bleeding? Is your vision clear? Do you feel dizzy?</li>
+<li>If you hit your head, exit the water immediately — even if you feel fine.</li>
+<li>Report ALL impacts to your coach. Head injuries can have delayed symptoms.</li>
+</ul>
+<h1 class="doc-h1" id="s17">SECTION 6: SURF ETIQUETTE AS SAFETY</h1>
+<p>Etiquette is not just good manners. In the ocean, etiquette is collision prevention, social de-escalation, and line-up order. Breaking etiquette creates real danger.</p>
+<ul class="doc-list">
+<li>Priority: The surfer closest to the peak (the breaking part of the wave) has priority. If someone is already riding, do not drop in.</li>
+<li>Paddle wide: When paddling back out, go around the breaking zone — not through it. Paddling through the impact zone puts you in the path of riders.</li>
+<li>Control your board: Never throw your board. If a wave is coming, hold onto it or turtle roll. A loose board is a projectile.</li>
+<li>Respect locals: Every beach has regular surfers. Be respectful, do not take every wave, and do not paddle into the middle of their lineup.</li>
+<li>Communicate: If you are about to collide, shout to alert the other person. Simple communication prevents many accidents.</li>
+</ul>
+<h1 class="doc-h1" id="s18">SECTION 7: UNDERSTANDING CONDITIONS</h1>
+<p>As you progress in The Surf Sequence®, you will develop the ability to read conditions yourself. For now, understand the basics of what your coach is evaluating before every session.</p>
+<h2 class="doc-h2" id="s19">What Your Coach Reads</h2>
+<ul class="doc-list">
+<li>Swell size: The height and power of the waves. Bigger swell = more force, more risk.</li>
+<li>Tide: The water level changes throughout the day. Some breaks are safer at mid-tide. Your coach selects the right time.</li>
+<li>Current: Water moving sideways or pulling outward. Current can drag you out of your zone without you noticing.</li>
+<li>Wind: Offshore wind (from land to ocean) cleans up the waves. Onshore wind (from ocean to land) makes conditions messier and harder to read.</li>
+<li>Bottom: Sand, reef, or rocks underneath. Your coach selects venues with appropriate bottom conditions for your level.</li>
+<li>Crowd: More surfers = more collision risk. Your coach adjusts the zone and spacing based on crowd.</li>
+</ul>
+<h2 class="doc-h2" id="s20">Condition Colors</h2>
+<p>The Surf Sequence® uses a color-coded condition system to classify safety levels. Your coach will always operate within these thresholds:</p>
+<ul class="doc-list">
+<li>Green — Very Safe / Safe: 1–4 ft swell. Low current. Standard ratios. All levels can enter.</li>
+<li>Yellow — Challenging: 5–6 ft swell. Moderate to strong current. Tighter ratios. Age and level restrictions apply.</li>
+<li>Orange — Strong / Heavy: 7–10 ft swell. 1:1 ratio mandatory. No beginners. No children under 14.</li>
+<li>Red — RED CODE: 10+ ft or any environmental hazard. CLASS CANCELLED. No one enters the water. Plan B is activated.</li>
+</ul>
+<h1 class="doc-h1" id="s21">SECTION 8: YOUR SAFETY QUICK CHECK</h1>
+<p>Before every session, confirm the following. If any answer is NO, talk to your coach before entering the water.</p>
+<h1 class="doc-h1" id="s22">SECTION 9: OCEAN RESPECT &amp; ENVIRONMENTAL SAFETY</h1>
+<p>Respect for the ocean and the beach is part of safe delivery and part of being a surfer. The ocean is powerful, beautiful, and deserves care.</p>
+<ul class="doc-list">
+<li>Leave the beach cleaner than you found it. Pick up trash — even if it is not yours.</li>
+<li>Do not damage marine life or coral. Be aware of where you step and where your board rests.</li>
+<li>Respect local access norms and community rules.</li>
+<li>Handle equipment carefully. Damaged gear left on the beach creates hazards for others.</li>
+<li>Report any environmental hazard you observe (pollution, debris, dead animals) to your coach.</li>
+</ul>
+<h1 class="doc-h1" id="s23">SECTION 10: MY SAFETY SESSION TRACKER</h1>
+<p>Use this tracker to record safety observations after each session. Building this habit makes you a more aware, more prepared surfer.</p>
+<h1 class="doc-h1" id="s24">SESSION 1</h1>
+<h1 class="doc-h1" id="s25">SESSION 2</h1>
+<h1 class="doc-h1" id="s26">SESSION 3</h1>
+<p class="doc-bold">The Surf Sequence®</p>
+<p>Safety Student Manual v1.0</p>
+<p>By Marcelo Castellanos</p>
+<p>Enkrateia SA de CV — All Rights Reserved — 2026</p>
+<p>Safety is not fear. It is applied intelligence.</p>
+<div class="table-wrap"><table>
+<tr><th>Core Principle
+In The Surf Sequence®, safety means preparation, observation, correct progression, emotional regulation, equipment discipline, group control, and timely adaptation. A safe session is not the opposite of a challenging session. It is the condition that makes real challenge usable.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Pro Tip
+Ask questions BEFORE entry, not during a critical moment in the water. If anything is unclear after the briefing, raise your hand and ask. Once you enter the water, communication becomes harder.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Falling Safely
+When you fall, protect your head with both arms crossed over it. Fall flat (pencil jump or starfish), not feet-first into shallow water. After surfacing, locate your board immediately and regain control of it.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Head Injury Rule
+Any head impact means you are OUT of the water for the rest of the session. No exceptions. This is not punishment — it is protection. Delayed concussion symptoms are invisible but dangerous.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Remember
+Conflict in the water is never your job to manage. If a local surfer or another person becomes aggressive, move away and alert your coach. Your coach will handle it.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Red Code Hazards
+Jellyfish, stingrays, exposed rocks, sharks, crocodiles, contaminated water, boat traffic, venomous creatures, lightning, or any condition that threatens student or instructor safety — any of these triggers Red Code regardless of swell size.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>□</th><th>I have disclosed all relevant medical and physical conditions</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>□</th><th>I know the entry point, exit point, and my assigned zone</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>□</th><th>I know the recall signal and what to do when I hear it</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>□</th><th>My leash and board are in good condition</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>□</th><th>I understand the session objective and my boundaries</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>□</th><th>I know what to do if I lose my board, feel scared, or drift out of zone</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>□</th><th>I have applied sunscreen and I am hydrated</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>□</th><th>I understand the surf etiquette rules for today’s session</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>The Surf Sequence® Mindset
+We are guests in the ocean. Every session is a privilege, not a right. Treat the water, the beach, and the people around you with the same respect you want to receive.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Date</th><th></th></tr>
+<tr><td>Venue</td><td></td></tr>
+<tr><td>Conditions (swell / wind / current)</td><td></td></tr>
+<tr><td>Safety color (Green / Yellow / Orange / Red)</td><td></td></tr>
+<tr><td>Did I follow all briefing instructions?</td><td>Yes / No</td></tr>
+<tr><td>Did I stay in my zone?</td><td>Yes / No</td></tr>
+<tr><td>Did anything unexpected happen?</td><td></td></tr>
+<tr><td>What did I learn about safety today?</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Date</th><th></th></tr>
+<tr><td>Venue</td><td></td></tr>
+<tr><td>Conditions (swell / wind / current)</td><td></td></tr>
+<tr><td>Safety color (Green / Yellow / Orange / Red)</td><td></td></tr>
+<tr><td>Did I follow all briefing instructions?</td><td>Yes / No</td></tr>
+<tr><td>Did I stay in my zone?</td><td>Yes / No</td></tr>
+<tr><td>Did anything unexpected happen?</td><td></td></tr>
+<tr><td>What did I learn about safety today?</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Date</th><th></th></tr>
+<tr><td>Venue</td><td></td></tr>
+<tr><td>Conditions (swell / wind / current)</td><td></td></tr>
+<tr><td>Safety color (Green / Yellow / Orange / Red)</td><td></td></tr>
+<tr><td>Did I follow all briefing instructions?</td><td>Yes / No</td></tr>
+<tr><td>Did I stay in my zone?</td><td>Yes / No</td></tr>
+<tr><td>Did anything unexpected happen?</td><td></td></tr>
+<tr><td>What did I learn about safety today?</td><td></td></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Safety Student Manual v1 — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

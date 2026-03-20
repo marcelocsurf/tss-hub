@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 Senses TSS — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#1E6FBF;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #0D2D5E 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">👁️</span>
+    <div>
+      <div class="top-bar__title">7 Senses TSS</div>
+      <div class="top-bar__sub">TSS Masterclass — 13 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 13</span>
+    <h2 class="slide-hero">The 7 Extended Senses</h2>
+<h3 class="slide-heading">How to Activate Your Hidden Senses for Surf Performance</h3>
+<p class="body-text">Science-Based Training for Proprioception &amp; Interoception</p>
+<p class="body-text">EnseñARTE Educational Tool  —  The Surf Sequence®</p>
+<p class="body-text">Marcelo Castellanos  |  ISA Olympic Expert Coach</p>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 13</span>
+    <h3 class="slide-heading">The 7 Extended Senses</h3>
+<p class="body-text">Beyond the classic 5 — the surfer trains all perception channels.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Sight</span></div>
+</div>
+<ul class="slide-list">
+<li>Light, shape, color, movement</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Hearing</span></div>
+</div>
+<ul class="slide-list">
+<li>Sound, rhythm, tone, direction</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Touch</span></div>
+</div>
+<ul class="slide-list">
+<li>Pressure, temperature, texture</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Taste</span></div>
+</div>
+<ul class="slide-list">
+<li>Sweet, salty, bitter, sour, umami</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Smell</span></div>
+</div>
+<ul class="slide-list">
+<li>Odors, linked to memory</li>
+</ul>
+<h3 class="slide-heading">#6  Proprioception</h3>
+<p class="body-text">Body position, balance, spatial awareness</p>
+<h3 class="slide-heading">#7  Interoception</h3>
+<p class="body-text">Internal signals: heartbeat, breathing, gut feeling</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">These two senses are the most trainable and most impactful for surf performance.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 13</span>
+    <h3 class="slide-heading">Sense #6: Proprioception</h3>
+<h3 class="slide-heading">What It Is</h3>
+<p class="body-text">Your body&#x27;s ability to sense its own position, movement, and force without relying on sight. Mechanoreceptors in muscles, joints, and skin send real-time data to your brain about where your body is in space. It&#x27;s your body&#x27;s built-in GPS.</p>
+<h3 class="slide-heading">Why It Matters in Surf</h3>
+<p class="body-text">Balance on an unstable, moving surface</p>
+<p class="body-text">Adjusting stance mid-wave without looking at your feet</p>
+<p class="body-text">Transferring weight rail-to-rail with precision</p>
+<p class="body-text">Recovering posture after a bottom turn</p>
+<p class="body-text">Executing maneuvers through feel, not thought</p>
+<ul class="slide-list">
+<li>Source: Aman et al., Frontiers in Human Neuroscience (2015); Cleveland Clinic (2025)</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 13</span>
+    <h3 class="slide-heading">The Science Behind Proprioception Training</h3>
+<h3 class="slide-heading">42-48%</h3>
+<p class="body-text">Reduction in joint position error after targeted proprioceptive training with visual feedback (Lin et al., 2007-2009)</p>
+<h3 class="slide-heading">92%</h3>
+<p class="body-text">Improvement in ankle proprioception after combined somatosensory stimulation + active movement (3 weeks)</p>
+<h3 class="slide-heading">6+ weeks</h3>
+<p class="body-text">Minimum duration for significant balance improvements via proprioceptive training (systematic review, Aman et al. 2015)</p>
+<h3 class="slide-heading">Cortical</h3>
+<p class="body-text">Somatosensory cortex reorganization occurs with proprioceptive training — the brain physically adapts (Frontiers, 2022)</p>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 13</span>
+    <h3 class="slide-heading">Proprioception Drills — Beginner</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Eyes-Closed Single Leg Stand</span></div>
+</div>
+<ul class="slide-list">
+<li>Stand on one leg, close eyes. Hold 10-30 sec per side. Your proprioceptors work harder when visual input is removed.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Simulates balance adjustments when wave turbulence blocks visual reference.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Weight Shift Balance</span></div>
+</div>
+<ul class="slide-list">
+<li>Stand on one leg, slowly shift weight forward/backward/lateral. 3 sets x 30 sec per side.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Trains the same weight transfers used in rail-to-rail transitions.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Bird-Dog (Quadruped)</span></div>
+</div>
+<ul class="slide-list">
+<li>On all fours: extend left arm + right leg, hold 3 sec. Alternate. 8-12 reps.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Activates core-limb coordination similar to paddle-to-pop-up transition.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 13</span>
+    <h3 class="slide-heading">Proprioception Drills — Advanced</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Balance Board / Bosu Squats</span></div>
+</div>
+<ul class="slide-list">
+<li>Squat on an unstable surface (balance board, Bosu ball). 3x12 reps. Add eyes-closed for max challenge.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Directly replicates the unstable platform of a surfboard on water.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Lateral Box Jumps (Blind)</span></div>
+</div>
+<ul class="slide-list">
+<li>Box to your side. Jump and land on it without looking. 3x8 reps per side. Progress to single-leg.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Trains rapid directional change — same motor pattern as frontside/backside transitions.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Tai Chi / Yoga Flow Sequences</span></div>
+</div>
+<ul class="slide-list">
+<li>Slow, controlled movement with full body awareness. 15-20 min sessions. Focus on feeling, not seeing.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Builds the deep mind-body integration that enables flow state on the wave.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 13</span>
+    <h3 class="slide-heading">Sense #7: Interoception</h3>
+<h3 class="slide-heading">What It Is</h3>
+<p class="body-text">The sense of your internal body state. It detects signals like heartbeat, breathing rate, hunger, fatigue, and emotions. Linked to the insular cortex and the enteric nervous system (your &#x27;second brain&#x27;). It&#x27;s your gut feeling — literally.</p>
+<h3 class="slide-heading">Why It Matters in Surf</h3>
+<p class="body-text">Reading your arousal level before a heat</p>
+<p class="body-text">Knowing when to push harder vs. when to conserve energy</p>
+<p class="body-text">Detecting fear vs. excitement in big-wave situations</p>
+<p class="body-text">Regulating breathing during hold-downs</p>
+<p class="body-text">Trusting your gut on wave selection</p>
+<ul class="slide-list">
+<li>Source: Zeng et al., Psychophysiology (2025); Wallman-Jones &amp; Lustig, Frontiers (2021)</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 13</span>
+    <h3 class="slide-heading">The Science Behind Interoception Training</h3>
+<h3 class="slide-heading">Elite &gt; Rec</h3>
+<p class="body-text">Elite athletes scored significantly higher in interoceptive accuracy, sensibility, and awareness vs. recreational athletes (Zeng et al., 2025)</p>
+<h3 class="slide-heading">Insular Cortex</h3>
+<p class="body-text">Physical activity triggers intensity-dependent activation of the insular cortex — the brain&#x27;s interoception center (neuroimaging studies)</p>
+<h3 class="slide-heading">Motor Imagery</h3>
+<p class="body-text">Mental rehearsal of movement improves interoceptive awareness and performance satisfaction (Di Tella et al., 2025)</p>
+<h3 class="slide-heading">Mindfulness</h3>
+<p class="body-text">Body scans, meditation, and breath-focused practice enhance all 3 dimensions of interoception: accuracy, sensibility, awareness (PMC, 2024)</p>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 13</span>
+    <h3 class="slide-heading">Interoception Drills — Awareness</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Heartbeat Counting Task</span></div>
+</div>
+<ul class="slide-list">
+<li>Sit quietly. Without touching your pulse, count your heartbeats for 30 sec. Compare to actual count. Repeat 3x.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Trains awareness of arousal level — essential for managing pre-heat anxiety and excitation.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Breath-Focus Body Scan</span></div>
+</div>
+<ul class="slide-list">
+<li>Lie down. 5 min guided scan from feet to head. Notice every sensation: temperature, tension, tingling.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Builds the internal listening that enables flow state and zone entry during sessions.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Post-Exercise Interoceptive Check</span></div>
+</div>
+<ul class="slide-list">
+<li>After a hard paddle or run, sit still. Feel your heart rate drop. Notice when breathing normalizes. Track the shift.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Directly maps to post-paddle awareness before catching a wave — knowing when you&#x27;re ready.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 13</span>
+    <h3 class="slide-heading">Interoception Drills — Advanced</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Motor Imagery Training</span></div>
+</div>
+<ul class="slide-list">
+<li>Visualize your surf session in detail — feel the water, the pop up, the rail pressure. 10 min daily, eyes closed.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Proven to improve interoceptive awareness and performance satisfaction (Univ. of Pisa, 2025).</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Apnea + Body Awareness</span></div>
+</div>
+<ul class="slide-list">
+<li>Hold breath for 30-60 sec. Notice: heart rate increase, chest tightness, urge to breathe. Rate intensity 1-10.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Directly trains hold-down resilience. Teaches the body there is no danger — Danaher principle.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Mindfulness During Training</span></div>
+</div>
+<ul class="slide-list">
+<li>During warm-up or paddle, deliberately shift attention inward. Scan: feet tension, core engagement, shoulder load.</li>
+</ul>
+<h4 class="slide-sub">Surf Transfer</h4>
+<ul class="slide-list">
+<li>Bridges the gap between dry-land awareness and in-water performance execution.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 13</span>
+    <h3 class="slide-heading">The Connection: Proprioception + Interoception</h3>
+<p class="body-text">They are not separate systems. In high-performance surfing, they work as one integrated loop:</p>
+<h3 class="slide-heading">1</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Interoception detects arousal state</span></div>
+</div>
+<ul class="slide-list">
+<li>Am I ready? Am I tense? What does my body say?</li>
+</ul>
+<h3 class="slide-heading">2</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Proprioception reads body position</span></div>
+</div>
+<ul class="slide-list">
+<li>Where are my feet? How is my weight distributed?</li>
+</ul>
+<h3 class="slide-heading">3</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Motor system executes</span></div>
+</div>
+<ul class="slide-list">
+<li>Pop up, compress, rotate, project — the sequence.</li>
+</ul>
+<h3 class="slide-heading">4</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Interoception monitors effort</span></div>
+</div>
+<ul class="slide-list">
+<li>Can I push harder? Do I need to breathe? Am I in flow?</li>
+</ul>
+<h3 class="slide-heading">5</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">Proprioception adjusts in real time</span></div>
+</div>
+<ul class="slide-list">
+<li>Mid-maneuver corrections based on feel, not sight.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#1E6FBF">When both senses are trained, the surfer enters No Mind — acting without interference.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 13</span>
+    <h3 class="slide-heading">Weekly Training Protocol</h3>
+<div class="slide-table-wrap"><table class="slide-table">
+<tr><th>Day</th><th>Proprioception</th><th>Interoception</th><th>Duration</th></tr>
+<tr><td>Mon</td><td>Balance board squats</td><td>Pre-session body scan</td><td>15 min</td></tr>
+<tr><td>Tue</td><td>Eyes-closed single leg</td><td>Heartbeat counting task</td><td>10 min</td></tr>
+<tr><td>Wed</td><td>Surf session focus: feel feet position</td><td>Post-paddle interoceptive check</td><td>In session</td></tr>
+<tr><td>Thu</td><td>Lateral box jumps</td><td>Motor imagery (10 min)</td><td>20 min</td></tr>
+<tr><td>Fri</td><td>Tai Chi / Yoga flow</td><td>Breath-focus body scan</td><td>20 min</td></tr>
+<tr><td>Sat</td><td>Surf session focus: blind rail transitions</td><td>Mindfulness during warm-up</td><td>In session</td></tr>
+<tr><td>Sun</td><td>Active recovery + bird-dog</td><td>Apnea + body awareness</td><td>15 min</td></tr>
+</table></div>
+<ul class="slide-list">
+<li>Minimum effective dose: 10-15 min/day, 6+ weeks for measurable proprioceptive gains.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 13</span>
+    <h2 class="slide-hero">Train What You Can&#x27;t See</h2>
+<h3 class="slide-heading">The best surfers don&#x27;t just have better technique.</h3>
+<h3 class="slide-heading">They have better perception.</h3>
+<h3 class="slide-heading">Proprioception gives you control over your body.</h3>
+<h3 class="slide-heading">Interoception gives you control over your state.</h3>
+<h3 class="slide-heading">Together, they unlock flow.</h3>
+<h3 class="slide-heading">The technique doesn&#x27;t change. You do.</h3>
+<p class="body-text">The Surf Sequence®  —  Evolve through play.</p>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  7 Senses TSS — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

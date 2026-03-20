@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSS Brown Belt Coach Delivery Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0A1628;
+            --bg-secondary: #0F1E2E;
+            --accent-cyan: #5AC3E7;
+            --belt-brown: #7D4E27;
+            --belt-brown-dark: #5C3A1E;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B4C9E0;
+            --border-color: rgba(90, 195, 231, 0.2);
+            --glass-bg: rgba(15, 30, 46, 0.6);
+            --success: #4ECDC4;
+            --warning: #FFB347;
+            --error: #FF6B6B;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #0A1628 0%, #0F1E2E 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: linear-gradient(180deg, rgba(15, 30, 46, 0.95) 0%, rgba(15, 30, 46, 0.7) 100%);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 1000;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            text-decoration: none;
+        }
+
+        .belt-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 16px;
+            background: rgba(125, 78, 39, 0.3);
+            border: 1.5px solid var(--belt-brown);
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--belt-brown);
+            font-family: 'DM Mono', monospace;
+        }
+
+        .belt-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--belt-brown);
+            box-shadow: 0 0 8px rgba(125, 78, 39, 0.6);
+        }
+
+        .controls {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .mode-toggle {
+            display: flex;
+            gap: 8px;
+            padding: 6px;
+            background: rgba(90, 195, 231, 0.1);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .mode-toggle button {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .mode-toggle button.active {
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+        }
+
+        /* MAIN LAYOUT */
+        .main-container {
+            display: flex;
+            margin-top: 70px;
+            min-height: calc(100vh - 70px);
+        }
+
+        /* SIDEBAR */
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(180deg, rgba(10, 22, 40, 0.8) 0%, rgba(15, 30, 46, 0.6) 100%);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid var(--border-color);
+            padding: 40px 0;
+            position: fixed;
+            left: 0;
+            top: 70px;
+            bottom: 0;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(90, 195, 231, 0.3) transparent;
+            z-index: 500;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(90, 195, 231, 0.3);
+            border-radius: 3px;
+        }
+
+        .nav-item {
+            padding: 16px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+            position: relative;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            color: var(--accent-cyan);
+            padding-left: 32px;
+        }
+
+        .nav-item.active {
+            color: var(--accent-cyan);
+            background: rgba(90, 195, 231, 0.1);
+            border-left: 3px solid var(--accent-cyan);
+            padding-left: 32px;
+        }
+
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(90, 195, 231, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .nav-item.active .nav-dot {
+            background: var(--accent-cyan);
+            box-shadow: 0 0 8px rgba(90, 195, 231, 0.8);
+        }
+
+        .nav-section-title {
+            padding: 24px 24px 12px 24px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: rgba(90, 195, 231, 0.6);
+            font-family: 'DM Mono', monospace;
+        }
+
+        /* CONTENT AREA */
+        .content-area {
+            margin-left: 280px;
+            flex: 1;
+            padding: 40px;
+            max-width: calc(100vw - 280px);
+        }
+
+        /* SECTIONS */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: linear-gradient(135deg, rgba(125, 78, 39, 0.2) 0%, rgba(90, 195, 231, 0.1) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 80px 60px;
+            text-align: center;
+            margin-bottom: 60px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(125, 78, 39, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--belt-brown) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 20px;
+            color: var(--accent-cyan);
+            margin-bottom: 24px;
+            font-weight: 600;
+        }
+
+        .hero-meta {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .meta-item {
+            text-align: center;
+        }
+
+        .meta-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'DM Mono', monospace;
+            margin-bottom: 8px;
+        }
+
+        .meta-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        /* CARDS */
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(90, 195, 231, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+        }
+
+        .card-title.belt-color {
+            color: var(--belt-brown);
+        }
+
+        .expand-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-cyan);
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .card.expanded .card-content {
+            max-height: 2000px;
+        }
+
+        .card-content p {
+            margin-bottom: 16px;
+        }
+
+        .card-content strong {
+            color: var(--accent-cyan);
+        }
+
+        /* GRID LAYOUTS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        /* CHECKLIST */
+        .checklist {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px;
+            background: rgba(90, 195, 231, 0.05);
+            border-left: 3px solid var(--belt-brown);
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .checklist-item:hover {
+            background: rgba(90, 195, 231, 0.1);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: var(--belt-brown);
+        }
+
+        .checklist-item label {
+            flex: 1;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .checklist-item input[type="checkbox"]:checked + label {
+            color: var(--success);
+            text-decoration: line-through;
+        }
+
+        /* EXECUTION CHAINS */
+        .chain {
+            background: linear-gradient(90deg, rgba(125, 78, 39, 0.1) 0%, rgba(90, 195, 231, 0.1) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 20px 0;
+            font-family: 'DM Mono', monospace;
+        }
+
+        .chain-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--belt-brown);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .chain-sequence {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .chain-step {
+            padding: 10px 16px;
+            background: rgba(90, 195, 231, 0.1);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 6px;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .chain-arrow {
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        /* RATING SCALES */
+        .rating-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .rating-card {
+            background: rgba(90, 195, 231, 0.08);
+            border: 1px solid rgba(90, 195, 231, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .rating-label {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            font-family: 'DM Mono', monospace;
+        }
+
+        .rating-scale {
+            display: flex;
+            justify-content: space-around;
+            gap: 8px;
+        }
+
+        .rating-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .rating-btn:hover {
+            background: rgba(90, 195, 231, 0.2);
+            border-color: var(--accent-cyan);
+        }
+
+        .rating-btn.selected {
+            background: var(--belt-brown);
+            border-color: var(--belt-brown);
+            color: white;
+        }
+
+        /* DIAGNOSTIC FRAMEWORK */
+        .diagnostic {
+            background: linear-gradient(135deg, rgba(125, 78, 39, 0.15) 0%, rgba(90, 195, 231, 0.05) 100%);
+            border-left: 4px solid var(--belt-brown);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 20px 0;
+        }
+
+        .diagnostic-title {
+            font-weight: 700;
+            color: var(--belt-brown);
+            margin-bottom: 12px;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+        }
+
+        .diagnostic-content {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .diagnostic-content ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .diagnostic-content li {
+            padding: 8px 0;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .diagnostic-content li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        /* SAFETY INFO */
+        .safety-box {
+            background: linear-gradient(135deg, rgba(255, 179, 71, 0.1) 0%, rgba(255, 179, 71, 0.05) 100%);
+            border: 1.5px solid var(--warning);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 24px 0;
+        }
+
+        .safety-title {
+            color: var(--warning);
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 13px;
+            font-family: 'DM Mono', monospace;
+        }
+
+        .safety-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .safety-content strong {
+            color: var(--warning);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .sidebar {
+                width: 240px;
+            }
+
+            .content-area {
+                margin-left: 240px;
+                padding: 24px;
+            }
+
+            .top-bar {
+                padding: 0 24px;
+            }
+
+            .hero {
+                padding: 60px 40px;
+            }
+
+            .hero-title {
+                font-size: 40px;
+            }
+
+            .hero-meta {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                top: 0;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                max-height: 200px;
+                overflow-y: auto;
+                display: flex;
+                overflow-x: auto;
+                padding: 0;
+            }
+
+            .nav-item {
+                white-space: nowrap;
+                padding: 16px 20px;
+            }
+
+            .nav-section-title {
+                display: none;
+            }
+
+            .content-area {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 20px;
+            }
+
+            .main-container {
+                flex-direction: column;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                height: auto;
+                padding: 16px;
+                gap: 16px;
+            }
+
+            .logo-section {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .controls {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero-title {
+                font-size: 28px;
+            }
+
+            .hero-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* SCROLLBAR STYLING */
+        .content-area::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .content-area::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .content-area::-webkit-scrollbar-thumb {
+            background: rgba(90, 195, 231, 0.3);
+            border-radius: 4px;
+        }
+
+        .content-area::-webkit-scrollbar-thumb:hover {
+            background: rgba(90, 195, 231, 0.6);
+        }
+
+        /* SECTION SPACING */
+        .section-spacing {
+            margin-bottom: 60px;
+        }
+
+        .subsection-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--accent-cyan);
+            margin-bottom: 24px;
+            margin-top: 40px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid rgba(90, 195, 231, 0.2);
+        }
+
+        .subsection-title.brown {
+            color: var(--belt-brown);
+        }
+
+        /* CONTENT BLOCKS */
+        .content-block {
+            background: rgba(90, 195, 231, 0.05);
+            border-left: 4px solid var(--accent-cyan);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 16px 0;
+        }
+
+        .content-block.brown-left {
+            border-left-color: var(--belt-brown);
+        }
+
+        .content-block p {
+            margin-bottom: 12px;
+        }
+
+        .content-block strong {
+            color: var(--accent-cyan);
+        }
+
+        /* FOOTER SPACING */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-top: 60px;
+        }
+        /* ═══ VIDEO PLACEHOLDER ═══ */
+        .video-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(90,195,231,0.06);
+            border: 1px solid rgba(90,195,231,0.15);
+            border-left: 3px solid #5AC3E7;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .video-card:hover {
+            background: rgba(90,195,231,0.12);
+            border-color: rgba(90,195,231,0.3);
+        }
+        .video-code {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #5AC3E7;
+            background: rgba(90,195,231,0.12);
+            padding: 4px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .video-info {
+            flex: 1;
+        }
+        .video-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #FFFFFF;
+        }
+        .video-duration {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: #8A95A8;
+            margin-top: 2px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="logo-section">
+            <div class="logo">TSS®</div>
+            <div class="belt-indicator">
+                <div class="belt-dot"></div>
+                <span>Brown Belt — Pre-Elite</span>
+            </div>
+        </div>
+        <div class="controls">
+            <div class="mode-toggle">
+                <button class="active" onclick="setMode('coach')">Coach View</button>
+                <button onclick="setMode('student')">Student View</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN LAYOUT -->
+    <div class="main-container">
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="nav-section-title">CORE CONTENT</div>
+            <div class="nav-item active" onclick="navigateTo('hero')"><span class="nav-dot"></span> Overview</div>
+            <div class="nav-item" onclick="navigateTo('identity')"><span class="nav-dot"></span> Belt Identity</div>
+            <div class="nav-item" onclick="navigateTo('onewave')"><span class="nav-dot"></span> ONE WAVE Mindset</div>
+            <div class="nav-item" onclick="navigateTo('continuity')"><span class="nav-dot"></span> Level Continuity</div>
+            <div class="nav-item" onclick="navigateTo('sequences')"><span class="nav-dot"></span> Sequences #18-#22</div>
+
+            <div class="nav-section-title">EXECUTION</div>
+            <div class="nav-item" onclick="navigateTo('execution')"><span class="nav-dot"></span> Execution Chains</div>
+            <div class="nav-item" onclick="navigateTo('expressions')"><span class="nav-dot"></span> Named Expressions</div>
+            <div class="nav-item" onclick="navigateTo('aerials')"><span class="nav-dot"></span> Aerial System</div>
+
+            <div class="nav-section-title">ASSESSMENT</div>
+            <div class="nav-item" onclick="navigateTo('evaluation')"><span class="nav-dot"></span> Evaluation Protocol</div>
+            <div class="nav-item" onclick="navigateTo('promotion')"><span class="nav-dot"></span> Promotion Criteria</div>
+
+            <div class="nav-section-title">COACHING</div>
+            <div class="nav-item" onclick="navigateTo('diagnostics')"><span class="nav-dot"></span> Diagnostic Framework</div>
+            <div class="nav-item" onclick="navigateTo('safety')"><span class="nav-dot"></span> Safety & Autonomy</div>
+            <div class="nav-item" onclick="navigateTo('tools')"><span class="nav-dot"></span> Coach Tools</div>
+        </div>
+
+        <!-- CONTENT AREA -->
+        <div class="content-area">
+
+            <!-- HERO SECTION -->
+            <div id="hero" class="section active">
+                <div class="hero">
+                    <div class="hero-content">
+                        <div class="hero-title">TSS® Brown Belt — Pre-Elite</div>
+                        <div class="hero-subtitle">Mastery, Aerials & Competition Readiness</div>
+                        <div class="hero-meta">
+                            <div class="meta-item">
+                                <div class="meta-label">Sequences</div>
+                                <div class="meta-value">#18-#22</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Path Options</div>
+                                <div class="meta-value">Dual</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Condition Limit</div>
+                                <div class="meta-value">None</div>
+                            </div>
+                            <div class="meta-item">
+                                <div class="meta-label">Autonomy Level</div>
+                                <div class="meta-value">Max</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-spacing">
+                    <h2 class="subsection-title">Welcome to Brown Belt</h2>
+                    <div class="content-block brown-left">
+                        <p>The <strong>Brown Belt is where potential becomes mastery</strong>. Your surfers have proven every technical skill, now they execute with power, precision, and autonomy.</p>
+                        <p>This is the final preparatory level before Black Belt Elite. Whether your surfer pursues competitive surfing (ISA/WSL) or recreational mastery, Brown Belt demands the same standard: <strong>execute at 8/10+ in any condition, adapt autonomously, and lead their own progression</strong>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IDENTITY SECTION -->
+            <div id="identity" class="section">
+                <div class="subsection-title brown">Belt Identity</div>
+
+                <div class="content-block brown-left">
+                    <p><strong>Brown Belt — Pre-Elite:</strong> Where mastery meets commitment.</p>
+                </div>
+
+                <h3 class="subsection-title" style="margin-top: 40px; font-size: 20px; color: var(--accent-cyan);">The Core Shift</h3>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title" style="color: var(--belt-brown);">From Purple to Brown</div>
+                    </div>
+                    <div class="card-content" style="max-height: 500px;">
+                        <p><strong>Purple Belt asked:</strong> <em>"What kind of surfer are you becoming?"</em></p>
+                        <p>The surfer answered with identity exploration — choosing style, finding voice, building awareness.</p>
+                        <p style="margin-top: 20px;"><strong>Brown Belt asks:</strong> <em>"Can you execute at the highest level in any condition?"</em></p>
+                        <p>Now the surfer answers through <strong>relentless precision</strong>, <strong>power execution</strong>, and <strong>autonomous adaptation</strong>.</p>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" style="margin-top: 40px; font-size: 20px; color: var(--accent-cyan);">Developmental Purpose</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="font-size: 18px; color: var(--accent-cyan);">Technical Mastery</div>
+                        </div>
+                        <div class="card-content" style="max-height: 800px;">
+                            <ul style="list-style-position: inside; margin-left: 12px;">
+                                <li style="margin-bottom: 10px;">All sequences #1-#17 revisited at 8/10+ level</li>
+                                <li style="margin-bottom: 10px;">Every technical element refined to precision</li>
+                                <li style="margin-bottom: 10px;">Bottom turns deeper and more committed</li>
+                                <li style="margin-bottom: 10px;">Projection more powerful and controlled</li>
+                                <li style="margin-bottom: 10px;">Linking becomes instinctive, not deliberate</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="font-size: 18px; color: var(--accent-cyan);">Advanced Competencies</div>
+                        </div>
+                        <div class="card-content" style="max-height: 800px;">
+                            <ul style="list-style-position: inside; margin-left: 12px;">
+                                <li style="margin-bottom: 10px;">Aerial competency (FS & BS)</li>
+                                <li style="margin-bottom: 10px;">Combination fluidity across varying conditions</li>
+                                <li style="margin-bottom: 10px;">Full condition adaptation capability</li>
+                                <li style="margin-bottom: 10px;">Board selection as tactical skill</li>
+                                <li style="margin-bottom: 10px;">Competition readiness (if competitive path)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- ONE WAVE SECTION -->
+            <div id="onewave" class="section">
+                <div class="subsection-title brown">ONE WAVE — The Mastery Mindset</div>
+                <p style="color: var(--text-secondary); margin-bottom: 40px;">At Brown Belt, the mind is no longer fighting the body. The question shifts from <em>"Can I do this?"</em> to <em>"Can I do this at 8/10 every time?"</em></p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title" style="color: var(--belt-brown);">The 10,000 Hour Principle</div>
+                    </div>
+                    <div class="card-content">
+                        <p>At Brown Belt, the surfer has accumulated significant hours. But hours alone don't create mastery — deliberate, structured practice does. Every session at Brown Belt must have a specific refinement target. Free surfing is expression; training is intervention. The difference defines whether you plateau or break through.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <div class="card-title" style="color: var(--belt-brown);">Commitment Over Comfort</div>
+                    </div>
+                    <div class="card-content">
+                        <p>The gap between 7/10 and 8/10 execution is not physical — it is psychological. The surfer knows the maneuver. The body can execute it. What holds back the extra 10% is hesitation at the critical moment. Brown Belt trains the mind to commit fully when the outcome is uncertain. Half-measures at this level are worse than failures — they build hesitation habits.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <div class="card-title" style="color: var(--belt-brown);">Flow State as Standard</div>
+                    </div>
+                    <div class="card-content">
+                        <p>At earlier belts, flow was an occasional peak experience. At Brown Belt, entering flow becomes a trainable skill. The 30-second pre-session ritual evolves into a complete pre-session protocol: physical warm-up, mental clearing, mission definition, visualization of key sequences, then entry. Flow doesn't happen to you — you create the conditions for it.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <div class="card-title" style="color: var(--belt-brown);">Aerial Psychology</div>
+                    </div>
+                    <div class="card-content">
+                        <p>The aerial system introduces a new mental challenge: leaving the board's contact with the wave. For the first time, the surfer is fully airborne. Fear of landing, fear of commitment, and fear of injury are real. The mental tool: break the aerial into its three phases (Ramp, Air, Landing) and commit to ONE phase at a time. Don't think about landing while you're still on the ramp.</p>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <div class="card-title" style="color: var(--belt-brown);">Competition Mindset <span style="font-size: 14px; color: var(--accent-cyan);">(Competitive Path)</span></div>
+                    </div>
+                    <div class="card-content">
+                        <p>Competition introduces external pressure that doesn't exist in training. The mind must manage: time awareness without anxiety, wave selection under priority pressure, execution quality when being judged, and emotional recovery between waves. The core principle: <strong>compete against the wave, not against the opponent.</strong> Your score comes from YOUR surfing, not from what others do.</p>
+                    </div>
+                </div>
+
+                <div class="content-block brown-left" style="margin-top: 30px;">
+                    <p><strong>Coach Notes:</strong> At Brown Belt, mental coaching shifts from teaching tools to verifying that tools are being <strong>USED</strong>. Ask: <em>"What was your pre-session ritual today?"</em> <em>"What was your one focus?"</em> <em>"Where did you feel commitment hesitate?"</em> If the surfer cannot answer, they are not applying ONE WAVE principles.</p>
+                </div>
+
+                <p style="color: var(--text-secondary); margin-top: 20px; font-size: 13px;"><strong>Video reference:</strong> YB (OneWave concepts apply across levels)</p>
+            </div>
+
+            <!-- SAFETY SECTION -->
+            <div id="safety" class="section">
+                <div class="subsection-title brown">Safety at Brown Belt — Full Autonomy</div>
+                <p style="color: var(--text-secondary); margin-bottom: 30px;">At Brown Belt, safety is no longer taught — it is expected. The surfer self-regulates based on personal capacity. There is no formal condition limit. The coach does not decide if conditions are safe for the surfer — the surfer decides, and the coach validates.</p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title" style="color: var(--belt-brown);">Condition Assessment (Surfer-Led)</div>
+                    </div>
+                    <div class="card-content">
+                        <ul style="list-style-position: inside; margin-left: 12px;">
+                            <li style="margin-bottom: 10px;">Before every session, the surfer performs independent venue analysis</li>
+                            <li style="margin-bottom: 10px;">Identifies: swell direction, period, tide state, wind, bottom type, hazards, crowd</li>
+                            <li style="margin-bottom: 10px;">Declares: <em>"These conditions are within my capacity because [specific reasons]"</em></li>
+                            <li style="margin-bottom: 10px;">Coach confirms or challenges the assessment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <div class="card-title" style="color: var(--belt-brown);">Board Selection Knowledge</div>
+                    </div>
+                    <div class="card-content">
+                        <ul style="list-style-position: inside; margin-left: 12px;">
+                            <li style="margin-bottom: 10px;"><strong>Smaller board</strong> = more responsive, less stability (for good conditions)</li>
+                            <li style="margin-bottom: 10px;"><strong>Bigger board</strong> = more paddle speed, stability (for bigger/mushier conditions)</li>
+                            <li style="margin-bottom: 10px;"><strong>Performance board vs. step-up vs. gun</strong> — the surfer understands the progression</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <div class="card-title" style="color: var(--belt-brown);">Aerial Safety</div>
+                    </div>
+                    <div class="card-content">
+                        <ul style="list-style-position: inside; margin-left: 12px;">
+                            <li style="margin-bottom: 10px;">Wipeouts from aerials are higher-impact than from turns</li>
+                            <li style="margin-bottom: 10px;">Head protection is critical — arms over head during every aerial wipeout</li>
+                            <li style="margin-bottom: 10px;"><strong style="color: var(--error);">Shallow water = no aerials. This is non-negotiable.</strong></li>
+                            <li style="margin-bottom: 10px;">The surfer assesses landing zone depth before attempting any aerial</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <div class="card-header">
+                        <div class="card-title" style="color: var(--belt-brown);">Competition Safety <span style="font-size: 14px; color: var(--accent-cyan);">(Competitive Path)</span></div>
+                    </div>
+                    <div class="card-content">
+                        <ul style="list-style-position: inside; margin-left: 12px;">
+                            <li style="margin-bottom: 10px;">Know all ISA/WSL safety protocols</li>
+                            <li style="margin-bottom: 10px;">Understand priority rules as SAFETY rules, not just scoring rules</li>
+                            <li style="margin-bottom: 10px;">Know when to yield a wave for safety vs. commit for score</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-block brown-left" style="margin-top: 30px;">
+                    <p><strong>Coach Notes — Safety Supervision:</strong></p>
+                    <p style="margin-top: 12px;">• <strong>Supervision ratio:</strong> 1 coach per 8-12 surfers. Coach provides strategic feedback, not wave-by-wave safety monitoring.</p>
+                    <p style="margin-top: 10px;">• <strong>RED FLAG:</strong> If a surfer consistently misjudges conditions, this is a signal they are not ready for promotion to Black Belt.</p>
+                    <p style="margin-top: 10px;">• <strong>Incident reporting:</strong> Even at Brown Belt, incident reporting is mandatory. Every injury, near-miss, or equipment failure must be documented.</p>
+                </div>
+            </div>
+
+            <!-- LEVEL CONTINUITY SECTION -->
+            <div id="continuity" class="section">
+                <div class="subsection-title brown">Level Continuity — Progression Map</div>
+                <p style="color: var(--text-secondary); margin-bottom: 40px;">Your complete journey through the TSS Belt System</p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title" style="font-size: 18px; color: var(--accent-cyan);">The Full TSS Journey</div>
+                    </div>
+                    <div class="card-content" style="font-family: 'DM Mono', monospace; line-height: 2;">
+                        <div style="text-align: center;">
+                            <p><strong style="color: var(--text-secondary);">White Belt (#1-#5)</strong><br><span style="font-size: 13px; color: var(--text-secondary);">DISCOVERY & SAFETY</span></p>
+                            <p style="color: var(--accent-cyan); margin-top: 5px;">↓ Completed</p>
+                            
+                            <p style="margin-top: 15px;"><strong style="color: var(--text-secondary);">Yellow Belt (#6-#7)</strong><br><span style="font-size: 13px; color: var(--text-secondary);">FOUNDATION & CONFIDENCE</span></p>
+                            <p style="color: var(--accent-cyan); margin-top: 5px;">↓ Completed</p>
+                            
+                            <p style="margin-top: 15px;"><strong style="color: var(--text-secondary);">Blue Belt (#8-#13)</strong><br><span style="font-size: 13px; color: var(--text-secondary);">CONSISTENCY & INDEPENDENCE</span></p>
+                            <p style="color: var(--accent-cyan); margin-top: 5px;">↓ Completed</p>
+                            
+                            <p style="margin-top: 15px;"><strong style="color: var(--text-secondary);">Purple Belt (#14-#17)</strong><br><span style="font-size: 13px; color: var(--text-secondary);">COMMITMENT & EXPRESSION</span></p>
+                            <p style="color: var(--accent-cyan); margin-top: 5px;">↓ Completed</p>
+                            
+                            <p style="margin-top: 15px; padding: 15px; background: rgba(125, 78, 39, 0.15); border-left: 3px solid var(--belt-brown);"><strong style="color: var(--belt-brown);">★ BROWN BELT (#18-#22)</strong><br><span style="font-size: 13px; color: var(--belt-brown);">MASTERY, AERIALS & COMPETITION</span><br><span style="font-size: 12px; color: var(--accent-cyan); margin-top: 5px;">← YOU ARE HERE</span></p>
+                            <p style="color: var(--accent-cyan); margin-top: 5px;">↓</p>
+                            
+                            <p style="margin-top: 15px;"><strong style="color: var(--text-secondary);">Black Belt (#23-#26)</strong><br><span style="font-size: 13px; color: var(--text-secondary);">KNOWLEDGE, LEGACY & MAXIMUM POTENTIAL</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-2" style="margin-top: 30px;">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="font-size: 18px; color: var(--accent-cyan);">What You've Already Mastered</div>
+                        </div>
+                        <div class="card-content" style="max-height: none;">
+                            <p style="font-weight: 600; color: var(--belt-brown); margin-bottom: 12px;">White Belt</p>
+                            <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                                <li style="margin-bottom: 6px;">Board control, sweet spot, pop-up, power stance, star fall</li>
+                            </ul>
+
+                            <p style="font-weight: 600; color: var(--belt-brown); margin-bottom: 12px; margin-top: 15px;">Yellow Belt</p>
+                            <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                                <li style="margin-bottom: 6px;">Paddling speeds, pocket awareness, angled takeoff, green wave transition</li>
+                            </ul>
+
+                            <p style="font-weight: 600; color: var(--belt-brown); margin-bottom: 12px; margin-top: 15px;">Blue Belt</p>
+                            <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                                <li style="margin-bottom: 6px;">Consistency, bottom turns, linking, Cruz/Tapaloco expressions, wave completion</li>
+                            </ul>
+
+                            <p style="font-weight: 600; color: var(--belt-brown); margin-bottom: 12px; margin-top: 15px;">Purple Belt</p>
+                            <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                                <li style="margin-bottom: 6px;">Deep commitment, variety, personal style, M Cabeza Invertida, floaters, snaps</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="font-size: 18px; color: var(--accent-cyan);">What Brown Belt Adds</div>
+                        </div>
+                        <div class="card-content" style="max-height: none;">
+                            <p style="font-weight: 600; color: var(--belt-brown); margin-bottom: 12px;">Technical Foundation</p>
+                            <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                                <li style="margin-bottom: 6px;">Re-mastery of ALL previous sequences at 8/10+ level</li>
+                            </ul>
+
+                            <p style="font-weight: 600; color: var(--belt-brown); margin-bottom: 12px; margin-top: 15px;">New Competencies</p>
+                            <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                                <li style="margin-bottom: 6px;">Aerial System (Ramp → Air → Landing)</li>
+                                <li style="margin-bottom: 6px;">Combination mastery (3+ linked expressions)</li>
+                                <li style="margin-bottom: 6px;">Condition adaptation + board knowledge</li>
+                                <li style="margin-bottom: 6px;">Competition readiness (competitive path)</li>
+                            </ul>
+
+                            <p style="font-weight: 600; color: var(--belt-brown); margin-bottom: 12px; margin-top: 15px;">Readiness for Black</p>
+                            <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                                <li style="margin-bottom: 6px;">Autonomous decision-making in water</li>
+                                <li style="margin-bottom: 6px;">Self-assessment accuracy and honesty</li>
+                                <li style="margin-bottom: 6px;">Mentoring capability for lower belts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- SEQUENCES SECTION -->
+            <div id="sequences" class="section">
+                <div class="subsection-title brown">Sequences #18-#22</div>
+                <p style="color: var(--text-secondary); margin-bottom: 40px;">Five interconnected sequences that build mastery, aerial power, and adaptability.</p>
+
+                <div class="card">
+                    <div class="card-header" onclick="toggleCard(this)">
+                        <div class="card-title" style="color: var(--belt-brown);">#18 — Re-Mastery</div>
+                        <div class="expand-icon">▼</div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Core Focus:</strong> All sequences #1-#17 revisited at 8/10+ level.</p>
+                        <p>Every technical element refined. Bottom turns deeper, projection more powerful, linking instinctive. <strong>The surfer proves they own every skill from White through Purple at a superior standard.</strong></p>
+                        <p style="margin-top: 16px; color: var(--accent-cyan);">This is not repetition — it is re-mastery through precision, power, and consistency.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" onclick="toggleCard(this)">
+                        <div class="card-title" style="color: var(--belt-brown);">#19 — Aerial System</div>
+                        <div class="expand-icon">▼</div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>TSS Aerial Architecture (3 Parts):</strong></p>
+
+                        <div style="margin-top: 20px; padding: 16px; background: rgba(125, 78, 39, 0.1); border-radius: 8px;">
+                            <p style="margin-bottom: 16px;"><strong style="color: var(--belt-brown);">1) RAMP</strong> — Find the section with speed. More air = more distance. Proper speed management before launch is critical.</p>
+                            <p style="margin-bottom: 16px;"><strong style="color: var(--belt-brown);">2) AIR</strong> — The type of aerial (360 FS/BS, Single Grab FS/BS, Alley-oop FS/BS). Rotation control and body positioning.</p>
+                            <p><strong style="color: var(--belt-brown);">3) LANDING</strong> — Reception and recovery. Spot landing zone, absorb impact, recover smoothly.</p>
+                        </div>
+
+                        <div style="margin-top: 20px; border-left: 4px solid var(--warning); padding: 16px; background: rgba(255, 179, 71, 0.08);">
+                            <p><strong style="color: var(--warning);">Path Difference:</strong></p>
+                            <p style="margin-top: 8px;"><strong>Competitive Path:</strong> Must stick landings consistently. Scored under ISA/WSL criteria.</p>
+                            <p style="margin-top: 8px;"><strong>Recreational Path:</strong> Demonstrate power and commitment. Landing is encouraged but not required for all attempts.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" onclick="toggleCard(this)">
+                        <div class="card-title" style="color: var(--belt-brown);">#20 — Combination Mastery</div>
+                        <div class="expand-icon">▼</div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Core Focus:</strong> Fluid combos adapted to what the wave offers.</p>
+                        <p style="margin-top: 12px;"><strong>No prescribed combos</strong> — the surfer reads the wave and chains maneuvers based on what the section demands.</p>
+                        <p style="margin-top: 16px; padding: 12px; background: rgba(90, 195, 231, 0.08); border-radius: 6px;"><strong>Standard:</strong> 3+ linked expressions per wave is the expectation. Speed management between maneuvers becomes automatic.</p>
+                        <p style="margin-top: 16px;">This requires <strong>deep wave reading</strong>, <strong>position awareness</strong>, and <strong>maneuver selection autonomy</strong>.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" onclick="toggleCard(this)">
+                        <div class="card-title" style="color: var(--belt-brown);">#21 — Condition Adaptation + Board Knowledge</div>
+                        <div class="expand-icon">▼</div>
+                    </div>
+                    <div class="card-content">
+                        <p><strong>Core Focus:</strong> Surf effectively in ALL conditions and break types.</p>
+                        <p style="margin-top: 16px;"><strong>Board Selection becomes a tactical skill.</strong> The surfer knows:</p>
+                        <ul style="margin-left: 24px; margin-top: 12px;">
+                            <li style="margin-bottom: 8px;">What board to use for which conditions</li>
+                            <li style="margin-bottom: 8px;">How board characteristics affect maneuver execution</li>
+                            <li style="margin-bottom: 8px;">Board maintenance and durability</li>
+                            <li style="margin-bottom: 8px;">When to switch boards mid-session</li>
+                        </ul>
+                        <p style="margin-top: 16px;"><strong>Full Condition Adaptation:</strong> Surfer adapts entire approach (wave selection, maneuver priority, session duration) based on conditions autonomously.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header" onclick="toggleCard(this)">
+                        <div class="card-title" style="color: var(--belt-brown);">#22 — Competition Readiness / Session Maximization</div>
+                        <div class="expand-icon">▼</div>
+                    </div>
+                    <div class="card-content">
+                        <div style="margin-bottom: 20px; padding: 16px; background: linear-gradient(135deg, rgba(125, 78, 39, 0.1) 0%, rgba(90, 195, 231, 0.05) 100%); border-radius: 8px;">
+                            <p style="margin-bottom: 12px;"><strong style="color: var(--belt-brown);">COMPETITIVE PATH:</strong></p>
+                            <ul style="margin-left: 24px; color: var(--text-secondary);">
+                                <li style="margin-bottom: 8px;">ISA/WSL scoring criteria mastery (radical maneuvers, critical section, power, speed, flow)</li>
+                                <li style="margin-bottom: 8px;">Heat strategy development</li>
+                                <li style="margin-bottom: 8px;">Time management and wave priority</li>
+                                <li style="margin-bottom: 8px;">Pre-competition routine building</li>
+                                <li style="margin-bottom: 8px;"><strong>Requirement:</strong> Must complete ISA and WSL judge courses</li>
+                            </ul>
+                        </div>
+
+                        <div style="padding: 16px; background: linear-gradient(135deg, rgba(90, 195, 231, 0.08) 0%, rgba(125, 78, 39, 0.05) 100%); border-radius: 8px;">
+                            <p style="margin-bottom: 12px;"><strong style="color: var(--accent-cyan);">RECREATIONAL PATH:</strong></p>
+                            <ul style="margin-left: 24px; color: var(--text-secondary);">
+                                <li style="margin-bottom: 8px;">Maximize every session's value</li>
+                                <li style="margin-bottom: 8px;">Read conditions with expertise</li>
+                                <li style="margin-bottom: 8px;">Find and prioritize best waves autonomously</li>
+                                <li style="margin-bottom: 8px;">Position optimally for chosen waves</li>
+                                <li style="margin-bottom: 8px;">Session design becomes a skill</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+                <!-- SEQUENCE VIDEOS SECTION -->
+                <div style="margin-top: 40px; padding: 24px; background: rgba(90,195,231,0.06); border-left: 3px solid #5AC3E7; border-radius: 10px;">
+                    <p style="font-size: 13px; font-weight: 600; color: #5AC3E7; margin-bottom: 16px;">REFERENCE VIDEOS — Re-Mastery & Sequences</p>
+                    
+                    <div class="video-card">
+                        <div class="video-code">BN-01</div>
+                        <div class="video-info">
+                            <div class="video-title">Re-Mastery Overview — What 8/10 looks like across all sequences</div>
+                            <div class="video-duration">3-4 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-02</div>
+                        <div class="video-info">
+                            <div class="video-title">Deep Bottom Turn — Frontside at full commitment</div>
+                            <div class="video-duration">2 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-03</div>
+                        <div class="video-info">
+                            <div class="video-title">Deep Bottom Turn — Backside at full commitment</div>
+                            <div class="video-duration">2 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-04</div>
+                        <div class="video-info">
+                            <div class="video-title">Complete Frontside Chain at Brown Belt level</div>
+                            <div class="video-duration">3 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-05</div>
+                        <div class="video-info">
+                            <div class="video-title">Complete Backside Chain at Brown Belt level</div>
+                            <div class="video-duration">3 min</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AERIAL VIDEOS SECTION -->
+                <div style="margin-top: 40px; padding: 24px; background: rgba(90,195,231,0.06); border-left: 3px solid #5AC3E7; border-radius: 10px;">
+                    <p style="font-size: 13px; font-weight: 600; color: #5AC3E7; margin-bottom: 16px;">REFERENCE VIDEOS — Aerial System</p>
+                    
+                    <div class="video-card">
+                        <div class="video-code">BN-06</div>
+                        <div class="video-info">
+                            <div class="video-title">Aerial System Overview — Ramp, Air, Landing</div>
+                            <div class="video-duration">3 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-07</div>
+                        <div class="video-info">
+                            <div class="video-title">Aerial 360 Frontside — Step by step</div>
+                            <div class="video-duration">2-3 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-08</div>
+                        <div class="video-info">
+                            <div class="video-title">Aerial 360 Backside — Step by step</div>
+                            <div class="video-duration">2-3 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-09</div>
+                        <div class="video-info">
+                            <div class="video-title">Aerial Single Grab — FS and BS</div>
+                            <div class="video-duration">2 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-10</div>
+                        <div class="video-info">
+                            <div class="video-title">Alley-oop — FS and BS</div>
+                            <div class="video-duration">2 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-11</div>
+                        <div class="video-info">
+                            <div class="video-title">Landing technique and fall management</div>
+                            <div class="video-duration">2 min</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <!-- EXECUTION SECTION -->
+            <div id="execution" class="section">
+                <div class="subsection-title brown">Execution Chains</div>
+                <p style="color: var(--text-secondary); margin-bottom: 40px;">Brown Belt executes BOTH chains at 8/10+ with full commitment, power, and precision.</p>
+
+                <h3 class="subsection-title" style="font-size: 20px; color: var(--belt-brown);">TSS Frontside Chain</h3>
+                <div class="chain">
+                    <div class="chain-title">FRONTSIDE EXECUTION</div>
+                    <div class="chain-sequence">
+                        <div class="chain-step">Posture</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Bottom Turn</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Projection</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Cruz (Avioncito)</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Maneuver Var.</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Granada</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Return to Posture</div>
+                    </div>
+                </div>
+
+                <div class="content-block brown-left" style="margin-top: 24px;">
+                    <p>Each step executes with <strong>maximum power</strong> and <strong>technical precision</strong>. The chain flows naturally — no hesitation between transitions.</p>
+                    <p style="margin-top: 12px;">At Brown Belt, this chain is the foundation for all frontside expressions.</p>
+                </div>
+
+                <h3 class="subsection-title" style="font-size: 20px; color: var(--belt-brown); margin-top: 40px;">TSS Backside Chain</h3>
+                <div class="chain">
+                    <div class="chain-title">BACKSIDE EXECUTION</div>
+                    <div class="chain-sequence">
+                        <div class="chain-step">Posture</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Bottom Turn</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Choke</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Tapaloco</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Elbow</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Maneuver Var.</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Touch the Board</div>
+                        <div class="chain-arrow">→</div>
+                        <div class="chain-step">Return to Posture</div>
+                    </div>
+                </div>
+
+                <div class="content-block brown-left" style="margin-top: 24px;">
+                    <p><strong>Backside is NOT optional at Brown Belt.</strong> This chain requires mastery equal to the frontside chain.</p>
+                    <p style="margin-top: 12px;">Many surfers avoid backside in competition. Brown Belt surfers execute both sides with <strong>equal commitment and power</strong>.</p>
+                </div>
+            </div>
+
+
+                <!-- COMBINATION VIDEOS SECTION -->
+                <div style="margin-top: 40px; padding: 24px; background: rgba(90,195,231,0.06); border-left: 3px solid #5AC3E7; border-radius: 10px;">
+                    <p style="font-size: 13px; font-weight: 600; color: #5AC3E7; margin-bottom: 16px;">REFERENCE VIDEOS — Combination Mastery</p>
+                    
+                    <div class="video-card">
+                        <div class="video-code">BN-12</div>
+                        <div class="video-info">
+                            <div class="video-title">Power Combo Demonstration — 3+ linked maneuvers</div>
+                            <div class="video-duration">3 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-13</div>
+                        <div class="video-info">
+                            <div class="video-title">Reading the wave for combo opportunities</div>
+                            <div class="video-duration">2 min</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <!-- EXPRESSIONS SECTION -->
+            <div id="expressions" class="section">
+                <div class="subsection-title brown">Named Expressions at Brown Belt</div>
+                <p style="color: var(--text-secondary); margin-bottom: 40px;">All previous expressions from White through Purple, plus new aerial-focused expressions:</p>
+
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="font-size: 16px; color: var(--accent-cyan);">Aerial Expressions</div>
+                        </div>
+                        <div class="card-content" style="max-height: 500px;">
+                            <ul style="list-style-position: inside; margin-left: 0;">
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">360 FS</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">360 BS</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">360 Single Grab FS</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">360 Single Grab BS</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">Alley-oop FS</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">Alley-oop BS</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="font-size: 16px; color: var(--accent-cyan);">Power Expressions</div>
+                        </div>
+                        <div class="card-content" style="max-height: 500px;">
+                            <ul style="list-style-position: inside; margin-left: 0;">
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">Power Combos (3+ linked)</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">All Cruz variations</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">All Tapaloco variations</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">Deep Bottom Turn</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">Maximum projection</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="font-size: 16px; color: var(--accent-cyan);">Standard at Brown</div>
+                        </div>
+                        <div class="card-content" style="max-height: 500px;">
+                            <ul style="list-style-position: inside; margin-left: 0;">
+                                <li style="margin-bottom: 8px; color: var(--accent-cyan); font-weight: 600;">Minimum 8/10 rating</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">Every expression executed with precision</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">Smooth transitions (no stalling)</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">Power and commitment clear</li>
+                                <li style="margin-bottom: 8px; color: var(--text-secondary);">All previous belts maintained</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="safety-box" style="margin-top: 40px;">
+                    <div class="safety-title">Key Principle</div>
+                    <div class="safety-content">
+                        <p>At Brown Belt, it's not about learning new tricks. It's about <strong>executing every technique with superior precision and power</strong>. A Brown Belt surfer's Cutback is better than a Red Belt's Aerial.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AERIALS SECTION -->
+            <div id="aerials" class="section">
+                <div class="subsection-title brown">Aerial System Detail</div>
+                <p style="color: var(--text-secondary); margin-bottom: 40px;">The TSS Aerial System breaks down into three distinct phases.</p>
+
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="color: var(--belt-brown); font-size: 20px;">RAMP</div>
+                        </div>
+                        <div class="card-content" style="max-height: 800px;">
+                            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 12px;">Speed → Section Selection → Launch Point</p>
+                            <ul style="margin-left: 24px; color: var(--text-secondary);">
+                                <li style="margin-bottom: 10px;">Find the steepest section with maximum energy</li>
+                                <li style="margin-bottom: 10px;">Build and maintain speed through approach</li>
+                                <li style="margin-bottom: 10px;">Hit the lip at optimal angle and position</li>
+                                <li style="margin-bottom: 10px;">More speed = more air = more distance</li>
+                                <li style="margin-bottom: 10px;">Timing is critical (not too early, not too late)</li>
+                            </ul>
+                            <p style="margin-top: 16px; padding: 12px; background: rgba(90, 195, 231, 0.08); border-radius: 6px; color: var(--accent-cyan);"><strong>Coach Focus:</strong> If aerial fails, check RAMP first.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="color: var(--belt-brown); font-size: 20px;">AIR</div>
+                        </div>
+                        <div class="card-content" style="max-height: 800px;">
+                            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 12px;">Rotation → Grab (Optional) → Extension</p>
+                            <ul style="margin-left: 24px; color: var(--text-secondary);">
+                                <li style="margin-bottom: 10px;">Type of aerial (360 FS/BS, Grab, Alley-oop)</li>
+                                <li style="margin-bottom: 10px;">Controlled rotation speed</li>
+                                <li style="margin-bottom: 10px;">Body positioning for power</li>
+                                <li style="margin-bottom: 10px;">Grab execution (if included)</li>
+                                <li style="margin-bottom: 10px;">Full extension before landing phase</li>
+                            </ul>
+                            <p style="margin-top: 16px; padding: 12px; background: rgba(90, 195, 231, 0.08); border-radius: 6px; color: var(--accent-cyan);"><strong>Coach Focus:</strong> Check rotation control and commitment.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="color: var(--belt-brown); font-size: 20px;">LANDING</div>
+                        </div>
+                        <div class="card-content" style="max-height: 800px;">
+                            <p style="color: var(--accent-cyan); font-weight: 600; margin-bottom: 12px;">Spot → Absorb → Recover → Continue</p>
+                            <ul style="margin-left: 24px; color: var(--text-secondary);">
+                                <li style="margin-bottom: 10px;">Spot landing zone before leaving air</li>
+                                <li style="margin-bottom: 10px;">Absorb impact with bent knees</li>
+                                <li style="margin-bottom: 10px;">Recover posture immediately</li>
+                                <li style="margin-bottom: 10px;">Continue down the line if wave allows</li>
+                                <li style="margin-bottom: 10px;">or exit cleanly if wave ends</li>
+                            </ul>
+                            <p style="margin-top: 16px; padding: 12px; background: rgba(90, 195, 231, 0.08); border-radius: 6px; color: var(--accent-cyan);"><strong>Coach Focus:</strong> Check landing position and recovery.</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="color: var(--accent-cyan); font-size: 20px;">Path Differences</div>
+                        </div>
+                        <div class="card-content" style="max-height: 800px;">
+                            <p style="margin-bottom: 16px; padding: 12px; background: rgba(125, 78, 39, 0.1); border-radius: 6px;"><strong style="color: var(--belt-brown);">COMPETITIVE:</strong> Must stick landings consistently. Scored under ISA/WSL criteria. Landing success is essential.</p>
+                            <p style="padding: 12px; background: rgba(90, 195, 231, 0.08); border-radius: 6px;"><strong style="color: var(--accent-cyan);">RECREATIONAL:</strong> Demonstrate power, commitment, and control. Landing encouraged but not required for all attempts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+                <!-- CONDITION VIDEOS SECTION -->
+                <div style="margin-top: 40px; padding: 24px; background: rgba(90,195,231,0.06); border-left: 3px solid #5AC3E7; border-radius: 10px;">
+                    <p style="font-size: 13px; font-weight: 600; color: #5AC3E7; margin-bottom: 16px;">REFERENCE VIDEOS — Condition Adaptation</p>
+                    
+                    <div class="video-card">
+                        <div class="video-code">BN-14</div>
+                        <div class="video-info">
+                            <div class="video-title">Board selection guide by conditions</div>
+                            <div class="video-duration">3 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-15</div>
+                        <div class="video-info">
+                            <div class="video-title">Adapting approach to different break types</div>
+                            <div class="video-duration">3 min</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- COMPETITION VIDEOS SECTION -->
+                <div style="margin-top: 40px; padding: 24px; background: rgba(90,195,231,0.06); border-left: 3px solid #5AC3E7; border-radius: 10px;">
+                    <p style="font-size: 13px; font-weight: 600; color: #5AC3E7; margin-bottom: 16px;">REFERENCE VIDEOS — Competition Readiness</p>
+                    
+                    <div class="video-card">
+                        <div class="video-code">BN-16</div>
+                        <div class="video-info">
+                            <div class="video-title">ISA Scoring Criteria — What judges look for</div>
+                            <div class="video-duration">3 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-17</div>
+                        <div class="video-info">
+                            <div class="video-title">Heat strategy and time management</div>
+                            <div class="video-duration">2 min</div>
+                        </div>
+                    </div>
+
+                    <div class="video-card">
+                        <div class="video-code">BN-18</div>
+                        <div class="video-info">
+                            <div class="video-title">Pre-competition routine demonstration</div>
+                            <div class="video-duration">2 min</div>
+                        </div>
+                    </div>
+                </div>
+
+
+            <!-- EVALUATION SECTION -->
+            <div id="evaluation" class="section">
+                <div class="subsection-title brown">Evaluation Protocol</div>
+                <p style="color: var(--text-secondary); margin-bottom: 40px;">Brown Belt evaluation shifts focus to autonomy and precision.</p>
+
+                <h3 class="subsection-title" style="font-size: 20px; color: var(--accent-cyan);">Rating Scales at Brown Belt</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 24px;">Evaluate across 6 dimensions (1-5 scale):</p>
+
+                <div class="rating-grid">
+                    <div class="rating-card">
+                        <div class="rating-label">Focus</div>
+                        <div class="rating-scale">
+                            <button class="rating-btn" onclick="setRating(this, 1)">1</button>
+                            <button class="rating-btn" onclick="setRating(this, 2)">2</button>
+                            <button class="rating-btn" onclick="setRating(this, 3)">3</button>
+                            <button class="rating-btn" onclick="setRating(this, 4)">4</button>
+                            <button class="rating-btn" onclick="setRating(this, 5)">5</button>
+                        </div>
+                    </div>
+
+                    <div class="rating-card">
+                        <div class="rating-label">Composure</div>
+                        <div class="rating-scale">
+                            <button class="rating-btn" onclick="setRating(this, 1)">1</button>
+                            <button class="rating-btn" onclick="setRating(this, 2)">2</button>
+                            <button class="rating-btn" onclick="setRating(this, 3)">3</button>
+                            <button class="rating-btn" onclick="setRating(this, 4)">4</button>
+                            <button class="rating-btn" onclick="setRating(this, 5)">5</button>
+                        </div>
+                    </div>
+
+                    <div class="rating-card">
+                        <div class="rating-label">Commitment</div>
+                        <div class="rating-scale">
+                            <button class="rating-btn" onclick="setRating(this, 1)">1</button>
+                            <button class="rating-btn" onclick="setRating(this, 2)">2</button>
+                            <button class="rating-btn" onclick="setRating(this, 3)">3</button>
+                            <button class="rating-btn" onclick="setRating(this, 4)">4</button>
+                            <button class="rating-btn" onclick="setRating(this, 5)">5</button>
+                        </div>
+                    </div>
+
+                    <div class="rating-card">
+                        <div class="rating-label">Variety</div>
+                        <div class="rating-scale">
+                            <button class="rating-btn" onclick="setRating(this, 1)">1</button>
+                            <button class="rating-btn" onclick="setRating(this, 2)">2</button>
+                            <button class="rating-btn" onclick="setRating(this, 3)">3</button>
+                            <button class="rating-btn" onclick="setRating(this, 4)">4</button>
+                            <button class="rating-btn" onclick="setRating(this, 5)">5</button>
+                        </div>
+                    </div>
+
+                    <div class="rating-card">
+                        <div class="rating-label">Autonomy</div>
+                        <div class="rating-scale">
+                            <button class="rating-btn" onclick="setRating(this, 1)">1</button>
+                            <button class="rating-btn" onclick="setRating(this, 2)">2</button>
+                            <button class="rating-btn" onclick="setRating(this, 3)">3</button>
+                            <button class="rating-btn" onclick="setRating(this, 4)">4</button>
+                            <button class="rating-btn" onclick="setRating(this, 5)">5</button>
+                        </div>
+                    </div>
+
+                    <div class="rating-card">
+                        <div class="rating-label">Precision <span style="color: var(--belt-brown); font-weight: 700;">(NEW)</span></div>
+                        <div class="rating-scale">
+                            <button class="rating-btn" onclick="setRating(this, 1)">1</button>
+                            <button class="rating-btn" onclick="setRating(this, 2)">2</button>
+                            <button class="rating-btn" onclick="setRating(this, 3)">3</button>
+                            <button class="rating-btn" onclick="setRating(this, 4)">4</button>
+                            <button class="rating-btn" onclick="setRating(this, 5)">5</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="safety-box" style="margin-top: 40px;">
+                    <div class="safety-title">Precision (New at Brown)</div>
+                    <div class="safety-content">
+                        <p><strong>Precision measures technical exactness.</strong> At Brown Belt, sloppy execution is unacceptable. Every movement is controlled, intentional, and clean. Rate how precisely the surfer executes each technique — not just completion, but quality.</p>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" style="font-size: 20px; color: var(--accent-cyan); margin-top: 40px;">Feedback Protocol</h3>
+                <div class="diagnostic brown-left" style="border-left-width: 4px; border-left-color: var(--belt-brown);">
+                    <div class="diagnostic-title" style="color: var(--belt-brown);">The Debrief Structure</div>
+                    <div class="diagnostic-content">
+                        <p style="margin-bottom: 16px;"><strong style="color: var(--accent-cyan);">1. Surfer-Led Debrief</strong></p>
+                        <p style="margin-left: 20px; margin-bottom: 16px; color: var(--text-secondary);">Ask the surfer: "What did you notice?" Let them assess their own performance first. This builds self-awareness and autonomy.</p>
+
+                        <p style="margin-bottom: 16px;"><strong style="color: var(--accent-cyan);">2. Coach Adds ONE Observation</strong></p>
+                        <p style="margin-left: 20px; margin-bottom: 16px; color: var(--text-secondary);">Don't overwhelm with feedback. Pick the ONE most strategic insight that will move their progression forward.</p>
+
+                        <p style="margin-bottom: 16px;"><strong style="color: var(--accent-cyan);">3. Surfer States Next Priority</strong></p>
+                        <p style="margin-left: 20px; margin-bottom: 16px; color: var(--text-secondary);">Ask: "What's your next priority?" The surfer designs their own next session based on their assessment and your input.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PROMOTION SECTION -->
+            <div id="promotion" class="section">
+                <div class="subsection-title brown">Promotion Criteria</div>
+                <p style="color: var(--text-secondary); margin-bottom: 40px;">Binary checklist for graduation to Black Belt Elite. <strong>All items must be achieved.</strong></p>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title" style="font-size: 18px; color: var(--belt-brown);">Promotion Checklist</div>
+                    </div>
+                    <div class="card-content" style="max-height: 1500px;">
+                        <div class="checklist">
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check1">
+                                <label for="check1">All sequences #1-#22 at 8/10+ standard</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check2">
+                                <label for="check2">Aerial competency: FS & BS rotations consistent</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check3">
+                                <label for="check3">Combo fluidity across varying conditions</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check4">
+                                <label for="check4">ISA/WSL judge courses completed (competitive path)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check5">
+                                <label for="check5">Full condition adaptation demonstrated autonomously</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check6">
+                                <label for="check6">Session design fully autonomous (no coach direction)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check7">
+                                <label for="check7">Board selection knowledge demonstrated in varying conditions</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="check8">
+                                <label for="check8">Competition simulation: scores 7+ consistently (competitive path)</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="safety-box" style="margin-top: 40px;">
+                    <div class="safety-title">Black Belt Awaits</div>
+                    <div class="safety-content">
+                        <p>Promotion to Black Belt Elite is not automatic. <strong>A surfer who achieves 8/10+ across all sequences but cannot autonomously design sessions is not ready.</strong></p>
+                        <p style="margin-top: 12px;">Black Belt requires <strong>complete autonomy</strong>. The surfer leads their own progression. The coach becomes a consultant, not a director.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIAGNOSTICS SECTION -->
+            <div id="diagnostics" class="section">
+                <div class="subsection-title brown">Diagnostic Framework</div>
+                <p style="color: var(--text-secondary); margin-bottom: 40px;">When something breaks in execution, use this framework to diagnose root causes.</p>
+
+                <div class="diagnostic brown-left">
+                    <div class="diagnostic-title">If Aerials Fail</div>
+                    <div class="diagnostic-content">
+                        <p style="margin-bottom: 12px;">Check in this order:</p>
+                        <ul>
+                            <li><strong style="color: var(--belt-brown);">1. Check RAMP:</strong> Is the surfer building enough speed? Are they hitting the right section? Is timing early/late?</li>
+                            <li><strong style="color: var(--belt-brown);">2. Check AIR:</strong> Is rotation controlled? Is body position committed? Is grab execution clean?</li>
+                            <li><strong style="color: var(--belt-brown);">3. Check LANDING:</strong> Is the surfer spotting the zone? Are knees bent? Is recovery smooth?</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="diagnostic brown-left">
+                    <div class="diagnostic-title">If Combos Break</div>
+                    <div class="diagnostic-content">
+                        <p style="margin-bottom: 12px;">The combo feels disconnected instead of flowing:</p>
+                        <ul>
+                            <li><strong style="color: var(--belt-brown);">Check Block 4 Recovery:</strong> Is posture re-established before the next cycle begins? Sloppy posture = broken combos.</li>
+                            <li><strong style="color: var(--belt-brown);">Check Speed Management:</strong> Is the surfer managing speed between maneuvers? Too fast = overshoots. Too slow = disconnected.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="diagnostic brown-left">
+                    <div class="diagnostic-title">If Power Lacks</div>
+                    <div class="diagnostic-content">
+                        <p style="margin-bottom: 12px;">Maneuvers look timid or small:</p>
+                        <ul>
+                            <li><strong style="color: var(--belt-brown);">Check Block 5 Depth:</strong> Is the bottom turn committed enough? Is the surfer loading the board fully? Shallow bottom turn = weak power generation.</li>
+                            <li><strong style="color: var(--belt-brown);">Check Commitment:</strong> Is the surfer mentally committed to the maneuver? Fear shows as hesitation and diminished power.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" style="font-size: 20px; color: var(--accent-cyan); margin-top: 40px;">Common Mistakes to Watch For</h3>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="color: var(--warning); font-size: 16px;">Technical Mistakes</div>
+                        </div>
+                        <div class="card-content" style="max-height: 500px;">
+                            <ul style="margin-left: 24px; color: var(--text-secondary);">
+                                <li style="margin-bottom: 8px;">Attempting aerials without sufficient speed (ramp problem)</li>
+                                <li style="margin-bottom: 8px;">Combos that are disconnected rather than flowing</li>
+                                <li style="margin-bottom: 8px;">Over-focusing on new maneuvers while fundamentals degrade</li>
+                                <li style="margin-bottom: 8px;">Inconsistent landing absorption (injuries risk)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title" style="color: var(--warning); font-size: 16px;">Behavioral Mistakes</div>
+                        </div>
+                        <div class="card-content" style="max-height: 500px;">
+                            <ul style="margin-left: 24px; color: var(--text-secondary);">
+                                <li style="margin-bottom: 8px;">Avoiding backside in competition (losing points)</li>
+                                <li style="margin-bottom: 8px;">Not adapting board selection to conditions</li>
+                                <li style="margin-bottom: 8px;">Surfing beyond personal capacity (overestimating ability)</li>
+                                <li style="margin-bottom: 8px;">Poor self-assessment of wave selection</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TOOLS SECTION -->
+            <div id="tools" class="section">
+                <div class="subsection-title brown">Coach Tools & Resources</div>
+                <p style="color: var(--text-secondary); margin-bottom: 40px;">Practical frameworks to support Brown Belt surfers.</p>
+
+                <h3 class="subsection-title" style="font-size: 20px; color: var(--accent-cyan);">Session Planning Template</h3>
+                <div class="card">
+                    <div class="card-content" style="max-height: 1000px;">
+                        <div style="background: rgba(90, 195, 231, 0.05); padding: 20px; border-radius: 8px; margin-bottom: 16px;">
+                            <p style="margin-bottom: 12px;"><strong style="color: var(--accent-cyan);">Pre-Session</strong></p>
+                            <ul style="margin-left: 24px; color: var(--text-secondary);">
+                                <li style="margin-bottom: 8px;">Ask surfer: "What are you working on today?"</li>
+                                <li style="margin-bottom: 8px;">Review conditions (swell, wind, tide)</li>
+                                <li style="margin-bottom: 8px;">Confirm board selection reasoning</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: rgba(90, 195, 231, 0.05); padding: 20px; border-radius: 8px; margin-bottom: 16px;">
+                            <p style="margin-bottom: 12px;"><strong style="color: var(--accent-cyan);">During Session</strong></p>
+                            <ul style="margin-left: 24px; color: var(--text-secondary);">
+                                <li style="margin-bottom: 8px;">Watch wave selection (is it intentional?)</li>
+                                <li style="margin-bottom: 8px;">Observe combo initiation (is reading strong?)</li>
+                                <li style="margin-bottom: 8px;">Note autonomy level (where are they looking for guidance?)</li>
+                            </ul>
+                        </div>
+
+                        <div style="background: rgba(90, 195, 231, 0.05); padding: 20px; border-radius: 8px;">
+                            <p style="margin-bottom: 12px;"><strong style="color: var(--accent-cyan);">Post-Session Debrief</strong></p>
+                            <ul style="margin-left: 24px; color: var(--text-secondary);">
+                                <li style="margin-bottom: 8px;">Surfer assessment first: "How'd that go?"</li>
+                                <li style="margin-bottom: 8px;">Coach insight: One strategic observation</li>
+                                <li style="margin-bottom: 8px;">Surfer priority: "What's next for you?"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" style="font-size: 20px; color: var(--accent-cyan); margin-top: 40px;">Competitive Path: Competition Prep Checklist</h3>
+                <div class="card">
+                    <div class="card-content" style="max-height: 800px;">
+                        <div class="checklist">
+                            <div class="checklist-item">
+                                <input type="checkbox" id="comp1">
+                                <label for="comp1">ISA Scoring Criteria memorized and practiced</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="comp2">
+                                <label for="comp2">WSL Scoring Criteria memorized and practiced</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="comp3">
+                                <label for="comp3">Both boards ready (primary + backup)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="comp4">
+                                <label for="comp4">Heat strategy documented for varying conditions</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="comp5">
+                                <label for="comp5">Pre-heat routine established and practiced</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="comp6">
+                                <label for="comp6">Mock heats completed (scoring 7+)</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="comp7">
+                                <label for="comp7">Backside execution at same level as frontside</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" style="font-size: 20px; color: var(--accent-cyan); margin-top: 40px;">Recreational Path: Session Maximization</h3>
+                <div class="card">
+                    <div class="card-content" style="max-height: 800px;">
+                        <div class="checklist">
+                            <div class="checklist-item">
+                                <input type="checkbox" id="rec1">
+                                <label for="rec1">Condition reading: Spot best waves autonomously</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="rec2">
+                                <label for="rec2">Position optimization: Right peak at right time</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="rec3">
+                                <label for="rec3">Wave selection: Choose waves matching skill level</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="rec4">
+                                <label for="rec4">Combo execution: 3+ linked maneuvers standard</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="rec5">
+                                <label for="rec5">Session duration: Maximizes value, respects fatigue</label>
+                            </div>
+                            <div class="checklist-item">
+                                <input type="checkbox" id="rec6">
+                                <label for="rec6">Board selection: Adapted to conditions</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" style="font-size: 20px; color: var(--accent-cyan); margin-top: 40px;">Quick Reference: When to Hold a Surfer at Brown</h3>
+                <div class="diagnostic brown-left">
+                    <div class="diagnostic-content">
+                        <ul>
+                            <li style="margin-bottom: 12px;"><strong style="color: var(--accent-cyan);">Technical Standard Not Met:</strong> Any sequence below 8/10 → more work needed</li>
+                            <li style="margin-bottom: 12px;"><strong style="color: var(--accent-cyan);">Aerial Inconsistency:</strong> Can't land FS/BS consistently → more ramp work</li>
+                            <li style="margin-bottom: 12px;"><strong style="color: var(--accent-cyan);">Combo Fluidity Missing:</strong> Moves feel disconnected → work on posture recovery (Block 4)</li>
+                            <li style="margin-bottom: 12px;"><strong style="color: var(--accent-cyan);">Self-Assessment Issues:</strong> Can't accurately assess their own performance → autonomy not ready</li>
+                            <li style="margin-bottom: 12px;"><strong style="color: var(--accent-cyan);">Poor Risk Assessment:</strong> Pushing into conditions beyond capacity → not ready for unsupervised surfing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <footer>
+                <p>TSS Brown Belt Coach Delivery Tool — Pre-Elite Level | Sequences #18-#22</p>
+                <p style="margin-top: 12px; font-size: 11px;">Built for coaches delivering world-class surf instruction | Interactive, responsive, mobile-ready</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Remove active class from all nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked nav item
+            event.target.closest('.nav-item').classList.add('active');
+
+            // Scroll to top
+            document.querySelector('.content-area').scrollTop = 0;
+        }
+
+        function toggleCard(headerElement) {
+            const card = headerElement.closest('.card');
+            card.classList.toggle('expanded');
+        }
+
+        function setMode(mode) {
+            const buttons = document.querySelectorAll('.mode-toggle button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // In a real app, this would adjust content visibility
+            console.log('Mode set to:', mode);
+        }
+
+        function setRating(button, value) {
+            const container = button.parentElement;
+            const buttons = container.querySelectorAll('button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+        }
+
+        // Add smooth scroll behavior
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            });
+        });
+
+        // Initialize first section as active
+        document.querySelector('#hero').classList.add('active');
+        document.querySelector('.nav-item').classList.add('active');
+    </script>
+</body>
+</html>

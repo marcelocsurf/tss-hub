@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Safety Canon v2.0 — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FF6B6B;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🛡️</span>
+    <div>
+      <div class="top-bar__title">Safety Canon v2.0</div>
+      <div class="top-bar__sub">The Surf Sequence® — SAFETY</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">SAFETY</span>
+    <span>2,321 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">SAFETY CANON</a><a href="#s3">CONFIDENTIAL — NOT FOR DISTRIBUTION</a><a href="#s4">Document Status and Use</a><a href="#s5">Architecture of the Canon</a><a href="#s6">PART I — FOUNDATION</a><a href="#s7">1. The Surf Sequence® Philosophy of Safety</a><a href="#s8">2. Core Safety Principles</a><a href="#s9">3. Safety as Part of Learning</a><a href="#s10">4. Safety as Part of Coach Excellence</a><a href="#s11">PART II — ROLES AND DUTY OF CARE</a><a href="#s12">5. Responsibility Structure</a><a href="#s13">6. Duty of Care Standard</a><a href="#s14">7. Student Profile and Safe Admission</a><a href="#s15">8. Risk Classification by Level and Context</a><a href="#s16">PART III — RISK LOGIC</a><a href="#s17">9. Venue Analysis Protocol</a><a href="#s18">10. Pre-Session Risk Assessment</a><a href="#s19">11. Beach Briefing Protocol</a><a href="#s20">PART IV — SESSION SAFETY SYSTEM</a><a href="#s21">12. Land Safety Standard</a><a href="#s22">13. Water Entry Standard</a><a href="#s23">14. In-Water Safety Standard</a><a href="#s24">15. Exit Safety Standard</a><a href="#s25">16. Equipment Safety Standard</a><a href="#s26">17. Communication and Command Language</a><a href="#s27">PART V — PROGRESSION SAFETY</a><a href="#s28">18. Safe Progression by Level</a><a href="#s29">19. Adaptation, Fatigue, Fear, and Overexposure</a><a href="#s30">19A. Instructor-to-Student Ratio Matrix</a><a href="#s31">19B. Coach Alignment Formations</a><a href="#s32">La Dupla (2 Instructors)</a><a href="#s33">El Triángulo (3 Instructors)</a><a href="#s34">El Imán (1 Instructor)</a><a href="#s35">PART VI — INCIDENT AND EMERGENCY CANON</a><a href="#s36">20. Conflict, Conduct, and Social Risk</a><a href="#s37">21. Minor Incident and Recovery Canon</a><a href="#s38">22. Major Emergency Canon</a><a href="#s39">23. Stop, Adapt, Relocate, or Cancel Criteria</a><a href="#s40">24. Emergency Action Plan Integration</a><a href="#s41">25. First-Aid Response Framework</a><a href="#s42">26. Incident Reporting and Preventive Learning</a><a href="#s43">PART VII — CULTURE AND ENVIRONMENT</a><a href="#s44">27. Surf Etiquette as Safety</a><a href="#s45">28. Ocean Respect and Environmental Safety</a><a href="#s46">29. Professional Culture of Prevention</a><a href="#s47">PART VIII — OPERATIONAL FRAMEWORK</a><a href="#s48">30. Indexed Emergency &amp; Conflict Guide</a><a href="#s49">Recommended Field Card Template</a><a href="#s50">31. Operational Annex Framework</a><a href="#s51">Implementation Note</a><a href="#s52">THE SURF SEQUENCE®</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">SAFETY CANON</h1>
+<p>Version 2.0 — Official Methodology Document</p>
+<p>Safety as Applied Intelligence</p>
+<p>Prepared for Marcelo Castellanos</p>
+<p>Founder, The Surf Sequence®</p>
+<p>ISA Olympic Expert Coach</p>
+<p>Enkrateia SA de CV — All Rights Reserved</p>
+<h1 class="doc-h1" id="s3">CONFIDENTIAL — NOT FOR DISTRIBUTION</h1>
+<h1 class="doc-h1" id="s4">Document Status and Use</h1>
+<p>This canon is the governing safety document for The Surf Sequence® methodology. It defines the philosophical standard, the decision standard, the operational baseline, and the minimum professional obligations required to deliver surf coaching under the method with control, clarity, and duty of care.</p>
+<p>It applies to classes, camps, progression programs, assistant-coach support environments, and licensed or affiliated academies. Local law, medical requirements, first-aid certifications, and venue-specific emergency procedures remain mandatory and must be attached to this canon where applicable as local operational addenda.</p>
+<h2 class="doc-h2" id="s5">Architecture of the Canon</h2>
+<ul class="doc-list">
+<li>Part I — Foundation: philosophy, principles, and the method’s definition of safety.</li>
+<li>Part II — Roles and duty of care: responsibilities of coaches, staff, students, and guardians.</li>
+<li>Part III — Risk logic: student profile, condition matching, venue analysis, and pre-session assessment.</li>
+<li>Part IV — Session safety system: briefing, land-water-exit standards, equipment, spacing, and communication.</li>
+<li>Part V — Progression safety: exposure thresholds and adaptation by level.</li>
+<li>Part VI — Incident and emergency canon: conflict, medical events, ocean hazards, and escalation rules.</li>
+<li>Part VII — Culture and environment: etiquette, conduct, hygiene, and professional prevention culture.</li>
+<li>Part VIII — Indexed operational guide and operational annex framework.</li>
+</ul>
+<h1 class="doc-h1" id="s6">PART I — FOUNDATION</h1>
+<h1 class="doc-h1" id="s7">1. The Surf Sequence® Philosophy of Safety</h1>
+<p>The Surf Sequence® does not treat safety as a legal appendix or a list of restrictions. Safety is structural. It is part of how the session is designed, how progression is sequenced, how the environment is read, how the group is led, and how the coach protects learning quality while reducing unnecessary exposure.</p>
+<p>For that reason, safety within the method means preparation, observation, threshold judgment, communication, proper equipment use, body awareness, correct progression, and timely intervention. A safe session is not the opposite of a challenging session. It is the condition that makes real challenge usable.</p>
+<h1 class="doc-h1" id="s8">2. Core Safety Principles</h1>
+<ul class="doc-list">
+<li>1. Safety before performance. No wave or maneuver opportunity is worth sacrificing group control.</li>
+<li>2. Read before acting. Coaches observe ocean, beach, people, equipment, and the social environment before entering.</li>
+<li>3. Progression before exposure. Complexity is earned through control, not ambition.</li>
+<li>4. Control before complexity. The board, body, breath, space, and group must be stable before challenge increases.</li>
+<li>5. Adaptation over ego. If conditions are wrong, the session changes.</li>
+<li>6. Shared responsibility. The coach leads; students must report issues honestly and follow safety instructions.</li>
+<li>7. Calm authority. Safety decisions are communicated early, clearly, and without emotional leakage.</li>
+<li>8. Prevention before reaction. The best intervention happens before the incident begins.</li>
+</ul>
+<h1 class="doc-h1" id="s9">3. Safety as Part of Learning</h1>
+<p>A quality surf session combines progression, challenge, clarity, and psychological regulation. Safety creates the focus that allows information to be absorbed and repeated. When the session is chaotic, learning quality collapses. This is why ocean reading, board handling, safe falling, spacing, entry and exit habits, recall protocols, and emotional regulation are taught as learning content, not as secondary warnings.</p>
+<h1 class="doc-h1" id="s10">4. Safety as Part of Coach Excellence</h1>
+<p>In The Surf Sequence®, a coach is not excellent merely because technique cues are accurate. Excellence includes the ability to select the right venue, reject the wrong venue, brief clearly, position the group correctly, regulate intensity, identify fatigue and fear, manage conflict, adapt drills, and know precisely when to stop, relocate, delay, or cancel.</p>
+<h1 class="doc-h1" id="s11">PART II — ROLES AND DUTY OF CARE</h1>
+<h1 class="doc-h1" id="s12">5. Responsibility Structure</h1>
+<p>Safety authority and safety accountability must be explicit. Every operating environment must assign roles before the session begins.</p>
+<ul class="doc-list">
+<li>Head Coach / Lead: Final authority on go/no-go decisions. Pre-session venue analysis signoff. Group composition and ratio approval. Incident escalation and reporting review.</li>
+<li>Session Coach: Delivers beach briefing. Maintains visual control of group at all times. Makes real-time stop/adapt/relocate decisions. Administers first-response if needed. Completes incident reports.</li>
+<li>Assistant Coach: Supports group control, especially tail students. Manages equipment pre and post session. Maintains secondary communication device. Accompanies patient to medical if needed.</li>
+<li>Student / Guardian: Report injuries, fear, medication, conditions honestly. Follow coach commands immediately. Respect assigned zones and recall signals. Do not exceed approved exposure level.</li>
+</ul>
+<h1 class="doc-h1" id="s13">6. Duty of Care Standard</h1>
+<p>Duty of care in The Surf Sequence® means the operating team must take reasonable and proactive measures to protect students from foreseeable harm while preserving the integrity of learning. This includes student screening, venue selection, condition matching, supervision, equipment readiness, group control, and timely escalation.</p>
+<h1 class="doc-h1" id="s14">7. Student Profile and Safe Admission</h1>
+<p>No student should enter a session solely on the basis of what they say they want to do. Entry must be based on what they can control.</p>
+<ul class="doc-list">
+<li>Age and guardian status when applicable.</li>
+<li>Self-reported and observed confidence in water.</li>
+<li>Swimming ability and ocean awareness.</li>
+<li>Current injuries, recent surgery, asthma, panic history, medication, or medical restrictions.</li>
+<li>Emotional profile: responsiveness, fear threshold, and ability to follow instructions.</li>
+<li>Current goal and expected challenge level.</li>
+</ul>
+<h1 class="doc-h1" id="s15">8. Risk Classification by Level and Context</h1>
+<p>Risk is never classified by label alone. The same student may be low risk in white water and high risk in shoulder-high crowded surf. A control-based matrix combining surfer capability and environmental demand must always be used.</p>
+<h1 class="doc-h1" id="s16">PART III — RISK LOGIC</h1>
+<h1 class="doc-h1" id="s17">9. Venue Analysis Protocol</h1>
+<p>Venue analysis is mandatory before entering the water. The beach is not only a safety site; it is the method’s teaching environment. The coach must understand how the environment will shape behavior, timing, and risk.</p>
+<ul class="doc-list">
+<li>Type of break and likely impact zone.</li>
+<li>Entry and exit routes; channels where available.</li>
+<li>Current lines, sweep direction, and zones of trapped movement.</li>
+<li>Set rhythm, lulls, reform sections, and points of line-up compression.</li>
+<li>Bottom composition: sand, reef, rock, mixed surface, or hidden hazards.</li>
+<li>Crowd pattern, learner clusters, board type density, and local hierarchy.</li>
+<li>Physical hazards: hooks, nets, debris, exposed rock, vehicles, dogs, or restricted zones.</li>
+<li>Medical access: rescue point, meeting point, nearest road access, and emergency destination.</li>
+</ul>
+<h1 class="doc-h1" id="s18">10. Pre-Session Risk Assessment</h1>
+<h1 class="doc-h1" id="s19">11. Beach Briefing Protocol</h1>
+<p>The briefing converts analysis into shared order. Every session requires a beach briefing before entry.</p>
+<ul class="doc-list">
+<li>Objective of the session and success criteria.</li>
+<li>Where to enter, where to stay, and where to exit.</li>
+<li>Which waves are for this group and which are not.</li>
+<li>What the recall signal means and what to do when it is given.</li>
+<li>What to do if the board is lost, if fear spikes, or if current pulls sideways.</li>
+<li>How the group will rotate, wait, and reset.</li>
+<li>What behavior is prohibited in this session.</li>
+</ul>
+<h1 class="doc-h1" id="s20">PART IV — SESSION SAFETY SYSTEM</h1>
+<h1 class="doc-h1" id="s21">12. Land Safety Standard</h1>
+<p>Land safety begins before the shoreline. Boards must be assigned by level, leashes checked, fins verified, sunscreen and hydration addressed, warm-up completed, and transport handled with control. Group movement on the beach must preserve order and visibility.</p>
+<h1 class="doc-h1" id="s22">13. Water Entry Standard</h1>
+<p>Water entry occurs only through the designated route. If a channel exists, the group uses it. Entry is sequenced; it is never a chaotic rush. Students do not enter until commands, zones, and spacing are understood.</p>
+<h1 class="doc-h1" id="s23">14. In-Water Safety Standard</h1>
+<p>The coach must keep the group visible, readable, and recoverable. Positioning is not random. Distance between students must reflect board size, current, and skill. One student’s confusion must never compromise the whole group.</p>
+<h1 class="doc-h1" id="s24">15. Exit Safety Standard</h1>
+<p>Exits are managed with the same seriousness as entries. The group exits through the agreed route, boards remain under control, and final count is completed before the session is considered closed.</p>
+<h1 class="doc-h1" id="s25">16. Equipment Safety Standard</h1>
+<p>Equipment must match skill level and conditions. Beginners should be given stable, forgiving boards. Intermediate students can only transition to more demanding equipment when they demonstrate enough control to protect themselves and others.</p>
+<h1 class="doc-h1" id="s26">17. Communication and Command Language</h1>
+<p>The method requires a standardized command language. In wind, whitewater, noise, and stress, long explanations fail. The coach uses short, pre-taught commands and visible arm signals. Signal consistency matters more than verbal sophistication.</p>
+<h1 class="doc-h1" id="s27">PART V — PROGRESSION SAFETY</h1>
+<h1 class="doc-h1" id="s28">18. Safe Progression by Level</h1>
+<p>Progression in The Surf Sequence® is not approved only by maneuvers completed. Progression is cleared when the student can perform within the method’s safety control standard.</p>
+<h1 class="doc-h1" id="s29">19. Adaptation, Fatigue, Fear, and Overexposure</h1>
+<p>A session should be adjusted before the environment forces it to fail. The coach must watch for fatigue, respiratory stress, freezing, emotional flooding, repeated confusion, or declining board control.</p>
+<h1 class="doc-h1" id="s30">19A. Instructor-to-Student Ratio Matrix</h1>
+<p>The following matrix defines the required coach-to-student ratio based on conditions, student age, and student level. This matrix is mandatory for all session planning.</p>
+<h1 class="doc-h1" id="s31">19B. Coach Alignment Formations</h1>
+<p>Tactical positioning formations for maintaining group control. Flags mark the zone boundaries in both width and depth. Select the formation based on the number of available coaches and group size.</p>
+<h2 class="doc-h2" id="s32">La Dupla (2 Instructors)</h2>
+<p>Capacity: up to 6 students in safe conditions.</p>
+<ul class="doc-list">
+<li>Instructor A — Limit Position: Stays at the safe zone boundary. Prevents students from passing into the impact zone. Assists with wave selection, turning, and choosing the correct foam or wave.</li>
+<li>Instructor B — Shore Position: Receives students at shore. Assists with return to Instructor A position. Provides technique feedback during reset.</li>
+</ul>
+<h2 class="doc-h2" id="s33">El Triángulo (3 Instructors)</h2>
+<p>Capacity: larger groups with full three-point coverage.</p>
+<ul class="doc-list">
+<li>Instructors A &amp; B — Limit Positions: Both positioned at the safe zone boundary to prevent students reaching the impact zone. They assist with wave selection and give in-water instructions.</li>
+<li>Instructor C — Feedback Position: Positioned between the teaching zone and shore. Provides technique feedback. Assists students returning to A and B positions. Manages the reset cycle.</li>
+</ul>
+<h2 class="doc-h2" id="s34">El Imán (1 Instructor)</h2>
+<p>Capacity: up to 4 students if conditions and student level allow.</p>
+<ul class="doc-list">
+<li>Instructor A — Central Magnet: Positioned in the teaching zone as the gravitational center. All students orbit around and always return to this position.</li>
+</ul>
+<h1 class="doc-h1" id="s35">PART VI — INCIDENT AND EMERGENCY CANON</h1>
+<h1 class="doc-h1" id="s36">20. Conflict, Conduct, and Social Risk</h1>
+<p>Safety includes social and behavioral risk. Students who are intoxicated, repeatedly defiant, or openly disruptive should not enter the water. Coaches should not argue publicly with guests. Escalation follows internal chain of command.</p>
+<ul class="doc-list">
+<li>Do not confront angry locals in the water.</li>
+<li>Avoid unnecessary crowd compression and route selection that invites conflict.</li>
+<li>Protect the group from ego-driven decisions by staff or students.</li>
+</ul>
+<h1 class="doc-h1" id="s37">21. Minor Incident and Recovery Canon</h1>
+<p>Minor incidents include small cuts, leash breakage, mild panic, soft-tissue strain, minor board impact, or momentary group disorder. The response sequence is: stabilize, assess, communicate, adapt, and document if the event affected lesson quality or required intervention beyond routine correction.</p>
+<h1 class="doc-h1" id="s38">22. Major Emergency Canon</h1>
+<p>Major emergencies include suspected concussion, neck injury, loss of consciousness, severe laceration, respiratory compromise, prolonged panic, missing person, suspected drowning, allergic reaction, severe heat stress, or any event requiring external medical support.</p>
+<h1 class="doc-h1" id="s39">23. Stop, Adapt, Relocate, or Cancel Criteria</h1>
+<p>The canon requires decisive thresholds, not vague intuition.</p>
+<ul class="doc-list">
+<li>STOP when there is a loss of group control, panic, injury concern, or a fast-rising hazard.</li>
+<li>ADAPT when the session can remain safe by reducing complexity, shrinking the zone, or lowering exposure.</li>
+<li>RELOCATE when the teaching objective is still valid but the current zone no longer provides control.</li>
+<li>CANCEL when safety depends on hope, luck, or repeated rescue behavior rather than coaching structure.</li>
+</ul>
+<h1 class="doc-h1" id="s40">24. Emergency Action Plan Integration</h1>
+<p>Every operating environment must connect this canon to a local Emergency Action Plan. That plan must identify emergency roles, rescue route, meeting point, external contacts, medical destination, communication chain, and documentation responsibilities.</p>
+<h1 class="doc-h1" id="s41">25. First-Aid Response Framework</h1>
+<p>This canon does not replace medical certification. It requires that coaches maintain current first-aid competence appropriate to their role and local regulations. The framework is: stabilize → protect airway and spine when indicated → control bleeding → regulate heat → remove from further danger → refer without delay when severity exceeds coaching scope.</p>
+<h1 class="doc-h1" id="s42">26. Incident Reporting and Preventive Learning</h1>
+<p>Every incident that disrupts normal session flow, requires special intervention, creates risk of recurrence, or involves injury must be recorded. Reporting is not only defensive; it is preventive. The purpose is to improve future decision quality, protect students, and maintain methodological integrity.</p>
+<h1 class="doc-h1" id="s43">PART VII — CULTURE AND ENVIRONMENT</h1>
+<h1 class="doc-h1" id="s44">27. Surf Etiquette as Safety</h1>
+<p>Etiquette is not cosmetic culture. It is collision prevention, social de-escalation, and line-up order. Priority, paddling wide, controlling the board, and respecting locals are safety behaviors.</p>
+<h1 class="doc-h1" id="s45">28. Ocean Respect and Environmental Safety</h1>
+<p>Respect for the ocean and the beach is part of safe delivery. Waste, damaged gear left on the beach, careless vehicle loading, and disregard for local access norms all increase operational risk and erode professional credibility.</p>
+<h1 class="doc-h1" id="s46">29. Professional Culture of Prevention</h1>
+<p>The Surf Sequence® expects calm leaders, accurate communication, good presentation, punctuality, sober operation, clean equipment handling, and disciplined follow-through. Prevention culture is visible in routine.</p>
+<h1 class="doc-h1" id="s47">PART VIII — OPERATIONAL FRAMEWORK</h1>
+<h1 class="doc-h1" id="s48">30. Indexed Emergency &amp; Conflict Guide</h1>
+<p>The following index converts the canon into a rapid-access operational map. Each category should be expanded into one-page field cards or SOP sheets using the recommended template below.</p>
+<h2 class="doc-h2" id="s49">Recommended Field Card Template</h2>
+<ul class="doc-list">
+<li>Case</li>
+<li>Early warning signs</li>
+<li>Primary risk</li>
+<li>Immediate action</li>
+<li>What to communicate to the group</li>
+<li>What not to do</li>
+<li>When to escalate</li>
+<li>Who assumes control</li>
+<li>Associated report or form</li>
+</ul>
+<h1 class="doc-h1" id="s50">31. Operational Annex Framework</h1>
+<p>The canon is operationally complete only when the following attachments exist for the venue or academy using it:</p>
+<ul class="doc-list">
+<li>Venue Analysis Form</li>
+<li>Pre-Session Risk Check</li>
+<li>Beach Briefing Template</li>
+<li>Student Medical / Injury Intake</li>
+<li>Incident Report Form</li>
+<li>Emergency Contacts Sheet</li>
+<li>Equipment Check Sheet</li>
+<li>Transport Safety Check</li>
+<li>Safety Commands &amp; Arm Signals Sheet</li>
+<li>Progression Clearance Form by level</li>
+</ul>
+<h1 class="doc-h1" id="s51">Implementation Note</h1>
+<p>This version is written as the governing canon. It is intentionally more stable than a field SOP. Its purpose is to unify language, thresholds, and professional obligations across different venues while preserving room for local operational customization.</p>
+<h1 class="doc-h1" id="s52">THE SURF SEQUENCE®</h1>
+<p class="doc-bold">SAFETY CANON v2.0</p>
+<p>Marcelo Castellanos</p>
+<p>ISA Olympic Expert Coach | Founder, The Surf Sequence®</p>
+<p>Enkrateia SA de CV — All Rights Reserved</p>
+<p>Version 2.0 — March 2026</p>
+<p>Safety is not fear. It is applied intelligence.</p>
+<div class="table-wrap"><table>
+<tr><th>Doctrinal Authority
+This document is classified as Tier 2 — Architectural within the TSS Official Document Registry. It derives from and must align with the TSS Core Canon (Tier 1). If a conflict exists between any operational derivative and this Safety Canon, this Safety Canon prevails. If a conflict exists between this Safety Canon and the Core Canon, the Core Canon prevails.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Non-Negotiable
+These principles govern all delivery formats within the method. They shape every lesson design and field decision.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Duty of Care Is Broken When:
+The team knowingly teaches in unsuitable conditions, ignores clear signs of fatigue or fear, enters the water without communication or emergency tools, allows incompatible levels to mix unsafely, or fails to respond with urgency when an incident escalates.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Governing Question
+Before the first student enters the water, the coach must answer: Do these conditions allow teaching with real control today? If the answer is unclear, the answer is NO.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Non-Negotiable Rules
+Do not let output collapse before intervening. Do not escalate exposure to prove resilience. Do not confuse bravery with readiness. Do not continue if fear prevents learning and basic control. Do not shame fear — regulate it. Do not reward overconfidence with more exposure.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Condition</th><th>Swell</th><th>Current</th><th>Age</th><th>Ratio</th><th>Restrictions / Notes</th></tr>
+<tr><td>VERY SAFE</td><td>1–2 ft</td><td>No current</td><td>12+</td><td>1 : 4</td><td>Standard conditions. No additional restrictions.</td></tr>
+<tr><td>VERY SAFE</td><td>1–2 ft</td><td>No current</td><td>8–11</td><td>1 : 2</td><td>Kids under 8: 1:1 mandatory.</td></tr>
+<tr><td>SAFE</td><td>3–4 ft</td><td>Moderate</td><td>12+</td><td>1 : 2</td><td>Standard safe conditions.</td></tr>
+<tr><td>SAFE</td><td>3–4 ft</td><td>Moderate</td><td>8–11</td><td>1 : 1</td><td>Kids under 8: based on detailed condition assessment.</td></tr>
+<tr><td>CHALLENGING</td><td>5–6 ft</td><td>Mod–Strong</td><td>14+</td><td>1 : 2</td><td>If necessary, increase to 1:1.</td></tr>
+<tr><td>CHALLENGING</td><td>5–6 ft</td><td>Mod–Strong</td><td>8–13</td><td>1 : 1</td><td>NO kids under 8.</td></tr>
+<tr><td>STRONG</td><td>7–8 ft</td><td>Mod–Strong</td><td>14+</td><td>1 : 1</td><td>NO kids under 14.</td></tr>
+<tr><td>HEAVY</td><td>8–10 ft</td><td>Heavy</td><td>14+</td><td>1 : 1</td><td>NO beginners. NO kids under 14. Can be cancelled at any time.</td></tr>
+<tr><td>RED CODE</td><td>10+ ft</td><td>—</td><td>—</td><td>CANCEL</td><td>CANCEL THE CLASS. Activate Plan B immediately.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Environmental Red Code Triggers
+Jellyfish, stingrays, exposed rocks, sharks, crocodiles, venomous creatures, contaminated water, boat/vessel traffic, orca/whale activity, lightning/storm. Any of these triggers Red Code regardless of swell size.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Plan B Options (Red Code)
+Surf Skate session • Pool paddling • Gym / functional training • Video analysis • Theory / Block 0 session • Games (kids programs). The class is not cancelled — the venue changes.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Zone Control
+Flags mark the boundaries in both width and depth. Students must remain within the flagged corridor at all times. Instructor A delimits the depth boundary; Instructor B manages the shore reset.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Mission #1 for All Students
+Always return to Instructor A. This is the non-negotiable rule of this formation. The instructor must transmit and verify this rule clearly before entering the water. Every student must demonstrate the ability to self-return before deployment.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Capacity Limit
+Maximum 4 students only if conditions are safe and all students demonstrate the ability to self-return. Reduce immediately if any student struggles.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Head Injury Rule
+All head injuries are treated as serious. Any face or head injury requires extreme care, medical review, and no return to lesson participation that day. If unconsciousness, delayed concussion, respiratory distress, severe bleeding, seizure, chest pain, or loss of orientation is present or suspected, emergency services are activated immediately.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Escalation Thresholds — Escalate Without Delay When:
+You no longer have continuous visual control of the full group. A head/neck injury, loss of consciousness, breathing issue, or severe panic is suspected. Conditions have shifted beyond the demonstrated level of the weakest student. A conflict is affecting student safety or emotional stability. Staff roles are unclear during an active incident. Emergency equipment, communications, or transport capability are compromised.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Canon vs. Operations
+The canonical standard stays fixed; the operational layer is customized. That distinction protects identity, consistency, and quality control across different venues while allowing responsible local application.</th></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Safety Canon v2.0 — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

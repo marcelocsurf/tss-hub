@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Surfistas — The Surf Sequence®</title>
+<meta name="description" content="Progresa con estructura real. Descubre tu nivel, sigue un camino claro de White Belt a Black Belt. TSS te da el sistema que el surf necesitaba.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}body{font-family:'Work Sans',sans-serif;color:#4E4D4D;line-height:1.7;background:#fff;overflow-x:hidden}a{text-decoration:none;color:inherit;transition:all .3s}
+:root{--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA;--white:#FFFFFF}
+h1,h2,h3{font-family:'Outfit',sans-serif;color:var(--navy);line-height:1.2}h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800}h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700}h3{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:600}
+.tagline{font-family:'Lora',serif;font-style:italic;color:var(--cyan)}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}.section{padding:100px 0}.section--dark{background:var(--navy);color:var(--white)}.section--dark h2,.section--dark h3{color:var(--white)}.section--light{background:var(--light)}
+.btn{display:inline-block;padding:16px 36px;border-radius:6px;font-family:'Outfit',sans-serif;font-weight:600;font-size:1rem;transition:all .3s;cursor:pointer;border:none}.btn--primary{background:var(--cyan);color:var(--navy)}.btn--primary:hover{background:#3db8e0;transform:translateY(-2px);box-shadow:0 8px 24px rgba(90,195,231,.35)}.btn--outline{background:transparent;border:2px solid var(--cyan);color:var(--cyan)}.btn--outline:hover{background:var(--cyan);color:var(--navy)}.btn--white{background:var(--white);color:var(--navy)}
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:12px 0;background:rgba(10,22,40,.97);backdrop-filter:blur(12px)}.nav__inner{display:flex;align-items:center;justify-content:space-between;max-width:1140px;margin:0 auto;padding:0 24px}.nav__logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white)}.nav__logo span{color:var(--cyan)}.nav__links{display:flex;gap:28px;align-items:center}.nav__links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500}.nav__links a:hover{color:var(--cyan)}.nav__cta{padding:10px 24px;font-size:.85rem}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.page-hero{padding:140px 0 80px;background:linear-gradient(135deg,var(--navy),var(--blue));text-align:center}.page-hero h1{color:var(--white);margin-bottom:16px}.page-hero p{color:rgba(255,255,255,.65);font-size:1.1rem;max-width:600px;margin:0 auto}
+.overline{display:block;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
+.section-header{text-align:center;max-width:680px;margin:0 auto 56px}.section-header p{font-size:1.05rem;color:var(--grey)}
+.benefit-card{padding:32px;border-radius:16px;background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,.05);transition:all .3s;border-top:3px solid var(--cyan)}.benefit-card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.08)}.benefit-card h3{margin-bottom:8px}.benefit-card p{font-size:.92rem;color:var(--grey)}
+.process-step{display:flex;gap:20px;align-items:start;padding:24px 0;border-bottom:1px solid rgba(0,0,0,.06)}.process-step__num{width:48px;height:48px;border-radius:50%;background:rgba(90,195,231,.1);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:1.2rem;color:var(--cyan);flex-shrink:0}.process-step h3{margin-bottom:4px;font-size:1.05rem}.process-step p{font-size:.9rem;color:var(--grey)}
+.faq-item{padding:20px 0;border-bottom:1px solid rgba(0,0,0,.06)}.faq-item h3{font-size:1rem;margin-bottom:8px;cursor:pointer;color:var(--navy)}.faq-item p{font-size:.9rem;color:var(--grey);line-height:1.7}
+.fade-up{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,.61,.36,1)}.fade-up.visible{opacity:1;transform:translateY(0)}
+.footer{background:#060e1a;color:rgba(255,255,255,.6);padding:40px 0}.footer__inner{display:flex;justify-content:space-between;align-items:center;font-size:.85rem}
+@media(max-width:968px){.grid-2,.grid-3{grid-template-columns:1fr}.nav__links{display:none}.section{padding:72px 0}}
+@media(max-width:600px){.btn{width:100%;text-align:center}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav__inner"><a href="index.html" class="nav__logo">THE SURF <span>SEQUENCE®</span></a><div class="nav__links"><a href="metodo.html">El Método</a><a href="index.html#cintas">Cintas</a><a href="fundador.html">Fundador</a><a href="index.html#contacto" class="btn btn--primary nav__cta">Comienza ahora</a></div></div></nav>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <span class="overline" style="color:rgba(255,255,255,.5)">Para surfistas</span>
+    <h1>Deja de adivinar.<br>Empieza a <span style="color:var(--cyan)">evolucionar</span>.</h1>
+    <p>TSS te da lo que ningún video de YouTube, ningún tip suelto y ningún coach informal puede darte: un sistema completo de progresión con estructura, evaluación y camino claro.</p>
+    <div style="margin-top:32px"><a href="#como" class="btn btn--primary">Ver cómo funciona</a></div>
+  </div>
+</section>
+
+<!-- Problema -->
+<section class="section section--light">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">El problema que ya conoces</span>
+      <h2>¿Te suena familiar?</h2>
+    </div>
+    <div class="grid-3 fade-up">
+      <div class="benefit-card" style="border-top-color:#FF6B6B">
+        <h3>Surfeas hace años pero sientes que no avanzas</h3>
+        <p>Llevas tiempo en el agua pero no logras ejecutar maniobras nuevas. Tu nivel se estancó y no sabes qué cambiar.</p>
+      </div>
+      <div class="benefit-card" style="border-top-color:#FF6B6B">
+        <h3>No sabes qué practicar en cada sesión</h3>
+        <p>Entras al agua sin plan. Sales sin saber si mejoraste algo. Cada sesión es un experimento sin dirección.</p>
+      </div>
+      <div class="benefit-card" style="border-top-color:#FF6B6B">
+        <h3>Has tomado clases pero no hay continuidad</h3>
+        <p>Cada coach te dice algo diferente. No hay seguimiento, no hay evaluación, no hay ruta de progresión.</p>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:40px;font-size:1.2rem;color:var(--cyan);font-family:'Outfit',sans-serif;font-weight:700" class="fade-up">TSS resuelve exactamente eso.</p>
+  </div>
+</section>
+
+<!-- Beneficios -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">Lo que obtienes</span>
+      <h2>Progresión real con TSS</h2>
+    </div>
+    <div class="grid-3 fade-up">
+      <div class="benefit-card">
+        <h3>Sabes exactamente dónde estás</h3>
+        <p>Evaluación objetiva de tu nivel actual basada en criterios verificables, no en opiniones.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Sabes qué trabajar y en qué orden</h3>
+        <p>Secuencias específicas por nivel. Cada sesión tiene propósito. Cada práctica construye sobre la anterior.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Tu progresión es medible</h3>
+        <p>Sistema de cintas con criterios claros. Sabes cuándo subir de nivel y qué te falta para lograrlo.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Desarrollo integral</h3>
+        <p>No solo técnica. Los 4 pilares trabajan tu cuerpo, tu mente, tu lectura del océano y tu ejecución.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Coach certificado</h3>
+        <p>Entrenas con coaches que dominan la metodología TSS, no con freelancers que improvisan.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Comunidad y red global</h3>
+        <p>Formas parte de un sistema que conecta surfistas y academias en todo el mundo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cómo funciona -->
+<section class="section section--light" id="como">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">Proceso</span>
+      <h2>Cómo funciona para ti</h2>
+    </div>
+    <div style="max-width:640px;margin:0 auto" class="fade-up">
+      <div class="process-step"><div class="process-step__num">1</div><div><h3>Evaluación inicial</h3><p>Determinamos tu nivel actual con criterios objetivos. Descubres tu cinta y las áreas específicas donde necesitas trabajar.</p></div></div>
+      <div class="process-step"><div class="process-step__num">2</div><div><h3>Plan de progresión personalizado</h3><p>Recibes un camino claro con las secuencias, condiciones y objetivos específicos para tu nivel. Sabes exactamente qué hacer.</p></div></div>
+      <div class="process-step"><div class="process-step__num">3</div><div><h3>Entrenamiento estructurado</h3><p>Cada sesión sigue el Bloque TSS: objetivos, condiciones, briefing, ejecución, evaluación, cierre. Nada es al azar.</p></div></div>
+      <div class="process-step"><div class="process-step__num">4</div><div><h3>Evaluación y avance</h3><p>Cuando demuestras competencia en todos los criterios de tu cinta, avanzas al siguiente nivel. Progresión por mérito, no por tiempo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Para quién / Para quién no -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="grid-2 fade-up">
+      <div>
+        <h2 style="color:var(--cyan);margin-bottom:24px">TSS es para ti si:</h2>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p style="color:rgba(255,255,255,.8)">✓ Quieres progresar de verdad, no solo "pasarla bien"</p>
+          <p style="color:rgba(255,255,255,.8)">✓ Estás dispuesto a seguir un proceso estructurado</p>
+          <p style="color:rgba(255,255,255,.8)">✓ Valoras la evaluación objetiva sobre la opinión</p>
+          <p style="color:rgba(255,255,255,.8)">✓ Buscas un camino claro, no consejos sueltos</p>
+          <p style="color:rgba(255,255,255,.8)">✓ Crees que diversión y disciplina no son opuestos</p>
+        </div>
+      </div>
+      <div>
+        <h2 style="color:#FF6B6B;margin-bottom:24px">TSS no es para ti si:</h2>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <p style="color:rgba(255,255,255,.5)">✗ Solo quieres recreación sin compromiso</p>
+          <p style="color:rgba(255,255,255,.5)">✗ Crees que ya lo sabes todo</p>
+          <p style="color:rgba(255,255,255,.5)">✗ Quieres atajos en lugar de proceso</p>
+          <p style="color:rgba(255,255,255,.5)">✗ Prefieres improvisar sobre seguir un sistema</p>
+          <p style="color:rgba(255,255,255,.5)">✗ No estás dispuesto a que te evalúen</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">Preguntas frecuentes</span>
+      <h2>Lo que necesitas saber</h2>
+    </div>
+    <div style="max-width:680px;margin:0 auto" class="fade-up">
+      <div class="faq-item"><h3>¿Necesito experiencia previa para empezar?</h3><p>No. TSS empieza desde Cinta Blanca, que es nivel cero absoluto. Si nunca has tocado una tabla, hay un lugar para ti.</p></div>
+      <div class="faq-item"><h3>¿Cuánto tiempo toma subir de cinta?</h3><p>Depende de tu dedicación y condiciones. No hay plazo fijo. Se sube cuando demuestras competencia real en todos los criterios del nivel.</p></div>
+      <div class="faq-item"><h3>¿Dónde puedo entrenar con TSS?</h3><p>Actualmente en Puro Surf (El Zonte, El Salvador) como operador flagship. La red de academias afiliadas está en expansión.</p></div>
+      <div class="faq-item"><h3>¿TSS es solo para competidores?</h3><p>No. TSS es para cualquier surfista que quiera progresar con estructura. Desde recreativo comprometido hasta aspirante olímpico.</p></div>
+      <div class="faq-item"><h3>¿Qué diferencia hay entre TSS y tomar clases de surf normales?</h3><p>Una clase suelta es un evento aislado. TSS es un sistema de progresión continua con evaluación, secuencias catalogadas, y un camino claro de principio a fin.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center;background:linear-gradient(135deg,var(--navy),var(--blue))">
+  <div class="container fade-up">
+    <h2 style="color:var(--white);margin-bottom:16px">Tu progresión empieza hoy.</h2>
+    <p style="color:rgba(255,255,255,.6);margin-bottom:32px;font-size:1.05rem">Descubre tu nivel actual y da el primer paso dentro de TSS.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="index.html#guia" class="btn btn--primary">Descarga tu guía gratuita</a>
+      <a href="index.html#contacto" class="btn btn--outline">Contacta con TSS</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer__inner"><a href="index.html" class="nav__logo" style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1rem;color:var(--white)">THE SURF <span style="color:var(--cyan)">SEQUENCE®</span></a><span>© 2026 The Surf Sequence®. Enkrateia SA de CV.</span></div></div></footer>
+
+<script>
+const observer=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

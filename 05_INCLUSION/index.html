@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSS® — How Do You Learn Best?</title>
+<meta property="og:title" content="TSS® — How Do You Learn Best?">
+<meta property="og:description" content="Quick 5-question quiz to help your surf coach adapt to your learning style. Takes 2 minutes.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--teal:#00897B;--teal-dk:#00695C;--white:#FFFFFF;--mgrey:#8A95A8;--red:#E53935;--amber:#FFB300;--green:#43A047;--purple:#7B1FA2;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--white);font-family:'DM Sans',sans-serif;min-height:100vh;min-height:100dvh;overflow-x:hidden}
+.wrap{max-width:520px;margin:0 auto;padding:20px 16px 60px}
+.hdr{text-align:center;padding:32px 0 24px}
+.hdr-tag{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.35em;color:var(--teal);text-transform:uppercase;margin-bottom:14px}
+.hdr h1{font-family:'Playfair Display',serif;font-size:clamp(26px,6vw,38px);font-weight:900;line-height:1.15;margin-bottom:10px}
+.hdr h1 em{color:var(--teal);font-style:normal}
+.hdr p{font-size:14px;color:var(--mgrey);line-height:1.6;max-width:400px;margin:0 auto}
+.prog{margin:0 0 28px;display:flex;align-items:center;gap:6px}
+.prog-dot{flex:1;height:5px;border-radius:3px;background:rgba(255,255,255,0.06);transition:background 0.4s}
+.prog-dot.done{background:var(--teal)}.prog-dot.active{background:var(--teal);opacity:0.5}
+.scr{display:none;animation:up 0.35s ease}.scr.on{display:block}
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.q-num{font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.25em;color:var(--teal);text-transform:uppercase;margin-bottom:10px}
+.q-dim{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.2);text-transform:uppercase;margin-bottom:14px}
+.q-text{font-size:17px;font-weight:500;color:var(--white);line-height:1.55;margin-bottom:6px}
+.q-sub{font-size:13px;color:var(--mgrey);margin-bottom:22px;font-style:italic}
+.opt{display:flex;align-items:center;gap:12px;padding:14px 16px;margin-bottom:8px;border-radius:12px;border:1.5px solid rgba(255,255,255,0.07);background:rgba(255,255,255,0.02);cursor:pointer;transition:all 0.2s;-webkit-tap-highlight-color:transparent}
+.opt:active{transform:scale(0.985)}.opt:hover{border-color:rgba(0,137,123,0.35);background:rgba(0,137,123,0.05)}
+.opt.sel{border-color:var(--teal);background:rgba(0,137,123,0.12)}
+.opt-icon{width:32px;height:32px;min-width:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;background:rgba(255,255,255,0.04);transition:all 0.2s}
+.opt.sel .opt-icon{background:var(--teal)}
+.opt-txt{font-size:14px;color:var(--mgrey);line-height:1.45;transition:color 0.2s}.opt.sel .opt-txt{color:var(--white)}
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+.btn{padding:11px 24px;border-radius:10px;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.25s;border:none}
+.btn-next{background:var(--teal);color:var(--white);opacity:0.25;pointer-events:none}
+.btn-next.go{opacity:1;pointer-events:auto}.btn-next.go:hover{background:var(--teal-dk)}
+.btn-back{background:transparent;color:var(--mgrey);border:1px solid rgba(255,255,255,0.08)}.btn-back:hover{border-color:rgba(255,255,255,0.2);color:var(--white)}
+.res-hdr{text-align:center;margin-bottom:28px}
+.res-hdr h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;margin-bottom:6px}
+.res-hdr p{font-size:13px;color:var(--mgrey)}
+.donut-wrap{display:flex;justify-content:center;margin:0 auto 28px;position:relative}
+.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.donut-center .icon{font-size:28px;margin-bottom:2px}
+.donut-center .label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.15em;color:var(--mgrey);text-transform:uppercase}
+.legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:28px}
+.leg-item{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:20px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);font-size:12px;color:var(--mgrey)}
+.leg-dot{width:10px;height:10px;border-radius:50%}.leg-pct{font-family:'DM Mono',monospace;font-weight:500;color:var(--white)}
+.ch-card{border-radius:var(--radius);padding:20px;margin-bottom:12px;position:relative;overflow:hidden}
+.ch-card.pri{border:2px solid var(--teal);background:rgba(0,137,123,0.08)}
+.ch-card.sec{border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02)}
+.ch-badge{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:6px}
+.ch-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:4px}
+.ch-desc{font-size:13px;color:var(--mgrey);line-height:1.65}
+.tips{background:rgba(0,137,123,0.05);border:1px solid rgba(0,137,123,0.15);border-left:3px solid var(--teal);border-radius:var(--radius);padding:18px 20px;margin:16px 0}
+.tips-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--teal);text-transform:uppercase;margin-bottom:10px}
+.tips ul{padding-left:16px}.tips li{font-size:13px;color:var(--mgrey);line-height:1.7;margin-bottom:3px}.tips li strong{color:var(--white)}
+.mixed{background:rgba(255,179,0,0.06);border:1px solid rgba(255,179,0,0.15);border-left:3px solid var(--amber);border-radius:var(--radius);padding:18px 20px;margin:16px 0}
+.mixed-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:0.2em;color:var(--amber);text-transform:uppercase;margin-bottom:10px}
+.mixed p{font-size:13px;color:var(--mgrey);line-height:1.65}.mixed strong{color:var(--white)}
+.acts{display:flex;gap:10px;margin-top:24px;flex-wrap:wrap;justify-content:center}
+.act{padding:10px 20px;border-radius:10px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.25s;border:1px solid rgba(0,137,123,0.25);background:rgba(0,137,123,0.08);color:var(--teal)}
+.act:hover{background:rgba(0,137,123,0.15)}
+.ftr{text-align:center;padding:32px 0 12px;margin-top:32px;border-top:1px solid rgba(0,137,123,0.06)}
+.ftr p{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.15);text-transform:uppercase}
+@media print{body{background:#fff;color:#000}.prog,.nav-row,.acts{display:none!important}.ch-card,.tips,.mixed{border:1px solid #ccc}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hdr">
+    <div class="hdr-tag">The Surf Sequence®</div>
+    <h1>How Do You <em>Learn</em> Best?</h1>
+    <p>5 quick questions. No right or wrong answers. This helps your coach teach you in the way that works best for you.</p>
+  </div>
+  <div class="prog" id="prog"><div class="prog-dot active" id="pd-0"></div><div class="prog-dot" id="pd-1"></div><div class="prog-dot" id="pd-2"></div><div class="prog-dot" id="pd-3"></div><div class="prog-dot" id="pd-4"></div></div>
+  <div id="quiz"></div>
+  <div class="scr" id="res"><div class="res-hdr"><h2>Your Learning Profile</h2><p>Share this with your coach</p></div><div id="res-body"></div><div class="ftr"><p>The Surf Sequence® — Inclusion Module — Enkrateia SA de CV</p></div></div>
+</div>
+<script>
+const QS=[{dim:"How you receive new information",text:"Your coach is about to teach you something you\u2019ve never tried in the water.",sub:"What helps you understand it best?",opts:[{icon:"\uD83D\uDC41",txt:"Watch the coach do it a couple of times \u2014 I need to see it clearly before I try",ch:"V"},{icon:"\uD83E\uDD32",txt:"Get my body in position and feel the movement right away \u2014 I learn by doing",ch:"K"},{icon:"\uD83E\uDDE0",txt:"Have the coach explain step by step why each part matters \u2014 I need the logic",ch:"A"},{icon:"\u2764\uFE0F",txt:"Try it next to someone at my level so I feel less pressure \u2014 I learn better relaxed",ch:"R"}]},{dim:"How you process correction",text:"You keep falling at the same part of the ride and aren\u2019t sure why.",sub:"What would help you figure it out?",opts:[{icon:"\uD83D\uDC41",txt:"See a video or photo of myself compared to the correct form",ch:"V"},{icon:"\uD83E\uDD32",txt:"Have the coach physically adjust my body into the right position",ch:"K"},{icon:"\uD83E\uDDE0",txt:"Hear a clear explanation of what\u2019s going wrong and exactly what to change",ch:"A"},{icon:"\u2764\uFE0F",txt:"Have the coach reassure me, tell me one thing to focus on, and keep the energy positive",ch:"R"}]},{dim:"How you handle frustration",text:"The session is getting frustrating. The technique isn\u2019t clicking today.",sub:"What helps you reset?",opts:[{icon:"\uD83D\uDC41",txt:"Watch a quick demo again to refresh the image in my mind",ch:"V"},{icon:"\uD83E\uDD32",txt:"Go back to a simpler version I can do well, then build up again",ch:"K"},{icon:"\uD83E\uDDE0",txt:"Understand specifically what\u2019s failing \u2014 give me one clear thing to fix",ch:"A"},{icon:"\u2764\uFE0F",txt:"A calmer pace, some encouragement, and knowing it\u2019s okay to struggle",ch:"R"}]},{dim:"How you reinforce learning",text:"You have free time between surf sessions and want to improve.",sub:"What do you naturally do?",opts:[{icon:"\uD83D\uDC41",txt:"Watch surf videos and slow-motion clips, analyzing technique",ch:"V"},{icon:"\uD83E\uDD32",txt:"Practice on a skateboard, balance board, or do physical drills",ch:"K"},{icon:"\uD83E\uDDE0",txt:"Read about technique, review my notes, or think through what happened",ch:"A"},{icon:"\u2764\uFE0F",txt:"Talk with other surfers about what they learned and share experiences",ch:"R"}]},{dim:"What gives you confidence",text:"You\u2019re about to enter the ocean at a spot you\u2019ve never surfed before.",sub:"What makes you feel most ready?",opts:[{icon:"\uD83D\uDC41",txt:"Seeing others surf the spot first so I can picture what it\u2019s like",ch:"V"},{icon:"\uD83E\uDD32",txt:"Doing a solid warm-up that simulates what I\u2019ll do in the water",ch:"K"},{icon:"\uD83E\uDDE0",txt:"Understanding the conditions \u2014 tide, current, risks \u2014 the full picture",ch:"A"},{icon:"\u2764\uFE0F",txt:"Knowing my coach is close, watching me, and will help if I need it",ch:"R"}]}];
+const CH={V:{name:"Visual Learner",icon:"\uD83D\uDC41",color:"#00897B",desc:"You learn best by seeing. Demonstrations, video, sand diagrams, and visual references help you build a mental map before you try.",tips:["<strong>Demonstrate clearly</strong> before every new skill","Use <strong>sand diagrams</strong> and hand gestures to show positioning","<strong>Video review</strong> is extremely valuable for this student","Position yourself where the student <strong>can see you</strong> during the session","Use <strong>before/after comparisons</strong> for correction"]},K:{name:"Kinesthetic Learner",icon:"\uD83E\uDD32",color:"#43A047",desc:"You learn best by doing and feeling. Your body understands before your mind. Physical reps, land drills, and getting in the water quickly is your fastest path.",tips:["<strong>Minimize long explanations</strong> \u2014 get them moving fast","<strong>Land drills are essential</strong> \u2014 feel the movement on solid ground first","<strong>Physical guidance</strong> works well \u2014 adjust stance, guide shoulders","Use <strong>short repetition cycles</strong> \u2014 attempt \u2192 feedback \u2192 attempt in 30 seconds","<strong>Skateboard/balance board</strong> drills are high-value between sessions"]},A:{name:"Analytical Learner",icon:"\uD83E\uDDE0",color:"#7B1FA2",desc:"You learn best through logic, structure, and clear explanation. You want to understand WHY before you do. Labels, sequences, and criteria give you confidence.",tips:["<strong>Explain the purpose</strong> of each drill \u2014 they need the \u2018why\u2019","Use <strong>precise language</strong> with specific cues and numbers","Define <strong>success criteria</strong> \u2014 \u2018you\u2019ve got it when X happens\u2019","<strong>Respect their questions</strong> \u2014 they need logic, not compliance","The <strong>TSS Block System names</strong> are natural anchors for this learner"]},R:{name:"Relational Learner",icon:"\u2764\uFE0F",color:"#E53935",desc:"You learn best when you feel safe and connected. Trust, encouragement, and the energy of the session matter as much as the technique itself.",tips:["<strong>Build rapport first</strong> \u2014 name, eye contact, calm tone","<strong>Create one small win</strong> before adding any complexity","Frame corrections positively \u2014 <strong>\u2018great effort, now try this\u2019</strong>","Be <strong>physically present and visible</strong> \u2014 \u2018I\u2019m here, I can see you\u2019","<strong>Pair with a partner</strong> when possible \u2014 relational learners thrive with peers"]}};
+let cur=0,ans={};const $q=document.getElementById('quiz'),$r=document.getElementById('res');
+function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]]}return b}
+function render(i){const q=QS[i],opts=shuf(q.opts);let h=`<div class="scr on" id="s${i}"><div class="q-num">Question ${i+1} of 5</div><div class="q-dim">${q.dim}</div><div class="q-text">${q.text}</div><div class="q-sub">${q.sub}</div>`;opts.forEach(o=>{const sel=ans[i]===o.ch?' sel':'';h+=`<div class="opt${sel}" onclick="pick(${i},'${o.ch}',this)"><div class="opt-icon">${o.icon}</div><div class="opt-txt">${o.txt}</div></div>`});h+=`<div class="nav-row">`;if(i>0)h+=`<button class="btn btn-back" onclick="go(${i-1})">\u2190 Back</button>`;else h+=`<div></div>`;h+=`<button class="btn btn-next${ans[i]?' go':''}" id="nx${i}" onclick="${i<4?`go(${i+1})`:'results()'}">${i<4?'Next \u2192':'See Results \u2192'}</button></div></div>`;$q.innerHTML=h;updP(i)}
+function pick(i,ch,el){ans[i]=ch;document.querySelectorAll(`#s${i} .opt`).forEach(o=>o.classList.remove('sel'));el.classList.add('sel');document.getElementById(`nx${i}`).classList.add('go')}
+function go(i){cur=i;render(i);window.scrollTo({top:0,behavior:'smooth'})}
+function updP(i){for(let j=0;j<5;j++){const d=document.getElementById(`pd-${j}`);d.className='prog-dot';if(j<i)d.classList.add('done');else if(j===i)d.classList.add('active')}}
+function results(){const sc={V:0,K:0,A:0,R:0};Object.values(ans).forEach(c=>sc[c]++);const sorted=Object.entries(sc).sort((a,b)=>b[1]-a[1]);const total=5;
+document.getElementById('prog').style.display='none';$q.style.display='none';$r.classList.add('on');
+const pri=sorted[0],sec=sorted[1],pd=CH[pri[0]],sd=CH[sec[0]];
+const size=220,cx=110,cy=110,r=90,r2=58;let cumA=-90,arcs='';
+sorted.forEach(([c,v],idx)=>{if(!v)return;const pct=v/total,angle=pct*360,sR=cumA*Math.PI/180,eR=(cumA+angle)*Math.PI/180;const x1=cx+r*Math.cos(sR),y1=cy+r*Math.sin(sR),x2=cx+r*Math.cos(eR),y2=cy+r*Math.sin(eR),ix1=cx+r2*Math.cos(eR),iy1=cy+r2*Math.sin(eR),ix2=cx+r2*Math.cos(sR),iy2=cy+r2*Math.sin(sR),lg=angle>180?1:0;arcs+=`<path d="M${x1},${y1} A${r},${r} 0 ${lg},1 ${x2},${y2} L${ix1},${iy1} A${r2},${r2} 0 ${lg},0 ${ix2},${iy2} Z" fill="${CH[c].color}" opacity="0"><animate attributeName="opacity" from="0" to="0.9" dur="0.5s" begin="${idx*0.12}s" fill="freeze"/></path>`;cumA+=angle});
+const svg=`<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">${arcs}</svg>`;
+let h=`<div class="donut-wrap">${svg}<div class="donut-center"><div class="icon">${pd.icon}</div><div class="label">Dominant</div></div></div>`;
+h+='<div class="legend">';sorted.forEach(([c,v])=>{const pct=Math.round(v/total*100);if(v>0)h+=`<div class="leg-item"><div class="leg-dot" style="background:${CH[c].color}"></div>${CH[c].name.split(' ')[0]} <span class="leg-pct">${pct}%</span></div>`});h+='</div>';
+h+=`<div class="ch-card pri"><div class="ch-badge" style="color:${pd.color}">\u2605 Primary Channel</div><div class="ch-name">${pd.icon} ${pd.name}</div><div class="ch-desc">${pd.desc}</div></div>`;
+h+=`<div class="tips"><div class="tips-label">Coach \u2014 How to teach this student</div><ul>${pd.tips.map(t=>`<li>${t}</li>`).join('')}</ul></div>`;
+if(sec[1]>0){h+=`<div class="ch-card sec"><div class="ch-badge" style="color:${sd.color}">Secondary Channel</div><div class="ch-name">${sd.icon} ${sd.name}</div><div class="ch-desc">${sd.desc}</div></div>`;if(sec[1]>=2)h+=`<div class="tips"><div class="tips-label">Coach \u2014 Secondary channel support</div><ul>${sd.tips.map(t=>`<li>${t}</li>`).join('')}</ul></div>`}
+if(pri[1]-sec[1]<=0)h+=`<div class="mixed"><div class="mixed-label">Balanced Profile</div><p>This student has <strong>no single dominant channel</strong>. Use multi-channel delivery: demonstrate + explain + let them feel it + regulate the emotional space. This is an <strong>adaptable learner</strong> \u2014 a strength.</p></div>`;
+h+=`<div class="acts"><button class="act" onclick="retake()">Retake</button><button class="act" onclick="window.print()">Print</button><button class="act" onclick="doShare()">Share</button></div>`;
+document.getElementById('res-body').innerHTML=h;window.scrollTo({top:0,behavior:'smooth'})}
+function retake(){ans={};cur=0;document.getElementById('prog').style.display='flex';$q.style.display='block';$r.classList.remove('on');render(0);window.scrollTo({top:0,behavior:'smooth'})}
+function doShare(){const sc={V:0,K:0,A:0,R:0};Object.values(ans).forEach(c=>sc[c]++);const sorted=Object.entries(sc).sort((a,b)=>b[1]-a[1]);const pri=CH[sorted[0][0]],pct=Math.round(sorted[0][1]/5*100);const txt=`\uD83C\uDFC4 My TSS Learning Profile:\n${pri.icon} ${pri.name} (${pct}%)\n\nTake the quiz: ${window.location.href}`;if(navigator.share){navigator.share({title:'TSS Learning Profile',text:txt}).catch(()=>{})}else{window.open(`https://wa.me/?text=${encodeURIComponent(txt)}`,'_blank')}}
+render(0);
+</script>
+</body>
+</html>

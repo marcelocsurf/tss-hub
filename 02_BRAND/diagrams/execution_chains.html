@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSS Execution Sequences — The Surf Sequence®</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0A1628 0%, #0D2D5E 100%);
+            color: #C8D0DC;
+            font-family: 'Work Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-align: center;
+            margin-bottom: 50px;
+            letter-spacing: -0.5px;
+        }
+
+        .chains-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .chain {
+            position: relative;
+        }
+
+        .chain-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid;
+        }
+
+        .frontside .chain-title {
+            color: #5AC3E7;
+            border-bottom-color: #5AC3E7;
+        }
+
+        .backside .chain-title {
+            color: #0D2D5E;
+            border-bottom-color: #0D2D5E;
+        }
+
+        .chain-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .step {
+            position: relative;
+            opacity: 0;
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .frontside .step:nth-child(1) { animation-delay: 0.1s; }
+        .frontside .step:nth-child(2) { animation-delay: 0.2s; }
+        .frontside .step:nth-child(3) { animation-delay: 0.3s; }
+        .frontside .step:nth-child(4) { animation-delay: 0.4s; }
+        .frontside .step:nth-child(5) { animation-delay: 0.5s; }
+        .frontside .step:nth-child(6) { animation-delay: 0.6s; }
+        .frontside .step:nth-child(7) { animation-delay: 0.7s; }
+
+        .backside .step:nth-child(1) { animation-delay: 0.1s; }
+        .backside .step:nth-child(2) { animation-delay: 0.2s; }
+        .backside .step:nth-child(3) { animation-delay: 0.3s; }
+        .backside .step:nth-child(4) { animation-delay: 0.4s; }
+        .backside .step:nth-child(5) { animation-delay: 0.5s; }
+        .backside .step:nth-child(6) { animation-delay: 0.6s; }
+        .backside .step:nth-child(7) { animation-delay: 0.7s; }
+        .backside .step:nth-child(8) { animation-delay: 0.8s; }
+
+        .step-box {
+            background: rgba(13, 45, 94, 0.3);
+            border-left: 4px solid;
+            border-radius: 6px;
+            padding: 16px 18px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .frontside .step-box {
+            border-left-color: #5AC3E7;
+        }
+
+        .backside .step-box {
+            border-left-color: #0D2D5E;
+        }
+
+        .step-box:hover {
+            background: rgba(90, 195, 231, 0.12);
+            transform: translateX(8px);
+        }
+
+        .backside .step-box:hover {
+            background: rgba(13, 45, 94, 0.5);
+        }
+
+        .step-number {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .frontside .step-number {
+            color: #5AC3E7;
+        }
+
+        .backside .step-number {
+            color: #0D2D5E;
+        }
+
+        .step-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        .step-desc {
+            font-size: 0.8rem;
+            color: #C8D0DC;
+            margin-top: 4px;
+        }
+
+        /* Arrow between steps */
+        .step-arrow {
+            text-align: center;
+            color: #5AC3E7;
+            font-size: 1.2rem;
+            padding: 8px 0;
+            font-weight: bold;
+        }
+
+        .backside .step-arrow {
+            color: #0D2D5E;
+        }
+
+        /* Last arrow (loop) */
+        .loop-arrow {
+            text-align: center;
+            color: #5AC3E7;
+            font-size: 1.3rem;
+            padding: 12px 0;
+            font-weight: bold;
+            margin-top: 8px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .backside .loop-arrow {
+            color: #0D2D5E;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Equivalence Table */
+        .equivalence-section {
+            margin-top: 80px;
+            padding: 40px;
+            background: rgba(13, 45, 94, 0.2);
+            border: 1px solid rgba(90, 195, 231, 0.2);
+            border-radius: 12px;
+        }
+
+        .equivalence-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #5AC3E7;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .equivalence-table {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1.5fr;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .equiv-header {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            color: #5AC3E7;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            text-align: center;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(90, 195, 231, 0.3);
+        }
+
+        .equiv-row {
+            display: contents;
+        }
+
+        .equiv-cell {
+            text-align: center;
+            padding: 12px;
+            color: #C8D0DC;
+            font-size: 0.9rem;
+        }
+
+        .equiv-cell.phase {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            color: #FFFFFF;
+        }
+
+        .equiv-frontside {
+            color: #5AC3E7;
+        }
+
+        .equiv-backside {
+            color: #0D2D5E;
+        }
+
+        @media (max-width: 768px) {
+            .chains-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .equivalence-table {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .equiv-header {
+                display: none;
+            }
+
+            .equiv-row {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                padding: 15px;
+                background: rgba(90, 195, 231, 0.05);
+                border-radius: 6px;
+                margin-bottom: 10px;
+            }
+
+            .equiv-cell::before {
+                content: attr(data-label);
+                display: block;
+                font-weight: 600;
+                color: #5AC3E7;
+                font-size: 0.75rem;
+                text-transform: uppercase;
+                margin-bottom: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TSS Execution Sequences</h1>
+
+        <div class="chains-grid">
+            <!-- FRONTSIDE CHAIN -->
+            <div class="chain frontside">
+                <div class="chain-title">Frontside</div>
+                <div class="chain-steps">
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 1</div>
+                            <div class="step-title">Power Posture</div>
+                            <div class="step-desc">Foundation — alignment, weight distribution, core ready</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 2</div>
+                            <div class="step-title">Bottom Turn</div>
+                            <div class="step-desc">Rotation + Rail engagement — load and redirect</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 3</div>
+                            <div class="step-title">Projection</div>
+                            <div class="step-desc">"Throw the ball back" — launch energy up the face</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 4</div>
+                            <div class="step-title">Cruz (Avioncito)</div>
+                            <div class="step-desc">Rail change — transition to new direction</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 5</div>
+                            <div class="step-title">Maneuver Variation</div>
+                            <div class="step-desc">Snap / Reentry / Carve / Cut — expression choice</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 6</div>
+                            <div class="step-title">Granada</div>
+                            <div class="step-desc">Closure — completion and reset</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 7</div>
+                            <div class="step-title">Return to Posture</div>
+                            <div class="step-desc">Cycle reset — ready for next maneuver</div>
+                        </div>
+                    </div>
+                    <div class="loop-arrow">↻</div>
+                </div>
+            </div>
+
+            <!-- BACKSIDE CHAIN -->
+            <div class="chain backside">
+                <div class="chain-title">Backside</div>
+                <div class="chain-steps">
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 1</div>
+                            <div class="step-title">Power Posture</div>
+                            <div class="step-desc">Foundation — alignment, weight distribution, core ready</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 2</div>
+                            <div class="step-title">Bottom Turn</div>
+                            <div class="step-desc">Rotation + Rail engagement — load and redirect</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 3</div>
+                            <div class="step-title">Choke</div>
+                            <div class="step-desc">Backside projection — guide energy up the wall</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 4</div>
+                            <div class="step-title">Tapaloco</div>
+                            <div class="step-desc">Rail change — backside transition</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 5</div>
+                            <div class="step-title">Elbow</div>
+                            <div class="step-desc">Kinetic chain — upper body coordination</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 6</div>
+                            <div class="step-title">Maneuver Variation</div>
+                            <div class="step-desc">Snap / Reentry / Carve / Cut — expression choice</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 7</div>
+                            <div class="step-title">Touch the Board</div>
+                            <div class="step-desc">Closure — reconnect with surface</div>
+                        </div>
+                    </div>
+                    <div class="step-arrow">↓</div>
+
+                    <div class="step">
+                        <div class="step-box">
+                            <div class="step-number">Step 8</div>
+                            <div class="step-title">Return to Posture</div>
+                            <div class="step-desc">Cycle reset — ready for next maneuver</div>
+                        </div>
+                    </div>
+                    <div class="loop-arrow">↻</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE EQUIVALENCE TABLE -->
+        <div class="equivalence-section">
+            <div class="equivalence-title">Phase Equivalence Between Frontside & Backside</div>
+            <div class="equivalence-table">
+                <div class="equiv-header">Phase</div>
+                <div class="equiv-header">Frontside</div>
+                <div class="equiv-header">Backside</div>
+
+                <div class="equiv-row">
+                    <div class="equiv-cell phase">Foundation</div>
+                    <div class="equiv-cell equiv-frontside">Power Posture</div>
+                    <div class="equiv-cell equiv-backside">Power Posture</div>
+                </div>
+
+                <div class="equiv-row">
+                    <div class="equiv-cell phase">Load & Redirect</div>
+                    <div class="equiv-cell equiv-frontside">Bottom Turn</div>
+                    <div class="equiv-cell equiv-backside">Bottom Turn</div>
+                </div>
+
+                <div class="equiv-row">
+                    <div class="equiv-cell phase">Face Projection</div>
+                    <div class="equiv-cell equiv-frontside">Projection (throw ball)</div>
+                    <div class="equiv-cell equiv-backside">Choke (guide energy)</div>
+                </div>
+
+                <div class="equiv-row">
+                    <div class="equiv-cell phase">Rail Change</div>
+                    <div class="equiv-cell equiv-frontside">Cruz (Avioncito)</div>
+                    <div class="equiv-cell equiv-backside">Tapaloco</div>
+                </div>
+
+                <div class="equiv-row">
+                    <div class="equiv-cell phase">Upper Body</div>
+                    <div class="equiv-cell equiv-frontside">Natural flow</div>
+                    <div class="equiv-cell equiv-backside">Elbow (conscious)</div>
+                </div>
+
+                <div class="equiv-row">
+                    <div class="equiv-cell phase">Expression</div>
+                    <div class="equiv-cell equiv-frontside">Maneuver Variation</div>
+                    <div class="equiv-cell equiv-backside">Maneuver Variation</div>
+                </div>
+
+                <div class="equiv-row">
+                    <div class="equiv-cell phase">Closure</div>
+                    <div class="equiv-cell equiv-frontside">Granada</div>
+                    <div class="equiv-cell equiv-backside">Touch the Board</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

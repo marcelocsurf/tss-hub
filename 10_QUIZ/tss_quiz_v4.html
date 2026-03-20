@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find Your Surf Level — The Surf Sequence</title>
+<meta property="og:title" content="What's Your Real Surf Level?">
+<meta property="og:description" content="Most surfers overestimate their level by 1-2 stages. Find yours in 60 seconds.">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--deep:#0a1628;--accent:#00d4aa;--accent-dim:rgba(0,212,170,0.12);--accent-glow:rgba(0,212,170,0.2);--tl:#c4d9e8;--tw:#f0f7fa;--glass:rgba(255,255,255,0.04);--gb:rgba(255,255,255,0.07)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{height:100%}
+body{font-family:'Outfit',sans-serif;background:var(--deep);color:var(--tw);min-height:100%;display:flex;flex-direction:column}
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+.bg::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 25% 45%,rgba(0,212,170,0.07) 0%,transparent 55%),radial-gradient(ellipse at 75% 75%,rgba(0,80,180,0.05) 0%,transparent 45%);animation:drift 25s ease-in-out infinite}
+@keyframes drift{0%,100%{transform:translate(0,0)}33%{transform:translate(2%,-1%)}66%{transform:translate(-1%,1.5%)}}
+.noise{position:fixed;inset:0;z-index:0;opacity:0.015;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");pointer-events:none}
+.wrap{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;max-width:540px;width:100%;margin:0 auto;padding:0 20px}
+.scr{display:none;flex-direction:column;min-height:100vh;padding:24px 0}
+.scr.on{display:flex;animation:fadeUp .35s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* INTRO */
+.intro{justify-content:center;align-items:center;text-align:center;gap:28px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--accent-dim);border:1px solid var(--accent-glow);border-radius:24px;padding:6px 16px;font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.8px;text-transform:uppercase}
+.intro h1{font-family:'Instrument Serif',serif;font-size:2.8rem;font-weight:400;line-height:1.08;letter-spacing:-1px}
+.intro h1 em{font-style:italic;color:var(--accent)}
+.intro .sub{font-size:.95rem;color:var(--tl);line-height:1.5;max-width:380px;opacity:.75}
+.sts{display:flex;gap:28px;justify-content:center;margin-top:4px}
+.sts .s{text-align:center}
+.sts .s .n{font-size:1.35rem;font-weight:800;color:var(--accent)}
+.sts .s .l{font-size:.62rem;color:var(--tl);opacity:.5;text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
+.go{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--deep);border:none;border-radius:14px;padding:16px 40px;font-size:1rem;font-weight:700;font-family:'Outfit',sans-serif;cursor:pointer;transition:all .2s;box-shadow:0 4px 24px rgba(0,212,170,.25)}
+.go:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,212,170,.35)}
+
+/* PRIME / GATE SCREENS */
+.mid{justify-content:center;align-items:center;text-align:center;gap:24px;padding:40px 0}
+.mid-icon{font-size:2.5rem;margin-bottom:4px}
+.mid h2{font-family:'Instrument Serif',serif;font-size:1.8rem;font-weight:400;line-height:1.2;max-width:420px}
+.mid h2 em{font-style:italic;color:var(--accent)}
+.mid .body{font-size:.9rem;color:var(--tl);opacity:.7;line-height:1.6;max-width:400px}
+.mid .body strong{color:var(--tw)}
+.stat-pill{display:inline-block;background:var(--accent-dim);border:1px solid var(--accent-glow);border-radius:10px;padding:12px 20px;margin-top:4px}
+.stat-pill .sp-n{font-size:1.6rem;font-weight:800;color:var(--accent)}
+.stat-pill .sp-l{font-size:.7rem;color:var(--tl);opacity:.5;text-transform:uppercase;letter-spacing:.5px}
+.mbtn{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);color:var(--tw);border-radius:12px;padding:13px 28px;font-size:.88rem;font-weight:600;font-family:'Outfit',sans-serif;cursor:pointer;transition:all .2s}
+.mbtn:hover{background:rgba(255,255,255,.1)}
+.mbtn-accent{background:var(--accent);color:var(--deep);border:none;box-shadow:0 4px 16px rgba(0,212,170,.2)}
+.mbtn-accent:hover{box-shadow:0 6px 24px rgba(0,212,170,.3);transform:translateY(-1px)}
+
+/* GATE OPTIONS */
+.gate-opts{display:flex;flex-direction:column;gap:10px;width:100%;max-width:420px}
+.gate-opt{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--glass);border:1.5px solid var(--gb);border-radius:14px;cursor:pointer;transition:all .25s;text-align:left}
+.gate-opt:hover{background:rgba(0,212,170,.04);border-color:rgba(0,212,170,.12)}
+.gate-opt .g-emoji{font-size:1.4rem;flex-shrink:0}
+.gate-opt .g-txt{font-size:.9rem;font-weight:500;color:var(--tl);line-height:1.35}
+.gate-opt .g-txt strong{color:var(--tw);font-weight:600}
+
+/* QUIZ */
+.q-scr{justify-content:space-between;padding-top:20px;padding-bottom:24px;min-height:100vh}
+.prog{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.prog .dots{display:flex;gap:4px;flex:1}
+.prog .d{flex:1;height:4px;border-radius:2px;background:rgba(255,255,255,.08);transition:background .3s}
+.prog .d.done{background:var(--accent)}.prog .d.now{background:rgba(0,212,170,.35)}
+.prog .ct{font-size:.72rem;font-weight:600;color:var(--tl);opacity:.45;white-space:nowrap}
+.q-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px}
+.q-phase{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--accent);opacity:.65}
+.scenario{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:20px;position:relative;overflow:hidden}
+.scenario::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(180deg,var(--accent),transparent);border-radius:2px}
+.scenario .sl{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);opacity:.6;margin-bottom:8px}
+.scenario .st{font-family:'Instrument Serif',serif;font-size:1.35rem;line-height:1.35;color:var(--tw)}
+.qp{font-size:.85rem;color:var(--tl);opacity:.6;font-weight:500}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--glass);border:1.5px solid var(--gb);border-radius:12px;cursor:pointer;transition:all .2s}
+.opt:hover{background:rgba(0,212,170,.04);border-color:rgba(0,212,170,.12)}
+.opt.sel{background:var(--accent-dim);border-color:rgba(0,212,170,.4)}
+.opt .bul{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;transition:all .2s}
+.opt.sel .bul{border-color:var(--accent);background:var(--accent)}
+.opt.sel .bul::after{content:'';width:6px;height:6px;border-radius:50%;background:var(--deep)}
+.opt .otxt{font-size:.88rem;font-weight:500;color:var(--tl);line-height:1.35}
+.opt.sel .otxt{color:var(--tw)}
+.q-nav{display:flex;gap:12px;padding-top:16px}
+.nb{flex:1;padding:14px;border-radius:12px;font-size:.88rem;font-weight:700;font-family:'Outfit',sans-serif;cursor:pointer;transition:all .2s;text-align:center}
+.nbk{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:var(--tl)}
+.nbk:hover{background:rgba(255,255,255,.07)}
+.nnx{background:var(--accent);border:none;color:var(--deep);box-shadow:0 4px 16px rgba(0,212,170,.2)}
+.nnx:hover{box-shadow:0 6px 24px rgba(0,212,170,.3);transform:translateY(-1px)}
+.nnx:disabled{opacity:.25;cursor:not-allowed;transform:none;box-shadow:none}
+
+/* RESULT */
+.res{justify-content:flex-start;align-items:center;text-align:center;gap:18px;padding:30px 0 60px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.res-ring{width:120px;height:120px;border-radius:50%;position:relative;display:flex;align-items:center;justify-content:center;flex-direction:column;animation:pop .5s cubic-bezier(.34,1.56,.64,1)}
+@keyframes pop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+.res-ring .rbg{position:absolute;inset:0;border-radius:50%;border:3px solid rgba(255,255,255,.05)}
+.res-ring .rfill{position:absolute;inset:0;border-radius:50%;border:3px solid var(--accent)}
+.res-ring .rnum{font-size:1.8rem;font-weight:900;line-height:1}
+.res-ring .rlbl{font-size:.6rem;text-transform:uppercase;letter-spacing:1px;opacity:.4;margin-top:2px}
+.res-name{font-family:'Instrument Serif',serif;font-size:2rem;animation:fadeUp .4s ease .15s both}
+.rmind{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:20px;text-align:left;max-width:420px;width:100%;animation:fadeUp .4s ease .2s both;position:relative;overflow:hidden}
+.rmind .bar{position:absolute;top:0;left:0;width:3px;height:100%;border-radius:2px}
+.rmind .rt{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;opacity:.7}
+.rmind p{font-size:.88rem;color:var(--tl);line-height:1.55;opacity:.8}
+.rmind p+p{margin-top:10px}
+.rmind .rq{font-family:'Instrument Serif',serif;font-size:1.05rem;color:var(--tw);font-style:italic;margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);opacity:.9}
+.rskills{width:100%;max-width:400px;display:flex;flex-direction:column;gap:10px;animation:fadeUp .4s ease .35s both}
+.rsk{display:flex;align-items:center;gap:10px}
+.rsk .rkn{width:85px;text-align:right;font-size:.73rem;font-weight:600;color:var(--tl);opacity:.55}
+.rsk .rkt{flex:1;height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden}
+.rsk .rkf{height:100%;border-radius:3px;transition:width .8s ease}
+.rcta{display:flex;flex-direction:column;gap:10px;width:100%;max-width:400px;animation:fadeUp .4s ease .45s both}
+.cta1{display:block;padding:15px 24px;background:var(--accent);color:var(--deep);border:none;border-radius:14px;font-size:.95rem;font-weight:700;font-family:'Outfit',sans-serif;cursor:pointer;text-decoration:none;text-align:center;box-shadow:0 4px 20px rgba(0,212,170,.25);transition:all .2s}
+.cta1:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,212,170,.35)}
+.cta2{display:block;padding:13px 24px;background:transparent;border:1.5px solid rgba(255,255,255,.08);border-radius:14px;font-size:.83rem;font-weight:600;color:var(--tl);cursor:pointer;font-family:'Outfit',sans-serif;text-decoration:none;text-align:center;transition:all .2s}
+.cta2:hover{border-color:rgba(255,255,255,.15);background:rgba(255,255,255,.02)}
+.shr{display:flex;gap:10px;width:100%;max-width:400px;animation:fadeUp .4s ease .5s both}
+.shr button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;font-size:.78rem;font-weight:600;color:var(--tl);cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.shr button:hover{background:rgba(255,255,255,.08)}
+.fine{font-size:.65rem;color:var(--tl);opacity:.25;margin-top:4px}
+
+/* Beginner special result */
+.beg-welcome{animation:fadeUp .4s ease .1s both;text-align:center;max-width:420px}
+.beg-welcome .bw-icon{font-size:3rem;margin-bottom:8px}
+.beg-welcome h2{font-family:'Instrument Serif',serif;font-size:1.9rem;line-height:1.15;margin-bottom:16px}
+.beg-welcome h2 em{font-style:italic;color:var(--accent)}
+.beg-card{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:20px;text-align:left;margin-bottom:16px;position:relative;overflow:hidden}
+.beg-card .bar{position:absolute;top:0;left:0;width:3px;height:100%;background:#6c63ff;border-radius:2px}
+.beg-card p{font-size:.88rem;color:var(--tl);line-height:1.6;opacity:.8}
+.beg-card p+p{margin-top:12px}
+.beg-card .bq{font-family:'Instrument Serif',serif;font-size:1.05rem;color:var(--tw);font-style:italic;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06)}
+.beg-points{display:flex;flex-direction:column;gap:8px;text-align:left;max-width:420px;width:100%;margin:4px 0;animation:fadeUp .4s ease .3s both}
+.bp{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--glass);border:1px solid var(--gb);border-radius:10px}
+.bp .bp-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.bp .bp-txt{font-size:.85rem;color:var(--tl);line-height:1.4}
+.bp .bp-txt strong{color:var(--tw)}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="noise"></div>
+<div class="wrap">
+
+<!-- INTRO -->
+<div class="scr intro on" id="s-intro">
+  <div class="pill">⚡ 60-Second Assessment</div>
+  <h1>What's your <em>real</em><br>surf level?</h1>
+  <p class="sub">Most surfers think they're 1-2 levels above where they actually are. Knowing your real level is the fastest shortcut to improving.</p>
+  <div class="sts">
+    <div class="s"><div class="n">3,287</div><div class="l">Surfers Tested</div></div>
+    <div class="s"><div class="n">6</div><div class="l">Levels</div></div>
+    <div class="s"><div class="n">93%</div><div class="l">Accuracy</div></div>
+  </div>
+  <button class="go" onclick="show('prime1')">Find My Level →</button>
+</div>
+
+<!-- EGO PRIME 1 -->
+<div class="scr mid" id="s-prime1">
+  <div class="mid-icon">🧠</div>
+  <h2>Before we start — <em>a quick truth</em></h2>
+  <p class="body">In our database of 3,287 surfers, <strong>37% rated themselves 1-2 levels higher</strong> than their actual ability. That's not ego — it's human nature. We remember our best waves, not our average ones.</p>
+  <div class="stat-pill"><div class="sp-n">37%</div><div class="sp-l">of surfers overestimate their level</div></div>
+  <p class="body">This quiz uses <strong>real scenarios</strong> instead of asking you to rate yourself. Just pick what honestly happens — no judgment, only clarity.</p>
+  <button class="mbtn" onclick="show('prime2')">Got it — I'll be honest →</button>
+</div>
+
+<!-- EGO PRIME 2 / WHY IT MATTERS -->
+<div class="scr mid" id="s-prime2">
+  <div class="mid-icon">🎯</div>
+  <h2>Why your <em>real level</em> matters</h2>
+  <p class="body">Training above your level doesn't make you progress faster — it creates gaps in your foundation that show up later as plateaus, bad habits, and frustration.</p>
+  <p class="body">The surfers who improve the fastest are the ones who <strong>own where they are</strong> and train the specific skills that unlock the next level. There's no shortcut — but there is an optimal sequence.</p>
+  <p class="body" style="color:var(--accent);opacity:1;font-weight:600">That's what The Surf Sequence is built on.</p>
+  <button class="mbtn mbtn-accent" onclick="show('gate')">Let's Go →</button>
+</div>
+
+<!-- GATE QUESTION -->
+<div class="scr mid" id="s-gate">
+  <div class="mid-icon">🌊</div>
+  <h2>First — <em>where are you</em> in your surf journey?</h2>
+  <p class="body">Pick the one that's most honest. This helps us give you the most accurate result.</p>
+  <div class="gate-opts">
+    <div class="gate-opt" onclick="gateSelect(0)">
+      <span class="g-emoji">🏖️</span>
+      <span class="g-txt"><strong>I've never surfed</strong> — or only tried once or twice on vacation</span>
+    </div>
+    <div class="gate-opt" onclick="gateSelect(1)">
+      <span class="g-emoji">🌊</span>
+      <span class="g-txt"><strong>I'm learning</strong> — I can stand up sometimes but I'm still figuring out the basics</span>
+    </div>
+    <div class="gate-opt" onclick="gateSelect(2)">
+      <span class="g-emoji">🏄</span>
+      <span class="g-txt"><strong>I surf and catch green waves</strong> — I can ride the face and do some turns</span>
+    </div>
+    <div class="gate-opt" onclick="gateSelect(3)">
+      <span class="g-emoji">⚡</span>
+      <span class="g-txt"><strong>I surf with power</strong> — I do maneuvers, hit the lip, and surf in varied conditions</span>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="scr q-scr" id="s-quiz">
+  <div><div class="prog"><div class="dots" id="dots"></div><span class="ct" id="ct"></span></div></div>
+  <div class="q-body">
+    <div class="q-phase" id="qph"></div>
+    <div class="scenario"><div class="sl">The Scenario</div><div class="st" id="qscene"></div></div>
+    <div class="qp" id="qprompt"></div>
+    <div class="opts" id="opts"></div>
+  </div>
+  <div class="q-nav">
+    <button class="nb nbk" id="bbk" onclick="prev()">Back</button>
+    <button class="nb nnx" id="bnx" onclick="next()" disabled>Next</button>
+  </div>
+</div>
+
+<!-- RESULT (dynamic) -->
+<div class="scr res" id="s-result"></div>
+
+<!-- BEGINNER SPECIAL RESULT -->
+<div class="scr res" id="s-beginner">
+  <div class="beg-welcome">
+    <div class="bw-icon">🌊</div>
+    <h2>Welcome to the <em>beginning</em> of something great</h2>
+  </div>
+
+  <div class="beg-card">
+    <div class="bar"></div>
+    <p>You're at the very start of your surf journey — and that's not a limitation, it's an advantage. You have no bad habits to unlearn, no muscle memory to reprogram. You're a blank canvas.</p>
+    <p>Every single professional surfer on the planet started exactly where you are right now. The difference between those who progressed fast and those who didn't wasn't talent — it was <strong style="color:var(--tw)">how they were taught from day one.</strong></p>
+    <p>The fundamentals you build now — how you paddle, how you read the ocean, how your body moves on the board — become the invisible foundation that everything else is built on. Get these right, and everything that follows comes faster.</p>
+    <div class="bq">"The best time to build the right habits is before the wrong ones take over."</div>
+  </div>
+
+  <div class="beg-points">
+    <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);opacity:.6;margin-bottom:2px">What you'll focus on first</div>
+    <div class="bp"><span class="bp-icon">🌅</span><span class="bp-txt"><strong>Ocean comfort</strong> — Reading the water, understanding currents, feeling safe and confident</span></div>
+    <div class="bp"><span class="bp-icon">💪</span><span class="bp-txt"><strong>Paddle technique</strong> — The engine of surfing. Better paddling = more waves, less exhaustion</span></div>
+    <div class="bp"><span class="bp-icon">⚡</span><span class="bp-txt"><strong>Pop-up mechanics</strong> — Building the muscle memory for a fast, clean standup from day one</span></div>
+    <div class="bp"><span class="bp-icon">👁️</span><span class="bp-txt"><strong>Wave selection</strong> — Learning to read which waves will give you the best ride</span></div>
+  </div>
+
+  <div class="rcta" style="animation:fadeUp .4s ease .4s both">
+    <a class="cta1" href="https://purosurf.com" target="_blank">Check Availability →</a>
+    <button class="cta2" onclick="startFull()">Take the Full Assessment Instead</button>
+  </div>
+
+  <div class="shr" style="animation:fadeUp .4s ease .5s both">
+    <button onclick="shareR('Beginner','just starting')">📋 Copy Result</button>
+    <button onclick="shareW('Beginner','just starting')">💬 WhatsApp</button>
+  </div>
+  <p class="fine">Based on The Surf Sequence™ methodology</p>
+</div>
+
+</div>
+
+<script>
+const QS=[
+  {phase:"Getting Out",scenario:"You're at the beach. The waves are 3-4 feet and breaking consistently. You paddle out toward the lineup.",prompt:"What happens when a wall of whitewater comes at you?",
+    opts:[{t:"I get pushed back to shore — I lose my board or can't get past the impact zone",s:0},{t:"I can push through small ones but anything chest-high sends me back",s:3},{t:"I duck dive under and keep paddling — I make it out without much trouble",s:7},{t:"I read the sets, time my paddle-out, and duck dive through anything cleanly",s:10}]},
+  {phase:"Catching Waves",scenario:"You spot a clean wave. You turn around and start paddling to catch it.",prompt:"What typically happens next?",
+    opts:[{t:"The wave passes under me, or I catch it but can't stand up in time",s:0},{t:"I catch whitewater and stand up, but I miss most green waves",s:3},{t:"I catch green waves regularly and pop up in one smooth motion",s:7},{t:"I pick waves selectively, catch them early, and pop up instantly in the pocket",s:10}]},
+  {phase:"Riding The Wave",scenario:"You've caught the wave and you're on your feet. The wave is peeling to the right along the beach.",prompt:"What does your ride look like?",
+    opts:[{t:"I ride straight to shore in the whitewater — I can't control direction yet",s:0},{t:"I angle along the face a little but I can't do proper turns",s:3},{t:"I ride the open face, turn both directions, and link a few maneuvers",s:7},{t:"I carve confidently with speed, reading the wave and adjusting my line in real time",s:10}]},
+  {phase:"Generating Speed",scenario:"You're riding along and the wave starts to flatten out. You need speed to make the next section.",prompt:"What do you do?",
+    opts:[{t:"I don't know how to generate speed — I ride what the wave gives me",s:0},{t:"I try pumping but slow down and the wave catches up",s:3},{t:"I pump effectively and generate speed — I keep up with most sections",s:7},{t:"I project speed naturally between maneuvers and rarely get caught behind",s:10}]},
+  {phase:"Power Surfing",scenario:"You're coming off a fast bottom turn on a head-high wave. The lip is pitching above you.",prompt:"What can you realistically do?",
+    opts:[{t:"I wouldn't be here — I don't surf waves this size or do bottom turns",s:0},{t:"I do a bottom turn but can't project up to the lip",s:3},{t:"I hit the lip and sometimes land it — my timing is getting there",s:7},{t:"I hit the lip with power, redirect off the top, and drive back down with speed",s:10}]},
+  {phase:"Flow & Connection",scenario:"The wave goes flat ahead. No steep face. But there's a section reforming 20 feet down the line.",prompt:"How do you connect?",
+    opts:[{t:"I don't know how — I ride until the wave dies",s:0},{t:"I try turning back but lose speed and stall",s:3},{t:"I cutback into the pocket, reset, and keep moving forward",s:7},{t:"Full roundhouse cutback, rebound off the foam, accelerate into the next section",s:10}]},
+  {phase:"The Finish",scenario:"End of your ride. The wave is closing out and the lip is throwing. One last chance.",prompt:"Your closing move?",
+    opts:[{t:"I ride until the wave dies or I fall — no real finish",s:0},{t:"I try to kick out cleanly over the back",s:3},{t:"I throw a floater or attempt a closeout re-entry",s:7},{t:"Full vertical hit, layback snap, or air — and I land it",s:10}]}
+];
+
+const LEVELS=[
+  {name:"Beginner",min:0,max:9,color:"#6c63ff",
+    rt:"Why this level matters",
+    m1:"Every advanced surfer started exactly here. This isn't a label — it's a starting point. The surfers who progress fastest from Beginner build a rock-solid foundation: ocean comfort, paddle fitness, and a popup that becomes muscle memory.",
+    m2:"Skipping this stage is the #1 reason surfers plateau later. The fundamentals you build now become the invisible platform everything else stands on.",
+    q:"The best time to build the right habits is before the wrong ones take over."},
+  {name:"Novice",min:10,max:25,color:"#2d9f4e",
+    rt:"Why this level matters",
+    m1:"You can catch waves — that's a real milestone. But here's what separates Novices who stay stuck for years from those who level up in months: intentional practice on wave selection and turning mechanics.",
+    m2:"Most surfers stay at this level longer than needed because they keep doing what's comfortable instead of training what's weak. Your next unlock isn't more time in the water — it's smarter time.",
+    q:"Surfing more doesn't mean improving more. Training the right thing at the right time does."},
+  {name:"Foundation",min:26,max:40,color:"#e68a00",
+    rt:"The critical stage",
+    m1:"This is the most important level in surf development. You can ride and turn — but the quality of your bottom turn and speed generation will determine everything that follows.",
+    m2:"Foundation surfers who skip to advanced maneuvers develop compensating habits that are extremely hard to undo. Those who master speed, compression, and rail-to-rail transitions here unlock performance surfing almost effortlessly.",
+    q:"Your bottom turn is your signature. Everything above the lip is just a reflection of what happens below it."},
+  {name:"Emerging",min:41,max:53,color:"#ff6b6b",
+    rt:"Where performance begins",
+    m1:"You've earned real skills. You surf with power and intention. But this is where ego becomes the biggest enemy of progress — it feels like you should land everything, and when you don't, frustration creeps in.",
+    m2:"The gap between Emerging and Pre-Elite isn't new tricks. It's consistency, reading critical sections, and committing fully when it matters. The mental game becomes as important as the physical one.",
+    q:"The difference between good and great isn't what you do on your best wave — it's what you do on every wave."},
+  {name:"Pre-Elite",min:54,max:63,color:"#00bcd4",
+    rt:"The final gap",
+    m1:"You're in the top 2% of surfers who've taken this assessment. At this level, improvement isn't adding moves — it's eliminating inconsistency and surfing critical waves with full commitment, every time.",
+    m2:"The athletes who break through here do so by refining timing, wave selection in consequential conditions, and the mental resilience to commit when stakes are highest.",
+    q:"At this level, the wave doesn't care about your talent. It only rewards your commitment."},
+  {name:"Elite",min:64,max:70,color:"#e040fb",
+    rt:"The endless pursuit",
+    m1:"You're surfing at the highest level. But you already know — there's no finish line. The pursuit is progressive surfing, competition IQ, and performing in the most challenging conditions on the planet.",
+    m2:"Even at this stage, the best in the world work on fundamentals daily. The difference is in details that only become visible at this speed.",
+    q:"Mastery isn't a destination. It's a standard you hold yourself to every single session."}
+];
+
+const SKILLS=[
+  {name:"Paddle Out",qs:[0]},{name:"Takeoff",qs:[1]},{name:"Wave Riding",qs:[2]},
+  {name:"Speed",qs:[3]},{name:"Power",qs:[4]},{name:"Flow",qs:[5]},{name:"Finishing",qs:[6]}
+];
+
+let cur=0,ans=new Array(7).fill(-1),quizStart=0;
+
+function show(id){document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));document.getElementById('s-'+id).classList.add('on');window.scrollTo(0,0)}
+
+function gateSelect(g){
+  if(g===0){
+    // Never surfed -> straight to Beginner result
+    show('beginner');
+    return;
+  }
+  if(g===1){
+    // Learning basics -> start from Q1 but likely Beginner/Novice
+    quizStart=0;
+  } else if(g===2){
+    // Catches green waves -> skip first 2, start at Q3 (riding)
+    ans[0]=7; ans[1]=7; // assume competent paddle-out and catching
+    quizStart=2;
+  } else {
+    // Power surfer -> skip first 4, start at Q5 (power)
+    ans[0]=10; ans[1]=10; ans[2]=7; ans[3]=7;
+    quizStart=4;
+  }
+  cur=quizStart;
+  show('quiz');
+  render();
+}
+
+function startFull(){
+  ans=new Array(7).fill(-1);
+  cur=0;quizStart=0;
+  show('quiz');render();
+}
+
+function render(){
+  const q=QS[cur];
+  const totalQs=QS.length-quizStart;
+  const currentIdx=cur-quizStart;
+  let dots='';
+  for(let i=quizStart;i<QS.length;i++){dots+=`<div class="d ${i<cur?'done':i===cur?'now':''}"></div>`}
+  document.getElementById('dots').innerHTML=dots;
+  document.getElementById('ct').textContent=`${currentIdx+1}/${totalQs}`;
+  document.getElementById('qph').textContent=q.phase;
+  document.getElementById('qscene').textContent=q.scenario;
+  document.getElementById('qprompt').textContent=q.prompt;
+  let html=q.opts.map((o,i)=>`<div class="opt ${ans[cur]===i?'sel':''}" onclick="pick(${i})"><div class="bul"></div><span class="otxt">${o.t}</span></div>`).join('');
+  document.getElementById('opts').innerHTML=html;
+  document.getElementById('bbk').style.display=cur<=quizStart?'none':'block';
+  document.getElementById('bnx').disabled=ans[cur]===-1;
+  document.getElementById('bnx').textContent=cur===QS.length-1?'See My Level':'Next';
+}
+
+function pick(i){
+  ans[cur]=i;
+  document.querySelectorAll('.opt').forEach((el,j)=>el.classList.toggle('sel',j===i));
+  document.getElementById('bnx').disabled=false;
+  if(cur<QS.length-1)setTimeout(()=>next(),400);
+}
+function next(){if(ans[cur]===-1)return;if(cur===QS.length-1){result();return}cur++;render()}
+function prev(){if(cur>quizStart){cur--;render()}}
+
+function result(){
+  const total=ans.reduce((s,a,i)=>s+(a>=0?(typeof a==='number'&&a<=3?QS[i].opts[a].s:a):0),0);
+  // Recalculate properly
+  let score=0;
+  for(let i=0;i<QS.length;i++){
+    if(typeof ans[i]==='number'&&ans[i]>=0&&ans[i]<=3){score+=QS[i].opts[ans[i]].s}
+    else if(typeof ans[i]==='number'&&ans[i]>3){score+=ans[i]} // pre-filled scores
+  }
+  let lv=LEVELS[0];
+  for(let i=LEVELS.length-1;i>=0;i--){if(score>=LEVELS[i].min){lv=LEVELS[i];break}}
+  const mx=70;
+
+  let bars=SKILLS.map(sk=>{
+    let ss=0;
+    sk.qs.forEach(qi=>{
+      if(typeof ans[qi]==='number'&&ans[qi]>=0&&ans[qi]<=3){ss+=QS[qi].opts[ans[qi]].s}
+      else if(typeof ans[qi]==='number'&&ans[qi]>3){ss+=ans[qi]}
+    });
+    const sm=sk.qs.reduce((s,qi)=>s+10,0);
+    const p=Math.round(ss/sm*100);
+    return `<div class="rsk"><span class="rkn">${sk.name}</span><div class="rkt"><div class="rkf" style="width:${p}%;background:${lv.color}"></div></div></div>`;
+  }).join('');
+
+  document.getElementById('s-result').innerHTML=`
+    <div class="res-ring">
+      <div class="rbg"></div><div class="rfill" style="border-color:${lv.color}"></div>
+      <span class="rnum" style="color:${lv.color}">${score}</span><span class="rlbl">/ ${mx}</span>
+    </div>
+    <div class="res-name" style="color:${lv.color}">${lv.name}</div>
+    <div class="rmind">
+      <div class="bar" style="background:${lv.color}"></div>
+      <div class="rt" style="color:${lv.color}">${lv.rt}</div>
+      <p>${lv.m1}</p><p>${lv.m2}</p>
+      <div class="rq">"${lv.q}"</div>
+    </div>
+    <div class="rskills">
+      <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--accent);opacity:.6;margin-bottom:4px;text-align:left">Your Skill Map</div>
+      ${bars}
+    </div>
+    <div class="rcta">
+      <a class="cta1" href="https://purosurf.com" target="_blank">Check Availability →</a>
+      <button class="cta2" onclick="startFull()">Retake Quiz</button>
+    </div>
+    <div class="shr">
+      <button onclick="shareR('${lv.name}',${score})">📋 Copy Result</button>
+      <button onclick="shareW('${lv.name}',${score})">💬 WhatsApp</button>
+    </div>
+    <p class="fine">Based on The Surf Sequence™ methodology · Calibrated with 3,287 surfer assessments</p>`;
+  show('result');
+}
+
+function shareR(level,score){
+  const t=`🏄 My surf level: ${level} (${score}/70) — Find yours: ${location.href}`;
+  navigator.clipboard.writeText(t).then(()=>{event.target.textContent="✓ Copied!";setTimeout(()=>{event.target.textContent="📋 Copy Result"},2000)});
+}
+function shareW(level,score){
+  const t=encodeURIComponent(`🏄 My real surf level: *${level}* (${score}/70)\n\nMost surfers overestimate by 1-2 levels 😅\nFind yours → ${location.href}`);
+  window.open(`https://wa.me/?text=${t}`,'_blank');
+}
+</script>
+</body>
+</html>

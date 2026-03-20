@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relaxation Science Training — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#7B4FBE;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #2D1B5E 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🧘</span>
+    <div>
+      <div class="top-bar__title">Relaxation Science Training</div>
+      <div class="top-bar__sub">TSS Masterclass — 17 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button><button class="nav-dot" onclick="goSlide(14)" title="Slide 14">14</button><button class="nav-dot" onclick="goSlide(15)" title="Slide 15">15</button><button class="nav-dot" onclick="goSlide(16)" title="Slide 16">16</button><button class="nav-dot" onclick="goSlide(17)" title="Slide 17">17</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 17</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">THE SURF SEQUENCE® — ONE WAVE</span></div>
+</div>
+<h2 class="slide-hero">The Science of</h2>
+<h2 class="slide-hero">Relaxation</h2>
+<h3 class="slide-heading">How your nervous system controls performance</h3>
+<h3 class="slide-heading">and how you learn to control it.</h3>
+<ul class="slide-list">
+<li>Coach &amp; Student Theory Module — The Surf Sequence® — Marcelo Castellanos</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 17</span>
+    <h3 class="slide-heading">WHAT RELAXATION IS NOT</h3>
+<h3 class="slide-heading">Relaxation is NOT being lazy.
+Relaxation is NOT being passive.
+Relaxation is NOT the absence of effort.
+
+Relaxation IS a trainable skill that regulates your nervous system, reduces unnecessary muscle tension, lowers anxiety, and creates the optimal internal state for learning and performing.
+
+The best athletes in the world are not the most tense. They are the most precisely relaxed.</h3>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 17</span>
+    <h3 class="slide-heading">WHY RELAXATION MATTERS FOR SURFING</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Reduces cognitive anxiety</span></div>
+</div>
+<ul class="slide-list">
+<li>When your mind is calm, you read waves better, make faster decisions, and commit with more confidence.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Lowers somatic anxiety</span></div>
+</div>
+<ul class="slide-list">
+<li>Reduced heart rate, controlled breathing, and relaxed muscles allow fluid movement on the wave.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Improves technique execution</span></div>
+</div>
+<ul class="slide-list">
+<li>Tense muscles fight each other. Relaxed muscles cooperate. Your bottom turn is mechanically better when your body is not fighting itself.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Accelerates recovery</span></div>
+</div>
+<ul class="slide-list">
+<li>Relaxation activates the parasympathetic nervous system, which governs rest, repair, and energy restoration.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Improves sleep quality</span></div>
+</div>
+<ul class="slide-list">
+<li>Better sleep = better learning consolidation. Your brain processes today’s sessions during deep sleep.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 17</span>
+    <h3 class="slide-heading">THE NEUROSCIENCE</h3>
+<h3 class="slide-heading">Your body has two operating modes:</h3>
+<h3 class="slide-heading">Sympathetic</h3>
+<p class="body-text">“Fight or Flight”</p>
+<p class="body-text">• Heart rate increases</p>
+<p class="body-text">• Muscles tense</p>
+<p class="body-text">• Cortisol floods the system</p>
+<p class="body-text">• Focus narrows (tunnel vision)</p>
+<p class="body-text">• Decision-making impaired</p>
+<p class="body-text">• Fine motor control decreases</p>
+<h3 class="slide-heading">Parasympathetic</h3>
+<p class="body-text">“Rest and Digest”</p>
+<p class="body-text">• Heart rate decreases</p>
+<p class="body-text">• Muscles release tension</p>
+<p class="body-text">• Cortisol drops</p>
+<p class="body-text">• Awareness expands (peripheral)</p>
+<p class="body-text">• Decision-making improves</p>
+<p class="body-text">• Fine motor control increases</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Relaxation training teaches you to shift from sympathetic to parasympathetic ON DEMAND.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 17</span>
+    <h3 class="slide-heading">WHAT THE RESEARCH SAYS</h3>
+<ul class="slide-list">
+<li>“Jacobson (1938)”</li>
+<li>Developed Progressive Muscle Relaxation. Showed that systematically tensing and releasing muscles reduces overall nervous system arousal.</li>
+<li>“Khir et al. (2024)”</li>
+<li>Systematic review of 46 studies, 3,402+ adults across 16 countries: PMR is effective in reducing stress, anxiety, and depression. Combined with other techniques, efficacy increases further.</li>
+<li>“10-study athlete review (2025)”</li>
+<li>7 out of 10 studies showed statistically significant reduction in competitive anxiety using PMR (p&lt;0.05). One study showed anxiety scores dropping from 58.67 to 36.5 in just 4 weeks.</li>
+<li>“Battaglini et al. (2022)”</li>
+<li>Jacobson’s Progressive Relaxation effectively reduced cognitive anxiety, stress related to competition, fatigue, and overtraining in athletes.</li>
+<li>“Cumming &amp; Williams (2012)”</li>
+<li>Relaxation combined with imagery produces greater neuromuscular pathway reinforcement than either technique alone.</li>
+<li>“Bennett (2004)”</li>
+<li>WCT elite surfers’ ideal performance state includes high relaxation, calm focus, and absence of unnecessary muscle tension.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 17</span>
+    <h2 class="slide-hero">46 studies.</h2>
+<h2 class="slide-hero">3,402 participants.</h2>
+<h2 class="slide-hero">16 countries.</h2>
+<h2 class="slide-hero">PMR is effective.</h2>
+<h3 class="slide-heading">It reduces anxiety, stress, and depression.</h3>
+<h3 class="slide-heading">It improves sleep, recovery, and performance.</h3>
+<h3 class="slide-heading">And it has zero side effects.</h3>
+<ul class="slide-list">
+<li>Source: Khir et al. (2024), Systematic Review, Psychol Res Behav Manag.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 17</span>
+    <h3 class="slide-heading">RELAXATION IN SURF PERFORMANCE</h3>
+<p class="body-text">From the research of Dante Nieri (Psicología del Surf) and Bennett (2004):</p>
+<p class="body-text">Relieves psychological tension → better problem-solving (wave strategy, heat tactics)</p>
+<p class="body-text">Regulates breathing → better endurance and hold-down tolerance</p>
+<p class="body-text">Decreases heart rate → calmer paddle-outs and wave selection</p>
+<p class="body-text">Accelerates injury recovery → shorter time away from the water</p>
+<p class="body-text">Improves sleep quality → better learning consolidation between sessions</p>
+<p class="body-text">Makes the brain more receptive → visualization and positive self-talk become more effective when relaxed</p>
+<p class="body-text">Enables the surfer to find their ideal performance state → high enjoyment, calm focus, controlled confidence</p>
+<ul class="slide-list">
+<li>Sofía Mulanovich (World Champion 2004) uses yoga. Kelly Slater (11x World Champion) uses golf and fishing. Each athlete finds their own relaxation path.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 17</span>
+    <h3 class="slide-heading">3 PROVEN TECHNIQUES</h3>
+<p class="body-text">Each addresses relaxation from a different angle. All are scientifically validated.</p>
+<h3 class="slide-heading">01</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Progressive Muscle Relaxation</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">(PMR)</span></div>
+</div>
+<ul class="slide-list">
+<li>Jacobson, 1938</li>
+</ul>
+<p class="body-text">Tense and release each muscle group systematically. Teaches your body the DIFFERENCE between tension and relaxation. The most studied technique in sport psychology.</p>
+<h3 class="slide-heading">02</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Diaphragmatic Breathing</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">(4-7-8 Method)</span></div>
+</div>
+<ul class="slide-list">
+<li>Weil, adapted</li>
+</ul>
+<p class="body-text">Inhale 4 seconds, hold 7, exhale 8. Activates the vagus nerve, which directly triggers the parasympathetic response. Works in under 60 seconds.</p>
+<h3 class="slide-heading">03</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Body Scan</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">(Mindfulness-Based)</span></div>
+</div>
+<ul class="slide-list">
+<li>Kabat-Zinn, 1990</li>
+</ul>
+<p class="body-text">Slowly move attention through each body part without tensing. Notice sensation without judgment. Develops interoception — the ability to read your own body’s signals.</p>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 17</span>
+    <h3 class="slide-heading">PMR — PROGRESSIVE MUSCLE RELAXATION</h3>
+<p class="body-text">Jacobson (1938) — Tense 5 seconds, release slowly, feel the difference. Repeat 2–4 times per zone.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Biceps</span></div>
+<span class="stat-label">Curl arm up, press bicep. Hold 5 sec. Release slowly.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Forearms</span></div>
+<span class="stat-label">Close fist tight. Hold 5 sec. Open and release.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Shoulders</span></div>
+<span class="stat-label">Raise shoulders to ears. Hold 5 sec. Drop and release.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Neck (forward)</span></div>
+<span class="stat-label">Press chin to chest. Hold 5 sec. Return to neutral.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Neck (back)</span></div>
+<span class="stat-label">Let head fall back gently. Hold 5 sec. Return.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Face</span></div>
+<span class="stat-label">Squeeze all face muscles tight. Hold 5 sec. Release completely.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Back</span></div>
+<span class="stat-label">Pull shoulder blades together. Hold 5 sec. Release.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Core</span></div>
+<span class="stat-label">Tighten abdominals. Hold 5 sec. Release.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Legs</span></div>
+<span class="stat-label">Press feet into floor, tense thighs. Hold 5 sec. Release.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">Feet</span></div>
+<span class="stat-label">Curl toes tight. Hold 5 sec. Release and feel warmth.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 17</span>
+    <h3 class="slide-heading">DIAPHRAGMATIC BREATHING — 4-7-8</h3>
+<p class="body-text">The fastest way to activate your parasympathetic system. Works in under 60 seconds.</p>
+<h2 class="slide-hero">4</h2>
+<p class="body-text">sec</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">INHALE</span></div>
+</div>
+<ul class="slide-list">
+<li>Through the nose.</li>
+<li>Fill belly first, then chest.</li>
+</ul>
+<h2 class="slide-hero">7</h2>
+<p class="body-text">sec</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">HOLD</span></div>
+</div>
+<ul class="slide-list">
+<li>Gently. No strain.</li>
+<li>Let oxygen saturate.</li>
+</ul>
+<h2 class="slide-hero">8</h2>
+<p class="body-text">sec</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">EXHALE</span></div>
+</div>
+<ul class="slide-list">
+<li>Through the mouth.</li>
+<li>Slow, controlled, complete.</li>
+</ul>
+<p class="body-text">Repeat 4 cycles. Do this before every session, during land drills, or before sleep.</p>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 17</span>
+    <h3 class="slide-heading">BODY SCAN — MINDFULNESS-BASED RELAXATION</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">1</span></div>
+<span class="stat-label">Lie down or sit comfortably. Close your eyes. 3 deep breaths.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">2</span></div>
+<span class="stat-label">Bring attention to the top of your head. Notice sensation. Don’t change it.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">3</span></div>
+<span class="stat-label">Move slowly down: forehead, eyes, jaw, neck. Notice each area.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">4</span></div>
+<span class="stat-label">Shoulders, arms, hands. Feel warmth, tension, tingling — whatever is there.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">5</span></div>
+<span class="stat-label">Chest, belly, lower back. Notice your breath moving these areas.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">6</span></div>
+<span class="stat-label">Hips, thighs, knees, calves. Feel the weight of your legs.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">7</span></div>
+<span class="stat-label">Ankles, feet, toes. Notice the contact with the surface beneath you.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">8</span></div>
+<span class="stat-label">Now expand awareness to your whole body at once. Breathe. Hold this 30 seconds.</span></div>
+<ul class="slide-list">
+<li>Develops interoception — the ability to read your own body’s signals. Critical for reading fatigue, fear, and readiness in the water.</li>
+</ul>
+</div>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 17</span>
+    <h3 class="slide-heading">WHEN TO USE EACH TECHNIQUE</h3>
+<h4 class="slide-sub">Before a session</h4>
+<h4 class="slide-sub">4-7-8 Breathing</h4>
+<ul class="slide-list">
+<li>Calms nerves, centers focus. 2 minutes on the beach before briefing.</li>
+</ul>
+<h4 class="slide-sub">During warm-up</h4>
+<h4 class="slide-sub">Short PMR (hands, shoulders, jaw)</h4>
+<ul class="slide-list">
+<li>Releases unconscious tension before entering water.</li>
+</ul>
+<h4 class="slide-sub">Between waves</h4>
+<h4 class="slide-sub">Conscious exhale</h4>
+<ul class="slide-list">
+<li>Simple long exhale while sitting on board resets arousal level.</li>
+</ul>
+<h4 class="slide-sub">After wipeout / fear spike</h4>
+<h4 class="slide-sub">4-7-8 Breathing</h4>
+<ul class="slide-list">
+<li>Immediate parasympathetic activation. Regain composure.</li>
+</ul>
+<h4 class="slide-sub">Post-session</h4>
+<h4 class="slide-sub">Full PMR or Body Scan</h4>
+<ul class="slide-list">
+<li>Accelerates physical and mental recovery.</li>
+</ul>
+<h4 class="slide-sub">Before sleep</h4>
+<h4 class="slide-sub">Body Scan</h4>
+<ul class="slide-list">
+<li>Improves sleep quality. Brain consolidates learning during deep sleep.</li>
+</ul>
+<h4 class="slide-sub">Red Code / Plan B day</h4>
+<h4 class="slide-sub">Full PMR + Visualization</h4>
+<ul class="slide-list">
+<li>Relaxation is the gateway to effective visualization (Nieri, Cumming &amp; Williams).</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 17</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">GUIDED RELAXATION — SURF-SPECIFIC</span></div>
+</div>
+<h3 class="slide-heading">Pre-Session Calm Down (5 minutes)</h3>
+<p class="body-text">Sit on the sand. Board next to you. Close your eyes.</p>
+<p class="body-text">Three deep breaths. Inhale 4 seconds… hold 7… exhale 8. Repeat.</p>
+<p class="body-text">Feel the sand under you. Feel the warmth. Hear the ocean.</p>
+<p class="body-text">Tense your hands into fists. Hold 5 seconds. Release. Feel the difference.</p>
+<p class="body-text">Tense your shoulders up to your ears. Hold 5 seconds. Drop them. Feel them heavy.</p>
+<p class="body-text">Tighten your jaw. Hold 5 seconds. Release. Let your mouth hang slightly open.</p>
+<p class="body-text">Tense your whole body — everything at once. Hold 5 seconds. Release EVERYTHING.</p>
+<p class="body-text">Now breathe naturally. Scan your body from head to toes. Find any remaining tension. Breathe into it.</p>
+<p class="body-text">Set your intention: one clear objective for this session. See it. Feel it. You are ready.</p>
+<p class="body-text">Open your eyes. Stand up. Pick up your board. Walk toward the water.</p>
+  </div>
+</section>
+<section class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="slide-badge">14 / 17</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">RELAXATION MODULE</span></div>
+</div>
+<h3 class="slide-heading">Guided Audio / Video</h3>
+<ul class="slide-list">
+<li>RLX-01 — Pre-Session Calm Down (5 min)</li>
+<li>RLX-02 — Full PMR — Progressive Muscle Relaxation (15 min)</li>
+<li>RLX-03 — Body Scan for Sleep (10 min)</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="slide-badge">15 / 17</span>
+    <h3 class="slide-heading">TIPS &amp; COMMON MISTAKES</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">DO: Practice when you’re NOT stressed</span></div>
+</div>
+<ul class="slide-list">
+<li>Train the skill in calm conditions so it’s automatic under pressure.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">DO: Combine with visualization</span></div>
+</div>
+<ul class="slide-list">
+<li>Relaxation first, then imagery. The brain is more receptive when relaxed (Nieri, Cumming &amp; Williams).</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">DO: Use breath as your anchor</span></div>
+</div>
+<ul class="slide-list">
+<li>When everything else fails, you always have your breath. 4-7-8 works anywhere.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">DON’T: Force relaxation</span></div>
+</div>
+<ul class="slide-list">
+<li>Trying hard to relax creates more tension. Let it happen. Allow, don’t demand.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">DON’T: Skip it because you feel fine</span></div>
+</div>
+<ul class="slide-list">
+<li>Relaxation is preventive, not reactive. The best time to practice is when you don’t ‘need’ it.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#7B4FBE">DON’T: Use only one technique</span></div>
+</div>
+<ul class="slide-list">
+<li>Different situations need different tools. Breathing for quick reset. PMR for deep release. Body scan for awareness.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s16">
+  <div class="slide-inner">
+    <span class="slide-badge">16 / 17</span>
+    <h2 class="slide-hero">In TSS, relaxation is not</h2>
+<h2 class="slide-hero">a break from training.</h2>
+<h2 class="slide-hero">It IS training.</h2>
+<h3 class="slide-heading">Pilar MEN (Mental) — Presence, Motivation, Relaxation, Visualization.</h3>
+<p class="body-text">Relaxation is one of the four components of the Mental Pillar.</p>
+<p class="body-text">It is not an extra. It is foundational. It is trained, measured, and tracked</p>
+<p class="body-text">just like technique and tactics.</p>
+  </div>
+</section>
+<section class="slide" id="s17">
+  <div class="slide-inner">
+    <span class="slide-badge">17 / 17</span>
+    <h2 class="slide-hero">Tension is</h2>
+<h2 class="slide-hero">the enemy</h2>
+<h2 class="slide-hero">of movement.</h2>
+<h2 class="slide-hero">Learn to release it.</h2>
+<ul class="slide-list">
+<li>THE SURF SEQUENCE® — ONE WAVE — Relaxation Module — Enkrateia SA de CV</li>
+</ul>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Relaxation Science Training — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

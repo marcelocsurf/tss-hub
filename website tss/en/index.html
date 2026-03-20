@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Surf Sequence® — The first comprehensive global system of surf education</title>
+<meta name="description" content="TSS is the first comprehensive, progressive, and certifiable system of surf education. 6 levels, 4 pillars, Olympic validation. Evolve through play.">
+<meta property="og:title" content="The Surf Sequence® — Evolve through play">
+<meta property="og:description" content="The first comprehensive system of surf education in the world. Structured progression. Olympic validation.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Work Sans', sans-serif; color: #4E4D4D; line-height: 1.7; background: #fff; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { text-decoration: none; color: inherit; transition: all .3s; }
+
+/* ===== BRAND TOKENS ===== */
+:root {
+  --navy: #0A1628;
+  --blue: #0D2D5E;
+  --cyan: #5AC3E7;
+  --grey: #4E4D4D;
+  --light: #F5F7FA;
+  --white: #FFFFFF;
+  --coral: #FF6B6B;
+  --gold: #FFD166;
+  --green: #06D6A0;
+  --deep: #2D3561;
+  --belt-white: #E8E8E8;
+  --belt-yellow: #F5C518;
+  --belt-blue: #1E6FBF;
+  --belt-purple: #7B4FBE;
+  --belt-brown: #7D4E27;
+  --belt-black: #111111;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; color: var(--navy); line-height: 1.2; }
+h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 700; }
+h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); font-weight: 600; }
+.tagline { font-family: 'Lora', serif; font-style: italic; color: var(--cyan); }
+
+/* ===== LAYOUT ===== */
+.container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 100px 0; }
+.section--dark { background: var(--navy); color: var(--white); }
+.section--dark h2, .section--dark h3 { color: var(--white); }
+.section--light { background: var(--light); }
+.section--cyan-accent { background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%); color: var(--white); }
+.section--cyan-accent h2 { color: var(--white); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+
+/* ===== BUTTONS ===== */
+.btn { display: inline-block; padding: 16px 36px; border-radius: 6px; font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 1rem; letter-spacing: .02em; transition: all .3s; cursor: pointer; border: none; }
+.btn--primary { background: var(--cyan); color: var(--navy); }
+.btn--primary:hover { background: #3db8e0; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(90,195,231,.35); }
+.btn--outline { background: transparent; border: 2px solid var(--cyan); color: var(--cyan); }
+.btn--outline:hover { background: var(--cyan); color: var(--navy); }
+.btn--dark { background: var(--navy); color: var(--white); }
+.btn--dark:hover { background: var(--blue); }
+.btn--white { background: var(--white); color: var(--navy); }
+.btn--white:hover { background: var(--light); }
+.btn-group { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
+
+/* ===== NAV ===== */
+.nav { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; padding: 16px 0; transition: all .4s; }
+.nav.scrolled { background: rgba(10,22,40,.97); backdrop-filter: blur(12px); padding: 10px 0; box-shadow: 0 2px 20px rgba(0,0,0,.2); }
+.nav__inner { display: flex; align-items: center; justify-content: space-between; max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+.nav__logo { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.1rem; color: var(--white); letter-spacing: .04em; }
+.nav__logo span { color: var(--cyan); }
+.nav__links { display: flex; gap: 32px; align-items: center; }
+.nav__links a { color: rgba(255,255,255,.8); font-size: .9rem; font-weight: 500; letter-spacing: .02em; }
+.nav__links a:hover { color: var(--cyan); }
+.nav__cta { padding: 10px 24px; font-size: .85rem; }
+.nav__toggle { display: none; background: none; border: none; cursor: pointer; }
+.nav__toggle span { display: block; width: 24px; height: 2px; background: var(--white); margin: 5px 0; transition: all .3s; }
+
+/* ===== HERO ===== */
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; background: var(--navy); overflow: hidden; }
+.hero__bg { position: absolute; inset: 0; background: linear-gradient(135deg, #0A1628 0%, #0D2D5E 40%, #1a3a6e 70%, #0A1628 100%); }
+.hero__bg::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 50%, rgba(90,195,231,.08) 0%, transparent 60%); }
+.hero__wave { position: absolute; bottom: -2px; left: 0; width: 100%; }
+.hero__wave svg { display: block; width: 100%; height: auto; }
+.hero__content { position: relative; z-index: 2; text-align: center; max-width: 860px; padding: 120px 24px 80px; }
+.hero__badge { display: inline-block; padding: 8px 20px; border: 1px solid rgba(90,195,231,.4); border-radius: 100px; color: var(--cyan); font-size: .8rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 32px; }
+.hero h1 { color: var(--white); margin-bottom: 20px; }
+.hero h1 span { color: var(--cyan); }
+.hero__sub { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(255,255,255,.75); max-width: 640px; margin: 0 auto 12px; line-height: 1.6; }
+.hero .tagline { font-size: clamp(1.1rem, 2.2vw, 1.5rem); margin-top: 16px; display: block; }
+.hero .btn-group { justify-content: center; }
+
+/* ===== PROBLEM ===== */
+.problem-card { text-align: center; padding: 36px 24px; border-radius: 12px; background: var(--white); box-shadow: 0 2px 16px rgba(0,0,0,.05); transition: transform .3s; }
+.problem-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,.08); }
+.problem-card__icon { width: 56px; height: 56px; background: rgba(90,195,231,.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem; }
+.problem-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+.problem-card p { font-size: .92rem; color: var(--grey); line-height: 1.6; }
+
+/* ===== STATS ===== */
+.stat { text-align: center; }
+.stat__number { font-family: 'Outfit', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; color: var(--cyan); line-height: 1; margin-bottom: 8px; }
+.stat__label { font-size: .9rem; color: rgba(255,255,255,.7); font-weight: 400; }
+
+/* ===== BELT SYSTEM ===== */
+.belts-track { display: flex; gap: 16px; overflow-x: auto; padding: 20px 0 40px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.belts-track::-webkit-scrollbar { height: 4px; }
+.belts-track::-webkit-scrollbar-thumb { background: var(--cyan); border-radius: 4px; }
+.belt-card { min-width: 260px; max-width: 280px; flex-shrink: 0; scroll-snap-align: start; border-radius: 16px; overflow: hidden; background: var(--white); box-shadow: 0 4px 20px rgba(0,0,0,.06); transition: transform .3s; }
+.belt-card:hover { transform: translateY(-6px); box-shadow: 0 12px 40px rgba(0,0,0,.1); }
+.belt-card__header { padding: 24px; text-align: center; color: var(--white); }
+.belt-card__level { font-family: 'Outfit', sans-serif; font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; opacity: .85; margin-bottom: 4px; }
+.belt-card__name { font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 700; }
+.belt-card__body { padding: 20px 24px 28px; }
+.belt-card__body p { font-size: .88rem; line-height: 1.6; color: var(--grey); }
+.belt-card__tag { display: inline-block; margin-top: 12px; padding: 4px 12px; border-radius: 100px; font-size: .75rem; font-weight: 500; background: var(--light); color: var(--blue); }
+
+/* ===== PILLARS ===== */
+.pillar { padding: 32px; border-radius: 16px; background: rgba(255,255,255,.06); border: 1px solid rgba(90,195,231,.15); transition: all .3s; }
+.pillar:hover { background: rgba(90,195,231,.08); border-color: rgba(90,195,231,.3); }
+.pillar__icon { font-size: 2rem; margin-bottom: 16px; }
+.pillar h3 { color: var(--cyan); margin-bottom: 8px; font-size: 1.15rem; }
+.pillar p { font-size: .9rem; color: rgba(255,255,255,.7); line-height: 1.6; }
+
+/* ===== FOUNDER ===== */
+.founder-img { width: 100%; max-width: 420px; aspect-ratio: 3/4; background: linear-gradient(135deg, var(--blue), var(--navy)); border-radius: 20px; display: flex; align-items: center; justify-content: center; color: var(--cyan); font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: .08em; }
+.founder-quote { font-family: 'Lora', serif; font-style: italic; font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--cyan); line-height: 1.6; margin: 28px 0 8px; }
+.founder-attr { font-size: .9rem; color: var(--grey); }
+
+/* ===== PATHS ===== */
+.path-card { padding: 40px 32px; border-radius: 16px; background: rgba(255,255,255,.05); border: 1px solid rgba(90,195,231,.15); text-align: center; transition: all .3s; }
+.path-card:hover { background: rgba(90,195,231,.08); border-color: var(--cyan); transform: translateY(-4px); }
+.path-card__icon { font-size: 2.5rem; margin-bottom: 20px; }
+.path-card h3 { color: var(--cyan); margin-bottom: 12px; font-size: 1.2rem; }
+.path-card p { font-size: .92rem; color: rgba(255,255,255,.7); line-height: 1.6; margin-bottom: 24px; }
+
+/* ===== ECOSYSTEM ===== */
+.eco-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.eco-card { padding: 32px; border-radius: 16px; background: var(--white); box-shadow: 0 2px 16px rgba(0,0,0,.05); border-left: 4px solid var(--cyan); transition: all .3s; }
+.eco-card:hover { box-shadow: 0 8px 32px rgba(0,0,0,.08); transform: translateY(-2px); }
+.eco-card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--navy); }
+.eco-card p { font-size: .9rem; color: var(--grey); line-height: 1.6; }
+.eco-card__tag { display: inline-block; margin-bottom: 12px; padding: 4px 12px; border-radius: 100px; font-size: .7rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; background: rgba(90,195,231,.1); color: var(--blue); }
+
+/* ===== LEAD MAGNET ===== */
+.lead-form { max-width: 480px; }
+.lead-form input, .lead-form select { width: 100%; padding: 14px 18px; border: 2px solid rgba(90,195,231,.3); border-radius: 8px; background: rgba(255,255,255,.08); color: var(--white); font-family: 'Work Sans', sans-serif; font-size: .95rem; margin-bottom: 14px; transition: border .3s; }
+.lead-form input::placeholder { color: rgba(255,255,255,.4); }
+.lead-form input:focus, .lead-form select:focus { outline: none; border-color: var(--cyan); }
+.lead-form select { appearance: none; cursor: pointer; }
+.lead-form select option { background: var(--navy); color: var(--white); }
+
+/* ===== CTA FINAL ===== */
+.cta-final { text-align: center; padding: 120px 24px; }
+.cta-final h2 { color: var(--white); margin-bottom: 16px; }
+.cta-final p { font-size: 1.15rem; color: rgba(255,255,255,.7); margin-bottom: 40px; }
+.cta-final .highlight { color: var(--cyan); font-weight: 600; }
+
+/* ===== FOOTER ===== */
+.footer { background: #060e1a; color: rgba(255,255,255,.6); padding: 60px 0 32px; }
+.footer__grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer__brand { }
+.footer__brand .nav__logo { font-size: 1.2rem; margin-bottom: 12px; display: block; }
+.footer__brand p { font-size: .85rem; line-height: 1.7; max-width: 280px; }
+.footer h4 { color: var(--white); font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 16px; }
+.footer ul { list-style: none; }
+.footer ul li { margin-bottom: 8px; }
+.footer ul a { font-size: .88rem; color: rgba(255,255,255,.5); }
+.footer ul a:hover { color: var(--cyan); }
+.footer__bottom { border-top: 1px solid rgba(255,255,255,.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: .8rem; }
+.footer__social { display: flex; gap: 16px; }
+.footer__social a { color: rgba(255,255,255,.4); font-size: .85rem; }
+.footer__social a:hover { color: var(--cyan); }
+
+/* ===== SECTION HEADER ===== */
+.section-header { text-align: center; max-width: 680px; margin: 0 auto 56px; }
+.section-header .overline { display: block; font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--cyan); margin-bottom: 12px; }
+.section-header h2 { margin-bottom: 16px; }
+.section-header p { font-size: 1.05rem; color: var(--grey); }
+.section--dark .section-header p { color: rgba(255,255,255,.65); }
+
+/* ===== DIVIDER ===== */
+.wave-divider { position: relative; margin-top: -1px; }
+.wave-divider svg { display: block; width: 100%; }
+
+/* ===== ANIMATIONS ===== */
+.fade-up { opacity: 0; transform: translateY(30px); transition: all .7s cubic-bezier(.22,.61,.36,1); }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== MOBILE NAV ===== */
+.mobile-menu { display: none; position: fixed; inset: 0; background: rgba(10,22,40,.98); z-index: 999; flex-direction: column; align-items: center; justify-content: center; gap: 32px; }
+.mobile-menu.active { display: flex; }
+.mobile-menu a { color: var(--white); font-family: 'Outfit', sans-serif; font-size: 1.3rem; font-weight: 600; }
+.mobile-menu a:hover { color: var(--cyan); }
+.mobile-close { position: absolute; top: 24px; right: 24px; background: none; border: none; color: var(--white); font-size: 2rem; cursor: pointer; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 968px) {
+  .grid-2, .grid-3, .grid-4, .eco-grid { grid-template-columns: 1fr; }
+  .grid-2 { gap: 32px; }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .footer__grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .nav__links { display: none; }
+  .nav__toggle { display: block; }
+  .section { padding: 72px 0; }
+  .founder-img { max-width: 100%; aspect-ratio: 16/9; margin-bottom: 24px; }
+}
+@media (max-width: 600px) {
+  .grid-4 { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; gap: 24px; }
+  .footer__bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .btn { width: 100%; text-align: center; }
+  .btn-group { flex-direction: column; }
+  .hero__content { padding: 100px 20px 60px; }
+  .stat { padding: 16px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVIGATION ===== -->
+<nav class="nav" id="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo">THE SURF <span>SEQUENCE®</span></a>
+    <div class="nav__links">
+      <a href="#metodo">The Method</a>
+      <a href="#belts">Belts</a>
+      <a href="#results">Results</a>
+      <a href="#founder">Founder</a>
+      <a href="#paths">For You</a>
+      <a href="#contact" class="btn btn--primary nav__cta">Get Started</a>
+    </div>
+    <button class="nav__toggle" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">&times;</button>
+  <a href="#metodo" onclick="toggleMenu()">The Method</a>
+  <a href="#belts" onclick="toggleMenu()">Belts</a>
+  <a href="#results" onclick="toggleMenu()">Results</a>
+  <a href="#founder" onclick="toggleMenu()">Founder</a>
+  <a href="#paths" onclick="toggleMenu()">For You</a>
+  <a href="#contact" class="btn btn--primary" onclick="toggleMenu()">Get Started</a>
+</div>
+
+<!-- ===== 01. HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero__bg"></div>
+  <svg style="position:absolute;inset:0;width:100%;height:100%;z-index:1;opacity:.15" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="15%" cy="30%" r="1.5" fill="#5AC3E7"><animate attributeName="opacity" values="0;1;0" dur="4s" repeatCount="indefinite"/></circle>
+    <circle cx="80%" cy="20%" r="1" fill="#5AC3E7"><animate attributeName="opacity" values="0;1;0" dur="3s" begin=".5s" repeatCount="indefinite"/></circle>
+    <circle cx="60%" cy="70%" r="2" fill="#5AC3E7"><animate attributeName="opacity" values="0;1;0" dur="5s" begin="1s" repeatCount="indefinite"/></circle>
+    <circle cx="25%" cy="80%" r="1" fill="#5AC3E7"><animate attributeName="opacity" values="0;1;0" dur="3.5s" begin="2s" repeatCount="indefinite"/></circle>
+    <circle cx="90%" cy="60%" r="1.5" fill="#5AC3E7"><animate attributeName="opacity" values="0;1;0" dur="4.5s" begin=".8s" repeatCount="indefinite"/></circle>
+  </svg>
+  <div class="hero__content">
+    <div class="hero__badge">Methodology with Olympic Validation</div>
+    <h1>The first comprehensive system of <span>surf education</span> in the world</h1>
+    <p class="hero__sub">Structured progression in 6 levels. 4 development pillars. 26 catalogued execution sequences. Created by an ISA Olympic coach.</p>
+    <span class="tagline">Evolve through play.</span>
+    <div class="btn-group">
+      <a href="#belts" class="btn btn--primary">Discover your level</a>
+      <a href="#metodo" class="btn btn--outline">Learn the method</a>
+    </div>
+  </div>
+  <div class="hero__wave">
+    <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px">
+      <path d="M0 40C360 80 720 0 1080 40C1260 60 1380 50 1440 40V100H0V40Z" fill="#F5F7FA"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== 02. THE PROBLEM ===== -->
+<section class="section section--light" id="problema">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">The Problem</span>
+      <h2>Why do most surfers plateau?</h2>
+      <p>It's not lack of talent. It's not lack of waves. It's lack of system.</p>
+    </div>
+    <div class="grid-4 fade-up">
+      <div class="problem-card">
+        <div class="problem-card__icon">📉</div>
+        <h3>No Structure</h3>
+        <p>Progression without order = constant frustration. You don't know what to practice or in what sequence.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card__icon">🎯</div>
+        <h3>Loose Advice</h3>
+        <p>YouTube tips aren't methodology. Without system, every session is an experiment without direction.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card__icon">🔄</div>
+        <h3>Bad Habits</h3>
+        <p>Skipping levels builds technical flaws that cost double to fix later.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card__icon">📊</div>
+        <h3>No Evaluation</h3>
+        <p>Surfing is the only Olympic sport without a global teaching standard or quality certification.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px" class="fade-up">
+      <p style="font-size:1.4rem;color:var(--cyan);font-family:'Outfit',sans-serif;font-weight:700">Until now.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 03. THE SOLUTION: TSS ===== -->
+<section class="section section--cyan-accent" id="metodo">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline" style="color:rgba(255,255,255,.5)">The Solution</span>
+      <h2>The Surf Sequence®</h2>
+      <p style="color:rgba(255,255,255,.65)">A comprehensive, progressive, and certifiable education system that structures surf learning from zero to the highest level. It's not an opinion. It's not a course. It's a complete development architecture.</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="grid-3 fade-up" style="margin-bottom:64px">
+      <div class="stat">
+        <div class="stat__number">6</div>
+        <div class="stat__label">Progression Levels</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">4+1</div>
+        <div class="stat__label">Development Pillars</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">26</div>
+        <div class="stat__label">Execution Sequences</div>
+      </div>
+    </div>
+
+    <!-- Pillars -->
+    <div class="grid-4 fade-up" style="margin-top:32px">
+      <div class="pillar">
+        <div class="pillar__icon">🏄</div>
+        <h3>Technique</h3>
+        <p>How you move on the board. Stance, pop-up, turns, maneuvers — every sequence catalogued.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__icon">🌊</div>
+        <h3>Tactics</h3>
+        <p>How you read the ocean. Currents, sets, positioning, wave selection — intelligent reading.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__icon">🧠</div>
+        <h3>Mental</h3>
+        <p>How you decide under pressure. Focus, confidence, emotional management, competitive resilience.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar__icon">💪</div>
+        <h3>Physical</h3>
+        <p>How you prepare your body. Mobility, functional strength, endurance, injury prevention.</p>
+      </div>
+    </div>
+    <div class="fade-up" style="text-align:center;margin-top:24px">
+      <p style="color:rgba(255,255,255,.5);font-size:.9rem">+ Transversal layer of <strong style="color:var(--cyan)">Safety</strong>: ocean conditions always come first.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:40px" class="fade-up">
+      <a href="metodo.html" class="btn btn--white">Explore the complete method</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 04. BELT SYSTEM ===== -->
+<section class="section" id="belts">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">Progression</span>
+      <h2>6 Belts. One clear path. No shortcuts.</h2>
+      <p>Each belt has its sequences, ocean conditions, and evaluation criteria. You don't level up by time or payment. You level up by demonstrated competence.</p>
+    </div>
+    <div class="belts-track fade-up">
+      <!-- White Belt -->
+      <div class="belt-card">
+        <div class="belt-card__header" style="background:linear-gradient(135deg,#b0b0b0,#e8e8e8);color:var(--navy)">
+          <div class="belt-card__level">Level 1</div>
+          <div class="belt-card__name">White Belt</div>
+        </div>
+        <div class="belt-card__body">
+          <p>Foundational. Basic control, stance, pop-up, standing positions. Safety in shallow water.</p>
+          <span class="belt-card__tag">1-2 foot waves</span>
+        </div>
+      </div>
+      <!-- Yellow Belt -->
+      <div class="belt-card">
+        <div class="belt-card__header" style="background:linear-gradient(135deg,#d4a017,#f5c518);color:var(--navy)">
+          <div class="belt-card__level">Level 2</div>
+          <div class="belt-card__name">Yellow Belt</div>
+        </div>
+        <div class="belt-card__body">
+          <p>Entry & Paddling. 4 paddle speeds, angled takeoff, lineup identification.</p>
+          <span class="belt-card__tag">2-3 foot waves</span>
+        </div>
+      </div>
+      <!-- Blue Belt -->
+      <div class="belt-card">
+        <div class="belt-card__header" style="background:linear-gradient(135deg,#1555a0,#1e6fbf)">
+          <div class="belt-card__level">Level 3</div>
+          <div class="belt-card__name">Blue Belt</div>
+        </div>
+        <div class="belt-card__body">
+          <p>Rail Changes & Maneuvers. 11 named expressions: Cross, Lip, Barrel, Bottom Turn.</p>
+          <span class="belt-card__tag">4-6 foot waves</span>
+        </div>
+      </div>
+      <!-- Purple Belt -->
+      <div class="belt-card">
+        <div class="belt-card__header" style="background:linear-gradient(135deg,#5a35a0,#7b4fbe)">
+          <div class="belt-card__level">Level 4</div>
+          <div class="belt-card__name">Purple Belt</div>
+        </div>
+        <div class="belt-card__body">
+          <p>Advanced. 15 expressions: Floater, Snap, Tango, Layback, Tail Slide. Overhead conditions.</p>
+          <span class="belt-card__tag">4-8 foot waves</span>
+        </div>
+      </div>
+      <!-- Brown Belt -->
+      <div class="belt-card">
+        <div class="belt-card__header" style="background:linear-gradient(135deg,#5a3518,#7d4e27)">
+          <div class="belt-card__level">Level 5</div>
+          <div class="belt-card__name">Brown Belt</div>
+        </div>
+        <div class="belt-card__body">
+          <p>Aerials. Complete aerial system: Aerial 360, Alley-oop, Power Combos. Variable conditions.</p>
+          <span class="belt-card__tag">Variable conditions</span>
+        </div>
+      </div>
+      <!-- Black Belt -->
+      <div class="belt-card">
+        <div class="belt-card__header" style="background:linear-gradient(135deg,#111111,#2a2a2a)">
+          <div class="belt-card__level">Level 6</div>
+          <div class="belt-card__name">Black Belt</div>
+        </div>
+        <div class="belt-card__body">
+          <p>Mastery & Transmission. Integral mastery. The Infinite Circle: mastery = knowledge transmission.</p>
+          <span class="belt-card__tag">All conditions</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:16px" class="fade-up">
+      <a href="#contact" class="btn btn--primary">Discover your current level</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 05. RESULTS ===== -->
+<section class="section section--dark" id="results">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">Evidence</span>
+      <h2>Real Results. No Promises.</h2>
+    </div>
+    <div class="grid-4 fade-up" style="margin-bottom:64px">
+      <div class="stat">
+        <div class="stat__number">+20</div>
+        <div class="stat__label">Years developing surfers</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">ISA</div>
+        <div class="stat__label">Expert Coach Certified</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">2024</div>
+        <div class="stat__label">Olympic validation Paris</div>
+      </div>
+      <div class="stat">
+        <div class="stat__number">2028</div>
+        <div class="stat__label">LA qualifying campaign</div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="grid-3 fade-up">
+      <div style="background:rgba(255,255,255,.05);border-radius:16px;padding:32px;border:1px solid rgba(90,195,231,.1)">
+        <p style="font-size:.92rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:16px">"TSS completely changed how I understand my progression. For the first time I knew exactly what to work on and in what order."</p>
+        <p style="font-size:.85rem;color:var(--cyan);font-weight:600">— Surfer, Blue Belt</p>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border-radius:16px;padding:32px;border:1px solid rgba(90,195,231,.1)">
+        <p style="font-size:.92rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:16px">"I used to teach by intuition. Now I have a complete system my students understand and that produces measurable results."</p>
+        <p style="font-size:.85rem;color:var(--cyan);font-weight:600">— Certified TSS Coach L2</p>
+      </div>
+      <div style="background:rgba(255,255,255,.05);border-radius:16px;padding:32px;border:1px solid rgba(90,195,231,.1)">
+        <p style="font-size:.92rem;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:16px">"Implementing TSS gave us real differentiation. Our clients notice it from day one."</p>
+        <p style="font-size:.85rem;color:var(--cyan);font-weight:600">— Affiliated Academy Director</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 06. FOUNDER ===== -->
+<section class="section" id="founder">
+  <div class="container">
+    <div class="grid-2 fade-up">
+      <div class="founder-img">
+        <span>[ MARCELO PHOTO ]</span>
+      </div>
+      <div>
+        <span class="overline" style="display:block;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px">Founder</span>
+        <h2>Marcelo Castellanos</h2>
+        <p style="font-size:1.05rem;color:var(--grey);margin-top:4px;margin-bottom:20px">ISA Olympic coach. Learning systems architect. Coach developer.</p>
+        <p>Marcelo doesn't teach surfing traditionally. He designs learning systems.</p>
+        <p style="margin-top:12px">With over two decades developing surfers at every level, Marcelo identified a gap nobody had closed: surfing had no educational standard. No universal progression path. No quality certification.</p>
+        <p style="margin-top:12px">So he built one.</p>
+        <p class="founder-quote">"What PADI did for diving, TSS will do for surfing. Not with marketing, but with method."</p>
+        <p class="founder-attr">— Marcelo Castellanos</p>
+        <div style="margin-top:28px">
+          <a href="fundador.html" class="btn btn--dark">Learn more about Marcelo</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 07. YOUR PATH ===== -->
+<section class="section section--cyan-accent" id="paths">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline" style="color:rgba(255,255,255,.5)">Your Path</span>
+      <h2>Where do you start?</h2>
+      <p style="color:rgba(255,255,255,.6)">Three clear paths. One for you.</p>
+    </div>
+    <div class="grid-3 fade-up">
+      <div class="path-card">
+        <div class="path-card__icon">🏄</div>
+        <h3>I'm a Surfer</h3>
+        <p>I want real progression. Know where I am, what I'm missing, and how to level up.</p>
+        <a href="surfistas.html" class="btn btn--outline" style="font-size:.9rem;padding:12px 28px">Explore your program</a>
+      </div>
+      <div class="path-card">
+        <div class="path-card__icon">🎓</div>
+        <h3>I'm a Coach</h3>
+        <p>I want to get certified in a recognized methodology. Teach with system, not intuition.</p>
+        <a href="coaches.html" class="btn btn--outline" style="font-size:.9rem;padding:12px 28px">See certification</a>
+      </div>
+      <div class="path-card">
+        <div class="path-card__icon">🏢</div>
+        <h3>I'm an Academy</h3>
+        <p>I want a standard that differentiates my operation and connects me to a global network.</p>
+        <a href="academias.html" class="btn btn--outline" style="font-size:.9rem;padding:12px 28px">Request info</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 08. ECOSYSTEM ===== -->
+<section class="section section--light" id="ecosystem">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">Ecosystem</span>
+      <h2>More than a method. An interconnected system.</h2>
+    </div>
+    <div class="eco-grid fade-up">
+      <div class="eco-card">
+        <span class="eco-card__tag">Core Methodology</span>
+        <h3>The Surf Sequence®</h3>
+        <p>The intellectual property. The global standard for surf education. 6 levels, 4 pillars, 26 sequences.</p>
+      </div>
+      <div class="eco-card">
+        <span class="eco-card__tag">Flagship Operator</span>
+        <h3>Puro Surf</h3>
+        <p>Where TSS is executed, validated, and refined daily. The living laboratory of the system in El Salvador.</p>
+      </div>
+      <div class="eco-card">
+        <span class="eco-card__tag">Social Impact</span>
+        <h3>Compartiendo Olas</h3>
+        <p>The transformation arm. Surfing as a tool for social development and equitable access.</p>
+      </div>
+      <div class="eco-card">
+        <span class="eco-card__tag">Digital Platform</span>
+        <h3>TSS Brain</h3>
+        <p>Progression tracking, academy management, real-time data. The technology layer of the ecosystem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 09. LEAD MAGNET ===== -->
+<section class="section section--dark" id="guide">
+  <div class="container">
+    <div class="grid-2 fade-up">
+      <div>
+        <span class="overline" style="display:block;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px">Your First Step</span>
+        <h2 style="color:var(--white)">Download Free: TSS Getting Started Guide</h2>
+        <p style="color:rgba(255,255,255,.65);margin-top:16px;font-size:1.05rem">Discover your current level, what to work on, and your next belt. Get a personalized initial progression plan emailed to you.</p>
+      </div>
+      <div class="lead-form">
+        <form onsubmit="event.preventDefault();alert('Thank you! Check your email.')">
+          <input type="text" placeholder="Your name" required>
+          <input type="email" placeholder="Your email" required>
+          <select required>
+            <option value="" disabled selected>What level do you think you are?</option>
+            <option>Never surfed</option>
+            <option>Beginner (can stand up)</option>
+            <option>Intermediate (do basic turns)</option>
+            <option>Advanced (do maneuvers)</option>
+            <option>I'm a coach</option>
+          </select>
+          <button type="submit" class="btn btn--primary" style="width:100%;margin-top:8px">Download my free guide</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 10. FINAL CTA ===== -->
+<section class="section section--cyan-accent cta-final" id="contact">
+  <div class="container fade-up">
+    <h2>Your progression starts today.</h2>
+    <p>Surfing without structure is just recreation.<br>With TSS, it's <span class="highlight">evolution</span>.</p>
+    <a href="mailto:contact@thesurfsequence.com" class="btn btn--white" style="font-size:1.1rem;padding:18px 48px">Get Started</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <span class="nav__logo">THE SURF <span>SEQUENCE®</span></span>
+        <p style="margin-top:12px">The first comprehensive global system of surf education. Intellectual property of Enkrateia.</p>
+        <p class="tagline" style="margin-top:12px;font-size:.95rem">Evolve through play.</p>
+      </div>
+      <div>
+        <h4>Method</h4>
+        <ul>
+          <li><a href="#metodo">The Method</a></li>
+          <li><a href="#belts">Belt System</a></li>
+          <li><a href="#">The 4 Pillars</a></li>
+          <li><a href="#">Infinite Circle</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="#">For Surfers</a></li>
+          <li><a href="#">For Coaches</a></li>
+          <li><a href="#">For Academies</a></li>
+          <li><a href="#">Resources</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="#founder">Marcelo Castellanos</a></li>
+          <li><a href="#ecosystem">TSS Ecosystem</a></li>
+          <li><a href="#">Puro Surf</a></li>
+          <li><a href="#">Compartiendo Olas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 The Surf Sequence®. All rights reserved. Enkrateia SA de CV.</span>
+      <div class="footer__social">
+        <a href="https://instagram.com/thesurfsequence" target="_blank">Instagram</a>
+        <a href="#" target="_blank">YouTube</a>
+        <a href="#" target="_blank">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile menu
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('active');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('active') ? 'hidden' : '';
+}
+
+// Fade-up on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>

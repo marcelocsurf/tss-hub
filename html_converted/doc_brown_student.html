@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brown Belt Student Manual — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#7D4E27;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🟤</span>
+    <div>
+      <div class="top-bar__title">Brown Belt Student Manual</div>
+      <div class="top-bar__sub">The Surf Sequence® — BELT</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">BELT</span>
+    <span>1,263 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">STUDENT MANUAL</a><a href="#s3">BROWN BELT</a><a href="#s4">SECTION 1 — WELCOME TO BROWN BELT</a><a href="#s5">SECTION 2 — YOUR SEQUENCES</a><a href="#s6">SECTION 3 — THE AERIAL SYSTEM</a><a href="#s7">THE RAMP</a><a href="#s8">THE AIR</a><a href="#s9">THE LANDING</a><a href="#s10">SECTION 4 — TSS EXECUTION CHAINS: YOUR COMPLETE ARCHITECTURE</a><a href="#s11">FRONTSIDE CHAIN</a><a href="#s12">BACKSIDE CHAIN</a><a href="#s13">SECTION 5 — NAMED EXPRESSIONS AT BROWN BELT</a><a href="#s14">SECTION 6 — COMPETITION PATH (IF APPLICABLE)</a><a href="#s15">ISA SCORING</a><a href="#s16">HEAT STRATEGY</a><a href="#s17">PRIORITY RULES</a><a href="#s18">PRE-COMPETITION ROUTINE</a><a href="#s19">SECTION 7 — YOUR PROGRESSION TRACKER</a><a href="#s20">SECTION 8 — WHAT COMES NEXT</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">STUDENT MANUAL</h1>
+<h1 class="doc-h1" id="s3">BROWN BELT</h1>
+<p>Pre-Elite — Mastery, Aerials &amp; Competition Readiness</p>
+<p>Marcelo Castellanos</p>
+<p>ISA Olympic Expert Coach | Founder, The Surf Sequence®</p>
+<p>Version 1.0 — March 2026</p>
+<h1 class="doc-h1" id="s4">SECTION 1 — WELCOME TO BROWN BELT</h1>
+<p>You have earned your way here. From your first wave at White Belt to the committed expressions at Purple Belt, you&#x27;ve built a complete surfing foundation. Brown Belt is where you prove that everything you&#x27;ve learned isn&#x27;t just understood — it&#x27;s MASTERED.</p>
+<p>The Core Shift: Purple asked &quot;What kind of surfer are you becoming?&quot; Brown asks &quot;Can you execute at the highest level in any condition?&quot;</p>
+<p>Your Sequences: #18 through #22. Five sequences that take everything you know and push it to 8/10 execution across all conditions. This is not about learning new categories of movements. It&#x27;s about proving you own every skill in your foundation.</p>
+<p>You will now surf with precision under pressure. You will adapt your board selection and approach to any condition the ocean offers. You will combine maneuvers fluidly, reading the wave and responding instantly. And if you&#x27;re pursuing competition, you will develop the mental and strategic tools that separate heat performers from session surfers.</p>
+<h1 class="doc-h1" id="s5">SECTION 2 — YOUR SEQUENCES</h1>
+<p>#18. Re-Mastery: Sequences #1-#17 at 8/10+</p>
+<p>Every sequence from White through Purple. Every named expression. Every execution chain. You execute them at 8/10+ consistency across all conditions. Your bottom turns are deeper. Your projection more powerful. Your linking instinctive. You don&#x27;t just DO these skills — you OWN them. When you paddle out, these movements are your default, not your aspiration.</p>
+<p>#19. Aerial System: Ramp, Air, Landing</p>
+<p>The first introduction to aerials. Three distinct parts: RAMP (find the section, generate speed), AIR (the rotation or grab), LANDING (stick it or demonstrate full commitment). This sequence teaches you the architecture of leaving the wave. Not every attempt will result in success — the goal is understanding the mechanics and committing to the launch.</p>
+<p>#20. Combination Mastery: 3+ Maneuvers</p>
+<p>Read the wave, chain 3+ maneuvers fluidly. No prescribed combinations here. The wave tells you what to do. Your job is to listen and respond. You link a bottom turn into a projection into a variation, or you flow a choke into a tapaloco into a snap. The sequence changes based on the section in front of you.</p>
+<p>#21. Condition Adaptation: Every Break Type</p>
+<p>Beach breaks, reef breaks, point breaks, river mouths. Small waves, large waves, mushy waves, hollow waves. You surf all of them effectively. You know what board to use. You adapt your approach to what the ocean gives you. Board selection is no longer a guess — it&#x27;s a deliberate choice based on swell, wind, and tide.</p>
+<p>#22. Competition Readiness &amp; Session Maximization</p>
+<p>Two paths forward. Competitive: ISA scoring, heat strategy, time management, pre-competition routine. You understand how judges score. You know when to wait and when to go. You have developed YOUR routine — predictable, repeatable, anxiety-reducing. Recreational: Maximize every session. Best positioning. Best wave selection. Best use of your time. You choose the path that fits your goals.</p>
+<h1 class="doc-h1" id="s6">SECTION 3 — THE AERIAL SYSTEM</h1>
+<p>Aerials are the signature expression of elite surfing. The system has three parts, and you will understand each deeply.</p>
+<h1 class="doc-h1" id="s7">THE RAMP</h1>
+<p>Speed is everything. Find the section that&#x27;s about to throw — the whitewash building, the pocket deepening. The steeper and faster, the higher you&#x27;ll go. Speed 4 Paddling taught you how to generate power from flatwater. Now you need that same explosion on the wave face. Attack the ramp with violence. Generate momentum. When you launch, you launch HARD.</p>
+<h1 class="doc-h1" id="s8">THE AIR</h1>
+<p>Once airborne, commit to the rotation or grab. Don&#x27;t think mid-air — decide BEFORE you launch. You are committed to a specific movement: a 360 rotation (forward or reverse), a single grab (reaching for rail for style and control), or an alley-oop (reverse rotation — opposite to the wave&#x27;s direction). Your body knows the pattern. Execute it.</p>
+<h1 class="doc-h1" id="s9">THE LANDING</h1>
+<p>Spot your landing while still airborne. Absorb with bent knees. Recover posture immediately. You now have two standards: Competitive path — you MUST stick your landings. No credit for committed falls. Recreational path — demonstrate full power and commitment. A committed fall is better than a hesitant landing.</p>
+<h1 class="doc-h1" id="s10">SECTION 4 — TSS EXECUTION CHAINS: YOUR COMPLETE ARCHITECTURE</h1>
+<p>At Brown Belt, you execute these chains at maximum power and consistency.</p>
+<h1 class="doc-h1" id="s11">FRONTSIDE CHAIN</h1>
+<ul class="doc-list">
+<li>Posture</li>
+<li>Bottom Turn</li>
+<li>Projection</li>
+<li>Cruz (Avioncito)</li>
+<li>Variation (Snap / Reentry / Carve / Cut)</li>
+<li>Granada</li>
+<li>Return to Posture</li>
+</ul>
+<h1 class="doc-h1" id="s12">BACKSIDE CHAIN</h1>
+<ul class="doc-list">
+<li>Posture</li>
+<li>Bottom Turn</li>
+<li>Choke</li>
+<li>Tapaloco</li>
+<li>Elbow</li>
+<li>Variation</li>
+<li>Touch the Board</li>
+<li>Return to Posture</li>
+</ul>
+<p>Every named expression lives within these chains. The chain IS your surfing architecture. When you drop into a wave, you don&#x27;t think about individual moves — you execute the chain and respond to what the section offers.</p>
+<h1 class="doc-h1" id="s13">SECTION 5 — NAMED EXPRESSIONS AT BROWN BELT</h1>
+<p>Everything from previous belts at 8/10+ PLUS these new expressions:</p>
+<ul class="doc-list">
+<li>Aerial 360 (Frontside &amp; Backside)</li>
+<li>Aerial Single Grab (Frontside &amp; Backside)</li>
+<li>Alley-oop (Frontside &amp; Backside)</li>
+<li>Power Combos (3+ linked expressions)</li>
+</ul>
+<p>Your full repertoire now includes: Posture, Bottom Turn, Projection, Cruz Snap, Cruz Reentry, Cruz Cutback, Granada, Choke, Tapaloco Snap, Tapaloco Reentry, Tapaloco Cutback, Elbow, Touch the Board, Floater, Snap, Tango, Layback, Tail Slide, M Cabeza Invertida, all Aerial 360s, all Aerial Grabs, Alley-oops, and infinite combinations.</p>
+<h1 class="doc-h1" id="s14">SECTION 6 — COMPETITION PATH (IF APPLICABLE)</h1>
+<h1 class="doc-h1" id="s15">ISA SCORING</h1>
+<p>Judges award points for radical maneuvers executed in the critical section with power, speed, and flow. One powerful, committed maneuver beats three hesitant ones. Understand this. Understand that a 7-point maneuver is better than two 4-point maneuvers. Understand that execution matters more than quantity.</p>
+<h1 class="doc-h1" id="s16">HEAT STRATEGY</h1>
+<p>Know the clock. Know what score you need. Know when you&#x27;re winning and when you&#x27;re chasing. Surf the wave, not the scoreboard. But understand the scoreboard so completely that you can ignore it and make correct decisions.</p>
+<h1 class="doc-h1" id="s17">PRIORITY RULES</h1>
+<p>Closest to the peak has right of way. Know when to wait. Know when to go. Know when you&#x27;re in priority and can take the next set wave. Respect the person on the wave ahead of you.</p>
+<h1 class="doc-h1" id="s18">PRE-COMPETITION ROUTINE</h1>
+<p>Develop YOUR routine. Night before: hydrate, eat, sleep well, prepare gear, visualize. Morning of: eat, hydrate, warm up, review focus triggers, visualize execution chains. Predictable routine equals reduced anxiety. You don&#x27;t figure out what to do at competition — you execute what you&#x27;ve rehearsed.</p>
+<p>To compete seriously, complete ISA and WSL judge courses. Understand scoring from the inside. Watch how the best surfers approach heats. Learn the rules completely.</p>
+<h1 class="doc-h1" id="s19">SECTION 7 — YOUR PROGRESSION TRACKER</h1>
+<p>Use this checklist to track your Brown Belt journey. All items must show consistent competency (8/10+) before advancing to Black Belt.</p>
+<ul class="doc-list">
+<li>All sequences #1-#17 demonstrated at 8/10 minimum</li>
+<li>Aerial 360 attempted with full commitment (Frontside)</li>
+<li>Aerial 360 attempted with full commitment (Backside)</li>
+<li>Aerial Single Grab attempted with full commitment (Frontside)</li>
+<li>Aerial Single Grab attempted with full commitment (Backside)</li>
+<li>Alley-oop attempted with full commitment (Frontside)</li>
+<li>Alley-oop attempted with full commitment (Backside)</li>
+<li>3+ maneuver combo executed on a single wave</li>
+<li>Surfed effectively in 3+ different break types</li>
+<li>Selected correct board for conditions independently</li>
+<li>Designed and executed 5+ sessions independently</li>
+</ul>
+<p>Competitive Track (if applicable)</p>
+<ul class="doc-list">
+<li>ISA judge course completed</li>
+<li>WSL judge course completed</li>
+<li>Scored 7+ in simulation heats consistently</li>
+</ul>
+<h1 class="doc-h1" id="s20">SECTION 8 — WHAT COMES NEXT</h1>
+<p>BLACK BELT — Elite. Sequences #23-#26. Complete mastery. Deep understanding of WHY the method works. Ability to explain and transmit the method to others. Four-pillar integration at the deepest level. Maximum personal potential. Pre-coaching competency.</p>
+<p>&quot;Brown Belt proved you can DO it all. Black Belt asks: Do you UNDERSTAND it all?&quot;</p>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Brown Belt Student Manual — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

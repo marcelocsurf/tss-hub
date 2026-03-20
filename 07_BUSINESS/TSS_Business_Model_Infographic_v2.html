@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200, initial-scale=1">
+<title>The Surf Sequence® — Business Model at a Glance</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B1A2B;
+  --navy-mid: #122640;
+  --navy-light: #1A3352;
+  --cyan: #00C8E0;
+  --cyan-dim: rgba(0, 200, 224, 0.15);
+  --cyan-glow: rgba(0, 200, 224, 0.08);
+  --white: #FFFFFF;
+  --grey-100: #F0F2F5;
+  --grey-200: #C8CDD5;
+  --grey-300: #8A92A0;
+  --grey-400: #5A6270;
+  --gold: #C5963A;
+  --green: #2FCC71;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--navy);
+  color: var(--white);
+  width: 1200px;
+  min-height: 1700px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle background texture */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(0, 200, 224, 0.03) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 80%, rgba(0, 200, 224, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  padding: 56px 64px 48px;
+}
+
+/* ══════════════════════════════
+   HEADER
+══════════════════════════════ */
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  padding-bottom: 36px;
+  border-bottom: 1px solid rgba(0, 200, 224, 0.2);
+}
+
+.header-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px;
+  letter-spacing: 8px;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.header-brand span { color: var(--cyan); }
+
+.header-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--grey-200);
+  margin-bottom: 8px;
+}
+
+.header-sub {
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--grey-300);
+}
+
+/* ══════════════════════════════
+   MAIN GRID: problem | architecture | moat
+══════════════════════════════ */
+.main-grid {
+  display: grid;
+  grid-template-columns: 200px 1fr 200px;
+  gap: 32px;
+  margin-bottom: 40px;
+  min-height: 780px;
+}
+
+/* ── Side Panels ── */
+.side-panel {
+  padding: 24px 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 200, 224, 0.12);
+  background: rgba(0, 200, 224, 0.03);
+  display: flex;
+  flex-direction: column;
+}
+
+.side-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: var(--cyan);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 200, 224, 0.15);
+}
+
+.side-item {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--grey-200);
+  line-height: 1.5;
+  margin-bottom: 12px;
+  padding-left: 14px;
+  position: relative;
+}
+
+.side-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+}
+
+.problem .side-item::before { background: var(--grey-300); }
+.moat .side-item::before { background: var(--cyan); }
+
+/* ══════════════════════════════
+   CENTER ARCHITECTURE
+══════════════════════════════ */
+.architecture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Core System (Center dominant) ── */
+.core-system {
+  width: 340px;
+  padding: 32px 28px 28px;
+  background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+  border: 2px solid var(--cyan);
+  border-radius: 12px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 0 40px rgba(0, 200, 224, 0.08), inset 0 1px 0 rgba(0, 200, 224, 0.1);
+  z-index: 2;
+}
+
+.core-system::before {
+  content: 'FOUNDATION';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--navy);
+  background: var(--cyan);
+  padding: 2px 14px;
+  border-radius: 10px;
+}
+
+.core-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px;
+  letter-spacing: 4px;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+
+.core-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.core-item {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--grey-100);
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.core-item:last-child { border-bottom: none; }
+
+/* ── Connectors ── */
+.connector-down {
+  width: 2px;
+  height: 24px;
+  background: linear-gradient(to bottom, var(--cyan), rgba(0, 200, 224, 0.3));
+  position: relative;
+}
+
+.connector-down::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px rgba(0, 200, 224, 0.4);
+}
+
+/* ── Three Outer Blocks ── */
+.outer-ring {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+.outer-block {
+  padding: 22px 18px 18px;
+  border-radius: 8px;
+  border: 1px solid rgba(0, 200, 224, 0.15);
+  background: rgba(0, 200, 224, 0.03);
+  position: relative;
+}
+
+.outer-block.cert { border-color: rgba(0, 200, 224, 0.25); }
+.outer-block.network { border-color: rgba(0, 200, 224, 0.25); }
+.outer-block.brain { border-color: rgba(0, 200, 224, 0.12); background: rgba(0, 200, 224, 0.015); }
+
+.outer-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 15px;
+  letter-spacing: 2.5px;
+  color: var(--cyan);
+  margin-bottom: 14px;
+}
+
+.brain .outer-label { color: var(--grey-300); }
+
+.outer-sublabel {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--grey-400);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.outer-item {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--grey-200);
+  line-height: 1.5;
+  margin-bottom: 7px;
+  padding-left: 10px;
+  position: relative;
+}
+
+.outer-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 6px;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(0, 200, 224, 0.4);
+}
+
+.brain .outer-item::before { background: rgba(0, 200, 224, 0.2); }
+
+/* ── Branching connectors from core to ring ── */
+.branch-connectors {
+  width: 100%;
+  height: 40px;
+  position: relative;
+}
+
+.branch-connectors svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ══════════════════════════════
+   REVENUE ENGINE
+══════════════════════════════ */
+.revenue-section {
+  margin-bottom: 32px;
+  padding: 28px 32px 24px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 200, 224, 0.15);
+  background: linear-gradient(180deg, rgba(0, 200, 224, 0.04) 0%, rgba(0, 200, 224, 0.01) 100%);
+}
+
+.revenue-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(0, 200, 224, 0.1);
+}
+
+.revenue-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 18px;
+  letter-spacing: 4px;
+  color: var(--cyan);
+}
+
+.revenue-note {
+  font-size: 10px;
+  font-weight: 400;
+  color: var(--grey-400);
+  letter-spacing: 1px;
+}
+
+.revenue-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+.revenue-item {
+  text-align: center;
+  padding: 14px 8px;
+  border-radius: 6px;
+  background: rgba(0, 200, 224, 0.04);
+  border: 1px solid rgba(0, 200, 224, 0.08);
+}
+
+.revenue-item-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--grey-200);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.revenue-item-detail {
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--grey-400);
+  line-height: 1.3;
+}
+
+.revenue-item-source {
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-top: 8px;
+  opacity: 0.6;
+}
+
+/* ══════════════════════════════
+   SCALE FLOW (Bottom)
+══════════════════════════════ */
+.scale-section {
+  text-align: center;
+  padding: 20px 0 8px;
+  border-top: 1px solid rgba(0, 200, 224, 0.1);
+}
+
+.scale-label {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: var(--grey-300);
+  margin-bottom: 14px;
+}
+
+.scale-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.scale-node {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--white);
+  padding: 7px 16px;
+  border-radius: 4px;
+  background: var(--navy-mid);
+  border: 1px solid rgba(0, 200, 224, 0.2);
+}
+
+.scale-arrow {
+  font-size: 14px;
+  color: var(--cyan);
+  padding: 0 6px;
+  opacity: 0.5;
+}
+
+.scale-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.scale-footer-left {
+  font-size: 9px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--grey-400);
+}
+
+.scale-footer-right {
+  font-size: 9px;
+  font-weight: 400;
+  color: var(--grey-400);
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════ HEADER ══════ -->
+  <div class="header">
+    <div class="header-brand">THE SURF SEQUENCE<span>®</span></div>
+    <div class="header-title">Business Model at a Glance</div>
+    <div class="header-sub">A Global Surf Education System</div>
+  </div>
+
+  <!-- ══════ MAIN GRID ══════ -->
+  <div class="main-grid">
+
+    <!-- LEFT: THE PROBLEM -->
+    <div class="side-panel problem">
+      <div class="side-label">THE PROBLEM</div>
+      <div class="side-item">No global progression standard for surf learners</div>
+      <div class="side-item">No teaching methodology certification beyond safety</div>
+      <div class="side-item">No continuity or tracking between sessions</div>
+      <div class="side-item">No scalable surf education infrastructure</div>
+      <div class="side-item">No professional pathway for coaching careers</div>
+      <div style="flex:1"></div>
+      <div style="font-size:10px; color:var(--grey-400); font-style:italic; line-height:1.5; border-top:1px solid rgba(255,255,255,0.05); padding-top:12px; margin-top:12px;">
+        Surfing is the only major action sport with no recognized global education standard.
+      </div>
+    </div>
+
+    <!-- CENTER: ARCHITECTURE -->
+    <div class="architecture">
+
+      <!-- CORE SYSTEM -->
+      <div class="core-system">
+        <div class="core-label">CORE SYSTEM</div>
+        <div class="core-items">
+          <div class="core-item">TSS Methodology (Hard / Soft / Info Systems)</div>
+          <div class="core-item">Belt Progression System (7 Levels)</div>
+          <div class="core-item">4 Holistic Pillars + Safety Layer</div>
+        </div>
+      </div>
+
+      <!-- Connector -->
+      <div class="connector-down"></div>
+
+      <!-- Branching SVG -->
+      <div class="branch-connectors">
+        <svg viewBox="0 0 600 40" preserveAspectRatio="none">
+          <!-- Center line down -->
+          <line x1="300" y1="0" x2="300" y2="10" stroke="rgba(0,200,224,0.4)" stroke-width="1.5"/>
+          <!-- Horizontal spread -->
+          <line x1="100" y1="10" x2="500" y2="10" stroke="rgba(0,200,224,0.25)" stroke-width="1"/>
+          <!-- Three drops -->
+          <line x1="100" y1="10" x2="100" y2="40" stroke="rgba(0,200,224,0.4)" stroke-width="1.5"/>
+          <line x1="300" y1="10" x2="300" y2="40" stroke="rgba(0,200,224,0.4)" stroke-width="1.5"/>
+          <line x1="500" y1="10" x2="500" y2="40" stroke="rgba(0,200,224,0.15)" stroke-width="1"/>
+          <!-- Dots at ends -->
+          <circle cx="100" cy="40" r="3" fill="rgba(0,200,224,0.5)"/>
+          <circle cx="300" cy="40" r="3" fill="rgba(0,200,224,0.5)"/>
+          <circle cx="500" cy="40" r="2.5" fill="rgba(0,200,224,0.25)"/>
+        </svg>
+      </div>
+
+      <!-- THREE OUTER BLOCKS -->
+      <div class="outer-ring">
+
+        <!-- CERTIFICATION -->
+        <div class="outer-block cert">
+          <div class="outer-label">CERTIFICATION</div>
+          <span class="outer-sublabel">Quality Control</span>
+          <div class="outer-item">3-step instructor pathway</div>
+          <div class="outer-item">Level-based certification</div>
+          <div class="outer-item">Annual renewal required</div>
+          <div class="outer-item">Quarterly audit system</div>
+          <div class="outer-item">Enforcement ladder</div>
+        </div>
+
+        <!-- ACADEMY NETWORK -->
+        <div class="outer-block network">
+          <div class="outer-label">ACADEMY NETWORK</div>
+          <span class="outer-sublabel">Global Expansion</span>
+          <div class="outer-item">Tier 1: Certified Coaches</div>
+          <div class="outer-item">Tier 2: Affiliated Academies</div>
+          <div class="outer-item">Tier 3: Premium Licensed</div>
+          <div class="outer-item">Territorial exclusivity (Tier 3)</div>
+          <div class="outer-item">Independently owned & operated</div>
+        </div>
+
+        <!-- TSS BRAIN -->
+        <div class="outer-block brain">
+          <div class="outer-label">TSS BRAIN</div>
+          <span class="outer-sublabel">Digital Nervous System</span>
+          <div class="outer-item">Academy operating system</div>
+          <div class="outer-item">Student progression tracking</div>
+          <div class="outer-item">Compliance monitoring</div>
+          <div class="outer-item">Network data visibility</div>
+          <div class="outer-item" style="color:var(--grey-400); font-style:italic; margin-top:4px;">Amplifies — does not replace — the core layers</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RIGHT: WHY TSS WINS -->
+    <div class="side-panel moat">
+      <div class="side-label">WHY TSS WINS</div>
+      <div class="side-item">100% proprietary system (Enkrateia SA de CV)</div>
+      <div class="side-item">Olympic-level validation (Paris 2024, LA 2028)</div>
+      <div class="side-item">Structured 7-level belt progression</div>
+      <div class="side-item">Scalable coach certification pipeline</div>
+      <div class="side-item">Compounding network effects</div>
+      <div class="side-item">Digital amplification layer</div>
+      <div style="flex:1"></div>
+      <div style="font-size:10px; color:var(--grey-400); font-style:italic; line-height:1.5; border-top:1px solid rgba(0,200,224,0.1); padding-top:12px; margin-top:12px;">
+        Four-component integrated architecture with no single-point substitute. Five-system design: Methodology · Belts · Certification · Licensing · TSS Brain.
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════ REVENUE ENGINE ══════ -->
+  <div class="revenue-section">
+    <div class="revenue-header">
+      <div class="revenue-label">REVENUE ENGINE</div>
+      <div class="revenue-note">6 streams · All recurring or scalable · None presence-dependent</div>
+    </div>
+    <div class="revenue-grid">
+      <div class="revenue-item">
+        <div class="revenue-item-label">Certification Fees</div>
+        <div class="revenue-item-detail">$500–$1,500 per level</div>
+        <div class="revenue-item-source">Certification</div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-item-label">Renewal Fees</div>
+        <div class="revenue-item-detail">$200–$500 / year</div>
+        <div class="revenue-item-source">Certification</div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-item-label">Academy Affiliation</div>
+        <div class="revenue-item-detail">$1K–$3K / year</div>
+        <div class="revenue-item-source">Network</div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-item-label">Premium Royalties</div>
+        <div class="revenue-item-detail">5–15% net sales</div>
+        <div class="revenue-item-source">Network</div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-item-label">Kit Fees</div>
+        <div class="revenue-item-detail">$100 / participant</div>
+        <div class="revenue-item-source">Core System</div>
+      </div>
+      <div class="revenue-item">
+        <div class="revenue-item-label">SaaS Subscription</div>
+        <div class="revenue-item-detail">$100 / month</div>
+        <div class="revenue-item-source">TSS Brain</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════ HOW IT SCALES ══════ -->
+  <div class="scale-section">
+    <div class="scale-label">HOW IT SCALES</div>
+    <div class="scale-flow">
+      <div class="scale-node">Core System</div>
+      <div class="scale-arrow">→</div>
+      <div class="scale-node">Certification</div>
+      <div class="scale-arrow">→</div>
+      <div class="scale-node">Academies</div>
+      <div class="scale-arrow">→</div>
+      <div class="scale-node">Data</div>
+      <div class="scale-arrow">→</div>
+      <div class="scale-node">Better System</div>
+      <div class="scale-arrow">→</div>
+      <div class="scale-node" style="border-color: var(--cyan); color: var(--cyan);">More Growth</div>
+    </div>
+
+    <div class="scale-footer">
+      <div class="scale-footer-left">The Surf Sequence® — Confidential</div>
+      <div class="scale-footer-right">Enkrateia SA de CV · March 2026</div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

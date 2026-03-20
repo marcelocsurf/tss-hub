@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSS Ecosystem — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#5AC3E7;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #0D2D5E 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🌍</span>
+    <div>
+      <div class="top-bar__title">TSS Ecosystem</div>
+      <div class="top-bar__sub">TSS Masterclass — 13 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 13</span>
+    <h4 class="slide-sub">THE SURF SEQUENCE®</h4>
+<h2 class="slide-hero">Complete</h2>
+<h2 class="slide-hero">Methodology</h2>
+<h2 class="slide-hero">Ecosystem</h2>
+<p class="body-text">Every tool. Every layer. One integrated system.</p>
+<h4 class="slide-sub">Marcelo Castellanos</h4>
+<ul class="slide-list">
+<li>Founder, The Surf Sequence®  |  Olympic Surf Coach — Bryan Pérez, Paris 2024</li>
+</ul>
+<h4 class="slide-sub">EVOLVE THROUGH PLAY™</h4>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 13</span>
+    <h4 class="slide-sub">THE ECOSYSTEM</h4>
+<h3 class="slide-heading">8 integrated tools. One complete system.</h3>
+<ul class="slide-list">
+<li>Each tool solves a specific gap. Together, they make progress inevitable.</li>
+</ul>
+<h4 class="slide-sub">01</h4>
+<h4 class="slide-sub">Initial Assessment</h4>
+<ul class="slide-list">
+<li>Where you start</li>
+</ul>
+<h4 class="slide-sub">02</h4>
+<h4 class="slide-sub">Level App</h4>
+<ul class="slide-list">
+<li>Know your real level: https://tss-quiz.vercel.app/</li>
+</ul>
+<h4 class="slide-sub">03</h4>
+<h4 class="slide-sub">One Wave Book</h4>
+<ul class="slide-list">
+<li>Mental foundation https://drive.google.com/file/d/1_5M3U3ydeTjcaM6dZcRG75EEcCCFgAtU/view?usp=sharing</li>
+</ul>
+<h4 class="slide-sub">04</h4>
+<h4 class="slide-sub">Student Level Kit</h4>
+<ul class="slide-list">
+<li>6 modules to study</li>
+</ul>
+<h4 class="slide-sub">05</h4>
+<h4 class="slide-sub">Level Presentations</h4>
+<h4 class="slide-sub">+ Drills</h4>
+<ul class="slide-list">
+<li>Coach&#x27;s pedagogy</li>
+</ul>
+<h4 class="slide-sub">06</h4>
+<h4 class="slide-sub">TSS Bitácora</h4>
+<ul class="slide-list">
+<li>Individual tracking</li>
+</ul>
+<h4 class="slide-sub">07</h4>
+<h4 class="slide-sub">CEREBRO TSS</h4>
+<ul class="slide-list">
+<li>Academy OS — 7 layers</li>
+</ul>
+<h4 class="slide-sub">08</h4>
+<h4 class="slide-sub">Operations Manual</h4>
+<ul class="slide-list">
+<li>Replicable standard</li>
+<li>The system is only complete when all 8 layers are active. Partial implementation = partial results.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 13</span>
+    <h4 class="slide-sub">TOOL 01 — INITIAL ASSESSMENT</h4>
+<h3 class="slide-heading">Every surfer starts with a diagnosis.</h3>
+<h3 class="slide-heading">Not a guess.</h3>
+<ul class="slide-list">
+<li>The consultation is the entry point to TSS. Before any session, any mission, any plan —</li>
+<li>we need to know exactly where the student is.</li>
+</ul>
+<h4 class="slide-sub">WHAT IT IS</h4>
+<ul class="slide-list">
+<li>A structured intake conversation between coach and student that maps current level, goals, physical background, learning history, and mental approach to training.</li>
+</ul>
+<h4 class="slide-sub">WHY IT EXISTS</h4>
+<ul class="slide-list">
+<li>Without diagnosis, coaching is guesswork. The assessment ensures every student enters the right level of the TSS progression — no skipping, no underestimating.</li>
+</ul>
+<h4 class="slide-sub">WHAT IT COVERS</h4>
+<ul class="slide-list">
+<li>Surf experience &amp; frequency  ·  Physical capacity  ·  Mental approach (free surf vs. training mindset)  ·  Goals (short / medium / long term)  ·  Fears and blockers</li>
+</ul>
+<h4 class="slide-sub">OUTPUT</h4>
+<ul class="slide-list">
+<li>Student assigned to correct TSS level  ·  Initial Bitácora profile created  ·  First session mission defined  ·  Coach briefed before entering the water</li>
+<li>&quot;Diagnosis before prescription. Every time.&quot;</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 13</span>
+    <h4 class="slide-sub">TOOL 02 — LEVEL APP</h4>
+<h3 class="slide-heading">Know your real level.</h3>
+<h3 class="slide-heading">Before you paddle out.</h3>
+<ul class="slide-list">
+<li>Most surfers think they are better than they are — or worse. The TSS Level App removes the subjectivity.</li>
+</ul>
+<h4 class="slide-sub">WHAT THE APP DOES</h4>
+<ul class="slide-list">
+<li>→  Evaluates the student across the TSS 6-level progression</li>
+<li>→  Asks structured questions about consistency, conditions, and execution</li>
+<li>→  Outputs an objective level assignment: Beginner → Novice → Foundation → Emerging → Pre-Elite → Elite</li>
+<li>→  Removes coach bias and student ego from the equation</li>
+<li>→  Takes less than 5 minutes to complete</li>
+</ul>
+<h4 class="slide-sub">WHY IT MATTERS</h4>
+<h4 class="slide-sub">Honest starting point</h4>
+<ul class="slide-list">
+<li>Progress is measured from a real baseline — not a hoped-for one.</li>
+</ul>
+<h4 class="slide-sub">Correct mission selection</h4>
+<ul class="slide-list">
+<li>The right drills are only useful at the right level. The app ensures alignment.</li>
+</ul>
+<h4 class="slide-sub">Student buy-in</h4>
+<ul class="slide-list">
+<li>When students understand their real level, they train with more intention.</li>
+</ul>
+<h4 class="slide-sub">Scalable globally</h4>
+<ul class="slide-list">
+<li>Any academy, anywhere, uses the same objective entry standard.</li>
+</ul>
+<h4 class="slide-sub">THE 6 PROGRESSION LEVELS</h4>
+<h4 class="slide-sub">BEGINNER</h4>
+<h4 class="slide-sub">NOVICE</h4>
+<h4 class="slide-sub">FOUNDATION</h4>
+<h4 class="slide-sub">EMERGING</h4>
+<h4 class="slide-sub">PRE-ELITE</h4>
+<h4 class="slide-sub">ELITE</h4>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 13</span>
+    <h4 class="slide-sub">TOOL 03 — ONE WAVE: THE BOOK</h4>
+<h3 class="slide-heading">The mental foundation of the method.</h3>
+<h3 class="slide-heading">Before technique, comes mindset.</h3>
+<ul class="slide-list">
+<li>Nobody teaches surfers how to train. One Wave is the book that changes that.</li>
+</ul>
+<h4 class="slide-sub">WHAT&#x27;S INSIDE</h4>
+<h4 class="slide-sub">Part I — The Inner Game</h4>
+<ul class="slide-list">
+<li>·  Be Here and Now: The Art of Focus</li>
+<li>·  Free Surfing vs. Training: One Wave, One Intention</li>
+</ul>
+<h4 class="slide-sub">Part II — The Friction</h4>
+<ul class="slide-list">
+<li>·  The Comfort Zone: Why Growth Feels Like Regression</li>
+<li>·  Entering Flow: Where Presence Becomes Performance</li>
+<li>·  Setting Expectations: The Mental Hack That Unlocks Enjoyment</li>
+</ul>
+<h4 class="slide-sub">Part III — The System</h4>
+<ul class="slide-list">
+<li>·  How to Build a Training Plan That Actually Works</li>
+<li>·  The Law of Action: From Understanding to Doing</li>
+</ul>
+<h4 class="slide-sub">WHY IT&#x27;S THE FOUNDATION</h4>
+<h4 class="slide-sub">Bridges mind and method</h4>
+<ul class="slide-list">
+<li>Before any drill works, the student needs to understand how to learn. One Wave builds that foundation.</li>
+</ul>
+<h4 class="slide-sub">Addresses the real bottleneck</h4>
+<ul class="slide-list">
+<li>Technique plateaus come from mental patterns — expectations, ego, fear of regression. This book names them.</li>
+</ul>
+<h4 class="slide-sub">Written from Olympic-level coaching</h4>
+<ul class="slide-list">
+<li>The principles come from preparing Bryan Pérez for Paris 2024 — applied to surfers at every level.</li>
+</ul>
+<h4 class="slide-sub">Works standalone or with TSS</h4>
+<ul class="slide-list">
+<li>Any surfer benefits from reading it. TSS students use it as the manual for their own learning process.</li>
+</ul>
+<h4 class="slide-sub">Gives coaches a shared language</h4>
+<ul class="slide-list">
+<li>When students have read One Wave, coaches can reference it directly. It creates a common mental vocabulary.</li>
+<li>&quot;Thirty seconds. Three breaths. One focus. Over hundreds of sessions, it becomes the difference between a surfer who improves and one who simply accumulates time in the water.&quot;</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 13</span>
+    <h4 class="slide-sub">TOOL 04 — STUDENT LEVEL KIT</h4>
+<h3 class="slide-heading">Complete learning material for every level.</h3>
+<h3 class="slide-heading">Students don&#x27;t just train — they study.</h3>
+<ul class="slide-list">
+<li>Each TSS level comes with a complete physical and digital kit. The student leaves every session with material to review, study, and practice.</li>
+</ul>
+<h4 class="slide-sub">M1 — Safety &amp; Communication</h4>
+<ul class="slide-list">
+<li>Hand signals, emergency protocols, coach-student communication system, surf etiquette. Non-negotiable foundation.</li>
+</ul>
+<h4 class="slide-sub">M2 — Wave Knowledge</h4>
+<ul class="slide-list">
+<li>Parts of a wave, types of waves and breaks, lefts vs rights, wave stages, pocket theory. Ocean literacy.</li>
+</ul>
+<h4 class="slide-sub">M3 — Technical Sequence</h4>
+<ul class="slide-list">
+<li>Full progression of drills specific to their level: board control, pop-up, stance, cobra, rotation — step by step.</li>
+</ul>
+<h4 class="slide-sub">M4 — Mission Tracking</h4>
+<ul class="slide-list">
+<li>Personal log for each session: time, reps, focus score, difficulty score, next mission. Makes progress visible.</li>
+</ul>
+<h4 class="slide-sub">M5 — Mental Framework</h4>
+<ul class="slide-list">
+<li>Introduction to One Wave concepts: focus, training vs free surfing, managing frustration, setting expectations.</li>
+</ul>
+<h4 class="slide-sub">M6 — Next Level Preview</h4>
+<ul class="slide-list">
+<li>What the next TSS level looks like — what needs to be mastered to progress. Creates direction and motivation.</li>
+<li>The kit is the same for every student at the same level — anywhere in the world. Consistency is the point.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 13</span>
+    <h4 class="slide-sub">TOOL 05 — LEVEL PRESENTATIONS + DRILLS</h4>
+<h3 class="slide-heading">The coach&#x27;s pedagogical toolkit.</h3>
+<h3 class="slide-heading">Every session is a planned mission.</h3>
+<ul class="slide-list">
+<li>For each TSS level, there is a complete set of coach-facing presentations that structure every single session.</li>
+</ul>
+<h4 class="slide-sub">WHAT EACH PRESENTATION CONTAINS</h4>
+<h4 class="slide-sub">🟡 Yellow Slides — In-Water Drills (Coach)</h4>
+<ul class="slide-list">
+<li>Mission for the session · Focus point · What to observe · What to correct · What NOT to correct yet</li>
+</ul>
+<h4 class="slide-sub">🟣 Theory Slides — Student Concepts</h4>
+<ul class="slide-list">
+<li>Wave knowledge · Technical principles · Mental concepts aligned with One Wave</li>
+</ul>
+<h4 class="slide-sub">🔴 Land Drills</h4>
+<ul class="slide-list">
+<li>Pop-up progressions · Stance work · Rotation mechanics · Skate transfer drills</li>
+</ul>
+<h4 class="slide-sub">🎯 Mission Structure</h4>
+<ul class="slide-list">
+<li>One objective per session. Not a list of things to improve — one specific, measurable focus.</li>
+</ul>
+<h4 class="slide-sub">📊 Video Analysis Guide</h4>
+<ul class="slide-list">
+<li>What to evaluate · What to ignore · How to give feedback · Suggested duration</li>
+</ul>
+<h4 class="slide-sub">DRILL EXAMPLES — NOVICE LEVEL</h4>
+<ul class="slide-list">
+<li>→  Control My Board — understand board pivot with hand placement</li>
+<li>→  Find the Sweet Spot — heart-to-board connection before paddling</li>
+<li>→  Turtle Roll: Form the T — align nose with wave direction</li>
+<li>→  Chase the Pocket — identify and move toward the energy source</li>
+<li>→  Cobra + Choose Your Line — invisible surfing before the pop-up</li>
+<li>→  The 2-Second Pop-Up — stability before releasing the board</li>
+<li>→  Crush the Circles — feet connected to the center of the board</li>
+<li>→  Play With the Pocket — integrating game to test the full system</li>
+<li>&quot;Coaches don&#x27;t teach movements. They design learning environments.&quot; — TSS Academy Licensing Manual</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 13</span>
+    <h4 class="slide-sub">TOOL 06 — BITÁCORA TSS</h4>
+<h3 class="slide-heading">If it&#x27;s not recorded,</h3>
+<h3 class="slide-heading">it didn&#x27;t happen.</h3>
+<ul class="slide-list">
+<li>The TSS Bitácora is the individual learning record for every student in the system.</li>
+</ul>
+<h4 class="slide-sub">STUDENT PROFILE</h4>
+<ul class="slide-list">
+<li>Level · Goals · Background · Learning style · Blockers and fears identified at intake assessment</li>
+</ul>
+<h4 class="slide-sub">SESSION LOG</h4>
+<ul class="slide-list">
+<li>Date · Objective · Mission · Key observation · Coach feedback · Next focus area</li>
+</ul>
+<h4 class="slide-sub">PROGRESS TRACKING</h4>
+<ul class="slide-list">
+<li>What was trained · Consistency rating · Milestones reached · Level transition readiness</li>
+</ul>
+<h4 class="slide-sub">WHY THE BITÁCORA IS A COMPETITIVE ADVANTAGE</h4>
+<ul class="slide-list">
+<li>✓  Students can see their own progress — not feel it, see it. Numbers, dates, missions completed.</li>
+<li>✓  Coaches hand off students between sessions without losing continuity. The log is the memory.</li>
+<li>✓  Academies can prove ROI to students: &#x27;Here is exactly what you built in 7 days.&#x27;</li>
+<li>✓  Level transition is based on data, not impression. Progression is objective and verifiable.</li>
+<li>The Bitácora is part of the Information System — the third pillar that makes TSS scalable and auditable.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 13</span>
+    <h4 class="slide-sub">TOOL 07 — CEREBRO TSS: THE ACADEMY OPERATING SYSTEM</h4>
+<h3 class="slide-heading">Not a document. Not a process.</h3>
+<h3 class="slide-heading">The operating system of the academy.</h3>
+<ul class="slide-list">
+<li>CEREBRO TSS is the 7-layer intelligence layer that runs underneath everything else.</li>
+</ul>
+<h4 class="slide-sub">L1</h4>
+<h4 class="slide-sub">Student Intake &amp; Profiling</h4>
+<ul class="slide-list">
+<li>Assessment, level assignment, initial Bitácora creation</li>
+</ul>
+<h4 class="slide-sub">L2</h4>
+<h4 class="slide-sub">Session Architecture</h4>
+<ul class="slide-list">
+<li>Mission selection, drill sequencing, coach preparation per level</li>
+</ul>
+<h4 class="slide-sub">L3</h4>
+<h4 class="slide-sub">Live Coaching Framework</h4>
+<ul class="slide-list">
+<li>Yellow slides protocol, intervention timing, observation vs correction</li>
+</ul>
+<h4 class="slide-sub">L4</h4>
+<h4 class="slide-sub">Progress Tracking</h4>
+<ul class="slide-list">
+<li>Bitácora integration, milestone logic, level transition criteria</li>
+</ul>
+<h4 class="slide-sub">L5</h4>
+<h4 class="slide-sub">Video Analysis System</h4>
+<ul class="slide-list">
+<li>What to film, what to evaluate, how to deliver feedback</li>
+</ul>
+<h4 class="slide-sub">L6</h4>
+<h4 class="slide-sub">Communication Flow</h4>
+<ul class="slide-list">
+<li>Before session / after session / student continuity / family updates</li>
+</ul>
+<h4 class="slide-sub">L7</h4>
+<h4 class="slide-sub">Audit &amp; Quality Control</h4>
+<ul class="slide-list">
+<li>Coach compliance checks, brand standards, quarterly review</li>
+</ul>
+<p class="body-bold">All 7 layers must be active. Each one feeds the next. Partial implementation = system failure.</p>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 13</span>
+    <h4 class="slide-sub">TOOL 08 — ACADEMY OPERATIONS MANUAL</h4>
+<h3 class="slide-heading">The replication standard.</h3>
+<h3 class="slide-heading">Any academy. Any country.</h3>
+<ul class="slide-list">
+<li>The Operations Manual is what makes TSS licenseable at scale. It is not a guideline — it is a non-negotiable standard.</li>
+</ul>
+<h4 class="slide-sub">HARD SYSTEM</h4>
+<h4 class="slide-sub">(Physical Foundation)</h4>
+<ul class="slide-list">
+<li>·  Teaching zones and safe entry/exit</li>
+<li>·  Equipment by level: soft tops → funboards → performance</li>
+<li>·  Coach vs student identification</li>
+<li>·  Beach-ready first aid + emergency plan</li>
+<li>·  Safety signage and TSS visual identity</li>
+</ul>
+<h4 class="slide-sub">SOFT SYSTEM</h4>
+<h4 class="slide-sub">(People + Method)</h4>
+<ul class="slide-list">
+<li>·  Instructor pathway: Water Safety → ISA Level 1 → TSS Certification</li>
+<li>·  Level-based teaching: certified coaches teach only certified levels</li>
+<li>·  Teaching language aligned across all coaches</li>
+<li>·  Coaching philosophy: design learning environments, not instruction</li>
+<li>·  Parallel modules: constraint learning, ecology, 7 senses</li>
+</ul>
+<h4 class="slide-sub">INFORMATION SYSTEM</h4>
+<h4 class="slide-sub">(Learning Continuity)</h4>
+<ul class="slide-list">
+<li>·  Student profiles maintained from day one</li>
+<li>·  Session documentation: objective, mission, observation, next focus</li>
+<li>·  Bitácora protocol active for all students</li>
+<li>·  Communication flow: before session / after session</li>
+<li>·  Quarterly audit and quality review</li>
+<li>&quot;The method only works when the three systems are aligned. Equipment alone does not teach. Coaches alone do not scale. Information alone does not produce progress.&quot;</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 13</span>
+    <h4 class="slide-sub">THE PROOF</h4>
+<h3 class="slide-heading">The system has already been tested.</h3>
+<h3 class="slide-heading">At the highest level.</h3>
+<h2 class="slide-hero">420+</h2>
+<h4 class="slide-sub">Verified Reviews</h4>
+<ul class="slide-list">
+<li>TripAdvisor</li>
+</ul>
+<h2 class="slide-hero">81%</h2>
+<h4 class="slide-sub">Progression Rate</h4>
+<ul class="slide-list">
+<li>Students improve measurably</li>
+</ul>
+<h2 class="slide-hero">0%</h2>
+<h4 class="slide-sub">Negative Feedback</h4>
+<ul class="slide-list">
+<li>On the coaching system</li>
+</ul>
+<h2 class="slide-hero">Top 1%</h2>
+<h4 class="slide-sub">Worldwide Ranking</h4>
+<ul class="slide-list">
+<li>TripAdvisor globally</li>
+</ul>
+<h4 class="slide-sub">OLYMPIC PROOF</h4>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Bryan Pérez — El Salvador&#x27;s first Olympic Surfer, Paris 2024</span></div>
+</div>
+<ul class="slide-list">
+<li>The same methodology applied in TSS camps was the foundation of Olympic-level preparation. The four pillars — physical, technical, tactical, mental — were developed simultaneously, not in sequence. One Wave documents the mental framework that made the result possible.</li>
+<li>&quot;What stood out was how methodical the teaching was. I could see exactly what I was working on each day.&quot;</li>
+<li>— TripAdvisor Review (Top 1% excerpt)</li>
+<li>&quot;I&#x27;ve tried other surf camps. This is the only one where I actually improved and understood why.&quot;</li>
+<li>— TripAdvisor Review (81% progression rate context)</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 13</span>
+    <h4 class="slide-sub">LICENSING MODEL</h4>
+<h3 class="slide-heading">TSS is not sold.</h3>
+<h3 class="slide-heading">It is licensed.</h3>
+<ul class="slide-list">
+<li>The same model that made PADI the global standard for scuba diving — applied to surf education.</li>
+</ul>
+<h4 class="slide-sub">STRATEGIC ALLIANCE</h4>
+<h2 class="slide-hero">5%</h2>
+<ul class="slide-list">
+<li>royalty on net sales</li>
+</ul>
+<h4 class="slide-sub">+ $100 per camp participant</h4>
+<ul class="slide-list">
+<li>Long-term, high-trust partnership</li>
+<li>Consistent compliance + volume</li>
+</ul>
+<h4 class="slide-sub">Current Puro Surf rate</h4>
+<h4 class="slide-sub">PREFERRED PARTNER</h4>
+<h2 class="slide-hero">10%</h2>
+<ul class="slide-list">
+<li>royalty on net sales</li>
+</ul>
+<h4 class="slide-sub">+ $100 per camp participant</h4>
+<ul class="slide-list">
+<li>Consistent compliance + growth</li>
+<li>Volume benchmarks met</li>
+</ul>
+<h4 class="slide-sub">High-performing academies</h4>
+<h4 class="slide-sub">STANDARD LICENSE</h4>
+<h2 class="slide-hero">15%</h2>
+<ul class="slide-list">
+<li>royalty on net sales</li>
+</ul>
+<h4 class="slide-sub">+ $100 per camp participant</h4>
+<ul class="slide-list">
+<li>Default entry level</li>
+<li>All new academies start here</li>
+</ul>
+<h4 class="slide-sub">Industry standard is 15%</h4>
+<ul class="slide-list">
+<li>Tier is assigned at TSS discretion. 5% Strategic Alliance is earned — never the default entry point.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 13</span>
+    <h4 class="slide-sub">THE SURF SEQUENCE®</h4>
+<h2 class="slide-hero">Not a camp.</h2>
+<h2 class="slide-hero">Not a course.</h2>
+<h2 class="slide-hero">Not a set of tips.</h2>
+<h3 class="slide-heading">A complete operating system</h3>
+<h3 class="slide-heading">for surf education.</h3>
+<p class="body-text">Structure without rigidity.</p>
+<p class="body-text">Progress without confusion.</p>
+<p class="body-text">Results without improvisation.</p>
+<h4 class="slide-sub">EVOLVE THROUGH PLAY™</h4>
+<ul class="slide-list">
+<li>marcelo@thesurfsequence.com  |  thesurfsequence.com</li>
+</ul>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  TSS Ecosystem — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

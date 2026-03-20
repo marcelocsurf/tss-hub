@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Focus Science Training — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#5AC3E7;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #0D2D5E 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🎯</span>
+    <div>
+      <div class="top-bar__title">Focus Science Training</div>
+      <div class="top-bar__sub">TSS Masterclass — 15 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button><button class="nav-dot" onclick="goSlide(14)" title="Slide 14">14</button><button class="nav-dot" onclick="goSlide(15)" title="Slide 15">15</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 15</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">THE SURF SEQUENCE® — ONE WAVE</span></div>
+</div>
+<h2 class="slide-hero">The Science</h2>
+<h2 class="slide-hero">of Focus</h2>
+<h3 class="slide-heading">Where you put your attention</h3>
+<h3 class="slide-heading">determines how you surf.</h3>
+<ul class="slide-list">
+<li>Coach &amp; Student Theory Module — The Surf Sequence® — Marcelo Castellanos</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 15</span>
+    <h3 class="slide-heading">WHAT FOCUS REALLY IS</h3>
+<h3 class="slide-heading">Focus is not just “paying attention.”
+
+Focus is the ability to direct your attention to the right thing, at the right moment, for the right duration — and to shift it when the situation changes.
+
+In surfing, the “right thing” changes every second. You scan the horizon, then narrow to one wave, then feel your body, then look at your target, then read the section ahead. The demands shift constantly.
+
+The best surfers don’t just focus harder. They focus differently at each moment.</h3>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 15</span>
+    <h3 class="slide-heading">THE 4 TYPES OF FOCUS</h3>
+<ul class="slide-list">
+<li>Nideffer (1976) — Attentional Control Training. Adapted to surf by Nieri / Morillas &amp; Pérez / TSS.</li>
+</ul>
+<h4 class="slide-sub">BROAD</h4>
+<h4 class="slide-sub">EXTERNAL</h4>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">AWARENESS</span></div>
+</div>
+<ul class="slide-list">
+<li>Scan the ocean. Read the lineup. See the set coming. Assess conditions, competitors, position.</li>
+<li>Used to evaluate and react to the environment.</li>
+</ul>
+<h4 class="slide-sub">BROAD</h4>
+<h4 class="slide-sub">INTERNAL</h4>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">ANALYSIS</span></div>
+</div>
+<ul class="slide-list">
+<li>Develop strategy. Plan which waves to target. Decide priority: score needed, time remaining.</li>
+<li>Used to analyze, plan, and strategize.</li>
+</ul>
+<h4 class="slide-sub">NARROW</h4>
+<h4 class="slide-sub">EXTERNAL</h4>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">EXECUTION</span></div>
+</div>
+<ul class="slide-list">
+<li>Lock onto the lip. See the target for projection. Watch the section closing. Act on ONE cue.</li>
+<li>Used to perform in real time.</li>
+</ul>
+<h4 class="slide-sub">NARROW</h4>
+<h4 class="slide-sub">INTERNAL</h4>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">REHEARSAL</span></div>
+</div>
+<ul class="slide-list">
+<li>Feel your body. Visualize the next wave. Run the sequence mentally. Control breathing.</li>
+<li>Used to prepare and self-regulate.</li>
+<li>EXTERNAL</li>
+<li>INTERNAL</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 15</span>
+    <h3 class="slide-heading">FOCUS SHIFTS IN A SINGLE WAVE</h3>
+<h4 class="slide-sub">Sitting in lineup</h4>
+<h4 class="slide-sub">Broad External</h4>
+<ul class="slide-list">
+<li>Scan horizon, read sets, observe conditions, position relative to peak</li>
+</ul>
+<h4 class="slide-sub">Set approaches</h4>
+<h4 class="slide-sub">Broad External → Internal</h4>
+<ul class="slide-list">
+<li>Evaluate: is this my wave? Strategy: paddle or wait?</li>
+</ul>
+<h4 class="slide-sub">Decision to paddle</h4>
+<h4 class="slide-sub">Narrow Internal</h4>
+<ul class="slide-list">
+<li>Commit. Feel body position. Run takeoff sequence mentally.</li>
+</ul>
+<h4 class="slide-sub">Paddling for wave</h4>
+<h4 class="slide-sub">Narrow External</h4>
+<ul class="slide-list">
+<li>Lock onto wave angle. Feel the lift. See the moment to pop up.</li>
+</ul>
+<h4 class="slide-sub">Pop-up + drop</h4>
+<h4 class="slide-sub">Narrow External</h4>
+<ul class="slide-list">
+<li>Execute. Eyes on line. Feet land. Target the pocket.</li>
+</ul>
+<h4 class="slide-sub">Bottom turn</h4>
+<h4 class="slide-sub">Narrow Ext + Internal</h4>
+<ul class="slide-list">
+<li>Look at target (external) + feel compression and rail (internal).</li>
+</ul>
+<h4 class="slide-sub">Maneuver</h4>
+<h4 class="slide-sub">Narrow External</h4>
+<ul class="slide-list">
+<li>Lock onto lip/pocket. Rail transition. Spray. Recovery.</li>
+</ul>
+<h4 class="slide-sub">Recovery / next section</h4>
+<h4 class="slide-sub">Broad External</h4>
+<ul class="slide-list">
+<li>Re-scan. Where’s the pocket? What’s the wave doing next?</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 15</span>
+    <h2 class="slide-hero">AQUÍ Y AHORA.</h2>
+<h2 class="slide-hero">HERE AND NOW.</h2>
+<h3 class="slide-heading">The #1 focus error in surfing: drifting to the past or the future.</h3>
+<p class="body-text">Dante Nieri (Psicología del Surf) documented the most common mental traps in competitive surfers. They are the same traps that affect every level of student.</p>
+<h3 class="slide-heading">The surfer must focus on the HERE and the NOW:</h3>
+<h3 class="slide-heading">the surfing, the strategy, the wave, the execution.</h3>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 15</span>
+    <h3 class="slide-heading">THE TWO TRAPS</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">TRAPPED IN THE PAST</span></div>
+<span class="stat-label">“I always lose.”</span></div>
+<span class="stat-label">“This beach never works for me.”</span></div>
+<span class="stat-label">“That rival always beats me.”</span></div>
+<span class="stat-label">“The same thing always happens.”</span></div>
+<span class="stat-label">“The waves never come to me.”</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">TRAPPED IN THE FUTURE</span></div>
+<span class="stat-label">“If I win this, I’ll move up.”</span></div>
+<span class="stat-label">“What will my friends think?”</span></div>
+<span class="stat-label">“I’m going to celebrate after.”</span></div>
+<span class="stat-label">“Next round I’ll face that surfer.”</span></div>
+<span class="stat-label">“What if I fall on this wave?”</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">The only productive time is NOW. The only productive place is HERE. The wave, the lineup, the body, the execution. Everything else is noise.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 15</span>
+    <h3 class="slide-heading">ATTENTIONAL FLEXIBILITY</h3>
+<h3 class="slide-heading">The key skill is not focus intensity. It is focus flexibility.
+
+Nideffer &amp; Sagal (2006): Athletes who can seamlessly shift between the four quadrants of attention outperform those who are stuck in one mode.
+
+In surfing, this is especially critical because the attentional demands change every few seconds. A surfer who is stuck in broad-external mode (scanning) will hesitate to commit. A surfer stuck in narrow-internal (overthinking) will miss the wave entirely.
+
+Flexibility is trainable. Like physical flexibility, it improves with deliberate practice.</h3>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 15</span>
+    <h3 class="slide-heading">WHAT HAPPENS WHEN FOCUS FAILS</h3>
+<p class="body-text">The Choking Process — Nideffer &amp; Sagal (2006)</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">1</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Pressure increases</span></div>
+<span class="stat-label">Competition heat, big wave, audience, consequences.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">2</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Muscle tension rises</span></div>
+<span class="stat-label">Body tightens. Breathing shortens. Heart rate spikes.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">3</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Anxiety narrows focus</span></div>
+<span class="stat-label">Tunnel vision. Can’t see the full wave. Miss cues.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">4</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Attention shifts inward</span></div>
+<span class="stat-label">Instead of reading the wave, the surfer is thinking about failing.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">5</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Execution degrades</span></div>
+<span class="stat-label">Late commitment, rushed pop-up, missed pocket, poor timing.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">6</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Negative spiral</span></div>
+<span class="stat-label">Bad ride → more self-criticism → more tension → worse next wave.</span></div>
+<h4 class="slide-sub">The antidote: trained focus flexibility + breathing + re-centering protocol.</h4>
+</div>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 15</span>
+    <h3 class="slide-heading">5 FOCUS EXERCISES FOR SURFERS</h3>
+<h3 class="slide-heading">01</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Candle Focus (Narrow-Ext)</span></div>
+</div>
+<ul class="slide-list">
+<li>Stare at a candle flame for 2 minutes without blinking. When your mind wanders, notice it and return. Trains sustained narrow-external attention.</li>
+</ul>
+<h3 class="slide-heading">02</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Peripheral Vision Walk (Broad-Ext)</span></div>
+</div>
+<ul class="slide-list">
+<li>Walk on the beach. Without moving your eyes, expand awareness to the edges of your visual field. Notice movement at the periphery. Trains broad scanning.</li>
+</ul>
+<h3 class="slide-heading">03</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Quad Switching Drill</span></div>
+</div>
+<ul class="slide-list">
+<li>Sit in the lineup. Cycle through all 4 quadrants: scan the ocean (broad-ext), plan your next wave (broad-int), feel your body (narrow-int), lock onto one point on the horizon (narrow-ext). 15 sec each. Repeat.</li>
+</ul>
+<h3 class="slide-heading">04</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Thought Labeling (Present Anchor)</span></div>
+</div>
+<ul class="slide-list">
+<li>During a session, notice when your mind drifts to past or future. Label it silently: ‘past’ or ‘future.’ Then return to: ‘What’s happening NOW?’ Builds here-and-now discipline.</li>
+</ul>
+<h3 class="slide-heading">05</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">One-Word Mission (Pre-Wave)</span></div>
+</div>
+<ul class="slide-list">
+<li>Before each wave, choose ONE word: ‘commit,’ ‘hold,’ ‘project,’ ‘low.’ That word becomes your entire focus for that ride. One word = maximum clarity.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 15</span>
+    <h3 class="slide-heading">RE-CENTERING PROTOCOL</h3>
+<h3 class="slide-heading">When focus breaks mid-session — use this in under 30 seconds</h3>
+<h3 class="slide-heading">STOP</h3>
+<p class="body-text">Recognize: “My mind has left the present.” Name it: “past” or “future.”</p>
+<h3 class="slide-heading">BREATHE</h3>
+<p class="body-text">One 4-7-8 cycle. Inhale 4, hold 7, exhale 8. Parasympathetic reset.</p>
+<h3 class="slide-heading">FEEL</h3>
+<p class="body-text">Notice 3 things: water temperature, board under feet, wind on face. Anchor to NOW.</p>
+<h3 class="slide-heading">CHOOSE</h3>
+<p class="body-text">Pick ONE word for the next wave. That is your entire focus. Nothing else.</p>
+<h3 class="slide-heading">GO</h3>
+<p class="body-text">Paddle. Commit. Execute. Review AFTER the ride, not during.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">STOP → BREATHE → FEEL → CHOOSE → GO</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 15</span>
+    <h3 class="slide-heading">FOCUS MAP — BY SESSION PHASE</h3>
+<h4 class="slide-sub">Before session</h4>
+<h4 class="slide-sub">Broad Internal</h4>
+<ul class="slide-list">
+<li>Set intention. Review mission. Choose 1 focus word for today.</li>
+</ul>
+<h4 class="slide-sub">Warm-up / land drill</h4>
+<h4 class="slide-sub">Narrow Internal</h4>
+<ul class="slide-list">
+<li>Feel body. Visualize movement. Rehearse sequence mentally.</li>
+</ul>
+<h4 class="slide-sub">Paddle out</h4>
+<h4 class="slide-sub">Broad External</h4>
+<ul class="slide-list">
+<li>Read conditions. Observe other surfers. Find the peak. Position.</li>
+</ul>
+<h4 class="slide-sub">Waiting for waves</h4>
+<h4 class="slide-sub">Broad Ext → Int</h4>
+<ul class="slide-list">
+<li>Scan horizon + plan. Which wave? What strategy? Stay calm.</li>
+</ul>
+<h4 class="slide-sub">Committing to wave</h4>
+<h4 class="slide-sub">Narrow External</h4>
+<ul class="slide-list">
+<li>Lock on. Paddle. No hesitation. Eyes on target. Execute.</li>
+</ul>
+<h4 class="slide-sub">Riding the wave</h4>
+<h4 class="slide-sub">Narrow Ext + switching</h4>
+<ul class="slide-list">
+<li>Read section → execute → recover → read next. Rapid shifts.</li>
+</ul>
+<h4 class="slide-sub">Between waves</h4>
+<h4 class="slide-sub">Broad Internal</h4>
+<ul class="slide-list">
+<li>Debrief last wave silently. Adjust. Reset. Breathe.</li>
+</ul>
+<h4 class="slide-sub">Post-session</h4>
+<h4 class="slide-sub">Broad Internal</h4>
+<ul class="slide-list">
+<li>3 Questions (TSS): What did I want? Was it execution or decision? What caused it?</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 15</span>
+    <h2 class="slide-hero">Focus is</h2>
+<h2 class="slide-hero">the gateway</h2>
+<h2 class="slide-hero">to flow.</h2>
+<p class="body-text">Bennett (2004) studied WCT elite surfers and found their ideal performance state includes:
+
+• Very clear focus and attention on the act of surfing</p>
+<p class="body-text">• No external distractions or preoccupations</p>
+<p class="body-text">• A clear pre-plan and goals for the surf</p>
+<p class="body-text">• Relaxed, calm, and energized at the same time</p>
+<p class="body-text">When all three circles align — Body, Board, Wave — and focus is total, you experience FLOW.</p>
+<p class="body-text">That intersection is what TSS calls the Infinite Circle.</p>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 15</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">FOCUS MODULE</span></div>
+</div>
+<h3 class="slide-heading">Guided Audio / Video</h3>
+<ul class="slide-list">
+<li>FOC-01 — Candle Focus Exercise (3 min)</li>
+<li>FOC-02 — Quad Switching Drill — Guided (5 min)</li>
+<li>FOC-03 — Pre-Session Centering Protocol (3 min)</li>
+<li>FOC-04 — Re-Centering After Loss of Focus (2 min)</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="slide-badge">14 / 15</span>
+    <h3 class="slide-heading">IN TSS, FOCUS IS NOT AN EXTRA.</h3>
+<h3 class="slide-heading">IT IS THE OPERATING SYSTEM.</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Pilar MEN (Mental): Presence, Motivation, Relaxation, Visualization. Presence IS focus. It is the first component of the Mental Pillar because without it, nothing else works.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">The Block System: Each Block requires a different focus type. Block 1 (Preparation) = Broad Internal. Block 2 (Entry) = Broad External. Block 3 (Wave) = Narrow External shifting. Block 4–7 = Rapid switching between all four quadrants.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">The Infinite Circle: Posture → Bottom Turn → Hold → Projection → Maneuver → Recovery. Each step has a different attentional demand. The circle only completes when focus is continuous and flexible.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">The 3 Questions: Post-session self-assessment IS a Broad Internal focus exercise. What did I want? Execution or decision? What caused it? This trains analytical attention.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="slide-badge">15 / 15</span>
+    <h2 class="slide-hero">Focus is not</h2>
+<h2 class="slide-hero">about trying</h2>
+<h2 class="slide-hero">harder.</h2>
+<h2 class="slide-hero">It’s about</h2>
+<h2 class="slide-hero">pointing right.</h2>
+<ul class="slide-list">
+<li>THE SURF SEQUENCE® — ONE WAVE — Focus Module — Nideffer (1976) · Nieri · Bennett (2004) — Enkrateia SA de CV</li>
+</ul>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Focus Science Training — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

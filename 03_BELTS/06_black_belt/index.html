@@ -1,0 +1,1898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSS® Black Belt — Elite Coach Delivery Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean-navy: #0A1628;
+            --signature-cyan: #5AC3E7;
+            --black-accent: #111111;
+            --black-glow: #333333;
+            --text-light: #FFFFFF;
+            --text-secondary: #B0B9C6;
+            --card-bg: rgba(255, 255, 255, 0.08);
+            --card-border: rgba(90, 195, 231, 0.2);
+            --accent-glow: rgba(90, 195, 231, 0.15);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, #0A1628 0%, #0F1F35 100%);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* LAYOUT STRUCTURE */
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* SIDEBAR NAVIGATION */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 1px solid var(--card-border);
+            overflow-y: auto;
+            padding: 32px 24px;
+            z-index: 100;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--signature-cyan);
+            border-radius: 3px;
+        }
+
+        .sidebar-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--signature-cyan);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-logo::before {
+            content: '◆';
+            font-size: 20px;
+        }
+
+        .sidebar-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-item {
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: var(--card-bg);
+            color: var(--signature-cyan);
+            border-left-color: var(--signature-cyan);
+        }
+
+        .nav-item.active {
+            background: rgba(90, 195, 231, 0.15);
+            color: var(--signature-cyan);
+            border-left-color: var(--signature-cyan);
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 280px;
+            right: 0;
+            height: 80px;
+            background: rgba(10, 22, 40, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            z-index: 50;
+        }
+
+        .top-bar-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--signature-cyan), #7DD3F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .top-bar-meta {
+            display: flex;
+            gap: 32px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .meta-label {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 11px;
+            color: var(--signature-cyan);
+            font-weight: 600;
+        }
+
+        /* MAIN CONTENT */
+        .main-content {
+            margin-left: 280px;
+            margin-top: 80px;
+            flex: 1;
+            padding: 48px 40px;
+            max-width: 1400px;
+            margin-right: auto;
+        }
+
+        /* SECTION STYLING */
+        .section {
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .section:nth-child(1) { animation-delay: 0.1s; }
+        .section:nth-child(2) { animation-delay: 0.2s; }
+        .section:nth-child(3) { animation-delay: 0.3s; }
+        .section:nth-child(4) { animation-delay: 0.4s; }
+        .section:nth-child(5) { animation-delay: 0.5s; }
+        .section:nth-child(6) { animation-delay: 0.6s; }
+        .section:nth-child(7) { animation-delay: 0.7s; }
+        .section:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            padding: 80px 60px;
+            background: linear-gradient(135deg, rgba(90, 195, 231, 0.1), rgba(51, 51, 51, 0.1));
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            margin-bottom: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(90, 195, 231, 0.1) 0%, transparent 70%);
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 64px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--signature-cyan), #7DD3F0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            font-weight: 500;
+        }
+
+        .hero-sequences {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            margin-top: 40px;
+            font-family: 'DM Mono', monospace;
+            font-size: 14px;
+        }
+
+        .sequence-badge {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 16px 24px;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .sequence-number {
+            color: var(--signature-cyan);
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .sequence-label {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* SECTION HEADERS */
+        .section-header {
+            margin-bottom: 32px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--text-light);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 40px;
+            background: linear-gradient(180deg, var(--signature-cyan), rgba(90, 195, 231, 0.3));
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        /* IDENTITY SECTION */
+        .identity-block {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .identity-block:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--signature-cyan);
+            box-shadow: 0 8px 32px rgba(90, 195, 231, 0.1);
+        }
+
+        .identity-quote {
+            font-size: 18px;
+            color: var(--signature-cyan);
+            font-weight: 500;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .identity-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* SEQUENCE CARDS */
+        .sequence-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+            gap: 24px;
+        }
+
+        .sequence-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .sequence-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--signature-cyan);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(90, 195, 231, 0.15);
+        }
+
+        .sequence-card-header {
+            padding: 28px;
+            background: linear-gradient(135deg, rgba(90, 195, 231, 0.1), rgba(51, 51, 51, 0.1));
+            border-bottom: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .sequence-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--signature-cyan);
+        }
+
+        .sequence-card-number {
+            font-family: 'DM Mono', monospace;
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--black-glow);
+            opacity: 0.6;
+        }
+
+        .sequence-card-content {
+            padding: 28px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .sequence-card.expanded .sequence-card-content {
+            max-height: 800px;
+        }
+
+        .sequence-card-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        .expand-icon {
+            font-size: 20px;
+            color: var(--signature-cyan);
+            transition: transform 0.4s ease;
+            margin-left: 16px;
+        }
+
+        .sequence-card.expanded .expand-icon {
+            transform: rotate(180deg);
+        }
+
+        /* PILLAR CARDS */
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 24px;
+        }
+
+        .pillar-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pillar-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--signature-cyan);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .pillar-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--signature-cyan);
+            transform: translateY(-8px);
+        }
+
+        .pillar-card:hover::before {
+            opacity: 1;
+        }
+
+        .pillar-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--signature-cyan);
+            margin-bottom: 16px;
+        }
+
+        .pillar-points {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .pillar-point {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .pillar-point::before {
+            content: '›';
+            color: var(--signature-cyan);
+            font-size: 20px;
+            font-weight: bold;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .pillar-point-text {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* KNOWLEDGE TRANSMISSION */
+        .knowledge-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .knowledge-item {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 20px 24px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .knowledge-item:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--signature-cyan);
+            transform: translateX(8px);
+        }
+
+        .knowledge-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(90, 195, 231, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--signature-cyan);
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+
+        .knowledge-text {
+            flex: 1;
+        }
+
+        .knowledge-title {
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .knowledge-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* EVALUATION SECTION */
+        .evaluation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .eval-metric {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .eval-metric:hover {
+            background: rgba(255, 255, 255, 0.12);
+            border-color: var(--signature-cyan);
+            transform: scale(1.05);
+        }
+
+        .eval-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--signature-cyan);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .eval-scale {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .eval-scale strong {
+            color: var(--text-light);
+        }
+
+        /* GRADUATION SECTION */
+        .graduation-checklist {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .checklist-items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .checklist-item {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 16px;
+            background: rgba(90, 195, 231, 0.05);
+            border-radius: 8px;
+            border: 1px solid rgba(90, 195, 231, 0.1);
+        }
+
+        .checklist-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--signature-cyan);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .checklist-checkbox:hover {
+            background: rgba(90, 195, 231, 0.2);
+        }
+
+        .checklist-checkbox.checked {
+            background: var(--signature-cyan);
+            color: var(--ocean-navy);
+            font-weight: bold;
+        }
+
+        .checklist-text {
+            font-size: 15px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* COACH CERTIFICATION */
+        .certification-path {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .certification-level {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 24px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .certification-level.current {
+            background: rgba(90, 195, 231, 0.1);
+            border-color: var(--signature-cyan);
+        }
+
+        .certification-level.unlocked {
+            background: rgba(90, 195, 231, 0.05);
+            border-color: rgba(90, 195, 231, 0.4);
+        }
+
+        .certification-level::before {
+            content: '✓';
+            position: absolute;
+            left: 16px;
+            width: 24px;
+            height: 24px;
+            background: var(--signature-cyan);
+            color: var(--ocean-navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .certification-level.current::before {
+            content: '⧐';
+            font-size: 16px;
+            background: transparent;
+            color: var(--signature-cyan);
+        }
+
+        .certification-level.locked::before {
+            content: '○';
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .certification-title {
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 4px;
+        }
+
+        .certification-requirement {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* INFINITE PURSUIT SECTION */
+        .infinite-pursuit {
+            background: linear-gradient(135deg, rgba(90, 195, 231, 0.1), rgba(51, 51, 51, 0.1));
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 60px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .infinite-pursuit::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(90, 195, 231, 0.08) 0%, transparent 70%);
+            animation: pulse-glow 6s ease-in-out infinite;
+        }
+
+        .infinite-pursuit-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .infinite-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--signature-cyan);
+            margin-bottom: 24px;
+        }
+
+        .infinite-quote {
+            font-size: 20px;
+            color: var(--text-light);
+            font-style: italic;
+            margin-bottom: 32px;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .infinite-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 700px;
+            margin: 0 auto;
+            margin-bottom: 24px;
+        }
+
+        .infinite-mantra {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            color: var(--signature-cyan);
+            font-weight: 600;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid var(--card-border);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .top-bar-meta {
+                gap: 16px;
+            }
+
+            .main-content {
+                padding: 40px 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                left: -280px;
+                transition: left 0.3s ease;
+                z-index: 200;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .top-bar {
+                left: 0;
+                padding: 0 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-top: 80px;
+                padding: 32px 20px;
+            }
+
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .section-title {
+                font-size: 32px;
+            }
+
+            .sequence-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pillar-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-sequences {
+                flex-wrap: wrap;
+                gap: 24px;
+            }
+
+            .top-bar-meta {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        /* UTILITY */
+        .hidden {
+            display: none !important;
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--signature-cyan);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7DD3F0;
+        }
+        /* VIDEO CARDS */
+        .video-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: rgba(90,195,231,0.06);
+            border: 1px solid rgba(90,195,231,0.15);
+            border-left: 3px solid #5AC3E7;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            cursor: pointer;
+        }
+        
+        .video-card:hover {
+            background: rgba(90,195,231,0.12);
+            border-color: rgba(90,195,231,0.3);
+        }
+        
+        .video-code {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: #5AC3E7;
+            background: rgba(90,195,231,0.12);
+            padding: 4px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        
+        .video-info {
+            flex: 1;
+        }
+        
+        .video-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #FFFFFF;
+        }
+        
+        .video-duration {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: #8A95A8;
+            margin-top: 2px;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-logo">TSS Black Belt</div>
+        <nav class="sidebar-nav">
+            <div class="nav-item active" data-section="hero">Hero</div>
+            <div class="nav-item" data-section="identity">Identity</div>
+            <div class="nav-item" data-section="onewave">ONE WAVE</div>
+            <div class="nav-item" data-section="safety">Safety</div>
+            <div class="nav-item" data-section="continuity">Level Continuity</div>
+            <div class="nav-item" data-section="sequences">Sequences #23-#26</div>
+            <div class="nav-item" data-section="pillars">Four Pillar Mastery</div>
+            <div class="nav-item" data-section="knowledge">Knowledge Transmission</div>
+            <div class="nav-item" data-section="evaluation">Evaluation</div>
+            <div class="nav-item" data-section="graduation">Graduation</div>
+            <div class="nav-item" data-section="certification">Coach Certification</div>
+            <div class="nav-item" data-section="infinite">Infinite Pursuit</div>
+        </nav>
+    </aside>
+
+    <!-- TOP BAR -->
+    <header class="top-bar">
+        <div class="top-bar-title">Black Belt — Elite</div>
+        <div class="top-bar-meta">
+            <div class="meta-item">
+                <div class="meta-label">Sequences</div>
+                <div>#23–#26</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Condition Limit</div>
+                <div>None</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">Path</div>
+                <div>Mastery + Teaching</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- HERO/COVER SECTION -->
+        <section class="section hero" id="hero">
+            <div class="hero-content">
+                <div class="hero-title">TSS® Black Belt</div>
+                <div class="hero-subtitle">Mastery, Knowledge & Legacy</div>
+                <div class="hero-sequences">
+                    <div class="sequence-badge">
+                        <div class="sequence-number">#23</div>
+                        <div class="sequence-label">Total Sequence Review</div>
+                    </div>
+                    <div class="sequence-badge">
+                        <div class="sequence-number">#24</div>
+                        <div class="sequence-label">Deep Pillar Integration</div>
+                    </div>
+                    <div class="sequence-badge">
+                        <div class="sequence-number">#25</div>
+                        <div class="sequence-label">Knowledge & Transmission</div>
+                    </div>
+                    <div class="sequence-badge">
+                        <div class="sequence-number">#26</div>
+                        <div class="sequence-label">Maximum Potential</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- IDENTITY SECTION -->
+        <section class="section" id="identity">
+            <div class="section-header">
+                <h2 class="section-title">Identity</h2>
+            </div>
+            <div class="identity-block">
+                <div class="identity-quote">
+                    "Purple asked: What kind of surfer? Brown asked: Can you execute at the highest level? Black asks: Do you UNDERSTAND the system deeply enough to master it AND teach it?"
+                </div>
+                <div class="identity-text">
+                    <p style="margin-bottom: 16px;">Black Belt is not the end. It is the beginning of a deeper journey.</p>
+                    <p style="margin-bottom: 16px; font-weight: 600; color: var(--signature-cyan);">Governing Principle: A Black Belt is not just the best surfer — they are the most complete surfer.</p>
+                    <p>Completeness means mastery across all four pillars simultaneously, deep understanding of TSS methodology, ability to transmit knowledge, and relentless pursuit of maximum personal potential. The Black Belt is both a destination and a threshold.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ONE WAVE SECTION -->
+        <section class="section" id="onewave">
+            <div class="section-header">
+                <h2 class="section-title">ONE WAVE — The Infinite Pursuit</h2>
+            </div>
+            <p class="section-description">At Black Belt, you no longer learn the method. You become the method. The mind, body, board, and wave are one system.</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--signature-cyan);">Beyond Technique — Understanding</div>
+                </div>
+                <div class="card-content">
+                    <p>At Black Belt, you don't just execute — you UNDERSTAND. You know why P·R·C·H works biomechanically. You know why the Cruz creates a rail change through oblique rotation. You know why the Infinite Circle repeats. This understanding is not academic — it is felt. When you watch another surfer, you see the blocks. When you feel your own ride, you diagnose in real time. ONE WAVE's principle applies at its deepest level: one wave, one intention, complete awareness.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--signature-cyan);">Teaching as the Deepest Learning</div>
+                </div>
+                <div class="card-content">
+                    <p>The moment you explain the method to someone else, you discover what you truly understand and what you only assumed you understood. Teaching is the ultimate mirror. At Black Belt, every time you articulate a concept to another surfer, you refine your own comprehension. This is why Sequence #25 (Knowledge & Transmission) exists — it is not a service requirement, it is a learning accelerator.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--signature-cyan);">The Psychology Toolkit — Mastery Level</div>
+                </div>
+                <div class="card-content">
+                    <p><strong>At Black Belt, mental tools are not occasional interventions — they are daily practice:</strong></p>
+                    <ul style="list-style-position: inside; margin-left: 12px; margin-top: 10px;">
+                        <li style="margin-bottom: 8px;"><strong>Visualization Protocol:</strong> 5-minute structured visualization before every session. See the execution chain (Posture → BT → Projection/Choke → Cruz/Tapaloco → Maneuver → Granada/Touch the Board)</li>
+                        <li style="margin-bottom: 8px;"><strong>Focus Triggers:</strong> Personal cue words that activate concentration instantly</li>
+                        <li style="margin-bottom: 8px;"><strong>Relaxation Techniques:</strong> Breathing patterns for pre-competition, between waves, after wipeouts</li>
+                        <li style="margin-bottom: 8px;"><strong>Motivation Framework:</strong> Intrinsic motivation maintenance over months and years</li>
+                        <li style="margin-bottom: 8px;"><strong>Goal Architecture:</strong> Short/mid/long term goals with measurable criteria, reviewed monthly</li>
+                        <li style="margin-bottom: 8px;"><strong>Self-Analysis Protocol:</strong> Post-session journaling — what worked, what broke, what's next</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--signature-cyan);">Biology-Informed Performance</div>
+                </div>
+                <div class="card-content">
+                    <p><strong>Understanding your body at performance level:</strong></p>
+                    <ul style="list-style-position: inside; margin-left: 12px; margin-top: 10px;">
+                        <li style="margin-bottom: 8px;">How muscles generate power in surfing (kinetic chain: ankles → knees → hips → obliques → shoulders)</li>
+                        <li style="margin-bottom: 8px;">How recovery actually works (active recovery > passive rest)</li>
+                        <li style="margin-bottom: 8px;">Nutrition for sustained sessions (hydration timing, energy management)</li>
+                        <li style="margin-bottom: 8px;">Sleep's role in skill consolidation (neural pathway strengthening happens during sleep)</li>
+                        <li style="margin-bottom: 8px;">How age affects ceiling and how to adapt training accordingly</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--signature-cyan);">The Pursuit Has No End</div>
+                </div>
+                <div class="card-content">
+                    <p>Black Belt is not a destination. The method produces surfers who never stop refining. The ocean changes every day. Your body changes every year. The pursuit of your maximum potential is infinite — and that is the beauty of it.</p>
+                    <p style="margin-top: 12px;"><em>"Mastery is not a destination. It is a standard you hold yourself to every single session."</em></p>
+                </div>
+            </div>
+
+            <div class="content-block" style="margin-top: 30px; padding: 20px; background: rgba(90, 195, 231, 0.08); border-left: 3px solid var(--signature-cyan); border-radius: 4px;">
+                <p><strong>Coach Notes:</strong> At Black Belt, the coach is a consultant. The surfer designs sessions, identifies priorities, and self-corrects. Coach intervention is strategic, not directive. The primary coaching question shifts from "What should you work on?" to "What did you discover today?"</p>
+            </div>
+        </section>
+
+        <!-- SAFETY SECTION -->
+        <section class="section" id="safety">
+            <div class="section-header">
+                <h2 class="section-title">Safety — Complete Autonomy</h2>
+            </div>
+            <p class="section-description">You Are Your Own Safety System</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--signature-cyan);">No Formal Condition Limit</div>
+                </div>
+                <div class="card-content">
+                    <p>The Black Belt surfer has demonstrated the judgment to assess any condition and make appropriate go/no-go decisions. Safety is no longer managed by external criteria — it is managed by personal self-awareness and decision-making.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--signature-cyan);">Self-Regulation Includes</div>
+                </div>
+                <div class="card-content">
+                    <ul style="list-style-position: inside; margin-left: 12px;">
+                        <li style="margin-bottom: 8px;">Knowing personal limits in different conditions</li>
+                        <li style="margin-bottom: 8px;">Recognizing fatigue before it becomes dangerous</li>
+                        <li style="margin-bottom: 8px;">Managing adrenaline after failed attempts in critical waves</li>
+                        <li style="margin-bottom: 8px;">Choosing to end a session when performance or conditions deteriorate</li>
+                        <li style="margin-bottom: 8px;">Understanding equipment limits (board choice for wave size)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--signature-cyan);">Overhead and Critical Conditions</div>
+                </div>
+                <div class="card-content">
+                    <ul style="list-style-position: inside; margin-left: 12px;">
+                        <li style="margin-bottom: 8px;">Overhead surf is a normal training environment at Black Belt</li>
+                        <li style="margin-bottom: 8px;">The surfer understands hold-down protocol, wave interval timing, and energy conservation</li>
+                        <li style="margin-bottom: 8px;">Step-up and gun board selection for big wave sessions</li>
+                        <li style="margin-bottom: 8px;"><strong>Never surf alone in conditions beyond 2x overhead</strong></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--signature-cyan);">Recovery as Safety</div>
+                </div>
+                <div class="card-content">
+                    <p>Physical recovery protocol is part of safety, not separate from it. A surfer who trains without recovery is degrading their safety margins. Nutrition, hydration, sleep, and active recovery are SAFETY TOOLS at this level.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 20px;">
+                <div class="card-header">
+                    <div class="card-title" style="color: var(--signature-cyan);">Teaching Safety to Others</div>
+                </div>
+                <div class="card-content">
+                    <ul style="list-style-position: inside; margin-left: 12px;">
+                        <li style="margin-bottom: 8px;">As a pre-coach, the Black Belt surfer must model safety behavior</li>
+                        <li style="margin-bottom: 8px;">If teaching/mentoring, the safety standard is HIGHER than personal sessions</li>
+                        <li style="margin-bottom: 8px;">Incident reporting remains mandatory at every level, including Black Belt</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEVEL CONTINUITY SECTION -->
+        <section class="section" id="continuity">
+            <div class="section-header">
+                <h2 class="section-title">Level Continuity — The Complete Journey</h2>
+            </div>
+            <p class="section-description">Your progression through the entire TSS Belt System</p>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title" style="font-size: 18px; color: var(--signature-cyan);">The Full TSS Journey</div>
+                </div>
+                <div class="card-content" style="font-family: 'DM Mono', monospace; line-height: 2;">
+                    <div style="text-align: center;">
+                        <p><strong style="color: var(--text-secondary);">White Belt (#1-#5)</strong><br><span style="font-size: 13px; color: var(--text-secondary);">DISCOVERY & SAFETY</span></p>
+                        <p style="color: var(--signature-cyan); margin-top: 5px;">↓ Completed</p>
+                        
+                        <p style="margin-top: 15px;"><strong style="color: var(--text-secondary);">Yellow Belt (#6-#7)</strong><br><span style="font-size: 13px; color: var(--text-secondary);">FOUNDATION & CONFIDENCE</span></p>
+                        <p style="color: var(--signature-cyan); margin-top: 5px;">↓ Completed</p>
+                        
+                        <p style="margin-top: 15px;"><strong style="color: var(--text-secondary);">Blue Belt (#8-#13)</strong><br><span style="font-size: 13px; color: var(--text-secondary);">CONSISTENCY & INDEPENDENCE</span></p>
+                        <p style="color: var(--signature-cyan); margin-top: 5px;">↓ Completed</p>
+                        
+                        <p style="margin-top: 15px;"><strong style="color: var(--text-secondary);">Purple Belt (#14-#17)</strong><br><span style="font-size: 13px; color: var(--text-secondary);">COMMITMENT & EXPRESSION</span></p>
+                        <p style="color: var(--signature-cyan); margin-top: 5px;">↓ Completed</p>
+                        
+                        <p style="margin-top: 15px;"><strong style="color: var(--text-secondary);">Brown Belt (#18-#22)</strong><br><span style="font-size: 13px; color: var(--text-secondary);">MASTERY, AERIALS & COMPETITION</span></p>
+                        <p style="color: var(--signature-cyan); margin-top: 5px;">↓</p>
+                        
+                        <p style="margin-top: 15px; padding: 15px; background: rgba(17, 17, 17, 0.4); border-left: 3px solid var(--signature-cyan);"><strong style="color: var(--signature-cyan);">★ BLACK BELT (#23-#26)</strong><br><span style="font-size: 13px; color: var(--signature-cyan);">KNOWLEDGE, LEGACY & MAXIMUM POTENTIAL</span><br><span style="font-size: 12px; color: var(--text-secondary); margin-top: 5px;">← YOU ARE HERE</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-2" style="margin-top: 30px;">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title" style="font-size: 18px; color: var(--signature-cyan);">What You've Already Mastered</div>
+                    </div>
+                    <div class="card-content" style="max-height: none;">
+                        <p style="font-weight: 600; color: var(--signature-cyan); margin-bottom: 12px;">White Belt</p>
+                        <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                            <li style="margin-bottom: 6px;">Board control, sweet spot, pop-up, power stance, safe dismount</li>
+                        </ul>
+
+                        <p style="font-weight: 600; color: var(--signature-cyan); margin-bottom: 12px; margin-top: 15px;">Yellow Belt</p>
+                        <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                            <li style="margin-bottom: 6px;">Paddling speeds, pocket awareness, angled takeoff, green wave entry</li>
+                        </ul>
+
+                        <p style="font-weight: 600; color: var(--signature-cyan); margin-bottom: 12px; margin-top: 15px;">Blue Belt</p>
+                        <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                            <li style="margin-bottom: 6px;">Bottom turns, linking, Cruz/Tapaloco introduction, wave completion, consistency</li>
+                        </ul>
+
+                        <p style="font-weight: 600; color: var(--signature-cyan); margin-bottom: 12px; margin-top: 15px;">Purple Belt</p>
+                        <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                            <li style="margin-bottom: 6px;">Deep commitment, variety, personal style, expanded repertoire, session ownership</li>
+                        </ul>
+
+                        <p style="font-weight: 600; color: var(--signature-cyan); margin-bottom: 12px; margin-top: 15px;">Brown Belt</p>
+                        <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                            <li style="margin-bottom: 6px;">8/10+ mastery, aerials, combos, condition adaptation, competition readiness</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-title" style="font-size: 18px; color: var(--signature-cyan);">What Black Belt Adds</div>
+                    </div>
+                    <div class="card-content" style="max-height: none;">
+                        <p style="font-weight: 600; color: var(--signature-cyan); margin-bottom: 12px;">Complete Mastery</p>
+                        <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                            <li style="margin-bottom: 6px;">ALL sequences at 8-10/10 (personal maximum)</li>
+                        </ul>
+
+                        <p style="font-weight: 600; color: var(--signature-cyan); margin-bottom: 12px; margin-top: 15px;">Integration & Understanding</p>
+                        <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                            <li style="margin-bottom: 6px;">Deep four-pillar integration (Physical + Technical + Tactical + Mental)</li>
+                            <li style="margin-bottom: 6px;">Knowledge transmission capacity (can explain and demonstrate the method)</li>
+                        </ul>
+
+                        <p style="font-weight: 600; color: var(--signature-cyan); margin-bottom: 12px; margin-top: 15px;">Advanced Tools</p>
+                        <ul style="list-style-position: inside; margin-left: 12px; font-size: 13px;">
+                            <li style="margin-bottom: 6px;">Psychology toolkit at mastery level</li>
+                            <li style="margin-bottom: 6px;">Biology-informed performance and recovery</li>
+                            <li style="margin-bottom: 6px;">Maximum personal potential pursuit</li>
+                            <li style="margin-bottom: 6px;">Pre-coaching competency (foundation for L1 Coach certification)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 30px;">
+                <div class="card-header">
+                    <div class="card-title" style="font-size: 18px; color: var(--signature-cyan);">What Comes After Black Belt: The Coach Certification Pathway</div>
+                </div>
+                <div class="card-content">
+                    <p style="margin-bottom: 16px;"><strong>Black Belt is the end of the student journey. It is the beginning of the teacher journey.</strong></p>
+                    
+                    <div style="background: rgba(90, 195, 231, 0.08); padding: 15px; border-radius: 4px; margin-bottom: 12px;">
+                        <p style="font-size: 13px; margin-bottom: 8px;"><strong style="color: var(--signature-cyan);">Level 1 (Foundation Coach)</strong><br>Teach White + Yellow. <strong>Requires:</strong> Blue Belt minimum</p>
+                    </div>
+
+                    <div style="background: rgba(90, 195, 231, 0.08); padding: 15px; border-radius: 4px; margin-bottom: 12px;">
+                        <p style="font-size: 13px; margin-bottom: 8px;"><strong style="color: var(--signature-cyan);">Level 2 (Practitioner Coach)</strong><br>Teach up to Blue. <strong>Requires:</strong> Purple Belt minimum</p>
+                    </div>
+
+                    <div style="background: rgba(90, 195, 231, 0.08); padding: 15px; border-radius: 4px; margin-bottom: 12px;">
+                        <p style="font-size: 13px; margin-bottom: 8px;"><strong style="color: var(--signature-cyan);">Level 3 (Advanced Coach)</strong><br>Teach up to Brown. Mentor L1/L2. <strong>Requires:</strong> Brown Belt minimum</p>
+                    </div>
+
+                    <div style="background: rgba(90, 195, 231, 0.08); padding: 15px; border-radius: 4px; margin-bottom: 12px;">
+                        <p style="font-size: 13px; margin-bottom: 8px;"><strong style="color: var(--signature-cyan);">Level 4 (Master Coach)</strong><br>All levels. <strong>Requires:</strong> Black Belt minimum</p>
+                    </div>
+
+                    <div style="background: rgba(90, 195, 231, 0.08); padding: 15px; border-radius: 4px;">
+                        <p style="font-size: 13px; margin-bottom: 8px;"><strong style="color: var(--signature-cyan);">Level 5 (Coach Educator)</strong><br>Forms and certifies coaches. <strong>Requires:</strong> Black Belt + significant coaching experience</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SEQUENCES #23-#26 SECTION -->
+        <section class="section" id="sequences">
+            <div class="section-header">
+                <h2 class="section-title">Sequences #23–#26</h2>
+                <p class="section-description">The four defining sequences of Black Belt mastery. Click to expand.</p>
+            </div>
+            <div class="sequence-cards">
+                <div class="sequence-card" data-sequence="23">
+                    <div class="sequence-card-header">
+                        <div>
+                            <div class="sequence-card-title">Total Sequence Review</div>
+                            <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">At Mastery Level</div>
+                        </div>
+                        <div class="expand-icon">▼</div>
+                    </div>
+                    <div class="sequence-card-content">
+                        <div class="sequence-card-text">
+                            Every sequence #1–#22 demonstrated at 8–10/10. The surfer can articulate what each teaches, why it exists in that order, and how it connects to sequences before and after.
+                            <br><br>
+                            <strong>Core Outcome:</strong> This is comprehension, not repetition. The surfer has moved from "doing the sequences" to "understanding the sequences" to "understanding why the sequences exist."
+                            <br><br>
+                            <strong>Evidence of Mastery:</strong> The surfer can predict what comes next in a sequence before it arrives. They can diagnose where a broken sequence comes from using the Block System. They can explain the progression logic without referencing materials.
+                        </div>
+                    
+                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--card-border);">
+                        <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">System Mastery Videos</div>
+                        <div class="video-card">
+                            <div class="video-code">BK-01</div>
+                            <div class="video-info">
+                                <div class="video-title">Complete TSS Methodology Explained by the Surfer</div>
+                                <div class="video-duration">5-6 min</div>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-code">BK-02</div>
+                            <div class="video-info">
+                                <div class="video-title">All Sequences #1-#22 at 8-10/10 Demonstration</div>
+                                <div class="video-duration">8-10 min</div>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-code">BK-03</div>
+                            <div class="video-info">
+                                <div class="video-title">Block System Diagnostic in Action — Analyzing Another Surfer</div>
+                                <div class="video-duration">3-4 min</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+
+                <div class="sequence-card" data-sequence="24">
+                    <div class="sequence-card-header">
+                        <div>
+                            <div class="sequence-card-title">Deep Pillar Integration</div>
+                            <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">All Four Simultaneously</div>
+                        </div>
+                        <div class="expand-icon">▼</div>
+                    </div>
+                    <div class="sequence-card-content">
+                        <div class="sequence-card-text">
+                            All four pillars operating at deepest level simultaneously:
+                            <br><br>
+                            <strong>Physical:</strong> Recovery protocols, nutrition planning, sleep optimization, surf-specific biology, injury prevention and management.
+                            <br><br>
+                            <strong>Technical:</strong> Every maneuver at personal maximum. Energy efficiency: maximum output, minimum waste.
+                            <br><br>
+                            <strong>Tactical:</strong> Scoring 8+, heat management automatic, wave prioritization strategic, pre-competition planning systematic.
+                            <br><br>
+                            <strong>Mental:</strong> Full psychology toolkit active—visualization, focus triggers, relaxation, motivation, goal setting, composure under pressure.
+                            <br><br>
+                            <strong>Core Outcome:</strong> The surfer is not managing pillars separately. They operate as one integrated system.
+                        </div>
+                    
+                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--card-border);">
+                        <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Pillar Integration Videos</div>
+                        <div class="video-card">
+                            <div class="video-code">BK-04</div>
+                            <div class="video-info">
+                                <div class="video-title">Physical Pillar — Recovery Protocol Demonstration</div>
+                                <div class="video-duration">3 min</div>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-code">BK-05</div>
+                            <div class="video-info">
+                                <div class="video-title">Technical Pillar — Personal Maximum Execution</div>
+                                <div class="video-duration">3 min</div>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-code">BK-06</div>
+                            <div class="video-info">
+                                <div class="video-title">Tactical Pillar — Deep Wave Reading & Positioning</div>
+                                <div class="video-duration">3 min</div>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-code">BK-07</div>
+                            <div class="video-info">
+                                <div class="video-title">Mental Pillar — Visualization Protocol Walk-through</div>
+                                <div class="video-duration">3 min</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+
+                <div class="sequence-card" data-sequence="25">
+                    <div class="sequence-card-header">
+                        <div>
+                            <div class="sequence-card-title">Knowledge & Transmission</div>
+                            <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Pre-Coach Competency</div>
+                        </div>
+                        <div class="expand-icon">▼</div>
+                    </div>
+                    <div class="sequence-card-content">
+                        <div class="sequence-card-text">
+                            The surfer demonstrates ability to explain and transmit the method:
+                            <br><br>
+                            ✓ Explain TSS methodology structure (belts, sequences, blocks, Infinite Circle)
+                            <br>✓ Diagnose errors using Block System and Three Circles
+                            <br>✓ Articulate execution chains (FS/BS) with named phases
+                            <br>✓ Teach core sequences with technical accuracy
+                            <br>✓ Identify learning patterns in other surfers
+                            <br><br>
+                            <strong>Core Outcome:</strong> This is pre-coach competency. The surfer has moved from mastering the system to understanding how to transmit it.
+                        </div>
+                    
+                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--card-border);">
+                        <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Knowledge & Transmission Videos</div>
+                        <div class="video-card">
+                            <div class="video-code">BK-08</div>
+                            <div class="video-info">
+                                <div class="video-title">Teaching the Cruz — How to Explain Rail Change to a Blue Belt</div>
+                                <div class="video-duration">3 min</div>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-code">BK-09</div>
+                            <div class="video-info">
+                                <div class="video-title">Teaching the Tapaloco — Backside Rail Change Explanation</div>
+                                <div class="video-duration">3 min</div>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-code">BK-10</div>
+                            <div class="video-info">
+                                <div class="video-title">Diagnosing Errors Using Three Circles of Power</div>
+                                <div class="video-duration">3 min</div>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-code">BK-11</div>
+                            <div class="video-info">
+                                <div class="video-title">Designing a Session for Another Surfer</div>
+                                <div class="video-duration">3 min</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+
+                <div class="sequence-card" data-sequence="26">
+                    <div class="sequence-card-header">
+                        <div>
+                            <div class="sequence-card-title">Maximum Personal Potential</div>
+                            <div style="font-size: 13px; color: var(--text-secondary); margin-top: 8px;">Never Truly Complete</div>
+                        </div>
+                        <div class="expand-icon">▼</div>
+                    </div>
+                    <div class="sequence-card-content">
+                        <div class="sequence-card-text">
+                            Define and pursue maximum personal potential using biology, psychology, and complete TSS method.
+                            <br><br>
+                            The surfer identifies:
+                            <br>→ What type of surfer they are at their peak
+                            <br>→ What conditions they perform best in
+                            <br>→ Which expressions define their style
+                            <br>→ Where their ceiling is and how to push it
+                            <br><br>
+                            <strong>Core Outcome:</strong> This sequence is never truly "complete." It is the foundation of the Infinite Circle—the continuous refinement that defines Black Belt and beyond.
+                        </div>
+                    
+                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--card-border);">
+                        <div style="font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.05em;">Maximum Potential Videos</div>
+                        <div class="video-card">
+                            <div class="video-code">BK-12</div>
+                            <div class="video-info">
+                                <div class="video-title">Defining Your Surfing Identity</div>
+                                <div class="video-duration">2-3 min</div>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-code">BK-13</div>
+                            <div class="video-info">
+                                <div class="video-title">Condition Mastery — Adapting Style to Any Break</div>
+                                <div class="video-duration">3 min</div>
+                            </div>
+                        </div>
+                        <div class="video-card">
+                            <div class="video-code">BK-14</div>
+                            <div class="video-info">
+                                <div class="video-title">Maintaining Peak Performance Over Time</div>
+                                <div class="video-duration">2-3 min</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOUR PILLAR MASTERY SECTION -->
+        <section class="section" id="pillars">
+            <div class="section-header">
+                <h2 class="section-title">Four Pillar Mastery</h2>
+                <p class="section-description">Black Belt excellence across all dimensions of the surfer.</p>
+            </div>
+            <div class="pillar-grid">
+                <div class="pillar-card">
+                    <div class="pillar-name">Physical Pillar</div>
+                    <div class="pillar-points">
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Recovery Protocols:</strong> Active recovery, nutrition planning, sleep optimization</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Fitness:</strong> Surf-specific fitness maintained at peak year-round</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Biology:</strong> How muscles generate power in surfing, how age affects performance</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Injury Management:</strong> Prevention protocols and recovery strategies</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-name">Technical Pillar</div>
+                    <div class="pillar-points">
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Mastery:</strong> All 26 sequences at 8–10/10</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Style Signature:</strong> Riding is immediately recognizable</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Efficiency:</strong> Maximum output, minimum waste</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Wave Reading:</strong> Can predict wave behavior 8–10 seconds ahead</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-name">Tactical Pillar</div>
+                    <div class="pillar-points">
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Scoring Mastery:</strong> What constitutes 8+ rides</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Heat Management:</strong> Automatic and instinctive</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Wave Priority:</strong> Strategic reading in competitive and free-surf</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Planning:</strong> Long-term training design and competition prep</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-name">Mental Pillar</div>
+                    <div class="pillar-points">
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Visualization Protocol:</strong> Structured and regular</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Focus Triggers:</strong> Personal cues for lock-in</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Relaxation:</strong> Breathing, body scan, progressive techniques</div>
+                        </div>
+                        <div class="pillar-point">
+                            <div class="pillar-point-text"><strong>Motivation Framework:</strong> Intrinsic drive and goal hierarchy</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KNOWLEDGE TRANSMISSION SECTION -->
+        <section class="section" id="knowledge">
+            <div class="section-header">
+                <h2 class="section-title">Knowledge Transmission</h2>
+                <p class="section-description">What Black Belt surfers must be able to explain and teach.</p>
+            </div>
+            <div class="knowledge-list">
+                <div class="knowledge-item">
+                    <div class="knowledge-icon">1</div>
+                    <div class="knowledge-text">
+                        <div class="knowledge-title">The Complete Belt System</div>
+                        <div class="knowledge-description">Structure, progression, and distinctions between White through Black, including how each belt builds on the previous</div>
+                    </div>
+                </div>
+
+                <div class="knowledge-item">
+                    <div class="knowledge-icon">2</div>
+                    <div class="knowledge-text">
+                        <div class="knowledge-title">The Block System</div>
+                        <div class="knowledge-description">How sequences are built from blocks (0–7) and how to diagnose which block is failing in a broken sequence</div>
+                    </div>
+                </div>
+
+                <div class="knowledge-item">
+                    <div class="knowledge-icon">3</div>
+                    <div class="knowledge-text">
+                        <div class="knowledge-title">The Infinite Circle</div>
+                        <div class="knowledge-description">How the loop operates at each belt level and why mastery requires continuous refinement, not a final destination</div>
+                    </div>
+                </div>
+
+                <div class="knowledge-item">
+                    <div class="knowledge-icon">4</div>
+                    <div class="knowledge-text">
+                        <div class="knowledge-title">Three Circles of Power</div>
+                        <div class="knowledge-description">Both Surfer and Coach versions: how root cause analysis works for both performance and teaching diagnosis</div>
+                    </div>
+                </div>
+
+                <div class="knowledge-item">
+                    <div class="knowledge-icon">5</div>
+                    <div class="knowledge-text">
+                        <div class="knowledge-title">P·R·C·H Framework</div>
+                        <div class="knowledge-description">Purpose, Reason, Consequence, Habit—the progression model for how surfers internalize sequences</div>
+                    </div>
+                </div>
+
+                <div class="knowledge-item">
+                    <div class="knowledge-icon">6</div>
+                    <div class="knowledge-text">
+                        <div class="knowledge-title">TSS Execution Sequences</div>
+                        <div class="knowledge-description">Frontside and Backside chains with all named phases: Initiate, Engage, Project, Express, Recovery, Return</div>
+                    </div>
+                </div>
+
+                <div class="knowledge-item">
+                    <div class="knowledge-icon">7</div>
+                    <div class="knowledge-text">
+                        <div class="knowledge-title">The 4 Pillars & Safety Layer</div>
+                        <div class="knowledge-description">How Physical, Technical, Tactical, Mental operate together with foundational safety principles</div>
+                    </div>
+                </div>
+
+                <div class="knowledge-item">
+                    <div class="knowledge-icon">8</div>
+                    <div class="knowledge-text">
+                        <div class="knowledge-title">Diagnostic Process</div>
+                        <div class="knowledge-description">How to identify failing blocks, use Three Circles for root cause, and prescribe sequence-based remediation</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVALUATION SECTION -->
+        <section class="section" id="evaluation">
+            <div class="section-header">
+                <h2 class="section-title">Evaluation at Black Belt</h2>
+                <p class="section-description">Eight core metrics for assessing Black Belt performance and readiness.</p>
+            </div>
+            <div class="evaluation-grid">
+                <div class="eval-metric">
+                    <div class="eval-label">Focus</div>
+                    <div class="eval-scale">1 = Distracted<br><strong>5 = Locked In</strong></div>
+                </div>
+
+                <div class="eval-metric">
+                    <div class="eval-label">Composure</div>
+                    <div class="eval-scale">1 = Reactive<br><strong>5 = Unshakeable</strong></div>
+                </div>
+
+                <div class="eval-metric">
+                    <div class="eval-label">Commitment</div>
+                    <div class="eval-scale">1 = Tentative<br><strong>5 = Full Commitment</strong></div>
+                </div>
+
+                <div class="eval-metric">
+                    <div class="eval-label">Variety</div>
+                    <div class="eval-scale">1 = One-dimensional<br><strong>5 = Complete Arsenal</strong></div>
+                </div>
+
+                <div class="eval-metric">
+                    <div class="eval-label">Autonomy</div>
+                    <div class="eval-scale">1 = Coaching Dependent<br><strong>5 = Self-Sufficient</strong></div>
+                </div>
+
+                <div class="eval-metric">
+                    <div class="eval-label">Precision</div>
+                    <div class="eval-scale">1 = Loose<br><strong>5 = 8-10/10 Execution</strong></div>
+                </div>
+
+                <div class="eval-metric">
+                    <div class="eval-label">Knowledge</div>
+                    <div class="eval-scale">1 = Cannot Explain<br><strong>5 = Teaches Correctly</strong></div>
+                </div>
+
+                <div class="eval-metric">
+                    <div class="eval-label">Integration</div>
+                    <div class="eval-scale">1 = Pillars Isolated<br><strong>5 = All Four Simultaneous</strong></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRADUATION SECTION -->
+        <section class="section" id="graduation">
+            <div class="section-header">
+                <h2 class="section-title">Graduation Gate</h2>
+                <p class="section-description">Black Belt is the final belt. Graduation requires completion of this comprehensive checklist.</p>
+            </div>
+            <div class="graduation-checklist">
+                <div class="checklist-items">
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox" onclick="toggleCheckbox(event)"></div>
+                        <div class="checklist-text">
+                            <strong>System Mastery:</strong> All sequences #1–#22 at 8–10/10 with articulated understanding of progression logic and connections
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox" onclick="toggleCheckbox(event)"></div>
+                        <div class="checklist-text">
+                            <strong>Knowledge & Transmission:</strong> Can explain Belt System, Block System, Infinite Circle, Three Circles, P·R·C·H, execution sequences, pillars, and diagnostic process
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox" onclick="toggleCheckbox(event)"></div>
+                        <div class="checklist-text">
+                            <strong>Four Pillar Integration:</strong> All pillars operating simultaneously at deepest level—physical recovery, technical mastery, tactical strategy, mental toolkit
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox" onclick="toggleCheckbox(event)"></div>
+                        <div class="checklist-text">
+                            <strong>Competitive Path (if applicable):</strong> Scoring 8+ rides, heat management automatic, wave priority strategic, pre-competition planning systematic
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox" onclick="toggleCheckbox(event)"></div>
+                        <div class="checklist-text">
+                            <strong>Personal Potential:</strong> Defined and pursuing maximum potential using biology, psychology, and complete TSS method—identified ceiling and pushing mechanism
+                        </div>
+                    </div>
+
+                    <div class="checklist-item">
+                        <div class="checklist-checkbox" onclick="toggleCheckbox(event)"></div>
+                        <div class="checklist-text">
+                            <strong>Evaluation Scores:</strong> Minimum 4/5 across Focus, Composure, Commitment, Variety, Autonomy, Precision, Knowledge, and Integration
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COACH CERTIFICATION PATHWAY -->
+        <section class="section" id="certification">
+            <div class="section-header">
+                <h2 class="section-title">Coach Certification Pathway</h2>
+                <p class="section-description">From Black Belt, the surfer can enter the coaching formation pathway.</p>
+            </div>
+            <div class="certification-path">
+                <div class="certification-level unlocked">
+                    <div class="certification-title">L1 Foundation Coach</div>
+                    <div class="certification-requirement">Requires: Blue Belt (surpassed)</div>
+                </div>
+
+                <div class="certification-level unlocked">
+                    <div class="certification-title">L2 Practitioner Coach</div>
+                    <div class="certification-requirement">Requires: Purple Belt (surpassed)</div>
+                </div>
+
+                <div class="certification-level unlocked">
+                    <div class="certification-title">L3 Advanced Coach</div>
+                    <div class="certification-requirement">Requires: Brown Belt (surpassed)</div>
+                </div>
+
+                <div class="certification-level current">
+                    <div class="certification-title">L4 Master Coach</div>
+                    <div class="certification-requirement">Requires: Black Belt (current level) — Eligible now</div>
+                </div>
+
+                <div class="certification-level locked">
+                    <div class="certification-title">L5 Coach Educator</div>
+                    <div class="certification-requirement">Requires: Black Belt + L4 experience</div>
+                </div>
+            </div>
+
+            <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 32px; margin-top: 32px; backdrop-filter: blur(10px);">
+                <div style="font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: var(--signature-cyan); margin-bottom: 16px;">Coach Formation Principle</div>
+                <div style="font-size: 16px; color: var(--text-secondary); line-height: 1.8;">
+                    <strong>Experience it</strong> → Understand it → Learn to teach it → Deliver with consistency
+                    <br><br>
+                    You have experienced the complete TSS system. You understand it deeply. You have demonstrated the ability to teach it. Now you are ready to deliver coaching with consistency, structure, and mastery.
+                </div>
+            
+            <div style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 24px; margin-top: 32px; backdrop-filter: blur(10px);">
+                <div style="font-size: 14px; color: var(--text-secondary); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;">Coach Development Videos</div>
+                <div class="video-card">
+                    <div class="video-code">BK-C01</div>
+                    <div class="video-info">
+                        <div class="video-title">Transitioning from Surfer to Coach Mindset</div>
+                        <div class="video-duration">3 min</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-code">BK-C02</div>
+                    <div class="video-info">
+                        <div class="video-title">The Coach Certification Pathway — What to Expect</div>
+                        <div class="video-duration">3 min</div>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-code">BK-C03</div>
+                    <div class="video-info">
+                        <div class="video-title">Mentoring as a Pre-Coach — Best Practices</div>
+                        <div class="video-duration">2 min</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        </section>
+
+        <!-- INFINITE PURSUIT SECTION -->
+        <section class="section infinite-pursuit" id="infinite">
+            <div class="infinite-pursuit-content">
+                <h2 class="infinite-title">The Infinite Pursuit</h2>
+                <div class="infinite-quote">
+                    "Mastery is not a destination. It is a standard you hold yourself to every single session."
+                </div>
+                <div class="infinite-text">
+                    The Infinite Circle doesn't stop at Black Belt. It deepens. The loop gets faster, more precise, more powerful. But the architecture remains constant:
+                </div>
+                <div style="font-family: 'DM Mono', monospace; font-size: 14px; color: var(--signature-cyan); margin-bottom: 32px;">
+                    Posture → Rotation → Projection → Expression → Recovery → Return
+                </div>
+                <div class="infinite-text">
+                    The method does not produce finished surfers. It produces surfers who never stop refining. Black Belt is not completion. It is commitment to an infinite standard of excellence.
+                </div>
+                <div class="infinite-mantra">
+                    Continue refining. Every session. Forever.
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Sidebar Navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+
+                const section = this.getAttribute('data-section');
+                const element = document.getElementById(section);
+                if (element) {
+                    setTimeout(() => {
+                        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 100);
+                }
+            });
+        });
+
+        // Sequence Card Expansion
+        document.querySelectorAll('.sequence-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+        });
+
+        // Checklist Interaction
+        function toggleCheckbox(event) {
+            event.stopPropagation();
+            const checkbox = event.target;
+            checkbox.classList.toggle('checked');
+        }
+
+        // Update nav on scroll
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('data-section') === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Mobile sidebar toggle (optional)
+        let sidebarOpen = false;
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && window.innerWidth <= 768) {
+                document.getElementById('sidebar').classList.remove('open');
+            }
+        });
+
+        // Smooth scroll behavior
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>

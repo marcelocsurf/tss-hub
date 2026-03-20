@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnseñARTE TSS — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#06D6A0;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #0D3B2E 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🎨</span>
+    <div>
+      <div class="top-bar__title">EnseñARTE TSS</div>
+      <div class="top-bar__sub">TSS Masterclass — 16 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button><button class="nav-dot" onclick="goSlide(14)" title="Slide 14">14</button><button class="nav-dot" onclick="goSlide(15)" title="Slide 15">15</button><button class="nav-dot" onclick="goSlide(16)" title="Slide 16">16</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 16</span>
+    <h2 class="slide-hero">EnseñARTE</h2>
+<h3 class="slide-heading">Enseñar por medio del arte aplicado al surf</h3>
+<p class="body-text">Herramienta Educativa — The Surf Sequence®</p>
+<p class="body-text">Creado por Marcelo Castellanos  |  ISA Olympic Expert Coach</p>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 16</span>
+    <h2 class="slide-hero">¿Qué es EnseñARTE?</h2>
+<h3 class="slide-heading">Concepto</h3>
+<p class="body-text">EnseñARTE es una metodología que nace de obras de arte originales creadas para transmitir los principios del surf de forma visual, sensorial y memorable. Cada cuadro codifica conceptos técnicos, tácticos y mentales del método TSS.</p>
+<h3 class="slide-heading">Rol en TSS</h3>
+<p class="body-text">Herramienta de enseñanza complementaria al sistema de belts de TSS.</p>
+<p class="body-text">Puente entre lo abstracto (conceptos) y lo concreto (ejecución en el agua).</p>
+<p class="body-text">Recurso de refuerzo visual para coaches y estudiantes.</p>
+<p class="body-text">Alineado con los 4 Pilares + Safety Layer del Canon TSS.</p>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 16</span>
+    <h3 class="slide-heading">Los 7 Sentidos Extendidos</h3>
+<p class="body-text">El surfer entrena todos sus canales de percepción, no solo los 5 clásicos.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Vista</span></div>
+</div>
+<ul class="slide-list">
+<li>Luz, forma, color, movimiento</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Oído</span></div>
+</div>
+<ul class="slide-list">
+<li>Sonidos, ritmo, tono, dirección</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Tacto</span></div>
+</div>
+<ul class="slide-list">
+<li>Presión, temperatura, textura</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Gusto</span></div>
+</div>
+<ul class="slide-list">
+<li>Dulce, salado, amargo, ácido, umami</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Olfato</span></div>
+</div>
+<ul class="slide-list">
+<li>Olores, conectado a la memoria</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Propiocepción</span></div>
+</div>
+<ul class="slide-list">
+<li>Posición y equilibrio del cuerpo. Clave en surf y BJJ.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Interocepción</span></div>
+</div>
+<ul class="slide-list">
+<li>Señales internas: gut feeling, corazonada, respiración.</li>
+<li>Propiocepción + Interocepción = los sentidos más relevantes para el rendimiento en surf</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 16</span>
+    <h2 class="slide-hero">FOCUS — Aquí y Ahora</h2>
+<h3 class="slide-heading">Neurociencia del Enfoque</h3>
+<p class="body-text">Mejora el aprendizaje motor (conexión mente-cuerpo)</p>
+<p class="body-text">Aumenta la retención de habilidades</p>
+<p class="body-text">Potencia el rendimiento y la ejecución técnica</p>
+<p class="body-text">Reduce errores y acelera el progreso</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Entrenar sin enfoque = repetir sin aprender</span></div>
+</div>
+<h3 class="slide-heading">Presencia Activa</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">¿Dónde estás?</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">¿Qué hora es?</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">¿Quién eres?</span></div>
+<p class="body-text">El presente es lo único que podemos vivir. Sin línea del tiempo: pasado, presente y futuro están en el mismo espacio.</p>
+</div>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 16</span>
+    <h2 class="slide-hero">El Flow Channel</h2>
+<p class="body-text">El punto ideal donde tu desafío y tu habilidad están en equilibrio.</p>
+<h3 class="slide-heading">Ansiedad</h3>
+<p class="body-text">Desafío alto + Habilidad baja</p>
+<h3 class="slide-heading">FLOW</h3>
+<p class="body-text">Desafío y habilidad en equilibrio</p>
+<h3 class="slide-heading">Aburrimiento</h3>
+<p class="body-text">Desafío bajo + Habilidad alta</p>
+<p class="body-text">Aplicación TSS: El sistema de belts está diseñado para mantener al surfer en el Flow Channel. Cada nivel sube el desafío proporcional a la habilidad adquirida. Ni muy fácil, ni muy difícil. Fun = aprendizaje.</p>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 16</span>
+    <h3 class="slide-heading">3 Circles of Power — Surf System</h3>
+<h3 class="slide-heading">4 Basic Movements</h3>
+<p class="body-text">P  R  C  H</p>
+<ul class="slide-list">
+<li>Push, Rotate, Compress, Hold — los movimientos fundamentales que generan fuerza y dirección sobre la tabla.</li>
+</ul>
+<h3 class="slide-heading">Feet Position</h3>
+<p class="body-text">On the Surfboard</p>
+<ul class="slide-list">
+<li>La posición de los pies determina el control, la estabilidad y la capacidad de transferir energía a la tabla.</li>
+</ul>
+<h3 class="slide-heading">Dynamic of the Wave</h3>
+<p class="body-text">Leer + Bailar</p>
+<ul class="slide-list">
+<li>Entender la dinámica de la ola: secciones, velocidad, inclinación. El surfer conecta con la ola y dibuja líneas.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Donde los 3 círculos se intersectan = FLOW</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 16</span>
+    <h3 class="slide-heading">Fuerza Externa vs. Fuerza Interna</h3>
+<h3 class="slide-heading">Fuerza Externa</h3>
+<p class="body-text">Viene del entorno:</p>
+<p class="body-text">Inclinación de la ola</p>
+<p class="body-text">Viento</p>
+<p class="body-text">Velocidad del agua</p>
+<p class="body-text">Textura de la superficie</p>
+<h3 class="slide-heading">Fuerza Interna</h3>
+<p class="body-text">La generás con tu cuerpo:</p>
+<p class="body-text">Extensión y flexión</p>
+<p class="body-text">Torque (rotación)</p>
+<p class="body-text">Compresión</p>
+<p class="body-text">Liberación de energía</p>
+<p class="body-text">El surfing es el diálogo entre estas dos fuerzas. El objetivo: dibujar en la cara de la ola las líneas que vos querés dibujar.</p>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 16</span>
+    <h3 class="slide-heading">Ecological Dynamics en TSS</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Percepción-Acción</span></div>
+<p class="body-text">El surfer conecta lo que ve con lo que hace. Ajusta movimiento según la ola en tiempo real.</p>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Restricciones</span></div>
+<p class="body-text">El coach modifica equipo, entorno u objetivo para que el atleta descubra soluciones.</p>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Variabilidad</span></div>
+<p class="body-text">Entrenar en distintos escenarios mejora la adaptación en vez de la repetición rígida.</p>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Affordances</span></div>
+<span class="stat-label">El entorno ofrece oportunidades de acción que el atleta aprende a reconocer.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Autoorganización</span></div>
+<span class="stat-label">El cuerpo encuentra formas eficientes de moverse según la situación.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Objetivo: Formar surfers adaptables, creativos y perceptivos que resuelvan en tiempo real.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 16</span>
+    <h2 class="slide-hero">El Círculo Infinito</h2>
+<p class="body-text">Aprende a cerrar el círculo y estar listo para hacerlo otra vez.</p>
+<h3 class="slide-heading">1</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Cazar la ola</span></div>
+</div>
+<ul class="slide-list">
+<li>Sweet spot, chasing wave, paddling angle</li>
+</ul>
+<h3 class="slide-heading">2</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Pop Up + Conexión</span></div>
+</div>
+<ul class="slide-list">
+<li>Cobra, pick your line, feet positioning</li>
+</ul>
+<h3 class="slide-heading">3</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Power Posture</span></div>
+</div>
+<ul class="slide-list">
+<li>Posición de ataque, pecho hacia la nariz de la tabla</li>
+</ul>
+<h3 class="slide-heading">4</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Impulso</span></div>
+</div>
+<ul class="slide-list">
+<li>Generar velocidad: compresión, extensión, rail to rail</li>
+</ul>
+<h3 class="slide-heading">5</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Turn / Dirección</span></div>
+</div>
+<ul class="slide-list">
+<li>Rotación, proyección, mirada + oblicuo</li>
+</ul>
+<h3 class="slide-heading">6</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Hold + Reset</span></div>
+</div>
+<ul class="slide-list">
+<li>Mantener, cerrar el círculo, prepararse para el siguiente</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 16</span>
+    <h3 class="slide-heading">La Zona + Estado No Mind</h3>
+<div class="slide-table-wrap"><table class="slide-table">
+<tr><th>Concepto</th><th>La Zona (Flow)</th><th>No Mind (Mushin)</th></tr>
+<tr><td>Origen</td><td>Psicología del rendimiento — Csikszentmihalyi</td><td>Filosofía oriental / Artes marciales</td></tr>
+<tr><td>Enfoque</td><td>Rendimiento óptimo con conciencia expandida</td><td>Ausencia de pensamiento racional, mente vacía</td></tr>
+<tr><td>Consciencia</td><td>Presente y completamente absorbido</td><td>Actuando sin pensar, solo reaccionando</td></tr>
+<tr><td>Aplicación</td><td>Cualquier deporte, arte o actividad</td><td>Artes marciales, meditación, surf, BJJ</td></tr>
+</table></div>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">7 Pasos para entrar en la Zona:</span></div>
+</div>
+<ul class="slide-list">
+<li>1. Nivel de excitación adecuado</li>
+<li>2. Claridad de propósito</li>
+<li>3. Dominio técnico previo</li>
+<li>4. Atención plena (mindfulness activo)</li>
+<li>5. Conexión con el entorno</li>
+<li>6. Eliminar el diálogo interno</li>
+<li>7. Flujo entre desafío y habilidad</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 16</span>
+    <h3 class="slide-heading">Mental Toughness — Sistema Danaher aplicado al Surf</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Familiarizate con el caos</span></div>
+<p class="body-text">Exponete a presión controlada hasta que tu sistema nervioso aprenda que no hay peligro.</p>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Entrená como si compiteras</span></div>
+<span class="stat-label">Eliminá los extras. Simulá el entorno real con total intención.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Defensa antes que ataque</span></div>
+<span class="stat-label">Poder respirar en posiciones malas. Construí técnica desde la calma.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Redefiní tu relación con el error</span></div>
+<span class="stat-label">Fallar = estar en el nivel correcto de desafío. Errores son retroalimentación.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Convertí el sistema en hábitos</span></div>
+<span class="stat-label">Persistencia &gt; inspiración. Decisiones basadas en estructura, no en emociones.</span></div>
+<p class="body-text">Pirámide Mental:  1. No perder → 2. Mantener → 3. Mejorar → 4. Competir → 5. Evolucionar</p>
+</div>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 16</span>
+    <h3 class="slide-heading">Sistema de Diagnóstico TSS</h3>
+<h3 class="slide-heading">1</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Video → Diagnóstico</span></div>
+<span class="stat-label">5 min</span></div>
+<h3 class="slide-heading">2</h3>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Elegir 1 paso a corregir</span></div>
+<span class="stat-label">Primer fallo</span></div>
+<h3 class="slide-heading">3</h3>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Definir causa raíz</span></div>
+<span class="stat-label">Mental / Física / Timing / Técnica</span></div>
+<h3 class="slide-heading">4</h3>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Elegir intervención</span></div>
+<span class="stat-label">Drill correcto</span></div>
+<h3 class="slide-heading">5</h3>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Ejecutar 3-5 reps conscientes</span></div>
+<span class="stat-label">Foco total</span></div>
+<h3 class="slide-heading">6</h3>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Volver a video / feedback</span></div>
+<span class="stat-label">Verificar</span></div>
+<h3 class="slide-heading">7</h3>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Círculo infinito — iterar</span></div>
+<span class="stat-label">Repetir ciclo</span></div>
+<ul class="slide-list">
+<li>Si síntoma X + causa A → Drill técnico  |  + causa B → Drill físico  |  + causa C → Visualización  |  + causa D → Timing</li>
+</ul>
+</div>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 16</span>
+    <h3 class="slide-heading">Bloques de la Secuencia — Estructura de Sesión</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Bloque 0: Pre-Surf</span></div>
+</div>
+<ul class="slide-list">
+<li>Venue analysis, set goals, safety, warm up, simulación, sweet spot, paddling, duck dive</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Bloque 1: Catching the Wave</span></div>
+</div>
+<ul class="slide-list">
+<li>Ángulo de remada, presión en pecho, cobra + ángulo, elegir dirección</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Bloque 2: Pop Up</span></div>
+</div>
+<ul class="slide-list">
+<li>Ninja / Regular / Pro pop up, posición de pies, conexión con la tabla</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Bloque 3: Power Posture</span></div>
+</div>
+<ul class="slide-list">
+<li>Pecho a nariz de tabla, get low, rodilla in, escápula activa, mano al frente</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Bloque 5: Rotación</span></div>
+</div>
+<ul class="slide-list">
+<li>Oblicuo + mirada. Frontside: peso pie delantero, ver dirección. Backside: usar oblicuo</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Bloque 6: Proyección</span></div>
+</div>
+<ul class="slide-list">
+<li>Más ángulo y velocidad. Frontside: hips up, touch water. Backside: estirar pierna, choke</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Bloque 7: Maniobras</span></div>
+</div>
+<ul class="slide-list">
+<li>Ver donde quiero ir. Frontside: hombro + oblicuo. Backside: codazo + postura</li>
+<li>Cada bloque distingue instrucciones Frontside vs. Backside — alineado con la Sequence Architecture del Canon TSS.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="slide-badge">14 / 16</span>
+    <h3 class="slide-heading">Mentalidad: Impostor + Identidad</h3>
+<h3 class="slide-heading">El Síndrome del Impostor</h3>
+<p class="body-text">Sentir que no merecés estar donde estás. Que en cualquier momento van a descubrir que no sabés tanto. Este sentimiento es universal y se intensifica cuando estás creciendo. Es señal de que estás en el lugar correcto.</p>
+<h3 class="slide-heading">No tienes que serle fiel a tu personaje</h3>
+<p class="body-text">Puedes cambiar. La identidad que construiste hasta hoy no define lo que podés ser mañana. El surf enseña esto cada día: cada ola es nueva, cada sesión es un reset. Evolución &gt; fidelidad al pasado.</p>
+<p class="body-text">Conexión TSS: La progresión por belts normaliza el crecimiento. Cada nivel nuevo genera incomodidad — eso es diseño, no debilidad. El sistema está hecho para que avances aceptando que sos principiante otra vez en cada etapa.</p>
+  </div>
+</section>
+<section class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="slide-badge">15 / 16</span>
+    <h3 class="slide-heading">3 Círculos del Aprendizaje</h3>
+<h3 class="slide-heading">Técnica</h3>
+<ul class="slide-list">
+<li>El cómo del movimiento. La secuencia mecánica correcta según cada bloque de TSS. Aquí vive el sistema de diagnóstico: identificar el primer punto de quiebre y aplicar el drill correcto.</li>
+</ul>
+<h3 class="slide-heading">Océano + Condiciones</h3>
+<ul class="slide-list">
+<li>El medio ambiente. Leer la ola, el viento, la corriente, el fondo. El surfer no controla el entorno — lo interpreta. Ecological Dynamics: usar restricciones del entorno como maestro.</li>
+</ul>
+<h3 class="slide-heading">Mental: Proceso de Aprendizaje</h3>
+<ul class="slide-list">
+<li>El cómo aprendés a aprender. Enfoque, presencia, gestión del error, síndrome del impostor, flow state. Sin el pilar mental, la técnica no se consolida.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">El aprendizaje real sucede en la intersección de los tres círculos.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s16">
+  <div class="slide-inner">
+    <span class="slide-badge">16 / 16</span>
+    <h2 class="slide-hero">EnseñARTE</h2>
+<h3 class="slide-heading">Familiarizate con el caos.</h3>
+<h3 class="slide-heading">Controlá tu enfoque, no el entorno.</h3>
+<h3 class="slide-heading">Enseñale a tu cuerpo y mente que podés estar bien, incluso en lo incómodo.</h3>
+<h3 class="slide-heading">Evolucioná desde adentro.</h3>
+<h3 class="slide-heading">Construí hábitos que te mantengan firme por años.</h3>
+<h3 class="slide-heading">Porque la técnica no cambia. El que cambia sos vos.</h3>
+<p class="body-text">The Surf Sequence®  —  Evolve through play.</p>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  EnseñARTE TSS — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

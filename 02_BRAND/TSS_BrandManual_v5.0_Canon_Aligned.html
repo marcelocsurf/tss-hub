@@ -1,0 +1,2119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSS Brand Manual v5.0 - Canon Aligned</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&family=Work+Sans:wght@400;500;700&family=Lora:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --navy: #0A1628;
+            --brand-blue: #0D2D5E;
+            --cyan: #5AC3E7;
+            --grey: #4E4D4D;
+            --mid-grey: #C8D0DC;
+            --light-grey: #F2F4F7;
+            --white: #FFFFFF;
+            --coral: #FF6B6B;
+            --sunset: #FF8C42;
+            --golden: #FFD166;
+            --foam: #06D6A0;
+            --deep-ocean: #2D3561;
+            --belt-white: #E8E8E8;
+            --belt-yellow: #F5C518;
+            --belt-blue: #1E6FBF;
+            --belt-purple: #7B4FBE;
+            --belt-brown: #7D4E27;
+            --belt-black: #111111;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: var(--navy);
+            color: var(--mid-grey);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== HEADER & NAV ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 22, 40, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(90, 195, 231, 0.1);
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--cyan), var(--white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Outfit', sans-serif;
+            min-width: fit-content;
+        }
+
+        nav {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            scrollbar-width: none;
+            flex: 1;
+        }
+
+        nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            color: var(--mid-grey);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--cyan);
+            background: rgba(90, 195, 231, 0.1);
+        }
+
+        /* ===== MAIN CONTENT ===== */
+        main {
+            margin-top: 80px;
+            padding: 0;
+        }
+
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-label::before {
+            content: '—';
+            color: var(--cyan);
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            font-weight: 700;
+            color: var(--cyan);
+            margin: 2.5rem 0 1.5rem 0;
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin: 2rem 0 1rem 0;
+            line-height: 1.3;
+        }
+
+        h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin: 1.5rem 0 0.75rem 0;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--mid-grey);
+        }
+
+        strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        em {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            color: var(--cyan);
+        }
+
+        /* ===== DESIGN ELEMENTS ===== */
+        .card {
+            background: rgba(13, 45, 94, 0.3);
+            border-top: 3px solid var(--cyan);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(90, 195, 231, 0.2);
+        }
+
+        .rule-box {
+            border-left: 4px solid var(--cyan);
+            background: rgba(90, 195, 231, 0.05);
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .rule-box strong {
+            color: var(--cyan);
+        }
+
+        ul, ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            color: var(--mid-grey);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .grid-item {
+            background: rgba(13, 45, 94, 0.2);
+            border: 1px solid rgba(90, 195, 231, 0.1);
+            padding: 1.5rem;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .grid-item:hover {
+            background: rgba(13, 45, 94, 0.4);
+            border-color: rgba(90, 195, 231, 0.3);
+        }
+
+        .grid-item h4 {
+            margin-top: 0;
+            color: var(--cyan);
+        }
+
+        /* ===== COLOR PALETTE ===== */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .color-item {
+            text-align: center;
+        }
+
+        .color-swatch {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border: 2px solid rgba(90, 195, 231, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.05);
+        }
+
+        .color-name {
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+
+        .color-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--cyan);
+        }
+
+        /* ===== TYPOGRAPHY SAMPLES ===== */
+        .typo-sample {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(13, 45, 94, 0.2);
+            border-radius: 6px;
+            border-left: 4px solid var(--cyan);
+        }
+
+        .typo-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+
+        .display-1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .display-2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+
+        .tagline {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+            color: var(--cyan);
+            margin: 2rem 0;
+        }
+
+        /* ===== BELT SYSTEM ===== */
+        .belt-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .belt-card {
+            background: rgba(13, 45, 94, 0.3);
+            border: 1px solid rgba(90, 195, 231, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .belt-card:hover {
+            border-color: var(--cyan);
+            background: rgba(13, 45, 94, 0.5);
+        }
+
+        .belt-color-band {
+            height: 40px;
+            width: 100%;
+        }
+
+        .belt-card-content {
+            padding: 1.5rem;
+        }
+
+        .belt-name {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .belt-level {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+        }
+
+        .belt-sequence {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--grey);
+            margin-bottom: 1rem;
+        }
+
+        .belt-card p {
+            font-size: 0.95rem;
+            color: var(--mid-grey);
+        }
+
+        /* ===== LOGO DISPLAY ===== */
+        .logo-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .logo-item {
+            background: linear-gradient(135deg, rgba(13, 45, 94, 0.5), rgba(10, 22, 40, 0.8));
+            border: 1px solid rgba(90, 195, 231, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .logo-preview {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: var(--cyan);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-title {
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .logo-desc {
+            font-size: 0.9rem;
+            color: var(--mid-grey);
+        }
+
+        /* ===== METHODOLOGY DIAGRAMS ===== */
+        .diagram-box {
+            background: rgba(13, 45, 94, 0.3);
+            border: 2px solid var(--cyan);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .circle-flow {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+            align-items: center;
+        }
+
+        .circle-item {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: rgba(90, 195, 231, 0.1);
+            border: 2px solid var(--cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .circle-item strong {
+            color: var(--cyan);
+            font-size: 0.9rem;
+        }
+
+        .arrow {
+            color: var(--cyan);
+            font-size: 1.5rem;
+        }
+
+        /* ===== TABLES ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            background: rgba(13, 45, 94, 0.2);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        thead {
+            background: rgba(13, 45, 94, 0.5);
+            border-bottom: 2px solid var(--cyan);
+        }
+
+        th {
+            padding: 1rem;
+            text-align: left;
+            color: var(--cyan);
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        td {
+            padding: 1rem;
+            color: var(--mid-grey);
+            border-bottom: 1px solid rgba(90, 195, 231, 0.1);
+        }
+
+        tbody tr:hover {
+            background: rgba(90, 195, 231, 0.05);
+        }
+
+        /* ===== BUTTONS & INTERACTIVE ===== */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: var(--cyan);
+            color: var(--navy);
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(90, 195, 231, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--cyan);
+            color: var(--cyan);
+        }
+
+        .btn-outline:hover {
+            background: var(--cyan);
+            color: var(--navy);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: rgba(10, 22, 40, 0.95);
+            border-top: 1px solid rgba(90, 195, 231, 0.1);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-version {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--cyan);
+            margin-bottom: 1rem;
+        }
+
+        .footer-text {
+            color: var(--mid-grey);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .header-container {
+                gap: 1rem;
+            }
+
+            nav a {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .circle-flow {
+                flex-direction: column;
+            }
+
+            .arrow {
+                transform: rotate(90deg);
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.75rem;
+            }
+        }
+
+        /* ===== HIGHLIGHTS & NOTES ===== */
+        .highlight {
+            background: rgba(255, 215, 102, 0.1);
+            border-left: 4px solid var(--golden);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .highlight strong {
+            color: var(--golden);
+        }
+
+        .note {
+            background: rgba(90, 195, 231, 0.05);
+            border-left: 4px solid var(--cyan);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--cyan);
+            color: var(--navy);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin: 0.25rem;
+        }
+
+        /* ===== SCROLL TO TOP ===== */
+        #scrollTop {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--cyan);
+            color: var(--navy);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.3s ease;
+            font-weight: 700;
+        }
+
+        #scrollTop:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(90, 195, 231, 0.4);
+        }
+
+        #scrollTop.visible {
+            display: flex;
+        }
+
+        /* ===== INTRO SECTION ===== */
+        .hero {
+            background: linear-gradient(135deg, rgba(13, 45, 94, 0.5), rgba(90, 195, 231, 0.1));
+            border: 1px solid rgba(90, 195, 231, 0.3);
+            border-radius: 12px;
+            padding: 3rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            margin-bottom: 1rem;
+        }
+
+        .intro-tagline {
+            font-family: 'Lora', serif;
+            font-style: italic;
+            font-size: 1.25rem;
+            color: var(--cyan);
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER & NAVIGATION -->
+    <header>
+        <div class="header-container">
+            <div class="logo-text">TSS</div>
+            <nav id="mainNav">
+                <a href="#ch01">01 Overview</a>
+                <a href="#ch02">02 Essence</a>
+                <a href="#ch03">03 Logo</a>
+                <a href="#ch04">04 Color</a>
+                <a href="#ch05">05 Typography</a>
+                <a href="#ch06">06 Voice</a>
+                <a href="#ch07">07 Belts</a>
+                <a href="#ch08">08 Applications</a>
+                <a href="#ch09">09 Context</a>
+                <a href="#ch10">10 Method</a>
+                <a href="#ch11">11 Blocks</a>
+                <a href="#ch12">12 Certification</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- CHAPTER 01: BRAND OVERVIEW -->
+        <section id="ch01">
+            <div class="section-label">chapter 01</div>
+            <h1>Brand Overview</h1>
+            <p style="font-size: 1.1rem; color: var(--white); margin-bottom: 2rem;">TSS is a licensed educational methodology — the most systematically structured approach to surf coaching in the world.</p>
+
+            <div class="hero">
+                <h2>Positioning</h2>
+                <p>TSS operates in the same category as PADI (diving certification), CrossFit (fitness methodology), and Gracie Jiu-Jitsu (martial arts). We are an educational system first, not a lifestyle brand, not a franchise, and not a personal brand.</p>
+            </div>
+
+            <h2>What TSS IS</h2>
+            <ul>
+                <li><strong>Licensed Educational Methodology</strong> — Proprietary, science-based system for structured surf education</li>
+                <li><strong>Certification System</strong> — For coaches to achieve recognized, portable credentials</li>
+                <li><strong>Progressive Belt System</strong> — Gamified progression from White to Black Belt</li>
+                <li><strong>Scalable Global System</strong> — Academy licensing model enabling global adoption</li>
+                <li><strong>Operational Framework</strong> — Complete system backed by digital platform (TSS Brain)</li>
+            </ul>
+
+            <h2>What TSS IS NOT</h2>
+            <ul>
+                <li>A surf school or camp</li>
+                <li>A lifestyle brand</li>
+                <li>A standalone mobile app</li>
+                <li>A franchise</li>
+                <li>A personal brand</li>
+            </ul>
+
+            <h2>The Category We Define</h2>
+            <div class="card">
+                <p>Surfing needed what other sports already had: a systematic, internationally recognized, certification-backed methodology for structured learning and instructor training. TSS fills that gap. With surfing's Olympic inclusion in 2021, the need for educational infrastructure became urgent—and surfing's infrastructure remains decades behind comparable sports. TSS is that infrastructure.</p>
+            </div>
+
+            <h2>System Architecture: Five Components</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4>1. TSS Methodology</h4>
+                    <p>Science-based instructional framework built on Fibonacci principles, progressive sequencing, and the Four Pillars.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>2. Belt Progression</h4>
+                    <p>Gamified 6-level system (White → Black) providing clear developmental milestones and visual identity.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>3. Coach Certification</h4>
+                    <p>5-tier credential system (L1–L5) ensuring teaching quality and portability across academies.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>4. Academy Licensing</h4>
+                    <p>Global rollout model enabling established schools to adopt TSS curriculum and brand.</p>
+                </div>
+                <div class="grid-item">
+                    <h4>5. TSS Brain</h4>
+                    <p>Digital platform managing coach credentials, student progress, lesson planning, and reporting.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 02: BRAND ESSENCE -->
+        <section id="ch02">
+            <div class="section-label">chapter 02</div>
+            <h1>Brand Essence</h1>
+
+            <h2>The Golden Circle: Why, How, What</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h3 style="color: var(--cyan); margin-top: 0;">Why (Purpose)</h3>
+                    <p>Surfing deserves a systematic, structured approach to education. Learning should be clear, measurable, and achievable for everyone.</p>
+                </div>
+                <div class="grid-item">
+                    <h3 style="color: var(--cyan); margin-top: 0;">How (Process)</h3>
+                    <p>Through science-based methodology structured on Fibonacci progression, gamified for engagement, certified coaches, and digital support.</p>
+                </div>
+                <div class="grid-item">
+                    <h3 style="color: var(--cyan); margin-top: 0;">What (Offering)</h3>
+                    <p>A licensable surf education system with certified coaches, progressive belts, digital platform, and complete operational framework.</p>
+                </div>
+            </div>
+
+            <h2>Brand Personality: Five Axes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Axis</th>
+                        <th>We ARE</th>
+                        <th>We ARE NOT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Knowledge</strong></td>
+                        <td>Expert (rigorous, credible)</td>
+                        <td>Elite (gatekeeping, exclusive)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Communication</strong></td>
+                        <td>Precise (clear, systematic)</td>
+                        <td>Cold (distant, technical)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interaction</strong></td>
+                        <td>Playful (engaging, encouraging)</td>
+                        <td>Casual (flippant, unfocused)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Messaging</strong></td>
+                        <td>Scientific (data-backed, evidence-based)</td>
+                        <td>Academic (jargon-heavy, inaccessible)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>System</strong></td>
+                        <td>Systematic (structured, coherent)</td>
+                        <td>Rigid (inflexible, mechanical)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Core Values</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Accessibility</h4>
+                    <p>Remove barriers. Make excellence attainable for all ages, abilities, backgrounds.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Connection</h4>
+                    <p>Build community. Create belonging through shared progression and mutual growth.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Joy</h4>
+                    <p>Celebrate progress. Surfing should be fun—play and discipline reinforce each other.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Holistic Growth</h4>
+                    <p>Develop whole surfers. Technical skill + mental resilience + tactical intelligence + physical awareness.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Integrity</h4>
+                    <p>Keep promises. Certifications mean something. Results are real.</p>
+                </div>
+            </div>
+
+            <h2>Core Essence</h2>
+            <div class="hero">
+                <p class="intro-tagline">Evolve through play</p>
+                <p>This tagline captures TSS in four words: development (evolve), methodology (through a structured process), engagement (play), and outcome (transformation). It appears on every application with the logo.</p>
+            </div>
+
+            <h2>Emotional & Functional Benefits</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--coral);">Emotional</h4>
+                    <ul>
+                        <li>Confidence — I know I'm improving</li>
+                        <li>Empowerment — I'm in control of my progress</li>
+                        <li>Inspiration — I see my potential</li>
+                    </ul>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--foam);">Functional</h4>
+                    <ul>
+                        <li>Clear Structure — Know what to master next</li>
+                        <li>Universal Access — Learn anywhere, worldwide</li>
+                        <li>Portable Credentials — Respect globally</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 03: LOGO SYSTEM -->
+        <section id="ch03">
+            <div class="section-label">chapter 03</div>
+            <h1>Logo System</h1>
+
+            <h2>Logo Variations</h2>
+            <div class="logo-showcase">
+                <div class="logo-item">
+                    <div class="logo-preview">PRIMARY HORIZONTAL</div>
+                    <div class="logo-title">On Navy (Preferred)</div>
+                    <div class="logo-desc">Standard application for all digital and most print uses</div>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-preview">HORIZONTAL ALT</div>
+                    <div class="logo-title">On Light</div>
+                    <div class="logo-desc">For light backgrounds or contrast-heavy contexts</div>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-preview">VERTICAL</div>
+                    <div class="logo-title">Stacked</div>
+                    <div class="logo-desc">For narrow spaces, social media avatars, vertical banners</div>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-preview">MARK ONLY</div>
+                    <div class="logo-title">Icon / Badge</div>
+                    <div class="logo-desc">Spiral alone for favicon, app icon, small apparel placement</div>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-preview" style="background: var(--cyan);">ON CYAN</div>
+                    <div class="logo-title">Signature Cyan</div>
+                    <div class="logo-desc">Inverted use for high-contrast or accent backgrounds</div>
+                </div>
+                <div class="logo-item">
+                    <div class="logo-preview" style="background: var(--belt-white);">ON LIGHT CYAN</div>
+                    <div class="logo-title">Light Cyan</div>
+                    <div class="logo-desc">Tinted background option for premium materials</div>
+                </div>
+            </div>
+
+            <h2>Logo Construction & Rules</h2>
+            <div class="rule-box">
+                <h3 style="margin-top: 0; color: var(--cyan);">The Fibonacci Spiral</h3>
+                <p>The TSS logo is built on the Fibonacci sequence (1, 1, 2, 3, 5, 8, 13, 21…) expressed as a spiral. This represents the mathematical foundation of nature and TSS methodology—progression through natural, organic growth. The sequence appears within the spiral: 5, 8, 13, 21.</p>
+            </div>
+
+            <h2>Clear Space & Minimum Size</h2>
+            <ul>
+                <li><strong>Clear Space:</strong> Equal to the height of the spiral's smallest square (approximately 1/5 of logo height)</li>
+                <li><strong>Print Minimum:</strong> 4 cm width</li>
+                <li><strong>Digital Minimum:</strong> 32 px width</li>
+                <li><strong>Never smaller than 32 px</strong> in digital contexts or 4 cm in print</li>
+            </ul>
+
+            <h2>Logo Protection Rules</h2>
+            <div class="card">
+                <h3 style="margin-top: 0; color: var(--cyan);">Never Alter The Logo</h3>
+                <ul>
+                    <li><strong>Do not rotate</strong> — Logo must be perfectly horizontal or vertical</li>
+                    <li><strong>Do not distort</strong> — Maintain exact proportions; do not squeeze, stretch, or skew</li>
+                    <li><strong>Do not recolor</strong> — Use only approved color combinations listed below</li>
+                    <li><strong>Do not separate</strong> — Mark and wordmark are always locked together; never use spiral alone with different wordmark</li>
+                    <li><strong>Do not drop shadow or 3D effects</strong> — Logo is 2D only</li>
+                </ul>
+            </div>
+
+            <h2>Approved Backgrounds</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Navy (#0A1628)</h4>
+                    <p>Primary. Standard background for all TSS applications.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">White (#FFFFFF)</h4>
+                    <p>Secondary. Light background, high contrast. Use cyan/navy logo version.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Black (#111111)</h4>
+                    <p>Premium use. Monochrome applications, formal materials. Use white logo.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Signature Cyan (#5AC3E7)</h4>
+                    <p>Accent only. High-impact uses (posters, special editions). Use navy/white logo.</p>
+                </div>
+            </div>
+
+            <div class="rule-box">
+                <strong>Rule:</strong> Logo backgrounds limited to Navy, White, Black, or Signature Cyan ONLY. No gradients, no transparent backgrounds, no other colors.
+            </div>
+        </section>
+
+        <!-- CHAPTER 04: COLOR SYSTEM -->
+        <section id="ch04">
+            <div class="section-label">chapter 04</div>
+            <h1>Color System</h1>
+
+            <h2>Core Palette (Always Required)</h2>
+            <p>These four colors form the mandatory foundation of every TSS application. Always present, always accessible, always functional.</p>
+
+            <div class="color-grid">
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--navy);"></div>
+                    <div class="color-name">Ocean Navy</div>
+                    <div class="color-code">#0A1628</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">Pantone 289 C — Primary background, authority, depth</p>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--brand-blue);"></div>
+                    <div class="color-name">Brand Blue</div>
+                    <div class="color-code">#0D2D5E</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">Pantone 281 C — Secondary structure, layering</p>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--cyan);"></div>
+                    <div class="color-name">Signature Cyan</div>
+                    <div class="color-code">#5AC3E7</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">Pantone 2985 C — Identity marker, active elements</p>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--grey);"></div>
+                    <div class="color-name">Structural Grey</div>
+                    <div class="color-code">#4E4D4D</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">Pantone CG 11 C — Body copy, supporting text (light bg)</p>
+                </div>
+            </div>
+
+            <h2>Extended Pop Colors (Campaign Use Only)</h2>
+            <p>These colors amplify messaging in specific contexts. They are <strong>never structural</strong>—never for primary backgrounds or core navigation. Campaign-level only.</p>
+
+            <div class="color-grid">
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--coral);"></div>
+                    <div class="color-name">Competition Coral</div>
+                    <div class="color-code">#FF6B6B</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">Certificates, competition events, award moments</p>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--sunset);"></div>
+                    <div class="color-name">Surf Sunset</div>
+                    <div class="color-code">#FF8C42</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">Summer campaigns, special collaborations</p>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--golden);"></div>
+                    <div class="color-name">Golden Hour</div>
+                    <div class="color-code">#FFD166</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">Black Belt elite, premium tier, achievement</p>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--foam);"></div>
+                    <div class="color-name">Ocean Foam</div>
+                    <div class="color-code">#06D6A0</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">App progress states, student milestones, success</p>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--deep-ocean);"></div>
+                    <div class="color-name">Deep Ocean</div>
+                    <div class="color-code">#2D3561</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">Night events, pro camp materials, premium contexts</p>
+                </div>
+            </div>
+
+            <h2>Neutral Palette</h2>
+            <div class="color-grid">
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--white);"></div>
+                    <div class="color-name">White</div>
+                    <div class="color-code">#FFFFFF</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">Contrast, clarity, light backgrounds</p>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--light-grey);"></div>
+                    <div class="color-name">Light Grey</div>
+                    <div class="color-code">#F2F4F7</div>
+                    <p style="font-size: 0.85rem; color: var(--mid-grey); margin-top: 0.5rem;">Secondary light backgrounds, subtle dividers</p>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--mid-grey);"></div>
+                    <div class="color-name">Mid Grey</div>
+                    <div class="color-code">#C8D0DC</div>
+                    <p style="font-size: 0.85rem; color: var(--grey); margin-top: 0.5rem;">Body text on dark, secondary elements</p>
+                </div>
+            </div>
+
+            <h2>Belt System Colors (Identifier Only)</h2>
+            <p>Belt colors identify progression level. They appear on certificates, physical belts, and in-app badges. They are <strong>never part of the brand color palette</strong> and <strong>never used in marketing or print materials</strong>.</p>
+
+            <div class="color-grid">
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--belt-white);"></div>
+                    <div class="color-name">White Belt</div>
+                    <div class="color-code">#E8E8E8</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--belt-yellow);"></div>
+                    <div class="color-name">Yellow Belt</div>
+                    <div class="color-code">#F5C518</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--belt-blue);"></div>
+                    <div class="color-name">Blue Belt</div>
+                    <div class="color-code">#1E6FBF</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--belt-purple);"></div>
+                    <div class="color-name">Purple Belt</div>
+                    <div class="color-code">#7B4FBE</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--belt-brown);"></div>
+                    <div class="color-name">Brown Belt</div>
+                    <div class="color-code">#7D4E27</div>
+                </div>
+                <div class="color-item">
+                    <div class="color-swatch" style="background-color: var(--belt-black);"></div>
+                    <div class="color-name">Black Belt</div>
+                    <div class="color-code">#111111</div>
+                </div>
+            </div>
+
+            <h2>Approved Combinations</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Core Digital</h4>
+                    <p><strong>Navy + White + Cyan</strong></p>
+                    <p>App interfaces, web, email, digital marketing. Maximum clarity and brand recognition.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Core Print</h4>
+                    <p><strong>Navy + White + Cyan</strong></p>
+                    <p>Certificates, manuals, level kits. Color-stable reproduction.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Apparel</h4>
+                    <p><strong>Navy + Cyan + Coral</strong></p>
+                    <p>T-shirts, rashguards, caps. Brand identity + visual pop.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0;">Competition</h4>
+                    <p><strong>Navy + Coral</strong></p>
+                    <p>Event graphics, banners, achievement materials. High-energy contrast.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 05: TYPOGRAPHY -->
+        <section id="ch05">
+            <div class="section-label">chapter 05</div>
+            <h1>Typography</h1>
+
+            <h2>Typeface Selection</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Biennale Medium</h4>
+                    <p><strong>By Latinotype</strong></p>
+                    <p>Exclusive to logo. Never used for body text, headlines, or interface. Logo only.</p>
+                    <p style="font-size: 0.85rem; color: var(--foam);">Premium, geometric, distinctive</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Outfit Bold</h4>
+                    <p><strong>Display & Headlines</strong></p>
+                    <p>H1 (48pt), H2 (36pt), H3 (28pt), H4 (20pt). Section titles, hero text, app navigation, marketing headlines.</p>
+                    <p style="font-size: 0.85rem; color: var(--foam);">Geometric, modern, authoritative</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Work Sans</h4>
+                    <p><strong>Body & Interface</strong></p>
+                    <p>Body (11pt), UI (10pt), Caption (8pt), Label (7pt). Body copy, form fields, UI elements, captions.</p>
+                    <p style="font-size: 0.85rem; color: var(--foam);">Humanist, readable, friendly</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">DM Mono</h4>
+                    <p><strong>Codes & Labels</strong></p>
+                    <p>Tag (9pt), Code (8pt), Badge (7pt), Micro (6pt). Belt levels, tags, technical codes, reference markers.</p>
+                    <p style="font-size: 0.85rem; color: var(--foam);">Monospace, technical, precise</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Lora Italic</h4>
+                    <p><strong>Tagline Only</strong></p>
+                    <p>Always italic. "Evolve through play" tagline. Warm, calligraphic, never ALL CAPS. Cyan on dark, Navy on light.</p>
+                    <p style="font-size: 0.85rem; color: var(--foam);">Serif, warm, distinctive</p>
+                </div>
+            </div>
+
+            <h2>Typography Samples</h2>
+
+            <div class="typo-sample">
+                <div class="typo-label">H1 – 48pt Outfit Bold</div>
+                <div class="display-1">Evolve Through Play</div>
+            </div>
+
+            <div class="typo-sample">
+                <div class="typo-label">H2 – 36pt Outfit Bold</div>
+                <div class="display-2">Building Blocks of Excellence</div>
+            </div>
+
+            <div class="typo-sample">
+                <div class="typo-label">H3 – 28pt Outfit Bold</div>
+                <h3 style="margin: 0;">The Four Pillars</h3>
+            </div>
+
+            <div class="typo-sample">
+                <div class="typo-label">H4 – 20pt Outfit Bold</div>
+                <h4 style="margin: 0;">Methodology Framework</h4>
+            </div>
+
+            <div class="typo-sample">
+                <div class="typo-label">Body – 11pt Work Sans</div>
+                <p style="margin: 0;">TSS is a licensed educational methodology providing structured progression through science-based instruction, certified coaching, and progressive belt advancement. This is the standard body copy weight and size.</p>
+            </div>
+
+            <div class="typo-sample">
+                <div class="typo-label">Tagline – Lora Italic</div>
+                <p class="tagline" style="margin: 0;">Evolve through play</p>
+            </div>
+
+            <h2>Typography Rules</h2>
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--cyan);">Sentence Case for Body & Most Headlines</h4>
+                <p>Use sentence case (capitalize first word only) for body copy, regular headlines, and most interface text. Example: "Welcome to your next level."</p>
+            </div>
+
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--cyan);">All Caps for Technical Labels</h4>
+                <p>Technical labels, tags, and codes use ALL CAPS in monospace. Example: "SEQ 1-5", "L2 PRACTITIONER", "CORE DIGITAL"</p>
+            </div>
+
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--cyan);">Never Mix Tagline Typeface into Body</h4>
+                <p>Lora Italic is reserved for the tagline "Evolve through play" and never used for body copy, headlines, or other text.</p>
+            </div>
+
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--cyan);">Line Spacing & Leading</h4>
+                <ul style="margin: 0;">
+                    <li>Body: 1.8 line height (22.8pt @ 11pt size)</li>
+                    <li>Headlines: 1.2 line height</li>
+                    <li>Captions: 1.4 line height</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CHAPTER 06: BRAND VOICE -->
+        <section id="ch06">
+            <div class="section-label">chapter 06</div>
+            <h1>Brand Voice</h1>
+
+            <h2>Voice Axes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Axis</th>
+                        <th>TSS Voice</th>
+                        <th>What We Avoid</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Knowledge</strong></td>
+                        <td>Precise, clear, evidence-based</td>
+                        <td>Academic jargon, overly technical</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Status</strong></td>
+                        <td>Expert authority, inclusive</td>
+                        <td>Elite gatekeeping, exclusive tone</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Engagement</strong></td>
+                        <td>Playful, encouraging, motivating</td>
+                        <td>Casual slang, unprofessional tone</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Foundation</strong></td>
+                        <td>Scientific rigor, data-backed claims</td>
+                        <td>Overpromising, unsupported claims</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Structure</strong></td>
+                        <td>Systematic, clear progression</td>
+                        <td>Rigid mechanics, loss of humanity</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>Vocabulary: USE</h2>
+            <p>These words and concepts appear throughout TSS communication:</p>
+            <ul>
+                <li><strong>Mission</strong> — Structured learning journey</li>
+                <li><strong>Session</strong> — Focused training experience</li>
+                <li><strong>Belt</strong> — Progression level identifier</li>
+                <li><strong>Level</strong> — Skill stage (L1–L5 for coaches)</li>
+                <li><strong>Progression</strong> — Advancement through system</li>
+                <li><strong>System</strong> — Integrated methodology</li>
+                <li><strong>Methodology</strong> — Science-based framework</li>
+                <li><strong>Coach</strong> — Certified instructor</li>
+                <li><strong>Certification</strong> — Auditable credential</li>
+                <li><strong>Evolve</strong> — Transformative growth</li>
+                <li><strong>Structured</strong> — Organized, systematic</li>
+                <li><strong>Scientific</strong> — Evidence-based, rigorous</li>
+            </ul>
+
+            <h2>Vocabulary: NEVER</h2>
+            <p>These words contradict TSS positioning and voice:</p>
+            <ul>
+                <li><strong>Surf School</strong> — We are a methodology, not a school</li>
+                <li><strong>Stoke</strong> — Colloquial; we prefer "inspiration" or "engagement"</li>
+                <li><strong>Shred</strong> — Casual slang; use "master" or "progress"</li>
+                <li><strong>Gnarly</strong> — Too informal for systematic brand</li>
+                <li><strong>Lifestyle Brand</strong> — We are educational, not lifestyle</li>
+                <li><strong>Fun in the Sun</strong> — Oversimplifies our rigor</li>
+                <li><strong>Overpromise</strong> — We deliver measurable results, not hype</li>
+                <li><strong>Best Ever</strong> — Unsupported superlatives</li>
+            </ul>
+
+            <h2>Tagline: "Evolve Through Play"</h2>
+            <div class="card">
+                <h4 style="margin-top: 0; color: var(--golden);">Display Format</h4>
+                <p><span class="badge">Lora Italic</span> <span class="badge">Sentence Case</span> <span class="badge">Never ALL CAPS</span></p>
+                <p class="tagline" style="margin: 1rem 0;">Evolve through play</p>
+                <h4 style="color: var(--cyan); margin-bottom: 0.5rem;">Placement</h4>
+                <ul style="margin: 0;">
+                    <li>With logo: always present, same visual hierarchy</li>
+                    <li>Standalone: independent statements, equal weight</li>
+                    <li>Color: Cyan (#5AC3E7) on dark backgrounds, Navy (#0A1628) on light</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CHAPTER 07: BELT PROGRESSION -->
+        <section id="ch07">
+            <div class="section-label">chapter 07</div>
+            <h1>Belt Progression System</h1>
+
+            <p style="font-size: 1.1rem; color: var(--white); margin-bottom: 2rem;">Six progressive levels from White Belt (Beginner) to Black Belt (Elite). Each belt represents clear developmental milestones, skills mastered, and readiness for the next stage.</p>
+
+            <div class="belt-container">
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background-color: var(--belt-white);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">White Belt</div>
+                        <div class="belt-level">BEGINNER</div>
+                        <div class="belt-sequence">SEQ 1–5</div>
+                        <p><strong>Mastery Focus:</strong> Foundation, Safety, First wave, Board control</p>
+                        <p>Introduction to surfing. Learning to move on a board, basic safety, catching first waves, understanding ocean dynamics.</p>
+                    </div>
+                </div>
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background-color: var(--belt-yellow);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">Yellow Belt</div>
+                        <div class="belt-level">NOVICE</div>
+                        <div class="belt-sequence">SEQ 6–7</div>
+                        <p><strong>Mastery Focus:</strong> Pop-up, Direction, Consistent standing</p>
+                        <p>Developing pop-up consistency, directional control, standing ability on demand.</p>
+                    </div>
+                </div>
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background-color: var(--belt-blue);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">Blue Belt</div>
+                        <div class="belt-level">FOUNDATION</div>
+                        <div class="belt-sequence">SEQ 8–13</div>
+                        <p><strong>Mastery Focus:</strong> Flow, Turns, Green wave surfing</p>
+                        <p>Smooth transitions, basic turning mechanics, linking movements together.</p>
+                    </div>
+                </div>
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background-color: var(--belt-purple);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">Purple Belt</div>
+                        <div class="belt-level">EMERGING</div>
+                        <div class="belt-sequence">SEQ 14–17</div>
+                        <p><strong>Mastery Focus:</strong> Frontside, Backside, Intentional surfing</p>
+                        <p>Proficiency on both sides of board. Deliberate maneuver execution.</p>
+                    </div>
+                </div>
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background-color: var(--belt-brown);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">Brown Belt</div>
+                        <div class="belt-level">PRE-ELITE</div>
+                        <div class="belt-sequence">SEQ 18–22</div>
+                        <p><strong>Mastery Focus:</strong> Power surfing, Aerials, Competition ready</p>
+                        <p>Advanced techniques, competitive ability, coaching fundamentals.</p>
+                    </div>
+                </div>
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background-color: var(--belt-black);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">Black Belt</div>
+                        <div class="belt-level">ELITE</div>
+                        <div class="belt-sequence">SEQ 23–26</div>
+                        <p><strong>Mastery Focus:</strong> Full expression, Coach-ready, Maximum potential</p>
+                        <p>Complete system mastery. Ready to teach, lead, and develop others.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Belt Color Usage</h2>
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--coral);">Belt Colors Identify Level ONLY</h4>
+                <p>Belt colors appear on:</p>
+                <ul style="margin: 1rem 0 0 0;">
+                    <li>In-app badges and progress indicators</li>
+                    <li>Physical belt components (when produced)</li>
+                    <li>Student certificates</li>
+                    <li>Level identification in academy systems</li>
+                </ul>
+                <p style="margin: 1rem 0 0 0;"><strong>Belt colors are NEVER part of the brand color palette and NEVER appear in marketing or print materials.</strong></p>
+            </div>
+
+            <h2>Certification Rule (Non-Negotiable)</h2>
+            <div class="highlight">
+                <strong style="color: var(--coral); font-size: 1.1rem;">Only a certified TSS coach can award a belt. Self-certification is never valid under any circumstance.</strong>
+                <p style="margin: 1rem 0 0 0;">This rule ensures credential integrity. TSS certifications mean something globally because they are backed by the system's authority structure.</p>
+            </div>
+        </section>
+
+        <!-- CHAPTER 08: COLOR IN CONTEXT -->
+        <section id="ch08">
+            <div class="section-label">chapter 08</div>
+            <h1>Color in Context</h1>
+
+            <h2>A. Core Digital: App, Website, Email</h2>
+            <div class="card">
+                <h4 style="margin-top: 0; color: var(--cyan);">Navy + White + Cyan</h4>
+                <p>Digital interfaces prioritize clarity and speed. Navy backgrounds establish authority and reduce eye strain. White provides contrast for readable content. Cyan highlights interactive elements and creates visual hierarchy.</p>
+                <p><strong>Applications:</strong></p>
+                <ul style="margin: 0;">
+                    <li>TSS Brain (digital platform)</li>
+                    <li>Academy dashboards</li>
+                    <li>Student progression app</li>
+                    <li>Coach certification portal</li>
+                    <li>Email templates</li>
+                    <li>Social media graphics</li>
+                </ul>
+            </div>
+
+            <h2>B. Print: Certificates, Manuals, Level Kits</h2>
+            <div class="card">
+                <h4 style="margin-top: 0; color: var(--cyan);">White + Navy + Belt Color</h4>
+                <p>Print materials use white primary backgrounds for readability and cost efficiency. Navy establishes TSS identity. Belt color reinforces achievement level.</p>
+                <p><strong>Applications:</strong></p>
+                <ul style="margin: 0;">
+                    <li>Student certificates</li>
+                    <li>Coach credential cards</li>
+                    <li>Student manuals and workbooks</li>
+                    <li>Academy training kits</li>
+                    <li>Official documentation</li>
+                </ul>
+            </div>
+
+            <h2>C. Pop Colors: Campaign-Specific Context</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--coral);">Competition Coral</h4>
+                    <p>Certificates, competition events, award announcements, achievement celebrations. High-energy marker for competitive contexts.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--sunset);">Surf Sunset</h4>
+                    <p>Summer campaigns, seasonal promotions, lifestyle content, special collaborations (e.g., PS × TSS).</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--golden);">Golden Hour</h4>
+                    <p>Black Belt elite tier, premium materials, VIP communications, achievement recognition.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--foam);">Ocean Foam</h4>
+                    <p>App progress states, student milestone celebrations, success messages, forward momentum.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--deep-ocean);">Deep Ocean</h4>
+                    <p>Night events, pro camp materials, premium contexts, exclusive communications.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHAPTER 09: APPLICATIONS -->
+        <section id="ch09">
+            <div class="section-label">chapter 09</div>
+            <h1>Brand Applications</h1>
+
+            <h2>Apparel & Merchandise</h2>
+
+            <h3>Rashguards & T-Shirts (Student)</h3>
+            <ul>
+                <li><strong>Background:</strong> Navy (dark clothing)</li>
+                <li><strong>Front Center:</strong> Full horizontal logo (5–8 cm width)</li>
+                <li><strong>Front Left Chest:</strong> Mark only (icon, 2–3 cm)</li>
+                <li><strong>Back Large:</strong> Badge/stamp logo (8–12 cm)</li>
+                <li><strong>Sleeve:</strong> Icon micro mark (1–1.5 cm)</li>
+                <li><strong>Hem Tag:</strong> Micro mark (5–8 mm, white or navy)</li>
+                <li><strong>Color Combo:</strong> Navy + Cyan + optional Coral accent</li>
+            </ul>
+
+            <h3>Coach Rashguard (Premium)</h3>
+            <ul>
+                <li><strong>Chest Logo:</strong> Navy background with cyan/white logo</li>
+                <li><strong>Sleeve Badge:</strong> Larger mark emphasizing authority</li>
+                <li><strong>Back Placement:</strong> Full horizontal logo, visible during instruction</li>
+            </ul>
+
+            <h3>Competition Apparel</h3>
+            <ul>
+                <li><strong>Jersey/Uniform:</strong> Navy or black base</li>
+                <li><strong>Logo:</strong> White or cyan, centered chest</li>
+                <li><strong>Accent Color:</strong> Coral for high visibility</li>
+            </ul>
+
+            <h2>Signage</h2>
+
+            <h3>Beach Flags & Banners</h3>
+            <ul>
+                <li><strong>Background:</strong> Navy primary, Cyan secondary stripe</li>
+                <li><strong>Logo:</strong> Centered vertically (minimum 30 cm width)</li>
+                <li><strong>Material:</strong> Weather-resistant, fade-resistant inks</li>
+                <li><strong>Dimensions:</strong> Typical 3m × 1m minimum for event visibility</li>
+            </ul>
+
+            <h3>Academy Signage</h3>
+            <ul>
+                <li><strong>Approach:</strong> TSS mark is secondary to academy name/brand</li>
+                <li><strong>Approved Lockup:</strong> Academy Name + TSS Badge (small, 5–10 cm)</li>
+                <li><strong>Never:</strong> TSS as primary or equal to academy branding</li>
+            </ul>
+
+            <h3>Event Backdrop</h3>
+            <ul>
+                <li><strong>Background:</strong> Navy (#0A1628)</li>
+                <li><strong>Logo:</strong> Horizontal, white or cyan, 1.5–3m width</li>
+                <li><strong>Repetition:</strong> Optional repeat pattern for large areas</li>
+                <li><strong>Dimensions:</strong> Minimum 3m × 1m standard</li>
+            </ul>
+
+            <h3>Digital Screens</h3>
+            <ul>
+                <li><strong>Background:</strong> Navy gradient or solid</li>
+                <li><strong>Accent Color:</strong> Cyan for interactive elements</li>
+                <li><strong>Logo Animation:</strong> Full-motion logo available for video content</li>
+                <li><strong>Hierarchy:</strong> Logo or animated spiral as visual anchor</li>
+            </ul>
+
+            <h2>Monochromatic Applications</h2>
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--cyan);">When Color is Not Possible</h4>
+                <p>Single-color printing, embroidery, engraving, legal documents, or notarial applications require monochromatic logos.</p>
+                <ul style="margin: 1rem 0 0 0;">
+                    <li><strong>White Logo:</strong> On dark backgrounds (embroidery on navy rashguard)</li>
+                    <li><strong>Black Logo:</strong> On light backgrounds (engraving, formal documents)</li>
+                    <li><strong>Rules:</strong> Maintain clear space, minimum size, never distort proportions</li>
+                </ul>
+            </div>
+
+            <h2>Merchandise Examples</h2>
+            <ul>
+                <li><strong>Sticker Pack:</strong> Various logo formats, POP colors as accents</li>
+                <li><strong>Wax Box:</strong> TSS® Tropical blend. Navy + Cyan label, logo centered</li>
+                <li><strong>Board Sticker:</strong> Spiral mark, 5–8 cm. Placement: tail or rails</li>
+                <li><strong>Gi Patch:</strong> Embroidered mark, 3–5 cm. White or navy thread on gi material</li>
+            </ul>
+        </section>
+
+        <!-- CHAPTER 10: METHODOLOGY — THE METHOD -->
+        <section id="ch10">
+            <div class="section-label">chapter 10</div>
+            <h1>Methodology: The Method</h1>
+            <p style="font-size: 1.1rem; color: var(--white); margin-bottom: 2rem;">The scientific foundation of TSS. All instruction, progression, and coaching decisions stem from these core principles.</p>
+
+            <h2>10.1 P·R·C·H — The Four Basic Movements</h2>
+            <p>Every maneuver in surfing is built from four fundamental movements. These are the building blocks of all intermediate and advanced techniques.</p>
+
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">P — Posture</h4>
+                    <p><strong>Position:</strong> Straight back, head up, eyes focused forward.</p>
+                    <p><strong>Alignment:</strong> Body centered over board. Shoulders and hips aligned vertically.</p>
+                    <p><strong>Purpose:</strong> Foundation for all movement. Without posture, rotation and compression fail.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">R — Rotation</h4>
+                    <p><strong>Sequence:</strong> Eyes → neck → torso → obliques → hips → ankles.</p>
+                    <p><strong>Motor:</strong> The engine of every turn. Drives power from upper body through feet to board.</p>
+                    <p><strong>Range:</strong> Full-body engagement. Cannot be isolated to hips or shoulders alone.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">C — Compression</h4>
+                    <p><strong>Action:</strong> Lower center of gravity by bending knees and ankles.</p>
+                    <p><strong>Effect:</strong> Prepares body for explosive movement. Absorbs wave energy. Builds speed.</p>
+                    <p><strong>Application:</strong> Used before turns, landings, and power generation moments.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">H — Hold</h4>
+                    <p><strong>Technique:</strong> Maintain position longer than feels natural. Hold through apex of maneuver before releasing.</p>
+                    <p><strong>Result:</strong> Maximum pressure on wave face. Cleanest execution. Controlled exit.</p>
+                    <p><strong>Principle:</strong> Patience creates power. Hold = commitment.</p>
+                </div>
+            </div>
+
+            <h2>10.2 Three Circles of Power</h2>
+            <p>A diagnostic framework for understanding what influences surfing performance. Used by coaches to diagnose problems and plan progression.</p>
+
+            <h3>The Three Circles (Surfer Version)</h3>
+            <div class="diagram-box">
+                <h4 style="margin-top: 0; color: var(--cyan);">Circle 1: Body (P·R·C·H)</h4>
+                <p style="margin: 1rem 0;">What the surfer's body does—posture, rotation, compression, hold. The technical foundation.</p>
+
+                <h4 style="color: var(--cyan);">Circle 2: Feet Position on Board</h4>
+                <p style="margin: 1rem 0;">Where the surfer stands—tail, neutral, forward. Determines leverage and control.</p>
+
+                <h4 style="color: var(--cyan);">Circle 3: Wave Dynamics</h4>
+                <p style="margin: 1rem 0;">External environment—slope, speed, pocket, face angle. What the wave provides to work with.</p>
+
+                <p style="margin-top: 1.5rem; color: var(--foam);"><strong>Intersection = Surfing Outcome</strong><br/>Performance is the sum of all three circles. Weak technique (Circle 1) can't be saved by perfect positioning (Circle 2) or ideal waves (Circle 3).</p>
+            </div>
+
+            <h3>The Three Circles (Coach Version)</h3>
+            <div class="diagram-box">
+                <h4 style="margin-top: 0; color: var(--cyan);">Circle 1: Student Level + Requirements</h4>
+                <p style="margin: 1rem 0;">Belt level, prerequisite skills, current gap. What the student can and can't do.</p>
+
+                <h4 style="color: var(--cyan);">Circle 2: Environment/Conditions</h4>
+                <p style="margin: 1rem 0;">Beach, swell, wind, crowd, time of day. What's available to practice in.</p>
+
+                <h4 style="color: var(--cyan);">Circle 3: Task or Game</h4>
+                <p style="margin: 1rem 0;">The specific exercise or progression step. How the coach structures the learning moment.</p>
+
+                <p style="margin-top: 1.5rem; color: var(--foam);"><strong>Intersection = Learning Design</strong><br/>Effective coaching aligns all three. Wrong task (Circle 3) for the student's level (Circle 1) in bad conditions (Circle 2) = wasted session.</p>
+            </div>
+
+            <h2>10.3 Foot Positions (FP1, FP2, FP3)</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--coral);">FP1 — Full Tail</h4>
+                    <p><strong>Position:</strong> Back foot at extreme tail of board.</p>
+                    <p><strong>Leverage:</strong> Maximum. Entire board becomes a lever arm.</p>
+                    <p><strong>Use:</strong> Tight turns, sharp direction changes, launching aerials.</p>
+                    <p><strong>Stability:</strong> Lower. Requires core strength and balance.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--golden);">FP2 — Neutral</h4>
+                    <p><strong>Position:</strong> Back foot centered over middle third of board.</p>
+                    <p><strong>Leverage:</strong> Balanced. Equal pressure forward and aft.</p>
+                    <p><strong>Use:</strong> Default riding position. Smooth carving. Flow state.</p>
+                    <p><strong>Stability:</strong> Highest. Most natural, least energy expenditure.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--foam);">FP3 — Forward</h4>
+                    <p><strong>Position:</strong> Back foot moved forward (toward center, away from tail).</p>
+                    <p><strong>Leverage:</strong> Reduced on tail. Increases nose control.</p>
+                    <p><strong>Use:</strong> Maximum speed generation. Straight-line paddling. Small wave surfing.</p>
+                    <p><strong>Stability:</strong> Very high. Low center of gravity.</p>
+                </div>
+            </div>
+
+            <h2>10.4 Four Pillars Framework</h2>
+            <p>All TSS instruction is organized around four interdependent pillars. Each must develop in parallel. Safety is a transversal layer that spans all four.</p>
+
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Physical</h4>
+                    <p>Strength, endurance, flexibility, body awareness. The physical capacity to execute techniques.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Technical</h4>
+                    <p>P·R·C·H, foot positions, sequences. The mechanics of surfing maneuvers.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Tactical</h4>
+                    <p>Wave reading, position selection, decision-making. How to choose the right move at the right moment.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Mental</h4>
+                    <p>Focus, resilience, confidence, learning mindset. The psychological foundation of consistent improvement.</p>
+                </div>
+            </div>
+
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--coral);">Safety as Transversal Layer</h4>
+                <p>Safety awareness is woven throughout all four pillars and all progression. A student cannot advance to the next belt without demonstrating safe practices: ocean awareness, board handling, peer responsibility, self-awareness of limits.</p>
+            </div>
+
+            <h2>10.5 TSS Execution Sequences</h2>
+            <p>Detailed step-by-step maneuver progressions. Sequences are belt-specific and built using blocks (detailed in Chapter 11).</p>
+
+            <h3>Frontside Sequence</h3>
+            <div class="rule-box">
+                <ol style="margin: 0;">
+                    <li><strong>Posture:</strong> Establish upright, centered position on the wave face</li>
+                    <li><strong>Bottom Turn:</strong> Compress and rotate to change direction at wave base</li>
+                    <li><strong>Projection:</strong> Extend up the wave face with momentum</li>
+                    <li><strong>Cruz (Avioncito):</strong> Smooth, arcing turn on the upper shoulder</li>
+                    <li><strong>Variation:</strong> Add cutback, hack, or radical maneuver specific to belt level</li>
+                    <li><strong>Granada:</strong> Return to lower face for next opportunity</li>
+                    <li><strong>Return to Posture:</strong> Reset position and repeat or exit wave</li>
+                </ol>
+            </div>
+
+            <h3>Backside Sequence</h3>
+            <div class="rule-box">
+                <ol style="margin: 0;">
+                    <li><strong>Posture:</strong> Establish upright, centered position (back to wave face)</li>
+                    <li><strong>Bottom Turn:</strong> Compress and rotate for direction change and projection</li>
+                    <li><strong>Choke:</strong> Tight, controlled turn keeping upper body compact</li>
+                    <li><strong>Tapaloco:</strong> Quick pivoting turn in middle section</li>
+                    <li><strong>Elbow:</strong> Extension into aerial or advanced maneuver</li>
+                    <li><strong>Variation:</strong> Adapt to wave pocket and available slope</li>
+                    <li><strong>Touch the Board:</strong> Intentional board contact for control and show</li>
+                    <li><strong>Return to Posture:</strong> Reset and prepare for next section</li>
+                </ol>
+            </div>
+
+            <h2>Phase Equivalence Table</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Frontside Sequence</th>
+                        <th>Backside Sequence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td>Posture</td>
+                        <td>Posture</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td>Bottom Turn</td>
+                        <td>Bottom Turn</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td>Projection</td>
+                        <td>Choke</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td>Cruz</td>
+                        <td>Tapaloco</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td>Variation</td>
+                        <td>Elbow / Variation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>6</strong></td>
+                        <td>Granada</td>
+                        <td>Touch the Board</td>
+                    </tr>
+                    <tr>
+                        <td><strong>7</strong></td>
+                        <td>Return to Posture</td>
+                        <td>Return to Posture</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- CHAPTER 11: BLOCK SYSTEM & INFINITE CIRCLE -->
+        <section id="ch11">
+            <div class="section-label">chapter 11</div>
+            <h1>Block System & Infinite Circle</h1>
+
+            <h2>11.1 The Eight Learning Blocks (Blocks 0–7)</h2>
+            <p>Blocks are functional learning units. Each block isolates a specific skill or concept for focused practice. Blocks are combined into sequences and used across all belt levels.</p>
+
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Block 0: Awareness</h4>
+                    <p>Ocean safety, board handling, wave dynamics observation. Foundation for all subsequent learning. Ongoing throughout progression.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Block 1: Entry</h4>
+                    <p>Paddling, wave selection, positioning, pop-up. Getting into waves consistently.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Block 2: Foundation</h4>
+                    <p>P·R·C·H basics, balance, board control. Establishing technical fundamentals.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Block 3: Direction Change</h4>
+                    <p>Bottom turns, basic turning mechanics. First maneuver mastery.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Block 4: Carving</h4>
+                    <p>Smooth, flowing turns. Linking multiple maneuvers. Style and efficiency.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Block 5: Projection</h4>
+                    <p>Speed generation, vertical movement, wave face usage. Power surfing entry.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Block 6: Variation</h4>
+                    <p>Maneuver creativity, adaptation, situational awareness. Beyond basics.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Block 7: Integration</h4>
+                    <p>Full-wave expression, combining all blocks, competition ready. Mastery.</p>
+                </div>
+            </div>
+
+            <h2>11.2 Architectural Rule: Sequential & Cyclical Progression</h2>
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--cyan);">Blocks 1–3: Sequential</h4>
+                <p>Must be mastered in order. Block 1 (Entry) is prerequisite for Block 2 (Foundation). Block 2 is prerequisite for Block 3 (Direction Change). Cannot skip or reverse.</p>
+            </div>
+
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--cyan);">Blocks 4–7: Cyclical</h4>
+                <p>After Block 3 mastery, blocks 4–7 loop. Students cycle through Carving → Projection → Variation → Integration → back to Carving at deeper levels. Each cycle adds complexity and refinement.</p>
+            </div>
+
+            <h2>11.3 The Infinite Circle Concept</h2>
+            <p>Once a surfer reaches Block 4 (Carving), learning becomes cyclical rather than linear. The same four blocks (Carving, Projection, Variation, Integration) repeat at progressively deeper, more nuanced levels.</p>
+
+            <div class="diagram-box">
+                <h3 style="color: var(--cyan); margin: 1rem 0;">Linear Progression: Blocks 1–3</h3>
+                <p>Entry → Foundation → Direction Change → (Ready for Cycle)</p>
+                <h3 style="color: var(--foam); margin: 2rem 0 1rem 0;">Infinite Cycle: Blocks 4–7</h3>
+                <p>Carving ⟲ Projection ⟲ Variation ⟲ Integration ⟲ (repeat with deeper mastery)</p>
+                <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--mid-grey);">This cycle continues through Purple, Brown, and Black Belt. Each rotation adds precision, power, and creative expression.</p>
+            </div>
+
+            <h2>11.4 Entry Sequence: The Sweet Spot Process</h2>
+            <p>The foundation for all Block-based learning. Students master this before progressing into block cycles.</p>
+
+            <div class="rule-box">
+                <ol style="margin: 0;">
+                    <li><strong>Sweet Spot Identification:</strong> Find the peak of the forming wave</li>
+                    <li><strong>Chase Wave:</strong> Paddle to position ahead of the breaking section</li>
+                    <li><strong>Paddling Angle:</strong> Angle board at 45° to incoming wave</li>
+                    <li><strong>Cobra:</strong> Extend arms (cobra position) for final paddle strokes</li>
+                    <li><strong>Pop-up:</strong> Explosive movement from prone to standing position</li>
+                </ol>
+            </div>
+
+            <h2>11.5 Doctrinal Rule: Blocks Don't Replace Sequences</h2>
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--coral);">Critical Distinction</h4>
+                <p><strong>Blocks = Skill Building Units</strong><br/>Isolated practice of specific skills (bottom turn practice, carving practice, etc.)</p>
+                <p style="margin-top: 1rem;"><strong>Sequences = Integrated Movement Progressions</strong><br/>Complete wave-riding from entry through exit (e.g., Frontside Sequence in Chapter 10)</p>
+                <p style="margin-top: 1rem;"><strong>Relationship:</strong> Sequences are built USING blocks. A Blue Belt Frontside Sequence might emphasize Block 2 (Foundation) + Block 3 (Direction Change), while a Brown Belt sequence adds Block 5 (Projection) + Block 6 (Variation).</p>
+            </div>
+
+            <h2>11.6 Relationship Map: Four Core Frameworks</h2>
+            <div class="note">
+                <h4 style="margin-top: 0; color: var(--cyan);">Three Circles of Power</h4>
+                <p style="margin: 0.5rem 0;">Language for diagnosis. How do we talk about what we observe? (Body, Board Position, Wave Dynamics)</p>
+
+                <h4 style="color: var(--cyan); margin: 1rem 0 0.5rem 0;">Blocks (0–7)</h4>
+                <p style="margin: 0.5rem 0;">Functional architecture. What are the learning components? (Entry, Foundation, Direction Change, etc.)</p>
+
+                <h4 style="color: var(--cyan); margin: 1rem 0 0.5rem 0;">Infinite Circle (Blocks 4–7 Cycle)</h4>
+                <p style="margin: 0.5rem 0;">Operational loop. How does learning progress after fundamentals? (Recurring Carving → Projection → Variation → Integration)</p>
+
+                <h4 style="color: var(--cyan); margin: 1rem 0 0.5rem 0;">Belt System</h4>
+                <p style="margin: 0.5rem 0;">Developmental stage. What level of complexity is the student ready for? (White–Black)</p>
+
+                <h4 style="color: var(--cyan); margin: 1rem 0 0.5rem 0;">Sequences</h4>
+                <p style="margin: 0;">Stage-specific progression. What integrated movement should the student practice? (Frontside/Backside Sequences per belt)</p>
+            </div>
+        </section>
+
+        <!-- CHAPTER 12: COACH CERTIFICATION SYSTEM -->
+        <section id="ch12">
+            <div class="section-label">chapter 12</div>
+            <h1>Coach Certification System</h1>
+
+            <p style="font-size: 1.1rem; color: var(--white); margin-bottom: 2rem;">TSS certifications identify coaches who have been trained, assessed, and approved to teach the methodology. All certifications are portable, auditable, and renewed annually.</p>
+
+            <h2>12.1 Five Certification Levels</h2>
+            <div class="belt-container">
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background-color: var(--belt-blue);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">L1 Foundation</div>
+                        <div class="belt-level">ENTRY LEVEL</div>
+                        <div class="belt-sequence">Blue Belt Minimum</div>
+                        <p><strong>Focus:</strong> Basic instruction, White and Yellow Belt progression</p>
+                        <p>Coaches understand TSS methodology fundamentals. Can teach beginner sequences. Requires shadowing and assessment.</p>
+                    </div>
+                </div>
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background-color: var(--belt-purple);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">L2 Practitioner</div>
+                        <div class="belt-level">INTERMEDIATE</div>
+                        <div class="belt-sequence">Purple Belt Minimum</div>
+                        <p><strong>Focus:</strong> Skilled instruction, Blue and Purple Belt progression</p>
+                        <p>Coaches demonstrate fluency in methodology. Can diagnose and correct technique. Leads group sessions independently.</p>
+                    </div>
+                </div>
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background-color: var(--belt-brown);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">L3 Advanced</div>
+                        <div class="belt-level">ADVANCED</div>
+                        <div class="belt-sequence">Brown Belt Minimum</div>
+                        <p><strong>Focus:</strong> Expert instruction, Brown Belt progression and above</p>
+                        <p>Coaches master methodology nuance. Can adapt teaching to individual student learning styles. Mentors junior coaches.</p>
+                    </div>
+                </div>
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background-color: var(--belt-black);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">L4 Master</div>
+                        <div class="belt-level">EXPERT</div>
+                        <div class="belt-sequence">Black Belt Minimum</div>
+                        <p><strong>Focus:</strong> Elite coaching, Black Belt progression, advanced competition prep</p>
+                        <p>Coaches embody complete system mastery. Can develop curriculum. Leads academy-level instruction.</p>
+                    </div>
+                </div>
+                <div class="belt-card">
+                    <div class="belt-color-band" style="background: linear-gradient(135deg, var(--golden), #FFB340);"></div>
+                    <div class="belt-card-content">
+                        <div class="belt-name">L5 Educator</div>
+                        <div class="belt-level">LEADERSHIP</div>
+                        <div class="belt-sequence">Black Belt + 2yr Exp</div>
+                        <p><strong>Focus:</strong> Coach training, curriculum development, methodology evolution</p>
+                        <p>Educators design and deliver L1–L4 coach training programs. Represent TSS at global level. Shape methodology evolution.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>12.2 Coach Formation Principle</h2>
+            <p>Coaches follow a four-stage development pathway:</p>
+
+            <div class="diagram-box">
+                <div class="circle-flow">
+                    <div class="circle-item">
+                        <strong>Experience</strong>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="circle-item">
+                        <strong>Understand</strong>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="circle-item">
+                        <strong>Learn to Teach</strong>
+                    </div>
+                    <div class="arrow">→</div>
+                    <div class="circle-item">
+                        <strong>Deliver</strong>
+                    </div>
+                </div>
+            </div>
+
+            <p style="margin-top: 2rem; text-align: center; font-size: 0.95rem; color: var(--mid-grey);"><strong>Experience:</strong> Live through the methodology as a student. Master your own progression. <strong>Understand:</strong> Study the method, theory, science. Pass written assessments. <strong>Learn to Teach:</strong> Practice instruction under mentorship. Get feedback. Refine delivery. <strong>Deliver:</strong> Teach independently with consistency, quality, and integrity.</p>
+
+            <h2>12.3 Certification Properties</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--foam);">Portable</h4>
+                    <p>A TSS L2 certification is valid globally. Coaches can teach at any TSS-licensed academy worldwide without recredentialing.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--foam);">Auditable</h4>
+                    <p>All certifications are registered with TSS Global (Enkrateia). Academy directors can verify coach credentials instantly through TSS Brain.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--foam);">Renewable</h4>
+                    <p>Certifications expire annually. Renewal requires continuing education, student feedback, and annual assessment. Keeps coaches current.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--foam);">Progressive</h4>
+                    <p>Coaches advance level-to-level. Each level requires higher belt status and additional experience. Ensures quality at every level.</p>
+                </div>
+            </div>
+
+            <h2>12.4 Authority Structure: TSS Global (Enkrateia)</h2>
+            <div class="rule-box">
+                <h4 style="margin-top: 0; color: var(--coral);">Non-Negotiable Rule</h4>
+                <p><strong>TSS Global (Enkrateia) is the sole authority for all coach certifications.</strong></p>
+                <p style="margin: 1rem 0 0 0;">No individual coach, academy, or regional body can independently certify coaches. All L1–L5 certifications are issued by and registered with TSS Global. This ensures:</p>
+                <ul style="margin: 1rem 0 0 0;">
+                    <li>Global consistency in teaching quality</li>
+                    <li>Portable credentials across all academies</li>
+                    <li>Auditable credential verification</li>
+                    <li>Methodology integrity and evolution management</li>
+                </ul>
+            </div>
+
+            <h2>12.5 Certification Process Overview</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Level</th>
+                        <th>Belt Requirement</th>
+                        <th>Key Components</th>
+                        <th>Assessment</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>L1</strong></td>
+                        <td>Blue+ minimum</td>
+                        <td>Methodology basics, beginner sequences, safety fundamentals</td>
+                        <td>Written exam + teaching demo + student feedback</td>
+                    </tr>
+                    <tr>
+                        <td><strong>L2</strong></td>
+                        <td>Purple+ minimum</td>
+                        <td>Blocks 1–3 mastery, Three Circles diagnosis, group management</td>
+                        <td>Advanced exam + lesson planning + peer observation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>L3</strong></td>
+                        <td>Brown+ minimum</td>
+                        <td>Advanced sequences, Infinite Circle, individual customization, mentorship</td>
+                        <td>Practical exam + student case studies + mentor evaluation</td>
+                    </tr>
+                    <tr>
+                        <td><strong>L4</strong></td>
+                        <td>Black minimum</td>
+                        <td>Competition prep, elite athlete coaching, curriculum design, academy leadership</td>
+                        <td>Comprehensive exam + curriculum project + academy performance metrics</td>
+                    </tr>
+                    <tr>
+                        <td><strong>L5</strong></td>
+                        <td>Black + 2yr exp</td>
+                        <td>Coach training program delivery, methodology evolution, global representation</td>
+                        <td>Leadership project + educator cohort + peer review</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>12.6 Annual Renewal Requirements</h2>
+            <p>All active certifications must renew annually to remain valid.</p>
+
+            <div class="grid">
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Continuing Education</h4>
+                    <p>Minimum 20 hours annual training. Can include TSS workshops, peer learning, external coaching education, or advanced study.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Student Feedback</h4>
+                    <p>Minimum 3 student evaluations per year. Coaches must maintain 4.0+ average (out of 5). Low scores trigger support plan.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Annual Assessment</h4>
+                    <p>Brief reassessment confirming continued competency at current level. Written component + teaching demonstration.</p>
+                </div>
+                <div class="grid-item">
+                    <h4 style="margin-top: 0; color: var(--cyan);">Integrity Check</h4>
+                    <p>Confirmation that coach follows TSS standards and represents the methodology authentically. Ethics and conduct review.</p>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <strong style="color: var(--golden);">Certification means something globally because it requires consistent, auditable, annually renewed standards.</strong>
+                <p style="margin: 1rem 0 0 0;">TSS certifications hold weight because the system is rigorous. A TSS L3 coach in Lisbon offers the same quality and knowledge as an L3 coach in California. This consistency is the competitive advantage of the TSS system.</p>
+            </div>
+        </section>
+
+        <!-- CLOSING SECTION -->
+        <section style="text-align: center; padding: 5rem 2rem;">
+            <h2 style="color: var(--cyan); margin-bottom: 2rem;">TSS Brand Manual v5.0</h2>
+            <p style="font-size: 1.1rem; color: var(--mid-grey); margin-bottom: 1rem;">Complete methodology reference including Canon v5.0 aligned content.</p>
+            <p class="tagline">Evolve through play</p>
+            <p style="margin-top: 2rem; color: var(--grey); font-size: 0.9rem;">© 2026 TSS Global (Enkrateia). All rights reserved.<br/>Version 5.0 — Canon Aligned</p>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-version">TSS BRAND MANUAL V5.0 — CANON ALIGNED</div>
+            <div class="footer-text">Licensed Educational Methodology</div>
+            <div class="footer-text">Chapters 01–09: Brand Foundation | Chapters 10–12: Methodology & Certification</div>
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(90, 195, 231, 0.1);">
+                <p style="color: var(--cyan); margin: 0;">© 2026 TSS Global (Enkrateia) — All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button id="scrollTop">↑</button>
+
+    <script>
+        // Scroll to top button functionality
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Smooth scrolling for nav links
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                    // Update active state
+                    document.querySelectorAll('nav a').forEach(l => l.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Scrollspy functionality
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Log file info
+        console.log('%c TSS Brand Manual v5.0 - Canon Aligned', 'color: #5AC3E7; font-size: 16px; font-weight: bold;');
+        console.log('%c Chapters 01-09: Brand Foundation', 'color: #5AC3E7; font-size: 12px;');
+        console.log('%c Chapters 10-12: Methodology & Certification', 'color: #5AC3E7; font-size: 12px;');
+        console.log('Document ready. All sections loaded.');
+    </script>
+</body>
+</html>

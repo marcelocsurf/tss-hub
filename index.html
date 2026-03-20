@@ -1,0 +1,1806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSS Hub — The Surf Sequence® Operations Center</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{font-size:16px}
+body{font-family:'Work Sans',sans-serif;background:#060e1a;color:#e0e0e0;min-height:100vh;overflow-x:hidden}
+
+/* ===== TOKENS ===== */
+:root{
+  --navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;
+  --light:#F5F7FA;--white:#FFFFFF;--dark:#060e1a;
+  --card:#0d1a2e;--card-hover:#112240;--sidebar:#081020;
+  --gold:#FFD166;--coral:#FF6B6B;--green:#06D6A0;--purple:#7B4FBE;
+  --brown:#7D4E27;--belt-white:#E8E8E8;--belt-yellow:#F5C518;
+  --belt-blue:#1E6FBF;
+}
+
+/* ===== LAYOUT ===== */
+.app{display:flex;height:100vh}
+.sidebar{width:260px;background:var(--sidebar);border-right:1px solid rgba(90,195,231,.08);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;transition:transform .3s}
+.main{flex:1;overflow-y:auto;position:relative}
+
+/* ===== SIDEBAR ===== */
+.sidebar__header{padding:20px;border-bottom:1px solid rgba(90,195,231,.08)}
+.sidebar__logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:1rem;color:var(--white)}
+.sidebar__logo span{color:var(--cyan)}
+.sidebar__tagline{font-family:'Lora',serif;font-style:italic;font-size:.75rem;color:var(--cyan);margin-top:4px}
+.sidebar__nav{flex:1;padding:12px 0}
+.nav-section{padding:0 12px;margin-bottom:8px}
+.nav-section__title{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);padding:8px 12px 4px}
+.nav-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:8px;margin:1px 0;cursor:pointer;font-size:.85rem;color:rgba(255,255,255,.55);transition:all .2s;border:none;background:none;width:100%;text-align:left;font-family:'Work Sans',sans-serif}
+.nav-item:hover{background:rgba(90,195,231,.06);color:rgba(255,255,255,.85)}
+.nav-item.active{background:rgba(90,195,231,.1);color:var(--cyan);font-weight:500}
+.nav-item__icon{width:20px;text-align:center;font-size:.9rem}
+.nav-item__badge{margin-left:auto;font-size:.65rem;padding:2px 6px;border-radius:4px;background:rgba(90,195,231,.15);color:var(--cyan)}
+.sidebar__footer{padding:16px 20px;border-top:1px solid rgba(90,195,231,.08);font-size:.7rem;color:rgba(255,255,255,.2)}
+
+/* ===== MAIN CONTENT ===== */
+.page{display:none;padding:32px;max-width:1200px;margin:0 auto;animation:fadeIn .4s}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.page__header{margin-bottom:32px}
+.page__overline{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px}
+.page__title{font-family:'Outfit',sans-serif;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;color:var(--white);margin-bottom:8px}
+.page__desc{font-size:.92rem;color:rgba(255,255,255,.45);max-width:600px}
+
+/* ===== CARDS ===== */
+.cards{display:grid;gap:16px}
+.cards--2{grid-template-columns:repeat(auto-fill,minmax(320px,1fr))}
+.cards--3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.cards--4{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+
+.card{background:var(--card);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:24px;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.card:hover{background:var(--card-hover);border-color:rgba(90,195,231,.15);transform:translateY(-2px)}
+.card__accent{position:absolute;top:0;left:0;right:0;height:3px}
+.card__icon{font-size:1.8rem;margin-bottom:12px}
+.card__title{font-family:'Outfit',sans-serif;font-size:1.05rem;font-weight:700;color:var(--white);margin-bottom:6px}
+.card__desc{font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.6}
+.card__tag{display:inline-block;margin-top:12px;padding:3px 10px;border-radius:100px;font-size:.65rem;font-weight:600;letter-spacing:.04em;background:rgba(90,195,231,.1);color:var(--cyan)}
+
+/* ===== TOOL EMBED ===== */
+.tool-frame{width:100%;border:none;border-radius:12px;background:var(--white);min-height:calc(100vh - 120px)}
+.tool-back{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:8px;background:rgba(90,195,231,.08);color:var(--cyan);font-size:.85rem;font-weight:500;cursor:pointer;border:none;font-family:'Work Sans',sans-serif;margin-bottom:16px;transition:all .2s}
+.tool-back:hover{background:rgba(90,195,231,.15)}
+
+/* ===== DASHBOARD STATS ===== */
+.dash-stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:32px}
+.dash-stat{background:var(--card);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:20px;text-align:center}
+.dash-stat__num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;color:var(--cyan)}
+.dash-stat__label{font-size:.75rem;color:rgba(255,255,255,.35);margin-top:4px}
+
+/* ===== QUICK TOOLS ===== */
+.quick-tool{background:var(--card);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:24px;margin-bottom:16px}
+.quick-tool h3{font-family:'Outfit',sans-serif;font-size:1.1rem;color:var(--white);margin-bottom:16px}
+.quick-tool label{display:block;font-size:.82rem;color:rgba(255,255,255,.4);margin-bottom:4px}
+.quick-tool select,.quick-tool input[type=number],.quick-tool input[type=text]{width:100%;padding:10px 14px;border:1px solid rgba(90,195,231,.15);border-radius:8px;background:rgba(255,255,255,.04);color:var(--white);font-family:'Work Sans',sans-serif;font-size:.9rem;margin-bottom:12px}
+.quick-tool select option{background:var(--navy)}
+.quick-tool .result{padding:16px;border-radius:8px;background:rgba(90,195,231,.06);border:1px solid rgba(90,195,231,.1);margin-top:12px;font-size:.9rem;color:var(--white)}
+.quick-tool .result strong{color:var(--cyan)}
+.quick-tool .btn{display:inline-block;padding:10px 24px;border-radius:6px;font-family:'Outfit',sans-serif;font-weight:600;font-size:.9rem;cursor:pointer;border:none;background:var(--cyan);color:var(--navy);transition:all .2s}
+.quick-tool .btn:hover{background:#3db8e0}
+
+/* ===== CONDITION ANALYZER ===== */
+.condition-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.condition-output{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px}
+.condition-badge{padding:10px;border-radius:8px;text-align:center;font-size:.8rem;font-weight:600}
+.condition-badge.safe{background:rgba(6,214,160,.1);color:var(--green)}
+.condition-badge.caution{background:rgba(255,209,102,.1);color:var(--gold)}
+.condition-badge.danger{background:rgba(255,107,107,.1);color:var(--coral)}
+
+/* ===== SESSION PLANNER ===== */
+.session-block{display:flex;gap:12px;align-items:center;padding:12px;border-radius:8px;background:rgba(255,255,255,.02);margin-bottom:8px;border-left:3px solid var(--cyan)}
+.session-block__num{width:32px;height:32px;border-radius:50%;background:rgba(90,195,231,.1);display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:700;color:var(--cyan);font-size:.85rem;flex-shrink:0}
+.session-block__content{flex:1}
+.session-block__title{font-size:.88rem;font-weight:600;color:var(--white)}
+.session-block__desc{font-size:.78rem;color:rgba(255,255,255,.35)}
+
+/* ===== MOBILE ===== */
+.mobile-toggle{display:none;position:fixed;bottom:20px;right:20px;z-index:100;width:48px;height:48px;border-radius:50%;background:var(--cyan);color:var(--navy);border:none;font-size:1.2rem;cursor:pointer;box-shadow:0 4px 20px rgba(90,195,231,.3)}
+@media(max-width:768px){
+  .sidebar{position:fixed;left:0;top:0;bottom:0;z-index:99;transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .mobile-toggle{display:flex;align-items:center;justify-content:center}
+  .main{width:100%}
+  .cards--2,.cards--3,.cards--4{grid-template-columns:1fr}
+  .condition-grid,.condition-output{grid-template-columns:1fr}
+  .dash-stats{grid-template-columns:1fr 1fr}
+}
+/* ===== PIN LOCK ===== */
+.pin-screen{position:fixed;inset:0;z-index:9999;background:var(--navy);display:flex;align-items:center;justify-content:center;flex-direction:column}
+.pin-screen.hidden{display:none}
+.pin-box{text-align:center;max-width:360px;padding:40px}
+.pin-box__logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.5rem;color:var(--white);margin-bottom:4px}
+.pin-box__logo span{color:var(--cyan)}
+.pin-box__tagline{font-family:'Lora',serif;font-style:italic;font-size:.85rem;color:var(--cyan);margin-bottom:40px}
+.pin-box__label{font-size:.75rem;font-weight:600;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.12em;margin-bottom:16px}
+.pin-dots{display:flex;gap:12px;justify-content:center;margin-bottom:24px}
+.pin-dot{width:16px;height:16px;border-radius:50%;border:2px solid rgba(90,195,231,.3);background:transparent;transition:all .2s}
+.pin-dot.filled{background:var(--cyan);border-color:var(--cyan)}
+.pin-dot.error{border-color:var(--coral);background:var(--coral);animation:shake .4s}
+.pin-keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:240px;margin:0 auto}
+.pin-key{width:72px;height:56px;border-radius:10px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.03);color:var(--white);font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:600;cursor:pointer;transition:all .15s;display:flex;align-items:center;justify-content:center}
+.pin-key:hover{background:rgba(90,195,231,.08);border-color:rgba(90,195,231,.2)}
+.pin-key:active{background:rgba(90,195,231,.15);transform:scale(.95)}
+.pin-key.action{font-size:.75rem;color:rgba(255,255,255,.3)}
+.pin-error-msg{font-size:.8rem;color:var(--coral);margin-top:12px;min-height:20px}
+.pin-settings{position:fixed;bottom:16px;right:16px;z-index:101;font-size:.7rem;color:rgba(255,255,255,.1);cursor:pointer}
+.pin-settings:hover{color:rgba(255,255,255,.3)}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+</head>
+<body>
+
+<!-- PIN LOCK SCREEN -->
+<div class="pin-screen" id="pinScreen">
+  <div class="pin-box">
+    <div class="pin-box__logo">TSS <span>HUB</span></div>
+    <div class="pin-box__tagline">Evolve through play.</div>
+    <div class="pin-box__label">Enter PIN to continue</div>
+    <div class="pin-dots" id="pinDots">
+      <div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div><div class="pin-dot"></div>
+    </div>
+    <div class="pin-keypad">
+      <button class="pin-key" onclick="pinInput('1')">1</button>
+      <button class="pin-key" onclick="pinInput('2')">2</button>
+      <button class="pin-key" onclick="pinInput('3')">3</button>
+      <button class="pin-key" onclick="pinInput('4')">4</button>
+      <button class="pin-key" onclick="pinInput('5')">5</button>
+      <button class="pin-key" onclick="pinInput('6')">6</button>
+      <button class="pin-key" onclick="pinInput('7')">7</button>
+      <button class="pin-key" onclick="pinInput('8')">8</button>
+      <button class="pin-key" onclick="pinInput('9')">9</button>
+      <button class="pin-key action" onclick="pinClear()">CLR</button>
+      <button class="pin-key" onclick="pinInput('0')">0</button>
+      <button class="pin-key action" onclick="pinBackspace()">⌫</button>
+    </div>
+    <div class="pin-error-msg" id="pinError"></div>
+  </div>
+</div>
+
+<div class="app" style="display:none" id="mainApp">
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar__header">
+    <div class="sidebar__logo">TSS <span>HUB</span></div>
+    <div class="sidebar__tagline">Evolve through play.</div>
+  </div>
+  <nav class="sidebar__nav">
+
+    <div class="nav-section">
+      <div class="nav-section__title">Principal</div>
+      <button class="nav-item active" onclick="showPage('dashboard')">
+        <span class="nav-item__icon">📊</span> Dashboard
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section__title">Marca & Doctrina</div>
+      <button class="nav-item" onclick="showPage('brand-ext')">
+        <span class="nav-item__icon">🌐</span> Brand (Externo)
+      </button>
+      <button class="nav-item" onclick="showPage('brand-int')">
+        <span class="nav-item__icon">🔒</span> Brand (Interno)
+      </button>
+      <button class="nav-item" onclick="showPage('canon')">
+        <span class="nav-item__icon">📜</span> Canon & Doctrina
+      </button>
+      <button class="nav-item" onclick="showPage('onewave')">
+        <span class="nav-item__icon">📖</span> One Wave (Libro)
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section__title">Herramientas de Coach</div>
+      <button class="nav-item" onclick="showPage('belts')">
+        <span class="nav-item__icon">🥋</span> Belt Tools <span class="nav-item__badge">6</span>
+      </button>
+      <button class="nav-item" onclick="showPage('seqtool')">
+        <span class="nav-item__icon">🔗</span> Sequence Tool <span class="nav-item__badge">439</span>
+      </button>
+      <button class="nav-item" onclick="showPage('drills')">
+        <span class="nav-item__icon">🏋️</span> Drill Library <span class="nav-item__badge">284</span>
+      </button>
+      <button class="nav-item" onclick="showPage('logger')">
+        <span class="nav-item__icon">📝</span> Session Logger
+      </button>
+      <button class="nav-item" onclick="showPage('session')">
+        <span class="nav-item__icon">📋</span> Session Planner
+      </button>
+      <button class="nav-item" onclick="showPage('ratio')">
+        <span class="nav-item__icon">👥</span> Ratio Calculator
+      </button>
+      <button class="nav-item" onclick="showPage('conditions')">
+        <span class="nav-item__icon">🌊</span> Condition Analyzer
+      </button>
+      <button class="nav-item" onclick="showPage('safety')">
+        <span class="nav-item__icon">🛡️</span> Safety Canon
+      </button>
+      <button class="nav-item" onclick="showPage('inclusion')">
+        <span class="nav-item__icon">🧠</span> Learning Styles
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section__title">Evaluación</div>
+      <button class="nav-item" onclick="showPage('quiz')">
+        <span class="nav-item__icon">🎯</span> Level Quiz <span class="nav-item__badge">2</span>
+      </button>
+      <button class="nav-item" onclick="showPage('cert')">
+        <span class="nav-item__icon">🎓</span> Cert Prep Tool
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section__title">Operaciones</div>
+      <button class="nav-item" onclick="showPage('progress')">
+        <span class="nav-item__icon">📈</span> Student Tracker
+      </button>
+      <button class="nav-item" onclick="showPage('coachref')">
+        <span class="nav-item__icon">📎</span> Coach Quick Ref
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section__title">Business</div>
+      <button class="nav-item" onclick="showPage('bizmodel')">
+        <span class="nav-item__icon">💰</span> Revenue Model
+      </button>
+      <button class="nav-item" onclick="showPage('business')">
+        <span class="nav-item__icon">💼</span> Business Tools <span class="nav-item__badge">3</span>
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section__title">Website</div>
+      <button class="nav-item" onclick="showPage('website')">
+        <span class="nav-item__icon">🌐</span> Website TSS
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section__title">Plataforma</div>
+      <button class="nav-item" onclick="showPage('brain')">
+        <span class="nav-item__icon">🧬</span> TSS Brain App
+      </button>
+      <button class="nav-item" onclick="showPage('masterclass')">
+        <span class="nav-item__icon">🔬</span> Masterclasses <span class="nav-item__badge">8</span>
+      </button>
+      <button class="nav-item" onclick="showPage('highperf')">
+        <span class="nav-item__icon">⚡</span> High Performance
+      </button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-section__title">Visualización</div>
+      <button class="nav-item" onclick="showPage('diagrams')">
+        <span class="nav-item__icon">📐</span> Diagrams <span class="nav-item__badge">5</span>
+      </button>
+    </div>
+
+  </nav>
+  <div class="sidebar__footer">
+    THE SURF SEQUENCE® v1.0<br>
+    © 2026 Enkrateia SA de CV
+  </div>
+</aside>
+
+<!-- ===== MAIN ===== -->
+<div class="main" id="main">
+
+  <!-- ===== DASHBOARD ===== -->
+  <div class="page active" id="page-dashboard">
+    <div class="page__header">
+      <div class="page__overline">Operations Center</div>
+      <div class="page__title">TSS Hub</div>
+      <div class="page__desc">Todas las herramientas de The Surf Sequence® en un solo lugar. Coach tools, evaluación, business, diagramas.</div>
+    </div>
+
+    <div class="dash-stats">
+      <div class="dash-stat"><div class="dash-stat__num">16+</div><div class="dash-stat__label">Herramientas HTML</div></div>
+      <div class="dash-stat"><div class="dash-stat__num">6</div><div class="dash-stat__label">Belt Delivery Tools</div></div>
+      <div class="dash-stat"><div class="dash-stat__num">8</div><div class="dash-stat__label">Science Masterclasses</div></div>
+      <div class="dash-stat"><div class="dash-stat__num">1</div><div class="dash-stat__label">TSS Brain App</div></div>
+    </div>
+
+    <div class="page__overline" style="margin-bottom:16px">Acceso rápido</div>
+    <div class="cards cards--3">
+      <div class="card" onclick="showPage('belts')">
+        <div class="card__accent" style="background:linear-gradient(90deg,#E8E8E8,#F5C518,#1E6FBF,#7B4FBE,#7D4E27,#111)"></div>
+        <div class="card__icon">🥋</div>
+        <div class="card__title">Belt Delivery Tools</div>
+        <div class="card__desc">Herramientas de coach para cada cinta. White → Black. Secuencias, drills, evaluación por nivel.</div>
+        <span class="card__tag">6 herramientas</span>
+      </div>
+      <div class="card" onclick="showPage('session')">
+        <div class="card__accent" style="background:var(--cyan)"></div>
+        <div class="card__icon">📋</div>
+        <div class="card__title">Session Planner</div>
+        <div class="card__desc">Planifica tu sesión TSS con el Bloque completo: objetivos, condiciones, briefing, ejecución, evaluación.</div>
+        <span class="card__tag">Integrado</span>
+      </div>
+      <div class="card" onclick="showPage('conditions')">
+        <div class="card__accent" style="background:linear-gradient(90deg,var(--green),var(--gold),var(--coral))"></div>
+        <div class="card__icon">🌊</div>
+        <div class="card__title">Condition Analyzer</div>
+        <div class="card__desc">Evalúa condiciones oceánicas y determina qué cintas pueden operar y con qué formación de coach.</div>
+        <span class="card__tag">Integrado</span>
+      </div>
+      <div class="card" onclick="showPage('ratio')">
+        <div class="card__accent" style="background:var(--green)"></div>
+        <div class="card__icon">👥</div>
+        <div class="card__title">Ratio Calculator</div>
+        <div class="card__desc">Calcula la ratio instructor-alumno según nivel, condiciones y tipo de sesión.</div>
+        <span class="card__tag">Integrado</span>
+      </div>
+      <div class="card" onclick="showPage('quiz')">
+        <div class="card__accent" style="background:var(--gold)"></div>
+        <div class="card__icon">🎯</div>
+        <div class="card__title">Level Assessment</div>
+        <div class="card__desc">Quiz interactivo de evaluación de nivel. Versión rápida (60s) y versión completa con data.</div>
+        <span class="card__tag">2 versiones</span>
+      </div>
+      <div class="card" onclick="showPage('diagrams')">
+        <div class="card__accent" style="background:var(--purple)"></div>
+        <div class="card__icon">📐</div>
+        <div class="card__title">TSS Diagrams</div>
+        <div class="card__desc">Tres Círculos, Progresión de Cintas, Círculo Infinito, Cadenas de Ejecución, Block System.</div>
+        <span class="card__tag">5 diagramas</span>
+      </div>
+      <div class="card" onclick="showPage('brain')">
+        <div class="card__accent" style="background:linear-gradient(90deg,var(--cyan),var(--green))"></div>
+        <div class="card__icon">🧬</div>
+        <div class="card__title">TSS Brain App</div>
+        <div class="card__desc">Plataforma digital: session flow, bitácoras, drill library, tracking de progresión.</div>
+        <span class="card__tag">Platform</span>
+      </div>
+      <div class="card" onclick="showPage('masterclass')">
+        <div class="card__accent" style="background:linear-gradient(90deg,var(--gold),var(--coral))"></div>
+        <div class="card__icon">🔬</div>
+        <div class="card__title">Science Masterclasses</div>
+        <div class="card__desc">8 módulos de ciencia: Breath, Focus, Relaxation, Visualization, Recovery, Nutrition, 7 Senses, Language.</div>
+        <span class="card__tag">8 masterclasses</span>
+      </div>
+      <div class="card" onclick="showPage('business')">
+        <div class="card__accent" style="background:var(--gold)"></div>
+        <div class="card__icon">💼</div>
+        <div class="card__title">Business Intelligence</div>
+        <div class="card__desc">Calculadora de escenarios, propuesta interactiva, infografía de modelo de negocio.</div>
+        <span class="card__tag">3 tools</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== BRAND EXTERNAL (Public-facing) ===== -->
+  <div class="page" id="page-brand-ext">
+    <div class="page__header">
+      <div class="page__overline">Brand — Vista Externa</div>
+      <div class="page__title">TSS Brand Guide (Público)</div>
+      <div class="page__desc">Versión pública de la marca. Misión, visión, filosofía, valores, posicionamiento. Para aliados, academias, medios y público general.</div>
+    </div>
+
+    <!-- Mission/Vision/Philosophy -->
+    <div class="quick-tool" style="border-left:3px solid var(--cyan)">
+      <h3>Misión</h3>
+      <p style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.8">Democratizar la educación en surf a través del primer sistema integral, progresivo y certificable del mundo. Hacer accesible para cualquier surfista — sin importar su edad, nivel o ubicación — un camino claro de progresión respaldado por ciencia, estructura y una comunidad global de coaches certificados.</p>
+    </div>
+
+    <div class="quick-tool" style="border-left:3px solid var(--gold);margin-top:12px">
+      <h3>Visión</h3>
+      <p style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.8">Convertir a The Surf Sequence® en el estándar global de educación en surf. Lo que PADI hizo por el buceo, lo que las cintas hicieron por las artes marciales, lo que CrossFit hizo por el fitness. Un sistema reconocido universalmente que eleva la calidad de enseñanza, profesionaliza el coaching y transforma la experiencia del surfista.</p>
+    </div>
+
+    <div class="quick-tool" style="border-left:3px solid var(--green);margin-top:12px">
+      <h3>Filosofía</h3>
+      <p style="font-size:.95rem;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:8px"><em style="color:var(--cyan);font-family:Lora,serif">"Evolve through play."</em></p>
+      <p style="font-size:.92rem;color:rgba(255,255,255,.55);line-height:1.8">El surf es más que deporte — es una herramienta de desarrollo integral. La diversión y la disciplina no son opuestos, son aliados. La verdadera maestría no es solo dominar la tabla, sino ser capaz de transmitir ese conocimiento. El Círculo Infinito: aprender → dominar → enseñar → aprender.</p>
+    </div>
+
+    <div style="margin-top:20px">
+      <h3 style="font-family:Outfit;font-size:1.1rem;color:var(--white);margin-bottom:16px">Valores Fundamentales</h3>
+      <div class="cards cards--3" style="margin-bottom:20px">
+        <div class="card" style="cursor:default;border-left:3px solid var(--cyan)">
+          <div class="card__title">Accesibilidad</div>
+          <div class="card__desc">Remover barreras. Surf para todas las edades, niveles y habilidades. El sistema se adapta al surfista, no al revés.</div>
+        </div>
+        <div class="card" style="cursor:default;border-left:3px solid var(--green)">
+          <div class="card__title">Conexión</div>
+          <div class="card__desc">Comunidad a través de progresión compartida. Cada surfista forma parte de una red global que crece junta.</div>
+        </div>
+        <div class="card" style="cursor:default;border-left:3px solid var(--gold)">
+          <div class="card__title">Alegría</div>
+          <div class="card__desc">Celebrar el progreso. El juego y la disciplina se refuerzan mutuamente. Evolve through play.</div>
+        </div>
+        <div class="card" style="cursor:default;border-left:3px solid var(--purple)">
+          <div class="card__title">Crecimiento Integral</div>
+          <div class="card__desc">Desarrollo físico, técnico, táctico y mental. No solo surfear mejor — pensar mejor, decidir mejor, vivir mejor.</div>
+        </div>
+        <div class="card" style="cursor:default;border-left:3px solid var(--coral)">
+          <div class="card__title">Integridad</div>
+          <div class="card__desc">Las certificaciones significan algo real. Los resultados son medibles. No hay atajos. La confianza se construye con evidencia.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <h3 style="font-family:Outfit;font-size:1.1rem;color:var(--white);margin-bottom:16px">Posicionamiento</h3>
+      <div class="quick-tool">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div>
+            <label style="color:var(--cyan);font-weight:600">TSS ES</label>
+            <p style="font-size:.88rem;color:rgba(255,255,255,.6);margin-top:4px">Una metodología educativa licenciable. Un sistema de certificación. Un estándar global. El PADI del surf.</p>
+          </div>
+          <div>
+            <label style="color:var(--coral);font-weight:600">TSS NO ES</label>
+            <p style="font-size:.88rem;color:rgba(255,255,255,.6);margin-top:4px">Una escuela de surf. Una marca de lifestyle. Una franquicia. Un curso online genérico.</p>
+          </div>
+        </div>
+        <div style="margin-top:16px;padding:12px 16px;border-radius:8px;background:rgba(90,195,231,.06)">
+          <p style="font-size:.82rem;color:rgba(255,255,255,.5)"><strong style="color:var(--cyan)">Categoría competitiva:</strong> PADI (buceo), Gracie Jiu-Jitsu (artes marciales), CrossFit (fitness) — sistemas educativos respaldados por certificación y metodología.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <h3 style="font-family:Outfit;font-size:1.1rem;color:var(--white);margin-bottom:16px">Identidad Visual (Overview)</h3>
+      <div class="cards cards--4">
+        <div class="card" style="cursor:default;text-align:center">
+          <div style="width:100%;height:48px;background:#0A1628;border-radius:8px;margin-bottom:8px"></div>
+          <div class="card__title" style="font-size:.82rem">Ocean Navy</div>
+          <div class="card__desc">#0A1628</div>
+        </div>
+        <div class="card" style="cursor:default;text-align:center">
+          <div style="width:100%;height:48px;background:#0D2D5E;border-radius:8px;margin-bottom:8px"></div>
+          <div class="card__title" style="font-size:.82rem">Brand Blue</div>
+          <div class="card__desc">#0D2D5E</div>
+        </div>
+        <div class="card" style="cursor:default;text-align:center">
+          <div style="width:100%;height:48px;background:#5AC3E7;border-radius:8px;margin-bottom:8px"></div>
+          <div class="card__title" style="font-size:.82rem">Signature Cyan</div>
+          <div class="card__desc">#5AC3E7</div>
+        </div>
+        <div class="card" style="cursor:default;text-align:center">
+          <div style="width:100%;height:48px;background:#4E4D4D;border-radius:8px;margin-bottom:8px"></div>
+          <div class="card__title" style="font-size:.82rem">Structural Grey</div>
+          <div class="card__desc">#4E4D4D</div>
+        </div>
+      </div>
+      <p style="font-size:.78rem;color:rgba(255,255,255,.25);margin-top:12px">Tipografía: Outfit (headlines), Work Sans (body), Lora Italic (tagline only). Logo: Fibonacci Spiral, Biennale Medium. Ver Brand Manual interno para specs completos.</p>
+    </div>
+  </div>
+
+  <!-- ===== BRAND INTERNAL (Full Manual) ===== -->
+  <div class="page" id="page-brand-int">
+    <div class="page__header">
+      <div class="page__overline">Brand — Vista Interna 🔒</div>
+      <div class="page__title">Brand Manual Completo</div>
+      <div class="page__desc">Acceso completo al manual de marca v5.0 Canon-Aligned, logos, y PDF del brand manual. Solo para uso interno del equipo TSS.</div>
+    </div>
+
+    <div class="cards cards--2" style="margin-bottom:24px">
+      <div class="card" onclick="openTool('02_BRAND/TSS_BrandManual_v5.0_Canon_Aligned.html')">
+        <div class="card__accent" style="background:var(--cyan)"></div>
+        <div class="card__icon">📘</div>
+        <div class="card__title">Brand Manual v5.0 (Interactivo)</div>
+        <div class="card__desc">Manual completo Canon-Aligned: personalidad de marca, paleta de colores, tipografía, sistema de logos, reglas de uso, tono de voz, vocabulario permitido/prohibido.</div>
+        <span class="card__tag">HTML interactivo — Abrir</span>
+      </div>
+      <div class="card" onclick="viewFile('02_BRAND/TSS_Brand_Manual_COMPLETE_Logos.pdf')">
+        <div class="card__accent" style="background:var(--gold)"></div>
+        <div class="card__icon">📕</div>
+        <div class="card__title">Brand Manual PDF (con Logos)</div>
+        <div class="card__desc">Versión PDF completa del brand manual incluyendo todas las variantes del logo, colores y reglas de aplicación.</div>
+        <span class="card__tag">📥 Abrir PDF</span>
+      </div>
+    </div>
+
+    <h3 style="font-family:Outfit;font-size:1.05rem;color:var(--white);margin-bottom:16px">Personalidad de Marca (5 Ejes)</h3>
+    <div class="cards cards--3" style="margin-bottom:24px">
+      <div class="card" style="cursor:default">
+        <div class="card__title" style="color:var(--cyan)">Conocimiento</div>
+        <div class="card__desc"><strong style="color:var(--green)">Experto</strong> (creíble) — NO elite (excluyente)</div>
+      </div>
+      <div class="card" style="cursor:default">
+        <div class="card__title" style="color:var(--cyan)">Comunicación</div>
+        <div class="card__desc"><strong style="color:var(--green)">Preciso</strong> (claro) — NO frío (distante)</div>
+      </div>
+      <div class="card" style="cursor:default">
+        <div class="card__title" style="color:var(--cyan)">Interacción</div>
+        <div class="card__desc"><strong style="color:var(--green)">Playful</strong> (engaging) — NO casual (flippant)</div>
+      </div>
+      <div class="card" style="cursor:default">
+        <div class="card__title" style="color:var(--cyan)">Messaging</div>
+        <div class="card__desc"><strong style="color:var(--green)">Científico</strong> (data-backed) — NO académico (jargon-heavy)</div>
+      </div>
+      <div class="card" style="cursor:default">
+        <div class="card__title" style="color:var(--cyan)">Sistema</div>
+        <div class="card__desc"><strong style="color:var(--green)">Sistemático</strong> (estructurado) — NO rígido (mecánico)</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:Outfit;font-size:1.05rem;color:var(--white);margin-bottom:16px">Vocabulario de Marca</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="quick-tool" style="border-left:3px solid var(--green)">
+        <h3 style="color:var(--green);font-size:.95rem">USAR ✓</h3>
+        <p style="font-size:.85rem;color:rgba(255,255,255,.5);line-height:2">Mission, session, belt, level, progression, system, methodology, coach, certification, evolve, structured, scientific, pilar, sequence, expression, block</p>
+      </div>
+      <div class="quick-tool" style="border-left:3px solid var(--coral)">
+        <h3 style="color:var(--coral);font-size:.95rem">NUNCA USAR ✗</h3>
+        <p style="font-size:.85rem;color:rgba(255,255,255,.5);line-height:2">Surf school, stoke, shred, gnarly, lifestyle brand, fun in the sun, overpromise, best ever, extreme, radical, dude, bro</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:Outfit;font-size:1.05rem;color:var(--white);margin:20px 0 16px">Logo Suite (13 variantes)</h3>
+    <div style="padding:20px;border-radius:12px;background:rgba(90,195,231,.04);border:1px solid rgba(90,195,231,.08)">
+      <p style="font-size:.85rem;color:rgba(255,255,255,.4)">13 archivos PNG en <code style="color:var(--cyan)">02_BRAND/TSS_logos_PNGs/</code>. Incluye: horizontal on navy (principal), horizontal on light, stacked, mark only, on cyan, on light cyan. Logo construido sobre Fibonacci Spiral. Fuente exclusiva: Biennale Medium (solo para logo, nunca en otro contexto).</p>
+      <p style="font-size:.82rem;color:rgba(255,255,255,.3);margin-top:8px"><strong style="color:var(--coral)">Prohibido:</strong> Rotar, distorsionar, recolorear, separar mark de wordmark, usar drop shadows, usar sobre fondos que comprometan legibilidad.</p>
+    </div>
+  </div>
+
+  <!-- ===== CANON & DOCTRINA ===== -->
+  <div class="page" id="page-canon">
+    <div class="page__header">
+      <div class="page__overline">Fundamento Doctrinal</div>
+      <div class="page__title">Canon & Doctrina TSS</div>
+      <div class="page__desc">El Core Canon es la autoridad doctrinal máxima. Todos los materiales derivados deben alinearse con él.</div>
+    </div>
+
+    <div class="cards cards--2" style="margin-bottom:24px">
+      <div class="card" onclick="openTool('html_converted/doc_canon_v5.html')">
+        <div class="card__accent" style="background:var(--gold)"></div>
+        <div class="card__icon">📜</div>
+        <div class="card__title">TSS Core Canon v5.0</div>
+        <div class="card__desc">Documento fundacional. Filosofía, estructura, 4 pilares + seguridad, sistema de bloques, Círculo Infinito, nomenclatura oficial, Belt Progression Framework completo.</div>
+        <span class="card__tag">▶ Leer documento</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/doc_belt_template.html')">
+        <div class="card__accent" style="background:var(--cyan)"></div>
+        <div class="card__icon">🏗️</div>
+        <div class="card__title">Belt Progression Master Template v2.1</div>
+        <div class="card__desc">Template maestro de progresión de cintas. Estructura oficial para todas las cintas: contenido, secuencias, condiciones, criterios de evaluación.</div>
+        <span class="card__tag">▶ Leer documento</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/doc_block_system.html')">
+        <div class="card__accent" style="background:var(--purple)"></div>
+        <div class="card__icon">♾️</div>
+        <div class="card__title">Block System & Infinite Circle</div>
+        <div class="card__desc">Sistema de 8 bloques de aprendizaje y el Círculo Infinito (maestría = transmisión). Arquitectura operativa de TSS.</div>
+        <span class="card__tag">▶ Leer documento</span>
+      </div>
+    </div>
+
+    <h3 style="font-family:Outfit;font-size:1.05rem;color:var(--white);margin-bottom:16px">Consolidación & Auditoría</h3>
+    <div class="cards cards--2">
+      <div class="card" onclick="openTool('html_converted/doc_auditoria.html')">
+        <div class="card__icon">🔍</div>
+        <div class="card__title">Auditoría Documental v2</div>
+        <div class="card__desc">Inventario completo de todos los documentos TSS con estado de alineación al Canon.</div>
+        <span class="card__tag">▶ Leer documento</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/doc_canon_consolidado.html')">
+        <div class="card__icon">📋</div>
+        <div class="card__title">Canon Oficial Consolidado v2</div>
+        <div class="card__desc">Versión consolidada del Canon con todas las correcciones aplicadas.</div>
+        <span class="card__tag">▶ Leer documento</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/doc_pendientes.html')">
+        <div class="card__icon">⚠️</div>
+        <div class="card__title">Pendientes Críticos v2</div>
+        <div class="card__desc">Lista priorizada de documentos y sistemas pendientes de crear o completar.</div>
+        <span class="card__tag">▶ Leer documento</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/doc_strategic_audit.html')">
+        <div class="card__icon">📊</div>
+        <div class="card__title">Strategic Audit Complete</div>
+        <div class="card__desc">Auditoría estratégica completa del estado de TSS: qué existe, qué falta, qué priorizar.</div>
+        <span class="card__tag">▶ Leer documento</span>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <h3 style="font-family:Outfit;font-size:1.05rem;color:var(--white);margin-bottom:16px">Presentaciones Doctrinales</h3>
+      <div class="cards cards--2">
+        <div class="card" onclick="openTool('html_converted/deck_canon_v5_pres.html')">
+          <div class="card__icon">🎬</div>
+          <div class="card__title">Canon Oficial v5 Presentación</div>
+          <div class="card__desc">Deck de presentación del Canon v5 para alineación de equipo y stakeholders.</div>
+          <span class="card__tag">▶ Ver presentación</span>
+        </div>
+        <div class="card" onclick="openTool('html_converted/deck_ecosystem_deck.html')">
+          <div class="card__icon">🌍</div>
+          <div class="card__title">TSS Ecosystem Deck</div>
+          <div class="card__desc">Presentación del ecosistema completo: TSS, Puro Surf, Compartiendo Olas, TSS Brain.</div>
+          <span class="card__tag">▶ Ver presentación</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:16px;padding:16px 20px;border-radius:8px;background:rgba(255,209,102,.05);border:1px solid rgba(255,209,102,.12)">
+      <p style="font-size:.82rem;color:rgba(255,255,255,.4)"><strong style="color:var(--gold)">Regla doctrinal:</strong> El Core Canon v5.0 es la autoridad máxima. Todos los manuales, certificaciones, herramientas, sistemas, decks y materiales derivados deben alinearse con él y no pueden contradecirlo.</p>
+    </div>
+  </div>
+
+  <!-- ===== ONE WAVE (LIBRO) ===== -->
+  <div class="page" id="page-onewave">
+    <div class="page__header">
+      <div class="page__overline">Publicación</div>
+      <div class="page__title">One Wave — El Libro</div>
+      <div class="page__desc">El libro de Marcelo Castellanos. Filosofía, experiencia, conocimiento y visión de TSS en formato editorial.</div>
+    </div>
+    <div class="cards cards--2">
+      <div class="card" onclick="openTool('html_converted/doc_one_wave.html')">
+        <div class="card__accent" style="background:var(--cyan)"></div>
+        <div class="card__icon">📖</div>
+        <div class="card__title">ONE WAVE — Manuscrito</div>
+        <div class="card__desc">Versión Word editable del libro. Contenido completo de Marcelo Castellanos.</div>
+        <span class="card__tag">▶ Leer documento</span>
+      </div>
+      <div class="card" onclick="viewFile('11_LIBRO_ONEWAVE/ONE_WAVE_v5_Clean_Editorial.pdf')">
+        <div class="card__accent" style="background:var(--gold)"></div>
+        <div class="card__icon">📕</div>
+        <div class="card__title">ONE WAVE v5 — Editorial Clean</div>
+        <div class="card__desc">Versión PDF editorial limpia, lista para revisión o impresión.</div>
+        <span class="card__tag">📥 Abrir PDF</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SESSION LOGGER ===== -->
+  <div class="page" id="page-logger">
+    <div class="page__header">
+      <div class="page__overline">Operations — Data Entry</div>
+      <div class="page__title">Session Logger</div>
+      <div class="page__desc">Registra sesiones y alumnos. Los datos se guardan en tu navegador y se exportan como CSV compatible con la Bitácora Excel v6.1.</div>
+    </div>
+    <div class="card" onclick="openTool('TSS_Session_Logger.html')" style="max-width:600px;margin-bottom:20px">
+      <div class="card__accent" style="background:linear-gradient(90deg,var(--green),var(--cyan))"></div>
+      <div class="card__icon">📝</div>
+      <div class="card__title">Abrir Session Logger</div>
+      <div class="card__desc">5 tabs: New Session (registro completo con setup, planning, evaluation) | New Student (registro con goals y perfil) | Session Log (historial con stats) | Students (directorio) | Export (CSV compatible con Bitácora)</div>
+      <span class="card__tag">▶ Abrir herramienta</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div style="padding:16px;border-radius:10px;background:rgba(6,214,160,.04);border:1px solid rgba(6,214,160,.1)">
+        <h3 style="font-size:.95rem;color:var(--green);margin-bottom:8px">Flujo de registro</h3>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.8">
+          1. Registra alumnos en "New Student"<br>
+          2. Registra sesiones en "New Session"<br>
+          3. Revisa historial en "Session Log"<br>
+          4. Exporta CSV desde "Export"<br>
+          5. Pega en la Bitácora Excel
+        </div>
+      </div>
+      <div style="padding:16px;border-radius:10px;background:rgba(255,209,102,.04);border:1px solid rgba(255,209,102,.1)">
+        <h3 style="font-size:.95rem;color:var(--gold);margin-bottom:8px">Compatibilidad Excel</h3>
+        <div style="font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.8">
+          Los CSV exportan con las <strong style="color:var(--white)">mismas columnas</strong> que las hojas TRAINING SESSION, ALUMNO y EVAL_HISTORY de tu Bitácora v6.1. Copy-paste directo.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SEQUENCE COACH TOOL ===== -->
+  <div class="page" id="page-seqtool">
+    <div class="page__header">
+      <div class="page__overline">Coach Tool — Core</div>
+      <div class="page__title">Sequence Coach Tool</div>
+      <div class="page__desc">439 pasos de secuencia con estándares de rendimiento, 237 pares error-solución, y 17 dificultades diagnósticas con jerarquía de impacto. La herramienta operativa central del coach TSS.</div>
+    </div>
+    <div class="card" onclick="openTool('TSS_Sequence_Coach_Tool.html')" style="max-width:600px;margin-bottom:20px">
+      <div class="card__accent" style="background:linear-gradient(90deg,var(--coral),var(--gold),var(--green))"></div>
+      <div class="card__icon">🔗</div>
+      <div class="card__title">Abrir Sequence Coach Tool</div>
+      <div class="card__desc">3 tabs: Sequences & Standards (por cinta y secuencia con performance expectations), Errors & Solutions (237 pares agrupados por pilar), Diagnostic Tool (17 dificultades con jerarquía de impacto y drills recomendados).</div>
+      <span class="card__tag">Abrir herramienta</span>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+      <div style="padding:16px;border-radius:10px;background:rgba(6,214,160,.04);border:1px solid rgba(6,214,160,.1);text-align:center">
+        <div style="font-family:Outfit;font-size:1.8rem;font-weight:800;color:var(--green)">439</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.3)">Sequence Steps</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.2);margin-top:4px">4 cintas × 21 secuencias</div>
+      </div>
+      <div style="padding:16px;border-radius:10px;background:rgba(255,107,107,.04);border:1px solid rgba(255,107,107,.1);text-align:center">
+        <div style="font-family:Outfit;font-size:1.8rem;font-weight:800;color:var(--coral)">237</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.3)">Error-Solution Pairs</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.2);margin-top:4px">5 pilares cubiertos</div>
+      </div>
+      <div style="padding:16px;border-radius:10px;background:rgba(255,209,102,.04);border:1px solid rgba(255,209,102,.1);text-align:center">
+        <div style="font-family:Outfit;font-size:1.8rem;font-weight:800;color:var(--gold)">17</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.3)">Diagnostic Difficulties</div>
+        <div style="font-size:.7rem;color:rgba(255,255,255,.2);margin-top:4px">5 niveles de prioridad</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DRILL LIBRARY ===== -->
+  <div class="page" id="page-drills">
+    <div class="page__header">
+      <div class="page__overline">Coach Tool</div>
+      <div class="page__title">Drill Library</div>
+      <div class="page__desc">284 drills catalogados por pilar, nivel, bloque y tipo. Buscador interactivo con filtros y detalle expandible.</div>
+    </div>
+    <div class="card" onclick="openTool('TSS_Drill_Library.html')" style="max-width:500px">
+      <div class="card__accent" style="background:linear-gradient(90deg,var(--cyan),var(--green))"></div>
+      <div class="card__icon">🏋️</div>
+      <div class="card__title">Abrir Drill Library Interactiva</div>
+      <div class="card__desc">284 drills | 5 pilares | 11 training blocks | Filtros por pilar, nivel, bloque, tipo, ambiente | Búsqueda por keyword | Detalle con goal, key cue, constraint, success indicator, error, solution y reflection question.</div>
+      <span class="card__tag">Abrir herramienta</span>
+    </div>
+    <div style="margin-top:20px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+      <div style="padding:12px;border-radius:8px;background:rgba(90,195,231,.06);text-align:center"><div style="font-family:Outfit;font-size:1.5rem;font-weight:800;color:var(--cyan)">223</div><div style="font-size:.7rem;color:rgba(255,255,255,.3)">Technical</div></div>
+      <div style="padding:12px;border-radius:8px;background:rgba(90,195,231,.06);text-align:center"><div style="font-family:Outfit;font-size:1.5rem;font-weight:800;color:var(--green)">26</div><div style="font-size:.7rem;color:rgba(255,255,255,.3)">Physical</div></div>
+      <div style="padding:12px;border-radius:8px;background:rgba(90,195,231,.06);text-align:center"><div style="font-family:Outfit;font-size:1.5rem;font-weight:800;color:var(--gold)">16</div><div style="font-size:.7rem;color:rgba(255,255,255,.3)">Mental</div></div>
+      <div style="padding:12px;border-radius:8px;background:rgba(90,195,231,.06);text-align:center"><div style="font-family:Outfit;font-size:1.5rem;font-weight:800;color:var(--coral)">10</div><div style="font-size:.7rem;color:rgba(255,255,255,.3)">Safety</div></div>
+      <div style="padding:12px;border-radius:8px;background:rgba(90,195,231,.06);text-align:center"><div style="font-family:Outfit;font-size:1.5rem;font-weight:800;color:var(--purple)">9</div><div style="font-size:.7rem;color:rgba(255,255,255,.3)">Tactical</div></div>
+    </div>
+  </div>
+
+  <!-- ===== BELT TOOLS ===== -->
+  <div class="page" id="page-belts">
+    <div class="page__header">
+      <div class="page__overline">Coach Delivery Tools</div>
+      <div class="page__title">Belt Tools</div>
+      <div class="page__desc">Herramientas de entrega por nivel. Cada una contiene secuencias, drills, y criterios de evaluación para su cinta.</div>
+    </div>
+    <div class="cards cards--3">
+      <div class="card" onclick="openTool('03_BELTS/01_white_belt/index.html')">
+        <div class="card__accent" style="background:#E8E8E8"></div>
+        <div class="card__icon" style="filter:grayscale(1)">⬜</div>
+        <div class="card__title">White Belt — Foundational</div>
+        <div class="card__desc">Pop-up, postura base, control básico. Olas 1-2 pies.</div>
+        <span class="card__tag">Nivel 1</span>
+      </div>
+      <div class="card" onclick="openTool('03_BELTS/02_yellow_belt/index.html')">
+        <div class="card__accent" style="background:#F5C518"></div>
+        <div class="card__icon">🟡</div>
+        <div class="card__title">Yellow Belt — Entry & Paddling</div>
+        <div class="card__desc">4 velocidades de remo, despegue angulado. Olas 2-3 pies.</div>
+        <span class="card__tag">Nivel 2</span>
+      </div>
+      <div class="card" onclick="openTool('03_BELTS/03_blue_belt/index.html')">
+        <div class="card__accent" style="background:#1E6FBF"></div>
+        <div class="card__icon">🔵</div>
+        <div class="card__title">Blue Belt — Rail Changes</div>
+        <div class="card__desc">11 expresiones: Cruz, Tapaloco, Granada, Bottom Turn. Olas 4-6 pies.</div>
+        <span class="card__tag">Nivel 3</span>
+      </div>
+      <div class="card" onclick="openTool('03_BELTS/04_purple_belt/index.html')">
+        <div class="card__accent" style="background:#7B4FBE"></div>
+        <div class="card__icon">🟣</div>
+        <div class="card__title">Purple Belt — Advanced</div>
+        <div class="card__desc">15 expresiones: Floater, Snap, Tango, Layback. Olas 4-8 pies.</div>
+        <span class="card__tag">Nivel 4</span>
+      </div>
+      <div class="card" onclick="openTool('03_BELTS/05_brown_belt/index.html')">
+        <div class="card__accent" style="background:#7D4E27"></div>
+        <div class="card__icon">🟤</div>
+        <div class="card__title">Brown Belt — Aerials</div>
+        <div class="card__desc">Sistema aéreo: Aerial 360, Alley-oop, Power Combos.</div>
+        <span class="card__tag">Nivel 5</span>
+      </div>
+      <div class="card" onclick="openTool('03_BELTS/06_black_belt/index.html')">
+        <div class="card__accent" style="background:#111"></div>
+        <div class="card__icon">⬛</div>
+        <div class="card__title">Black Belt — Mastery</div>
+        <div class="card__desc">Dominio integral. Círculo Infinito: maestría = transmisión.</div>
+        <span class="card__tag">Nivel 6</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SESSION PLANNER ===== -->
+  <div class="page" id="page-session">
+    <div class="page__header">
+      <div class="page__overline">Coach Tool</div>
+      <div class="page__title">Session Planner (TSS Block)</div>
+      <div class="page__desc">Planifica tu sesión siguiendo la estructura del Bloque TSS.</div>
+    </div>
+    <div class="quick-tool">
+      <h3>Configuración de sesión</h3>
+      <div class="condition-grid">
+        <div>
+          <label>Nivel de cinta</label>
+          <select id="sp-belt" onchange="updateSession()">
+            <option value="white">White Belt</option><option value="yellow">Yellow Belt</option><option value="blue">Blue Belt</option><option value="purple">Purple Belt</option><option value="brown">Brown Belt</option><option value="black">Black Belt</option>
+          </select>
+        </div>
+        <div>
+          <label>Tipo de sesión</label>
+          <select id="sp-type" onchange="updateSession()">
+            <option value="water">Water Session</option><option value="theory">Theory</option><option value="dryland">Dry Land</option><option value="video">Video Analysis</option><option value="mixed">Mixed</option>
+          </select>
+        </div>
+        <div>
+          <label>Duración (minutos)</label>
+          <input type="number" id="sp-duration" value="90" min="30" max="240" onchange="updateSession()">
+        </div>
+        <div>
+          <label>Número de alumnos</label>
+          <input type="number" id="sp-students" value="4" min="1" max="20" onchange="updateSession()">
+        </div>
+      </div>
+      <div id="sp-output" style="margin-top:20px"></div>
+    </div>
+  </div>
+
+  <!-- ===== RATIO CALCULATOR ===== -->
+  <div class="page" id="page-ratio">
+    <div class="page__header">
+      <div class="page__overline">Safety & Operations</div>
+      <div class="page__title">Instructor-Student Ratio</div>
+      <div class="page__desc">Calcula la ratio correcta según el Canon de Seguridad TSS v2.0.</div>
+    </div>
+    <div class="quick-tool">
+      <h3>Parámetros</h3>
+      <div class="condition-grid">
+        <div>
+          <label>Nivel de cinta</label>
+          <select id="rc-belt" onchange="calcRatio()">
+            <option value="white">White Belt</option><option value="yellow">Yellow Belt</option><option value="blue">Blue Belt</option><option value="purple">Purple Belt</option><option value="brown">Brown Belt</option><option value="black">Black Belt</option>
+          </select>
+        </div>
+        <div>
+          <label>Condición del mar</label>
+          <select id="rc-conditions" onchange="calcRatio()">
+            <option value="flat">Flat / Muy pequeño (0-1 ft)</option><option value="small">Pequeño (1-3 ft)</option><option value="medium">Medio (3-5 ft)</option><option value="overhead">Overhead (5-8 ft)</option><option value="large">Grande (8+ ft)</option>
+          </select>
+        </div>
+        <div>
+          <label>Edad del grupo</label>
+          <select id="rc-age" onchange="calcRatio()">
+            <option value="kids">Niños (5-12)</option><option value="teens">Adolescentes (13-17)</option><option value="adults">Adultos (18+)</option><option value="seniors">Seniors (60+)</option>
+          </select>
+        </div>
+        <div>
+          <label>Tipo de sesión</label>
+          <select id="rc-type" onchange="calcRatio()">
+            <option value="intro">Introducción / First time</option><option value="regular">Regular</option><option value="advanced">Avanzada</option><option value="competition">Competencia</option>
+          </select>
+        </div>
+      </div>
+      <div id="rc-output" class="result" style="display:none"></div>
+    </div>
+  </div>
+
+  <!-- ===== CONDITION ANALYZER ===== -->
+  <div class="page" id="page-conditions">
+    <div class="page__header">
+      <div class="page__overline">Ocean Assessment</div>
+      <div class="page__title">Condition Analyzer</div>
+      <div class="page__desc">Evalúa las condiciones oceánicas y determina operatividad por nivel de cinta.</div>
+    </div>
+    <div class="quick-tool">
+      <h3>Condiciones actuales</h3>
+      <div class="condition-grid">
+        <div>
+          <label>Tamaño de ola (pies)</label>
+          <select id="ca-size" onchange="analyzeConditions()">
+            <option value="0">0-1 ft (Flat)</option><option value="1">1-2 ft</option><option value="2" selected>2-3 ft</option><option value="3">3-4 ft</option><option value="4">4-6 ft</option><option value="6">6-8 ft</option><option value="8">8+ ft</option>
+          </select>
+        </div>
+        <div>
+          <label>Viento</label>
+          <select id="ca-wind" onchange="analyzeConditions()">
+            <option value="offshore">Offshore (favorable)</option><option value="none" selected>Sin viento</option><option value="cross">Cross-shore</option><option value="onshore">Onshore (desfavorable)</option><option value="strong">Fuerte (>20 nudos)</option>
+          </select>
+        </div>
+        <div>
+          <label>Corriente</label>
+          <select id="ca-current" onchange="analyzeConditions()">
+            <option value="none" selected>Sin corriente</option><option value="mild">Suave</option><option value="moderate">Moderada</option><option value="strong">Fuerte</option><option value="rip">Rip current presente</option>
+          </select>
+        </div>
+        <div>
+          <label>Fondo</label>
+          <select id="ca-bottom" onchange="analyzeConditions()">
+            <option value="sand" selected>Arena</option><option value="reef">Reef / Roca</option><option value="mixed">Mixto</option>
+          </select>
+        </div>
+      </div>
+      <div id="ca-output" style="margin-top:16px"></div>
+    </div>
+  </div>
+
+  <!-- ===== SAFETY ===== -->
+  <div class="page" id="page-safety">
+    <div class="page__header">
+      <div class="page__overline">Safety Canon v2.0</div>
+      <div class="page__title">Safety & Protocols</div>
+    </div>
+    <div class="card" onclick="openTool('04_SAFETY/index.html')" style="max-width:400px">
+      <div class="card__accent" style="background:var(--coral)"></div>
+      <div class="card__icon">🛡️</div>
+      <div class="card__title">Safety Canon Tool</div>
+      <div class="card__desc">31 secciones del Canon de Seguridad. Protocolos, emergencias, evaluación de riesgo.</div>
+      <span class="card__tag">Abrir herramienta</span>
+    </div>
+  </div>
+
+  <!-- ===== INCLUSION / LEARNING ===== -->
+  <div class="page" id="page-inclusion">
+    <div class="page__header">
+      <div class="page__overline">Inclusion Canon</div>
+      <div class="page__title">Learning Styles</div>
+    </div>
+    <div class="card" onclick="openTool('05_INCLUSION/index.html')" style="max-width:400px">
+      <div class="card__accent" style="background:var(--green)"></div>
+      <div class="card__icon">🧠</div>
+      <div class="card__title">Learning Style Quiz</div>
+      <div class="card__desc">Quiz de 5 preguntas para identificar el perfil de aprendizaje del surfista y adaptar la enseñanza.</div>
+      <span class="card__tag">Abrir herramienta</span>
+    </div>
+  </div>
+
+  <!-- ===== QUIZ ===== -->
+  <div class="page" id="page-quiz">
+    <div class="page__header">
+      <div class="page__overline">Level Assessment</div>
+      <div class="page__title">Level Quiz</div>
+      <div class="page__desc">Evalúa el nivel del surfista con dos versiones de quiz.</div>
+    </div>
+    <div class="cards cards--2">
+      <div class="card" onclick="openTool('10_QUIZ/tss_quiz_v4.html')">
+        <div class="card__accent" style="background:var(--cyan)"></div>
+        <div class="card__icon">⚡</div>
+        <div class="card__title">Quick Assessment (60s)</div>
+        <div class="card__desc">Evaluación rápida con preguntas adaptativas. Resultado inmediato con nivel sugerido.</div>
+        <span class="card__tag">Rápido</span>
+      </div>
+      <div class="card" onclick="openTool('10_QUIZ/puro_surf_level_system.html')">
+        <div class="card__accent" style="background:var(--gold)"></div>
+        <div class="card__icon">📊</div>
+        <div class="card__title">Data-Driven Assessment</div>
+        <div class="card__desc">Sistema de análisis basado en data de 3,287 surfistas encuestados. Recomendaciones detalladas.</div>
+        <span class="card__tag">Completo</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CERT ===== -->
+  <div class="page" id="page-cert">
+    <div class="page__header">
+      <div class="page__overline">Certification</div>
+      <div class="page__title">Cert Prep Tool</div>
+    </div>
+    <div class="card" onclick="openTool('06_CERTIFICATION/TSS_Cert_Prep_Tool.html')" style="max-width:400px">
+      <div class="card__accent" style="background:var(--gold)"></div>
+      <div class="card__icon">🎓</div>
+      <div class="card__title">L1-L2 Exam Prep</div>
+      <div class="card__desc">Flashcards interactivas y quiz de preparación para certificación TSS nivel L1 y L2.</div>
+      <span class="card__tag">Abrir herramienta</span>
+    </div>
+  </div>
+
+  <!-- ===== BUSINESS ===== -->
+  <div class="page" id="page-business">
+    <div class="page__header">
+      <div class="page__overline">Business Intelligence</div>
+      <div class="page__title">Business Tools</div>
+    </div>
+    <div class="cards cards--3">
+      <div class="card" onclick="openTool('07_BUSINESS/TSS_Calculadora_Escenarios.html')">
+        <div class="card__accent" style="background:var(--gold)"></div>
+        <div class="card__icon">🧮</div>
+        <div class="card__title">Scenario Calculator</div>
+        <div class="card__desc">Calculadora financiera interactiva para proyecciones de ingresos y escenarios de negocio.</div>
+        <span class="card__tag">Financial</span>
+      </div>
+      <div class="card" onclick="openTool('07_BUSINESS/TSS_Propuesta_Interactiva.html')">
+        <div class="card__accent" style="background:var(--cyan)"></div>
+        <div class="card__icon">📑</div>
+        <div class="card__title">Interactive Proposal</div>
+        <div class="card__desc">Propuesta estratégica interactiva para Puro Surf con navegación y branding completo.</div>
+        <span class="card__tag">Strategy</span>
+      </div>
+      <div class="card" onclick="openTool('07_BUSINESS/TSS_Business_Model_Infographic_v2.html')">
+        <div class="card__accent" style="background:var(--green)"></div>
+        <div class="card__icon">📊</div>
+        <div class="card__title">Business Model Visual</div>
+        <div class="card__desc">Infografía visual del modelo de negocio TSS at a glance.</div>
+        <span class="card__tag">Visual</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DIAGRAMS ===== -->
+  <div class="page" id="page-diagrams">
+    <div class="page__header">
+      <div class="page__overline">Visual System</div>
+      <div class="page__title">TSS Diagrams</div>
+      <div class="page__desc">Visualizaciones interactivas del sistema TSS.</div>
+    </div>
+    <div class="cards cards--3">
+      <div class="card" onclick="openTool('02_BRAND/diagrams/three_circles.html')">
+        <div class="card__icon">⭕</div>
+        <div class="card__title">Three Circles of Power</div>
+        <div class="card__desc">Los tres círculos que definen la progresión TSS.</div>
+      </div>
+      <div class="card" onclick="openTool('02_BRAND/diagrams/belt_progression.html')">
+        <div class="card__icon">📈</div>
+        <div class="card__title">Belt Progression Map</div>
+        <div class="card__desc">Mapa visual completo de avance por cintas.</div>
+      </div>
+      <div class="card" onclick="openTool('02_BRAND/diagrams/infinite_circle.html')">
+        <div class="card__icon">♾️</div>
+        <div class="card__title">Infinite Circle</div>
+        <div class="card__desc">Ciclo de maestría y transmisión.</div>
+      </div>
+      <div class="card" onclick="openTool('02_BRAND/diagrams/execution_chains.html')">
+        <div class="card__icon">⛓️</div>
+        <div class="card__title">Execution Chains</div>
+        <div class="card__desc">Secuencias de ejecución frontside y backside.</div>
+      </div>
+      <div class="card" onclick="openTool('02_BRAND/diagrams/block_system.html')">
+        <div class="card__icon">🧱</div>
+        <div class="card__title">Block System</div>
+        <div class="card__desc">Los 8 bloques de aprendizaje del curriculum TSS.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== HIGH PERFORMANCE ===== -->
+  <div class="page" id="page-highperf">
+    <div class="page__header">
+      <div class="page__overline">Performance</div>
+      <div class="page__title">High Performance App</div>
+    </div>
+    <div class="card" onclick="openTool('13_APP_HIGH_PERFORMANCE/index.html')" style="max-width:400px">
+      <div class="card__accent" style="background:var(--coral)"></div>
+      <div class="card__icon">⚡</div>
+      <div class="card__title">High Performance Interface</div>
+      <div class="card__desc">App de alto rendimiento con autenticación, navegación por roles y tracking.</div>
+      <span class="card__tag">Abrir app</span>
+    </div>
+  </div>
+
+  <!-- ===== STUDENT PROGRESS TRACKER ===== -->
+  <div class="page" id="page-progress">
+    <div class="page__header">
+      <div class="page__overline">Operations</div>
+      <div class="page__title">Student Progress Tracker</div>
+      <div class="page__desc">Registra y visualiza el progreso de un surfista a través del sistema de cintas TSS.</div>
+    </div>
+    <div class="quick-tool">
+      <h3>Registrar Progreso</h3>
+      <div class="condition-grid">
+        <div>
+          <label>Nombre del alumno</label>
+          <input type="text" id="st-name" placeholder="ej. Juan Pérez" onchange="updateTracker()">
+        </div>
+        <div>
+          <label>Cinta actual</label>
+          <select id="st-belt" onchange="updateTracker()">
+            <option value="0">White Belt</option><option value="1">Yellow Belt</option><option value="2">Blue Belt</option><option value="3">Purple Belt</option><option value="4">Brown Belt</option><option value="5">Black Belt</option>
+          </select>
+        </div>
+        <div>
+          <label>Sesiones completadas</label>
+          <input type="number" id="st-sessions" value="0" min="0" onchange="updateTracker()">
+        </div>
+        <div>
+          <label>Fecha de inicio</label>
+          <input type="text" id="st-date" placeholder="ej. 2026-01-15" onchange="updateTracker()">
+        </div>
+      </div>
+      <h3 style="margin-top:20px">Evaluación por Pilar (1-10)</h3>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">
+        <div><label>Técnico</label><input type="number" id="st-tech" value="5" min="1" max="10" onchange="updateTracker()"></div>
+        <div><label>Táctico</label><input type="number" id="st-tact" value="5" min="1" max="10" onchange="updateTracker()"></div>
+        <div><label>Mental</label><input type="number" id="st-ment" value="5" min="1" max="10" onchange="updateTracker()"></div>
+        <div><label>Físico</label><input type="number" id="st-phys" value="5" min="1" max="10" onchange="updateTracker()"></div>
+        <div><label>Seguridad</label><input type="number" id="st-safe" value="5" min="1" max="10" onchange="updateTracker()"></div>
+      </div>
+      <div id="st-output" style="margin-top:20px"></div>
+    </div>
+  </div>
+
+  <!-- ===== COACH QUICK REFERENCE ===== -->
+  <div class="page" id="page-coachref">
+    <div class="page__header">
+      <div class="page__overline">Operations</div>
+      <div class="page__title">Coach Quick Reference</div>
+      <div class="page__desc">Referencia rápida para el coach durante sesiones. Formaciones, señales, protocolos, nomenclatura.</div>
+    </div>
+
+    <div class="cards cards--2" style="margin-bottom:20px">
+      <div class="quick-tool" style="border-left:3px solid var(--cyan)">
+        <h3>Formaciones de Coach</h3>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+          <div style="padding:10px 14px;border-radius:8px;background:rgba(90,195,231,.06)">
+            <strong style="color:var(--cyan)">DUPLA</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.4)">— 1 coach : 1-2 alumnos</span>
+            <p style="font-size:.78rem;color:rgba(255,255,255,.3);margin-top:2px">White Belt, condiciones difíciles, niños, necesidades especiales</p>
+          </div>
+          <div style="padding:10px 14px;border-radius:8px;background:rgba(90,195,231,.06)">
+            <strong style="color:var(--cyan)">TRIÁNGULO</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.4)">— 1 coach : 3-6 alumnos</span>
+            <p style="font-size:.78rem;color:rgba(255,255,255,.3);margin-top:2px">Yellow-Blue Belt, condiciones normales, grupos estándar</p>
+          </div>
+          <div style="padding:10px 14px;border-radius:8px;background:rgba(90,195,231,.06)">
+            <strong style="color:var(--cyan)">IMÁN</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.4)">— 1 coach : 7+ alumnos</span>
+            <p style="font-size:.78rem;color:rgba(255,255,255,.3);margin-top:2px">Purple+, condiciones buenas, grupos avanzados y autónomos</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-tool" style="border-left:3px solid var(--coral)">
+        <h3>Protocolo de Emergencia (Quick)</h3>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px">
+          <div class="session-block" style="border-left-color:var(--coral)"><div class="session-block__num" style="background:rgba(255,107,107,.1);color:var(--coral)">1</div><div class="session-block__content"><div class="session-block__title">Silbato largo = TODOS FUERA</div></div></div>
+          <div class="session-block" style="border-left-color:var(--coral)"><div class="session-block__num" style="background:rgba(255,107,107,.1);color:var(--coral)">2</div><div class="session-block__content"><div class="session-block__title">Conteo de cabezas inmediato</div></div></div>
+          <div class="session-block" style="border-left-color:var(--coral)"><div class="session-block__num" style="background:rgba(255,107,107,.1);color:var(--coral)">3</div><div class="session-block__content"><div class="session-block__title">Evaluar lesión / situación</div></div></div>
+          <div class="session-block" style="border-left-color:var(--coral)"><div class="session-block__num" style="background:rgba(255,107,107,.1);color:var(--coral)">4</div><div class="session-block__content"><div class="session-block__title">Primeros auxilios / llamar emergencia</div></div></div>
+          <div class="session-block" style="border-left-color:var(--coral)"><div class="session-block__num" style="background:rgba(255,107,107,.1);color:var(--coral)">5</div><div class="session-block__content"><div class="session-block__title">Registrar incidente en bitácora</div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quick-tool" style="border-left:3px solid var(--gold);margin-bottom:20px">
+      <h3>Bloque TSS — Secuencia de Sesión</h3>
+      <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:12px;text-align:center">
+        <div style="padding:12px 4px;border-radius:8px;background:rgba(90,195,231,.06)"><div style="font-family:Outfit;font-size:1.2rem;font-weight:800;color:var(--cyan)">1</div><div style="font-size:.68rem;color:rgba(255,255,255,.4)">Check-in & Equipo</div></div>
+        <div style="padding:12px 4px;border-radius:8px;background:rgba(90,195,231,.06)"><div style="font-family:Outfit;font-size:1.2rem;font-weight:800;color:var(--cyan)">2</div><div style="font-size:.68rem;color:rgba(255,255,255,.4)">Beach Briefing</div></div>
+        <div style="padding:12px 4px;border-radius:8px;background:rgba(90,195,231,.06)"><div style="font-family:Outfit;font-size:1.2rem;font-weight:800;color:var(--cyan)">3</div><div style="font-size:.68rem;color:rgba(255,255,255,.4)">Dry Drill</div></div>
+        <div style="padding:12px 4px;border-radius:8px;background:rgba(90,195,231,.06)"><div style="font-family:Outfit;font-size:1.2rem;font-weight:800;color:var(--cyan)">4</div><div style="font-size:.68rem;color:rgba(255,255,255,.4)">Water Exec</div></div>
+        <div style="padding:12px 4px;border-radius:8px;background:rgba(90,195,231,.06)"><div style="font-family:Outfit;font-size:1.2rem;font-weight:800;color:var(--cyan)">5</div><div style="font-size:.68rem;color:rgba(255,255,255,.4)">Debrief</div></div>
+        <div style="padding:12px 4px;border-radius:8px;background:rgba(90,195,231,.06)"><div style="font-family:Outfit;font-size:1.2rem;font-weight:800;color:var(--cyan)">6</div><div style="font-size:.68rem;color:rgba(255,255,255,.4)">Close & Log</div></div>
+      </div>
+    </div>
+
+    <div class="quick-tool" style="border-left:3px solid var(--green)">
+      <h3>Nomenclatura Rápida de Expresiones</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;font-size:.82rem">
+        <div style="padding:8px 12px;border-radius:6px;background:rgba(255,255,255,.02)"><strong style="color:#E8E8E8">WHITE:</strong> <span style="color:rgba(255,255,255,.4)">Pop-up, Turtle Roll, Base Position</span></div>
+        <div style="padding:8px 12px;border-radius:6px;background:rgba(255,255,255,.02)"><strong style="color:#F5C518">YELLOW:</strong> <span style="color:rgba(255,255,255,.4)">4 Paddle Speeds, Angled Take-off, Trim</span></div>
+        <div style="padding:8px 12px;border-radius:6px;background:rgba(255,255,255,.02)"><strong style="color:#1E6FBF">BLUE:</strong> <span style="color:rgba(255,255,255,.4)">Cruz, Tapaloco, Granada, Elbow, Bottom Turn, Cutback</span></div>
+        <div style="padding:8px 12px;border-radius:6px;background:rgba(255,255,255,.02)"><strong style="color:#7B4FBE">PURPLE:</strong> <span style="color:rgba(255,255,255,.4)">Floater, Snap, Tango, Layback, Tail Slide, Roundhouse</span></div>
+        <div style="padding:8px 12px;border-radius:6px;background:rgba(255,255,255,.02)"><strong style="color:#7D4E27">BROWN:</strong> <span style="color:rgba(255,255,255,.4)">Aerial 360, Alley-oop, Full Rotation, Power Combos</span></div>
+        <div style="padding:8px 12px;border-radius:6px;background:rgba(255,255,255,.02)"><strong style="color:#888">BLACK:</strong> <span style="color:rgba(255,255,255,.4)">Full domain + Transmission (Infinite Circle)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== REVENUE MODEL (INTERACTIVE) ===== -->
+  <div class="page" id="page-bizmodel">
+    <div class="page__header">
+      <div class="page__overline">Business Model</div>
+      <div class="page__title">Revenue Model Calculator</div>
+      <div class="page__desc">Modelo interactivo de ingresos TSS. Ajusta las variables y ve las proyecciones en tiempo real.</div>
+    </div>
+    <div class="quick-tool">
+      <h3>Variables de entrada</h3>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+        <div><label>Coaches certificados</label><input type="number" id="bm-coaches" value="15" min="0" onchange="calcRevenue()"></div>
+        <div><label>Academias Tier 2</label><input type="number" id="bm-t2" value="3" min="0" onchange="calcRevenue()"></div>
+        <div><label>Licencias Tier 3</label><input type="number" id="bm-t3" value="1" min="0" onchange="calcRevenue()"></div>
+        <div><label>Cert fee promedio ($)</label><input type="number" id="bm-certfee" value="800" min="0" onchange="calcRevenue()"></div>
+        <div><label>Afiliación T2 promedio ($/año)</label><input type="number" id="bm-t2fee" value="2000" min="0" onchange="calcRevenue()"></div>
+        <div><label>Revenue T3 promedio ($/año)</label><input type="number" id="bm-t3fee" value="15000" min="0" onchange="calcRevenue()"></div>
+        <div><label>Renovación anual/coach ($)</label><input type="number" id="bm-renewal" value="300" min="0" onchange="calcRevenue()"></div>
+        <div><label>Brain SaaS/academia ($/mes)</label><input type="number" id="bm-saas" value="100" min="0" onchange="calcRevenue()"></div>
+        <div><label>Camp kits vendidos/año</label><input type="number" id="bm-kits" value="50" min="0" onchange="calcRevenue()"></div>
+      </div>
+      <div id="bm-output" style="margin-top:20px"></div>
+    </div>
+  </div>
+
+  <!-- ===== WEBSITE ===== -->
+  <div class="page" id="page-website">
+    <div class="page__header">
+      <div class="page__overline">Digital Presence</div>
+      <div class="page__title">Website TSS</div>
+      <div class="page__desc">Prototipo completo del sitio web TSS. 6 páginas en español + 6 en inglés.</div>
+    </div>
+
+    <h3 style="font-family:Outfit;font-size:1.05rem;color:var(--white);margin-bottom:16px">Español</h3>
+    <div class="cards cards--3" style="margin-bottom:24px">
+      <div class="card" onclick="openTool('website tss/index.html')"><div class="card__accent" style="background:var(--cyan)"></div><div class="card__icon">🏠</div><div class="card__title">Home</div><div class="card__desc">Página principal con las 11 secciones del journey completo.</div></div>
+      <div class="card" onclick="openTool('website tss/metodo.html')"><div class="card__accent" style="background:var(--blue)"></div><div class="card__icon">🔬</div><div class="card__title">El Método</div><div class="card__desc">Pilares, bloques, Círculo Infinito.</div></div>
+      <div class="card" onclick="openTool('website tss/fundador.html')"><div class="card__accent" style="background:var(--gold)"></div><div class="card__icon">👤</div><div class="card__title">Fundador</div><div class="card__desc">Marcelo Castellanos, bio, timeline.</div></div>
+      <div class="card" onclick="openTool('website tss/surfistas.html')"><div class="card__accent" style="background:var(--green)"></div><div class="card__icon">🏄</div><div class="card__title">Para Surfistas</div><div class="card__desc">Landing de conversión para surfistas.</div></div>
+      <div class="card" onclick="openTool('website tss/coaches.html')"><div class="card__accent" style="background:var(--purple)"></div><div class="card__icon">🎓</div><div class="card__title">Para Coaches</div><div class="card__desc">Certificación L1-L5, comparativa.</div></div>
+      <div class="card" onclick="openTool('website tss/academias.html')"><div class="card__accent" style="background:var(--coral)"></div><div class="card__icon">🏢</div><div class="card__title">Para Academias</div><div class="card__desc">Tiers de afiliación con pricing.</div></div>
+    </div>
+
+    <h3 style="font-family:Outfit;font-size:1.05rem;color:var(--white);margin-bottom:16px">English</h3>
+    <div class="cards cards--3" style="margin-bottom:24px">
+      <div class="card" onclick="openTool('website tss/en/index.html')"><div class="card__accent" style="background:var(--cyan)"></div><div class="card__icon">🏠</div><div class="card__title">Home (EN)</div><div class="card__desc">Full homepage with 11 sections.</div></div>
+      <div class="card" onclick="openTool('website tss/en/metodo.html')"><div class="card__accent" style="background:var(--blue)"></div><div class="card__icon">🔬</div><div class="card__title">The Method (EN)</div><div class="card__desc">Pillars, blocks, Infinite Circle.</div></div>
+      <div class="card" onclick="openTool('website tss/en/fundador.html')"><div class="card__accent" style="background:var(--gold)"></div><div class="card__icon">👤</div><div class="card__title">Founder (EN)</div><div class="card__desc">Marcelo Castellanos bio.</div></div>
+      <div class="card" onclick="openTool('website tss/en/surfistas.html')"><div class="card__accent" style="background:var(--green)"></div><div class="card__icon">🏄</div><div class="card__title">For Surfers (EN)</div><div class="card__desc">Conversion landing page.</div></div>
+      <div class="card" onclick="openTool('website tss/en/coaches.html')"><div class="card__accent" style="background:var(--purple)"></div><div class="card__icon">🎓</div><div class="card__title">For Coaches (EN)</div><div class="card__desc">L1-L5 certification path.</div></div>
+      <div class="card" onclick="openTool('website tss/en/academias.html')"><div class="card__accent" style="background:var(--coral)"></div><div class="card__icon">🏢</div><div class="card__title">For Academies (EN)</div><div class="card__desc">Affiliation tiers.</div></div>
+    </div>
+
+    <h3 style="font-family:Outfit;font-size:1.05rem;color:var(--white);margin-bottom:16px">Documentos de Soporte</h3>
+    <div class="cards cards--3">
+      <div class="card" onclick="openTool('html_converted/doc_website_blueprint.html')"><div class="card__icon">📋</div><div class="card__title">Website Strategy Blueprint</div><div class="card__desc">Diagnóstico, arquitectura, copy, UX, plan de implementación completo.</div><span class="card__tag">▶ Leer documento</span></div>
+      <div class="card" onclick="openTool('html_converted/deck_academy_deck.html')"><div class="card__icon">📊</div><div class="card__title">Academy Affiliation Deck</div><div class="card__desc">10 slides para reuniones con academias. Problema, solución, tiers, revenue.</div><span class="card__tag">▶ Ver presentación</span></div>
+      <div class="card" onclick="viewFile('website tss/TSS_Guia_de_Inicio.pdf')"><div class="card__icon">📄</div><div class="card__title">Guía de Inicio TSS</div><div class="card__desc">Lead magnet PDF de 7 páginas. Quiz de nivel, plan de progresión.</div><span class="card__tag">📥 Abrir PDF</span></div>
+    </div>
+  </div>
+
+  <!-- ===== TSS BRAIN ===== -->
+  <div class="page" id="page-brain">
+    <div class="page__header">
+      <div class="page__overline">Platform</div>
+      <div class="page__title">TSS Brain</div>
+      <div class="page__desc">La plataforma digital del ecosistema TSS: tracking de progresión, gestión de sesiones, bitácoras de coach, biblioteca de drills.</div>
+    </div>
+
+    <div class="cards cards--2" style="margin-bottom:24px">
+      <div class="card" onclick="window.open('https://tss-brain-app.vercel.app','_blank')">
+        <div class="card__accent" style="background:linear-gradient(90deg,var(--cyan),var(--green))"></div>
+        <div class="card__icon">🧬</div>
+        <div class="card__title">TSS Brain App (Live)</div>
+        <div class="card__desc">App en producción en Vercel. Session flow, bitácoras, roles (Head Coach, Coach Asistente, Atleta). Equipo El Salvador — Temporada 2026.</div>
+        <span class="card__tag">🔗 tss-brain-app.vercel.app</span>
+      </div>
+      <div class="card" onclick="openTool('13_APP_HIGH_PERFORMANCE/index.html')">
+        <div class="card__accent" style="background:var(--coral)"></div>
+        <div class="card__icon">⚡</div>
+        <div class="card__title">High Performance App (Local)</div>
+        <div class="card__desc">Versión local de la interfaz de alto rendimiento con autenticación PIN y navegación por roles.</div>
+        <span class="card__tag">Abrir local</span>
+      </div>
+      <div class="card" style="cursor:default;opacity:.85">
+        <div class="card__accent" style="background:var(--blue)"></div>
+        <div class="card__icon">🏗️</div>
+        <div class="card__title">Cascade Build (Next.js + Supabase)</div>
+        <div class="card__desc">Código fuente: Next.js 14, Supabase, 18 tablas, sistema de roles. Migraciones SQL y componentes React de los 22 steps del session flow.</div>
+        <span class="card__tag">Source code en /cascade-build</span>
+      </div>
+    </div>
+
+    <div class="page__overline" style="margin-bottom:16px">Data & Operations Tools</div>
+    <div class="cards cards--3">
+      <div class="card" onclick="viewFile('08_APP_TSS_BRAIN/TSS_Bitacora_v6.1_COACHES.xlsx')">
+        <div class="card__icon">📊</div>
+        <div class="card__title">Bitácora de Coaches v6.1</div>
+        <div class="card__desc">Excel de registro de sesiones para coaches. Tracking de alumnos, condiciones, evaluaciones, notas.</div>
+        <span class="card__tag">📥 Abrir Excel</span>
+      </div>
+      <div class="card" onclick="viewFile('08_APP_TSS_BRAIN/Bitacora_de_alumnos.xlsx')">
+        <div class="card__icon">📋</div>
+        <div class="card__title">Bitácora de Alumnos</div>
+        <div class="card__desc">Registro individual de progresión de cada alumno: nivel actual, sesiones, evaluaciones.</div>
+        <span class="card__tag">📥 Abrir Excel</span>
+      </div>
+      <div class="card" onclick="viewFile('08_APP_TSS_BRAIN/TSS_DRILL_LIBRARY_v1_FIXED.xlsx')">
+        <div class="card__icon">🏋️</div>
+        <div class="card__title">Drill Library v1</div>
+        <div class="card__desc">Biblioteca completa de drills por pilar y nivel de cinta. Catálogo de ejercicios.</div>
+        <span class="card__tag">📥 Abrir Excel</span>
+      </div>
+    </div>
+
+    <div style="margin-top:24px;padding:20px;border-radius:12px;background:rgba(90,195,231,.04);border:1px solid rgba(90,195,231,.08)">
+      <p style="font-size:.85rem;color:rgba(255,255,255,.4)"><strong style="color:var(--cyan)">Arquitectura TSS Brain:</strong> Next.js 14 + Supabase (PostgreSQL), 18 tablas, sistema de roles (admin, coordinator, coach, assistant). Fases: P1 Auth ✓, P2 Coach CRUD ✓, P3 Student CRUD (pendiente), P4 Camp Management (pendiente), P5 Session Flow (pendiente).</p>
+    </div>
+  </div>
+
+  <!-- ===== SCIENCE MASTERCLASSES ===== -->
+  <div class="page" id="page-masterclass">
+    <div class="page__header">
+      <div class="page__overline">Science & Training</div>
+      <div class="page__title">Masterclasses</div>
+      <div class="page__desc">Módulos de ciencia aplicada al surf y alto rendimiento. Presentaciones completas para formación de coaches y atletas.</div>
+    </div>
+    <div class="cards cards--2">
+      <div class="card" onclick="openTool('html_converted/mc_breath.html')">
+        <div class="card__accent" style="background:var(--green)"></div>
+        <div class="card__icon">🫁</div>
+        <div class="card__title">Breath Science Training</div>
+        <div class="card__desc">Ciencia de la respiración aplicada al surf. Técnicas de breath-hold, respiración diafragmática, protocolos pre-sesión y post-wipeout.</div>
+        <span class="card__tag">▶ Ver presentación</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/mc_focus.html')">
+        <div class="card__accent" style="background:var(--cyan)"></div>
+        <div class="card__icon">🎯</div>
+        <div class="card__title">Focus Science Training</div>
+        <div class="card__desc">Ciencia del foco atencional. Concentración selectiva, cue words, rutinas pre-competencia, gestión de distracciones.</div>
+        <span class="card__tag">▶ Ver presentación</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/mc_relaxation.html')">
+        <div class="card__accent" style="background:var(--purple)"></div>
+        <div class="card__icon">🧘</div>
+        <div class="card__title">Relaxation Science Training</div>
+        <div class="card__desc">Ciencia de la relajación. Progressive muscle relaxation, body scan, técnicas de descenso de activación pre y post-competencia.</div>
+        <span class="card__tag">▶ Ver presentación</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/mc_visualization.html')">
+        <div class="card__accent" style="background:var(--gold)"></div>
+        <div class="card__icon">🧠</div>
+        <div class="card__title">Visualization Science Training</div>
+        <div class="card__desc">Ciencia de la visualización. Mental rehearsal, imagery scripts, protocolos PETTLEP, visualización de secuencias TSS.</div>
+        <span class="card__tag">▶ Ver presentación</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/mc_recovery.html')">
+        <div class="card__accent" style="background:var(--coral)"></div>
+        <div class="card__icon">💤</div>
+        <div class="card__title">Recovery Science Training</div>
+        <div class="card__desc">Ciencia de la recuperación. Sleep optimization, nutrition timing, active recovery, periodización del descanso.</div>
+        <span class="card__tag">▶ Ver presentación</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/mc_nutrition.html')">
+        <div class="card__accent" style="background:linear-gradient(90deg,var(--coral),var(--gold))"></div>
+        <div class="card__icon">🍎</div>
+        <div class="card__title">Nutrition & Hydration</div>
+        <div class="card__desc">Nutrición e hidratación para surfistas. Timing de comidas, macros, hidratación en agua salada, suplementación básica.</div>
+        <span class="card__tag">▶ Ver presentación</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/mc_7senses.html')">
+        <div class="card__accent" style="background:var(--belt-blue)"></div>
+        <div class="card__icon">👁️</div>
+        <div class="card__title">7 Senses TSS</div>
+        <div class="card__desc">Los 7 sentidos aplicados al surf. Propiocepción, sistema vestibular, percepción oceánica multisensorial.</div>
+        <span class="card__tag">▶ Ver presentación</span>
+      </div>
+      <div class="card" onclick="openTool('html_converted/mc_language.html')">
+        <div class="card__accent" style="background:linear-gradient(90deg,var(--cyan),var(--purple))"></div>
+        <div class="card__icon">🗣️</div>
+        <div class="card__title">Language of Performance</div>
+        <div class="card__desc">El lenguaje del rendimiento. Cueing, feedback efectivo, comunicación coach-atleta, vocabulario TSS en acción.</div>
+        <span class="card__tag">▶ Ver presentación</span>
+      </div>
+    </div>
+
+    <div style="margin-top:24px">
+      <div class="page__overline" style="margin-bottom:16px">Metodología de Enseñanza</div>
+      <div class="cards cards--2">
+        <div class="card" onclick="openTool('html_converted/mc_ensenarte_es.html')">
+          <div class="card__accent" style="background:var(--green)"></div>
+          <div class="card__icon">🎨</div>
+          <div class="card__title">EnseñARTE TSS (Español)</div>
+          <div class="card__desc">Metodología de enseñanza TSS. Cómo enseñar con arte: pedagogía aplicada al surf, técnicas de delivery, engagement de alumnos.</div>
+          <span class="card__tag">▶ Ver presentación</span>
+        </div>
+        <div class="card" onclick="openTool('html_converted/mc_ensenarte_en.html')">
+          <div class="card__accent" style="background:var(--cyan)"></div>
+          <div class="card__icon">🎨</div>
+          <div class="card__title">EnseñARTE TSS (English)</div>
+          <div class="card__desc">TSS teaching methodology in English. The art of coaching: applied pedagogy, delivery techniques, student engagement.</div>
+          <span class="card__tag">▶ Ver presentación</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;padding:16px 20px;border-radius:8px;background:rgba(255,209,102,.05);border:1px solid rgba(255,209,102,.12)">
+      <p style="font-size:.82rem;color:rgba(255,255,255,.4)"><strong style="color:var(--gold)">Nota:</strong> Estas masterclasses están en formato .pptx en la carpeta <code style="color:var(--cyan);font-size:.78rem">09_SCIENCE_TRAINING/</code>. Se pueden presentar directamente en PowerPoint, Google Slides o convertir a módulos del TSS Brain cuando la plataforma lo soporte.</p>
+    </div>
+  </div>
+
+  <!-- ===== TOOL EMBED VIEW ===== -->
+  <div class="page" id="page-tool">
+    <button class="tool-back" onclick="goBack()">← Volver</button>
+    <iframe class="tool-frame" id="toolFrame" src=""></iframe>
+  </div>
+
+</div><!-- /main -->
+</div><!-- /app -->
+
+<button class="mobile-toggle" id="mobileToggle" onclick="toggleSidebar()">☰</button>
+
+<script>
+// ===== NAVIGATION =====
+let currentPage = 'dashboard';
+let previousPage = 'dashboard';
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const items = document.querySelectorAll('.nav-item');
+  items.forEach(n => { if (n.textContent.trim().toLowerCase().includes(getNavLabel(id))) n.classList.add('active'); });
+  previousPage = currentPage;
+  currentPage = id;
+  closeSidebar();
+  document.getElementById('main').scrollTop = 0;
+  // Auto-calculate on page show
+  if (id === 'ratio') calcRatio();
+  if (id === 'conditions') analyzeConditions();
+  if (id === 'session') updateSession();
+}
+
+function getNavLabel(id) {
+  const map = { dashboard:'dashboard', 'brand-ext':'brand (ext', 'brand-int':'brand (int', canon:'canon', onewave:'one wave', seqtool:'sequence', drills:'drill', logger:'session logger', belts:'belt', session:'session', ratio:'ratio', conditions:'condition', safety:'safety', inclusion:'learning', quiz:'level', cert:'cert', progress:'student', coachref:'coach quick', bizmodel:'revenue', business:'business', website:'website', diagrams:'diagram', highperf:'high', brain:'brain', masterclass:'masterclass' };
+  return map[id] || id;
+}
+
+// Get the base directory of this HTML file
+function getBase() {
+  const href = window.location.href;
+  return href.substring(0, href.lastIndexOf('/') + 1);
+}
+
+function openTool(path) {
+  previousPage = currentPage;
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-tool').classList.add('active');
+  // Build absolute URL from base path
+  const fullUrl = getBase() + encodeURI(path);
+  document.getElementById('toolFrame').src = fullUrl;
+  currentPage = 'tool';
+  document.getElementById('main').scrollTop = 0;
+}
+
+function viewFile(path) {
+  const fullUrl = getBase() + encodeURI(path);
+  // PDFs can open in iframe, everything else opens in new tab
+  if (path.toLowerCase().endsWith('.pdf')) {
+    openTool(path);
+  } else {
+    window.open(fullUrl, '_blank');
+  }
+}
+
+function goBack() {
+  document.getElementById('toolFrame').src = '';
+  showPage(previousPage);
+}
+
+function toggleSidebar() { document.getElementById('sidebar').classList.toggle('open'); }
+function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); }
+
+// ===== RATIO CALCULATOR =====
+function calcRatio() {
+  const belt = document.getElementById('rc-belt').value;
+  const conditions = document.getElementById('rc-conditions').value;
+  const age = document.getElementById('rc-age').value;
+  const type = document.getElementById('rc-type').value;
+
+  let base = { white: 4, yellow: 5, blue: 6, purple: 8, brown: 10, black: 12 }[belt];
+  // Condition modifier
+  if (conditions === 'flat') base += 1;
+  if (conditions === 'medium') base -= 1;
+  if (conditions === 'overhead') base -= 2;
+  if (conditions === 'large') base -= 3;
+  // Age modifier
+  if (age === 'kids') base -= 2;
+  if (age === 'seniors') base -= 1;
+  // Type modifier
+  if (type === 'intro') base -= 1;
+  if (type === 'competition') base += 2;
+  base = Math.max(1, Math.min(base, 15));
+
+  const formation = base <= 3 ? 'Dupla (1:1 o 1:2)' : base <= 6 ? 'Triángulo (1:3 a 1:6)' : 'Imán (1:7+)';
+  const risk = base <= 3 ? 'danger' : base <= 5 ? 'caution' : 'safe';
+  const riskLabel = base <= 3 ? 'Alto cuidado requerido' : base <= 5 ? 'Atención incrementada' : 'Operación normal';
+
+  document.getElementById('rc-output').style.display = 'block';
+  document.getElementById('rc-output').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px">
+      <div style="text-align:center;padding:16px;border-radius:8px;background:rgba(90,195,231,.08)">
+        <div style="font-family:Outfit;font-size:2rem;font-weight:800;color:var(--cyan)">1:${base}</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.4)">Ratio recomendada</div>
+      </div>
+      <div style="text-align:center;padding:16px;border-radius:8px;background:rgba(90,195,231,.08)">
+        <div style="font-family:Outfit;font-size:1.1rem;font-weight:700;color:var(--cyan)">${formation}</div>
+        <div style="font-size:.75rem;color:rgba(255,255,255,.4)">Formación de coach</div>
+      </div>
+      <div class="condition-badge ${risk}" style="display:flex;flex-direction:column;align-items:center;justify-content:center">
+        <div style="font-size:1rem;font-weight:700">${riskLabel}</div>
+        <div style="font-size:.7rem;opacity:.7">Nivel de riesgo</div>
+      </div>
+    </div>
+    <p style="font-size:.8rem;color:rgba(255,255,255,.3)">Basado en Safety Canon v2.0 — Sección de Ratio Matrix. Ajustar según evaluación in-situ del coach responsable.</p>`;
+}
+
+// ===== CONDITION ANALYZER =====
+function analyzeConditions() {
+  const size = parseInt(document.getElementById('ca-size').value);
+  const wind = document.getElementById('ca-wind').value;
+  const current = document.getElementById('ca-current').value;
+  const bottom = document.getElementById('ca-bottom').value;
+
+  const belts = [
+    { name: 'White Belt', maxSize: 2, color: '#E8E8E8', textColor: '#333' },
+    { name: 'Yellow Belt', maxSize: 3, color: '#F5C518', textColor: '#333' },
+    { name: 'Blue Belt', maxSize: 6, color: '#1E6FBF', textColor: '#fff' },
+    { name: 'Purple Belt', maxSize: 8, color: '#7B4FBE', textColor: '#fff' },
+    { name: 'Brown Belt', maxSize: 100, color: '#7D4E27', textColor: '#fff' },
+    { name: 'Black Belt', maxSize: 100, color: '#222', textColor: '#fff' },
+  ];
+
+  let risk = 0;
+  if (wind === 'onshore') risk += 1;
+  if (wind === 'strong') risk += 2;
+  if (current === 'moderate') risk += 1;
+  if (current === 'strong' || current === 'rip') risk += 2;
+  if (bottom === 'reef') risk += 1;
+
+  let html = '<div class="condition-output">';
+  for (const b of belts) {
+    let status = 'safe', label = '✓ Operativo';
+    const effectiveMax = Math.max(0, b.maxSize - risk);
+    if (size > effectiveMax) { status = 'danger'; label = '✗ No operativo'; }
+    else if (size >= effectiveMax - 1 || risk >= 2) { status = 'caution'; label = '⚠ Precaución'; }
+    html += `<div class="condition-badge ${status}" style="border-left:3px solid ${b.color}">
+      <div style="font-size:.7rem;opacity:.6">${b.name}</div>
+      <div>${label}</div>
+    </div>`;
+  }
+  html += '</div>';
+
+  const overall = risk >= 3 ? 'danger' : risk >= 1 ? 'caution' : 'safe';
+  const overallLabel = risk >= 3 ? 'Condiciones de alto riesgo' : risk >= 1 ? 'Condiciones con precaución' : 'Condiciones favorables';
+  html = `<div class="condition-badge ${overall}" style="padding:16px;margin-bottom:12px;font-size:1rem">${overallLabel} (Factor de riesgo: ${risk}/6)</div>` + html;
+  html += `<p style="font-size:.78rem;color:rgba(255,255,255,.25);margin-top:12px">Evaluación automática basada en parámetros. El coach responsable debe confirmar in-situ antes de iniciar sesión.</p>`;
+
+  document.getElementById('ca-output').innerHTML = html;
+}
+
+// ===== SESSION PLANNER =====
+function updateSession() {
+  const belt = document.getElementById('sp-belt').value;
+  const type = document.getElementById('sp-type').value;
+  const duration = parseInt(document.getElementById('sp-duration').value);
+  const students = parseInt(document.getElementById('sp-students').value);
+
+  const beltNames = { white:'White Belt', yellow:'Yellow Belt', blue:'Blue Belt', purple:'Purple Belt', brown:'Brown Belt', black:'Black Belt' };
+  const typeNames = { water:'Water Session', theory:'Theory', dryland:'Dry Land', video:'Video Analysis', mixed:'Mixed' };
+
+  const phases = type === 'water' ? [
+    { name: 'Check-in & Equipment', pct: 10, desc: 'Verificar equipo, asignar tablas por peso/nivel, rash vests por color' },
+    { name: 'Beach Briefing', pct: 10, desc: 'Objetivos de sesión, condiciones, señales de seguridad, formación de coach' },
+    { name: 'Dry Drill / Warm-up', pct: 10, desc: `Ejercicios de movilidad + drill técnico específico de ${beltNames[belt]}` },
+    { name: 'Water Execution', pct: 50, desc: `Práctica en agua con secuencias de ${beltNames[belt]}. Coaching activo.` },
+    { name: 'Cool-down & Debrief', pct: 10, desc: 'Estiramiento, feedback individual, evaluación de progresión' },
+    { name: 'Session Close & Log', pct: 10, desc: 'Registro en bitácora, notas de progresión, planificación siguiente sesión' },
+  ] : type === 'theory' ? [
+    { name: 'Context Setting', pct: 10, desc: 'Objetivo de la teoría, conexión con práctica' },
+    { name: 'Content Delivery', pct: 40, desc: `Material teórico de ${beltNames[belt]}: pilares, conceptos, vocabulario` },
+    { name: 'Interactive Exercise', pct: 30, desc: 'Quiz, discusión, análisis de video, role-play' },
+    { name: 'Application Bridge', pct: 10, desc: 'Cómo aplicar lo aprendido en la próxima sesión de agua' },
+    { name: 'Session Close', pct: 10, desc: 'Resumen, dudas, registro' },
+  ] : [
+    { name: 'Briefing', pct: 10, desc: 'Objetivos y contexto' },
+    { name: 'Warm-up / Prep', pct: 15, desc: 'Preparación física o mental' },
+    { name: 'Main Activity', pct: 50, desc: `Actividad principal de ${typeNames[type]} para ${beltNames[belt]}` },
+    { name: 'Review', pct: 15, desc: 'Revisión y feedback' },
+    { name: 'Close & Log', pct: 10, desc: 'Cierre y registro' },
+  ];
+
+  let html = `<div style="padding:12px 16px;border-radius:8px;background:rgba(90,195,231,.06);margin-bottom:16px;display:flex;gap:24px;flex-wrap:wrap;font-size:.85rem">
+    <div><strong style="color:var(--cyan)">Cinta:</strong> ${beltNames[belt]}</div>
+    <div><strong style="color:var(--cyan)">Tipo:</strong> ${typeNames[type]}</div>
+    <div><strong style="color:var(--cyan)">Duración:</strong> ${duration} min</div>
+    <div><strong style="color:var(--cyan)">Alumnos:</strong> ${students}</div>
+  </div>`;
+
+  html += '<div style="font-family:Outfit;font-size:.9rem;font-weight:700;color:var(--white);margin-bottom:12px">TSS Block Structure</div>';
+  for (let i = 0; i < phases.length; i++) {
+    const mins = Math.round(duration * phases[i].pct / 100);
+    html += `<div class="session-block">
+      <div class="session-block__num">${i + 1}</div>
+      <div class="session-block__content">
+        <div class="session-block__title">${phases[i].name} <span style="color:var(--cyan);font-size:.78rem;font-weight:400">${mins} min</span></div>
+        <div class="session-block__desc">${phases[i].desc}</div>
+      </div>
+    </div>`;
+  }
+
+  document.getElementById('sp-output').innerHTML = html;
+}
+
+// ===== STUDENT TRACKER =====
+function updateTracker() {
+  const name = document.getElementById('st-name').value || 'Alumno';
+  const belt = parseInt(document.getElementById('st-belt').value);
+  const sessions = parseInt(document.getElementById('st-sessions').value) || 0;
+  const date = document.getElementById('st-date').value || '—';
+  const scores = {
+    tech: parseInt(document.getElementById('st-tech').value) || 5,
+    tact: parseInt(document.getElementById('st-tact').value) || 5,
+    ment: parseInt(document.getElementById('st-ment').value) || 5,
+    phys: parseInt(document.getElementById('st-phys').value) || 5,
+    safe: parseInt(document.getElementById('st-safe').value) || 5,
+  };
+  const avg = ((scores.tech + scores.tact + scores.ment + scores.phys + scores.safe) / 5).toFixed(1);
+  const beltNames = ['White Belt','Yellow Belt','Blue Belt','Purple Belt','Brown Belt','Black Belt'];
+  const beltColors = ['#E8E8E8','#F5C518','#1E6FBF','#7B4FBE','#7D4E27','#222'];
+  const nextBelt = belt < 5 ? beltNames[belt + 1] : 'Maestría completa';
+  const weakest = Object.entries(scores).sort((a,b) => a[1] - b[1])[0];
+  const weakLabels = { tech:'Técnico', tact:'Táctico', ment:'Mental', phys:'Físico', safe:'Seguridad' };
+  const readyToAdvance = avg >= 7 && Math.min(...Object.values(scores)) >= 5;
+
+  let html = `<div style="padding:20px;border-radius:12px;background:rgba(90,195,231,.04);border:1px solid rgba(90,195,231,.08);margin-bottom:16px">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+      <div><strong style="color:var(--white);font-size:1.1rem">${name}</strong><br><span style="font-size:.82rem;color:rgba(255,255,255,.4)">Inicio: ${date} | Sesiones: ${sessions}</span></div>
+      <div style="padding:8px 20px;border-radius:8px;background:${beltColors[belt]};color:${belt >= 2 ? '#fff' : '#333'};font-family:Outfit;font-weight:700;font-size:.9rem">${beltNames[belt]}</div>
+    </div>
+  </div>`;
+
+  // Radar-like bars
+  html += '<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:16px">';
+  const labels = { tech:'TEC', tact:'TAC', ment:'MEN', phys:'FIS', safe:'SEG' };
+  for (const [key, label] of Object.entries(labels)) {
+    const val = scores[key];
+    const pct = val * 10;
+    const color = val >= 7 ? 'var(--green)' : val >= 5 ? 'var(--gold)' : 'var(--coral)';
+    html += `<div style="text-align:center"><div style="font-size:.7rem;color:rgba(255,255,255,.3);margin-bottom:4px">${label}</div>
+      <div style="height:80px;background:rgba(255,255,255,.03);border-radius:4px;position:relative;overflow:hidden">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:${pct}%;background:${color};opacity:.3;border-radius:4px"></div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:Outfit;font-weight:700;font-size:1.2rem;color:${color}">${val}</div>
+      </div></div>`;
+  }
+  html += '</div>';
+
+  html += `<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+    <div style="padding:12px;border-radius:8px;background:rgba(90,195,231,.06);text-align:center">
+      <div style="font-family:Outfit;font-size:1.5rem;font-weight:800;color:var(--cyan)">${avg}</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.3)">Promedio general</div>
+    </div>
+    <div style="padding:12px;border-radius:8px;background:rgba(255,107,107,.06);text-align:center">
+      <div style="font-family:Outfit;font-size:.95rem;font-weight:700;color:var(--coral)">${weakLabels[weakest[0]]}: ${weakest[1]}/10</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.3)">Pilar más débil</div>
+    </div>
+    <div style="padding:12px;border-radius:8px;background:${readyToAdvance ? 'rgba(6,214,160,.06)' : 'rgba(255,209,102,.06)'};text-align:center">
+      <div style="font-family:Outfit;font-size:.95rem;font-weight:700;color:${readyToAdvance ? 'var(--green)' : 'var(--gold)'}">${readyToAdvance ? '✓ Listo' : '⏳ En progreso'}</div>
+      <div style="font-size:.72rem;color:rgba(255,255,255,.3)">Avance a ${nextBelt}</div>
+    </div>
+  </div>`;
+
+  document.getElementById('st-output').innerHTML = html;
+}
+
+// ===== REVENUE MODEL =====
+function calcRevenue() {
+  const coaches = parseInt(document.getElementById('bm-coaches').value) || 0;
+  const t2 = parseInt(document.getElementById('bm-t2').value) || 0;
+  const t3 = parseInt(document.getElementById('bm-t3').value) || 0;
+  const certFee = parseInt(document.getElementById('bm-certfee').value) || 0;
+  const t2Fee = parseInt(document.getElementById('bm-t2fee').value) || 0;
+  const t3Fee = parseInt(document.getElementById('bm-t3fee').value) || 0;
+  const renewal = parseInt(document.getElementById('bm-renewal').value) || 0;
+  const saas = parseInt(document.getElementById('bm-saas').value) || 0;
+  const kits = parseInt(document.getElementById('bm-kits').value) || 0;
+
+  const totalAcademies = t2 + t3;
+  const r1 = coaches * certFee;
+  const r2 = coaches * renewal;
+  const r3 = t2 * t2Fee;
+  const r4 = t3 * t3Fee;
+  const r5 = kits * 100;
+  const r6 = totalAcademies * saas * 12;
+  const total = r1 + r2 + r3 + r4 + r5 + r6;
+
+  const streams = [
+    { name: 'Certificación de coaches', amount: r1, color: 'var(--cyan)' },
+    { name: 'Renovación anual', amount: r2, color: 'var(--cyan)' },
+    { name: 'Afiliación Tier 2', amount: r3, color: 'var(--green)' },
+    { name: 'Licencias Tier 3', amount: r4, color: 'var(--gold)' },
+    { name: 'Camp Kit Fees', amount: r5, color: 'var(--purple)' },
+    { name: 'TSS Brain SaaS', amount: r6, color: 'var(--coral)' },
+  ];
+
+  let html = `<div style="text-align:center;padding:24px;border-radius:12px;background:rgba(90,195,231,.04);border:1px solid rgba(90,195,231,.08);margin-bottom:20px">
+    <div style="font-size:.8rem;color:rgba(255,255,255,.3)">REVENUE ANUAL PROYECTADO</div>
+    <div style="font-family:Outfit;font-size:2.8rem;font-weight:800;color:var(--cyan)">$${total.toLocaleString()}</div>
+    <div style="font-size:.78rem;color:rgba(255,255,255,.25)">${coaches} coaches | ${t2} Tier 2 | ${t3} Tier 3 | ${kits} camp kits</div>
+  </div>`;
+
+  html += '<div style="display:flex;flex-direction:column;gap:6px">';
+  for (const s of streams) {
+    const pct = total > 0 ? (s.amount / total * 100).toFixed(0) : 0;
+    html += `<div style="display:flex;align-items:center;gap:12px;padding:8px 12px;border-radius:6px;background:rgba(255,255,255,.02)">
+      <div style="width:140px;font-size:.82rem;color:rgba(255,255,255,.5)">${s.name}</div>
+      <div style="flex:1;height:20px;background:rgba(255,255,255,.04);border-radius:4px;overflow:hidden">
+        <div style="height:100%;width:${pct}%;background:${s.color};opacity:.4;border-radius:4px;transition:width .5s"></div>
+      </div>
+      <div style="width:80px;text-align:right;font-family:Outfit;font-weight:700;font-size:.88rem;color:${s.color}">$${s.amount.toLocaleString()}</div>
+      <div style="width:40px;text-align:right;font-size:.72rem;color:rgba(255,255,255,.25)">${pct}%</div>
+    </div>`;
+  }
+  html += '</div>';
+
+  // 3-year projection
+  const y2 = Math.round(total * 2.5);
+  const y3 = Math.round(total * 5.2);
+  html += `<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:16px">
+    <div style="padding:16px;border-radius:8px;background:rgba(90,195,231,.06);text-align:center">
+      <div style="font-size:.7rem;color:rgba(255,255,255,.25)">AÑO 1</div>
+      <div style="font-family:Outfit;font-size:1.4rem;font-weight:800;color:var(--cyan)">$${total.toLocaleString()}</div>
+    </div>
+    <div style="padding:16px;border-radius:8px;background:rgba(90,195,231,.06);text-align:center">
+      <div style="font-size:.7rem;color:rgba(255,255,255,.25)">AÑO 2 (×2.5)</div>
+      <div style="font-family:Outfit;font-size:1.4rem;font-weight:800;color:var(--gold)">$${y2.toLocaleString()}</div>
+    </div>
+    <div style="padding:16px;border-radius:8px;background:rgba(90,195,231,.06);text-align:center">
+      <div style="font-size:.7rem;color:rgba(255,255,255,.25)">AÑO 3 (×5.2)</div>
+      <div style="font-family:Outfit;font-size:1.4rem;font-weight:800;color:var(--green)">$${y3.toLocaleString()}</div>
+    </div>
+  </div>`;
+
+  document.getElementById('bm-output').innerHTML = html;
+}
+
+// ===== PIN SYSTEM =====
+const DEFAULT_PIN = '2835';
+let currentPin = '';
+
+function getStoredPin() {
+  return localStorage.getItem('tss_hub_pin') || DEFAULT_PIN;
+}
+function setStoredPin(pin) {
+  localStorage.setItem('tss_hub_pin', pin);
+}
+
+function pinInput(digit) {
+  if (currentPin.length >= 4) return;
+  currentPin += digit;
+  updatePinDots();
+  if (currentPin.length === 4) {
+    setTimeout(checkPin, 200);
+  }
+}
+function pinBackspace() {
+  currentPin = currentPin.slice(0, -1);
+  updatePinDots();
+  document.getElementById('pinError').textContent = '';
+}
+function pinClear() {
+  currentPin = '';
+  updatePinDots();
+  document.getElementById('pinError').textContent = '';
+}
+function updatePinDots() {
+  const dots = document.querySelectorAll('.pin-dot');
+  dots.forEach((d, i) => {
+    d.classList.toggle('filled', i < currentPin.length);
+    d.classList.remove('error');
+  });
+}
+function checkPin() {
+  if (currentPin === getStoredPin()) {
+    document.getElementById('pinScreen').classList.add('hidden');
+    document.getElementById('mainApp').style.display = 'flex';
+    sessionStorage.setItem('tss_unlocked', '1');
+  } else {
+    document.querySelectorAll('.pin-dot').forEach(d => d.classList.add('error'));
+    document.getElementById('pinError').textContent = 'Incorrect PIN';
+    setTimeout(() => { currentPin = ''; updatePinDots(); document.getElementById('pinError').textContent = ''; }, 1000);
+  }
+}
+
+// Change PIN (accessible from browser console: changePIN())
+window.changePIN = function() {
+  const current = prompt('Enter current PIN:');
+  if (current !== getStoredPin()) { alert('Incorrect current PIN.'); return; }
+  const newPin = prompt('Enter new 4-digit PIN:');
+  if (!newPin || newPin.length !== 4 || !/^\d{4}$/.test(newPin)) { alert('PIN must be exactly 4 digits.'); return; }
+  const confirm = prompt('Confirm new PIN:');
+  if (newPin !== confirm) { alert('PINs do not match.'); return; }
+  setStoredPin(newPin);
+  alert('PIN changed successfully.');
+};
+
+// Keyboard support for PIN
+document.addEventListener('keydown', (e) => {
+  if (document.getElementById('pinScreen').classList.contains('hidden')) return;
+  if (e.key >= '0' && e.key <= '9') pinInput(e.key);
+  else if (e.key === 'Backspace') pinBackspace();
+  else if (e.key === 'Escape') pinClear();
+});
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if already unlocked in this session
+  if (sessionStorage.getItem('tss_unlocked') === '1') {
+    document.getElementById('pinScreen').classList.add('hidden');
+    document.getElementById('mainApp').style.display = 'flex';
+  }
+  calcRatio();
+  analyzeConditions();
+  updateSession();
+  updateTracker();
+  calcRevenue();
+});
+</script>
+</body>
+</html>

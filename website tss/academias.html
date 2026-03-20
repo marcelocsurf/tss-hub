@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Academias — Afiliación TSS</title>
+<meta name="description" content="Implementa The Surf Sequence en tu academia. Metodología estandarizada, coaches certificados, plataforma digital. Diferencia tu operación.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}body{font-family:'Work Sans',sans-serif;color:#4E4D4D;line-height:1.7;background:#fff;overflow-x:hidden}a{text-decoration:none;color:inherit;transition:all .3s}
+:root{--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA;--white:#FFFFFF;--gold:#FFD166}
+h1,h2,h3{font-family:'Outfit',sans-serif;color:var(--navy);line-height:1.2}h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800}h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700}h3{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:600}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}.section{padding:100px 0}.section--dark{background:var(--navy);color:var(--white)}.section--dark h2,.section--dark h3{color:var(--white)}.section--light{background:var(--light)}
+.btn{display:inline-block;padding:16px 36px;border-radius:6px;font-family:'Outfit',sans-serif;font-weight:600;font-size:1rem;transition:all .3s;cursor:pointer;border:none}.btn--primary{background:var(--cyan);color:var(--navy)}.btn--primary:hover{background:#3db8e0;transform:translateY(-2px)}.btn--gold{background:var(--gold);color:var(--navy)}.btn--gold:hover{background:#ecc055}.btn--outline{background:transparent;border:2px solid var(--cyan);color:var(--cyan)}.btn--outline:hover{background:var(--cyan);color:var(--navy)}.btn--white{background:var(--white);color:var(--navy)}
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:12px 0;background:rgba(10,22,40,.97);backdrop-filter:blur(12px)}.nav__inner{display:flex;align-items:center;justify-content:space-between;max-width:1140px;margin:0 auto;padding:0 24px}.nav__logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white)}.nav__logo span{color:var(--cyan)}.nav__links{display:flex;gap:28px;align-items:center}.nav__links a{color:rgba(255,255,255,.8);font-size:.88rem;font-weight:500}.nav__links a:hover{color:var(--cyan)}.nav__cta{padding:10px 24px;font-size:.85rem}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.page-hero{padding:140px 0 80px;background:linear-gradient(135deg,var(--navy),var(--blue));text-align:center}.page-hero h1{color:var(--white);margin-bottom:16px}.page-hero p{color:rgba(255,255,255,.65);font-size:1.1rem;max-width:640px;margin:0 auto}
+.overline{display:block;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
+.section-header{text-align:center;max-width:680px;margin:0 auto 56px}.section-header p{font-size:1.05rem;color:var(--grey)}
+.tier-card{padding:36px;border-radius:16px;background:var(--white);box-shadow:0 4px 20px rgba(0,0,0,.06);border-top:4px solid var(--cyan);display:flex;flex-direction:column;transition:all .3s}.tier-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.1)}.tier-card--premium{border-top-color:var(--gold);background:linear-gradient(180deg,#fffdf5,var(--white))}.tier-card h3{margin-bottom:4px}.tier-card .price{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800;color:var(--navy);margin:12px 0}.tier-card .price span{font-size:.85rem;font-weight:400;color:var(--grey)}.tier-card p{font-size:.9rem;color:var(--grey);flex:1}.tier-card ul{list-style:none;margin:16px 0 24px;display:flex;flex-direction:column;gap:8px}.tier-card ul li{font-size:.88rem;color:var(--grey);padding-left:20px;position:relative}.tier-card ul li::before{content:'✓';position:absolute;left:0;color:var(--cyan);font-weight:700}
+.fade-up{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,.61,.36,1)}.fade-up.visible{opacity:1;transform:translateY(0)}
+.footer{background:#060e1a;color:rgba(255,255,255,.6);padding:40px 0}.footer__inner{display:flex;justify-content:space-between;align-items:center;font-size:.85rem}
+@media(max-width:968px){.grid-2,.grid-3{grid-template-columns:1fr}.nav__links{display:none}.section{padding:72px 0}}
+@media(max-width:600px){.btn{width:100%;text-align:center}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav__inner"><a href="index.html" class="nav__logo">THE SURF <span>SEQUENCE®</span></a><div class="nav__links"><a href="metodo.html">El Método</a><a href="fundador.html">Fundador</a><a href="index.html#contacto" class="btn btn--primary nav__cta">Solicitar info</a></div></div></nav>
+
+<section class="page-hero">
+  <div class="container">
+    <span class="overline" style="color:rgba(255,255,255,.5)">Para academias y escuelas</span>
+    <h1>Implementa el <span style="color:var(--cyan)">estándar</span><br>que diferencia tu academia.</h1>
+    <p>TSS te da la metodología, la certificación de tu equipo, la plataforma digital y la conexión a una red global. Todo lo que necesitas para dejar de ser "una escuela más".</p>
+    <div style="margin-top:32px"><a href="#tiers" class="btn btn--primary">Ver modelos de afiliación</a></div>
+  </div>
+</section>
+
+<!-- Problema de la academia -->
+<section class="section section--light">
+  <div class="container">
+    <div class="section-header fade-up">
+      <h2>El problema de las academias de surf hoy</h2>
+    </div>
+    <div class="grid-3 fade-up">
+      <div style="padding:28px;border-radius:12px;background:var(--white);box-shadow:0 2px 12px rgba(0,0,0,.04)">
+        <h3 style="font-size:1.05rem;margin-bottom:8px">Sin diferenciación</h3>
+        <p style="font-size:.9rem">Todas las escuelas ofrecen lo mismo: "clases de surf con instructores certificados". No hay forma de distinguirse en el mercado.</p>
+      </div>
+      <div style="padding:28px;border-radius:12px;background:var(--white);box-shadow:0 2px 12px rgba(0,0,0,.04)">
+        <h3 style="font-size:1.05rem;margin-bottom:8px">Dependencia del coach</h3>
+        <p style="font-size:.9rem">La calidad de la enseñanza depende 100% de quién esté dando la clase. Si el coach se va, la calidad cae.</p>
+      </div>
+      <div style="padding:28px;border-radius:12px;background:var(--white);box-shadow:0 2px 12px rgba(0,0,0,.04)">
+        <h3 style="font-size:1.05rem;margin-bottom:8px">Sin continuidad</h3>
+        <p style="font-size:.9rem">El alumno viene, toma una clase, y se va. No hay razón para volver. No hay progresión visible. No hay retención.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Qué resuelve TSS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">La solución</span>
+      <h2>Lo que TSS aporta a tu academia</h2>
+    </div>
+    <div class="grid-2 fade-up">
+      <div>
+        <div style="padding:20px 0;border-bottom:1px solid rgba(0,0,0,.06)">
+          <h3 style="font-size:1.05rem;margin-bottom:6px;color:var(--cyan)">Metodología estandarizada</h3>
+          <p style="font-size:.9rem">Curriculum completo por nivel. Cada coach enseña lo mismo con la misma calidad. La experiencia no depende de una persona.</p>
+        </div>
+        <div style="padding:20px 0;border-bottom:1px solid rgba(0,0,0,.06)">
+          <h3 style="font-size:1.05rem;margin-bottom:6px;color:var(--cyan)">Coaches certificados</h3>
+          <p style="font-size:.9rem">Tu equipo se certifica en TSS (L1-L5). Certificación con requisitos reales que garantizan calidad de enseñanza.</p>
+        </div>
+        <div style="padding:20px 0;border-bottom:1px solid rgba(0,0,0,.06)">
+          <h3 style="font-size:1.05rem;margin-bottom:6px;color:var(--cyan)">Plataforma digital (TSS Brain)</h3>
+          <p style="font-size:.9rem">Tracking de progresión de alumnos, gestión de sesiones, reportes automáticos, datos en tiempo real.</p>
+        </div>
+      </div>
+      <div>
+        <div style="padding:20px 0;border-bottom:1px solid rgba(0,0,0,.06)">
+          <h3 style="font-size:1.05rem;margin-bottom:6px;color:var(--cyan)">Sistema de cintas = retención</h3>
+          <p style="font-size:.9rem">El alumno tiene una razón para volver: su próxima cinta. Progresión visible genera compromiso y aumenta ticket promedio.</p>
+        </div>
+        <div style="padding:20px 0;border-bottom:1px solid rgba(0,0,0,.06)">
+          <h3 style="font-size:1.05rem;margin-bottom:6px;color:var(--cyan)">Diferenciación de mercado</h3>
+          <p style="font-size:.9rem">Eres la única academia en tu zona con estándar global, validación olímpica y sistema de certificación profesional.</p>
+        </div>
+        <div style="padding:20px 0;border-bottom:1px solid rgba(0,0,0,.06)">
+          <h3 style="font-size:1.05rem;margin-bottom:6px;color:var(--cyan)">Red global</h3>
+          <p style="font-size:.9rem">Conexión con otras academias afiliadas. Los alumnos pueden continuar su progresión en cualquier punto de la red.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modelos de afiliación -->
+<section class="section section--light" id="tiers">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">Modelos</span>
+      <h2>Tres niveles de colaboración</h2>
+      <p>Elige el modelo que se adapta a tu operación actual y tus objetivos de crecimiento.</p>
+    </div>
+    <div class="grid-3 fade-up">
+      <div class="tier-card">
+        <span class="overline" style="font-size:.65rem">Tier 1</span>
+        <h3>Certificación Individual</h3>
+        <div class="price">$500 – $1,500 <span>por nivel</span></div>
+        <p>Para coaches independientes que quieren certificarse en TSS sin necesidad de afiliar una academia.</p>
+        <ul>
+          <li>Certificación L1-L5 individual</li>
+          <li>Acceso a manuales y herramientas</li>
+          <li>Renovación anual ($200-$500)</li>
+          <li>Perfil en directorio TSS</li>
+        </ul>
+        <a href="index.html#contacto" class="btn btn--outline" style="font-size:.9rem;padding:12px 24px;text-align:center">Más información</a>
+      </div>
+      <div class="tier-card">
+        <span class="overline" style="font-size:.65rem">Tier 2</span>
+        <h3>Afiliación de Academia</h3>
+        <div class="price">$1K – $3K <span>/ año</span></div>
+        <p>Para academias que quieren implementar TSS como su metodología estándar de enseñanza.</p>
+        <ul>
+          <li>Todo lo de Tier 1</li>
+          <li>Licencia de uso de marca TSS</li>
+          <li>Certificación de equipo incluida</li>
+          <li>Acceso a TSS Brain ($100/mes)</li>
+          <li>Soporte de implementación</li>
+        </ul>
+        <a href="index.html#contacto" class="btn btn--primary" style="font-size:.9rem;padding:12px 24px;text-align:center">Solicitar afiliación</a>
+      </div>
+      <div class="tier-card tier-card--premium">
+        <span class="overline" style="font-size:.65rem;color:var(--gold)">Tier 3 — Premium</span>
+        <h3>Licencia Premium</h3>
+        <div class="price">5-15% <span>royalty sobre ventas netas</span></div>
+        <p>Para operaciones que quieren exclusividad territorial y acceso completo al ecosistema TSS.</p>
+        <ul>
+          <li>Todo lo de Tier 2</li>
+          <li>Exclusividad territorial</li>
+          <li>Co-branding con TSS</li>
+          <li>Acceso directo a Marcelo</li>
+          <li>Participación en desarrollo del sistema</li>
+          <li>Prioridad en expansión global</li>
+        </ul>
+        <a href="index.html#contacto" class="btn btn--gold" style="font-size:.9rem;padding:12px 24px;text-align:center">Aplicar a licencia premium</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Proof -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="grid-2 fade-up" style="align-items:center">
+      <div>
+        <span class="overline" style="color:rgba(255,255,255,.4)">Caso de referencia</span>
+        <h2 style="color:var(--white)">Puro Surf: el operador flagship</h2>
+        <p style="color:rgba(255,255,255,.6);margin-top:12px">Puro Surf Performance Academy en El Zonte, El Salvador, es donde TSS nació, se valida y se perfecciona cada día. Es la prueba viva de que el sistema funciona a escala operativa real.</p>
+        <p style="color:rgba(255,255,255,.6);margin-top:12px">Los resultados: mayor retención de alumnos, diferenciación clara en el mercado, equipo de coaches alineado, y validación olímpica del sistema.</p>
+      </div>
+      <div style="padding:40px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(90,195,231,.15);text-align:center">
+        <p style="font-family:'Outfit',sans-serif;font-size:2.5rem;font-weight:800;color:var(--cyan)">+20</p>
+        <p style="color:rgba(255,255,255,.5);font-size:.9rem;margin-bottom:20px">años de operación</p>
+        <p style="font-family:'Outfit',sans-serif;font-size:2.5rem;font-weight:800;color:var(--cyan)">2024</p>
+        <p style="color:rgba(255,255,255,.5);font-size:.9rem;margin-bottom:20px">validación olímpica París</p>
+        <p style="font-family:'Outfit',sans-serif;font-size:2.5rem;font-weight:800;color:var(--cyan)">6</p>
+        <p style="color:rgba(255,255,255,.5);font-size:.9rem">niveles de progresión activos</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center;background:linear-gradient(135deg,var(--navy),var(--blue))">
+  <div class="container fade-up">
+    <h2 style="color:var(--white);margin-bottom:16px">¿Listo para diferenciar tu academia?</h2>
+    <p style="color:rgba(255,255,255,.6);margin-bottom:32px">Solicita información sobre el modelo de afiliación que mejor se adapta a tu operación.</p>
+    <a href="index.html#contacto" class="btn btn--primary" style="font-size:1.1rem;padding:18px 48px">Solicitar información</a>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer__inner"><a href="index.html" class="nav__logo" style="font-family:'Outfit',sans-serif;font-weight:800;font-size:1rem;color:var(--white)">THE SURF <span style="color:var(--cyan)">SEQUENCE®</span></a><span>© 2026 The Surf Sequence®. Enkrateia SA de CV.</span></div></div></footer>
+
+<script>
+const observer=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

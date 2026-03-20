@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auditoría Documental v2 — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#5AC3E7;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🔍</span>
+    <div>
+      <div class="top-bar__title">Auditoría Documental v2</div>
+      <div class="top-bar__sub">The Surf Sequence® — AUDIT</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">AUDIT</span>
+    <span>420 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">BLOQUE A — AUDITORÍA DOCUMENTAL</a><a href="#s3">CONFIDENCIAL — NO DISTRIBUIR</a><a href="#s4">1. INVENTARIO COMPLETO DE DOCUMENTOS</a><a href="#s5">1.1 Documentos Constitucionales (Tier 1)</a><a href="#s6">1.2 Documentos Arquitectónicos (Tier 2)</a><a href="#s7">1.3 Documentos Operativos — Manuales de Cinturón (Tier 3)</a><a href="#s8">1.4 Safety, Inclusion, Certification</a><a href="#s9">1.5 Sistema Digital / App</a><a href="#s10">1.6 Estrategia / Legal</a><a href="#s11">1.7 Material de Apoyo</a><a href="#s12">2. CONTRADICCIONES — ESTADO ACTUALIZADO</a><a href="#s13">2.1 RESUELTA: Escalas de Evaluación</a><a href="#s14">2.2 RESUELTA: Safety como Pilar vs. Capa</a><a href="#s15">2.3 RESUELTA: Niveles vs. Cinturones</a><a href="#s16">2.4 RESUELTA: Sesiones Mínimas</a><a href="#s17">2.5 RESUELTA: Posiciones de Pies</a><a href="#s18">2.6 RESUELTA: Condiciones Oceánicas</a><a href="#s19">2.7 RESUELTA: Transición de Tabla</a><a href="#s20">3. VACÍOS — ESTADO ACTUALIZADO</a><a href="#s21">3.1 Documentos que YA NO Faltan (RESUELTOS)</a><a href="#s22">3.2 Documentos que AÚN Faltan</a><a href="#s23">3.3 Datos AÚN Pendientes</a><a href="#s24">4. MAPA DE SOLIDEZ — ACTUALIZADO</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">BLOQUE A — AUDITORÍA DOCUMENTAL</h1>
+<p>Inventario, clasificación y diagnóstico del corpus documental</p>
+<p>Versión 2.0 — Marzo 2026</p>
+<p class="doc-bold">ACTUALIZADO con correcciones validadas</p>
+<h1 class="doc-h1" id="s3">CONFIDENCIAL — NO DISTRIBUIR</h1>
+<h1 class="doc-h1" id="s4">1. INVENTARIO COMPLETO DE DOCUMENTOS</h1>
+<p>Se auditaron 60+ archivos distribuidos en 14 carpetas. A continuación se clasifican los documentos por rol dentro del sistema TSS. Los archivos de imagen (.png), archivos de sistema (.DS_Store) y ZIPs redundantes fueron excluidos de la clasificación funcional.</p>
+<h2 class="doc-h2" id="s5">1.1 Documentos Constitucionales (Tier 1)</h2>
+<p>Estos documentos definen la doctrina fundacional. Son fuente máxima de verdad. Ningún documento derivado puede contradecirlos.</p>
+<h2 class="doc-h2" id="s6">1.2 Documentos Arquitectónicos (Tier 2)</h2>
+<h2 class="doc-h2" id="s7">1.3 Documentos Operativos — Manuales de Cinturón (Tier 3)</h2>
+<h2 class="doc-h2" id="s8">1.4 Safety, Inclusion, Certification</h2>
+<h2 class="doc-h2" id="s9">1.5 Sistema Digital / App</h2>
+<h2 class="doc-h2" id="s10">1.6 Estrategia / Legal</h2>
+<h2 class="doc-h2" id="s11">1.7 Material de Apoyo</h2>
+<p>10 PPTX de ciencia: 7 Sentidos, Respiración, Visualización, Focus, Relajación, Recuperación, Nutrición, Lenguaje de Performance, EnseñARTE (ES/EN).</p>
+<h1 class="doc-h1" id="s12">2. CONTRADICCIONES — ESTADO ACTUALIZADO</h1>
+<p>Las contradicciones principales han sido RESUELTAS con decisiones canónicas. A continuación se documental las resoluciones validadas.</p>
+<h2 class="doc-h2" id="s13">2.1 RESUELTA: Escalas de Evaluación</h2>
+<p>Decisión canónica: White/Yellow usan Frustration 1-5. Blue+ usan Composure 1-5. App implementa ambas según nivel. Escala 1-10 del Brain doc se descarta para campo de sesión.</p>
+<h2 class="doc-h2" id="s14">2.2 RESUELTA: Safety como Pilar vs. Capa</h2>
+<p>Decisión canónica: Safety NO es pilar. Es capa transversal. En el app, Safety es sistema automático por condiciones, no dropdown seleccionable.</p>
+<h2 class="doc-h2" id="s15">2.3 RESUELTA: Niveles vs. Cinturones</h2>
+<p>Decisión canónica: Sub-niveles como steps internos (Yellow 1/2, Blue 1/2). No requieren manuales separados.</p>
+<h2 class="doc-h2" id="s16">2.4 RESUELTA: Sesiones Mínimas</h2>
+<p>Decisión canónica: Camp de 6 sesiones entrega la teoría. Competencia se demuestra, no se mide por horas fijas. Coach evalúa readiness.</p>
+<h2 class="doc-h2" id="s17">2.5 RESUELTA: Posiciones de Pies</h2>
+<p>Decisión canónica CORREGIDA: FP1 = Full Tail (máximo leverage), FP2 = Neutral (default riding), FP3 = Forward (máxima velocidad y estabilidad). El Canon v4 tenía esto al revés — CORREGIDO.</p>
+<h2 class="doc-h2" id="s18">2.6 RESUELTA: Condiciones Oceánicas</h2>
+<p>White Belt: Agua hasta la cintura haciendo pie (espumas o green waves pequeñas). Yellow Belt: Base 2-3 feet green waves, ajustable por ocean experience. Blue: 3-6 feet. Purple: Hasta 6 feet, overhead opcional. Brown/Black: Sin límite formal.</p>
+<h2 class="doc-h2" id="s19">2.7 RESUELTA: Transición de Tabla</h2>
+<p>Decisión canónica: Por seguridad, no por cinturón. Checklist de 5 criterios (turtle roll/duck dive, cruce D/I acostado, cruce D/I de pie, desmonte seguro, coach sign-off).</p>
+<h1 class="doc-h1" id="s20">3. VACÍOS — ESTADO ACTUALIZADO</h1>
+<h2 class="doc-h2" id="s21">3.1 Documentos que YA NO Faltan (RESUELTOS)</h2>
+<h2 class="doc-h2" id="s22">3.2 Documentos que AÚN Faltan</h2>
+<h2 class="doc-h2" id="s23">3.3 Datos AÚN Pendientes</h2>
+<h1 class="doc-h1" id="s24">4. MAPA DE SOLIDEZ — ACTUALIZADO</h1>
+<p>Evaluación de madurez de cada área del sistema TSS, reflejando integraciones y correcciones de v2.0.</p>
+<p>Fin del Bloque A — Auditoría Documental v2.0</p>
+<div class="table-wrap"><table>
+<tr><th>Documento</th><th>Versión</th><th>Estado</th><th>Evaluación</th></tr>
+<tr><td>TSS_Core_Canon_v4.docx</td><td>v4.0→v5.0</td><td>Sólido</td><td>Documento más completo. FUENTE MAESTRA. Requiere actualización con 12 correcciones validadas.</td></tr>
+<tr><td>TSS_Block_System_Infinite_Circle.docx</td><td>v1.0</td><td>Sólido</td><td>Define Blocks 0-7 e Infinite Circle. PROPUESTA CANÓNICA: absorber como sección del Canon.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Documento</th><th>Versión</th><th>Estado</th><th>Evaluación</th></tr>
+<tr><td>TSS_Belt_Progression_Master_Template_v2.1.docx</td><td>v2.1</td><td>Sólido</td><td>Template maestro de 21 campos. Usado exitosamente en los 6 cinturones.</td></tr>
+<tr><td>TSS_Brand_Manual (PDF + HTML)</td><td>v4.2</td><td>Parcial</td><td>2 versiones necesitan reconciliación.</td></tr>
+<tr><td>TSS_Business_Model_Blueprint_v2.docx</td><td>v2.0</td><td>Sólido</td><td>Modelo de negocio completo.</td></tr>
+<tr><td>TSS_Three_Systems_Framework_v1.docx</td><td>v1.0</td><td>Valioso</td><td>Hard/Soft/Info Systems. Scorecard: 35% completo.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Documento</th><th>Vers.</th><th>Tipo</th><th>Estado</th><th>Notas</th></tr>
+<tr><td>White Belt Beginner v1.2</td><td>v1.2</td><td>Progression Manual</td><td>Completo</td><td>21 campos, Seq #1-#5</td></tr>
+<tr><td>White Belt Student Manual v2</td><td>v2</td><td>Student Manual</td><td>Completo</td><td>Manual orientado al alumno</td></tr>
+<tr><td>Yellow Belt Novato v1.2</td><td>v1.2</td><td>Progression Manual</td><td>Completo</td><td>21 campos, Seq #6-#7. Producto más maduro</td></tr>
+<tr><td>Yellow Belt Student Manual v1</td><td>v1</td><td>Student Manual</td><td>Completo</td><td>40 videos, 11 misiones</td></tr>
+<tr><td>Yellow Belt Coach Manual v1</td><td>v1</td><td>Coach Manual</td><td>Completo</td><td>9 capítulos + apéndices. MODELO</td></tr>
+<tr><td>Blue Belt Foundation v1.2</td><td>v1.2</td><td>Progression Manual</td><td>Completo</td><td>21 campos, Seq #8-#13</td></tr>
+<tr><td>Blue Belt Student Manual v1</td><td>v1</td><td>Student Manual</td><td>Completo</td><td>Manual orientado al alumno</td></tr>
+<tr><td>Purple Belt Emerging v1.0</td><td>v1.0</td><td>Progression Manual</td><td>Completo</td><td>21 campos, Seq #14-#17</td></tr>
+<tr><td>Purple Belt Student Manual v2</td><td>v2</td><td>Student Manual</td><td>Completo</td><td>Manual orientado al alumno</td></tr>
+<tr><td>Brown Belt Pre-Elite v1.0</td><td>v1.0</td><td>Progression Manual</td><td>NUEVO</td><td>21 campos, Seq #18-#22. Aerial System, combos</td></tr>
+<tr><td>Black Belt Elite v1.0</td><td>v1.0</td><td>Progression Manual</td><td>NUEVO</td><td>21 campos, Seq #23-#26. Mastery + transmission</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Documento</th><th>Versión</th><th>Estado</th><th>Evaluación</th></tr>
+<tr><td>TSS_Safety_Canon_v2_0.docx</td><td>v2.0</td><td>Sólido</td><td>8 partes, matrices de riesgo completas.</td></tr>
+<tr><td>TSS_Safety_Student_Manual_v1.docx</td><td>v1.0</td><td>Completo</td><td>10 secciones.</td></tr>
+<tr><td>TSS_Inclusion_Canon_v1_0.docx</td><td>v1.0</td><td>Sólido</td><td>7 partes, perfiles de diversidad.</td></tr>
+<tr><td>TSS_Cert_Exam_Prep (PPTX)</td><td>L1-L2</td><td>Parcial</td><td>Solo preparación de examen.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Documento</th><th>Versión</th><th>Estado</th><th>Evaluación</th></tr>
+<tr><td>TSS_Brain_Architecture_Decisions.docx</td><td>v1.0</td><td>Crítico</td><td>Referencia para app: roles, cascade, 78 pilar parts.</td></tr>
+<tr><td>TSS_Brain_Master_Architecture_v2.docx</td><td>v2.0</td><td>Sólido</td><td>Portales, loops, roadmap.</td></tr>
+<tr><td>Excel: Bitacora + Resumino</td><td>—</td><td>Datos</td><td>Datos operativos.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Documento</th><th>Versión</th><th>Estado</th><th>Evaluación</th></tr>
+<tr><td>TSS_Propuesta_Final_Junta.docx</td><td>—</td><td>Estratégico</td><td>Propuesta para junta directiva. No es canon.</td></tr>
+<tr><td>PS_Propuesta_TSS_Board.pptx</td><td>—</td><td>Presentación</td><td>Deck para board.</td></tr>
+<tr><td>ONE WAVE (libro)</td><td>v5</td><td>Legado</td><td>Libro de filosofía. ADN del sistema.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Documento</th><th>Estado</th><th>Referencia</th></tr>
+<tr><td>Brown Belt Manual</td><td>CREADO</td><td>TSS_Brown_Belt_PreElite_v1.0.docx</td></tr>
+<tr><td>Black Belt Manual</td><td>CREADO</td><td>TSS_Black_Belt_Elite_v1.0.docx</td></tr>
+<tr><td>Secuencias Brown/Black</td><td>DEFINIDAS</td><td>Brown #18-#22, Black #23-#26</td></tr>
+<tr><td>Named Expression Registry</td><td>DEFINIDO</td><td>Sistema Cruz/Tapaloco con cadenas FS/BS</td></tr>
+<tr><td>Path Competitivo/Recreacional</td><td>DEFINIDO</td><td>Opción A: un manual, secciones marcadas</td></tr>
+<tr><td>Certificación requisitos cinturón</td><td>DEFINIDO</td><td>L1=Blue, L2=Purple, L3=Brown, L4=Black, L5=Black+exp</td></tr>
+<tr><td>Adaptaciones junior</td><td>DEFINIDO</td><td>Mismo método, entrega adaptada. 8-14 años</td></tr>
+<tr><td>Ocean level determination</td><td>DEFINIDO</td><td>Sistema dual: quiz pre-arrival + coach assessment</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Documento Faltante</th><th>Prioridad</th><th>Impacto</th></tr>
+<tr><td>Coach Manuals (White, Blue, Purple, Brown, Black)</td><td>MEDIA</td><td>Solo Yellow existe. Los otros 5 cinturones necesitan.</td></tr>
+<tr><td>TSS Coach Certification Manual (completo)</td><td>MEDIA</td><td>Solo existe prep L1-L2. Falta manual formal.</td></tr>
+<tr><td>TSS Academy Operations Manual</td><td>BAJA</td><td>Referenciado pero no existe.</td></tr>
+<tr><td>Student Manuals (Brown, Black)</td><td>MEDIA</td><td>Progression manuals hechos, student manuals faltan.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Dato Pendiente</th><th>Severidad</th><th>Notas</th></tr>
+<tr><td>Numeración exacta de secuencias internas Brown Belt</td><td>MENOR</td><td>#18-#22 definidos conceptualmente, nombres exactos por confirmar</td></tr>
+<tr><td>Recovery protocol details para Black Belt</td><td>MENOR</td><td>Referenciado pero no desarrollado</td></tr>
+<tr><td>Board selection guide por condiciones</td><td>MENOR</td><td>Marcelo pidió research</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Área</th><th>Anterior</th><th>Actual</th><th>Cambio</th></tr>
+<tr><td>Doctrina / Filosofía</td><td>95%</td><td>98%</td><td>+3% (correcciones integradas)</td></tr>
+<tr><td>Progresión (White-Purple)</td><td>90%</td><td>92%</td><td>+2% (correcciones FP, condiciones)</td></tr>
+<tr><td>Progresión (Brown-Black)</td><td>5%</td><td>80%</td><td>+75% (manuales creados)</td></tr>
+<tr><td>Safety</td><td>85%</td><td>88%</td><td>+3% (condiciones por cinturón)</td></tr>
+<tr><td>Inclusión</td><td>80%</td><td>82%</td><td>+2% (junior protocol definido)</td></tr>
+<tr><td>Certificación de Coaches</td><td>40%</td><td>55%</td><td>+15% (requisitos cinturón)</td></tr>
+<tr><td>Modelo de Negocio</td><td>85%</td><td>85%</td><td>Sin cambio</td></tr>
+<tr><td>Sistema Digital (TSS Brain)</td><td>45%</td><td>55%</td><td>+10% (decisiones arquitectónicas)</td></tr>
+<tr><td>Operaciones de Academia</td><td>25%</td><td>25%</td><td>Sin cambio</td></tr>
+<tr><td>Brand / Identidad Visual</td><td>70%</td><td>70%</td><td>Sin cambio</td></tr>
+<tr><td>Named Expressions</td><td>30%</td><td>85%</td><td>+55% (cadenas FS/BS definidas)</td></tr>
+<tr><td>Evaluación / Rating Scales</td><td>60%</td><td>90%</td><td>+30% (escalas por nivel)</td></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Auditoría Documental v2 — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

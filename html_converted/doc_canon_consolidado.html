@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canon Consolidado v2 — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FFD166;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">📋</span>
+    <div>
+      <div class="top-bar__title">Canon Consolidado v2</div>
+      <div class="top-bar__sub">The Surf Sequence® — AUDIT</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">AUDIT</span>
+    <span>3,242 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">CANON OFICIAL CONSOLIDADO</a><a href="#s3">CONFIDENCIAL — NO DISTRIBUIR</a><a href="#s4">SECCIÓN 1: IDENTIDAD DEL SISTEMA</a><a href="#s5">¿QUÉ NO ES TSS?</a><a href="#s6">¿QUÉ SÍ ES TSS?</a><a href="#s7">SECCIÓN 2: FILOSOFÍA Y PRINCIPIOS</a><a href="#s8">SECCIÓN 3: ARQUITECTURA GENERAL DE TSS</a><a href="#s9">SECCIÓN 4: LENGUAJE OFICIAL Y DEFINICIONES</a><a href="#s10">SECCIÓN 5: CUATRO PILARES DE DESARROLLO</a><a href="#s11">CAPA DE SEGURIDAD (NO ES UN PILAR)</a><a href="#s12">SECCIÓN 6: SISTEMA DE BLOQUES E INFINITE CIRCLE</a><a href="#s13">SECCIÓN 7: ESTRUCTURA DE NIVELES (SISTEMA DE CINTURONES)</a><a href="#s14">SECCIÓN 8: LÓGICA DE PROGRESIÓN</a><a href="#s15">SECCIÓN 9: SECUENCIAS DE EJECUCIÓN TSS Y EXPRESIONES NOMBRADAS</a><a href="#s16">CADENA FRONTSIDE</a><a href="#s17">CADENA BACKSIDE</a><a href="#s18">EXPRESIONES NOMBRADAS:</a><a href="#s19">SECCIÓN 10: ESTRUCTURA DE SESIONES</a><a href="#s20">SECCIÓN 11: EVALUACIÓN Y CRITERIOS</a><a href="#s21">SECCIÓN 12: SEGURIDAD Y CRITERIO OPERATIVO</a><a href="#s22">SECCIÓN 13: ROLES Y RESPONSABILIDADES</a><a href="#s23">SECCIÓN 14: TAXONOMÍA USABLE PARA SISTEMA DIGITAL</a><a href="#s24">SECCIÓN 15: REGLAS DE CONSISTENCIA Y DECLARACIÓN CONSTITUCIONAL</a><a href="#s25">DECLARACIÓN CONSTITUCIONAL</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">CANON OFICIAL CONSOLIDADO</h1>
+<p>Documento Maestro de Verdad Metodológica</p>
+<p>Versión 5.0 — Marzo 2026</p>
+<p>Incluye 12 correcciones validadas por Marcelo Castellanos</p>
+<h1 class="doc-h1" id="s3">CONFIDENCIAL — NO DISTRIBUIR</h1>
+<p>Enkrateia SA de CV</p>
+<p>All Rights Reserved</p>
+<h1 class="doc-h1" id="s4">SECCIÓN 1: IDENTIDAD DEL SISTEMA</h1>
+<p>The Surf Sequence® (TSS) es un sistema completo de educación, progresión, coaching, evaluación y operación aplicado al surf. Es 100% propiedad intelectual de Marcelo Castellanos a través de Enkrateia SA de CV.</p>
+<h1 class="doc-h1" id="s5">¿QUÉ NO ES TSS?</h1>
+<ul class="doc-list">
+<li>Consejos aislados</li>
+<li>Una aplicación independiente</li>
+<li>Una marca sin substancia</li>
+</ul>
+<h1 class="doc-h1" id="s6">¿QUÉ SÍ ES TSS?</h1>
+<ul class="doc-list">
+<li>Un sistema educativo estructurado</li>
+<li>Un sistema de progresión secuencial</li>
+<li>Un sistema de coaching con metodología comprobada</li>
+<li>Un sistema de evaluación multi-facético</li>
+<li>Un lenguaje compartido que unifica la comunidad de surf</li>
+</ul>
+<p>El propósito oficial de TSS es transformar la enseñanza del surf de una disciplina improvisada e inconsistente en una disciplina estructurada, progresiva, medible, replicable, y entregada con alta fidelidad metodológica.</p>
+<h1 class="doc-h1" id="s7">SECCIÓN 2: FILOSOFÍA Y PRINCIPIOS</h1>
+<p>Principio Central: El surf se aprende, se enseña y se progresa a través de secuencias. Cada nivel expande el anterior sin reemplazarlo. La progresión es acumulativa, no sustitutiva.</p>
+<p>Propósito Oficial</p>
+<p>Transformar la enseñanza del surf en una disciplina estructurada, progresiva, medible, replicable, entregada con alta fidelidad.</p>
+<p>Lo que TSS Soluciona</p>
+<ul class="doc-list">
+<li>Improvisation sin límites en la enseñanza del surf</li>
+<li>Inconsistencia en metodología entre instructores</li>
+<li>Falta de progresión clara y verificable</li>
+<li>Ausencia de lenguaje compartido</li>
+<li>Evaluación subjetiva sin criterios estandarizados</li>
+</ul>
+<p>Fundamentos Filosóficos</p>
+<ul class="doc-list">
+<li>Secuencia es el corazón: toda progresión sigue un orden lógico</li>
+<li>Fidelidad es no-negociable: la calidad depende de seguir el método</li>
+<li>Accesibilidad es mandatorio: el sistema escala del principiante al élite</li>
+<li>Integración es el fin: cada parte encaja con cada otra parte</li>
+</ul>
+<h1 class="doc-h1" id="s8">SECCIÓN 3: ARQUITECTURA GENERAL DE TSS</h1>
+<p>Tres Capas de Arquitectura</p>
+<p>Capa 1: Doctrina (Inmutable)</p>
+<p>El Core Canon — las reglas fundamentales que no pueden cambiar sin comprometer la integridad del sistema. Incluye: lenguaje oficial, definiciones, estructura de niveles, seguridad, y principios constitucionales.</p>
+<p>Capa 2: Arquitectura (Estable, Evolucionable)</p>
+<p>Estructuras que pueden evolucionar con documentación. Incluye: sistema de bloques, estructura de sesiones, criterios de evaluación, taxonomía digital. Los cambios requieren registro y comunicación.</p>
+<p>Capa 3: Aplicación (Adaptativa por Diseño)</p>
+<p>Cómo se entrega el método en contextos específicos: variantes juniors, adaptaciones para diferentes venues, ajustes de condiciones. La aplicación varía; la doctrina no.</p>
+<p>Jerarquía de Documentos</p>
+<ul class="doc-list">
+<li>Tier 1 (Canon): Sistema de Bloques, Doctrina Central</li>
+<li>Tier 2 (Arquitectura): Plantillas de Cinturones, Manual de Marca, Modelo de Negocio</li>
+<li>Tier 3 (Operacional): Manuales de Cinturón, Canon de Seguridad, Manuales de Coach</li>
+</ul>
+<p>Regla de Supremacía: Si hay contradicción entre documentos, la jerarquía superior prevale. El Canon siempre gana.</p>
+<h1 class="doc-h1" id="s9">SECCIÓN 4: LENGUAJE OFICIAL Y DEFINICIONES</h1>
+<p>P·R·C·H — Los Cuatro Movimientos Básicos</p>
+<p>P (Postura / Posture)</p>
+<p>Espalda recta, cabeza hacia arriba, alineado con el centro de la tabla. Posición de poder desde donde se inician todas las acciones. La postura es la fundación.</p>
+<p>R (Rotación / Rotation)</p>
+<p>Cadena de rotación: Ojos → cuello → torso → oblicuos → caderas → tobillos. Este es el motor de cada giro. La rotación genera dirección y poder.</p>
+<p>C (Compresión / Compression)</p>
+<p>Bajar el centro de gravedad, comprimir y extender para generar velocidad y transferencia de poder. La compresión carga la tabla; la extensión la libera.</p>
+<p>H (Hold / Aguante)</p>
+<p>Mantener la posición más tiempo del que es natural. Hold a través del ápex antes de soltar. Esto separa el surf apresurado del surf intencional.</p>
+<p>Los Tres Círculos de Poder</p>
+<p>Versión Surfer</p>
+<ul class="doc-list">
+<li>Círculo 1 (Cuerpo): P·R·C·H — Movimientos fundamentales</li>
+<li>Círculo 2 (Tabla): Posición de pies en la tabla</li>
+<li>Círculo 3 (Onda): Dinámica de onda — lectura y aprovechamiento</li>
+</ul>
+<p>Versión Coach</p>
+<ul class="doc-list">
+<li>Círculo 1 (Nivel del Surfer): Nivel de cinturón + requerimientos de ese nivel</li>
+<li>Círculo 2 (Ambiente): Condiciones del océano, venue, condiciones</li>
+<li>Círculo 3 (Tarea): Tarea específica o juego a ejecutar</li>
+</ul>
+<p>Posiciones de Pies (CORREGIDO — validado por Marcelo Marzo 2026)</p>
+<p>FP1 (Full Tail)</p>
+<p>Pie trasero en la cola extrema. Máximo leverage para maniobras radicales.</p>
+<p>FP2 (Neutral)</p>
+<p>Pie trasero centrado sobre los quillas/tail pad. Posición de conducción por defecto.</p>
+<p>FP3 (Forward)</p>
+<p>Pie trasero movido hacia adelante. Máxima velocidad y estabilidad.</p>
+<h1 class="doc-h1" id="s10">SECCIÓN 5: CUATRO PILARES DE DESARROLLO</h1>
+<p>Los Cuatro Pilares son las dimensiones en las que progresa todo surfer. Cada pilar debe ser desarrollado deliberadamente, medido, y evolucionado.</p>
+<p>Pilar 1: Físico (FÍS)</p>
+<p>Fitness específico para surf: fuerza, flexibilidad, propiocepción, resistencia, recuperación. El cuerpo es el instrumento.</p>
+<p>Pilar 2: Técnico (TÉC)</p>
+<p>Mecánica del movimiento, ejecución de maniobras, control de tabla, precisión a través de P·R·C·H. La técnica es cómo ejecutas.</p>
+<p>Pilar 3: Táctico (TÁC)</p>
+<p>Lectura de océano, selección de onda, posicionamiento, toma de decisiones competitivas. La táctica es qué onda elegir y cómo posicionarse.</p>
+<p>Pilar 4: Mental (MEN)</p>
+<p>Presencia, motivación, relajación, visualización a través de prácticas estructuradas. La mente es lo que controla el miedo y activa el potencial.</p>
+<h1 class="doc-h1" id="s11">CAPA DE SEGURIDAD (NO ES UN PILAR)</h1>
+<p>La seguridad NO es un pilar. Es una capa operacional no-negociable que cruza todos los niveles, todas las sesiones, y todos los ambientes. Se enseña, se protege, se mide, se audita, y se rastrea.</p>
+<h1 class="doc-h1" id="s12">SECCIÓN 6: SISTEMA DE BLOQUES E INFINITE CIRCLE</h1>
+<p>Los Ocho Bloques de Aprendizaje</p>
+<p>Block 0 — Orientación &amp; Alfabetización de Surf</p>
+<p>Historia, respeto al océano, tipos de onda, etiqueta, seguridad, equipos, mínima preparación física.</p>
+<p>Block 1 — Preparación &amp; Posicionamiento</p>
+<p>Análisis de venue, zona segura, paddling hacia zona de toma.</p>
+<p>Block 2 — Entrada de Onda</p>
+<p>Velocidades de paddling, selección de onda, timing, compromiso.</p>
+<p>Block 3 — Pop-Up &amp; Conexión con la Tabla</p>
+<p>Cobra, mecánica de pop-up, posicionamiento de pies.</p>
+<p>Block 4 — Postura de Poder</p>
+<p>Stance estable, compresión/extensión, base de movimiento dinámico.</p>
+<p>Block 5 — Rotación + Bottom Turn</p>
+<p>Engagement de rail, cambio direccional, generación de velocidad.</p>
+<p>Block 6 — Proyección</p>
+<p>Dirección y fuerza desde bottom turn hacia objetivo en la cara de la onda.</p>
+<p>Block 7 — Maniobras / Expresión</p>
+<p>Expresiones de secuencia nombradas ejecutadas desde los bloques anteriores.</p>
+<p>Regla Arquitectónica</p>
+<p>Bloques 1-3 son secuenciales (una vez por onda). Bloques 4-7 son cíclicos (Infinite Circle).</p>
+<p>The Infinite Circle</p>
+<p>Loop continuo una vez de pie: Postura → Rotación/Bottom Turn → Proyección → Maniobra → Recuperación → Retorno a Postura → Repetir</p>
+<p>Secuencia de Entrada (antes del loop)</p>
+<p>Sweet spot → Chase wave → Paddling angle → Cobra + pick line → Pop-up + feet positioning</p>
+<p>Regla Doctrinal</p>
+<p>Los Bloques NO reemplazan las secuencias. Los Bloques NO reemplazan los cinturones. Las secuencias específicas de cinturón se CONSTRUYEN usando bloques.</p>
+<h1 class="doc-h1" id="s13">SECCIÓN 7: ESTRUCTURA DE NIVELES (SISTEMA DE CINTURONES)</h1>
+<p>7 niveles progresivos en 6 colores de cinturón. La progresión es secuencial — no se pueden saltar cinturones.</p>
+<p>1. White Belt — Principiante (#E8E8E8)</p>
+<p>Control de tabla, sweet spot, pop-up, seguridad. Secuencias #1-#5.</p>
+<p>Ambiente: Agua hasta la cintura donde el estudiante puede estar de pie (foam o pequeñas ondas verdes).</p>
+<p>2. Yellow Belt — Novato (#F5C518)</p>
+<p>Velocidades de paddling, tomas anguladas, conciencia de pocket. Secuencias #6-#7.</p>
+<p>Sub-niveles: Yellow 1 (Seq #6), Yellow 2 (Seq #7).</p>
+<p>Condiciones: Base 2-3 pies ondas verdes, ajustable hacia arriba por experiencia previa de océano.</p>
+<p>3. Blue Belt — Fundación (#1E6FBF)</p>
+<p>Consistencia, bottom turns, linking, expresiones nombradas. Secuencias #8-#13.</p>
+<p>Sub-niveles: Blue 1 (Seq #8-#10), Blue 2 (Seq #11-#13).</p>
+<p>Condiciones: 3-6 pies ondas verdes.</p>
+<p>4. Purple Belt — Emergente (#7B4FBE)</p>
+<p>Compromiso, variedad, estilo personal. Secuencias #14-#17.</p>
+<p>Condiciones: Hasta 6 pies, overhead opcional con evaluación de coach.</p>
+<p>5. Brown Belt — Pre-Élite (#7D4E27)</p>
+<p>Re-maestría a 8/10+, sistema aéreo, combos, adaptación de condición, preparación competitiva. Secuencias #18-#22.</p>
+<p>Sin límite de condición.</p>
+<p>6. Black Belt — Élite (#111111)</p>
+<p>Maestría completa, integración profunda de pilares, transmisión de conocimiento, máximo potencial personal. Secuencias #23-#26.</p>
+<p>Sin límite de condición.</p>
+<p>Sesiones Mínimas &amp; Evaluación</p>
+<p>Un camp de 6 sesiones entrega la teoría de cinturón. La competencia se demuestra a través de evaluación de coach, NO por horas fijas.</p>
+<p>Adaptaciones Junior</p>
+<p>Mismo método, delivery adaptado. Drills lúdicos, sesiones cortas (&lt;14 años), grupos obligatorios (&lt;12 años), edad mínima 8 años.</p>
+<h1 class="doc-h1" id="s14">SECCIÓN 8: LÓGICA DE PROGRESIÓN</h1>
+<p>La progresión funciona por expansión acumulativa. Cada secuencia prepara la siguiente. El orden es no-negociable.</p>
+<p>Tres Niveles de Secuencia</p>
+<ul class="doc-list">
+<li>Movement Sequence: La cadena física de ejecución</li>
+<li>Learning Sequence: El orden pedagógico</li>
+<li>Progression Sequence: La ruta de desarrollo</li>
+</ul>
+<p>Estructura Dual-Layer</p>
+<ul class="doc-list">
+<li>Layer A (Cinturones): Macro etapas de desarrollo</li>
+<li>Layer B (Pasos/Fases): Micro-progresiones dentro de cada cinturón</li>
+</ul>
+<p>Plantilla Maestra de 21 Campos por Cinturón</p>
+<p>A) Identidad &amp; Propósito (Campos 1-4)</p>
+<p>Qué es este cinturón, por qué existe, qué lo diferencia del anterior.</p>
+<p>B) Método &amp; Contenido (Campos 5-10)</p>
+<p>Qué se enseña, cómo se organiza, qué secuencias se ejecutan.</p>
+<p>C) Ejecución &amp; Training (Campos 11-14)</p>
+<p>Cómo se estructura la sesión, qué drills se usan, cómo se practica.</p>
+<p>D) Evaluación &amp; Progresión (Campos 15-18)</p>
+<p>Criterios de evaluación, escalas de rating, cómo se demuestra competencia.</p>
+<p>E) Integración Sistema (Campos 19-21)</p>
+<p>Cómo este cinturón se conecta con otros, qué precedentes, qué construye.</p>
+<h1 class="doc-h1" id="s15">SECCIÓN 9: SECUENCIAS DE EJECUCIÓN TSS Y EXPRESIONES NOMBRADAS</h1>
+<p>Contenido canónico nuevo basado en definición directa de Marcelo (Marzo 2026).</p>
+<p>Arquitectura de Secuencia de Ejecución TSS</p>
+<h1 class="doc-h1" id="s16">CADENA FRONTSIDE</h1>
+<ul class="doc-list">
+<li>Postura (Power Posture — Block 4)</li>
+<li>Bottom Turn (Rotación + engagement de rail — Block 5)</li>
+<li>Proyección: movimiento &quot;tirar una pelota hacia atrás&quot;, pecho apunta hacia dirección de maniobra</li>
+<li>Cruz (Avioncito): Cambio de rail. Posición cruzada/avión: cabeza adelante, peso adelante, rotación oblicua. Cubre media tabla.</li>
+<li>Variación de Maniobra: Snap, Reentry, Cutback, Carve. Mantenido hasta completación.</li>
+<li>Granada: Cierre. Recuperar postura, bajar caderas.</li>
+<li>Retorno a Postura → listo para próximo ciclo</li>
+</ul>
+<h1 class="doc-h1" id="s17">CADENA BACKSIDE</h1>
+<ul class="doc-list">
+<li>Postura (Power Posture — Block 4)</li>
+<li>Bottom Turn (Rotación + engagement de rail — Block 5)</li>
+<li>Choke: Equivalente de proyección backside. Cuerpo se extiende, pecho apunta hacia dirección de tabla, ángulo ancho.</li>
+<li>Tapaloco: Cambio de rail con rotación mayor. Brazo arriba, palma hacia arriba, ver sobre hombro opuesto, tirar brazo sobre cabeza.</li>
+<li>Elbow: Colapso de cadena kinética que proyecta el shot, genera más rotación.</li>
+<li>Variación de Maniobra: Snap, Reentry, Cutback backside.</li>
+<li>Touch the Board: Cierre. Tocar tabla, bajar caderas, estabilizar.</li>
+<li>Retorno a Postura → listo para próximo ciclo</li>
+</ul>
+<p>Tabla de Equivalencia de Fase:</p>
+<p>Fase | Frontside | Backside</p>
+<p>Base | Postura | Postura</p>
+<p>Generación | Bottom Turn | Bottom Turn</p>
+<p>Proyección/Dirección | Proyección | Choke</p>
+<p>Cambio de Rail | Cruz (Avioncito) | Tapaloco</p>
+<p>Cadena Kinética | (implícito en Cruz) | Elbow</p>
+<p>Maniobra | Snap/Reentry/Carve/Cut | Snap/Reentry/Carve/Cut</p>
+<p>Cierre | Granada | Touch the Board</p>
+<p>Reset | Retorno a Postura | Retorno a Postura</p>
+<h1 class="doc-h1" id="s18">EXPRESIONES NOMBRADAS:</h1>
+<p>WHITE BELT — Mission 1-5: Board Control, Sweet Spot, Pop-Up, Foot Positioning, Brake/Accelerator</p>
+<p>YELLOW BELT — Paddling Speeds 1-2-3-4, Angled Takeoff, Pocket Identification, Cobra Pick Line</p>
+<p>BLUE BELT — Cruz Snap/Reentry/Cutback, Tapaloco Snap/Reentry/Cutback, Granada, Choke, Elbow, Touch the Board, Medium Bottom Turn, Hold, Pumping</p>
+<p>PURPLE BELT — Deep Bottom Turn, Tapaloco Reentry, Cruz Reentry, Praying, Touch the Board (deepened), Floater, Snap (power), Tango, Felipe Toledo, Layback, Tail Slide, Sandwich, Ollie, Chop Pop, M Cabeza Invertida</p>
+<p>BROWN BELT — Aerial 360 FS/BS, Aerial 360 Single Grab, Alley-oop FS/BS, Power Combos, Condition Adaptation</p>
+<p>Brown Belt Aerial System (NEW)</p>
+<p>Sistema de tres partes: 1) Ramp (encontrar sección + generar velocidad), 2) Air (tipo de aéreo), 3) Landing (recepción — competitiva debe clavar, recreativa debe demostrar poder y compromiso).</p>
+<h1 class="doc-h1" id="s19">SECCIÓN 10: ESTRUCTURA DE SESIONES</h1>
+<p>Toda sesión tiene tres momentos que son obligatorios.</p>
+<p>Momento 1: Contexto</p>
+<p>Quién (nivel, edad), dónde (venue, tipo de break), cuándo (mareas, condiciones), evaluación de riesgo (condiciones límite, equipo, seguridad).</p>
+<p>Momento 2: Planificación</p>
+<p>La cascada: qué trabajar, con qué drill, con qué preparación. Este es el corazón de la sesión — es donde el coach diseña la progresión.</p>
+<p>Momento 3: Cierre</p>
+<p>Evaluación obligatoria, feedback, homework, continuidad, reporte de incidentes.</p>
+<p>Método de Enseñanza por Drill: EDPF</p>
+<ul class="doc-list">
+<li>Explain: Explicar qué se hace y por qué</li>
+<li>Demonstrate: Demostrar el drill</li>
+<li>Participate: Participar junto con el estudiante</li>
+<li>Feedback: Dar feedback específico y accionable</li>
+</ul>
+<p>Principio Central</p>
+<p>Evolve Through Play — la enseñanza se da a través de missions, juegos, y play estructurado. El aprendizaje no es aburrido; es deliberado y divertido.</p>
+<h1 class="doc-h1" id="s20">SECCIÓN 11: EVALUACIÓN Y CRITERIOS</h1>
+<p>La evaluación en TSS es multi-facética: Knowledge Check, Practical Demonstration, Teaching Practicum (coaches only), Portfolio/Evidence Log.</p>
+<p>Escalas de Rating (Progresivas por Nivel)</p>
+<p>White/Yellow Belts</p>
+<ul class="doc-list">
+<li>Focus (1-5): Capacidad para concentrarse en la tarea</li>
+<li>Frustration (1-5): Manejo de frustración</li>
+</ul>
+<p>Blue Belts</p>
+<ul class="doc-list">
+<li>Focus (1-5)</li>
+<li>Composure (1-5): Calma bajo presión</li>
+<li>Control (1-5): Control técnico y corporal</li>
+<li>Autonomy (1-5): Capacidad independiente</li>
+<li>Linking (1-5): Capacidad para vincular maniobras</li>
+</ul>
+<p>Purple Belts</p>
+<ul class="doc-list">
+<li>Focus (1-5)</li>
+<li>Composure (1-5)</li>
+<li>Commitment (1-5): Nivel de compromiso en cada onda</li>
+<li>Variety (1-5): Variedad de maniobras y selecciones</li>
+<li>Autonomy (1-5)</li>
+</ul>
+<p>Brown Belts</p>
+<p>Todas las escalas de Purple más:</p>
+<ul class="doc-list">
+<li>Precision (1-5): Precisión en ejecución</li>
+</ul>
+<p>Black Belts</p>
+<p>Todas las escalas de Brown más:</p>
+<ul class="doc-list">
+<li>Knowledge (1-5): Comprensión profunda del sistema</li>
+<li>Integration (1-5): Integración de pilares</li>
+</ul>
+<p>Protocolo de Feedback</p>
+<ul class="doc-list">
+<li>1. El surfer habla primero: reflexiona sobre su propia sesión</li>
+<li>2. El coach añade UNA observación: no sobrecargar</li>
+<li>3. El surfer declara la siguiente prioridad: responsabilidad del aprendiz</li>
+</ul>
+<p>Status de Sesión</p>
+<ul class="doc-list">
+<li>Not Achieved: No llegó a los criterios</li>
+<li>Partial: Demostró algunos criterios</li>
+<li>Competent: Demostró todos los criterios</li>
+<li>Mastered: Ejecutó más allá de los criterios esperados</li>
+</ul>
+<h1 class="doc-h1" id="s21">SECCIÓN 12: SEGURIDAD Y CRITERIO OPERATIVO</h1>
+<p>El Canon de Seguridad gobierna. Las decisiones sobre condiciones y ambiente están codificadas.</p>
+<p>Límites de Condición Océánica por Cinturón (CORREGIDO)</p>
+<p>White Belt</p>
+<p>Agua hasta la cintura, capaz de estar de pie en arena. Foam o pequeñas ondas verdes. El criterio es la profundidad, no el tipo de onda.</p>
+<p>Yellow Belt</p>
+<p>Base 2-3 pies ondas verdes. Ajustable hacia arriba por experiencia de océano previa (el cinturón define nivel técnico-metodológico, NO necesariamente nivel de comodidad en océano — estas son dos dimensiones independientes).</p>
+<p>Blue Belt</p>
+<p>3-6 pies ondas verdes.</p>
+<p>Purple Belt</p>
+<p>Hasta 6 pies, overhead opcional con evaluación de coach.</p>
+<p>Brown/Black Belt</p>
+<p>Sin límite formal. Auto-regulado basado en capacidad personal.</p>
+<p>Relaciones de Instructor &amp; Ratios</p>
+<p>Varían por condición (Canon de Seguridad). Sin excepción.</p>
+<p>Regla de Override de Seguridad</p>
+<p>Si condiciones exceden el nivel del estudiante, la sesión cambia a venue seco (dry-land), NO se cancela. Reporte de incidente es obligatorio.</p>
+<p>Regla de Transición de Tabla (NEW)</p>
+<p>El estudiante usa tabla suave (softboard) hasta demostrar control completo de tabla: turtle roll/duck dive efectivo (izquierda/derecha), cruce mientras está prono, cruce mientras está de pie, desmontaje seguro. El coach evalúa y autoriza. NO está vinculado al nivel de cinturón — está vinculado a criterios de seguridad.</p>
+<p>Determinación de Nivel de Océano (NEW — validado Marzo 2026)</p>
+<p>Sistema dual: Layer 1 — Pre-arrival quiz (cuestionario basado en scoring, herramienta de diagnóstico). Layer 2 — Coach presential assessment (valida u overrides quiz). La evaluación del coach es el campo gobernante para reglas de seguridad. Si no hay evaluación de coach aún, el score del quiz es el default.</p>
+<h1 class="doc-h1" id="s22">SECCIÓN 13: ROLES Y RESPONSABILIDADES</h1>
+<p>Hay dos vías paralelas: Método de Estudiante y Método de Coach. Ambas usan la misma arquitectura base.</p>
+<p>Método de Estudiante</p>
+<p>Cómo progresa el surfer: cinturones, micro-progresiones, secuencias, drills, missions, rastreo de evidencia. El estudiante es responsable de su aprendizaje y de aplicar feedback.</p>
+<p>Método de Coach</p>
+<p>La base es igual que el estudiante PLUS: observación, diagnóstico, corrección, comunicación, competencias de diseño de sesión. El coach es el arquitecto del aprendizaje.</p>
+<p>Principio de Formación de Coach</p>
+<p>El coach primero vive el método como estudiante, luego aprende a enseñarlo.</p>
+<p>Secuencia de Formación de Coach</p>
+<ul class="doc-list">
+<li>1) Vivirlo: Experimentar el sistema como alumno</li>
+<li>2) Entenderlo: Comprender la lógica y la arquitectura</li>
+<li>3) Aprender a enseñarlo: Desarrollar competencias de coaching</li>
+<li>4) Entregarlo: Entregar el método con consistencia y fidelidad</li>
+</ul>
+<p>5 Niveles de Certificación (VALIDADO por Marcelo Marzo 2026)</p>
+<p>Level 1 — Foundation Coach</p>
+<p>Mínimo: Blue Belt. Enseña: White Belt y Yellow Belt (Seq #1-#7). Certificación: Validación de experiencia + demostración de competencia.</p>
+<p>Level 2 — Practitioner Coach</p>
+<p>Mínimo: Purple Belt. Enseña: hasta Blue Belt (Seq #1-#13). Certificación: L1 + 40 horas enseñanza + evaluación formal.</p>
+<p>Level 3 — Advanced Coach</p>
+<p>Mínimo: Brown Belt. Enseña: hasta Brown Belt. Mentoriza: L1/L2. Certificación: L2 + 100 horas + portfolio.</p>
+<p>Level 4 — Master Coach</p>
+<p>Mínimo: Black Belt. Enseña: todos los niveles incluyendo Black Belt. Certificación: L3 + mastery demonstrated + peer review.</p>
+<p>Level 5 — Coach Educator</p>
+<p>Mínimo: Black Belt + experiencia como L4. NO enseña a surfers. Forma, evalúa, certifica coaches. Certificación: TSS Global (Enkrateia) only.</p>
+<p>Todas las certificaciones son portables, auditables, y renovables anualmente. La autoridad final de certificación es TSS Global (Enkrateia).</p>
+<h1 class="doc-h1" id="s23">SECCIÓN 14: TAXONOMÍA USABLE PARA SISTEMA DIGITAL</h1>
+<p>Esta taxonomía permite que el sistema TSS sea completamente integrable en plataformas digitales, aplicaciones, y herramientas de rastreo.</p>
+<p>Partes de Pilar (67 Técnico/Táctico/Mental/Físico + 11 Seguridad)</p>
+<p>Técnico (45 elementos)</p>
+<p>Grab Board, Walk Out, Board Control in White Water, Turn Around Walking, Get on the Board, Sweet Spot, Paddling Turn Around, Paddling Speed and Breathing, Turtle Roll, Identify the Pocket, Paddling Angle, Cobra Pick Line, Dismount, Pop Up Connection, Foot Positioning, Posture, Frontside Rotation, Backside Rotation, Starfish Dismount, Hold, Impulse, Pump Frontside, Pump Backside, Bottom Turn Frontside, Bottom Turn Backside, Projection Frontside, Projection Backside, Cruz de Cristo, Tapaloco, Cutback Frontside, Cutback Backside, Carve Frontside, Carve Backside, Reentry Frontside, Reentry Backside, Floater Frontside, Floater Backside, Tube Riding Frontside, Tube Riding Backside, Straight Air Frontside, Straight Air Backside, Reverse Frontside, Backside 360 Air, Tail Slide Frontside, Tail Slide Backside</p>
+<p>Táctico (7 elementos)</p>
+<p>Pre-Competition Routine, Venue Analysis, Plan Creation, Positioning, Wave Selection, Score Generation, Wave Energy Usage</p>
+<p>Mental (7 elementos)</p>
+<p>Motivation, Visualization, Focus, Relaxation, Mission, Feedback, Goal Setting</p>
+<p>Físico (8 elementos)</p>
+<p>Balance, Coordination, Mobility, Stability, Strength, Endurance, Explosiveness, Body Awareness</p>
+<p>Seguridad (11 elementos — capa operacional, NO selección de pilar)</p>
+<p>Safety Signals, Surf Etiquette, Venue Analysis, Equipment Handling, Whitewater Management, Dismount Protocol, Lineup Awareness, Decision Making, Emergency Awareness, Physical Readiness, Mental Readiness</p>
+<p>Venues de Training</p>
+<p>Beachbreak, Pointbreak, Reefbreak, White water, Training pool, Surf skate, Gym, Tatami, Video Analysis Room</p>
+<p>Condiciones de Océano</p>
+<p>Flat, 1-2 feet, 3-4 feet, 4-6 feet, 6+ feet</p>
+<p>Tipos de Sesión</p>
+<p>Training (default), Competition, Evaluation</p>
+<p>Opciones de Warm-up</p>
+<p>Head to toe dynamic warm-up, Unnatural animal (kids), Specific warm-up, Flow motion simulation</p>
+<p>Opciones de Simulación</p>
+<p>Surf skate, Flow motion, Visualization, Finger surfing the waves in front of you</p>
+<p>Mental Hack Options</p>
+<p>Key words, Do it with intention, Breathe and reset, Positive self-talk, Visualize success, Process over outcome, One wave at a time</p>
+<p>Homework Cues</p>
+<p>Look forward, Weight on front foot, Knee in, Bend knees, Foot centered, Shoulders aligned with board nose, Activate scapula, Activate hands, Stay calm breath</p>
+<p>Student Path</p>
+<p>Competitive, Recreational (afecta el display de criterios de evaluación, no el contenido de secuencia)</p>
+<p>Age Group</p>
+<p>Adult (14+), Junior (8-14) (afecta variante de drill y duración de sesión)</p>
+<h1 class="doc-h1" id="s24">SECCIÓN 15: REGLAS DE CONSISTENCIA Y DECLARACIÓN CONSTITUCIONAL</h1>
+<p>El Canon establece reglas no-negociables para mantener integridad del sistema en perpetuidad.</p>
+<p>Supremacía del Canon</p>
+<p>Todos los documentos futuros deben alinearse. Si hay contradicción, el Canon prevalece.</p>
+<p>Regla de Integración</p>
+<p>Todo nuevo contenido debe responder: ¿Dónde vive esto dentro de la secuencia del método? Si no tiene un lugar, no pertenece.</p>
+<p>Regla de Fidelidad</p>
+<p>La integridad se compromete cuando: se saltan secuencias, se altera el orden, se enseña fuera del nivel, se usa lenguaje inconsistente, se certifica sin capacidad demostrada, o el contenido se separa de estándares de entrega.</p>
+<p>Registro de Documentos</p>
+<ul class="doc-list">
+<li>Tier 1 (Canon): Sistema de Bloques, Doctrina Central</li>
+<li>Tier 2 (Arquitectura): Plantilla de Cinturón, Manual de Marca, Modelo de Negocio, Tres Sistemas</li>
+<li>Tier 3 (Operacional): Manuales de Cinturón, Canon de Seguridad, Canon de Inclusión, Manuales de Coach, Arquitectura Cerebral</li>
+</ul>
+<p>Nomenclatura de Expresiones Nombradas</p>
+<p>Terminología propietaria de TSS. Sin atribución externa.</p>
+<h1 class="doc-h1" id="s25">DECLARACIÓN CONSTITUCIONAL</h1>
+<p>Este Canon es el punto de referencia doctrinal para todos los materiales, sistemas, certificaciones e implementaciones de The Surf Sequence. Ningún documento derivado lo supersede. El método funciona porque se sigue con fidelidad.</p>
+<p>The Surf Sequence® — Enkrateia SA de CV — All Rights Reserved — Version 5.0 — March 2026</p>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Canon Consolidado v2 — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

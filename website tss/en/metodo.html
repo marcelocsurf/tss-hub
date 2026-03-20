@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Method — The Surf Sequence®</title>
+<meta name="description" content="Discover how The Surf Sequence works: 4 development pillars, 6 progression levels, 26 execution sequences. The complete architecture of surfing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}body{font-family:'Work Sans',sans-serif;color:#4E4D4D;line-height:1.7;background:#fff;overflow-x:hidden}img{max-width:100%;display:block}a{text-decoration:none;color:inherit;transition:all .3s}
+:root{--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA;--white:#FFFFFF}
+h1,h2,h3,h4{font-family:'Outfit',sans-serif;color:var(--navy);line-height:1.2}h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800}h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700}h3{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:600}
+.tagline{font-family:'Lora',serif;font-style:italic;color:var(--cyan)}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}.section{padding:100px 0}.section--dark{background:var(--navy);color:var(--white)}.section--dark h2,.section--dark h3{color:var(--white)}.section--light{background:var(--light)}
+.btn{display:inline-block;padding:16px 36px;border-radius:6px;font-family:'Outfit',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.02em;transition:all .3s;cursor:pointer;border:none}.btn--primary{background:var(--cyan);color:var(--navy)}.btn--primary:hover{background:#3db8e0;transform:translateY(-2px);box-shadow:0 8px 24px rgba(90,195,231,.35)}.btn--outline{background:transparent;border:2px solid var(--cyan);color:var(--cyan)}.btn--outline:hover{background:var(--cyan);color:var(--navy)}.btn--dark{background:var(--navy);color:var(--white)}.btn--white{background:var(--white);color:var(--navy)}
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 0;background:rgba(10,22,40,.97);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.2)}.nav__inner{display:flex;align-items:center;justify-content:space-between;max-width:1140px;margin:0 auto;padding:0 24px}.nav__logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white);letter-spacing:.04em}.nav__logo span{color:var(--cyan)}.nav__links{display:flex;gap:32px;align-items:center}.nav__links a{color:rgba(255,255,255,.8);font-size:.9rem;font-weight:500}.nav__links a:hover{color:var(--cyan)}.nav__cta{padding:10px 24px;font-size:.85rem}.nav__toggle{display:none;background:none;border:none;cursor:pointer}.nav__toggle span{display:block;width:24px;height:2px;background:var(--white);margin:5px 0}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,22,40,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px}.mobile-menu.active{display:flex}.mobile-menu a{color:var(--white);font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:600}.mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer}
+.page-hero{padding:140px 0 80px;background:var(--navy);text-align:center}.page-hero h1{color:var(--white);margin-bottom:16px}.page-hero p{color:rgba(255,255,255,.65);font-size:1.1rem;max-width:640px;margin:0 auto}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.pillar-detail{padding:40px;border-radius:16px;border:1px solid rgba(90,195,231,.12);background:var(--white);box-shadow:0 2px 16px rgba(0,0,0,.04);transition:all .3s}.pillar-detail:hover{box-shadow:0 8px 32px rgba(0,0,0,.08);transform:translateY(-2px)}.pillar-detail__icon{font-size:2.5rem;margin-bottom:16px}.pillar-detail h3{margin-bottom:12px;color:var(--navy)}.pillar-detail p{font-size:.92rem;line-height:1.7;color:var(--grey)}
+.philosophy-block{padding:48px;border-radius:20px;background:linear-gradient(135deg,var(--navy),var(--blue));color:var(--white);text-align:center}.philosophy-block h2{color:var(--white);margin-bottom:16px}.philosophy-block p{color:rgba(255,255,255,.7);font-size:1.05rem;max-width:600px;margin:0 auto;line-height:1.8}
+.sequence-visual{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;padding:40px 0}.sequence-step{width:120px;text-align:center}.sequence-step__circle{width:64px;height:64px;border-radius:50%;background:rgba(90,195,231,.1);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;font-family:'Outfit',sans-serif;font-weight:700;font-size:1.1rem;color:var(--cyan)}.sequence-step__label{font-size:.75rem;color:var(--grey);font-weight:500}.sequence-arrow{color:var(--cyan);font-size:1.5rem}
+.section-header{text-align:center;max-width:680px;margin:0 auto 56px}.section-header .overline{display:block;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}.section-header p{font-size:1.05rem;color:var(--grey)}
+.fade-up{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,.61,.36,1)}.fade-up.visible{opacity:1;transform:translateY(0)}
+.footer{background:#060e1a;color:rgba(255,255,255,.6);padding:40px 0}.footer__inner{display:flex;justify-content:space-between;align-items:center;font-size:.85rem}.footer .nav__logo{font-size:1rem}
+@media(max-width:968px){.grid-2,.grid-3{grid-template-columns:1fr}.nav__links{display:none}.nav__toggle{display:block}.section{padding:72px 0}}
+@media(max-width:600px){.btn{width:100%;text-align:center}.sequence-visual{gap:8px}.sequence-step{width:80px}.sequence-step__circle{width:48px;height:48px;font-size:.9rem}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav__inner"><a href="index.html" class="nav__logo">THE SURF <span>SEQUENCE®</span></a><div class="nav__links"><a href="index.html#metodo">The Method</a><a href="index.html#belts">Belts</a><a href="index.html#results">Results</a><a href="fundador.html">Founder</a><a href="index.html#paths">For You</a><a href="index.html#contact" class="btn btn--primary nav__cta">Get Started</a></div><button class="nav__toggle" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="mobile-menu" id="mobileMenu"><button class="mobile-close" onclick="toggleMenu()">&times;</button><a href="index.html">Home</a><a href="index.html#belts">Belts</a><a href="fundador.html">Founder</a><a href="index.html#contact" class="btn btn--primary" onclick="toggleMenu()">Get Started</a></div>
+
+<!-- Hero -->
+<section class="page-hero">
+  <div class="container">
+    <p class="tagline" style="font-size:1rem;margin-bottom:16px">Development Architecture</p>
+    <h1>The TSS Method</h1>
+    <p>A comprehensive system that structures surf learning into 4 development pillars, 6 progression levels, and 26 catalogued and evaluable execution sequences.</p>
+  </div>
+</section>
+
+<!-- Philosophy -->
+<section class="section">
+  <div class="container">
+    <div class="philosophy-block fade-up">
+      <p class="tagline" style="font-size:1.3rem;margin-bottom:8px">Evolve through play.</p>
+      <h2>Surfing deserves a standard</h2>
+      <p>Diving has PADI. Martial arts have belts. CrossFit has its certification system. Surfing, until now, had nothing comparable. TSS closes that gap. Not with marketing, but with method.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 Pillars -->
+<section class="section section--light">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">Structure</span>
+      <h2>The 4 pillars + safety layer</h2>
+      <p>Each session, each evaluation, each progression works simultaneously on these four axes. The safety layer is transversal: ocean conditions always come first.</p>
+    </div>
+    <div class="grid-2 fade-up">
+      <div class="pillar-detail">
+        <div class="pillar-detail__icon">🏄</div>
+        <h3>Technical Pillar</h3>
+        <p>The "how you move." Stance, pop-up, turns, aerials — every movement is catalogued as an "expression" with its own name, execution criteria, and learning sequence. From base position to Aerial 360, everything has structure.</p>
+      </div>
+      <div class="pillar-detail">
+        <div class="pillar-detail__icon">🌊</div>
+        <h3>Tactical Pillar</h3>
+        <p>The "how you read the ocean." Currents, wave formations, peak selection, lineup positioning, takeoff timing. It's not enough to know how to do maneuvers — you must know when and where to execute them.</p>
+      </div>
+      <div class="pillar-detail">
+        <div class="pillar-detail__icon">🧠</div>
+        <h3>Mental Pillar</h3>
+        <p>The "how you decide under pressure." Attentional focus, emotional management, progressive confidence, competitive resilience. Surfing is 50% decision-making. TSS trains the mind as much as the body.</p>
+      </div>
+      <div class="pillar-detail">
+        <div class="pillar-detail__icon">💪</div>
+        <h3>Physical Pillar</h3>
+        <p>The "how you prepare your body for the water." Joint mobility, functional strength, cardiovascular endurance, injury prevention. Belt-specific programming.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px;padding:24px;border-radius:12px;background:rgba(90,195,231,.08);border:1px solid rgba(90,195,231,.2)" class="fade-up">
+      <p style="font-size:.95rem"><strong style="color:var(--cyan)">🛡️ Safety Layer (transversal)</strong> — Ocean knowledge, emergency protocols, condition assessment. It's the foundation upon which the 4 pillars are built. No progression without safety.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Session Sequence -->
+<section class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">Session Structure</span>
+      <h2>The TSS Block</h2>
+      <p>Each session follows a logical sequence designed to maximize learning and safety. It's not improvisation — it's training architecture.</p>
+    </div>
+    <div class="sequence-visual fade-up">
+      <div class="sequence-step"><div class="sequence-step__circle">1</div><div class="sequence-step__label">Objectives</div></div>
+      <div class="sequence-arrow">→</div>
+      <div class="sequence-step"><div class="sequence-step__circle">2</div><div class="sequence-step__label">Conditions</div></div>
+      <div class="sequence-arrow">→</div>
+      <div class="sequence-step"><div class="sequence-step__circle">3</div><div class="sequence-step__label">Briefing</div></div>
+      <div class="sequence-arrow">→</div>
+      <div class="sequence-step"><div class="sequence-step__circle">4</div><div class="sequence-step__label">Execution</div></div>
+      <div class="sequence-arrow">→</div>
+      <div class="sequence-step"><div class="sequence-step__circle">5</div><div class="sequence-step__label">Evaluation</div></div>
+      <div class="sequence-arrow">→</div>
+      <div class="sequence-step"><div class="sequence-step__circle">6</div><div class="sequence-step__label">Closure</div></div>
+    </div>
+    <p style="text-align:center;font-size:.9rem;color:var(--grey);max-width:520px;margin:0 auto" class="fade-up">This flow repeats in each session, at each level, with every certified coach. It's the operational heartbeat of TSS.</p>
+  </div>
+</section>
+
+<!-- Infinite Circle -->
+<section class="section section--dark">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="overline">Philosophy</span>
+      <h2 style="color:var(--white)">The Infinite Circle</h2>
+      <p style="color:rgba(255,255,255,.65)">The highest level of TSS is not technical perfection. It's the ability to transmit. Black Belt is not just mastery — it's teaching. The master trains the next master. The system regenerates itself.</p>
+    </div>
+    <div style="text-align:center;padding:48px;border:1px solid rgba(90,195,231,.2);border-radius:20px;background:rgba(255,255,255,.03)" class="fade-up">
+      <p style="font-size:3rem;margin-bottom:16px">♾️</p>
+      <p style="color:rgba(255,255,255,.8);font-size:1.1rem;max-width:500px;margin:0 auto">Learn → Master → Teach → Learn</p>
+      <p class="tagline" style="font-size:1.2rem;margin-top:16px">Mastery is transmission.</p>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="fade-up">
+      <a href="index.html#belts" class="btn btn--primary">See the 6 levels</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center;background:linear-gradient(135deg,var(--navy),var(--blue))">
+  <div class="container fade-up">
+    <h2 style="color:var(--white);margin-bottom:16px">Ready to progress with system?</h2>
+    <p style="color:rgba(255,255,255,.6);margin-bottom:32px">Discover your current level and begin your path within TSS.</p>
+    <a href="index.html#contact" class="btn btn--white">Get Started</a>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer__inner"><a href="index.html" class="nav__logo">THE SURF <span>SEQUENCE®</span></a><span>© 2026 The Surf Sequence®. Enkrateia SA de CV.</span></div></div></footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('active');document.body.style.overflow=document.getElementById('mobileMenu').classList.contains('active')?'hidden':'';}
+const observer=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>

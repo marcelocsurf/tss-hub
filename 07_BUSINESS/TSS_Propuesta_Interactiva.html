@@ -1,0 +1,1853 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TSS - The Surf Sequence® | Propuesta Estratégica para Puro Surf</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0D1B2A;
+            --cyan: #00B4D8;
+            --gold: #C9A84C;
+            --light: #F0F6FA;
+            --dark-gray: #1a2a3a;
+            --border-gray: #2a3a4a;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background-color: var(--navy);
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: Georgia, serif;
+            font-weight: 400;
+            color: var(--light);
+        }
+
+        a {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--gold);
+        }
+
+        /* ===== NAVIGATION ===== */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(13, 27, 42, 0.98) 0%, rgba(13, 27, 42, 0.95) 100%);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.2);
+            padding: 0;
+        }
+
+        nav .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: Georgia, serif;
+            font-size: 1.4rem;
+            color: var(--cyan);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover,
+        nav ul li a.active {
+            color: var(--cyan);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a.active::after {
+            width: 100%;
+        }
+
+        /* ===== SECTIONS ===== */
+        section {
+            min-height: 100vh;
+            padding: 6rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--dark-gray) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 180, 216, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero .content {
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            background: linear-gradient(180deg, var(--light) 0%, var(--cyan) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--cyan);
+            margin-bottom: 2rem;
+            font-family: Georgia, serif;
+            font-weight: 300;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            color: var(--gold);
+            margin-bottom: 3rem;
+            font-style: italic;
+            letter-spacing: 1px;
+        }
+
+        .hero .author {
+            font-size: 1rem;
+            color: #90a0b0;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero .date {
+            font-size: 0.95rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== CARDS ===== */
+        .card {
+            background: linear-gradient(135deg, rgba(26, 42, 58, 0.6) 0%, rgba(13, 27, 42, 0.4) 100%);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            border-color: rgba(0, 180, 216, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.1);
+        }
+
+        .card h3 {
+            color: var(--cyan);
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #c0c0c0;
+        }
+
+        /* ===== GRID ===== */
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .grid-4 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* ===== STATS ===== */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.1) 0%, rgba(201, 168, 76, 0.05) 100%);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: var(--cyan);
+            font-weight: bold;
+            font-family: Georgia, serif;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: #a0a0a0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== SECTION TITLES ===== */
+        section h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        section h2::before {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--cyan);
+            margin-bottom: 3rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== WHAT IS TSS ===== */
+        .what-is-tss {
+            padding: 6rem 2rem;
+        }
+
+        .pillars {
+            background: linear-gradient(135deg, rgba(13, 27, 42, 0.5) 0%, rgba(26, 42, 58, 0.5) 100%);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            border: 1px solid rgba(0, 180, 216, 0.2);
+        }
+
+        .pillars h3 {
+            color: var(--gold);
+            margin-bottom: 2rem;
+            font-size: 1.3rem;
+        }
+
+        .not-tss {
+            margin-top: 4rem;
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.08) 0%, rgba(13, 27, 42, 0.4) 100%);
+            padding: 3rem 2rem;
+            border-left: 4px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .not-tss h3 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .not-tss ul {
+            list-style: none;
+        }
+
+        .not-tss li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.1);
+            color: #c0c0c0;
+        }
+
+        .not-tss li:last-child {
+            border-bottom: none;
+        }
+
+        .not-tss li::before {
+            content: '✗ ';
+            color: var(--gold);
+            font-weight: bold;
+            margin-right: 0.8rem;
+        }
+
+        /* ===== PROBLEM SECTION ===== */
+        .problem-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #d0d0d0;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.05) 0%, rgba(201, 168, 76, 0.05) 100%);
+            border-left: 4px solid var(--cyan);
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* ===== 8 TOOLS GRID ===== */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tool {
+            background: linear-gradient(135deg, rgba(26, 42, 58, 0.7) 0%, rgba(13, 27, 42, 0.5) 100%);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tool::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--gold));
+        }
+
+        .tool:hover {
+            border-color: rgba(0, 180, 216, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 180, 216, 0.1);
+        }
+
+        .tool-number {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--navy);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .tool h3 {
+            color: var(--cyan);
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+
+        .tool p {
+            color: #b0b0b0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .tools-note {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.1) 0%, rgba(13, 27, 42, 0.5) 100%);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        /* ===== VALUE STACK ===== */
+        .value-table {
+            margin-top: 2rem;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: linear-gradient(135deg, rgba(26, 42, 58, 0.5) 0%, rgba(13, 27, 42, 0.3) 100%);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        table th {
+            background: var(--dark-gray);
+            color: var(--cyan);
+            padding: 1.2rem;
+            text-align: left;
+            border-bottom: 2px solid rgba(0, 180, 216, 0.3);
+            font-family: Georgia, serif;
+        }
+
+        table td {
+            padding: 1.2rem;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.1);
+            color: #c0c0c0;
+        }
+
+        table tr:hover {
+            background: rgba(0, 180, 216, 0.05);
+        }
+
+        table tr:last-child td {
+            border-bottom: none;
+        }
+
+        table td:last-child {
+            text-align: right;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .total-row {
+            background: linear-gradient(90deg, rgba(0, 180, 216, 0.1) 0%, rgba(201, 168, 76, 0.1) 100%);
+            font-weight: bold;
+            border-top: 2px solid var(--gold);
+        }
+
+        .total-row td {
+            color: var(--gold);
+            padding: 1.5rem 1.2rem;
+        }
+
+        .value-bottom {
+            margin-top: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.1) 0%, rgba(201, 168, 76, 0.08) 100%);
+            border-left: 4px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            color: var(--light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        /* ===== PROOF SECTION ===== */
+        .proof-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .proof-stat {
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.1) 0%, rgba(201, 168, 76, 0.08) 100%);
+            border: 2px solid rgba(0, 180, 216, 0.3);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .proof-stat:hover {
+            border-color: var(--cyan);
+            box-shadow: 0 10px 25px rgba(0, 180, 216, 0.15);
+        }
+
+        .proof-number {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .proof-label {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .olympic-box {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.15) 0%, rgba(0, 180, 216, 0.08) 100%);
+            border: 2px solid var(--gold);
+            border-radius: 8px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .olympic-box h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .olympic-box p {
+            color: #d0d0d0;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* ===== PROGRESS SECTION ===== */
+        .progress-container {
+            margin-top: 2rem;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(90deg, rgba(26, 42, 58, 0.8), rgba(13, 27, 42, 0.8));
+            border: 2px solid rgba(0, 180, 216, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--cyan), var(--gold));
+            border-radius: 13px;
+            transition: width 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 1rem;
+        }
+
+        .progress-text {
+            font-weight: bold;
+            color: var(--navy);
+            font-size: 0.9rem;
+        }
+
+        .progress-info {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.08) 0%, rgba(201, 168, 76, 0.06) 100%);
+            border-left: 4px solid var(--cyan);
+            border-radius: 0 8px 8px 0;
+            color: #c0c0c0;
+        }
+
+        /* ===== BEFORE/AFTER TABLE ===== */
+        .comparison-table {
+            margin-top: 2rem;
+            overflow-x: auto;
+        }
+
+        .comparison-table table {
+            background: transparent;
+        }
+
+        .comparison-table table th {
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid var(--gold);
+            color: var(--light);
+            font-size: 1.1rem;
+        }
+
+        .comparison-table table td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid rgba(0, 180, 216, 0.2);
+        }
+
+        .comparison-table table td:first-child {
+            background: rgba(201, 168, 76, 0.1);
+            font-weight: 500;
+            color: var(--gold);
+        }
+
+        .comparison-table table td:last-child {
+            background: rgba(0, 180, 216, 0.1);
+            font-weight: 500;
+            color: var(--cyan);
+            text-align: left;
+        }
+
+        /* ===== REVENUE STREAMS ===== */
+        .streams-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stream {
+            background: linear-gradient(135deg, rgba(26, 42, 58, 0.6) 0%, rgba(13, 27, 42, 0.4) 100%);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .stream-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stream h3 {
+            color: var(--cyan);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .stream p {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        /* ===== RISK SECTION ===== */
+        .risk-statement {
+            background: linear-gradient(135deg, rgba(0, 180, 216, 0.15) 0%, rgba(201, 168, 76, 0.1) 100%);
+            border: 2px solid var(--cyan);
+            border-radius: 8px;
+            padding: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 1.3rem;
+            color: var(--light);
+            font-weight: 500;
+        }
+
+        .risk-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .risk-card {
+            background: linear-gradient(135deg, rgba(26, 42, 58, 0.7) 0%, rgba(13, 27, 42, 0.5) 100%);
+            border: 1px solid rgba(201, 168, 76, 0.3);
+            border-radius: 8px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .risk-card h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .risk-card p {
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+
+        /* ===== ROLES SECTION ===== */
+        .roles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .role {
+            background: linear-gradient(135deg, rgba(26, 42, 58, 0.7) 0%, rgba(13, 27, 42, 0.5) 100%);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .role:hover {
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.1);
+        }
+
+        .role h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .role p {
+            color: #c0c0c0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ===== FAQ ACCORDION ===== */
+        .faq-container {
+            margin-top: 2rem;
+        }
+
+        .faq-item {
+            background: linear-gradient(135deg, rgba(26, 42, 58, 0.5) 0%, rgba(13, 27, 42, 0.3) 100%);
+            border: 1px solid rgba(0, 180, 216, 0.2);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.open {
+            border-color: rgba(0, 180, 216, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 180, 216, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 180, 216, 0.05);
+            transition: background 0.3s ease;
+            user-select: none;
+        }
+
+        .faq-item.open .faq-question {
+            background: rgba(0, 180, 216, 0.1);
+        }
+
+        .faq-question:hover {
+            background: rgba(0, 180, 216, 0.08);
+        }
+
+        .faq-question h3 {
+            color: var(--cyan);
+            font-size: 1.05rem;
+            margin: 0;
+            flex: 1;
+        }
+
+        .faq-toggle {
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin-left: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-toggle {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.open .faq-answer {
+            max-height: 500px;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(0, 180, 216, 0.2);
+        }
+
+        .faq-answer p {
+            color: #c0c0c0;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+        .faq-note {
+            background: linear-gradient(135deg, rgba(201, 168, 76, 0.08) 0%, rgba(13, 27, 42, 0.4) 100%);
+            border-left: 4px solid var(--gold);
+            border-radius: 0 8px 8px 0;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        /* ===== CLOSE SECTION ===== */
+        .close-text {
+            text-align: center;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: #d0d0d0;
+            margin-bottom: 2rem;
+        }
+
+        .close-text strong {
+            color: var(--cyan);
+            font-weight: 500;
+        }
+
+        .close-tagline {
+            font-size: 1.4rem;
+            color: var(--gold);
+            text-align: center;
+            font-style: italic;
+            margin: 2rem 0;
+            letter-spacing: 1px;
+        }
+
+        .close-signature {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0, 180, 216, 0.2);
+        }
+
+        .close-signature p {
+            color: #a0a0a0;
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .close-signature .name {
+            color: var(--cyan);
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        /* ===== SCROLL TO TOP BUTTON ===== */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--cyan), var(--gold));
+            color: var(--navy);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0, 180, 216, 0.3);
+        }
+
+        .scroll-top.show {
+            display: flex;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 180, 216, 0.4);
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            nav .nav-container {
+                padding: 1rem;
+            }
+
+            nav ul {
+                gap: 0.5rem;
+                font-size: 0.8rem;
+            }
+
+            nav ul li a {
+                display: none;
+            }
+
+            nav ul li:nth-child(-n+3) a {
+                display: inline;
+            }
+
+            section {
+                padding: 4rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .grid-4 {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.9rem;
+            }
+
+            table td, table th {
+                padding: 0.8rem;
+            }
+
+            .scroll-top {
+                width: 40px;
+                height: 40px;
+                right: 1rem;
+                bottom: 1rem;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            nav {
+                display: none;
+            }
+
+            .scroll-top {
+                display: none;
+            }
+
+            section {
+                page-break-after: always;
+                padding: 1rem;
+            }
+
+            .faq-answer {
+                max-height: none !important;
+                padding: 1rem 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">TSS</div>
+            <ul>
+                <li><a href="#hero" class="nav-link active">Inicio</a></li>
+                <li><a href="#que-es" class="nav-link">Qué es TSS</a></li>
+                <li><a href="#problema" class="nav-link">Problema</a></li>
+                <li><a href="#herramientas" class="nav-link">Herramientas</a></li>
+                <li><a href="#valor" class="nav-link">Valor</a></li>
+                <li><a href="#prueba" class="nav-link">Prueba</a></li>
+                <li><a href="#modelo" class="nav-link">Modelo</a></li>
+                <li><a href="#calculadora" class="nav-link">Calculadora</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="hero visible">
+        <div class="content">
+            <h1>THE SURF SEQUENCE®</h1>
+            <div class="subtitle">Propuesta Estratégica para Puro Surf</div>
+            <div class="tagline">Evolve through play</div>
+            <div class="author">Marcelo Castellanos | ISA Olympic Expert Coach | Fundador TSS</div>
+            <div class="date">Marzo 2026 | Confidencial</div>
+        </div>
+    </section>
+
+    <!-- QUÉ ES TSS -->
+    <section id="que-es" class="what-is-tss">
+        <div class="container">
+            <h2>Qué es TSS</h2>
+            <p class="section-subtitle">The Surf Sequence® es una metodología cerrada, progresiva y basada en evidencia para la enseñanza del surf.</p>
+
+            <div class="grid grid-4">
+                <div class="card">
+                    <h3>4 Pilares + Seguridad</h3>
+                    <p>Técnico, Táctico, Mental, Físico + Seguridad transversal</p>
+                </div>
+                <div class="card">
+                    <h3>6 Niveles de Progresión</h3>
+                    <p>White → Yellow → Blue → Purple → Brown → Black</p>
+                </div>
+                <div class="card">
+                    <h3>26 Secuencias Propietarias</h3>
+                    <p>Expresiones de ejecución frontside + backside (IP)</p>
+                </div>
+                <div class="card">
+                    <h3>78 Partes Técnicas</h3>
+                    <p>Taxonomía digital catalogada (45 Técnico + 7 Táctico + 7 Mental + 8 Físico + 11 Seguridad)</p>
+                </div>
+            </div>
+
+            <div class="pillars">
+                <h3>Pilares Estructurales</h3>
+                <p style="color: #d0d0d0; margin-bottom: 1.5rem;">Una metodología cerrada requiere arquitectura inmutable. Nuestros 4 pilares + 1 garantizan que cada sesión sea medible, progresiva y replicable sin desviación.</p>
+            </div>
+
+            <div class="not-tss">
+                <h3>Lo que TSS NO es</h3>
+                <ul>
+                    <li>TSS NO es una academia de surf</li>
+                    <li>TSS NO es un curso o taller</li>
+                    <li>TSS NO es contenido genérico adaptable</li>
+                    <li>TSS NO es propiedad de ninguna academia</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEMA -->
+    <section id="problema">
+        <div class="container">
+            <h2>El Problema</h2>
+            <p class="section-subtitle">El surf carece de estructura. Los números lo demuestran.</p>
+
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-number counter" data-target="0">0</div>
+                    <div class="stat-label">Sistemas Estructurados</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number counter" data-target="79">0</div>
+                    <div class="stat-label">% Alumnos Principiantes</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number counter" data-target="100">0</div>
+                    <div class="stat-label">% Academias Sin Estándar</div>
+                </div>
+            </div>
+
+            <div class="problem-text">
+                <strong>La enseñanza del surf carece de un sistema estructurado y medible.</strong> Cada academia opera sin progresión verificable, sin certificaciones de coaches, sin herramientas pedagógicas. TSS es la primera metodología cerrada y progresiva que resuelve esta brecha — con rigor científico y resultados auditables.
+            </div>
+        </div>
+    </section>
+
+    <!-- HERRAMIENTAS -->
+    <section id="herramientas">
+        <div class="container">
+            <h2>Ecosistema de 8 Herramientas</h2>
+            <p class="section-subtitle">8 herramientas integradas. Un sistema completo. Resultados inevitables.</p>
+
+            <div class="tools-grid">
+                <div class="tool">
+                    <div class="tool-number">01</div>
+                    <h3>Initial Assessment</h3>
+                    <p>Diagnóstico antes de prescripción. Conversación estructurada que mapea nivel, metas, background físico e historial de aprendizaje.</p>
+                </div>
+                <div class="tool">
+                    <div class="tool-number">02</div>
+                    <h3>Level App</h3>
+                    <p>Nivel real en menos de 5 minutos. Evaluación objetiva que elimina sesgo del coach y ego del alumno.</p>
+                </div>
+                <div class="tool">
+                    <div class="tool-number">03</div>
+                    <h3>One Wave Book</h3>
+                    <p>Fundamento mental del método. Antes de la técnica, viene la mentalidad.</p>
+                </div>
+                <div class="tool">
+                    <div class="tool-number">04</div>
+                    <h3>Student Level Kit</h3>
+                    <p>Material completo por nivel. El alumno no solo entrena — estudia. $99 costo academia → $600 venta al alumno.</p>
+                </div>
+                <div class="tool">
+                    <div class="tool-number">05</div>
+                    <h3>Presentations + Drills</h3>
+                    <p>Toolkit pedagógico del coach. Cada sesión es una misión planificada con objetivo, drill y evaluación.</p>
+                </div>
+                <div class="tool">
+                    <div class="tool-number">06</div>
+                    <h3>Bitácora TSS</h3>
+                    <p>Si no se registra, no pasó. Registro individual de cada alumno: fecha, objetivo, misión, observación, siguiente foco.</p>
+                </div>
+                <div class="tool">
+                    <div class="tool-number">07</div>
+                    <h3>CEREBRO TSS</h3>
+                    <p>Sistema operativo de la academia. 7 capas de inteligencia que corren debajo de todo.</p>
+                </div>
+                <div class="tool">
+                    <div class="tool-number">08</div>
+                    <h3>Operations Manual</h3>
+                    <p>Estándar de replicación global. Lo que hace licenciable a TSS a escala.</p>
+                </div>
+            </div>
+
+            <div class="tools-note">
+                El sistema solo está completo cuando las 8 capas están activas. Implementación parcial = resultados parciales.
+            </div>
+        </div>
+    </section>
+
+    <!-- VALUE STACK -->
+    <section id="valor">
+        <div class="container">
+            <h2>Lo que incluye la licencia TSS</h2>
+            <p class="section-subtitle">Todo esto ya fue desarrollado con una inversión económica significativa. Puro Surf accede sin asumir ese costo.</p>
+
+            <div class="value-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Componente incluido</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Metodología cerrada y progresiva — 30 años de coaching, todos los niveles</td>
+                            <td style="color:#00B4D8;font-weight:bold;font-size:1.2em">✓</td>
+                        </tr>
+                        <tr>
+                            <td>8 herramientas operativas integradas (Assessment → Operations Manual)</td>
+                            <td style="color:#00B4D8;font-weight:bold;font-size:1.2em">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Plataforma digital (Brain App, Session Cascade, Quiz Adaptativo, Cert Prep)</td>
+                            <td style="color:#00B4D8;font-weight:bold;font-size:1.2em">✓</td>
+                        </tr>
+                        <tr>
+                            <td>6 Level Kits completos (coach + alumno + drills por cinturón)</td>
+                            <td style="color:#00B4D8;font-weight:bold;font-size:1.2em">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Sistema de certificación de coaches L1-L5</td>
+                            <td style="color:#00B4D8;font-weight:bold;font-size:1.2em">✓</td>
+                        </tr>
+                        <tr>
+                            <td>9 módulos científicos de entrenamiento (foco, respiración, recuperación...)</td>
+                            <td style="color:#00B4D8;font-weight:bold;font-size:1.2em">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Libro One Wave — marco mental del método, probado a nivel olímpico</td>
+                            <td style="color:#00B4D8;font-weight:bold;font-size:1.2em">✓</td>
+                        </tr>
+                        <tr>
+                            <td>Brand system, Canon doctrinal v5.0, manuales operativos completos</td>
+                            <td style="color:#00B4D8;font-weight:bold;font-size:1.2em">✓</td>
+                        </tr>
+                        <tr class="total-row">
+                            <td colspan="2">INVERSIÓN SIGNIFICATIVA YA REALIZADA — PURO SURF NO ASUME COSTO DE DESARROLLO</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="value-bottom">
+                <strong>Solo paga cuando vende. Cero riesgo. Todo el sistema incluido.</strong>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROOF -->
+    <section id="prueba">
+        <div class="container">
+            <h2>Prueba Social</h2>
+            <p class="section-subtitle">Los números hablan. La metodología está validada en el mercado.</p>
+
+            <div class="proof-stats">
+                <div class="proof-stat">
+                    <div class="proof-number counter" data-target="420">0</div>
+                    <div class="proof-label">Reseñas TripAdvisor</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-number counter" data-target="81">0</div>
+                    <div class="proof-label">% Tasa Progresión</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-number counter" data-target="0">0</div>
+                    <div class="proof-label">% Feedback Negativo</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-number">Top 1%</div>
+                    <div class="proof-label">Ranking Experiencias</div>
+                </div>
+            </div>
+
+            <div class="olympic-box">
+                <h3>Validación Olímpica</h3>
+                <p><strong>Bryan Pérez</strong> — Primer surfista olímpico de El Salvador, Paris 2024. La misma metodología aplicada en los camps TSS fue la base de la preparación olímpica.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DÓNDE ESTÁ HOY -->
+    <section>
+        <div class="container">
+            <h2>Dónde está Puro Surf hoy</h2>
+            <p class="section-subtitle">Implementación actual: ~35% del sistema completo</p>
+
+            <div class="progress-container">
+                <div class="progress-label">
+                    <span>Utilización del sistema TSS</span>
+                    <span><strong>35%</strong></span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" data-target="35">
+                        <span class="progress-text">35%</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="progress-info">
+                <strong>Contenido parcial.</strong> Sin estándar de coaches. Sin progresión medible. Sin herramientas digitales. Puro Surf opera con aproximadamente 1/3 de la metodología. El upside está en completar el círculo.
+            </div>
+        </div>
+    </section>
+
+    <!-- QUÉ CAMBIA -->
+    <section>
+        <div class="container">
+            <h2>Qué Cambia</h2>
+            <p class="section-subtitle">Antes vs. Después de TSS Formal</p>
+
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>HOY (Sin TSS Formal)</th>
+                            <th>CON TSS IMPLEMENTADO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Contenido parcial</td>
+                            <td>Sistema estructurado completo</td>
+                        </tr>
+                        <tr>
+                            <td>Sin estándar de coaches</td>
+                            <td>Coaches certificados L1-L5</td>
+                        </tr>
+                        <tr>
+                            <td>Sin progresión medible</td>
+                            <td>6 niveles con criterios claros</td>
+                        </tr>
+                        <tr>
+                            <td>Sin herramientas digitales</td>
+                            <td>33+ herramientas tecnológicas</td>
+                        </tr>
+                        <tr>
+                            <td>Experiencia variable</td>
+                            <td>Experiencia premium replicable</td>
+                        </tr>
+                        <tr>
+                            <td>Sin barreras de entrada</td>
+                            <td>Metodología licenciada exclusiva (IP de TSS)</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing estándar</td>
+                            <td>Pricing power elevado</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODELO DE NEGOCIO -->
+    <section id="modelo">
+        <div class="container">
+            <h2>Modelo de Negocio</h2>
+            <p class="section-subtitle">5 streams de ingresos. Todos atados a resultados.</p>
+
+            <div class="streams-grid">
+                <div class="stream">
+                    <div class="stream-icon">💰</div>
+                    <h3>Royalty</h3>
+                    <p>Otras academias: 12%. <strong>Puro Surf: 0%</strong> — ventaja preferencial como flagship</p>
+                </div>
+                <div class="stream">
+                    <div class="stream-icon">🎓</div>
+                    <h3>Certificaciones</h3>
+                    <p>Año 1 gratis, recertificación pagada desde año 2</p>
+                </div>
+                <div class="stream">
+                    <div class="stream-icon">📦</div>
+                    <h3>Level Kits</h3>
+                    <p>Academia: $99 → Alumno: $600 (margen $501)</p>
+                </div>
+                <div class="stream">
+                    <div class="stream-icon">📈</div>
+                    <h3>Incremental 20%</h3>
+                    <p>Sobre ventas por encima de base</p>
+                </div>
+                <div class="stream">
+                    <div class="stream-icon">🔐</div>
+                    <h3>Licensing Futuro</h3>
+                    <p>Modelo 25/75</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANÁLISIS DE RIESGO -->
+    <section>
+        <div class="container">
+            <h2>Análisis de Riesgo</h2>
+
+            <div class="risk-statement">
+                Cero riesgo de desarrollo. Cero costo fijo. Todo atado a resultados.
+            </div>
+
+            <div class="risk-cards">
+                <div class="risk-card">
+                    <h3>Desarrollo</h3>
+                    <p><strong>Ya fue construido.</strong> $0 para Puro Surf.</p>
+                </div>
+                <div class="risk-card">
+                    <h3>Costo si no vende</h3>
+                    <p><strong>$0.</strong> Sin venta, sin gasto.</p>
+                </div>
+                <div class="risk-card">
+                    <h3>Upside si vende</h3>
+                    <p><strong>Margen $501/kit</strong> + pricing premium + royalties.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULADORA DE ESCENARIOS -->
+    <section id="calculadora" style="background: linear-gradient(135deg, #0D1B2A 0%, #1B3A5C 100%); color: #fff;">
+        <div class="container">
+            <h2 style="color:#fff;">Calculadora de Escenarios</h2>
+            <p class="section-subtitle" style="color:#48CAE4;">Ingresa los números reales de Puro Surf y modela el impacto de implementar TSS completo.</p>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;">
+
+                <!-- LEFT: INPUTS -->
+                <div style="background:rgba(255,255,255,0.06); border-radius:12px; padding:2rem; border:1px solid rgba(255,255,255,0.1);">
+                    <h3 style="color:#C9A84C; font-size:1.1rem; margin-bottom:1.5rem; font-family:Georgia,serif;">DATOS ACTUALES</h3>
+
+                    <div style="margin-bottom:1.2rem;">
+                        <label style="display:block; font-size:0.85rem; color:#8AA8C7; margin-bottom:0.3rem;">Precio promedio por camp/programa ($)</label>
+                        <input type="number" id="calc-price" value="1200" style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; font-size:1rem; outline:none;" oninput="calcScenarios()">
+                    </div>
+
+                    <div style="margin-bottom:1.2rem;">
+                        <label style="display:block; font-size:0.85rem; color:#8AA8C7; margin-bottom:0.3rem;">Alumnos por mes</label>
+                        <input type="number" id="calc-students" value="80" style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; font-size:1rem; outline:none;" oninput="calcScenarios()">
+                    </div>
+
+                    <div style="margin-bottom:1.2rem;">
+                        <label style="display:block; font-size:0.85rem; color:#8AA8C7; margin-bottom:0.3rem;">% de alumnos que compran kit</label>
+                        <input type="number" id="calc-kit-pct" value="30" min="0" max="100" style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; font-size:1rem; outline:none;" oninput="calcScenarios()">
+                    </div>
+
+                    <div style="margin-bottom:1.2rem;">
+                        <label style="display:block; font-size:0.85rem; color:#8AA8C7; margin-bottom:0.3rem;">Costo kit para academia ($)</label>
+                        <input type="number" id="calc-kit-cost" value="99" style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; font-size:1rem; outline:none;" oninput="calcScenarios()">
+                    </div>
+
+                    <div style="margin-bottom:1.2rem;">
+                        <label style="display:block; font-size:0.85rem; color:#8AA8C7; margin-bottom:0.3rem;">Precio kit al alumno ($)</label>
+                        <input type="number" id="calc-kit-price" value="600" style="width:100%; padding:10px 14px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#fff; font-size:1rem; outline:none;" oninput="calcScenarios()">
+                    </div>
+
+                    <h3 style="color:#C9A84C; font-size:1.1rem; margin-top:2rem; margin-bottom:1rem; font-family:Georgia,serif;">ESCENARIO TSS</h3>
+
+                    <div style="margin-bottom:1.2rem;">
+                        <label style="display:block; font-size:0.85rem; color:#8AA8C7; margin-bottom:0.3rem;">% aumento de precio con TSS implementado</label>
+                        <input type="range" id="calc-increase" min="0" max="50" value="15" style="width:100%; accent-color:#00B4D8;" oninput="calcScenarios(); document.getElementById('increase-val').textContent=this.value+'%'">
+                        <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#8AA8C7; margin-top:0.3rem;">
+                            <span>0%</span>
+                            <span id="increase-val" style="color:#00B4D8; font-weight:bold; font-size:1rem;">15%</span>
+                            <span>50%</span>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom:1.2rem;">
+                        <label style="display:block; font-size:0.85rem; color:#8AA8C7; margin-bottom:0.3rem;">% aumento de alumnos por diferenciación</label>
+                        <input type="range" id="calc-growth" min="0" max="40" value="10" style="width:100%; accent-color:#C9A84C;" oninput="calcScenarios(); document.getElementById('growth-val').textContent=this.value+'%'">
+                        <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#8AA8C7; margin-top:0.3rem;">
+                            <span>0%</span>
+                            <span id="growth-val" style="color:#C9A84C; font-weight:bold; font-size:1rem;">10%</span>
+                            <span>40%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: RESULTS -->
+                <div>
+                    <!-- HOY card -->
+                    <div style="background:rgba(255,255,255,0.04); border-radius:12px; padding:1.5rem; border:1px solid rgba(255,255,255,0.08); margin-bottom:1rem;">
+                        <h3 style="color:#8AA8C7; font-size:0.9rem; margin-bottom:1rem; letter-spacing:2px;">HOY — SIN TSS FORMAL</h3>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.06);">
+                            <span style="color:#aaa;">Revenue mensual camps</span>
+                            <span id="res-today-rev" style="font-size:1.2rem; font-weight:bold;">$96,000</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(255,255,255,0.06);">
+                            <span style="color:#aaa;">Revenue por kits</span>
+                            <span style="font-size:1.2rem; font-weight:bold; color:#666;">$0</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.8rem 0;">
+                            <span style="color:#aaa; font-weight:bold;">TOTAL MENSUAL</span>
+                            <span id="res-today-total" style="font-size:1.4rem; font-weight:bold; color:#fff;">$96,000</span>
+                        </div>
+                    </div>
+
+                    <!-- CON TSS card -->
+                    <div style="background:rgba(0,180,216,0.08); border-radius:12px; padding:1.5rem; border:1px solid rgba(0,180,216,0.25); margin-bottom:1rem;">
+                        <h3 style="color:#00B4D8; font-size:0.9rem; margin-bottom:1rem; letter-spacing:2px;">CON TSS IMPLEMENTADO</h3>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(0,180,216,0.1);">
+                            <span style="color:#8AA8C7;">Revenue camps (precio + volumen)</span>
+                            <span id="res-tss-rev" style="font-size:1.2rem; font-weight:bold; color:#00B4D8;">$121,440</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(0,180,216,0.1);">
+                            <span style="color:#8AA8C7;">Kits vendidos / mes</span>
+                            <span id="res-tss-kits-qty" style="font-size:1.2rem; font-weight:bold; color:#00B4D8;">26</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(0,180,216,0.1);">
+                            <span style="color:#8AA8C7;">Revenue bruto kits</span>
+                            <span id="res-tss-kits-gross" style="font-size:1.2rem; font-weight:bold; color:#00B4D8;">$15,600</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(0,180,216,0.1);">
+                            <span style="color:#8AA8C7;">Costo kits (compra a TSS)</span>
+                            <span id="res-tss-kits-cost" style="font-size:1rem; color:#C9A84C;">-$2,574</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem 0; border-bottom:1px solid rgba(0,180,216,0.1);">
+                            <span style="color:#8AA8C7;">Margen neto kits</span>
+                            <span id="res-tss-kits-margin" style="font-size:1.2rem; font-weight:bold; color:#48CAE4;">$13,026</span>
+                        </div>
+                        <div style="display:flex; justify-content:space-between; align-items:center; padding:0.8rem 0;">
+                            <span style="font-weight:bold; color:#fff;">TOTAL MENSUAL</span>
+                            <span id="res-tss-total" style="font-size:1.5rem; font-weight:bold; color:#00B4D8;">$134,466</span>
+                        </div>
+                    </div>
+
+                    <!-- DELTA card -->
+                    <div style="background:linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05)); border-radius:12px; padding:1.5rem; border:1px solid rgba(201,168,76,0.3);">
+                        <h3 style="color:#C9A84C; font-size:0.9rem; margin-bottom:1rem; letter-spacing:2px;">IMPACTO</h3>
+                        <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1rem; text-align:center;">
+                            <div>
+                                <div id="res-delta-monthly" style="font-size:1.6rem; font-weight:bold; color:#C9A84C; font-family:Georgia,serif;">+$38,466</div>
+                                <div style="font-size:0.75rem; color:#8AA8C7; margin-top:0.3rem;">Incremental / mes</div>
+                            </div>
+                            <div>
+                                <div id="res-delta-annual" style="font-size:1.6rem; font-weight:bold; color:#C9A84C; font-family:Georgia,serif;">+$461K</div>
+                                <div style="font-size:0.75rem; color:#8AA8C7; margin-top:0.3rem;">Incremental / año</div>
+                            </div>
+                            <div>
+                                <div id="res-delta-pct" style="font-size:1.6rem; font-weight:bold; color:#C9A84C; font-family:Georgia,serif;">+40%</div>
+                                <div style="font-size:0.75rem; color:#8AA8C7; margin-top:0.3rem;">Crecimiento vs hoy</div>
+                            </div>
+                        </div>
+                        <div style="text-align:center; margin-top:1.2rem; padding-top:1rem; border-top:1px solid rgba(201,168,76,0.2);">
+                            <span style="color:#8AA8C7; font-size:0.85rem;">Costo para Puro Surf por este incremento:</span>
+                            <span id="res-cost-ps" style="color:#fff; font-weight:bold; font-size:1rem; margin-left:0.5rem;">Solo $2,574/mes en kits</span>
+                            <div style="color:#48CAE4; font-size:0.8rem; margin-top:0.5rem; font-style:italic;">Royalty: 0% (otras academias pagan 12%)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SCENARIO PRESETS -->
+            <div style="display:flex; gap:1rem; justify-content:center; margin-top:2rem; flex-wrap:wrap;">
+                <button onclick="setScenario(1200,80,30,10,10)" style="padding:10px 20px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#8AA8C7; cursor:pointer; font-size:0.85rem; transition:all 0.2s;" onmouseover="this.style.borderColor='#00B4D8';this.style.color='#00B4D8'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#8AA8C7'">Conservador (+10%/+10%)</button>
+                <button onclick="setScenario(1200,80,40,15,15)" style="padding:10px 20px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#8AA8C7; cursor:pointer; font-size:0.85rem; transition:all 0.2s;" onmouseover="this.style.borderColor='#C9A84C';this.style.color='#C9A84C'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#8AA8C7'">Moderado (+15%/+15%)</button>
+                <button onclick="setScenario(1200,80,50,25,20)" style="padding:10px 20px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15); border-radius:8px; color:#8AA8C7; cursor:pointer; font-size:0.85rem; transition:all 0.2s;" onmouseover="this.style.borderColor='#C9A84C';this.style.color='#fff'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)';this.style.color='#8AA8C7'">Optimista (+25%/+20%)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROLES DE MARCELO -->
+    <section>
+        <div class="container">
+            <h2>Roles de Marcelo</h2>
+            <p class="section-subtitle">5 responsabilidades alineadas. 1 persona. 100% comprometida.</p>
+
+            <div class="roles-grid">
+                <div class="role">
+                    <h3>Fundador & Propietario de IP</h3>
+                    <p>Creador de TSS®. IP bajo Enkrateia SA de CV. Permanente y no transferible.</p>
+                </div>
+                <div class="role">
+                    <h3>Fundador & Accionista 20%</h3>
+                    <p>Socio fundador. Alineación total de intereses con el éxito de la academia.</p>
+                </div>
+                <div class="role">
+                    <h3>Director Deportivo</h3>
+                    <p>Que la academia siga su camino. Planificación anual, estándares de calidad, dirección estratégica del programa.</p>
+                </div>
+                <div class="role">
+                    <h3>Licenciante & Certificador</h3>
+                    <p>Calidad doctrinal, certificación de coaches L1-L5, administración de la licencia TSS.</p>
+                </div>
+                <div class="role">
+                    <h3>Arquitecto del Sistema</h3>
+                    <p>Diseña, evoluciona y mantiene la metodología. Canon, materiales, tecnología.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="container">
+            <h2>Preguntas Frecuentes</h2>
+            <p class="section-subtitle">Anticipar objeciones es preparación ejecutiva.</p>
+
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿No es parte del rol del Director?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El Director ejecuta el método dentro de la academia. TSS es el resultado de 30 años de coaching, formación de surfistas de todos los niveles, y trabajo como consejero y certificador ISA. No se creó dentro de Puro Surf. Son dos cosas distintas que deben compensarse de forma distinta.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿No estamos pagando doble?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. La compensación como Director paga la gestión operativa. La licencia paga el uso de un activo intelectual externo. PADI no cobra doble a los instructores — les cobra por la metodología que usan.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Y si el crecimiento no viene del método?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El 20% aplica solo sobre crecimiento real documentado. Si no hay crecimiento, no hay pago incremental. El modelo tiene riesgo cero para Puro Surf en escenario plano.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Por qué no es simplemente salario?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>El salario paga tiempo. Una licencia paga valor de activo. Son categorías económicas distintas. Confundirlas es exactamente el error que queremos evitar con esta estructura.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Qué pasa si Puro Surf se vende y TSS viene incluido?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No puede incluirse sin autorización expresa del propietario. Esta es precisamente la cláusula que el contrato debe blindar desde ahora — antes de que sea una disputa real.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>¿Por qué formalizar si ya funciona así?</h3>
+                        <span class="faq-toggle">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>La diferencia no es 'seguir igual formalizado'. Es implementar el sistema completo: estándar, medición, capacitación total, estructura cerrada y posicionamiento claro. Eso es lo que cierra el círculo y lo que realmente permite generar más ventas, defender precio y crecer sin depender de quién esté operando.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-note">
+                Anticipar objeciones no es debilidad — es preparación ejecutiva.
+            </div>
+        </div>
+    </section>
+
+    <!-- CLOSE -->
+    <section>
+        <div class="container">
+            <div class="close-text">
+                <strong>Estructura sin rigidez.</strong> Progreso sin confusión. Resultados sin improvisación.
+            </div>
+
+            <div class="close-text">
+                La oportunidad de ser la primera academia de surf en el mundo con licencia oficial de un sistema probado y escalable — sin costo de desarrollo, sin riesgo operativo.
+            </div>
+
+            <div class="close-tagline">
+                Evolve through play
+            </div>
+
+            <div class="close-signature">
+                <p class="name">Marcelo Castellanos</p>
+                <p>ISA Olympic Expert Coach</p>
+                <p>Fundador de TSS</p>
+                <p>Enkrateia SA de CV</p>
+                <p style="margin-top: 1.5rem; color: var(--gold);">Documento confidencial — Marzo 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <script>
+        // Scenario Calculator
+        function fmt(n) { return '$' + Math.round(n).toLocaleString('en-US'); }
+
+        function calcScenarios() {
+            const price = parseFloat(document.getElementById('calc-price').value) || 0;
+            const students = parseFloat(document.getElementById('calc-students').value) || 0;
+            const kitPct = parseFloat(document.getElementById('calc-kit-pct').value) || 0;
+            const kitCost = parseFloat(document.getElementById('calc-kit-cost').value) || 0;
+            const kitPrice = parseFloat(document.getElementById('calc-kit-price').value) || 0;
+            const increase = parseFloat(document.getElementById('calc-increase').value) || 0;
+            const growth = parseFloat(document.getElementById('calc-growth').value) || 0;
+
+            // TODAY
+            const todayRev = price * students;
+            document.getElementById('res-today-rev').textContent = fmt(todayRev);
+            document.getElementById('res-today-total').textContent = fmt(todayRev);
+
+            // WITH TSS
+            const newPrice = price * (1 + increase / 100);
+            const newStudents = Math.round(students * (1 + growth / 100));
+            const tssRev = newPrice * newStudents;
+            const kitsQty = Math.round(newStudents * (kitPct / 100));
+            const kitsGross = kitsQty * kitPrice;
+            const kitsCost = kitsQty * kitCost;
+            const kitsMargin = kitsGross - kitsCost;
+            const tssTotal = tssRev + kitsMargin;
+
+            document.getElementById('res-tss-rev').textContent = fmt(tssRev);
+            document.getElementById('res-tss-kits-qty').textContent = kitsQty;
+            document.getElementById('res-tss-kits-gross').textContent = fmt(kitsGross);
+            document.getElementById('res-tss-kits-cost').textContent = '-' + fmt(kitsCost);
+            document.getElementById('res-tss-kits-margin').textContent = fmt(kitsMargin);
+            document.getElementById('res-tss-total').textContent = fmt(tssTotal);
+
+            // DELTA
+            const deltaMonthly = tssTotal - todayRev;
+            const deltaAnnual = deltaMonthly * 12;
+            const deltaPct = todayRev > 0 ? ((tssTotal / todayRev - 1) * 100) : 0;
+
+            document.getElementById('res-delta-monthly').textContent = '+' + fmt(deltaMonthly);
+            document.getElementById('res-delta-annual').textContent = deltaAnnual >= 1000000 ? '+$' + (deltaAnnual/1000000).toFixed(1) + 'M' : '+$' + Math.round(deltaAnnual/1000) + 'K';
+            document.getElementById('res-delta-pct').textContent = '+' + Math.round(deltaPct) + '%';
+            document.getElementById('res-cost-ps').textContent = 'Solo ' + fmt(kitsCost) + '/mes en kits';
+        }
+
+        function setScenario(price, students, kitPct, increase, growth) {
+            document.getElementById('calc-price').value = price;
+            document.getElementById('calc-students').value = students;
+            document.getElementById('calc-kit-pct').value = kitPct;
+            document.getElementById('calc-increase').value = increase;
+            document.getElementById('calc-growth').value = growth;
+            document.getElementById('increase-val').textContent = increase + '%';
+            document.getElementById('growth-val').textContent = growth + '%';
+            calcScenarios();
+        }
+
+        // Init calculator on load
+        window.addEventListener('DOMContentLoaded', function() { calcScenarios(); });
+
+        // Smooth scroll navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Navigation active state
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        function updateActiveNav() {
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= sectionTop - 200) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveNav);
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    // Trigger counters if present
+                    const counters = entry.target.querySelectorAll('.counter');
+                    counters.forEach(counter => {
+                        if (!counter.dataset.counted) {
+                            animateCounter(counter);
+                            counter.dataset.counted = 'true';
+                        }
+                    });
+
+                    // Trigger progress bar if present
+                    const progressFill = entry.target.querySelector('.progress-fill');
+                    if (progressFill && !progressFill.dataset.animated) {
+                        const target = progressFill.dataset.target;
+                        progressFill.style.width = target + '%';
+                        progressFill.dataset.animated = 'true';
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Counter animation
+        function animateCounter(element) {
+            const target = parseInt(element.dataset.target);
+            const duration = 2000;
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                const isOpen = item.classList.contains('open');
+
+                // Close all items
+                document.querySelectorAll('.faq-item').forEach(faq => {
+                    faq.classList.remove('open');
+                });
+
+                // Open clicked item if it wasn't open
+                if (!isOpen) {
+                    item.classList.add('open');
+                }
+            });
+        });
+
+        // Preload animations on page load
+        document.querySelector('section:first-child').classList.add('visible');
+    </script>
+</body>
+</html>

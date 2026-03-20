@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSS Brain Architecture — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#5AC3E7;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🧬</span>
+    <div>
+      <div class="top-bar__title">TSS Brain Architecture</div>
+      <div class="top-bar__sub">The Surf Sequence® — PLATFORM</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">PLATFORM</span>
+    <span>1,710 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">TSS BRAIN</a><a href="#s2">1. Roles &amp; Permissions</a><a href="#s3">1.1 Admin</a><a href="#s4">1.2 Coordinator</a><a href="#s5">1.3 Coach</a><a href="#s6">1.4 Assistant</a><a href="#s7">2. Operational Flow — Stage 1</a><a href="#s8">2.1 New Student — Camp Flow</a><a href="#s9">2.2 Returning Student</a><a href="#s10">2.3 Camp Structure</a><a href="#s11">2.4 Session Flow — 3 Moments</a><a href="#s12">2.5 Standalone Sessions</a><a href="#s13">3. Student Profile — Intake System</a><a href="#s14">3.1 Separation Principle</a><a href="#s15">3.2 Intake Form — What the Student Fills</a><a href="#s16">3.3 Fields Added to students Table (Migration 00011)</a><a href="#s17">4. Session Creation — The Cascade</a><a href="#s18">4.1 Key Design Decision — Pilar Simplification</a><a href="#s19">4.2 The Cascade — Step by Step</a><a href="#s20">MOMENT 1 — CONTEXT</a><a href="#s21">SAFETY OVERRIDE RULE</a><a href="#s22">5. Pilar Parts — Complete Reference</a><a href="#s23">5.1 Technical Parts (45)</a><a href="#s24">5.2 Tactical Parts (7)</a><a href="#s25">5.3 Mental Parts (7)</a><a href="#s26">5.4 Physical Parts (8)</a><a href="#s27">5.5 Safety Parts (11)</a><a href="#s28">6. Dropdown Options — Complete Reference</a><a href="#s29">6.1 Training Venue</a><a href="#s30">6.2 Ocean Conditions</a><a href="#s31">6.3 Warm-up</a><a href="#s32">6.4 Simulation</a><a href="#s33">6.5 Mental Hack</a><a href="#s34">6.6 Session Status</a><a href="#s35">6.7 Frustration Rating Descriptors</a><a href="#s36">6.8 Coach Feedback (Quick)</a><a href="#s37">6.9 Homework Cues</a><a href="#s38">6.10 Incident Type</a><a href="#s39">7. Coach Invitation System</a><a href="#s40">7.1 Flow</a><a href="#s41">7.2 Current Workaround</a><a href="#s42">7.3 Active Coaches</a><a href="#s43">8. Technical Architecture</a><a href="#s44">8.1 Database Schema (Key Tables)</a><a href="#s45">8.2 Files Modified/Created (March 14-15, 2026)</a><a href="#s46">9. Phase 3 — Data Comparison &amp; Implementation Plan</a><a href="#s47">9.1 Objective</a><a href="#s48">9.2 Specific Tasks</a><a href="#s49">9.3 After Data Is Complete</a><a href="#s50">10. How to Continue in a New Conversation</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">TSS BRAIN</h1>
+<p>Product Architecture</p>
+<p>&amp; Validated Decisions</p>
+<p>Phases 1-3 — Complete Reference</p>
+<p>Version 1.0 — March 15, 2026</p>
+<p>The Surf Sequence® — Enkrateia SA de CV</p>
+<p>This document captures all product decisions, validated architecture, and implementation specifications for TSS Brain. It serves as the single reference for continuing development across conversations. The Canon remains Tier 1 authority — this document is Tier 3 operational.</p>
+<h1 class="doc-h1" id="s2">1. Roles &amp; Permissions</h1>
+<p>Validated and deployed March 14, 2026. These are live in the app.</p>
+<h2 class="doc-h2" id="s3">1.1 Admin</h2>
+<p>Full access. Creates coaches, manages system, sees all data. Currently: Marcelo Castellanos (marcelo@thesurfsequence.com).</p>
+<h2 class="doc-h2" id="s4">1.2 Coordinator</h2>
+<p>Operations manager. Prepares everything before camp starts.</p>
+<p class="doc-bold">Can do:</p>
+<ul class="doc-list">
+<li>Create new students (name, belt level, emergency contact)</li>
+<li>Send intake link to students via WhatsApp or email</li>
+<li>View and edit all student profiles</li>
+<li>Create camp instances from templates</li>
+<li>Assign students to camps (max 4 per camp)</li>
+<li>Assign coaches to camps</li>
+<li>Mark waiver as signed</li>
+<li>View all data except admin system settings</li>
+</ul>
+<p class="doc-bold">Cannot do:</p>
+<ul class="doc-list">
+<li>Change belt level (admin only)</li>
+<li>Archive coaches</li>
+<li>Modify camp templates</li>
+<li>Access admin system settings</li>
+</ul>
+<h2 class="doc-h2" id="s5">1.3 Coach</h2>
+<p>Executes sessions. Sees what they need to train the student well.</p>
+<p class="doc-bold">Can see:</p>
+<ul class="doc-list">
+<li>Students assigned to their camps/sessions</li>
+<li>Surf profile (stance, experience, board type, other sports, learning style)</li>
+<li>Goals &amp; barriers (short/mid/long term, fears)</li>
+<li>Safety (allergies, injuries, swim level, emergency contact, medical notes)</li>
+<li>Progression (belt, sequence, step, ocean level)</li>
+<li>Session history of their students</li>
+<li>Internal coach notes (their own)</li>
+</ul>
+<p class="doc-bold">Cannot see:</p>
+<ul class="doc-list">
+<li>Contact details (email, phone)</li>
+<li>Logistics (shirt size, how did they hear, waiver status)</li>
+<li>Other coaches&#x27; internal notes</li>
+<li>Intake link or intake status</li>
+</ul>
+<h2 class="doc-h2" id="s6">1.4 Assistant</h2>
+<p>Helps coach in water. Sees absolute minimum for safety.</p>
+<p class="doc-bold">Can see:</p>
+<ul class="doc-list">
+<li>Student name, belt level, ocean level</li>
+<li>Allergies, injuries, swim level (safety-critical)</li>
+<li>Emergency contact</li>
+</ul>
+<p class="doc-bold">Cannot see:</p>
+<ul class="doc-list">
+<li>Goals, surf profile, session history, contact info, logistics, internal notes</li>
+<li>Cannot edit anything</li>
+</ul>
+<h1 class="doc-h1" id="s7">2. Operational Flow — Stage 1</h1>
+<h2 class="doc-h2" id="s8">2.1 New Student — Camp Flow</h2>
+<ul class="doc-list">
+<li>Booking confirmed outside app (Wix, WhatsApp, email)</li>
+<li>Coordinator opens TSS Brain &gt; Students &gt; + Add Student</li>
+<li>Fills minimum: first name, last name, belt level, emergency contact</li>
+<li>Clicks Create Student</li>
+<li>Copies Intake Link from student profile</li>
+<li>Sends link to student via WhatsApp/email</li>
+<li>Student opens link (no login needed), fills 5-step profile form</li>
+<li>Student submits — data saved to their profile</li>
+<li>Coordinator verifies &quot;Profile completed&quot; badge</li>
+<li>Coordinator creates camp instance, assigns students (max 4), assigns coach</li>
+<li>Coach sees student profile, goals, safety info when preparing sessions</li>
+</ul>
+<h2 class="doc-h2" id="s9">2.2 Returning Student</h2>
+<ul class="doc-list">
+<li>Coordinator searches student in the system — they already exist</li>
+<li>DO NOT create new record</li>
+<li>Review and update if anything changed (injuries, goals)</li>
+<li>Assign to new camp</li>
+<li>New coach sees full history: what was worked, where left off, homework, previous coach notes</li>
+</ul>
+<h2 class="doc-h2" id="s10">2.3 Camp Structure</h2>
+<ul class="doc-list">
+<li>6 days / 6 sessions (Monday to Saturday typical)</li>
+<li>Maximum 4 students per camp</li>
+<li>Same coach ideally maintains all 6 days</li>
+<li>If coach changes mid-camp, system shows continuity to new coach</li>
+<li>Camp created from template (e.g., Novice 6-Day)</li>
+</ul>
+<h2 class="doc-h2" id="s11">2.4 Session Flow — 3 Moments</h2>
+<p>Every session follows three distinct moments:</p>
+<p class="doc-bold">Moment 1 — Context: Who, where, when. Student selection, venue, conditions, risk assessment.</p>
+<p class="doc-bold">Moment 2 — Planning: The cascade. What to work on, with what drill, with what preparation.</p>
+<p class="doc-bold">Moment 3 — Close: Mandatory evaluation, feedback, homework, continuity, incident report.</p>
+<h2 class="doc-h2" id="s12">2.5 Standalone Sessions</h2>
+<p>Less common but exists. Coach selects student (must already exist in system), same 3-moment flow without camp template.</p>
+<h1 class="doc-h1" id="s13">3. Student Profile — Intake System</h1>
+<p>Deployed March 14, 2026. Live at /intake/[token].</p>
+<h2 class="doc-h2" id="s14">3.1 Separation Principle</h2>
+<p>Student Profile and Pre-arrival Evaluation (Quiz) are separate systems. Stage 1 only implements Student Profile. The quiz lives outside the app. Assessment methodology is NOT mixed with profile data.</p>
+<h2 class="doc-h2" id="s15">3.2 Intake Form — What the Student Fills</h2>
+<h2 class="doc-h2" id="s16">3.3 Fields Added to students Table (Migration 00011)</h2>
+<p>21 columns: date_of_birth, languages, instagram, stance, surf_experience_years, surf_frequency, board_type, other_sports, learning_style, goal_short_term, goal_mid_term, goal_long_term, biggest_barrier, fears_phobias, height, weight, shirt_size, how_did_you_hear, returning_student, waiver_signed, intake_completed_at.</p>
+<p>Zero quiz fields. Zero assessment fields. Profile only.</p>
+<h1 class="doc-h1" id="s17">4. Session Creation — The Cascade</h1>
+<p>Validated March 15, 2026. This is the core product decision for how sessions are built in the app.</p>
+<p>Principle: The coach selects, not types. Each step filters the next. The system reflects TSS methodology logic — not generic forms.</p>
+<h2 class="doc-h2" id="s18">4.1 Key Design Decision — Pilar Simplification</h2>
+<p>The 4 pillars (Technical, Tactical, Physical, Mental) + Safety exist doctrinally. But in the session creation flow, the coach does NOT select a pilar. Instead:</p>
+<ul class="doc-list">
+<li>Technical + Tactical are fused — the coach goes directly to Pilar Part selection, filtered by student level. The system internally knows which pilar each part belongs to.</li>
+<li>Mental is implicit — every session has a Mental Hack field. The mental pilar is embedded, not selected.</li>
+<li>Physical is diagnostic — it appears in evaluation conclusions (&quot;the limitation is physical&quot;), not in session planning. The app identifies physical bottlenecks but doesn&#x27;t prescribe physical solutions in Stage 1.</li>
+<li>Safety is automatic — triggered by ocean rules when conditions exceed student level. Not a manual selection.</li>
+</ul>
+<h2 class="doc-h2" id="s19">4.2 The Cascade — Step by Step</h2>
+<h1 class="doc-h1" id="s20">MOMENT 1 — CONTEXT</h1>
+<h1 class="doc-h1" id="s21">SAFETY OVERRIDE RULE</h1>
+<p>If ocean rules return &quot;blocked&quot; for the student&#x27;s level + conditions, the session does NOT cancel. The system switches venue options to dry-land only (Surf skate, Gym, Tatami, Video Analysis Room) and filters drills to land-based only. The Pilar Part the coach selected is maintained — only the execution environment changes. No session is ever cancelled due to conditions.</p>
+<p class="doc-bold">MOMENT 2 — PLANNING (The Cascade)</p>
+<p class="doc-bold">MOMENT 3 — CLOSE (Mandatory)</p>
+<h1 class="doc-h1" id="s22">5. Pilar Parts — Complete Reference</h1>
+<p>These are the dropdown options for Step 6 of the cascade. Sourced from the TSS Excel (_LISTS sheet) and validated against the Canon.</p>
+<h2 class="doc-h2" id="s23">5.1 Technical Parts (45)</h2>
+<p>Grab Board, Walk Out, Board Control in White Water, Turn Around Walking, Get on the Board, Sweet Spot, Paddling Turn Around, Paddling Speed and Breathing, Turtle Roll, Identify the Pocket, Paddling Angle, Cobra Pick Line, Dismount, Pop Up Connection, Foot Positioning, Posture, Frontside Rotation, Backside Rotation, Starfish Dismount, Hold, Impulse, Pump Frontside, Pump Backside, Bottom Turn Frontside, Bottom Turn Backside, Projection Frontside, Projection Backside, Cruz de Cristo, Tapaloco, Cutback Frontside, Cutback Backside, Carve Frontside, Carve Backside, Reentry Frontside, Reentry Backside, Floater Frontside, Floater Backside, Tube Riding Frontside, Tube Riding Backside, Straight Air Frontside, Straight Air Backside, Reverse Frontside, Backside 360 Air, Tail Slide Frontside, Tail Slide Backside.</p>
+<h2 class="doc-h2" id="s24">5.2 Tactical Parts (7)</h2>
+<p>Pre-Competition Routine, Venue Analysis, Plan Creation, Positioning, Wave Selection, Score Generation, Wave Energy Usage.</p>
+<h2 class="doc-h2" id="s25">5.3 Mental Parts (7)</h2>
+<p>Motivation, Visualization, Focus, Relaxation, Mission, Feedback, Goal Setting.</p>
+<h2 class="doc-h2" id="s26">5.4 Physical Parts (8)</h2>
+<p>Balance, Coordination, Mobility, Stability, Strength, Endurance, Explosiveness, Body Awareness.</p>
+<h2 class="doc-h2" id="s27">5.5 Safety Parts (11)</h2>
+<p>Safety Signals, Surf Etiquette, Venue Analysis, Equipment Handling, Whitewater Management, Dismount Protocol, Lineup Awareness, Decision Making, Emergency Awareness, Physical Readiness, Mental Readiness.</p>
+<h1 class="doc-h1" id="s28">6. Dropdown Options — Complete Reference</h1>
+<p>All validated dropdown values for the session cascade and student profile.</p>
+<h2 class="doc-h2" id="s29">6.1 Training Venue</h2>
+<p>Beachbreak, Pointbreak, Reefbreak, White water, Training pool, Surf skate, Gym, Tatami, Video Analysis Room.</p>
+<h2 class="doc-h2" id="s30">6.2 Ocean Conditions</h2>
+<p>Flat, 1-2 feet, 3-4 feet, 4-6 feet, 6+ feet.</p>
+<h2 class="doc-h2" id="s31">6.3 Warm-up</h2>
+<p>Head to toe dynamic warm-up, Unnatural animal (for kids), Specific warm-up, Flow motion simulation.</p>
+<h2 class="doc-h2" id="s32">6.4 Simulation</h2>
+<p>Surf skate, Flow motion, Visualization, Finger surfing the waves in front of you.</p>
+<h2 class="doc-h2" id="s33">6.5 Mental Hack</h2>
+<p>Key words, Do it with intention, Breathe and reset, Positive self-talk, Visualize success, Process over outcome, One wave at a time.</p>
+<h2 class="doc-h2" id="s34">6.6 Session Status</h2>
+<p>Not Achieved, Partial, Competent, Mastered.</p>
+<h2 class="doc-h2" id="s35">6.7 Frustration Rating Descriptors</h2>
+<h2 class="doc-h2" id="s36">6.8 Coach Feedback (Quick)</h2>
+<p>Not collaborating, Good effort, Very good, Excellent.</p>
+<h2 class="doc-h2" id="s37">6.9 Homework Cues</h2>
+<p>Look forward, Weight on front foot, Knee in, Bend knees, Foot centered, Shoulders aligned with board nose, Activate scapula, Activate hands, Stay calm breath.</p>
+<h2 class="doc-h2" id="s38">6.10 Incident Type</h2>
+<p>Minor injury, Major injury, Equipment failure, Near miss, Other.</p>
+<h1 class="doc-h1" id="s39">7. Coach Invitation System</h1>
+<p>Deployed March 14, 2026. Admin-only feature.</p>
+<h2 class="doc-h2" id="s40">7.1 Flow</h2>
+<ul class="doc-list">
+<li>Admin goes to Coaches &gt; + Add Coach</li>
+<li>Fills: name, email, phone, role, max belt permission, certification level</li>
+<li>System sends invitation email</li>
+<li>Coach clicks link in email</li>
+<li>Redirected to Set Password page (/set-password)</li>
+<li>Creates password, enters app with their role permissions</li>
+</ul>
+<h2 class="doc-h2" id="s41">7.2 Current Workaround</h2>
+<p>If the email flow doesn&#x27;t work, Admin sets password manually via Supabase SQL:</p>
+<p>UPDATE auth.users SET encrypted_password = crypt(&#x27;TempPassword!&#x27;, gen_salt(&#x27;bf&#x27;)) WHERE email = &#x27;coach@email.com&#x27;;</p>
+<h2 class="doc-h2" id="s42">7.3 Active Coaches</h2>
+<h1 class="doc-h1" id="s43">8. Technical Architecture</h1>
+<h2 class="doc-h2" id="s44">8.1 Database Schema (Key Tables)</h2>
+<h2 class="doc-h2" id="s45">8.2 Files Modified/Created (March 14-15, 2026)</h2>
+<h1 class="doc-h1" id="s46">9. Phase 3 — Data Comparison &amp; Implementation Plan</h1>
+<p>This is the next phase of work. It has not been executed yet.</p>
+<h2 class="doc-h2" id="s47">9.1 Objective</h2>
+<p>Compare the data already seeded in the Supabase database (migrations 00009 sequences, 00010 drills) against the data in the Excel files (Bitacora + Resumino). Identify gaps, mismatches, and missing data. Then seed what&#x27;s missing.</p>
+<h2 class="doc-h2" id="s48">9.2 Specific Tasks</h2>
+<ul class="doc-list">
+<li>Audit sequences table vs DB_SEQUENCE sheet — do all sequences match?</li>
+<li>Audit drills table vs DB_DRILLS / TSS DRILLS sheets — do all drills exist? Are pilar assignments correct?</li>
+<li>Create pilar_parts table — new table to store the 78 pilar parts (45 tech + 7 tactical + 7 mental + 8 physical + 11 safety) with their pilar, description, level range</li>
+<li>Create dropdown_options table — or constants file — for all the validated dropdown values (venues, conditions, warm-ups, simulations, mental hacks, etc.)</li>
+<li>Seed the missing data</li>
+<li>Verify belt-level filtering logic: which pilar parts appear for which belt levels</li>
+</ul>
+<h2 class="doc-h2" id="s49">9.3 After Data Is Complete</h2>
+<p>Once the data layer is solid, implementation follows this order:</p>
+<h1 class="doc-h1" id="s50">10. How to Continue in a New Conversation</h1>
+<p>Copy and paste this section when starting a new Claude conversation to continue building TSS Brain.</p>
+<p>CONTEXT FOR CLAUDE: I am Marcelo Castellanos, building TSS Brain (tss-brain-app.vercel.app). All product decisions are documented in the file &quot;TSS_Brain_Architecture_Decisions.docx&quot; which I will upload. The Canon (TSS_Core_Canon_v4.docx) is Tier 1 authority. Start by reading both documents. Do not invent data — all dropdown options, pilar parts, and cascade logic are validated in the Architecture document. We are on Phase 3: comparing DB data against Excel data, then rebuilding the session flow with filtered dropdowns.</p>
+<p>Upload this document + the Canon + the two Excel files (Bitacora + Resumino) to give Claude full context.</p>
+<p>The specific request for Phase 3:</p>
+<p>&quot;Read the Architecture document Sections 4-6 for the validated cascade. Then audit the current database (download the repo ZIP I&#x27;ll upload) against the Excel data. Tell me what&#x27;s missing before we build anything.&quot;</p>
+<p>The Surf Sequence® · TSS Brain Architecture · March 2026</p>
+<div class="table-wrap"><table>
+<tr><th>Section</th><th>Fields</th></tr>
+<tr><td>About You</td><td>Date of birth, gender, nationality, languages, Instagram, height, weight, shirt size</td></tr>
+<tr><td>Surf Experience</td><td>Stance (regular/goofy/not sure), experience years, frequency, board type, other sports, learning style</td></tr>
+<tr><td>Your Goals</td><td>Short term, mid term, long term, biggest barrier, fears/phobias</td></tr>
+<tr><td>Safety &amp; Medical</td><td>Swim level, allergies, injuries, medical notes, emergency contact (name + phone)</td></tr>
+<tr><td>Final Details</td><td>How did you hear about us, returning student, waiver acknowledgment</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Step</th><th>Field</th><th>Type</th><th>Logic</th></tr>
+<tr><td>1</td><td>Student</td><td>Dropdown</td><td>Shows name + belt. Auto-loads: belt, sequence, step, ocean level, medical alerts, last session.</td></tr>
+<tr><td>2</td><td>Training Venue</td><td>Dropdown</td><td>Beachbreak, Pointbreak, Reefbreak, White water, Training pool, Surf skate, Gym, Tatami, Video Analysis Room. If non-water venue, skip ocean conditions.</td></tr>
+<tr><td>3</td><td>Ocean Conditions</td><td>Dropdown</td><td>Flat, 1-2 feet, 3-4 feet, 4-6 feet, 6+ feet. Only if water venue. Crosses with belt level via ocean rules → risk state.</td></tr>
+<tr><td>4</td><td>Session Type</td><td>Dropdown</td><td>Training (default), Competition, Evaluation.</td></tr>
+<tr><td>5</td><td>Date</td><td>Date picker</td><td>Default: today.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Step</th><th>Field</th><th>Type</th><th>Logic</th></tr>
+<tr><td>6</td><td>Pilar Part</td><td>Dropdown (filtered)</td><td>Filtered by student belt level. Shows Technical + Tactical parts appropriate for that level. E.g., White Belt sees Grab Board through Starfish Dismount. Blue Belt sees up to Cutback. This IS the pilar selection — the system tags each part internally.</td></tr>
+<tr><td>7</td><td>Mission</td><td>Text with suggestions</td><td>Coach writes the specific session objective. System can suggest based on pilar part + student history.</td></tr>
+<tr><td>8</td><td>Drill</td><td>Dropdown (filtered)</td><td>Filtered by pilar part, belt level, venue, and conditions. Shows only relevant drills. With search.</td></tr>
+<tr><td>9</td><td>Warm-up</td><td>Dropdown</td><td>Head to toe dynamic warm-up, Unnatural animal (for kids), Specific warm-up, Flow motion simulation.</td></tr>
+<tr><td>10</td><td>Simulation</td><td>Dropdown</td><td>Surf skate, Flow motion, Visualization, Finger surfing the waves in front of you.</td></tr>
+<tr><td>11</td><td>Mental Hack</td><td>Dropdown</td><td>Key words, Do it with intention, Breathe and reset, Positive self-talk, Visualize success, Process over outcome, One wave at a time.</td></tr>
+<tr><td>12</td><td>Mission Time</td><td>Dropdown</td><td>10 min, 15 min, 20 min, 30 min, 45 min, 60 min.</td></tr>
+<tr><td>13</td><td>Repetitions</td><td>Number input</td><td>How many reps of the drill/mission.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Step</th><th>Field</th><th>Type</th><th>Logic</th></tr>
+<tr><td>14</td><td>Status</td><td>Dropdown</td><td>Not Achieved, Partial, Competent, Mastered.</td></tr>
+<tr><td>15</td><td>Focus Rating</td><td>1-5 buttons</td><td>Student self-reports focus level during session.</td></tr>
+<tr><td>16</td><td>Frustration Rating</td><td>1-10 buttons</td><td>With descriptors: 1=Boring/too easy, 5=Fun, 7=Challenging but manageable, 9=Really hard, 10=Maximum difficulty. This IS the Channel of Flow measurement.</td></tr>
+<tr><td>17</td><td>Coach Feedback</td><td>Dropdown + text</td><td>Quick: Not collaborating, Good effort, Very good, Excellent. Plus free text for detailed feedback.</td></tr>
+<tr><td>18</td><td>Achieved</td><td>Text</td><td>What the student accomplished this session.</td></tr>
+<tr><td>19</td><td>What&#x27;s Next</td><td>Dropdown (filtered)</td><td>Same pilar part universe as Step 6. What the next session should focus on. Feeds continuity.</td></tr>
+<tr><td>20</td><td>Homework</td><td>Dropdown + text</td><td>Cues: Look forward, Weight on front foot, Knee in, Bend knees, Foot centered, Shoulders aligned, Activate scapula, Activate hands, Stay calm breath. Plus free text.</td></tr>
+<tr><td>21</td><td>Total Duration</td><td>Dropdown</td><td>30 min, 45 min, 60 min, 90 min, 120 min.</td></tr>
+<tr><td>22</td><td>Incident Report</td><td>Optional toggle</td><td>If activated: Type (Minor injury, Major injury, Equipment failure, Near miss, Other) + Description + Action taken. Logged to audit + student record.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Rating</th><th>Descriptor</th></tr>
+<tr><td>1</td><td>Boring / too easy</td></tr>
+<tr><td>2</td><td>(no label)</td></tr>
+<tr><td>3</td><td>(no label)</td></tr>
+<tr><td>4</td><td>(no label)</td></tr>
+<tr><td>5</td><td>It was fun</td></tr>
+<tr><td>6</td><td>Fully immersed and feeling good</td></tr>
+<tr><td>7</td><td>Challenging but manageable</td></tr>
+<tr><td>8</td><td>Getting hard</td></tr>
+<tr><td>9</td><td>This is really hard</td></tr>
+<tr><td>10</td><td>Maximum difficulty</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Name</th><th>Role</th><th>Email</th></tr>
+<tr><td>Marcelo Castellanos</td><td>Admin</td><td>marcelo@thesurfsequence.com</td></tr>
+<tr><td>Agustina Calvo</td><td>Coordinator</td><td>agus.calvo@hotmail.com</td></tr>
+<tr><td>Kelly Skater</td><td>Coach</td><td>agus.calvom@gmail.com</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Component</th><th>Technology</th></tr>
+<tr><td>Frontend</td><td>Next.js 14 (React) + Tailwind CSS</td></tr>
+<tr><td>Hosting</td><td>Vercel (auto-deploys from GitHub on push)</td></tr>
+<tr><td>Database</td><td>Supabase (PostgreSQL)</td></tr>
+<tr><td>Auth</td><td>Supabase Auth (email + password)</td></tr>
+<tr><td>Storage</td><td>Supabase Storage (avatars bucket)</td></tr>
+<tr><td>Repository</td><td>github.com/marcelocsurf/TSS-BRAIN-APP</td></tr>
+<tr><td>Production URL</td><td>tss-brain-app.vercel.app</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Table</th><th>Purpose</th><th>Status</th></tr>
+<tr><td>students</td><td>All student data: profile + progression + continuity + intake</td><td>Live (21 new cols added)</td></tr>
+<tr><td>coaches</td><td>Coach records with role, auth link, belt permissions</td><td>Live</td></tr>
+<tr><td>standalone_sessions</td><td>Individual session context (venue, conditions, drill)</td><td>Live but needs cascade upgrade</td></tr>
+<tr><td>student_session_results</td><td>Evaluation results per student per session</td><td>Live</td></tr>
+<tr><td>camp_instances</td><td>Active camps from templates</td><td>Live (shell)</td></tr>
+<tr><td>camp_sessions</td><td>Days within a camp</td><td>Live (shell)</td></tr>
+<tr><td>camp_participants</td><td>Student-to-camp assignments</td><td>Live (shell)</td></tr>
+<tr><td>sequences</td><td>TSS belt progression sequences (seeded)</td><td>Live</td></tr>
+<tr><td>drills</td><td>TSS drill library (seeded)</td><td>Live — needs audit vs Excel</td></tr>
+<tr><td>ocean_rules</td><td>Safety rules by belt + conditions (seeded)</td><td>Live</td></tr>
+<tr><td>survey_responses</td><td>Post-session student feedback</td><td>Live</td></tr>
+<tr><td>audit_log</td><td>System event tracking</td><td>Live</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>File</th><th>What</th></tr>
+<tr><td>supabase/migrations/00011_student_profile_fields.sql</td><td>21 new columns for student profile</td></tr>
+<tr><td>src/lib/actions/auth.ts</td><td>getCurrentCoach() helper + role permission checks</td></tr>
+<tr><td>src/lib/actions/intake.ts</td><td>submitIntake() + getStudentForIntake() — public form backend</td></tr>
+<tr><td>src/lib/actions/students.ts</td><td>Expanded types, createStudent, updateStudent, archiveStudent, reactivateStudent</td></tr>
+<tr><td>src/middleware.ts</td><td>Added /intake and /set-password as public routes</td></tr>
+<tr><td>src/app/intake/[token]/page.tsx</td><td>Public intake page (server component)</td></tr>
+<tr><td>src/app/intake/[token]/intake-form.tsx</td><td>5-step form (client component)</td></tr>
+<tr><td>src/app/(dashboard)/students/[id]/page.tsx</td><td>Role-filtered student detail — zero (as any)</td></tr>
+<tr><td>src/app/(dashboard)/students/[id]/intake-status.tsx</td><td>Intake status card + copy link button</td></tr>
+<tr><td>src/app/(dashboard)/students/page.tsx</td><td>&quot;No profile&quot; badge in student list</td></tr>
+<tr><td>src/app/(auth)/set-password/page.tsx</td><td>Set password page for invited coaches</td></tr>
+<tr><td>src/app/auth/callback/route.ts</td><td>Updated callback — first login detection + redirect to set-password</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Priority</th><th>Module</th><th>Description</th></tr>
+<tr><td>P1</td><td>Session Flow Cascade Rebuild</td><td>Replace text-free fields with filtered dropdowns. Implement the 22-step flow defined in Section 4. This is the core product upgrade.</td></tr>
+<tr><td>P2</td><td>Student Edit Page</td><td>Allow Coordinator to edit student profile from dashboard. The Edit button exists, the page does not.</td></tr>
+<tr><td>P3</td><td>Camp &amp; Session Management</td><td>Create camps from templates, assign students, assign coach, manage daily sessions.</td></tr>
+<tr><td>P4</td><td>Student Continuity View</td><td>When returning student arrives, coach sees full history with last session, homework, previous notes.</td></tr>
+<tr><td>P5</td><td>Student List Filters</td><td>Filter by name, belt level, age, intake status, camp assignment.</td></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  TSS Brain Architecture — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

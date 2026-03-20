@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coach Certification Manual v1.0 — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FFD166;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🎓</span>
+    <div>
+      <div class="top-bar__title">Coach Certification Manual v1.0</div>
+      <div class="top-bar__sub">The Surf Sequence® — CERT</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">CERT</span>
+    <span>1,202 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">COACH CERTIFICATION MANUAL</a><a href="#s3">SECTION 1: CERTIFICATION PHILOSOPHY</a><a href="#s4">SECTION 2: CERTIFICATION LEVELS OVERVIEW</a><a href="#s5">SECTION 3: LEVEL 1 — FOUNDATION COACH</a><a href="#s6">SECTION 4: LEVEL 2 — PRACTITIONER COACH</a><a href="#s7">SECTION 5: LEVEL 3 — ADVANCED COACH</a><a href="#s8">SECTION 6: LEVEL 4 — MASTER COACH</a><a href="#s9">SECTION 7: LEVEL 5 — COACH EDUCATOR</a><a href="#s10">SECTION 8: ANNUAL RENEWAL</a><a href="#s11">SECTION 9: ETHICAL STANDARDS</a><a href="#s12">SECTION 10: CERTIFICATION PATHWAY DIAGRAM</a><a href="#s13">CONSTITUTIONAL STATEMENT</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">COACH CERTIFICATION MANUAL</h1>
+<p>Foundation to Coach Educator — 5 Levels of Professional Development</p>
+<p>Marcelo Castellanos</p>
+<p>ISA Olympic Expert Coach | Founder, The Surf Sequence®</p>
+<p>Version 1.0 — March 2026</p>
+<p>CONFIDENCIAL — Enkrateia SA de CV</p>
+<h1 class="doc-h1" id="s3">SECTION 1: CERTIFICATION PHILOSOPHY</h1>
+<p>The TSS Coach Formation Principle</p>
+<p>A coach first LIVES the method as a student, then LEARNS to teach it.</p>
+<p>Formation Sequence</p>
+<p>Experience it</p>
+<p>Understand it</p>
+<p>Learn to teach it</p>
+<p>Deliver it with consistency</p>
+<p>Certification Characteristics</p>
+<p>Portable: Travel with the coach</p>
+<p>Auditable: TSS Global can verify</p>
+<p>Renewable: Annually</p>
+<p>Final certification authority: TSS Global (Enkrateia SA de CV). No individual coach can grant TSS certification independently.</p>
+<h1 class="doc-h1" id="s4">SECTION 2: CERTIFICATION LEVELS OVERVIEW</h1>
+<h1 class="doc-h1" id="s5">SECTION 3: LEVEL 1 — FOUNDATION COACH</h1>
+<p>3.1 Prerequisites</p>
+<p>Minimum Blue Belt</p>
+<p>Demonstrated understanding of White and Yellow Belt sequences</p>
+<p>Clean safety record</p>
+<p>Minimum age: 18</p>
+<p>3.2 Scope</p>
+<p>Teaches White Belt (Seq #1-#5) and Yellow Belt (Seq #6-#7)</p>
+<p>Can work in water up to 3 feet</p>
+<p>Whitewater and small green waves</p>
+<p>3.3 Core Competencies</p>
+<p>Safety management for beginners (board handling, zone awareness, ratios)</p>
+<p>Session structure using 3 Moments (Context, Planning, Close)</p>
+<p>Drill delivery using EDPF method (Explain, Demonstrate, Participate, Feedback)</p>
+<p>Board transition assessment (5-point checklist for hardtop clearance)</p>
+<p>Junior adaptations (playful drills, shorter sessions, mandatory groups for &lt;12)</p>
+<p>P·R·C·H teaching at fundamental level</p>
+<p>Three Circles of Power — Surfer Version (Body, Feet Position, Wave)</p>
+<p>Block 0-3 delivery (Orientation, Preparation, Wave Entry, Pop-Up)</p>
+<p>One correction per wave discipline</p>
+<p>Surfer-speaks-first feedback protocol</p>
+<p>3.4 Assessment</p>
+<p>Knowledge Check: Written exam on TSS methodology (White/Yellow belt content, safety protocols, session structure)</p>
+<p>Practical Demonstration: Execute all White and Yellow belt sequences at minimum Competent level</p>
+<p>Teaching Practicum: Deliver 3 supervised sessions to White/Yellow belt students. Observed by L3+ coach.</p>
+<p>Portfolio: Session logs from practicum, self-evaluation, observer feedback.</p>
+<p>3.5 Restrictions</p>
+<p>Cannot teach Blue Belt or above</p>
+<p>Cannot modify session structure</p>
+<p>Cannot assess for belt promotion without L2+ supervisor present</p>
+<h1 class="doc-h1" id="s6">SECTION 4: LEVEL 2 — PRACTITIONER COACH</h1>
+<p>4.1 Prerequisites</p>
+<p>Minimum Purple Belt</p>
+<p>Active L1 certification for minimum 6 months</p>
+<p>Minimum 50 logged sessions as L1</p>
+<p>Clean safety record</p>
+<p>4.2 Scope</p>
+<p>Teaches White through Blue Belt (Seq #1-#13)</p>
+<p>Can work in conditions up to 6 feet</p>
+<p>4.3 Core Competencies (all L1 + these)</p>
+<p>Blue Belt sequence delivery (#8-#13)</p>
+<p>Named expression teaching (Cruz Snap, Tapaloco Snap, Cutback, etc.)</p>
+<p>TSS Execution Sequence Chains — Frontside and Backside</p>
+<p>Infinite Circle coaching and diagnosis</p>
+<p>Block System diagnostic: identify which block breaks and correct one level back</p>
+<p>Progressive rating scales (Composure replaces Frustration at Blue)</p>
+<p>Session design for intermediate surfers</p>
+<p>Competition path vs. Recreational path awareness</p>
+<p>Coach feedback documentation (digital via TSS Brain)</p>
+<p>Student continuity management (returning students, history review)</p>
+<p>4.4 Assessment</p>
+<p>Knowledge Check: Written + oral exam on full methodology through Blue Belt</p>
+<p>Practical Demonstration: Execute all sequences through Blue Belt at minimum 7/10</p>
+<p>Teaching Practicum: Deliver 5 supervised sessions across White-Blue</p>
+<p>Diagnostic Assessment: Given video of a Blue Belt surfer, identify failing block and propose correction</p>
+<p>Portfolio: 50+ session logs, student progression evidence, self-reflection</p>
+<p>4.5 Restrictions</p>
+<p>Cannot teach Purple+ content</p>
+<p>Cannot certify other coaches</p>
+<h1 class="doc-h1" id="s7">SECTION 5: LEVEL 3 — ADVANCED COACH</h1>
+<p>5.1 Prerequisites</p>
+<p>Minimum Brown Belt</p>
+<p>Active L2 for minimum 12 months</p>
+<p>Minimum 150 logged sessions</p>
+<p>Demonstrated mentoring of at least 2 L1 coaches</p>
+<p>5.2 Scope</p>
+<p>Teaches all levels through Brown Belt (Seq #1-#22)</p>
+<p>Mentors L1 and L2 coaches</p>
+<p>Can observe and evaluate teaching practicums</p>
+<p>5.3 Core Competencies (all L2 + these)</p>
+<p>Purple and Brown Belt sequence delivery</p>
+<p>Aerial System teaching (Ramp → Air → Landing)</p>
+<p>Advanced combo coaching</p>
+<p>Condition adaptation training</p>
+<p>Competition preparation (ISA/WSL scoring criteria, heat strategy, pre-competition routines)</p>
+<p>Board selection knowledge by conditions</p>
+<p>Coach mentoring skills</p>
+<p>Assessment design for teaching practicums</p>
+<p>TSS Brain: full data interpretation for student progression</p>
+<p>Conflict resolution in academy settings</p>
+<p>5.4 Assessment</p>
+<p>Knowledge Check: Comprehensive exam covering full methodology including Brown Belt</p>
+<p>Practical Demonstration: Execute sequences through Brown Belt at 8/10+</p>
+<p>Mentoring Portfolio: Evidence of mentoring 2+ L1 coaches with documented progression</p>
+<p>Teaching Practicum: Deliver 3 sessions to Purple/Brown students</p>
+<p>Competition Coaching Demo: Design and execute a competition preparation session</p>
+<h1 class="doc-h1" id="s8">SECTION 6: LEVEL 4 — MASTER COACH</h1>
+<p>6.1 Prerequisites</p>
+<p>Minimum Black Belt</p>
+<p>Active L3 for minimum 24 months</p>
+<p>Minimum 300 logged sessions</p>
+<p>ISA/WSL judge certification (competitive path)</p>
+<p>6.2 Scope</p>
+<p>Teaches ALL levels including Black Belt (Seq #1-#26)</p>
+<p>Mentors L1-L3 coaches</p>
+<p>6.3 Core Competencies (all L3 + these)</p>
+<p>Black Belt content delivery (total mastery, knowledge transmission, maximum potential)</p>
+<p>Full pillar integration coaching (Physical, Technical, Tactical, Mental at deepest level)</p>
+<p>Performance science integration (biology, psychology, recovery protocols)</p>
+<p>Elite competition coaching (score management 8+, heat strategy advanced)</p>
+<p>Academy quality assurance</p>
+<p>Full system architecture understanding</p>
+<p>Curriculum development assistance</p>
+<p>6.4 Assessment</p>
+<p>Knowledge Check: Complete system mastery exam covering all 26 sequences</p>
+<p>Practical Demonstration: Black Belt level execution</p>
+<p>System Architecture Presentation: Present complete TSS methodology to a panel</p>
+<p>Teaching Practicum: Teach across all belt levels</p>
+<p>Portfolio: 300+ session logs, mentoring evidence, competition results if applicable</p>
+<h1 class="doc-h1" id="s9">SECTION 7: LEVEL 5 — COACH EDUCATOR</h1>
+<p>7.1 Prerequisites</p>
+<p>Black Belt</p>
+<p>Active L4 for minimum 36 months</p>
+<p>Minimum 500 logged sessions</p>
+<p>Demonstrated development of at least 5 coaches from L1 to L2+</p>
+<p>7.2 Scope</p>
+<p>Does NOT teach surfers directly</p>
+<p>Forms, evaluates, and certifies coaches</p>
+<p>Designs curriculum</p>
+<p>Ensures quality across academies</p>
+<p>7.3 Core Competencies (all L4 + these)</p>
+<p>Certification assessment design and delivery</p>
+<p>Coach evaluation rubric application</p>
+<p>Curriculum design and updating</p>
+<p>Academy audit and compliance verification</p>
+<p>TSS Global standards enforcement</p>
+<p>Training program design for new coach candidates</p>
+<p>Quality control across multiple academies</p>
+<p>Cross-cultural coaching adaptation</p>
+<p>7.4 Assessment</p>
+<p>Panel Review: Presentation to TSS Global board on methodology understanding</p>
+<p>Assessment Design: Create a complete L1 certification assessment package</p>
+<p>Coach Development Evidence: Documented development of 5+ coaches</p>
+<p>System Contribution: Evidence of contribution to TSS methodology development</p>
+<h1 class="doc-h1" id="s10">SECTION 8: ANNUAL RENEWAL</h1>
+<p>All certifications require annual renewal. Requirements:</p>
+<p>Active teaching: Minimum sessions logged per year (L1: 30, L2: 40, L3: 50, L4: 40, L5: N/A)</p>
+<p>Continuing education: Attend TSS annual update workshop or equivalent</p>
+<p>Safety compliance: No unresolved safety incidents</p>
+<p>TSS Brain compliance: Session logging up to date</p>
+<p>Renewal fee paid to TSS Global</p>
+<p>Failure to renew: Certification becomes &quot;Inactive.&quot; Coach cannot teach under TSS brand until renewed. Reactivation requires abbreviated assessment.</p>
+<h1 class="doc-h1" id="s11">SECTION 9: ETHICAL STANDARDS</h1>
+<p>Coaches represent TSS methodology, not personal opinions</p>
+<p>No modification of sequences, drills, or progression without authorization</p>
+<p>Safety is always the primary concern — no session continues if safety is compromised</p>
+<p>Honest assessment — no inflated belt promotions</p>
+<p>Confidentiality of student information</p>
+<p>No certification granted outside official TSS channels</p>
+<p>Respect for the student&#x27;s pace — progression is earned, not rushed</p>
+<h1 class="doc-h1" id="s12">SECTION 10: CERTIFICATION PATHWAY DIAGRAM</h1>
+<p>Surfer Journey</p>
+<p>White → Yellow → Blue → Purple → Brown → Black</p>
+<p>Coach Entry Points</p>
+<p>After Blue Belt → can enter L1 pathway</p>
+<p>After Purple Belt → can enter L2 pathway</p>
+<p>After Brown Belt → can enter L3 pathway</p>
+<p>After Black Belt → can enter L4 pathway</p>
+<p>After L4 experience → can enter L5 pathway</p>
+<h1 class="doc-h1" id="s13">CONSTITUTIONAL STATEMENT</h1>
+<p>The authority to certify TSS coaches belongs exclusively to TSS Global (Enkrateia SA de CV).</p>
+<p>No academy, no individual coach, and no partner organization can independently grant, modify, or extend TSS certification.</p>
+<p>The certification is the system&#x27;s quality control mechanism. Without it, the method cannot be trusted to scale.</p>
+<p>The Surf Sequence® — Enkrateia SA de CV</p>
+<p>All Rights Reserved</p>
+<p>Version 1.0 — March 2026</p>
+<div class="table-wrap"><table>
+<tr><th>Level</th><th>Name</th><th>Min Belt</th><th>Teaches</th><th>Supervises</th><th>Key Focus</th></tr>
+<tr><td>L1</td><td>Foundation Coach</td><td>Blue Belt</td><td>White + Yellow (Seq #1-#7)</td><td>None</td><td>Fundamentals delivery, safety, beginner management</td></tr>
+<tr><td>L2</td><td>Practitioner Coach</td><td>Purple Belt</td><td>Up to Blue (Seq #1-#13)</td><td>None</td><td>Consistency, progression management, session design</td></tr>
+<tr><td>L3</td><td>Advanced Coach</td><td>Brown Belt</td><td>Up to Brown (Seq #1-#22)</td><td>Mentors L1/L2</td><td>Advanced technique, competition prep, mentoring</td></tr>
+<tr><td>L4</td><td>Master Coach</td><td>Black Belt</td><td>All levels (Seq #1-#26)</td><td>Mentors L1-L3</td><td>Full system mastery, all conditions, all students</td></tr>
+<tr><td>L5</td><td>Coach Educator</td><td>Black Belt + L4 exp</td><td>Does NOT teach surfers</td><td>Evaluates/certifies coaches</td><td>System architecture, assessment design, quality control</td></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Coach Certification Manual v1.0 — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

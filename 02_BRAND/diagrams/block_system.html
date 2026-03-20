@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 8 Learning Blocks — The Surf Sequence®</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0A1628 0%, #0D2D5E 100%);
+            color: #C8D0DC;
+            font-family: 'Work Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-align: center;
+            margin-bottom: 50px;
+            letter-spacing: -0.5px;
+        }
+
+        .blocks-timeline {
+            position: relative;
+            padding: 0 30px;
+        }
+
+        .blocks-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #5AC3E7 0%, #0D2D5E 50%, #5AC3E7 100%);
+            border-radius: 2px;
+        }
+
+        .block-item {
+            margin-bottom: 40px;
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .block-item:nth-child(1) { animation-delay: 0.1s; }
+        .block-item:nth-child(2) { animation-delay: 0.2s; }
+        .block-item:nth-child(3) { animation-delay: 0.3s; }
+        .block-item:nth-child(4) { animation-delay: 0.4s; }
+        .block-item:nth-child(5) { animation-delay: 0.5s; }
+        .block-item:nth-child(6) { animation-delay: 0.6s; }
+        .block-item:nth-child(7) { animation-delay: 0.7s; }
+        .block-item:nth-child(8) { animation-delay: 0.8s; }
+        .block-item:nth-child(9) { animation-delay: 0.9s; }
+
+        .block-left {
+            margin-left: 0;
+            margin-right: auto;
+            padding-right: 50px;
+            text-align: right;
+            width: 48%;
+        }
+
+        .block-right {
+            margin-left: auto;
+            margin-right: 0;
+            padding-left: 50px;
+            text-align: left;
+            width: 48%;
+        }
+
+        .block-content {
+            background: rgba(13, 45, 94, 0.4);
+            border-left: 4px solid #5AC3E7;
+            border-radius: 8px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .block-left .block-content {
+            border-left: none;
+            border-right: 4px solid #5AC3E7;
+        }
+
+        .block-content:hover {
+            background: rgba(90, 195, 231, 0.12);
+            transform: translateX(-5px);
+            box-shadow: 0 8px 24px rgba(90, 195, 231, 0.15);
+        }
+
+        .block-left .block-content:hover {
+            transform: translateX(5px);
+        }
+
+        .block-number {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #5AC3E7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .block-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 10px;
+        }
+
+        .block-desc {
+            font-size: 0.95rem;
+            color: #C8D0DC;
+            line-height: 1.6;
+        }
+
+        /* Divider between sequential and cyclical */
+        .divider {
+            position: relative;
+            margin: 50px 0;
+            padding: 30px;
+            background: linear-gradient(90deg, rgba(90, 195, 231, 0.1) 0%, rgba(90, 195, 231, 0.2) 50%, rgba(90, 195, 231, 0.1) 100%);
+            border-top: 2px solid #5AC3E7;
+            border-bottom: 2px solid #5AC3E7;
+            text-align: center;
+        }
+
+        .divider-text {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #5AC3E7;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sequential vs Cyclical coloring */
+        .sequential .block-number {
+            color: #5AC3E7;
+        }
+
+        .cyclical .block-number {
+            color: #0D2D5E;
+        }
+
+        .cyclical .block-content {
+            border-color: #0D2D5E;
+            background: rgba(13, 45, 94, 0.5);
+        }
+
+        .cyclical .block-left .block-content {
+            border-right-color: #0D2D5E;
+        }
+
+        .cyclical .block-content:hover {
+            background: rgba(13, 45, 94, 0.7);
+            border-color: #5AC3E7;
+        }
+
+        /* Rule at bottom */
+        .methodology-rule {
+            background: rgba(90, 195, 231, 0.08);
+            border: 1px solid rgba(90, 195, 231, 0.3);
+            border-radius: 8px;
+            padding: 30px;
+            margin-top: 50px;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .methodology-rule p {
+            font-size: 1rem;
+            margin-bottom: 12px;
+            color: #C8D0DC;
+        }
+
+        .methodology-rule strong {
+            color: #5AC3E7;
+            font-weight: 600;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Dot connector on timeline */
+        .block-dot {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #5AC3E7;
+            border: 3px solid #0A1628;
+            border-radius: 50%;
+            left: 50%;
+            top: 30px;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .cyclical .block-dot {
+            background: #0D2D5E;
+        }
+
+        @media (max-width: 768px) {
+            .blocks-timeline::before {
+                left: 15px;
+            }
+
+            .block-left, .block-right {
+                width: 100%;
+                padding-left: 0;
+                padding-right: 0;
+                text-align: left;
+                margin-left: 60px;
+                margin-right: 0;
+            }
+
+            .block-left .block-content,
+            .block-right .block-content {
+                border-left: 4px solid #5AC3E7;
+                border-right: none;
+            }
+
+            .block-left .block-content:hover,
+            .block-right .block-content:hover {
+                transform: translateX(-5px);
+            }
+
+            .block-dot {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>The 8 Learning Blocks</h1>
+
+        <div class="blocks-timeline">
+            <!-- Block 0 -->
+            <div class="block-item sequential block-left">
+                <div class="block-dot"></div>
+                <div class="block-content">
+                    <div class="block-number">Block 0</div>
+                    <div class="block-title">Orientation & Surf Literacy</div>
+                    <div class="block-desc">Foundation before everything. Understanding water dynamics, safety, and wave structure.</div>
+                </div>
+            </div>
+
+            <!-- Block 1 -->
+            <div class="block-item sequential block-right">
+                <div class="block-dot"></div>
+                <div class="block-content">
+                    <div class="block-number">Block 1</div>
+                    <div class="block-title">Preparation & Positioning</div>
+                    <div class="block-desc">Identifying the lineup, finding the sweet spot, reading the break pattern.</div>
+                </div>
+            </div>
+
+            <!-- Block 2 -->
+            <div class="block-item sequential block-left">
+                <div class="block-dot"></div>
+                <div class="block-content">
+                    <div class="block-number">Block 2</div>
+                    <div class="block-title">Wave Entry</div>
+                    <div class="block-desc">Paddling angle, chase mechanics, picking the line, commitment to the wave.</div>
+                </div>
+            </div>
+
+            <!-- Block 3 -->
+            <div class="block-item sequential block-right">
+                <div class="block-dot"></div>
+                <div class="block-content">
+                    <div class="block-number">Block 3</div>
+                    <div class="block-title">Pop-Up & Board Connection</div>
+                    <div class="block-desc">The explosive stand, feet positioning, initial rail engagement, balance on the board.</div>
+                </div>
+            </div>
+
+            <!-- Divider -->
+            <div class="divider">
+                <div class="divider-text">Once Standing, The Infinite Circle Begins</div>
+            </div>
+
+            <!-- Block 4 -->
+            <div class="block-item cyclical block-left">
+                <div class="block-dot"></div>
+                <div class="block-content">
+                    <div class="block-number">Block 4</div>
+                    <div class="block-title">Power Posture</div>
+                    <div class="block-desc">Foundation of all cyclic movement. Stance, weight distribution, core engagement.</div>
+                </div>
+            </div>
+
+            <!-- Block 5 -->
+            <div class="block-item cyclical block-right">
+                <div class="block-dot"></div>
+                <div class="block-content">
+                    <div class="block-number">Block 5</div>
+                    <div class="block-title">Rotation / Rail Change / Bottom Turn</div>
+                    <div class="block-desc">Redirecting energy, engaging the turn, loading the rail, initiating maneuvers.</div>
+                </div>
+            </div>
+
+            <!-- Block 6 -->
+            <div class="block-item cyclical block-left">
+                <div class="block-dot"></div>
+                <div class="block-content">
+                    <div class="block-number">Block 6</div>
+                    <div class="block-title">Projection</div>
+                    <div class="block-desc">Throwing energy up the face, generating speed, launching into expression.</div>
+                </div>
+            </div>
+
+            <!-- Block 7 -->
+            <div class="block-item cyclical block-right">
+                <div class="block-dot"></div>
+                <div class="block-content">
+                    <div class="block-number">Block 7</div>
+                    <div class="block-title">Maneuver / Expression</div>
+                    <div class="block-desc">Snap, reentry, carve, cut, or aerial. The creative application of all blocks in one moment.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="methodology-rule">
+            <p><strong>Blocks do not replace sequences.</strong> Blocks are functional components.</p>
+            <p><strong>Blocks do not replace belts.</strong> Belts are progressional pathways.</p>
+            <p><strong>Belt-specific sequences are BUILT using blocks.</strong> Each sequence combines blocks strategically to develop specific skills.</p>
+        </div>
+    </div>
+</body>
+</html>

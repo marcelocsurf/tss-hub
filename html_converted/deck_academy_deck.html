@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academy Affiliation — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#06D6A0;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #0D3B2E 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🏢</span>
+    <div>
+      <div class="top-bar__title">Academy Affiliation</div>
+      <div class="top-bar__sub">TSS Masterclass — 10 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 10</span>
+    <h2 class="slide-hero">THE SURF SEQUENCE®</h2>
+<h3 class="slide-heading">Programa de Afiliación para Academias</h3>
+<p class="body-text">Implementa el estándar global de educación en surf</p>
+<p class="body-text">Evolve through play.</p>
+<ul class="slide-list">
+<li>thesurfsequence.com  |  contacto@thesurfsequence.com</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 10</span>
+    <h4 class="slide-sub">EL PROBLEMA</h4>
+<h3 class="slide-heading">¿Por qué todas las academias de surf</h3>
+<h3 class="slide-heading">parecen iguales?</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Sin diferenciación</span></div>
+</div>
+<ul class="slide-list">
+<li>Todas ofrecen &quot;clases con instructores certificados&quot;. No hay forma de distinguirse.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Dependencia del coach</span></div>
+</div>
+<ul class="slide-list">
+<li>Si el coach se va, la calidad cae. El valor está en la persona, no en el sistema.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Sin retención</span></div>
+</div>
+<ul class="slide-list">
+<li>El alumno viene, toma una clase, se va. No hay progresión visible ni razón para volver.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Sin evaluación</span></div>
+</div>
+<ul class="slide-list">
+<li>No hay forma de medir si el alumno mejoró. No hay datos, no hay métricas.</li>
+</ul>
+<h2 class="slide-hero">35M</h2>
+<p class="body-text">surfistas en el mundo</p>
+<h2 class="slide-hero">0</h2>
+<p class="body-text">estándares globales de enseñanza</p>
+<p class="body-text">Hasta ahora.</p>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 10</span>
+    <h4 class="slide-sub">LA SOLUCIÓN</h4>
+<h3 class="slide-heading">The Surf Sequence®</h3>
+<p class="body-text">El primer sistema integral de educación en surf del mundo.</p>
+<h3 class="slide-heading">6</h3>
+<ul class="slide-list">
+<li>Niveles de</li>
+<li>progresión</li>
+</ul>
+<h3 class="slide-heading">4+1</h3>
+<ul class="slide-list">
+<li>Pilares de</li>
+<li>desarrollo</li>
+</ul>
+<h3 class="slide-heading">26</h3>
+<ul class="slide-list">
+<li>Secuencias</li>
+<li>catalogadas</li>
+</ul>
+<h3 class="slide-heading">5</h3>
+<ul class="slide-list">
+<li>Niveles de</li>
+<li>certificación</li>
+</ul>
+<h4 class="slide-sub">Técnico</h4>
+<ul class="slide-list">
+<li>Secuencias de ejecución catalogadas por nivel</li>
+</ul>
+<h4 class="slide-sub">Táctico</h4>
+<ul class="slide-list">
+<li>Lectura oceánica y posicionamiento inteligente</li>
+</ul>
+<h4 class="slide-sub">Mental</h4>
+<ul class="slide-list">
+<li>Decisión bajo presión y resiliencia</li>
+</ul>
+<h4 class="slide-sub">Físico</h4>
+<ul class="slide-list">
+<li>Preparación funcional específica por cinta</li>
+</ul>
+<h4 class="slide-sub">🛡  Capa de Seguridad transversal: las condiciones del océano siempre mandan.</h4>
+<ul class="slide-list">
+<li>Validación olímpica: París 2024  |  Campaña clasificatoria LA 2028</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 10</span>
+    <h4 class="slide-sub">BENEFICIOS</h4>
+<h3 class="slide-heading">Lo que TSS aporta a tu academia</h3>
+<h4 class="slide-sub">Metodología estandarizada</h4>
+<ul class="slide-list">
+<li>Curriculum completo por nivel. Cada coach enseña lo mismo con la misma calidad.</li>
+</ul>
+<h4 class="slide-sub">Coaches certificados</h4>
+<ul class="slide-list">
+<li>Tu equipo se certifica en TSS (L1-L5). Certificación con requisitos reales.</li>
+</ul>
+<h4 class="slide-sub">Plataforma digital</h4>
+<ul class="slide-list">
+<li>TSS Brain: tracking de alumnos, gestión de sesiones, reportes automáticos.</li>
+</ul>
+<h4 class="slide-sub">Retención por sistema de cintas</h4>
+<ul class="slide-list">
+<li>El alumno tiene razón para volver: su próxima cinta. Mayor ticket promedio.</li>
+</ul>
+<h4 class="slide-sub">Diferenciación real</h4>
+<ul class="slide-list">
+<li>La única academia en tu zona con estándar global y validación olímpica.</li>
+</ul>
+<h4 class="slide-sub">Red global</h4>
+<ul class="slide-list">
+<li>Los alumnos continúan su progresión en cualquier punto de la red TSS.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 10</span>
+    <h4 class="slide-sub">MODELOS</h4>
+<h3 class="slide-heading">Tres niveles de colaboración</h3>
+<h4 class="slide-sub">Tier 1</h4>
+<p class="body-text">Certificación</p>
+<p class="body-text">Individual</p>
+<h3 class="slide-heading">$500-$1,500</h3>
+<ul class="slide-list">
+<li>por nivel</li>
+<li>Certificación L1-L5</li>
+<li>Manuales y herramientas</li>
+<li>Renovación anual</li>
+<li>Directorio TSS</li>
+</ul>
+<h4 class="slide-sub">Tier 2</h4>
+<p class="body-text">Afiliación de</p>
+<p class="body-text">Academia</p>
+<h3 class="slide-heading">$1K-$3K</h3>
+<ul class="slide-list">
+<li>/ año</li>
+<li>Todo de Tier 1</li>
+<li>Licencia de marca TSS</li>
+<li>Certificación de equipo</li>
+<li>TSS Brain ($100/mes)</li>
+<li>Soporte implementación</li>
+</ul>
+<h4 class="slide-sub">Tier 3</h4>
+<p class="body-text">Licencia</p>
+<p class="body-text">Premium</p>
+<h3 class="slide-heading">5-15%</h3>
+<ul class="slide-list">
+<li>royalty neto</li>
+<li>Todo de Tier 2</li>
+<li>Exclusividad territorial</li>
+<li>Co-branding con TSS</li>
+<li>Acceso directo a Marcelo</li>
+<li>Prioridad expansión global</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 10</span>
+    <h4 class="slide-sub">PROYECCIONES</h4>
+<h3 class="slide-heading">Modelo de ingresos a 3 años</h3>
+<ul class="slide-list">
+<li>Certificación de coaches</li>
+</ul>
+<h4 class="slide-sub">$500-$1,500/nivel</h4>
+<ul class="slide-list">
+<li>Renovación anual</li>
+</ul>
+<h4 class="slide-sub">$200-$500/coach</h4>
+<ul class="slide-list">
+<li>Afiliación academia (Tier 2)</li>
+</ul>
+<h4 class="slide-sub">$1K-$3K/año</h4>
+<ul class="slide-list">
+<li>Royalties premium (Tier 3)</li>
+</ul>
+<h4 class="slide-sub">5-15% ventas netas</h4>
+<ul class="slide-list">
+<li>Camp Kit Fee</li>
+</ul>
+<h4 class="slide-sub">$100/persona</h4>
+<ul class="slide-list">
+<li>TSS Brain SaaS</li>
+</ul>
+<h4 class="slide-sub">$100/mes/academia</h4>
+<h4 class="slide-sub">AÑO 1</h4>
+<h3 class="slide-heading">10</h3>
+<ul class="slide-list">
+<li>coaches</li>
+</ul>
+<h3 class="slide-heading">2</h3>
+<ul class="slide-list">
+<li>academias</li>
+</ul>
+<h3 class="slide-heading">$62K</h3>
+<ul class="slide-list">
+<li>ingresos</li>
+</ul>
+<h4 class="slide-sub">AÑO 2</h4>
+<h3 class="slide-heading">30</h3>
+<ul class="slide-list">
+<li>coaches</li>
+</ul>
+<h3 class="slide-heading">6</h3>
+<ul class="slide-list">
+<li>academias</li>
+</ul>
+<h3 class="slide-heading">$182K</h3>
+<ul class="slide-list">
+<li>ingresos</li>
+</ul>
+<h4 class="slide-sub">AÑO 3</h4>
+<h3 class="slide-heading">75</h3>
+<ul class="slide-list">
+<li>coaches</li>
+</ul>
+<h3 class="slide-heading">15</h3>
+<ul class="slide-list">
+<li>academias</li>
+</ul>
+<h3 class="slide-heading">$397K</h3>
+<ul class="slide-list">
+<li>ingresos</li>
+<li>Escenario conservador basado en Business Model Blueprint v2.0</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 10</span>
+    <h4 class="slide-sub">CASO DE REFERENCIA</h4>
+<h3 class="slide-heading">Puro Surf: el operador flagship</h3>
+<ul class="slide-list">
+<li>Puro Surf Performance Academy en El Zonte, El Salvador, es donde TSS nació, se valida y se perfecciona. Es la prueba viva de que el sistema funciona a escala operativa real.</li>
+</ul>
+<h3 class="slide-heading">+20</h3>
+<ul class="slide-list">
+<li>años operando</li>
+</ul>
+<h3 class="slide-heading">ISA</h3>
+<ul class="slide-list">
+<li>coach experto</li>
+</ul>
+<h3 class="slide-heading">2024</h3>
+<ul class="slide-list">
+<li>validación olímpica</li>
+</ul>
+<h3 class="slide-heading">6</h3>
+<ul class="slide-list">
+<li>cintas activas</li>
+<li>Mayor retención de alumnos por sistema de progresión visible</li>
+<li>Diferenciación clara frente a competencia local e internacional</li>
+<li>Equipo de coaches alineado bajo una misma metodología</li>
+<li>Validación olímpica del sistema (París 2024, LA 2028)</li>
+<li>Plataforma digital para tracking y gestión de sesiones</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 10</span>
+    <h4 class="slide-sub">VENTAJA COMPETITIVA</h4>
+<h3 class="slide-heading">5 barreras de entrada que nadie</h3>
+<h3 class="slide-heading">puede replicar fácilmente</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">IP protegida</span></div>
+</div>
+<ul class="slide-list">
+<li>100% propiedad intelectual controlada por Enkrateia. No depende de terceros.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Validación olímpica</span></div>
+</div>
+<ul class="slide-list">
+<li>Metodología usada en preparación olímpica (París 2024, LA 2028). Credenciales reales.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Ecosistema integrado</span></div>
+</div>
+<ul class="slide-list">
+<li>Metodología + certificación + red + plataforma. No hay sustituto de componente único.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Efecto de red</span></div>
+</div>
+<ul class="slide-list">
+<li>Cada academia y coach que se suma incrementa el valor para todos los demás.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">First-mover</span></div>
+</div>
+<ul class="slide-list">
+<li>No hay incumbente en estandarización de educación en surf. TSS es primero.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 10</span>
+    <h4 class="slide-sub">FUNDADOR</h4>
+<h3 class="slide-heading">Marcelo Castellanos</h3>
+<ul class="slide-list">
+<li>Coach olímpico ISA  |  Arquitecto de sistemas  |  Formador de formadores</li>
+</ul>
+<p class="body-text">[ FOTO</p>
+<p class="body-text">MARCELO ]</p>
+<ul class="slide-list">
+<li>+20 años formando surfistas de todos los niveles — desde turistas en su primera ola hasta atletas olímpicos. Certificación ISA al máximo nivel.</li>
+<li>Coach ISA Nivel Experto (máxima certificación)</li>
+<li>Preparador olímpico París 2024 + LA 2028</li>
+<li>Fundador de Puro Surf Performance Academy</li>
+<li>Creador de TSS — 100% IP propia (Enkrateia)</li>
+<li>Creador de Compartiendo Olas (impacto social)</li>
+<li>&quot;Lo que PADI hizo por el buceo, TSS lo hará por el surf.&quot;</li>
+<li>— Marcelo Castellanos</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 10</span>
+    <h3 class="slide-heading">¿Listo para diferenciar</h3>
+<h3 class="slide-heading">tu academia?</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Siguiente paso:</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">1</span></div>
+<span class="stat-label">Evaluación de tu operación actual</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">2</span></div>
+<span class="stat-label">Selección del modelo de afiliación</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">3</span></div>
+<span class="stat-label">Certificación de tu equipo de coaches</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">4</span></div>
+<span class="stat-label">Implementación de TSS en tu academia</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">contacto@thesurfsequence.com</span></div>
+</div>
+<ul class="slide-list">
+<li>thesurfsequence.com  |  @thesurfsequence</li>
+</ul>
+<p class="body-text">Evolve through play.</p>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Academy Affiliation — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

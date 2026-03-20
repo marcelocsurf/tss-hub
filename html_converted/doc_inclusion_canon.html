@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inclusion Canon v1.0 — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#06D6A0;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🧠</span>
+    <div>
+      <div class="top-bar__title">Inclusion Canon v1.0</div>
+      <div class="top-bar__sub">The Surf Sequence® — INCLUSION</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">INCLUSION</span>
+    <span>2,010 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">INCLUSION CANON</a><a href="#s3">CONFIDENTIAL — NOT FOR DISTRIBUTION</a><a href="#s4">Document Status and Use</a><a href="#s5">PART I — FOUNDATION</a><a href="#s6">1. What Inclusion Means Inside TSS</a><a href="#s7">2. Non-Negotiable Principles</a><a href="#s8">3. The Inclusive Coach Profile</a><a href="#s9">PART II — ADAPTATION BY LEARNER PROFILE</a><a href="#s10">4. Children (Under 12)</a><a href="#s11">5. Teenagers (12–17)</a><a href="#s12">6. Adults</a><a href="#s13">7. Older Adults (55+)</a><a href="#s14">8. Students with Fear or Low Confidence</a><a href="#s15">PART III — PHYSICAL DIVERSITY</a><a href="#s16">9. Body Size and Weight</a><a href="#s17">9.1 Indicative Board Dimensions by Weight</a><a href="#s18">9.2 Diagnostic Rule</a><a href="#s19">10. Mobility, Strength, and Physical Conditions</a><a href="#s20">PART IV — LEARNING CHANNELS AND COMMUNICATION</a><a href="#s21">11. Adaptation by Learning Channel</a><a href="#s22">12. Language Barriers and Multilingual Coaching</a><a href="#s23">12.1 Universal Coaching Tools</a><a href="#s24">12.2 Minimum Language Phrases</a><a href="#s25">PART V — EMOTIONAL REGULATION AND LANGUAGE</a><a href="#s26">13. Inclusive Language</a><a href="#s27">14. Emotional Regulation Rules</a><a href="#s28">15. Temperament Profiles</a><a href="#s29">15.1 Serious or Rigid Learners</a><a href="#s30">15.2 Expressive or Playful Learners</a><a href="#s31">15.3 Anxious or Avoidant Learners</a><a href="#s32">PART VI — INCLUSIVE SESSION ARCHITECTURE</a><a href="#s33">16. Session Structure for Inclusion</a><a href="#s34">PART VII — INCLUSIVE COACH CERTIFICATION</a><a href="#s35">17. Certification Framework</a><a href="#s36">17.1 Core Competencies</a><a href="#s37">17.2 Certification Path</a><a href="#s38">17.3 Evaluation Rubric</a><a href="#s39">18. Case Scenarios for Certification</a><a href="#s40">19. Limits of This Canon</a><a href="#s41">20. Operational Annex Framework</a><a href="#s42">THE SURF SEQUENCE®</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">INCLUSION CANON</h1>
+<p>Version 1.0 — Official Methodology Document</p>
+<p>One Method. Every Surfer.</p>
+<p>Prepared for Marcelo Castellanos</p>
+<p>Founder, The Surf Sequence® — ISA Olympic Expert Coach</p>
+<p>Enkrateia SA de CV — All Rights Reserved</p>
+<h1 class="doc-h1" id="s3">CONFIDENTIAL — NOT FOR DISTRIBUTION</h1>
+<h1 class="doc-h1" id="s4">Document Status and Use</h1>
+<p>This canon defines how The Surf Sequence® teaches with methodological rigor without excluding students because of age, temperament, confidence level, learning channel, body profile, language, physical condition, or emotional state.</p>
+<p>It applies to all delivery formats: classes, camps, progression programs, coach certification, and licensed academies. It is classified as Tier 2 — Architectural within the TSS Official Document Registry.</p>
+<h1 class="doc-h1" id="s5">PART I — FOUNDATION</h1>
+<h1 class="doc-h1" id="s6">1. What Inclusion Means Inside TSS</h1>
+<p>Inclusion is the capacity to preserve the sequence while adapting the delivery. It is not charity, political compliance, or watered-down coaching. It is the professional ability to teach the same method to different humans.</p>
+<ul class="doc-list">
+<li>A child is not taught the same way as an adult.</li>
+<li>A reserved student is not regulated the same way as an expansive one.</li>
+<li>A visual learner does not process the same way as a kinesthetic or verbal learner.</li>
+<li>A student with fear, overload, or low confidence requires a different pathway than one with excess confidence.</li>
+<li>A student who speaks a different language needs adapted communication, not exclusion.</li>
+<li>A student with a larger body, lower mobility, or different physical capacity needs equipment and pacing that match their reality.</li>
+</ul>
+<h1 class="doc-h1" id="s7">2. Non-Negotiable Principles</h1>
+<ul class="doc-list">
+<li>1. Sequence before improvisation. Adaptation must happen inside a clear progression, not through random coaching.</li>
+<li>2. Dignity before pressure. High standards are compatible with respect. Inclusion rejects humiliation, ridicule, and unnecessary hardness.</li>
+<li>3. Observation before judgment. The coach must diagnose whether the barrier is technical, emotional, communicational, environmental, or equipment-based.</li>
+<li>4. Challenge with dose. Too little challenge creates boredom; too much creates shutdown. The coach calibrates difficulty.</li>
+<li>5. Tool must fit the student. Inclusion includes the choice of surfboard, venue, drill, rhythm of exposure, and language of instruction.</li>
+<li>6. Access before performance. The first job is to give the student access to the experience. Performance is built on access, not the other way around.</li>
+<li>7. Every body surfs. Body size, age, physical condition, and appearance are never reasons to exclude. They are variables the coach adapts to.</li>
+</ul>
+<h1 class="doc-h1" id="s8">3. The Inclusive Coach Profile</h1>
+<p>An inclusive TSS coach is not merely kind. The coach is observant, technically precise, emotionally regulated, and able to adjust the route without losing the standard.</p>
+<ul class="doc-list">
+<li>Explains with clarity and without verbal overload.</li>
+<li>Can demonstrate, decompose, and simplify a skill.</li>
+<li>Adjusts energy to the student instead of coaching from ego.</li>
+<li>Corrects behavior and execution without attacking identity.</li>
+<li>Distinguishes a technical mistake from an emotional block or a comprehension problem.</li>
+<li>Understands when the issue is the board, the setting, the timing, the language, or the progression design.</li>
+<li>Can teach across languages using demonstration, gesture, and universal coaching cues.</li>
+<li>Treats every body type, age, and physical capacity as a valid starting point.</li>
+</ul>
+<h1 class="doc-h1" id="s9">PART II — ADAPTATION BY LEARNER PROFILE</h1>
+<h1 class="doc-h1" id="s10">4. Children (Under 12)</h1>
+<p>With children, inclusion requires simple structure, safety, game-based engagement, and short objective cycles. The session must move; long explanations usually lose the student before the skill can be attempted.</p>
+<ul class="doc-list">
+<li>One main idea at a time. Children cannot hold multiple technical instructions simultaneously.</li>
+<li>More demonstration, less theory. Show it, then let them try it. Explanation follows experience.</li>
+<li>Use games deliberately. Evolve Through Play is the method’s principle — games are structured, not chaotic.</li>
+<li>Immediate and specific feedback. “Your feet were wide and strong” beats “good job.”</li>
+<li>Expectations matched to maturity. Physical and emotional maturity determine the ceiling, not the child’s ambition or the parent’s expectation.</li>
+</ul>
+<h1 class="doc-h1" id="s11">5. Teenagers (12–17)</h1>
+<p>Teenagers often combine physical capability with emotional volatility. They may have strong egos, peer sensitivity, or hidden insecurity. The inclusive coach balances challenge with respect.</p>
+<ul class="doc-list">
+<li>Challenge their ability, not their identity. Teens respond to being treated as capable, not as children.</li>
+<li>Peer dynamics matter. Group composition affects confidence. A teenager surrounded by adults may shut down; surrounded by peers, they may show off.</li>
+<li>Use their competitive energy constructively. Missions and challenges channel intensity into progression.</li>
+<li>Private correction, public recognition. Correct technique quietly. Recognize effort publicly.</li>
+</ul>
+<h1 class="doc-h1" id="s12">6. Adults</h1>
+<p>With adults, barriers are often mental as much as physical. Adults usually need context, respect, and concrete feedback without being infantilized.</p>
+<ul class="doc-list">
+<li>Explain the purpose of the drill when that builds trust.</li>
+<li>Respect processing time without making the session slow.</li>
+<li>Use adult language and direct correction.</li>
+<li>Normalize error as part of progression, not as failure.</li>
+<li>Acknowledge life context. An adult with a demanding job, family, and limited time deserves efficiency and respect, not condescension.</li>
+</ul>
+<h1 class="doc-h1" id="s13">7. Older Adults (55+)</h1>
+<p>Older adults bring discipline and patience but may have reduced mobility, slower recovery, and heightened injury risk. Inclusion here means adapting pace, equipment, and expectations without reducing dignity.</p>
+<ul class="doc-list">
+<li>Generous equipment. Use boards with abundant volume (8’9’+), stable platforms, and easy entry.</li>
+<li>Reduce explosive demands. Modify paddling intensity, reduce pop-up speed expectations, allow alternative entry methods.</li>
+<li>Longer warm-ups, shorter water time. Protect joints and manage fatigue proactively.</li>
+<li>Celebrate consistency over intensity. A reliable, controlled ride is more valuable than an explosive attempt.</li>
+<li>Exit and entry assistance. Help with carrying boards, navigating rocks, and entering/exiting the water when needed.</li>
+</ul>
+<h1 class="doc-h1" id="s14">8. Students with Fear or Low Confidence</h1>
+<p>Fear is not weakness. It is information. The inclusive coach uses fear as a diagnostic signal, not a reason to push harder.</p>
+<ul class="doc-list">
+<li>Start smaller. Controlled whitewater, shallower zone, more stable board, closer coach position.</li>
+<li>Create one small win. Before adding challenge, establish one moment of success the student can feel.</li>
+<li>Communicate safety explicitly. “I am here. I can see you. You are safe.” This is not softness — it is professional regulation.</li>
+<li>Allow opt-out without shame. If the student cannot continue, respect it. Return to land drills or theory. The session is not failed — it is adapted.</li>
+</ul>
+<h1 class="doc-h1" id="s15">PART III — PHYSICAL DIVERSITY</h1>
+<h1 class="doc-h1" id="s16">9. Body Size and Weight</h1>
+<p>Every body surfs. Body size is not a limitation — it is a variable the coach adapts to through equipment selection, wave choice, and progression pacing.</p>
+<h2 class="doc-h2" id="s17">9.1 Indicative Board Dimensions by Weight</h2>
+<h2 class="doc-h2" id="s18">9.2 Diagnostic Rule</h2>
+<h1 class="doc-h1" id="s19">10. Mobility, Strength, and Physical Conditions</h1>
+<p>Students with reduced mobility, lower strength, chronic conditions, or physical differences require adapted delivery without being excluded from the method.</p>
+<ul class="doc-list">
+<li>Increase flotation and stability. Larger boards, softer platforms, more buoyancy.</li>
+<li>Modify pop-up mechanics. Allow knee-first pop-up, assisted standing, or modified stance width if needed.</li>
+<li>Adapt entry and exit. Carry assistance, shallow-water start, seated entry if necessary.</li>
+<li>Adjust session duration. Shorter water time, more frequent rest, land-based alternatives integrated.</li>
+<li>Communicate with the student. Ask what works, what hurts, what they need. The student is the expert on their own body.</li>
+</ul>
+<h1 class="doc-h1" id="s20">PART IV — LEARNING CHANNELS AND COMMUNICATION</h1>
+<h1 class="doc-h1" id="s21">11. Adaptation by Learning Channel</h1>
+<p>Not every student enters through the same door. The inclusive coach uses multiple channels until the skill becomes understandable.</p>
+<h1 class="doc-h1" id="s22">12. Language Barriers and Multilingual Coaching</h1>
+<p>Surfing is global. Students arrive speaking English, Spanish, Portuguese, French, German, Japanese, Chinese, and dozens of other languages. Language is never a reason to exclude. It is a variable to adapt to.</p>
+<h2 class="doc-h2" id="s23">12.1 Universal Coaching Tools</h2>
+<ul class="doc-list">
+<li>Demonstration first. Show the skill before explaining it. The body is a universal language.</li>
+<li>Gesture vocabulary. Develop a consistent set of hand signals and body gestures: point for direction, hands for stop, thumbs for confirmation.</li>
+<li>Simple command set. Reduce verbal instructions to 5–10 essential words in the student’s language. Learn: go, stop, stand, paddle, turn, good, again, slow, fast, careful.</li>
+<li>Visual aids. Draw in the sand. Use the board as a prop. Point at the ocean features you are explaining.</li>
+<li>Peer translation. If another student speaks both languages, use them as a bridge — but maintain coaching authority.</li>
+</ul>
+<h2 class="doc-h2" id="s24">12.2 Minimum Language Phrases</h2>
+<p>Every TSS coach operating in international environments should know the following phrases in at least English and Spanish, plus the primary language of their students:</p>
+<ul class="doc-list">
+<li>Are you okay? / ¿Estás bien?</li>
+<li>Stand up / Ponte de pie</li>
+<li>Paddle / Rema</li>
+<li>Stop / Para</li>
+<li>Come back / Regresa</li>
+<li>Turn / Gira</li>
+<li>Look where you want to go / Mira a donde quieres ir</li>
+<li>Good job / Muy bien</li>
+<li>Again / Otra vez</li>
+<li>Danger / Peligro</li>
+</ul>
+<h1 class="doc-h1" id="s25">PART V — EMOTIONAL REGULATION AND LANGUAGE</h1>
+<h1 class="doc-h1" id="s26">13. Inclusive Language</h1>
+<p>Inclusive language is not soft language. It is precise, respectful, and useful. The test is whether the student can act on it.</p>
+<ul class="doc-list">
+<li>Correct the action, not the person’s identity. “Your feet were too narrow” not “You’re bad at this.”</li>
+<li>Use observable markers: stance, gaze, timing, rhythm, support, line choice, board control.</li>
+<li>Avoid labels: bad, hopeless, difficult, lazy, untalented, too old, too big, too scared.</li>
+<li>Return agency to the student: “Try this entry,” “Simplify this version,” “Focus only on this cue.”</li>
+</ul>
+<h1 class="doc-h1" id="s27">14. Emotional Regulation Rules</h1>
+<h1 class="doc-h1" id="s28">15. Temperament Profiles</h1>
+<h2 class="doc-h2" id="s29">15.1 Serious or Rigid Learners</h2>
+<p>These students need order and precision to feel safe. Give them structure, criteria, and step-by-step logic.</p>
+<ul class="doc-list">
+<li>Define session objective and success criteria.</li>
+<li>Show sequence in clear order.</li>
+<li>Use precise words and observable markers.</li>
+<li>Measure progress in behaviors, not vague impressions.</li>
+</ul>
+<h2 class="doc-h2" id="s30">15.2 Expressive or Playful Learners</h2>
+<p>These students learn fast through energy and challenge, but they disperse easily. Keep the mission fun but bounded.</p>
+<ul class="doc-list">
+<li>Use missions, challenges, and dynamic transitions.</li>
+<li>Close each block with one concrete takeaway.</li>
+<li>Return repeatedly to the sequence so energy does not replace structure.</li>
+</ul>
+<h2 class="doc-h2" id="s31">15.3 Anxious or Avoidant Learners</h2>
+<p>These students may not show fear visibly but will avoid challenge, minimize participation, or quietly disengage. The coach must watch for withdrawal, not just panic.</p>
+<ul class="doc-list">
+<li>Create safety through predictability — explain what will happen before it happens.</li>
+<li>Offer choices within the structure: “Do you want to try this wave or wait for the next one?”</li>
+<li>Build trust incrementally. Do not force breakthroughs.</li>
+</ul>
+<h1 class="doc-h1" id="s32">PART VI — INCLUSIVE SESSION ARCHITECTURE</h1>
+<h1 class="doc-h1" id="s33">16. Session Structure for Inclusion</h1>
+<p>An inclusive session is not improvised. It is structured in a way that allows adaptation without losing the thread of the method.</p>
+<ul class="doc-list">
+<li>1. Entry: Read energy, prior experience, confidence, physical state, language, and expectation.</li>
+<li>2. Mission: Define one clear and achievable objective. Adjust complexity to the weakest student in the group.</li>
+<li>3. Demonstration: Show the skill simply and in the correct order. Use multiple channels.</li>
+<li>4. Progression: Move from stable to dynamic, from basic to more specific. Pause to check understanding.</li>
+<li>5. Feedback: Short, actionable, and timed well. Never more than one correction at a time.</li>
+<li>6. Closure: Summarize gain, next step, and focus for the next session.</li>
+</ul>
+<h1 class="doc-h1" id="s34">PART VII — INCLUSIVE COACH CERTIFICATION</h1>
+<h1 class="doc-h1" id="s35">17. Certification Framework</h1>
+<p>This certification operates as a complementary layer inside the TSS ecosystem. It does not certify political language or generic sensitivity; it certifies the coach’s ability to adapt the method to diverse learners without losing its structure.</p>
+<h2 class="doc-h2" id="s36">17.1 Core Competencies</h2>
+<ul class="doc-list">
+<li>Understand the TSS definition of inclusion and its limits.</li>
+<li>Adapt one mission for different learner profiles without losing sequence.</li>
+<li>Use precise, respectful, and actionable language.</li>
+<li>Detect barriers that are technical, emotional, communicational, environmental, or equipment-based.</li>
+<li>Design and lead an inclusive session with real progression.</li>
+<li>Coach across language barriers using demonstration, gesture, and universal cues.</li>
+<li>Select equipment appropriate to the student’s body, not the coach’s preference.</li>
+</ul>
+<h2 class="doc-h2" id="s37">17.2 Certification Path</h2>
+<h2 class="doc-h2" id="s38">17.3 Evaluation Rubric</h2>
+<h1 class="doc-h1" id="s39">18. Case Scenarios for Certification</h1>
+<h1 class="doc-h1" id="s40">19. Limits of This Canon</h1>
+<p>This canon does not replace safety protocols, first aid, medical judgment, or mental health intervention. It is a teaching framework.</p>
+<p>Inclusion here means broader access to learning — not therapeutic intervention. If a student’s needs exceed the coach’s preparation, the coach refers to a specialist. Knowing the limit of your competence is part of professional coaching.</p>
+<h1 class="doc-h1" id="s41">20. Operational Annex Framework</h1>
+<p>The canon is operationally complete when the following attachments exist:</p>
+<ul class="doc-list">
+<li>Inclusive Session Planning Template</li>
+<li>Learner Profile Intake Form (expanded with language, physical conditions, learning preferences)</li>
+<li>Equipment Selection Guide by Profile</li>
+<li>Multilingual Coaching Phrase Card (minimum 4 languages)</li>
+<li>Inclusive Coach Evaluation Checklist</li>
+<li>Case Scenario Bank for Certification</li>
+</ul>
+<h1 class="doc-h1" id="s42">THE SURF SEQUENCE®</h1>
+<p class="doc-bold">INCLUSION CANON v1.0</p>
+<p>Marcelo Castellanos</p>
+<p>ISA Olympic Expert Coach | Founder, The Surf Sequence®</p>
+<p>Enkrateia SA de CV — All Rights Reserved</p>
+<p>Version 1.0 — March 2026</p>
+<p>One method. Every surfer. No exceptions.</p>
+<div class="table-wrap"><table>
+<tr><th>Core Premise
+Inclusion in The Surf Sequence® does not mean lowering standards. It means preserving the sequence while adapting the delivery. The sequence remains ordered; what changes is the way the coach opens the door for the student to enter it.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Doctrinal Authority
+This document derives from and must align with the TSS Core Canon (Tier 1). If a conflict exists between any derivative and this Inclusion Canon, this canon prevails. If a conflict exists between this canon and the Core Canon, the Core Canon prevails. This canon complements but does not replace the Safety Canon.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>The Test
+Can this student access the sequence? If not, is the barrier in the student or in how the coach is delivering? Inclusion means fixing the delivery before blaming the student.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Rule
+If fear is high, reduce complexity before reducing dignity. Never shame fear. Regulate it.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Governing Principle
+The equipment must adapt to the student, not the student to the equipment. A poor board choice can make a well-designed session feel impossible. Many apparent technique problems are actually equipment decisions.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Weight</th><th>Board Length</th><th>Board Type</th><th>Coach Note</th></tr>
+<tr><td>20–35 kg</td><td>6’0”–6’6”</td><td>Softboard</td><td>Keep weight low and platform friendly.</td></tr>
+<tr><td>35–50 kg</td><td>6’6”–7’0”</td><td>Softboard / mini mal</td><td>Prioritize easy carry and early glide.</td></tr>
+<tr><td>50–65 kg</td><td>7’0”–7’6”</td><td>Softboard / funboard</td><td>Stable enough for repetition and confidence.</td></tr>
+<tr><td>65–80 kg</td><td>7’6”–8’0”</td><td>Funboard / mini mal</td><td>Good general range for novice adults.</td></tr>
+<tr><td>80–95 kg</td><td>8’0”–8’6”</td><td>Mini mal / longboard</td><td>Extra margin helps takeoff consistency.</td></tr>
+<tr><td>95+ kg</td><td>8’6”–9’0”</td><td>Longboard / high-vol soft</td><td>Do not under-volume the student.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Equipment Before Technique
+If the student repeatedly fails the takeoff, do not assume the problem is technical first. Review in this order: board size → volume → paddling position → wave choice → then execution. Many apparent technique problems are actually equipment decisions.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Limit
+This canon does not replace medical clearance. If a student has a condition that requires medical approval before physical activity in the ocean, that clearance must be obtained before the session. The coach adapts delivery; the coach does not diagnose medical conditions.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Channel</th><th>Student Needs</th><th>Coach Response</th><th>Risk if Ignored</th></tr>
+<tr><td>Visual</td><td>See clean form and sequence</td><td>Demonstrate clearly; use landmarks, gestures, before/after</td><td>Student hears words but cannot build movement map</td></tr>
+<tr><td>Kinesthetic</td><td>Feel body position and timing</td><td>Body prep, dry-land reps, assisted setup, short repetitions</td><td>Student understands but cannot embody it</td></tr>
+<tr><td>Verbal / Analytical</td><td>Logic, labels, and criteria</td><td>Explain purpose, order, and key cues simply</td><td>Student feels lost or unconvinced</td></tr>
+<tr><td>Relational / Emotional</td><td>Trust and psychological safety</td><td>Regulate tone, pace, difficulty; create small wins</td><td>Student shuts down or resists feedback</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Multi-Channel Rule
+When a student does not respond to one channel, switch. Demonstrate (visual), then guide physically (kinesthetic), then explain why (verbal), then regulate the emotional space (relational). The TSS method Explain → Demonstrate → Participate → Feedback naturally supports multi-channel delivery.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>If fear is high
+Reduce complexity before reducing dignity. Start with a smaller zone, more stable board, and one achievable objective.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>If frustration rises
+Remove variables and recover one small success. Simplify the drill. Return to something the student can do well.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>If confidence is inflated
+Return to criteria and execution. The method does not reward ambition without control. Challenge the student within the sequence.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>If the student blocks
+Switch channel: demonstration, drill, partner support, pause, or simpler mission. If the block persists, adapt the session without shame.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Inclusive Design Principle
+The session is designed for the student who needs the most support. The student who needs less support will still progress — they just move faster within the same structure. Designing for the most capable and hoping the rest catch up is the opposite of inclusion.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Stage</th><th>Focus</th><th>Evidence</th><th>Result</th></tr>
+<tr><td>Stage 1</td><td>Manual study and conceptual understanding</td><td>Quiz, oral review, or guided discussion</td><td>Eligible for practical evaluation</td></tr>
+<tr><td>Stage 2</td><td>Application in dry-land and micro-coaching</td><td>Short practical demos using different profiles</td><td>Eligible for live observation</td></tr>
+<tr><td>Stage 3</td><td>Live session adaptation</td><td>Observed coaching with real constraints</td><td>Certified or sent to remediation</td></tr>
+<tr><td>Stage 4</td><td>Renewal / quality control</td><td>Periodic review, shadowing, or video audit</td><td>Certification maintained</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Criterion</th><th>1 — Weak</th><th>2 — Basic</th><th>3 — Solid</th><th>4 — Strong</th></tr>
+<tr><td>Reading the student</td><td>Misses obvious barriers</td><td>Sees only some barriers</td><td>Identifies most relevant barriers</td><td>Diagnoses barrier quickly and accurately</td></tr>
+<tr><td>Communication</td><td>Talks too much or vaguely</td><td>Occasional adjustment</td><td>Usually clear and useful</td><td>Consistently precise and calibrated</td></tr>
+<tr><td>Progression adapt.</td><td>Random or no changes</td><td>Some adaptation without logic</td><td>Adjusts with reasonable order</td><td>Adjusts seamlessly within method</td></tr>
+<tr><td>Equipment choice</td><td>Board blocks learning</td><td>Acceptable but generic</td><td>Supports learning mostly</td><td>Clearly accelerates access</td></tr>
+<tr><td>Emotional regulation</td><td>Escalates stress or shame</td><td>Avoids damage but lacks tools</td><td>Handles pressure competently</td><td>Regulates with mastery</td></tr>
+<tr><td>Language adaptation</td><td>Relies only on verbal</td><td>Uses some gestures</td><td>Multi-channel delivery</td><td>Effective across languages</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Case A — Fearful Adult Beginner
+An adult student freezes after two failed takeoffs. The coach must reduce variables, choose a more forgiving board if needed, and create one achievable success before adding complexity. Evaluate: did the coach read the emotional block? Did they adapt equipment? Did they restore dignity?</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Case B — High-Energy Child
+A child loses structure when the session becomes too exciting. The coach must preserve fun while regaining sequence and safety. Evaluate: did the coach use games with structure? Did they maintain safety boundaries?</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Case C — Analytical Learner
+A student demands reasons for everything and tightens under pressure. The coach must provide logic without drowning the session in theory. Evaluate: did the coach balance explanation with execution?</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Case D — Equipment Mismatch
+A novice keeps failing despite repeated correction. The coach must evaluate whether the board itself is the barrier. Evaluate: did the coach check equipment before blaming technique?</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Case E — Language Barrier
+A Japanese tourist speaks no English or Spanish. The coach must deliver a full beginner session using demonstration, gesture, sand drawing, and physical guidance. Evaluate: did the student complete the session with a positive experience and real learning?</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Case F — Larger Body Student
+A 110kg adult struggles with a standard 7’6” funboard. The coach must recognize that the board is under-volumed, switch to a high-volume longboard, adjust paddling expectations, and celebrate the student’s effort. Evaluate: did the coach adapt without making the student feel different?</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Case G — Older Adult with Limited Mobility
+A 62-year-old with knee issues wants to learn. The coach must modify pop-up mechanics, provide entry/exit assistance, use a generous board, and design a session focused on wave riding joy rather than athletic performance. Evaluate: did the student feel respected and successful?</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Hard Limits
+The coach does not diagnose medical, psychological, or neurological conditions. The coach does not override medical clearance requirements. The coach does not continue a session that has become unsafe. Inclusion never overrides the Safety Canon.</th></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Inclusion Canon v1.0 — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

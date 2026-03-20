@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recovery Science Training — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FF6B6B;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #3D1B1B 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">💤</span>
+    <div>
+      <div class="top-bar__title">Recovery Science Training</div>
+      <div class="top-bar__sub">TSS Masterclass — 17 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button><button class="nav-dot" onclick="goSlide(14)" title="Slide 14">14</button><button class="nav-dot" onclick="goSlide(15)" title="Slide 15">15</button><button class="nav-dot" onclick="goSlide(16)" title="Slide 16">16</button><button class="nav-dot" onclick="goSlide(17)" title="Slide 17">17</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 17</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">THE SURF SEQUENCE® — ONE WAVE</span></div>
+</div>
+<h2 class="slide-hero">The Science</h2>
+<h2 class="slide-hero">of Recovery</h2>
+<h3 class="slide-heading">You don’t get better during the session.</h3>
+<h3 class="slide-heading">You get better between sessions.</h3>
+<ul class="slide-list">
+<li>Coach &amp; Student Theory Module — The Surf Sequence® — Marcelo Castellanos</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 17</span>
+    <h2 class="slide-hero">Training breaks</h2>
+<h2 class="slide-hero">you down.</h2>
+<h2 class="slide-hero">Recovery builds</h2>
+<h2 class="slide-hero">you up.</h2>
+<p class="body-text">Every surf session creates micro-damage in muscles, depletes energy stores, fatigues the nervous system, and accumulates cortisol. Without proper recovery, the next session starts from a deficit. Over time: overtraining, injury, stagnation. Recovery is not optional. It is where adaptation happens.</p>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 17</span>
+    <h3 class="slide-heading">THE 7 PILLARS OF RECOVERY</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">SLEEP</span></div>
+</div>
+<ul class="slide-list">
+<li>80% of recovery happens here</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">COLD EXPOSURE</span></div>
+</div>
+<ul class="slide-list">
+<li>Reduce inflammation, boost dopamine, reset nervous system</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">HYDRATION</span></div>
+</div>
+<ul class="slide-list">
+<li>Replace what you lost — more than just water</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">NUTRITION TIMING</span></div>
+</div>
+<ul class="slide-list">
+<li>Feed the recovery window within 30–60 minutes</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">NERVOUS SYSTEM RESET</span></div>
+</div>
+<ul class="slide-list">
+<li>Shift from fight-or-flight to rest-and-repair</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">SOFT TISSUE WORK</span></div>
+</div>
+<ul class="slide-list">
+<li>Fascia release, foam rolling, massage, stretching</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">ACTIVE RECOVERY</span></div>
+</div>
+<ul class="slide-list">
+<li>Light movement that accelerates blood flow and repair</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 17</span>
+    <h3 class="slide-heading">PILLAR 1 — SLEEP</h3>
+<p class="body-text">Sleep is not rest. Sleep is active repair and learning consolidation.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Growth hormone</span></div>
+</div>
+<ul class="slide-list">
+<li>80% of HGH released during deep sleep. No deep sleep = no muscle repair.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Motor learning</span></div>
+</div>
+<ul class="slide-list">
+<li>Brain replays and refines motor patterns from the day. Your bottom turn improves while you sleep.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Reaction time</span></div>
+</div>
+<ul class="slide-list">
+<li>One poor night = 300% slower reactions. Equivalent to being legally drunk (Walker, 2017).</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Immune function</span></div>
+</div>
+<ul class="slide-list">
+<li>Sleep deprivation reduces immune function by up to 70% (Besedovsky et al., 2019).</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Emotional regulation</span></div>
+</div>
+<ul class="slide-list">
+<li>Poor sleep increases amygdala reactivity 60%. More anxious, less focused, worse decisions.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 17</span>
+    <h3 class="slide-heading">SLEEP PROTOCOL — HUBERMAN + WALKER</h3>
+<h4 class="slide-sub">7–9 hours</h4>
+<ul class="slide-list">
+<li>Non-negotiable. Athletes sleeping &lt;7hrs are 1.7x more injury-prone (Walker, 2017).</li>
+</ul>
+<h4 class="slide-sub">Sunlight AM</h4>
+<ul class="slide-list">
+<li>Get 10 min morning sunlight within 30 min of waking. Sets circadian clock. (Huberman #1 tip).</li>
+</ul>
+<h4 class="slide-sub">Cool room 18–20°C</h4>
+<ul class="slide-list">
+<li>Core temp drop triggers melatonin. Cool room = faster sleep onset.</li>
+</ul>
+<h4 class="slide-sub">No screens 60 min</h4>
+<ul class="slide-list">
+<li>Blue light suppresses melatonin 50%. Read, stretch, breathe, or journal instead.</li>
+</ul>
+<h4 class="slide-sub">Same time ±30 min</h4>
+<ul class="slide-list">
+<li>Consistent bed/wake time — even weekends. Circadian rhythm is the master clock.</li>
+</ul>
+<h4 class="slide-sub">Nasal tape at night</h4>
+<ul class="slide-list">
+<li>Nestor: nasal breathing during sleep eliminates snoring, improves O₂ absorption.</li>
+</ul>
+<h4 class="slide-sub">4-7-8 in bed</h4>
+<ul class="slide-list">
+<li>Parasympathetic activation. 3–4 cycles. You’ll be asleep before cycle 4.</li>
+</ul>
+<h4 class="slide-sub">No caffeine after 2 PM</h4>
+<ul class="slide-list">
+<li>Caffeine half-life is 5–6 hours. Afternoon coffee fragments deep sleep.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 17</span>
+    <h3 class="slide-heading">PILLAR 2 — COLD EXPOSURE</h3>
+<p class="body-text">55 RCTs confirm: cold water immersion reduces muscle damage, soreness, and inflammation (Wang et al., 2025).</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Reduces DOMS</span></div>
+</div>
+<ul class="slide-list">
+<li>Delayed-onset muscle soreness significantly lower within 24–48 hours post-CWI.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Lowers CK levels</span></div>
+</div>
+<ul class="slide-list">
+<li>Creatine kinase (muscle damage marker) drops with 10–15 min at 11–15°C.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Dopamine +250%</span></div>
+</div>
+<ul class="slide-list">
+<li>Immersion at 14°C for extended duration increased dopamine 250% lasting 2–3 hours (Srámek et al., 2000).</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Norepinephrine +530%</span></div>
+</div>
+<ul class="slide-list">
+<li>Massive norepinephrine release — improves focus, mood, alertness for hours after.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Activates brown fat</span></div>
+</div>
+<ul class="slide-list">
+<li>Cold triggers brown adipose tissue thermogenesis. Improves insulin sensitivity and metabolic health.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Mental resilience</span></div>
+</div>
+<ul class="slide-list">
+<li>Voluntary discomfort trains the prefrontal cortex to override the amygdala. Builds psychological toughness.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 17</span>
+    <h3 class="slide-heading">COLD EXPOSURE PROTOCOL — HUBERMAN</h3>
+<h4 class="slide-sub">Temperature</h4>
+<ul class="slide-list">
+<li>11–15°C (52–59°F). Uncomfortably cold but safe. Not extreme.</li>
+</ul>
+<h4 class="slide-sub">Duration</h4>
+<ul class="slide-list">
+<li>10–15 min per session. Or shorter at colder temps.</li>
+</ul>
+<h4 class="slide-sub">Weekly total</h4>
+<ul class="slide-list">
+<li>11 min minimum across 2–4 sessions (Huberman threshold).</li>
+</ul>
+<h4 class="slide-sub">Depth</h4>
+<ul class="slide-list">
+<li>Up to neck. Hands + feet submerged. Cold showers = second best.</li>
+</ul>
+<h4 class="slide-sub">Breathing</h4>
+<ul class="slide-list">
+<li>Slow nasal. Control the gasp. Coherent 5.5–5.5. Do NOT hyperventilate.</li>
+</ul>
+<h4 class="slide-sub">Timing</h4>
+<ul class="slide-list">
+<li>6–8+ hours AFTER strength training. Fine immediately after surf technique sessions.</li>
+</ul>
+<h4 class="slide-sub">After, not before bed</h4>
+<ul class="slide-list">
+<li>Cold raises core temp for hours. Do it morning/afternoon, not before sleep.</li>
+</ul>
+<h4 class="slide-sub">Progression</h4>
+<ul class="slide-list">
+<li>Start warmer (15°C), shorter (2 min). Build tolerance over weeks. Like training.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 17</span>
+    <h3 class="slide-heading">PILLAR 3 — HYDRATION</h3>
+<h3 class="slide-heading">2% dehydration = 20% cognitive decline + 25% physical performance drop.</h3>
+<ul class="slide-list">
+<li>Wittbrodt &amp; Millard-Stafford (2018). You don’t feel thirsty in the ocean — that’s the trap.</li>
+</ul>
+<h4 class="slide-sub">Before session</h4>
+<ul class="slide-list">
+<li>500ml water 30–45 min before. Add a pinch of sea salt for electrolytes.</li>
+</ul>
+<h4 class="slide-sub">During (if &gt;90 min)</h4>
+<ul class="slide-list">
+<li>If accessible, sip water between sets. Coconut water works well in tropical conditions.</li>
+</ul>
+<h4 class="slide-sub">After session</h4>
+<ul class="slide-list">
+<li>750ml–1L within first hour. Replace 150% of fluid lost (Sawka et al., 2007).</li>
+</ul>
+<h4 class="slide-sub">Electrolytes</h4>
+<ul class="slide-list">
+<li>Sodium, potassium, magnesium. Salt in water or electrolyte tabs. Not just plain water.</li>
+</ul>
+<h4 class="slide-sub">Urine check</h4>
+<ul class="slide-list">
+<li>Pale yellow = hydrated. Dark = drink now. Clear = you may be over-hydrating.</li>
+</ul>
+<h4 class="slide-sub">Alcohol warning</h4>
+<ul class="slide-list">
+<li>Alcohol is a diuretic and suppresses HGH by up to 70%. One drink = measurably worse recovery.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 17</span>
+    <h3 class="slide-heading">PILLAR 4 — NUTRITION TIMING</h3>
+<p class="body-text">The 30–60 minute window after exercise is when your body is most receptive to nutrients.</p>
+<h4 class="slide-sub">Within 30 min</h4>
+<ul class="slide-list">
+<li>Protein + carbs. 20–40g protein + fast carbs. Smoothie, eggs + toast, protein shake + banana.</li>
+</ul>
+<h4 class="slide-sub">Protein</h4>
+<ul class="slide-list">
+<li>Repairs muscle. Target 1.6–2.2g per kg bodyweight per day for athletes (Morton et al., 2018).</li>
+</ul>
+<h4 class="slide-sub">Carbohydrates</h4>
+<ul class="slide-list">
+<li>Replenish glycogen. Essential after high-intensity sessions. Rice, oats, fruit, sweet potato.</li>
+</ul>
+<h4 class="slide-sub">Anti-inflammatory foods</h4>
+<ul class="slide-list">
+<li>Omega-3 (fish, avocado), turmeric, ginger, berries. Reduce systemic inflammation naturally.</li>
+</ul>
+<h4 class="slide-sub">Avoid post-session</h4>
+<ul class="slide-list">
+<li>Alcohol, excessive sugar, heavy fried food. These increase inflammation and delay repair.</li>
+</ul>
+<h4 class="slide-sub">Pre-session (2hrs before)</h4>
+<ul class="slide-list">
+<li>Complex carbs + moderate protein. Oatmeal, toast + peanut butter, rice + chicken.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 17</span>
+    <h3 class="slide-heading">PILLAR 5 — NERVOUS SYSTEM RESET</h3>
+<p class="body-text">After intense sessions, your nervous system stays in sympathetic mode. You must consciously shift it back.</p>
+<h4 class="slide-sub">Coherent breathing</h4>
+<ul class="slide-list">
+<li>5.5 sec in, 5.5 sec out. 5 minutes post-session. Activates vagus nerve. Shifts to parasympathetic.</li>
+</ul>
+<h4 class="slide-sub">Physiological sigh</h4>
+<ul class="slide-list">
+<li>Double inhale through nose + long exhale through mouth. The fastest single-breath reset (Huberman).</li>
+</ul>
+<h4 class="slide-sub">Legs up the wall</h4>
+<ul class="slide-list">
+<li>Lie on back, legs against wall. 5–10 min. Reduces cortisol, lowers heart rate, promotes venous return.</li>
+</ul>
+<h4 class="slide-sub">Non-Sleep Deep Rest (NSDR)</h4>
+<ul class="slide-list">
+<li>Huberman’s #1 recommendation. 10–20 min guided body scan while awake. Restores dopamine, reduces fatigue.</li>
+</ul>
+<h4 class="slide-sub">Yoga Nidra</h4>
+<ul class="slide-list">
+<li>Ancient version of NSDR. 20–30 min guided practice. Can replace 2 hours of lost sleep quality.</li>
+</ul>
+<h4 class="slide-sub">Sunlight exposure</h4>
+<ul class="slide-list">
+<li>10 min afternoon sunlight. Sets circadian rhythm for better sleep tonight. Cortisol-lowering.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 17</span>
+    <h3 class="slide-heading">PILLAR 6 — SOFT TISSUE WORK</h3>
+<p class="body-text">Fascia, muscles, and connective tissue need manual attention to maintain range of motion and prevent injury.</p>
+<h4 class="slide-sub">Foam rolling</h4>
+<ul class="slide-list">
+<li>Self-myofascial release. 1–2 min per muscle group. Focus on: quads, IT band, lats, thoracic spine. Reduces DOMS by 30% (Pearcey et al., 2015).</li>
+</ul>
+<h4 class="slide-sub">Massage</h4>
+<ul class="slide-list">
+<li>Professional massage 1–2x/month if accessible. Or partner-assisted post-session. Reduces cortisol, increases serotonin.</li>
+</ul>
+<h4 class="slide-sub">Stretching (post only)</h4>
+<ul class="slide-list">
+<li>Static stretching AFTER sessions only. Never before intense activity. 15–30 sec holds. Focus on shoulders, hips, ankles.</li>
+</ul>
+<h4 class="slide-sub">Lacrosse ball work</h4>
+<ul class="slide-list">
+<li>Targeted pressure on trigger points: feet (plantar fascia), glutes, shoulder blades. 60–90 sec per spot.</li>
+</ul>
+<h4 class="slide-sub">Fascia hydration</h4>
+<ul class="slide-list">
+<li>Fascia needs water to stay supple. Combine hydration + movement + rolling for best results.</li>
+</ul>
+<h4 class="slide-sub">Surfer priority zones</h4>
+<ul class="slide-list">
+<li>Shoulders (paddling), lower back (pop-up/rotation), hips (stance), ankles (board control), neck (looking up while paddling).</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 17</span>
+    <h3 class="slide-heading">PILLAR 7 — ACTIVE RECOVERY</h3>
+<p class="body-text">Light movement on rest days accelerates blood flow, clears metabolic waste, and maintains mobility without adding stress.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Walk (20–30 min)</span></div>
+</div>
+<ul class="slide-list">
+<li>Simplest recovery tool. Promotes blood flow, reduces cortisol, improves mood. Beach walk = bonus.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Light swimming</span></div>
+</div>
+<ul class="slide-list">
+<li>Low-impact, full-body movement. 15–20 min easy swim. Great for surfers — already in the ocean.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Yoga</span></div>
+</div>
+<ul class="slide-list">
+<li>Combines mobility, breathing, and nervous system reset. 20–30 min flow. Huberman: yoga is underrated for athletes.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Skateboarding (easy)</span></div>
+</div>
+<ul class="slide-list">
+<li>Balance and proprioception maintenance without water impact. Used by Sofía Mulanovich for active rest.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Mobility flow</span></div>
+</div>
+<ul class="slide-list">
+<li>Dynamic stretching circuit: hip circles, thoracic rotations, shoulder dislocates, ankle circles. 10 min.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">Play</span></div>
+</div>
+<ul class="slide-list">
+<li>Non-structured movement: throw a frisbee, play with your kids, dance. Nieri: play reduces psychological burden.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 17</span>
+    <h3 class="slide-heading">YOUR RECOVERY DAY — TIMELINE</h3>
+<h4 class="slide-sub">6:30 AM</h4>
+<ul class="slide-list">
+<li>Morning sunlight 10 min. Hydrate 500ml. Nasal breathe.</li>
+</ul>
+<h4 class="slide-sub">7:00 AM</h4>
+<ul class="slide-list">
+<li>Pre-session meal: complex carbs + protein. Warm-up with mobility flow.</li>
+</ul>
+<h4 class="slide-sub">8:00–10:00</h4>
+<h4 class="slide-sub">SURF SESSION</h4>
+<h4 class="slide-sub">10:15 AM</h4>
+<ul class="slide-list">
+<li>Post-session: hydrate 750ml + electrolytes. Protein + carbs within 30 min.</li>
+</ul>
+<h4 class="slide-sub">10:30 AM</h4>
+<ul class="slide-list">
+<li>5 min coherent breathing. Foam roll priority zones (shoulders, hips, back).</li>
+</ul>
+<h4 class="slide-sub">12:00 PM</h4>
+<ul class="slide-list">
+<li>Balanced lunch. Anti-inflammatory foods. Last caffeine of the day.</li>
+</ul>
+<h4 class="slide-sub">2:00 PM</h4>
+<ul class="slide-list">
+<li>NSDR / Yoga Nidra 20 min. Or nap if needed (max 30 min).</li>
+</ul>
+<h4 class="slide-sub">4:00 PM</h4>
+<ul class="slide-list">
+<li>Active recovery: walk, light swim, yoga, or play. 20–30 min.</li>
+</ul>
+<h4 class="slide-sub">5:00 PM</h4>
+<ul class="slide-list">
+<li>Cold exposure if scheduled (11–15°C, 10–15 min). Or contrast shower.</li>
+</ul>
+<h4 class="slide-sub">8:30 PM</h4>
+<ul class="slide-list">
+<li>Screens off. Static stretching or reading. 4-7-8 breathing.</li>
+</ul>
+<h4 class="slide-sub">9:30 PM</h4>
+<ul class="slide-list">
+<li>Bed. Nasal tape. Cool room. Consistent time.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="slide-badge">14 / 17</span>
+    <h3 class="slide-heading">RECOVERY DO vs DON’T</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">DO</span></div>
+</div>
+<ul class="slide-list">
+<li>Prioritize 8 hours of sleep above everything</li>
+<li>Hydrate before, during, and after sessions</li>
+<li>Eat protein + carbs within 30 min post-session</li>
+<li>Use cold exposure strategically (not randomly)</li>
+<li>Practice NSDR or Yoga Nidra on rest days</li>
+<li>Foam roll priority zones 3–4x per week</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">DON’T</span></div>
+</div>
+<ul class="slide-list">
+<li>Sacrifice sleep for early sessions repeatedly</li>
+<li>Drink alcohol after training (− 70% HGH)</li>
+<li>Skip meals after intense sessions</li>
+<li>Ice bath immediately after strength training</li>
+<li>Scroll phone in bed (melatonin − 50%)</li>
+<li>Train hard on consecutive days without recovery</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="slide-badge">15 / 17</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF6B6B">RECOVERY MODULE</span></div>
+</div>
+<h3 class="slide-heading">Guided Audio / Video</h3>
+<ul class="slide-list">
+<li>REC-01 — Post-Session Recovery Breathing (5 min)</li>
+<li>REC-02 — NSDR / Yoga Nidra for Athletes (20 min)</li>
+<li>REC-03 — Foam Rolling Routine for Surfers (10 min)</li>
+<li>REC-04 — Evening Wind-Down Protocol (8 min)</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s16">
+  <div class="slide-inner">
+    <span class="slide-badge">16 / 17</span>
+    <h2 class="slide-hero">In TSS, recovery is</h2>
+<h2 class="slide-hero">not a day off.</h2>
+<h2 class="slide-hero">It is Pillar FÍS.</h2>
+<p class="body-text">The Physical Pillar (FÍS) includes Endurance, Strength, Proprioception — and Recovery. Recovery is the fourth component because without it, the other three degrade.</p>
+<p class="body-text">The Safety Canon requires coaches to monitor fatigue and adapt sessions accordingly. The Adaptation &amp; Fatigue protocol (Safety Canon Part V) connects directly to recovery: if the student is not recovered, the session must adjust. Recovery is a coach responsibility, not just a student choice.</p>
+<p class="body-text">The TSS Brain App (P5 Session Flow) will track session load, subjective fatigue, and recovery indicators — making recovery data-driven, not guesswork.</p>
+  </div>
+</section>
+<section class="slide" id="s17">
+  <div class="slide-inner">
+    <span class="slide-badge">17 / 17</span>
+    <h2 class="slide-hero">The best surfers</h2>
+<h2 class="slide-hero">in the world</h2>
+<h2 class="slide-hero">recover harder</h2>
+<h2 class="slide-hero">than they train.</h2>
+<h2 class="slide-hero">Respect the process.</h2>
+<ul class="slide-list">
+<li>THE SURF SEQUENCE® — ONE WAVE — Recovery Module — Huberman · Walker · Nestor · Nieri — Enkrateia SA de CV</li>
+</ul>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Recovery Science Training — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

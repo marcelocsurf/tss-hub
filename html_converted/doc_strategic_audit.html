@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Audit — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#5AC3E7;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">📊</span>
+    <div>
+      <div class="top-bar__title">Strategic Audit</div>
+      <div class="top-bar__sub">The Surf Sequence® — AUDIT</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">AUDIT</span>
+    <span>9,230 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">AUDITORÍA ESTRATÉGICA COMPLETA: THE SURF SEQUENCE® (TSS)</a><a href="#s2">Sistema Integral de Educación en Surf</a><a href="#s3">ÍNDICE EJECUTIVO</a><a href="#s4">FASE 1: AUDITORÍA ESTRATÉGICA</a><a href="#s5">FASE 2: PROPUESTA DE ESTRUCTURA MAESTRA</a><a href="#s6">FASE 3: INVENTARIO TECNOLÓGICO DETALLADO</a><a href="#s7">FASE 4: MAPA DEL ECOSISTEMA (Duros/Blandos/Informativos)</a><a href="#s8">FASE 5: ANÁLISIS DE BRECHAS Y PRIORIDADES</a><a href="#s9">FASE 6: MODELO DE NEGOCIO PARA PURO SURF</a><a href="#s10">FASE 7: SEPARACIÓN DE ROLES Y GOBERNANZA</a><a href="#s11">FASE 8: ESTRATEGIA NARRATIVA PARA LA PRESENTACIÓN</a><a href="#s12">CONCLUSIÓN</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">AUDITORÍA ESTRATÉGICA COMPLETA: THE SURF SEQUENCE® (TSS)</h1>
+<h2 class="doc-h2" id="s2">Sistema Integral de Educación en Surf</h2>
+<p>**Documento de Estrategia para Junta Directiva de Puro Surf**</p>
+<p>**Fecha de Preparación:** 19 de marzo, 2026</p>
+<p>**Audiencia:** Socios estratégicos de Puro Surf</p>
+<p>**Idioma:** Español</p>
+<p>**Clasificación:** Confidencial - Uso interno de junta directiva</p>
+<p>---</p>
+<h2 class="doc-h2" id="s3">ÍNDICE EJECUTIVO</h2>
+<p>Este documento consolida el universo completo de The Surf Sequence® (TSS), el sistema integral de educación en surf diseñado por Marcelo Castellanos, experto olímpico de la ISA y arquitecto de sistemas. TSS representa la propiedad intelectual más avanzada en educación de surf a nivel mundial, actualmente en implementación estratégica en Puro Surf.</p>
+<p>**Estructura del documento:**</p>
+<p>1. Auditoría Estratégica Fase 1 (Inventario y Estado)</p>
+<p>2. Propuesta de Estructura Maestra Fase 2</p>
+<p>3. Inventario Tecnológico Detallado Fase 3</p>
+<p>4. Mapa del Ecosistema Fase 4 (Sistemas Duros, Blandos, Informativos)</p>
+<p>5. Análisis de Brechas y Prioridades Fase 5</p>
+<p>6. Modelo de Negocio para Puro Surf Fase 6</p>
+<p>7. Separación de Roles y Gobernanza Fase 7</p>
+<p>8. Estrategia Narrativa para Presentación Fase 8</p>
+<p>---</p>
+<h2 class="doc-h2" id="s4">FASE 1: AUDITORÍA ESTRATÉGICA</h2>
+<h3 class="doc-h3">1.1 Inventario Documental Completo</h3>
+<p>The Surf Sequence® comprende un universo documentado de más de 60 archivos organizados en 14 carpetas funcionales, representando el corpus doctrinal más completo jamás compilado en educación de surf estructurada.</p>
+<p>#### CARPETA 01_CANON (Autoridad Doctrinal Suprema)</p>
+<ul class="doc-list">
+<li>**Canon v5.0**: Documento constitutivo de máxima autoridad. Define la esencia metodológica, pilares, progresión y filosofía de TSS. ESTADO: COMPLETO.</li>
+<li>**Plantilla Maestra de Progresión de Cintas**: Framework para mapeo de progresión entre niveles (Blanco→Amarillo→Azul→Púrpura→Marrón→Negro). ESTADO: COMPLETO v2.1.</li>
+<li>**Sistema de Bloques &amp; Círculo Infinito**: Documentación de arquitectura conceptual fundamental. ESTADO: COMPLETO.</li>
+</ul>
+<p>#### CARPETA 02_BRAND (Identidad Corporativa)</p>
+<ul class="doc-list">
+<li>**Manual de Marca v5.0**: Guía completa alineada con Canon. Incluye paleta cromática, tipografía, voz de marca, y protocolos visuales. ESTADO: COMPLETO.</li>
+<li>**Suite de Logos (14 archivos PNG)**: Logotipos principales, versiones alternas, iconografía especializada.</li>
+<li>**5 Diagramas Interactivos HTML**: Visualizadores de Tres Círculos, Progresión de Cintas, Círculo Infinito, Cadenas de Ejecución, Sistema de Bloques. ESTADO: OPERACIONAL.</li>
+</ul>
+<p>#### CARPETA 03_BELTS (Progresión de Cintas - 6 Niveles)</p>
+<p>Estructura completa para cada cinta (Blanca, Amarilla, Azul, Púrpura, Marrón, Negra):</p>
+<ul class="doc-list">
+<li>**Documento Foundation/Nivel**: Definiciones de competencias, objetivos estratégicos, secuencias por cinta.</li>
+<li>**Manual del Estudiante**: Guía progresiva con ejercicios, hitos, y metodología de práctica.</li>
+<li>**Manual del Entrenador**: Protocolos de enseñanza, EDPF, evaluación, y adaptaciones.</li>
+<li>**Herramienta Index.html Interactiva**: Interfaz de entrega en sesión para entrenadores.</li>
+</ul>
+<p>**ESTADO POR CINTA:**</p>
+<ul class="doc-list">
+<li>Cinta Blanca: Manuals completos (Student 95%, Coach 85%)</li>
+<li>Cinta Amarilla: Manuals COMPLETOS (100% - referencia de calidad)</li>
+<li>Cinta Azul: Student 90%, Coach 75%</li>
+<li>Cinta Púrpura: Student 85%, Coach 70%</li>
+<li>Cinta Marrón: Student 60%, Coach 45% (Crítico)</li>
+<li>Cinta Negra: Student 40%, Coach 30% (Crítico)</li>
+</ul>
+<p>#### CARPETA 04_SAFETY (Seguridad Operacional)</p>
+<ul class="doc-list">
+<li>**Canon de Seguridad v2.0**: Protocolos de emergencia, formaciones (La Dupla, El Triángulo, El Imán), criterios de riesgo. ESTADO: COMPLETO.</li>
+<li>**Manual de Seguridad del Estudiante**: Guía práctica para estudiantes. ESTADO: COMPLETO.</li>
+<li>**Herramienta de Seguridad Interactiva (HTML)**: Referencia en tiempo real con protocolos y formaciones. ESTADO: OPERACIONAL.</li>
+</ul>
+<p>#### CARPETA 05_INCLUSION (Diversidad e Inclusión)</p>
+<ul class="doc-list">
+<li>**Canon de Inclusión v1.0**: Protocolos de adaptación, accesibilidad, neurodiversidad. ESTADO: COMPLETO.</li>
+<li>**Presentación de Capacitación Coach (pptx)**: Módulo educativo. ESTADO: COMPLETO.</li>
+<li>**Quiz Interactivo HTML**: Evaluación de comprensión. ESTADO: OPERACIONAL.</li>
+<li>**Herramienta Index.html Interactiva**: Referencia para entrenadores. ESTADO: OPERACIONAL.</li>
+</ul>
+<p>#### CARPETA 06_CERTIFICATION (Certificación de Entrenadores)</p>
+<ul class="doc-list">
+<li>**Manual de Certificación Coach v1.0**: Pathway L1-L5, estándares, evaluación. ESTADO: 75% (Alignment pending).</li>
+<li>**Herramienta de Prep para Examen (HTML)**: Quiz prep mode, flip cards. ESTADO: OPERACIONAL.</li>
+<li>**Presentación de Prep para Examen (pptx)**: Material educativo. ESTADO: COMPLETO.</li>
+</ul>
+<p>#### CARPETA 07_BUSINESS (Modelo de Negocio)</p>
+<ul class="doc-list">
+<li>**Blueprint de Modelo de Negocio v2**: Definición de streams de ingresos, márgenes, licencias. ESTADO: COMPLETO.</li>
+<li>**Marco de Tres Sistemas v1**: Arquitectura de Sistemas Duros, Blandos, Informativos. ESTADO: COMPLETO.</li>
+<li>**Propuesta Final Junta**: Documentación de presentación ejecutiva. ESTADO: COMPLETO.</li>
+<li>**Presentación de Junta (pptx)**: Deck ejecutivo. ESTADO: COMPLETO.</li>
+<li>**Infografía de Modelo de Negocio (HTML)**: Visualizador interactivo. ESTADO: OPERACIONAL.</li>
+</ul>
+<p>#### CARPETA 08_APP_TSS_BRAIN (Plataforma Digital Central)</p>
+<ul class="doc-list">
+<li>**Decisiones de Arquitectura (Brain)**: Especificación técnica de diseño. ESTADO: COMPLETO.</li>
+<li>**Developer Brief**: Guía para desarrolladores. ESTADO: COMPLETO.</li>
+<li>**Estructura Bloque C**: Especificación de componentes. ESTADO: COMPLETO.</li>
+<li>**Drill Library (xlsx)**: Base de datos de ejercicios indexados por cinta, pilar, parte. ESTADO: 85% (Completitud).</li>
+<li>**Bitácora Alumnos (xlsx)**: Sistema de registro de estudiantes. ESTADO: OPERACIONAL.</li>
+<li>**Bitácora Coaches v6.1 (xlsx)**: Sistema de registro de entrenadores. ESTADO: OPERACIONAL.</li>
+<li>**Código Fuente Cascade (Next.js + Supabase)**: Stack tecnológico moderno. ESTADO: Phase 2 deployed.</li>
+</ul>
+<p>#### CARPETA 09_SCIENCE_TRAINING (Módulos de Entrenamiento Científico)</p>
+<p>9 presentaciones profesionales (pptx):</p>
+<p>1. Los 7 Sentidos en el Surf</p>
+<p>2. EnseñARTE (ES/EN)</p>
+<p>3. Nutrición para Surfistas</p>
+<p>4. Respiración y Control</p>
+<p>5. Focus y Concentración</p>
+<p>6. Lenguaje del Desempeño</p>
+<p>7. Recuperación</p>
+<p>8. Relajación</p>
+<p>9. Visualización</p>
+<p>ESTADO: TODOS OPERACIONALES para coach education y athlete knowledge.</p>
+<p>#### CARPETA 10_QUIZ (Evaluación Adaptativa)</p>
+<ul class="doc-list">
+<li>**TSS Quiz v4 (HTML)**: Cuestionario de nivel inicial interactivo. ESTADO: OPERACIONAL.</li>
+<li>**Sistema de Niveles Puro Surf (HTML)**: Quiz adaptativo basado en 3,287 cuestionarios históricos. Detiene cuestionamiento cuando se recopilan datos suficientes. ESTADO: OPERACIONAL.</li>
+</ul>
+<p>#### CARPETA 11_LIBRO_ONEWAVE (Publicación)</p>
+<ul class="doc-list">
+<li>**One Wave por Marcelo Castellanos (docx + PDF editorial)**: Libro fundacional sobre filosofía de TSS. ESTADO: COMPLETO y publicado.</li>
+</ul>
+<p>#### CARPETA 12_CONSOLIDACION (Auditoría y Correcciones)</p>
+<ul class="doc-list">
+<li>**Auditoría Documental (Bloque A)**: Inventario completo de todos los archivos. ESTADO: COMPLETO.</li>
+<li>**Canon Oficial Consolidado (Bloque B)**: Versión de referencia maestra. ESTADO: COMPLETO.</li>
+<li>**Brechas Críticas (Bloque D)**: Identificación de faltantes. ESTADO: COMPLETO.</li>
+<li>**Correcciones al Canon**: Registros de actualizaciones. ESTADO: ACTUALIZADO.</li>
+<li>**Presentación de Canon (pptx)**: Material ejecutivo. ESTADO: COMPLETO.</li>
+</ul>
+<p>#### CARPETA 13_APP_HIGH_PERFORMANCE (Plataforma de Alto Desempeño)</p>
+<ul class="doc-list">
+<li>**High Performance App (HTML)**: Plataforma orientada al atleta con login PIN, acceso basado en roles. ESTADO: DEMO.</li>
+</ul>
+<h3 class="doc-h3">1.2 Estado de Madurez por Dominio</h3>
+<p>| Dominio | Madurez | Notas |</p>
+<p>|---------|---------|-------|</p>
+<p>| Doctrina | 98% | Canon v5.0 constitucional. 7 contradicciones identificadas: TODAS RESUELTAS. |</p>
+<p>| Progresión Blanca-Púrpura | 92% | Manuals de estudiante/entrenador mayormente completos. Índices HTML operacionales. |</p>
+<p>| Progresión Marrón-Negra | 80% | Manuals incompletos. Requiere finalización urgente. |</p>
+<p>| Seguridad | 90% | Canon y protocolos completos. Herramientas operacionales. |</p>
+<p>| Inclusión | 85% | Canon y capacitación completos. Herramientas funcionales. |</p>
+<p>| Certificación | 75% | Manual requiere alineación. Quiz prep y protocolos definidos. |</p>
+<p>| Digital/App | 60% | TSS Brain Phases 1-2 deployed. Phases 3-5 planificadas. |</p>
+<p>| Negocio | 70% | Blueprint completo. Modelos financieros definidos. Licensing terms pending. |</p>
+<h3 class="doc-h3">1.3 Correcciones Críticas Implementadas</h3>
+<p>#### Corrección de Nomenclatura FP (Full Posterior)</p>
+<p>**Hallazgo:** Nomenclatura FP estaba invertida en manuales de cintas.</p>
+<p>**Corrección:**</p>
+<ul class="doc-list">
+<li>**FP1 = Full Tail** (anterior: Full Forward)</li>
+<li>**FP2 = Neutral**</li>
+<li>**FP3 = Forward** (anterior: Full Tail)</li>
+</ul>
+<p>**Aplicación:** Requiere revisión sistemática en Azul, Púrpura, Marrón, Negro.</p>
+<p>#### Reclasificación de Choke</p>
+<p>**Hallazgo:** Choke estaba clasificado como &quot;posición de backside&quot; en documentación.</p>
+<p>**Corrección:** Choke es una **fase de proyección de backside**, no una posición estática. Requiere reframing en Blue/Purple materials.</p>
+<p>#### Reclasificación de Seguridad</p>
+<p>**Hallazgo:** Seguridad estaba propuesta como &quot;pilar&quot; del sistema.</p>
+<p>**Corrección:** Seguridad es una **capa operacional** que permea todos los pilares, no un pilar independiente.</p>
+<p>---</p>
+<h2 class="doc-h2" id="s5">FASE 2: PROPUESTA DE ESTRUCTURA MAESTRA</h2>
+<h3 class="doc-h3">2.1 Arquitectura Recomendada en 4 Capas</h3>
+<p>The Surf Sequence® debe organizarse jerárquicamente en cuatro capas arquitectónicas, cada una con autoridad y función clara:</p>
+<p>```</p>
+<p>┌─────────────────────────────────────────────────────────────────┐</p>
+<p>│ LAYER 1: DOCTRINA (Autoridad Constitucional)                    │</p>
+<p>│ ─────────────────────────────────────────────────────────────   │</p>
+<p>│ • Canon v5.0 (Autoridad Suprema)                                │</p>
+<p>│ • Sistema de Bloques &amp; Círculo Infinito                         │</p>
+<p>│ • Plantilla Maestra de Progresión de Cintas                     │</p>
+<p>└─────────────────────────────────────────────────────────────────┘</p>
+<p>                              ↓</p>
+<p>┌─────────────────────────────────────────────────────────────────┐</p>
+<p>│ LAYER 2: ARQUITECTURA (Estructura Operativa)                    │</p>
+<p>│ ─────────────────────────────────────────────────────────────   │</p>
+<p>│ • Manual de Marca v5.0                                          │</p>
+<p>│ • Marco de Tres Sistemas                                        │</p>
+<p>│ • Blueprint de Modelo de Negocio                                │</p>
+<p>│ • Manual de Certificación de Entrenadores                       │</p>
+<p>└─────────────────────────────────────────────────────────────────┘</p>
+<p>                              ↓</p>
+<p>┌─────────────────────────────────────────────────────────────────┐</p>
+<p>│ LAYER 3: APLICACIÓN (Ejecución Operacional)                    │</p>
+<p>│ ─────────────────────────────────────────────────────────────   │</p>
+<p>│ • 6 Documentos Foundation de Cintas (Blanca→Negra)             │</p>
+<p>│ • 6 Manuales de Estudiante                                      │</p>
+<p>│ • 6 Manuales de Entrenador                                      │</p>
+<p>│ • Canon de Seguridad + Manual de Estudiante                    │</p>
+<p>│ • Canon de Inclusión + Materiales de Capacitación              │</p>
+<p>│ • 9 Módulos de Ciencia/Entrenamiento                           │</p>
+<p>│ • Libro One Wave                                                │</p>
+<p>└─────────────────────────────────────────────────────────────────┘</p>
+<p>                              ↓</p>
+<p>┌─────────────────────────────────────────────────────────────────┐</p>
+<p>│ LAYER 4: HERRAMIENTAS &amp; TECNOLOGÍA (Plataforma Digital)        │</p>
+<p>│ ─────────────────────────────────────────────────────────────   │</p>
+<p>│ • TSS Brain App (Plataforma Central)                            │</p>
+<p>│ • 8+ Herramientas HTML Interactivas                             │</p>
+<p>│ • Sistemas de Datos (Drill Library, Bitácoras, Bases Excel)    │</p>
+<p>│ • Visualizadores de Marca (5 Diagramas HTML)                   │</p>
+<p>└─────────────────────────────────────────────────────────────────┘</p>
+<p>```</p>
+<h3 class="doc-h3">2.2 Funciones por Capa</h3>
+<p>**CAPA 1 - DOCTRINA:**</p>
+<ul class="doc-list">
+<li>Define QUÉ es TSS en su esencia</li>
+<li>Autoridad suprema en interpretación metodológica</li>
+<li>Actualización controlada por Fundador/Arquitecto</li>
+<li>Frecuencia de cambio: Excepcional (máx. 1-2x/año)</li>
+</ul>
+<p>**CAPA 2 - ARQUITECTURA:**</p>
+<ul class="doc-list">
+<li>Define CÓMO se estructura y comunica TSS</li>
+<li>Alineación con Doctrina es obligatoria</li>
+<li>Gobernanza compartida: Licenciante + Operador</li>
+<li>Frecuencia de cambio: Trimestral (revisión de marca, business terms)</li>
+</ul>
+<p>**CAPA 3 - APLICACIÓN:**</p>
+<ul class="doc-list">
+<li>Define CÓMO se enseña y se entrena TSS</li>
+<li>Materiales de entrega directa</li>
+<li>Gobernanza: Operador (con oversight de Licenciante)</li>
+<li>Frecuencia de cambio: Continua (mejoras, correcciones)</li>
+</ul>
+<p>**CAPA 4 - HERRAMIENTAS:**</p>
+<ul class="doc-list">
+<li>Facilita la ejecución de Application layer</li>
+<li>Tecnología y automatización</li>
+<li>Gobernanza: Producto (Operador + Desarrolladores)</li>
+<li>Frecuencia de cambio: Ágil (sprints tecnológicos)</li>
+</ul>
+<p>---</p>
+<h2 class="doc-h2" id="s6">FASE 3: INVENTARIO TECNOLÓGICO DETALLADO</h2>
+<h3 class="doc-h3">3.1 Catálogo de 25+ Herramientas y Sistemas</h3>
+<p>#### HERRAMIENTA 1: TSS BRAIN APP (Plataforma Central)</p>
+<p>**Propósito:** Platform SaaS central para gestión de sesiones, seguimiento de estudiantes, operaciones de entrenadores.</p>
+<p>**Especificaciones Técnicas:**</p>
+<ul class="doc-list">
+<li>Stack: Next.js 14 + Supabase PostgreSQL</li>
+<li>Autenticación: Role-based access control (RBAC)</li>
+<li>Usuarios: Entrenadores, Coordinadores, Administradores</li>
+<li>Datos: Sesiones, estudiantes, progresión, evaluaciones</li>
+</ul>
+<p>**Funcionalidades Principales:**</p>
+<ul class="doc-list">
+<li>Creación de sesiones (integración Cascade System 22-pasos)</li>
+<li>Seguimiento de progresión de estudiantes</li>
+<li>Bitácora digital de entrenador</li>
+<li>Reportes y analítica</li>
+<li>Gestión de certificaciones</li>
+</ul>
+<p>**Estado de Implementación:**</p>
+<ul class="doc-list">
+<li>Phase 1: Arquitectura completada ✓</li>
+<li>Phase 2: MVP deployed ✓ (Coaches, Coordinators en Puro Surf)</li>
+<li>Phase 3: Data audit + Cascade rebuild (Planned Q2 2026)</li>
+<li>Phase 4: Advanced analytics (Planned Q3 2026)</li>
+<li>Phase 5: API ecosystem (Planned Q4 2026)</li>
+</ul>
+<p>**Resolución de Problemas:**</p>
+<ul class="doc-list">
+<li>Elimina fricción en creación de sesiones</li>
+<li>Proporciona datos de estudiante centralizados</li>
+<li>Genera reportes de progresión automáticos</li>
+<li>Reduce carga administrativa</li>
+</ul>
+<p>**Status:** DEMO (producción limitada)</p>
+<p>---</p>
+<p>#### HERRAMIENTA 2: SESSION CASCADE SYSTEM</p>
+<p>**Propósito:** Flujo validado de 22 pasos para creación estandarizada de sesiones.</p>
+<p>**Estructura:**</p>
+<p>```</p>
+<p>MOMENTO 1: CONTEXTO (Context)</p>
+<p>├─ Identificación de estudiante</p>
+<p>├─ Revisión de progresión previa</p>
+<p>├─ Factores ambientales (viento, olas, seguridad)</p>
+<p>└─ Selección de objetivos de sesión</p>
+<p>MOMENTO 2: PLANIFICACIÓN (Planning)</p>
+<p>├─ Diseño de secuencia (Warm-up → Core → Cool-down)</p>
+<p>├─ Asignación de ejercicios desde Drill Library</p>
+<p>├─ Preparación de formaciones de seguridad</p>
+<p>├─ Confirmación de estudiante readiness</p>
+<p>MOMENTO 3: CIERRE (Close)</p>
+<p>├─ Evaluación de performance</p>
+<p>├─ Registro en Bitácora</p>
+<p>├─ Feedback a estudiante</p>
+<p>└─ Planificación de siguiente sesión</p>
+<p>```</p>
+<p>**Beneficio:** Elimina variabilidad en sesiones. Asegura consistencia metodológica.</p>
+<p>**Status:** Embedded en TSS Brain App. OPERACIONAL.</p>
+<p>---</p>
+<p>#### HERRAMIENTA 3: TSS QUIZ v4 (HTML)</p>
+<p>**Propósito:** Cuestionario interactivo de evaluación inicial de nivel de estudiante.</p>
+<p>**Usuarios:** Estudiantes, Entrenadores</p>
+<p>**Funcionalidades:**</p>
+<ul class="doc-list">
+<li>30-50 preguntas adaptativas</li>
+<li>Clasificación automática de nivel (Blanco-Negro)</li>
+<li>Sugerencias de pathway de progresión</li>
+<li>Exportación de resultados</li>
+</ul>
+<p>**Resolución:** Proporciona evaluación inicial objetiva. Evita mal-placement.</p>
+<p>**Status:** OPERACIONAL</p>
+<p>---</p>
+<p>#### HERRAMIENTA 4: SISTEMA DE NIVELES PURO SURF (HTML Adaptativo)</p>
+<p>**Propósito:** Quiz progresivo y adaptativo basado en 3,287 cuestionarios históricos de Puro Surf.</p>
+<p>**Innovación:** Algoritmo detiene cuestionamiento cuando se recopilan datos suficientes para clasificación confiable. Evita fatiga de estudiante con preguntas innecesarias.</p>
+<p>**Usuarios:** Estudiantes, Coordinadores</p>
+<p>**Funcionalidades:**</p>
+<ul class="doc-list">
+<li>Adaptatividad dinámica</li>
+<li>Validación contra historical data set</li>
+<li>Feedback en tiempo real</li>
+<li>API integration con TSS Brain App</li>
+</ul>
+<p>**Resolución:** Mejora experience de assessment. Aumenta confianza en placement.</p>
+<p>**Status:** OPERACIONAL</p>
+<p>---</p>
+<p>#### HERRAMIENTA 5: TSS CERT PREP TOOL (HTML)</p>
+<p>**Propósito:** Herramienta de preparación para examen de certificación de entrenadores L1/L2.</p>
+<p>**Usuarios:** Entrenadores aspirantes</p>
+<p>**Modos:**</p>
+<ul class="doc-list">
+<li>Flip Cards: Estudio de conceptos clave</li>
+<li>Quiz Mode: Simulación de examen</li>
+<li>Progress Tracking: Seguimiento de competencia</li>
+</ul>
+<p>**Contenido:** 150+ preguntas, casos de estudio, evaluación de escenarios.</p>
+<p>**Resolución:** Estandariza preparación de certificación. Aumenta tasa de aprobación.</p>
+<p>**Status:** OPERACIONAL</p>
+<p>---</p>
+<p>#### HERRAMIENTA 6: HIGH PERFORMANCE APP (HTML)</p>
+<p>**Propósito:** Plataforma orientada al atleta para seguimiento de alto desempeño, métricas, periodización.</p>
+<p>**Usuarios:** Atletas de alto rendimiento, Entrenadores de HA</p>
+<p>**Características:**</p>
+<ul class="doc-list">
+<li>Login PIN protegido</li>
+<li>Dashboard de métricas personalizadas</li>
+<li>Periodización visual</li>
+<li>Registros de sesión y feedback</li>
+<li>Acceso basado en roles</li>
+</ul>
+<p>**Resolución:** Proporciona feedback directo al atleta. Facilita comunicación entrenador-atleta.</p>
+<p>**Status:** DEMO (Producción limitada en programa HA)</p>
+<p>---</p>
+<p>#### HERRAMIENTAS 7-12: BELT INDEX TOOLS (6 Herramientas HTML)</p>
+<p>**Propósito:** Interfaz de entrega de sesión específica por cinta.</p>
+<p>**Una herramienta por cinta:** Blanca, Amarilla, Azul, Púrpura, Marrón, Negra</p>
+<p>**Usuarios:** Entrenadores (uso en-sesión)</p>
+<p>**Modos de Operación:**</p>
+<ul class="doc-list">
+<li>**View Mode:** Referencia de contenido de cinta</li>
+<li>**Teach Mode:** Pasos de enseñanza secuenciados (EDPF)</li>
+<li>**Assess Mode:** Criterios de evaluación y checklist de competencia</li>
+</ul>
+<p>**Funcionalidades:**</p>
+<ul class="doc-list">
+<li>Navegación de secuencias por cinta</li>
+<li>Índice de ejercicios disponibles</li>
+<li>Protocolos de modificación y adaptación</li>
+<li>Integración con Drill Library</li>
+</ul>
+<p>**Resolución:** Proporciona guía de entrega en tiempo real. Estandariza instrucción por nivel.</p>
+<p>**Status:** OPERACIONAL (todas las 6 herramientas)</p>
+<p>---</p>
+<p>#### HERRAMIENTA 13: SAFETY TOOL (HTML)</p>
+<p>**Propósito:** Referencia interactiva de seguridad con protocolos de emergencia y formaciones.</p>
+<p>**Usuarios:** Personal de seguridad, Entrenadores, Coordinadores</p>
+<p>**Contenido:**</p>
+<ul class="doc-list">
+<li>Protocolos de emergencia (procedimientos paso a paso)</li>
+<li>Formaciones de seguridad (La Dupla, El Triángulo, El Imán)</li>
+<li>Criterios de riesgo por condición de agua</li>
+<li>Checklists de equipo de seguridad</li>
+<li>Contactos de emergencia</li>
+</ul>
+<p>**Resolución:** Acceso rápido a protocolos. Estandariza respuesta de emergencia.</p>
+<p>**Status:** OPERACIONAL</p>
+<p>---</p>
+<p>#### HERRAMIENTA 14: INCLUSION TOOL (HTML)</p>
+<p>**Propósito:** Referencia interactiva para coaching adaptativo e inclusivo.</p>
+<p>**Usuarios:** Entrenadores, Coordinadores</p>
+<p>**Contenido:**</p>
+<ul class="doc-list">
+<li>Protocolos de adaptación por tipo de estudiante</li>
+<li>Neurodiversidad (ADHD, espectro autista, dislexia, etc.)</li>
+<li>Adaptaciones de seguridad</li>
+<li>Modificaciones de enseñanza</li>
+<li>Recursos de inclusión</li>
+</ul>
+<p>**Resolución:** Guía entrenadores en adaptación. Aumenta accesibilidad del programa.</p>
+<p>**Status:** OPERACIONAL</p>
+<p>---</p>
+<p>#### HERRAMIENTA 15: BRAND MANUAL INTERACTIVE (HTML)</p>
+<p>**Propósito:** Guía digital interactiva de marca.</p>
+<p>**Usuarios:** Personal de marketing, Administración</p>
+<p>**Contenido:**</p>
+<ul class="doc-list">
+<li>Paleta cromática con especificaciones</li>
+<li>Tipografía y guías de uso</li>
+<li>Voz de marca y tone of voice</li>
+<li>Plantillas de comunicación</li>
+<li>Logo guidelines</li>
+</ul>
+<p>**Resolución:** Asegura consistencia de marca. Facilita onboarding de nuevo personal.</p>
+<p>**Status:** OPERACIONAL</p>
+<p>---</p>
+<p>#### HERRAMIENTAS 16-20: BRAND DIAGRAMS (5 Visualizadores HTML)</p>
+<p>**Propósito:** Explicaciones visuales interactivas de conceptos clave de TSS.</p>
+<p>**Cinco diagramas:**</p>
+<p>1. **Three Circles Diagram**: Visualización de los tres pilares de TSS y su interconexión.</p>
+<p>2. **Belt Progression Diagram**: Mapa visual de progresión Blanco → Negro con hitos clave.</p>
+<p>3. **Infinite Circle Diagram**: Representación del ciclo de mejora continua.</p>
+<p>4. **Execution Chains Diagram**: Visualización de cadenas de ejecución por pilar.</p>
+<p>5. **Block System Diagram**: Explicación visual de sistema de bloques de entrenamiento.</p>
+<p>**Usuarios:** Cualquiera (estudiantes, entrenadores, partners, público)</p>
+<p>**Resolución:** Comunica conceptos complejos de forma visual. Facilita onboarding.</p>
+<p>**Status:** OPERACIONAL</p>
+<p>---</p>
+<p>#### HERRAMIENTA 21: DRILL LIBRARY (Excel/Base de Datos)</p>
+<p>**Propósito:** Base de datos central de ejercicios indexados por cinta, pilar, y parte.</p>
+<p>**Estructura:**</p>
+<p>```</p>
+<p>Drill ID | Nombre | Descripción | Cinta | Pilar | Parte |</p>
+<p>Dificultad | Duración | Modificaciones | Seguridad | Videos</p>
+<p>```</p>
+<p>**Usuarios:** Entrenadores, Coordinadores</p>
+<p>**Funcionalidades:**</p>
+<ul class="doc-list">
+<li>Búsqueda por cinta/pilar/parte</li>
+<li>Sugerencias de ejercicio basadas en objetivos</li>
+<li>Variaciones y progresiones</li>
+<li>Notas de seguridad</li>
+<li>Links a videos (cuando disponible)</li>
+</ul>
+<p>**Contenido:** 200+ ejercicios mapeados. 85% completitud. Requiere finalización.</p>
+<p>**Resolución:** Proporciona variedad estructurada. Evita repetición de ejercicios.</p>
+<p>**Status:** PARCIAL (85% complete)</p>
+<p>---</p>
+<p>#### HERRAMIENTA 22: BITÁCORA ALUMNOS (Excel)</p>
+<p>**Propósito:** Registro central de progresión de estudiante.</p>
+<p>**Usuarios:** Coordinadores, Entrenadores, Administradores</p>
+<p>**Contenido:**</p>
+<ul class="doc-list">
+<li>Perfil de estudiante (nombre, nivel, fecha de inicio)</li>
+<li>Historial de sesiones</li>
+<li>Evaluaciones de competencia</li>
+<li>Hitos de progresión</li>
+<li>Notas de instructor</li>
+</ul>
+<p>**Resolución:** Proporciona historial centralizado. Facilita continuidad entre sesiones.</p>
+<p>**Status:** OPERACIONAL</p>
+<p>---</p>
+<p>#### HERRAMIENTA 23: BITÁCORA COACHES v6.1 (Excel)</p>
+<p>**Propósito:** Registro de sesión de entrenador y documentación de desempeño.</p>
+<p>**Usuarios:** Entrenadores, Coordinadores</p>
+<p>**Contenido:**</p>
+<ul class="doc-list">
+<li>Sesiones impartidas (fecha, estudiantes, cinta, objetivos)</li>
+<li>Notas de desempeño</li>
+<li>Feedback recibido</li>
+<li>Progresión de certificación</li>
+<li>Horas de desarrollo profesional</li>
+</ul>
+<p>**Resolución:** Documenta actividad de entrenador. Facilita planificación de capacitación.</p>
+<p>**Status:** OPERACIONAL</p>
+<p>---</p>
+<p>#### HERRAMIENTA 24: BUSINESS MODEL INFOGRAPHIC (HTML)</p>
+<p>**Propósito:** Visualización interactiva del modelo de negocio.</p>
+<p>**Usuarios:** Junta, Partners, Stakeholders</p>
+<p>**Elementos Visualizados:**</p>
+<ul class="doc-list">
+<li>Streams de ingresos</li>
+<li>Estructura de costos</li>
+<li>Márgenes y flujo de efectivo</li>
+<li>Roles de participantes</li>
+<li>Escalabilidad</li>
+</ul>
+<p>**Resolución:** Comunica modelo de negocio a stakeholders no-técnicos.</p>
+<p>**Status:** OPERACIONAL</p>
+<p>---</p>
+<p>#### HERRAMIENTAS 25-33: SCIENCE/TRAINING PRESENTATIONS (9 pptx)</p>
+<p>**Propósito:** Módulos educativos de ciencia y entrenamiento para capacitación de entrenadores y atletas.</p>
+<p>**Nueve módulos:**</p>
+<p>1. **Los 7 Sentidos en el Surf** - Propiocepcepción, equilibrio, coordinación, conciencia espacial</p>
+<p>2. **EnseñARTE (ES/EN)** - Metodología de enseñanza creativa y engagement</p>
+<p>3. **Nutrición para Surfistas** - Macros, hidratación, timing de comidas</p>
+<p>4. **Respiración y Control** - Técnicas de respiración, preparación mental</p>
+<p>5. **Focus y Concentración** - Atención selectiva, eliminación de distracciones</p>
+<p>6. **Lenguaje del Desempeño** - Cómo hablar con estudiantes para maximizar desempeño</p>
+<p>7. **Recuperación** - Sleep, nutrición, periodización</p>
+<p>8. **Relajación** - Técnicas de relajación, manejo de estrés</p>
+<p>9. **Visualización** - Mental imagery, preparación de performance</p>
+<p>**Usuarios:** Entrenadores, Atletas</p>
+<p>**Extensión:** 20-30 diapositivas cada una. Video embebido donde corresponda.</p>
+<p>**Resolución:** Proporciona educación científica. Diferencia TSS en calidad de entrenamiento.</p>
+<p>**Status:** OPERACIONAL (todos completos)</p>
+<p>---</p>
+<h3 class="doc-h3">3.2 Tabla Resumen de Herramientas</h3>
+<p>| # | Herramienta | Tipo | Usuarios | Estado | Resolución |</p>
+<p>|---|-------------|------|---------|--------|-----------|</p>
+<p>| 1 | TSS Brain App | SaaS | Coaches, Coords | DEMO | Session mgmt, tracking |</p>
+<p>| 2 | Cascade System | Process | Coaches | OPERACIONAL | Session standardization |</p>
+<p>| 3 | TSS Quiz v4 | HTML | Students | OPERACIONAL | Initial placement |</p>
+<p>| 4 | Puro Surf Level System | HTML | Students | OPERACIONAL | Adaptive assessment |</p>
+<p>| 5 | Cert Prep Tool | HTML | Coaches | OPERACIONAL | Certification prep |</p>
+<p>| 6 | High Performance App | HTML | Athletes | DEMO | HA tracking |</p>
+<p>| 7-12 | Belt Index Tools (6) | HTML | Coaches | OPERACIONAL | In-session delivery |</p>
+<p>| 13 | Safety Tool | HTML | Staff | OPERACIONAL | Emergency protocols |</p>
+<p>| 14 | Inclusion Tool | HTML | Coaches | OPERACIONAL | Adaptive coaching |</p>
+<p>| 15 | Brand Manual Interactive | HTML | Marketing | OPERACIONAL | Brand consistency |</p>
+<p>| 16-20 | Brand Diagrams (5) | HTML | Everyone | OPERACIONAL | Concept communication |</p>
+<p>| 21 | Drill Library | Excel | Coaches | PARCIAL (85%) | Exercise variety |</p>
+<p>| 22 | Bitácora Alumnos | Excel | Coords | OPERACIONAL | Student tracking |</p>
+<p>| 23 | Bitácora Coaches v6.1 | Excel | Coaches | OPERACIONAL | Coach documentation |</p>
+<p>| 24 | Business Model Infographic | HTML | Board | OPERACIONAL | Business communication |</p>
+<p>| 25-33 | Science Presentations (9) | pptx | Coaches/Athletes | OPERACIONAL | Coach education |</p>
+<p>---</p>
+<h2 class="doc-h2" id="s7">FASE 4: MAPA DEL ECOSISTEMA (Duros/Blandos/Informativos)</h2>
+<h3 class="doc-h3">4.1 Marco de Tres Sistemas</h3>
+<p>The Surf Sequence® se estructura como un ecosistema integrado de tres subsistemas interconectados:</p>
+<p>```</p>
+<p>┌───────────────────────────────────────────────────────────────┐</p>
+<p>│                     THE SURF SEQUENCE®                         │</p>
+<p>│                      Ecosistema Integral                       │</p>
+<p>├───────────────────────────────────────────────────────────────┤</p>
+<p>│                                                                 │</p>
+<p>│  ┌──────────────┐  ┌──────────────┐  ┌──────────────────┐    │</p>
+<p>│  │ HARD SYSTEM  │  │ SOFT SYSTEM  │  │ INFO SYSTEM      │    │</p>
+<p>│  │              │  │              │  │                  │    │</p>
+<p>│  │ Física       │  │ Procesos     │  │ Digital          │    │</p>
+<p>│  │ Infraestructura │Protocolos    │  │ Herramientas     │    │</p>
+<p>│  │ Equipamiento │  │ Documentos   │  │ Datos            │    │</p>
+<p>│  └──────────────┘  └──────────────┘  └──────────────────┘    │</p>
+<p>│         ↓                  ↓                    ↓               │</p>
+<p>│    Tangible         Intangible           Digital              │</p>
+<p>└───────────────────────────────────────────────────────────────┘</p>
+<p>```</p>
+<p>---</p>
+<h3 class="doc-h3">4.2 HARD SYSTEM (Infraestructura Física)</h3>
+<p>**Inventario de Equipamiento:**</p>
+<ul class="doc-list">
+<li>Tablas de surf por peso y nivel (mapeadas a progresión de cintas)</li>
+<li>Equipamiento de seguridad (chalecos, boyas, comunicación)</li>
+<li>Equipamiento de protección (earplugs, rashguards, bloqueador)</li>
+<li>Formaciones de operación (posiciones de La Dupla, El Triángulo, El Imán)</li>
+<li>Kits de estudiante (manual, cinta, registro de progreso)</li>
+</ul>
+<p>**Evaluación de Instalaciones:**</p>
+<ul class="doc-list">
+<li>Beach access y break assessment</li>
+<li>Pool facilities (para dry land training)</li>
+<li>Classroom/video review space</li>
+<li>Equipment storage y inventory control</li>
+<li>Transport protocols (seguridad de viaje)</li>
+</ul>
+<p>**Status Operacional:**</p>
+<ul class="doc-list">
+<li>Inventario de equipo: Documentado, actualizado mensualmente</li>
+<li>Safety equipment: Checklist operacional diario</li>
+<li>Facilities: Assessment completado. Mejoras recomendadas pending budget.</li>
+<li>Transport: Protocolos documentados en Safety Canon.</li>
+</ul>
+<p>---</p>
+<h3 class="doc-h3">4.3 SOFT SYSTEM (Procesos y Protocolos)</h3>
+<p>#### STUDENT JOURNEY (Flujo Completo de Estudiante)</p>
+<p>```</p>
+<p>┌─ INTAKE ─────────────────────────────────────────┐</p>
+<p>│ • Evaluación física y skill inicial               │</p>
+<p>│ • Entrevista de objetivos                        │</p>
+<p>│ • Firma de waivers y Safety Manual               │</p>
+<p>│ • Asignación de horario de prueba                │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌─ ASSESSMENT ─────────────────────────────────────┐</p>
+<p>│ • TSS Quiz v4 (evaluación inicial)               │</p>
+<p>│ • 2-3 sesiones de prueba con observación         │</p>
+<p>│ • Evaluación de aptitud de seguridad             │</p>
+<p>│ • Recomendación de nivel de cinta                │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌─ PLACEMENT ──────────────────────────────────────┐</p>
+<p>│ • Asignación oficial de nivel (Blanco-Negro)     │</p>
+<p>│ • Entrega de cinta y kit de estudiante           │</p>
+<p>│ • Orientación de syllabus de nivel               │</p>
+<p>│ • First full session en nivel asignado           │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌─ SESSIONS ───────────────────────────────────────┐</p>
+<p>│ • Sesiones regulares según horario (1-2x/semana) │</p>
+<p>│ • 22-step Cascade System aplicado cada sesión    │</p>
+<p>│ • Seguimiento en Bitácora de estudiante          │</p>
+<p>│ • Evaluación formativa continuada                │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌─ EVALUATION ─────────────────────────────────────┐</p>
+<p>│ • Assessment de competencia cada 4-6 semanas     │</p>
+<p>│ • Evaluación sumativa por cinta                  │</p>
+<p>│ • Feedback documentado en Bitácora               │</p>
+<p>│ • Recomendación para progresión o revisión       │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌─ PROGRESSION ────────────────────────────────────┐</p>
+<p>│ • Demostración de competencia en cinta actual    │</p>
+<p>│ • Ceremonial de progresión (física + digital)    │</p>
+<p>│ • Asignación a siguiente cinta                   │</p>
+<p>│ • Reinicio de ciclo en nuevo nivel               │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>```</p>
+<p>**Duración típica por cinta:** 3-6 meses (depende de frecuencia y progreso)</p>
+<p>#### COACH OPERATIONS (Operaciones de Entrenador)</p>
+<p>```</p>
+<p>┌─ ASSIGNMENT ─────────────────────────────────────┐</p>
+<p>│ • Asignación de horario/grupo de estudiantes     │</p>
+<p>│ • Capacitación en Belt level (si nuevo)          │</p>
+<p>│ • Acceso a herramientas (Brain App, Belt Index)  │</p>
+<p>│ • Revisión de Bitácoras previas                  │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌─ PLANNING ───────────────────────────────────────┐</p>
+<p>│ • Revisión de estudiantes asignados              │</p>
+<p>│ • Estudio de syllabus de cinta                   │</p>
+<p>│ • Preparación de sesión (objetivos, drills)      │</p>
+<p>│ • Revisión de condiciones (viento, olas, safet)  │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌─ SESSION DELIVERY ───────────────────────────────┐</p>
+<p>│ • Momento 1: Context (5 min)                     │</p>
+<p>│ • Momento 2: Planning (10 min)                   │</p>
+<p>│ • Momento 3: Water (45-60 min)                   │</p>
+<p>│ • Momento 4: Close (10 min)                      │</p>
+<p>│ • EDPF framework: Engagement, Demo, Practice, FB │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌─ DOCUMENTATION ──────────────────────────────────┐</p>
+<p>│ • Registro en Bitácora de Coach                  │</p>
+<p>│ • Registro de estudiante (progreso, notas)       │</p>
+<p>│ • Fotomarcador de desempeño                      │</p>
+<p>│ • Identification de gaps o concerns              │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌─ CERTIFICATION PATHWAY ──────────────────────────┐</p>
+<p>│ • L1: Coach Básico (puede enseñar Blanco/Amaril)│</p>
+<p>│ • L2: Coach Intermedio (puede enseñar Azul+)    │</p>
+<p>│ • L3: Coach Avanzado (Purple/Brown)              │</p>
+<p>│ • L4: Especialista (Black Belt + HA)             │</p>
+<p>│ • L5: Master Instructor (diseño de programa)     │</p>
+<p>└───────────────────────────────────────────────────┘</p>
+<p>```</p>
+<p>#### SAFETY PROTOCOLS (Protocolos de Seguridad)</p>
+<p>**Las Tres Formaciones Operacionales:**</p>
+<p>**La Dupla (Pareja):**</p>
+<ul class="doc-list">
+<li>Coach 1 (en agua): Dirección de estudiante, instrucción directa</li>
+<li>Coach 2 (en agua): Monitoreo de seguridad, respaldo</li>
+<li>Aplicación: 1-3 estudiantes por dupla</li>
+</ul>
+<p>**El Triángulo (Trío):**</p>
+<ul class="doc-list">
+<li>Coach Central (en agua): Instrucción, coordinación</li>
+<li>Coach Lateral 1 (en agua): Monitore ala derecha</li>
+<li>Coach Lateral 2 (en agua): Monitore ala izquierda</li>
+<li>Aplicación: 3-6 estudiantes</li>
+</ul>
+<p>**El Imán (Grupo Largo):**</p>
+<ul class="doc-list">
+<li>Coach Coordinador (en agua): Instrucción, dirección</li>
+<li>Coach Avanzado 1 (en agua): Subgrupo A</li>
+<li>Coach Avanzado 2 (en agua): Subgrupo B</li>
+<li>Coach Protección (on shore): Monitoreo, emergencia</li>
+<li>Aplicación: 6-12 estudiantes</li>
+</ul>
+<p>**Criterios de Riesgo:**</p>
+<ul class="doc-list">
+<li>Agua: Temperatura, corrientes, viento, altura de olas</li>
+<li>Estudiante: Competencia, fatiga, lesiones, confianza</li>
+<li>Equipo: Integridad de tabla, flotabilidad, comunicación</li>
+<li>Personal: Certifications, fatiga, enfermedad</li>
+</ul>
+<p>**Protocolos de Emergencia:**</p>
+<ul class="doc-list">
+<li>Procedimientos por tipo de incidente (near-drowning, lesión, equipo perdido)</li>
+<li>Escalada de respuesta</li>
+<li>Contactos de emergencia</li>
+<li>Reporte post-incidente</li>
+</ul>
+<p>#### INCLUSION PROTOCOLS (Protocolos de Inclusión)</p>
+<p>**Categorías de Adaptación:**</p>
+<p>**Neurodiversidad:**</p>
+<ul class="doc-list">
+<li>ADHD: Instrucciones simples, feedback frecuente, movimiento permitido</li>
+<li>Espectro autista: Rutina predecible, sensory-aware, transiciones graduales</li>
+<li>Dislexia: Instrucciones verbales, no texto-heavy, videos claros</li>
+<li>Ansiedad: Progresión graduada, espacios seguros, control de ritmo</li>
+</ul>
+<p>**Discapacidad Física:**</p>
+<ul class="doc-list">
+<li>Movilidad limitada: Tablas especiales, asistencia de entrada/salida, adaptaciones de seguridad</li>
+<li>Visual: Audio-based instruction, tactile feedback, guía uno-a-uno</li>
+<li>Auditiva: Visual signals, escrita, demostración clara</li>
+</ul>
+<p>**Clase Socioeconómica:**</p>
+<ul class="doc-list">
+<li>Acceso a equipo: Rental program, scholarships, kits loaned</li>
+<li>Horarios: Opciones flexibles (evenings, weekends)</li>
+<li>Transporte: Shuttle program si aplica</li>
+</ul>
+<p>---</p>
+<h3 class="doc-h3">4.4 INFO SYSTEM (Plataforma Digital)</h3>
+<p>**Arquitectura Digital Central:**</p>
+<p>```</p>
+<p>┌──────────────────────────────────────────────────┐</p>
+<p>│        CLOUD INFRASTRUCTURE (Supabase)           │</p>
+<p>│   PostgreSQL Database + Authentication + APIs    │</p>
+<p>└──────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌──────────────────────────────────────────────────┐</p>
+<p>│          TSS BRAIN APP (Next.js 14)              │</p>
+<p>│  Central dashboard: Coaches, Coords, Admins      │</p>
+<p>│  • Session management                            │</p>
+<p>│  • Student tracking &amp; progression                │</p>
+<p>│  • Cascade System integration                    │</p>
+<p>│  • Real-time notifications                       │</p>
+<p>│  • Analytics &amp; reporting                         │</p>
+<p>└──────────────────────────────────────────────────┘</p>
+<p>                      ↓</p>
+<p>┌──────┬──────────┬──────────┬──────────┬──────────┐</p>
+<p>│      │          │          │          │          │</p>
+<p>│ Quiz │ Belt     │ Safety   │Inclusion │ Cert     │</p>
+<p>│ Tools│ Index    │ Tool     │ Tool     │ Prep     │</p>
+<p>│      │ Tools(6) │          │          │ Tool     │</p>
+<p>│      │          │          │          │          │</p>
+<p>└──────┴──────────┴──────────┴──────────┴──────────┘</p>
+<p>        ↓              ↓          ↓          ↓</p>
+<p>     [Students]  [Coaches]  [Staff]  [Athletes]</p>
+<p>┌──────────────────────────────────────────────────┐</p>
+<p>│        DATA SYSTEMS (Excel/Databases)            │</p>
+<p>│  • Drill Library (200+ exercises)                │</p>
+<p>│  • Bitácora Alumnos (student progress)          │</p>
+<p>│  • Bitácora Coaches (coaching records)          │</p>
+<p>│  • Enrollment &amp; roster management               │</p>
+<p>│  • Attendance &amp; completion tracking             │</p>
+<p>│  • Financial/sales integration                  │</p>
+<p>└──────────────────────────────────────────────────┘</p>
+<p>```</p>
+<p>**Fases de Implementación TSS Brain App:**</p>
+<p>| Fase | Timeline | Scope | Status |</p>
+<p>|------|----------|-------|--------|</p>
+<p>| Phase 1 | Q4 2024 | Architecture, Database, Auth | ✓ Complete |</p>
+<p>| Phase 2 | Q1 2025 | MVP deploy, Coach/Coord tools | ✓ Deployed |</p>
+<p>| Phase 3 | Q2 2026 | Data audit, Cascade rebuild | Planned |</p>
+<p>| Phase 4 | Q3 2026 | Advanced analytics, reporting | Planned |</p>
+<p>| Phase 5 | Q4 2026 | API ecosystem, integrations | Planned |</p>
+<p>**Data Governance:**</p>
+<ul class="doc-list">
+<li>Encryption en transit y at rest</li>
+<li>GDPR-compliant data handling</li>
+<li>Backup diario, disaster recovery</li>
+<li>Access logs y audit trail</li>
+<li>Role-based data access control</li>
+</ul>
+<p>---</p>
+<h2 class="doc-h2" id="s8">FASE 5: ANÁLISIS DE BRECHAS Y PRIORIDADES</h2>
+<h3 class="doc-h3">5.1 Matriz de Priorización</h3>
+<p>#### P0 — BLOCKERS (Eliminación inmediata)</p>
+<p>Estos items bloquean operación o crean riesgo de calidad crítico.</p>
+<p>**P0-1: Correcciones de Nomenclatura FP**</p>
+<ul class="doc-list">
+<li>**Hallazgo:** FP nomenclature está invertida en Blue/Purple/Brown/Black materials</li>
+<li>**Impacto:** Confusión de estudiantes en interpretación de posiciones. Risk de técnica incorrecta.</li>
+<li>**Aplicación Requerida:**</li>
+</ul>
+<p>  - Blue Belt Manual: Páginas 12-15, 28-32, 45-48</p>
+<p>  - Purple Belt Manual: Páginas 14-18, 31-35</p>
+<p>  - Brown Belt Manual: Páginas 10-13, 25-30</p>
+<p>  - Black Belt Manual: Páginas 8-11, 22-28</p>
+<ul class="doc-list">
+<li>**Timeline:** 1-2 semanas</li>
+<li>**Dueño:** Arquitecto del Sistema</li>
+<li>**Recurso:** Marcelo (revisión) + Editor(es)</li>
+</ul>
+<p>**P0-2: Reclasificación de Choke (Backside Projection)**</p>
+<ul class="doc-list">
+<li>**Hallazgo:** Choke clasificado como posición estática; debe ser clasificado como fase de proyección de backside</li>
+<li>**Impacto:** Instrucción incorrecta de técnica. Confusión de progresión.</li>
+<li>**Aplicación Requerida:**</li>
+</ul>
+<p>  - Blue Belt Manual: Sección Backside Projection (revisar p.40-45)</p>
+<p>  - Purple Belt Manual: Sección Advanced Backside Phases</p>
+<p>  - Coach Manual (Blue/Purple): Actualizar teaching points</p>
+<ul class="doc-list">
+<li>**Timeline:** 1 semana</li>
+<li>**Dueño:** Arquitecto del Sistema</li>
+<li>**Recurso:** Marcelo (validación técnica) + Editor</li>
+</ul>
+<p>**P0-3: Completar Coach Manuals (White, Blue, Purple, Brown, Black)**</p>
+<ul class="doc-list">
+<li>**Estado Actual:**</li>
+</ul>
+<p>  - Yellow: 100% ✓</p>
+<p>  - White: 85% (foundation complete, teaching sequences incomplete)</p>
+<p>  - Blue: 75% (missing advanced sequences)</p>
+<p>  - Purple: 70% (missing specialized progressions)</p>
+<p>  - Brown: 45% (critical gaps)</p>
+<p>  - Black: 30% (critical gaps)</p>
+<ul class="doc-list">
+<li>**Impacto:** Entrenadores sin guías claras = variabilidad de instrucción = calidad degradada</li>
+<li>**Scope:**</li>
+</ul>
+<p>  - Secuencias de enseñanza completadas (EDPF framework)</p>
+<p>  - Protocolos de evaluación específicos por cinta</p>
+<p>  - Modificaciones y adaptaciones</p>
+<p>  - Troubleshooting de estudiante</p>
+<ul class="doc-list">
+<li>**Timeline:** 6 semanas (batch approach)</li>
+<li>**Dueño:** Operador (Puro Surf) + Arquitecto (oversight)</li>
+<li>**Recurso:** 1-2 coach writers + Marcelo (revisión)</li>
+</ul>
+<p>**P0-4: Completar Student Manuals para Brown y Black**</p>
+<ul class="doc-list">
+<li>**Estado Actual:**</li>
+</ul>
+<p>  - White, Yellow, Blue, Purple: 90%+ completitud</p>
+<p>  - Brown: 60% (missing advanced technique)</p>
+<p>  - Black: 40% (critical gaps)</p>
+<ul class="doc-list">
+<li>**Impacto:** Estudiantes sin materiales de referencia = frustración, regresión de aprendizaje</li>
+<li>**Scope:**</li>
+</ul>
+<p>  - Técnicas avanzadas documentadas</p>
+<p>  - Progresiones secuenciadas</p>
+<p>  - Ejercicios de práctica</p>
+<p>  - Checklists de competencia</p>
+<ul class="doc-list">
+<li>**Timeline:** 4 semanas</li>
+<li>**Dueño:** Arquitecto + Coach Senior</li>
+<li>**Recurso:** 1-2 writer + video producer</li>
+</ul>
+<p>---</p>
+<p>#### P1 — QUALITY DEGRADATION (Corto plazo, 4-8 semanas)</p>
+<p>**P1-1: Alineación de Manual de Certificación de Coaches**</p>
+<ul class="doc-list">
+<li>**Hallazgo:** Cert Manual v1.0 tiene misalignments con Canon v5.0 updates</li>
+<li>**Aplicación:** Auditoría línea por línea. Correcciones de 15-20 puntos identificados.</li>
+<li>**Timeline:** 2 semanas</li>
+<li>**Dueño:** Licenciante (Marcelo) + Operador</li>
+<li>**Recurso:** Revisor técnico + editor</li>
+</ul>
+<p>**P1-2: Completar Drill Library**</p>
+<ul class="doc-list">
+<li>**Estado Actual:** 200/250 drills documentados (80%)</li>
+<li>**Faltantes:** 50 drills en Brown/Black levels y variaciones avanzadas</li>
+<li>**Aplicación:**</li>
+</ul>
+<p>  - Documentación de 50 drills</p>
+<p>  - Testing con coaches</p>
+<p>  - Integration en TSS Brain App</p>
+<ul class="doc-list">
+<li>**Timeline:** 3 semanas</li>
+<li>**Dueño:** Operador</li>
+<li>**Recurso:** 2-3 coaches + database manager</li>
+</ul>
+<p>**P1-3: Recovery Protocol para Black Belt**</p>
+<ul class="doc-list">
+<li>**Hallazgo:** Black Belt no tiene recovery protocol documentado</li>
+<li>**Aplicación:** Basado en módulo Science Training (Recovery presentation)</li>
+</ul>
+<p>  - Periodización anual</p>
+<p>  - Microcycles de recuperación</p>
+<p>  - Nutrición post-sesión</p>
+<p>  - Protocols de sleep y descanso</p>
+<ul class="doc-list">
+<li>**Timeline:** 2 semanas</li>
+<li>**Dueño:** Arquitecto + Sports Science specialist</li>
+<li>**Recurso:** Marcelo + Dr. Especialista en recovery</li>
+</ul>
+<p>**P1-4: Board Selection Guide**</p>
+<ul class="doc-list">
+<li>**Hallazgo:** No existe guía clara de selección de tabla por cinta/estudiante</li>
+<li>**Aplicación:**</li>
+</ul>
+<p>  - Matriz de dimensiones (volumen, ancho, espesor) por cinta</p>
+<p>  - Guía de selección visual</p>
+<p>  - Testing protocol con nueva tabla</p>
+<ul class="doc-list">
+<li>**Timeline:** 1 semana</li>
+<li>**Dueño:** Operador + Board expert</li>
+<li>**Recurso:** Marcelo (validación) + boardshaper</li>
+</ul>
+<p>**P1-5: TSS Brain App Phase 3 (Data Audit &amp; Cascade Rebuild)**</p>
+<ul class="doc-list">
+<li>**Scope:** Auditoria de data desde Phase 2. Reconstrucción de Cascade System integration.</li>
+<li>**Timeline:** 4-6 semanas</li>
+<li>**Dueño:** Product Manager + Dev Team</li>
+<li>**Recurso:** Backend engineer + QA tester</li>
+<li>**Costo:** ~$8K-12K dev hours</li>
+</ul>
+<p>---</p>
+<p>#### P2 — NICE TO HAVE (Mediano plazo, 8-16 semanas)</p>
+<p>**P2-1: Academy Operations Manual**</p>
+<ul class="doc-list">
+<li>**Propósito:** Guía operativa día-a-día para coordinadores y admin</li>
+<li>**Contenido:** Scheduling, enrollment, payments, student records, staff management</li>
+<li>**Timeline:** 6 semanas</li>
+<li>**Dueño:** Operador</li>
+</ul>
+<p>**P2-2: Video Library (Ejercicios por Cinta)**</p>
+<ul class="doc-list">
+<li>**Propósito:** Videos de 1-2 minutos para cada drill</li>
+<li>**Scope:** 200+ videos (1 por drill de Drill Library)</li>
+<li>**Timeline:** 8-12 semanas (depende de capacidad de producción)</li>
+<li>**Dueño:** Marketing/Operations + Videógrafo profesional</li>
+<li>**Costo:** $15K-25K</li>
+</ul>
+<p>**P2-3: Sequence-Level Drill Mapping**</p>
+<ul class="doc-list">
+<li>**Propósito:** Mapeo de drills específicos a cada secuencia dentro de cada cinta</li>
+<li>**Aplicación:** Después de completar manuals</li>
+<li>**Timeline:** 4 semanas</li>
+<li>**Dueño:** Operador</li>
+</ul>
+<p>**P2-4: TSS Brain Phases 4-5**</p>
+<ul class="doc-list">
+<li>**Phase 4:** Advanced analytics, predictive modeling, insights</li>
+<li>**Phase 5:** API ecosystem, third-party integrations, mobile app</li>
+<li>**Timeline:** 12-20 semanas (después de Phase 3 completado)</li>
+<li>**Costo:** $25K-40K dev</li>
+</ul>
+<p>**P2-5: Full Licensing Package**</p>
+<ul class="doc-list">
+<li>**Propósito:** Documentación legalmente completa para licensing a otros academias</li>
+<li>**Contenido:** IP agreements, quality standards, revenue share, support SLA</li>
+<li>**Timeline:** 6 weeks (legal review)</li>
+<li>**Dueño:** Licenciante + Legal counsel</li>
+</ul>
+<p>---</p>
+<h3 class="doc-h3">5.2 Cronograma de Implementación Recomendado</h3>
+<p>```</p>
+<p>┌─────────────────────────────────────────────────────────────────┐</p>
+<p>│          ROADMAP DE IMPLEMENTACIÓN - PRÓXIMOS 6 MESES           │</p>
+<p>├─────────────────────────────────────────────────────────────────┤</p>
+<p>│                                                                  │</p>
+<p>│  INMEDIATO (Semanas 1-2)                                       │</p>
+<p>│  ├─ Correcciones de nomenclatura FP (Blue/Purple/Brown/Black)  │</p>
+<p>│  ├─ Reclasificación de Choke                                   │</p>
+<p>│  └─ Inicio de Coach Manuals completión                         │</p>
+<p>│                                                                  │</p>
+<p>│  CORTO PLAZO (Semanas 3-8)                                     │</p>
+<p>│  ├─ Completar Coach Manuals (White, Blue, Purple, Brown, Black)│</p>
+<p>│  ├─ Completar Student Manuals (Brown, Black)                   │</p>
+<p>│  ├─ Drill Library finalización                                 │</p>
+<p>│  ├─ Alineación de Cert Manual                                  │</p>
+<p>│  ├─ Recovery Protocol (Black)                                  │</p>
+<p>│  └─ Board Selection Guide                                      │</p>
+<p>│                                                                  │</p>
+<p>│  MEDIANO PLAZO (Semanas 9-16)                                  │</p>
+<p>│  ├─ TSS Brain App Phase 3 (Data audit, Cascade rebuild)       │</p>
+<p>│  ├─ Academy Operations Manual                                  │</p>
+<p>│  ├─ Video Library iniciación (primeros 50 videos)              │</p>
+<p>│  ├─ Sequence-level Drill Mapping                               │</p>
+<p>│  └─ Legal review de Licensing Package                          │</p>
+<p>│                                                                  │</p>
+<p>│  LARGO PLAZO (Semanas 17-26)                                   │</p>
+<p>│  ├─ Completar Video Library (200+ videos)                      │</p>
+<p>│  ├─ TSS Brain App Phase 4 (Analytics)                          │</p>
+<p>│  └─ Licensing package finalizado y listo para distribución     │</p>
+<p>│                                                                  │</p>
+<p>└─────────────────────────────────────────────────────────────────┘</p>
+<p>```</p>
+<p>---</p>
+<h2 class="doc-h2" id="s9">FASE 6: MODELO DE NEGOCIO PARA PURO SURF</h2>
+<h3 class="doc-h3">6.1 Propuesta de Valor para Puro Surf</h3>
+<p>The Surf Sequence® representa una oportunidad transformacional para Puro Surf. No es simplemente una herramienta didáctica — es un sistema completo de generación de valor que toca todas las dimensiones del negocio.</p>
+<p>#### 6.1.1 Valor Estratégico</p>
+<p>**Elevación de Calidad Percibida → Premium Pricing**</p>
+<ul class="doc-list">
+<li>Hoy: Puro Surf compite en experiencia commodity (clases de surf genéricas)</li>
+<li>Con TSS: Posicionamiento como &quot;el único programa de surf estructurado, certificado, y científicamente validado&quot;</li>
+<li>Resultado: Justificación para premium sobre competencia (20-30% mas en mensualidades)</li>
+</ul>
+<p>**Reducción de Desorden Operacional**</p>
+<ul class="doc-list">
+<li>Hoy: Variabilidad en instrucción, falta de protocolos claros, evaluación inconsistente</li>
+<li>Con TSS: Sistemas estandarizados, protocolos documentados, evaluación objetiva</li>
+<li>Resultado: Operaciones más eficientes, menos fricción administrativa, staff mas confiado</li>
+</ul>
+<p>**Profesionalización de Coaches**</p>
+<ul class="doc-list">
+<li>Hoy: Coaches con experiencia pero sin pathway de desarrollo estructurado</li>
+<li>Con TSS: Certification pathway (L1-L5), curriculum de capacitación continua, mentorship structured</li>
+<li>Resultado: Staff mas competente, retention mejorada, reducción de turnover</li>
+</ul>
+<p>**Continuidad de Estudiante &amp; Retención**</p>
+<ul class="doc-list">
+<li>Hoy: Estudiantes progresan sin clarity de pathway, muchos dejan sin completar</li>
+<li>Con TSS: Belt progression visual y motivadora, hitos claros, certificación física (cintas)</li>
+<li>Resultado: Estudiantes permanecen 2-3x mas tiempo, lifetime value 5-7x mas alto</li>
+</ul>
+<p>**Barrera Competitiva Insuperable**</p>
+<ul class="doc-list">
+<li>Hoy: Competencia puede copiar clases, instructores, ubicación</li>
+<li>Con TSS: Metodología proprietaria, no replicable, respaldada por IP legal</li>
+<li>Resultado: Ventaja defensiva duradera. Diferenciación imposible de copiar.</li>
+</ul>
+<p>**Diferenciación Tecnológica**</p>
+<ul class="doc-list">
+<li>Hoy: Competencia usa papel, hojas de asistencia, no tracking digital</li>
+<li>Con TSS: Brain App, adaptive quizzes, digital progression tracking, analytics</li>
+<li>Resultado: Puro Surf es el único con tecnología en el espacio de educación de surf</li>
+</ul>
+<p>**Sellado Oficial de TSS**</p>
+<ul class="doc-list">
+<li>Puro Surf ser el PRIMER académica certificado como &quot;Official TSS Academy&quot;</li>
+<li>Valor de marca global</li>
+<li>Atracción de estudiantes premium que buscan el &quot;original&quot;</li>
+</ul>
+<p>---</p>
+<p>#### 6.1.2 Propuesta Financiera</p>
+<p>**Premisa Fundamental:** &quot;Si no se vende, no gastan; si se vende, todos ganan.&quot;</p>
+<p>El modelo NO incrementa costos operacionales de Puro Surf. Los costos están directamente vinculados a ingresos generados.</p>
+<p>**Revenue Streams:**</p>
+<p>1. **Academy License**</p>
+<p>   - Puro Surf obtiene derecho exclusivo de primer implementador como flagship TSS academy</p>
+<p>   - Acceso a todo el corpus doctrinal (Layers 1-3)</p>
+<p>   - Acceso a plataforma digital (Layer 4)</p>
+<p>   - Training de coaches en metodología TSS</p>
+<p>   - Valor: Posicionamiento competitivo único</p>
+<p>2. **Royalty on TSS-Related Sales**</p>
+<p>   - **Otras academias: 12% royalty** (tarifa estándar para cualquier licenciatario nuevo)</p>
+<p>   - **Puro Surf: 0% royalty** — ventaja preferencial como academia flagship y primera implementadora</p>
+<p>   - Esta diferencia es una ventaja competitiva real: Puro Surf opera el sistema sin costo de royalty, algo que ningún otro licenciatario futuro tendrá</p>
+<p>3. **Coach Certifications**</p>
+<p>   - Year 1: GRATIS (incentivo para implementación)</p>
+<p>   - Year 2+: Recertificación pagada ($200-500/coach/año depending on level)</p>
+<p>   - Ejemplo: 15 coaches → $3K-7.5K/año en recertifications</p>
+<p>4. **Level Kits &amp; Materials** (compra aparte)</p>
+<p>   - La academia COMPRA los kits a TSS/Licenciante a precio especial: **$99 por kit**</p>
+<p>   - El paquete completo de belt se vende al alumno en la web a **$600**</p>
+<p>   - Margen para la academia: **$501 por kit vendido** (83.5% de margen)</p>
+<p>   - Incluye: ebooks, workbooks, cinta física, logbook, materiales del nivel</p>
+<p>   - Este es un revenue stream ADICIONAL al royalty — se paga por separado</p>
+<p>5. **Participation en Sales Above Base** (20% upside)</p>
+<p>   - Base de revenue: Acuerdo sobre cifra anual esperada (ej: $50K)</p>
+<p>   - Cualquier revenue ARRIBA de base: Licenciante participa en 20% de upside</p>
+<p>   - Ejemplo: Base $50K, actual $80K → $30K x 20% = $6K adicional para Licenciante</p>
+<p>   - Incentiva crecimiento mutuo</p>
+<p>**Modelo Financiero de Ejemplo (Año 1):**</p>
+<p>| Stream | Volume | Price | Gross | Royalty/Fee | To Licenciante |</p>
+<p>|--------|--------|-------|-------|-------------|-----------------|</p>
+<p>| Academy License | 1 | $10K | $10K | 100% | $10K |</p>
+<p>| Student Kits (compra) | 200 | $99 | $19.8K | Compra directa | $19.8K |</p>
+<p>| Student Kits (venta alumno) | 200 | $600 | $120K | Academia retiene | Margen PS: $100.2K |</p>
+<p>| Coach Certs | 15 | Free | — | — | — |</p>
+<p>| Specialized Programs | 5 | $500 | $2.5K | 10% | $250 |</p>
+<p>| **TOTAL YEAR 1** | | | | | **~$30K para Licenciante** |</p>
+<p>**Modelo Financiero de Ejemplo (Año 3, Con Crecimiento):**</p>
+<p>| Stream | Volume | Price | Gross | Royalty/Fee | To Licenciante |</p>
+<p>|--------|--------|-------|-------|-------------|-----------------|</p>
+<p>| Academy License | 1 | — | (sunk) | — | — |</p>
+<p>| Student Kits (compra) | 600 | $99 | $59.4K | Compra directa | $59.4K |</p>
+<p>| Student Kits (venta alumno) | 600 | $600 | $360K | Academia retiene | Margen PS: $300.6K |</p>
+<p>| Coach Certs (Recert) | 20 | $300 | $6K | 100% | $6K |</p>
+<p>| Specialized Programs | 25 | $500 | $12.5K | 10% | $1.25K |</p>
+<p>| Upside Participation | — | — | $50K revenue base | 20% above | $4K |</p>
+<p>| **TOTAL YEAR 3** | | | | | **~$14.25K** |</p>
+<p>**Nota:** Este modelo es ESCALABLE. A medida que Puro Surf crece, Licenciante crece con ella. A medida que se licencia a otras academias, ingresos se multiplican.</p>
+<p>---</p>
+<p>#### 6.1.3 Análisis de Riesgo</p>
+<p>**RIESGO BAJO PARA PURO SURF:**</p>
+<ul class="doc-list">
+<li>&quot;Si nada se vende, Puro Surf no gasta nada.&quot; Costo de implementation es 0 si no hay adoption.</li>
+<li>IP y sistema ya están creados — no hay costo de development para Puro Surf.</li>
+<li>Implementation incrementa el valor percibido SIN incrementar costos operacionales significativamente.</li>
+<li>La infraestructura tecnológica (TSS Brain App) ya está desarrollada — costo de integración es mínimo.</li>
+</ul>
+<p>**FACTORES DE ÉXITO:**</p>
+<p>1. **Adopción de Coach** (Crítico)</p>
+<p>   - Coaches deben comprometerse a usar manuals, protocolos, herramientas</p>
+<p>   - Success factor: Capacitación clara, soporte continuo, incentivos por certificación</p>
+<p>   - Mitigación: Programa de capacitación estructurado, bonus/incentivos, recognition</p>
+<p>2. **Adopción de Estudiante** (Crítico)</p>
+<p>   - Estudiantes deben ver valor en cinta, progresión, certificación</p>
+<p>   - Success factor: Marketing claro, experiencia de progresión motivadora, recognition</p>
+<p>   - Mitigación: Launch campaign, visual (cintas, certificados), celebración de hitos</p>
+<p>3. **Operación Consistente** (Importante)</p>
+<p>   - Implementación debe ser sistemática, no ad-hoc</p>
+<p>   - Success factor: Governance claro, monitoring, coaching continuo</p>
+<p>   - Mitigación: Designated TSS Coordinator, weekly check-ins, quarterly audits</p>
+<p>4. **Soporte Técnico** (Importante)</p>
+<p>   - TSS Brain App debe funcionar reliablemente</p>
+<p>   - Success factor: Hosting confiable, support responsivo</p>
+<p>   - Mitigación: SLA con developer, backup support, escalation procedure</p>
+<p>---</p>
+<h3 class="doc-h3">6.2 Estructura de Implementación</h3>
+<p>**Modelo de Gobernanza:**</p>
+<p>```</p>
+<p>┌─────────────────────────────────────────────────┐</p>
+<p>│   LICENCIANTE (Marcelo/Enkrateia SA)            │</p>
+<p>│   • Propietario de IP                           │</p>
+<p>│   • Garantía de calidad doctrinal               │</p>
+<p>│   • Arquitecto del sistema                      │</p>
+<p>│   • Certificador de coaches                     │</p>
+<p>│   • Beneficiario de royalties                   │</p>
+<p>└─────────────────────────────────────────────────┘</p>
+<p>                      ↑</p>
+<p>              Licensing Agreement</p>
+<p>                      ↓</p>
+<p>┌─────────────────────────────────────────────────┐</p>
+<p>│   OPERADOR (Puro Surf)                          │</p>
+<p>│   • Implementador principal                     │</p>
+<p>│   • Entrenador de estudiantes                   │</p>
+<p>│   • Empleador de coaches                        │</p>
+<p>│   • Beneficiario de premiums de precio          │</p>
+<p>│   • Generador de sales/revenue                  │</p>
+<p>└─────────────────────────────────────────────────┘</p>
+<p>                      ↑</p>
+<p>           Suporte &amp; Servicios</p>
+<p>                      ↓</p>
+<p>┌─────────────────────────────────────────────────┐</p>
+<p>│   EJECUTOR TÉCNICO (Desarrollador/TSS Brain)    │</p>
+<p>│   • Mantenimiento de plataforma digital         │</p>
+<p>│   • Soporte técnico                             │</p>
+<p>│   • Evolución de aplicación                     │</p>
+<p>│   • Data management                             │</p>
+<p>└─────────────────────────────────────────────────┘</p>
+<p>```</p>
+<p>**Responsabilidades por Rol:**</p>
+<p>| Responsabilidad | Licenciante | Operador | Técnico |</p>
+<p>|-----------------|------------|----------|---------|</p>
+<p>| Doctrina/Canon | ✓ | (consulta) | — |</p>
+<p>| Capacitación de Coaches | ✓ | ✓ | — |</p>
+<p>| Operación de clases | — | ✓ | — |</p>
+<p>| Evaluación de estudiantes | — | ✓ | — |</p>
+<p>| Tecnología/App | — | (consulta) | ✓ |</p>
+<p>| Data management | — | ✓ | ✓ |</p>
+<p>| Compliance y quality | ✓ | ✓ | — |</p>
+<p>| Revenue management | — | ✓ | — |</p>
+<p>| Royalty payments | — | ✓ (to Licenciante) | — |</p>
+<p>---</p>
+<h3 class="doc-h3">6.3 Expansión Futura</h3>
+<p>#### 6.3.1 Licensing a Otras Academias</p>
+<p>**Modelo de Cascada:**</p>
+<p>Year 1-2: Puro Surf como flagship implementador (exclusive advantage)</p>
+<p>Year 3: Licencias abiertas a otras academias</p>
+<p>Revenue model:</p>
+<ul class="doc-list">
+<li>Academy License: $10K/academia (one-time setup)</li>
+<li>Ongoing royalty: 10% of TSS-related sales</li>
+<li>Recertification: $200-500/coach/year</li>
+<li>Template materials: $500-2K depending on scope</li>
+</ul>
+<p>**Proyección (3 años):**</p>
+<ul class="doc-list">
+<li>Year 1: 0 (Puro Surf exclusive)</li>
+<li>Year 2: Starter licenses (2-3 academias pequeñas)</li>
+<li>Year 3: Full licensing (5-10 academias)</li>
+<li>Revenue consolidado: $50K-100K/año across all academias</li>
+</ul>
+<p>#### 6.3.2 Modelo de Franquicia</p>
+<p>**Estructura Potencial (Future, Year 4+):**</p>
+<p>Franquicia completa de Puro Surf como &quot;Official TSS Academy&quot;</p>
+<ul class="doc-list">
+<li>Franquiciante: Puro Surf (con oversight de Licenciante)</li>
+<li>Franquiciado: Nuevas ubicaciones geográficas</li>
+<li>Revenue split: 25% Franquiciante / 75% Franquiciado</li>
+<li>Royalty al Licenciante: 12% de operación del franquiciado (tarifa estándar; PS tiene 0%)</li>
+</ul>
+<p>**Ventaja:** Escalabilidad geográfica sin capital de Licenciante</p>
+<p>#### 6.3.3 Expansión Internacional</p>
+<p>**Fase 1 (Year 1-2):** Español-speaking markets (Latinoamérica, España)</p>
+<ul class="doc-list">
+<li>Traducción de materiales (ya existe en español)</li>
+<li>Capacitación de coaches locales</li>
+<li>Localization cultural (surf breaks, comunidades locales)</li>
+</ul>
+<p>**Fase 2 (Year 3+):** English markets (USA, Australia, Europe)</p>
+<ul class="doc-list">
+<li>Traducción completa al inglés (proyectado: 6-8 semanas)</li>
+<li>Adaptación a break locations locales</li>
+<li>Marketing segmentado por geografía</li>
+</ul>
+<p>**Proyección:** 5-10 academias internacionales por Year 3</p>
+<p>---</p>
+<h2 class="doc-h2" id="s10">FASE 7: SEPARACIÓN DE ROLES Y GOBERNANZA</h2>
+<h3 class="doc-h3">7.1 Definición Clara de 7 Roles Distintos</h3>
+<p>**La complejidad de TSS requiere separación clara de roles para evitar conflictos y asegurar gobernanza efectiva.**</p>
+<p>---</p>
+<p>#### ROLE 1: FUNDADOR &amp; PROPIETARIO DE IP</p>
+<p>**Status:** Permanente, No-Transferible</p>
+<p>**Titular:** Marcelo Castellanos</p>
+<p>**Descripción:**</p>
+<ul class="doc-list">
+<li>Creator y sole owner de The Surf Sequence® a través de Enkrateia SA de CV</li>
+<li>Propietaria de todos los activos intelectuales (Canon, metodología, marca)</li>
+<li>Control constitutivo sobre doctrina</li>
+<li>Esta es una posición NON-NEGOTIABLE e NON-TRANSFERIBLE</li>
+</ul>
+<p>**Responsabilidades:**</p>
+<ul class="doc-list">
+<li>Autoridad final en decisiones doctrinales</li>
+<li>Validación de correcciones/actualizaciones al Canon</li>
+<li>Aprobación de nuevos productos/servicios que usen marca TSS</li>
+<li>Representación legal de IP</li>
+</ul>
+<p>**Compensación:**</p>
+<ul class="doc-list">
+<li>Titularidad del IP (asset de por vida)</li>
+<li>Royalties de todas las operaciones que usan TSS</li>
+<li>Derecho a participación accionaria en operadores</li>
+</ul>
+<p>**Duración:** Permanente (legalmente transferible al heredero/estate, pero no a terceros durante vida de Marcelo)</p>
+<p>---</p>
+<p>#### ROLE 2: LICENCIANTE</p>
+<p>**Status:** Permanente (durante vida de Fundador/IP Owner)</p>
+<p>**Titular:** Marcelo Castellanos (o designado autorizado)</p>
+<p>**Descripción:**</p>
+<ul class="doc-list">
+<li>Licencia TSS a Puro Surf y potencialmente otras academias</li>
+<li>Control de términos de licencia (pricing, quality standards, usage rights)</li>
+<li>Aprobación de nuevos licenciatarios</li>
+<li>Oversight de compliance doctrinal</li>
+</ul>
+<p>**Responsabilidades:**</p>
+<ul class="doc-list">
+<li>Definición de términos de licencia (exclusividad, territorio, duración)</li>
+<li>Quality audits de licenciatarios</li>
+<li>Resolución de disputas sobre uso de IP</li>
+<li>Evolución de licensing terms según crecimiento</li>
+</ul>
+<p>**Compensación:**</p>
+<ul class="doc-list">
+<li>License fees (one-time)</li>
+<li>Royalties on sales</li>
+<li>Upside participation agreements</li>
+<li>Potential equity stakes en operadores</li>
+</ul>
+<p>**Duración:** Mientras exista IP. Transferible mediante asignación formal.</p>
+<p>---</p>
+<p>#### ROLE 3: ARQUITECTO DEL SISTEMA</p>
+<p>**Status:** Permanente</p>
+<p>**Titular:** Marcelo Castellanos (actualmente). Potencialmente transferible a successor con approval de IP Owner.</p>
+<p>**Descripción:**</p>
+<ul class="doc-list">
+<li>Diseña, evoluciona, y mantiene la metodología TSS</li>
+<li>Creador de new content (nuevas cintas, protocolos, módulos educativos)</li>
+<li>Arbiter de decisiones doctrinales cuando hay ambigüedad</li>
+<li>Auditor de calidad de implementación</li>
+</ul>
+<p>**Responsabilidades:**</p>
+<ul class="doc-list">
+<li>Actualización anual de Canon (si corresponde)</li>
+<li>Creación de nuevos materiales educativos</li>
+<li>Revisión de Coach Manuals y Student Manuals</li>
+<li>Training de entrenadores en Core methodology</li>
+<li>Research y desarrollo de nuevos componentes (ej: nuevas cintas, protocolos especializados)</li>
+</ul>
+<p>**Compensación:**</p>
+<ul class="doc-list">
+<li>Fees por servicio de architectural work ($5K-10K/proyecto)</li>
+<li>Royalties (incluido en Role 1-2)</li>
+<li>Potential equity en operadores</li>
+</ul>
+<p>**Duración:** Indefinido (puede reducirse a medida que metodología madura)</p>
+<p>---</p>
+<p>#### ROLE 4: DIRECTOR DEPORTIVO (Operativo)</p>
+<p>**Status:** Transitorio (10-month transition plan)</p>
+<p>**Titular:** Marcelo Castellanos</p>
+<p>**Descripción:**</p>
+<ul class="doc-list">
+<li>Responsable de operaciones deportivas y estándares de calidad en Puro Surf</li>
+<li>Gestión de staff de coaches</li>
+<li>Planificación de programas</li>
+<li>Evaluación de calidad en el agua</li>
+<li>Mentorship y coaching de coaches</li>
+</ul>
+<p>**Responsabilidades:**</p>
+<ul class="doc-list">
+<li>Sesiones de coaching de coaches (mentorship)</li>
+<li>Program design y curriculum updates</li>
+<li>Quality assurance en el agua</li>
+<li>Student feedback y complaint handling</li>
+<li>Brand representation (external partnerships)</li>
+</ul>
+<p>**Compensación:** Parte de su función como socio fundador y accionista del 20%</p>
+<p>**Duración:** Activo mientras Marcelo lo decida. Potencialmente delegable a medida que el sistema de certificaciones madure y coaches L4-L5 puedan asumir más responsabilidad operativa.</p>
+<p>---</p>
+<p>#### ROLE 6: CERTIFICADOR</p>
+<p>**Status:** Permanente</p>
+<p>**Titular:** Marcelo Castellanos (puede delegarse a Master Instructors certificados)</p>
+<p>**Descripción:**</p>
+<ul class="doc-list">
+<li>Diseña y mantiene el pathway de certificación de coaches (L1-L5)</li>
+<li>Evaluador final de coaches para certificación</li>
+<li>Trainer de &quot;Trainer of Trainers&quot; (Master Instructors)</li>
+<li>Quality gatekeeper de standards de coaching</li>
+</ul>
+<p>**Responsabilidades:**</p>
+<ul class="doc-list">
+<li>Definición de competencias por nivel de certificación</li>
+<li>Creación de examen/assessment</li>
+<li>Evaluación de candidatos a certificación (L1-L2 directamente; L3-L5 con delegados)</li>
+<li>Training de Master Instructors (que pueden certificar coaches bajo supervisión)</li>
+<li>Annual review de standards</li>
+</ul>
+<p>**Compensación:**</p>
+<ul class="doc-list">
+<li>Fees por certificación ($200-500 per coach depending on level)</li>
+<li>Potential bonus si se certifican 20+ coaches/year</li>
+</ul>
+<p>**Duración:** Indefinido. Potencialmente delegable a Master Instructors bajo supervision.</p>
+<p>---</p>
+<p>#### ROLE 7: ACCIONISTA</p>
+<p>**Status:** Indefinido (si aplicable)</p>
+<p>**Titular:** Marcelo Castellanos (si Puro Surf es equity-backed)</p>
+<p>**Descripción:**</p>
+<ul class="doc-list">
+<li>Ownership stake en Puro Surf (propuesto: 20% equity)</li>
+<li>Participación en board decisions como minority shareholder</li>
+<li>Derechos a dividends de ganancias</li>
+</ul>
+<p>**Responsabilidades:**</p>
+<ul class="doc-list">
+<li>Participación en board meetings (si aplicable)</li>
+<li>Input en decisiones estratégicas mayores</li>
+<li>Compliance con shareholder obligations</li>
+</ul>
+<p>**Compensación:**</p>
+<ul class="doc-list">
+<li>20% de equity (valor al momento de acuerdo)</li>
+<li>Dividends anuales (si hay ganancias)</li>
+<li>Potential upside en exit/acquisition</li>
+</ul>
+<p>**Duración:** Indefinido (hasta venta de equitiy o acuerdo de retiro)</p>
+<p>---</p>
+<h3 class="doc-h3">7.2 Matriz de Gobernanza</h3>
+<p>```</p>
+<p>┌────────────────────────────────────────────────────────────────┐</p>
+<p>│                    GOVERNANCE MATRIX                            │</p>
+<p>├────────────────────────────────────────────────────────────────┤</p>
+<p>│                                                                  │</p>
+<p>│  Decisión                          Autoridad Principal            │</p>
+<p>│  ─────────────────────────────────────────────────────────────  │</p>
+<p>│  Canon / Doctrina                  IP Owner + Licenciante       │</p>
+<p>│  Nuevas cintas/módulos             Arquitecto + IP Owner        │</p>
+<p>│  Términos de licencia              Licenciante + Board          │</p>
+<p>│  Nuevos licenciatarios             Licenciante + Board          │</p>
+<p>│  Coach Certification               Certificador                 │</p>
+<p>│  Quality Assurance                 Arquitecto + Director        │</p>
+<p>│  Pricing de programa               Operador (Puro Surf)         │</p>
+<p>│  Hiring/Firing de staff            Operador                     │</p>
+<p>│  Expansión geográfica              Board + Licenciante          │</p>
+<p>│  Technology/App                    Operador + Tech Lead         │</p>
+<p>│  Royalty rates                     Licenciante + Legal          │</p>
+<p>│                                                                  │</p>
+<p>└────────────────────────────────────────────────────────────────┘</p>
+<p>```</p>
+<p>---</p>
+<h3 class="doc-h3">7.3 Transición de Rol 4 a Rol 5 (10-Month Plan)</h3>
+<p>**Timeline:**</p>
+<p>```</p>
+<p>Month 1-2 (Abril-Mayo 2026): Discovery &amp; Documentation</p>
+<p>├─ Documentar todas las responsabilidades actuales</p>
+<p>├─ Identificar successor (Lead Coach o Coordinator)</p>
+<p>├─ Crear transition playbook</p>
+<p>└─ Formal announcement a staff</p>
+<p>Month 3-4 (Junio-Julio 2026): Knowledge Transfer</p>
+<p>├─ Training intensivo de successor</p>
+<p>├─ Marcelo sigue en role pero con co-leadership</p>
+<p>├─ Documentación de best practices</p>
+<p>└─ Feedback loops establecidos</p>
+<p>Month 5-6 (Agosto-Septiembre 2026): Gradual Handoff</p>
+<p>├─ Successor toma 50% de responsabilidades</p>
+<p>├─ Marcelo en oversight/mentoring mode</p>
+<p>├─ Quality metrics monitoreados</p>
+<p>└─ Additional training según gaps</p>
+<p>Month 7-8 (Octubre-Noviembre 2026): Full Handoff</p>
+<p>├─ Successor asume 100% de responsabilidades</p>
+<p>├─ Marcelo evoluciona hacia Arquitecto del Sistema + Licenciante</p>
+<p>├─ Formal role change announcement</p>
+<p>└─ Contract adjustment (salary → retainer)</p>
+<p>Month 9-10 (Diciembre 2026 - Enero 2027): Stabilization</p>
+<p>├─ Support continuado según sea needed</p>
+<p>├─ Monthly strategic reviews</p>
+<p>├─ Adjustment of systems según feedback</p>
+<p>└─ Formal completion of transition</p>
+<p>```</p>
+<p>---</p>
+<h2 class="doc-h2" id="s11">FASE 8: ESTRATEGIA NARRATIVA PARA LA PRESENTACIÓN</h2>
+<h3 class="doc-h3">8.1 Arco Narrativo Recomendado</h3>
+<p>La presentación a la junta directiva debe seguir un arco claro:</p>
+<p>```</p>
+<p>┌─────────────────────────────────────────────────────────────┐</p>
+<p>│                   OPENING: THE PROBLEM                       │</p>
+<p>│                  (5 minutos)                                 │</p>
+<p>├─────────────────────────────────────────────────────────────┤</p>
+<p>│ Frame del problema:                                          │</p>
+<p>│ • Surf education actualmente es DESORGANIZED                │</p>
+<p>│ • Sin estructura, sin progresión clara, sin sistemas         │</p>
+<p>│ • Coaches varían wildly en calidad                          │</p>
+<p>│ • Estudiantes salen sin completar progresión                │</p>
+<p>│ • Competencia puede copiar fácilmente (sin IP)              │</p>
+<p>│ • Tecnología AUSENTE en industria de surf                   │</p>
+<p>└─────────────────────────────────────────────────────────────┘</p>
+<p>                           ↓</p>
+<p>┌─────────────────────────────────────────────────────────────┐</p>
+<p>│                   MIDDLE: THE SOLUTION                       │</p>
+<p>│                  (15 minutos)                                │</p>
+<p>├─────────────────────────────────────────────────────────────┤</p>
+<p>│ Introducción a TSS:                                         │</p>
+<p>│ • QUÉ es TSS: Sistema integral de educación de surf         │</p>
+<p>│ • La ÚNICA metodología estructurada y basada en evidencia   │</p>
+<p>│ • Creado por experto olímpico ISA (Marcelo)                 │</p>
+<p>│ • Completamente documentado (60+ archivos, 4 capas)        │</p>
+<p>│ • Respaldado por propiedad intelectual legal (IP)           │</p>
+<p>│ • Ya testado en Puro Surf (partial implementation)          │</p>
+<p>│ • Escalable a otras academias y geografías                 │</p>
+<p>└─────────────────────────────────────────────────────────────┘</p>
+<p>                           ↓</p>
+<p>┌─────────────────────────────────────────────────────────────┐</p>
+<p>│              ARCHITECTURE: SHOWING THE SYSTEM                │</p>
+<p>│                  (15 minutos)                                │</p>
+<p>├─────────────────────────────────────────────────────────────┤</p>
+<p>│ Demostración del universo TSS:                              │</p>
+<p>│ • 4 capas arquitectónicas (Doctrina, Arquitectura,          │</p>
+<p>│   Aplicación, Herramientas)                                 │</p>
+<p>│ • 25+ herramientas digitales (TSS Brain App, quizzes,      │</p>
+<p>│   cert prep, high performance, safety, etc.)               │</p>
+<p>│ • 6 niveles de cintas (Blanco→Negro) con progresión clara  │</p>
+<p>│ • Sistemas estandarizados (Safety, Inclusion, Pedagogy)    │</p>
+<p>│ • Modelos de entrenador y sistemas de datos                │</p>
+<p>│ • Demostración del TSS Brain App                           │</p>
+<p>│ → Mostrar cómo Puro Surf puede usar esto TODAY             │</p>
+<p>└─────────────────────────────────────────────────────────────┘</p>
+<p>                           ↓</p>
+<p>┌─────────────────────────────────────────────────────────────┐</p>
+<p>│              CURRENT STATE: WHERE WE ARE                     │</p>
+<p>│                  (10 minutos)                                │</p>
+<p>├─────────────────────────────────────────────────────────────┤</p>
+<p>│ Análisis de implementación actual en Puro Surf:            │</p>
+<p>│ • Puro Surf ACTUALMENTE usa PARTES de TSS                 │</p>
+<p>│   - Algunos manuals de cintas                               │</p>
+<p>│   - Algunos entrenadores certificados                       │</p>
+<p>│   - Algunos procesos                                        │</p>
+<p>│ • PERO: No estamos usando el SISTEMA COMPLETO              │</p>
+<p>│ • Falta: Integración de capas, estándares de quality,      │</p>
+<p>│   technology, scaling systems, full implementation          │</p>
+<p>│ • Resultado: Dejando valor sobre la mesa                   │</p>
+<p>│ • Oportunidad: FULL IMPLEMENTATION = TRANSFORMATION         │</p>
+<p>└─────────────────────────────────────────────────────────────┘</p>
+<p>                           ↓</p>
+<p>┌─────────────────────────────────────────────────────────────┐</p>
+<p>│           FUTURE STATE: WHAT CHANGES                         │</p>
+<p>│                  (15 minutos)                                │</p>
+<p>├─────────────────────────────────────────────────────────────┤</p>
+<p>│ Transformación con full TSS implementation:                 │</p>
+<p>│                                                              │</p>
+<p>│ 1. SESIONES ESTANDARIZADAS                                  │</p>
+<p>│    • 22-step Cascade System aplicado cada sesión            │</p>
+<p>│    • Consistencia de instrucción garantizada               │</p>
+<p>│    • Evaluación objetiva de progreso                       │</p>
+<p>│    • → Resultado: Mayor satisfacción de estudiante          │</p>
+<p>│                                                              │</p>
+<p>│ 2. COACHES CERTIFICADOS                                    │</p>
+<p>│    • Certification pathway L1-L5                            │</p>
+<p>│    • Training continuo en core methodology                  │</p>
+<p>│    • Quality standards enforced                             │</p>
+<p>│    • → Resultado: Staff mas competente, retention mejor    │</p>
+<p>│                                                              │</p>
+<p>│ 3. PROGRESIÓN DE ESTUDIANTE CLARA                           │</p>
+<p>│    • Cintas visuales (Blanco→Negro)                         │</p>
+<p>│    • Hitos claros de progresión                            │</p>
+<p>│    • Motivación intrínseca aumentada                        │</p>
+<p>│    • → Resultado: Estudiantes permanecen 2-3x mas tiempo   │</p>
+<p>│                                                              │</p>
+<p>│ 4. TECNOLOGÍA INTEGRADA                                     │</p>
+<p>│    • TSS Brain App para session management                  │</p>
+<p>│    • Adaptive quizzes para placement                        │</p>
+<p>│    • Digital progress tracking                              │</p>
+<p>│    • → Resultado: Operaciones mas eficientes, datos claros │</p>
+<p>│                                                              │</p>
+<p>│ 5. RESULTADOS MEDIBLES                                      │</p>
+<p>│    • KPIs claros (retention, progression rate, satisfaction)│</p>
+<p>│    • Data-driven decision making                            │</p>
+<p>│    • Reportes automáticos                                   │</p>
+<p>│    • → Resultado: Accountability, mejora continua          │</p>
+<p>│                                                              │</p>
+<p>│ 6. DIFERENCIACIÓN DE MERCADO                                │</p>
+<p>│    • Única academia con este nivel de estructura            │</p>
+<p>│    • IP protegida, no replicable                           │</p>
+<p>│    • Sello oficial de TSS Academy                          │</p>
+<p>│    • → Resultado: Ventaja competitiva defensible            │</p>
+<p>└─────────────────────────────────────────────────────────────┘</p>
+<p>                           ↓</p>
+<p>┌─────────────────────────────────────────────────────────────┐</p>
+<p>│            VALUE &amp; ECONOMICS: THE NUMBERS                    │</p>
+<p>│                  (10 minutos)                                │</p>
+<p>├─────────────────────────────────────────────────────────────┤</p>
+<p>│ Business case:                                               │</p>
+<p>│                                                              │</p>
+<p>│ COSTO: &quot;Si nada se vende, no gastan nada&quot;                  │</p>
+<p>│ • Implementation no incrementa costos operacionales         │</p>
+<p>│ • Costos vinculados directamente a ingresos                 │</p>
+<p>│ • Worst case: $0 inversión, status quo                      │</p>
+<p>│ • RIESGO BAJO                                               │</p>
+<p>│                                                              │</p>
+<p>│ INGRESOS POTENCIALES (Conservative estimate):              │</p>
+<p>│ • Year 1: ~$11K (license + royalties + certs)              │</p>
+<p>│ • Year 2: ~$12K (+ growing student base)                   │</p>
+<p>│ • Year 3: ~$14K (+ expansion)                              │</p>
+<p>│ • Compuesto annual growth: 10-15%                          │</p>
+<p>│                                                              │</p>
+<p>│ VALUE TO PURO SURF (NOT reflected in above):              │</p>
+<p>│ • Premium pricing (20-30% aumento en mensualidades)        │</p>
+<p>│ • Retention mejorada (2-3x mas tiempo de estudiante)       │</p>
+<p>│ • Lifetime value de estudiante: 5-7x mas alto              │</p>
+<p>│ • Operational efficiency (menos fricción, mejor systems)   │</p>
+<p>│ • Competencia imposible de igualar                         │</p>
+<p>│ • TRUE VALUE: $500K+ over 5 years (conservador)           │</p>
+<p>│                                                              │</p>
+<p>│ → Retorno es MASSIVE comparado a inversión (essentially 0) │</p>
+<p>└─────────────────────────────────────────────────────────────┘</p>
+<p>                           ↓</p>
+<p>┌─────────────────────────────────────────────────────────────┐</p>
+<p>│         COMPETITIVE ADVANTAGE: WHY THIS MATTERS              │</p>
+<p>│                  (10 minutos)                                │</p>
+<p>├─────────────────────────────────────────────────────────────┤</p>
+<p>│ Contexto de mercado:                                         │</p>
+<p>│ • Competencia: Sin estructura, tecnología, IP               │</p>
+<p>│ • Puro Surf con TSS: Único en el mercado                   │</p>
+<p>│ • Barreras a la entrada para competencia:                   │</p>
+<p>│   - Crear metodología comparable: 3+ años                   │</p>
+<p>│   - Crear tecnología comparable: $100K+ investment          │</p>
+<p>│   - Obtener coaches certificados: 6+ meses                  │</p>
+<p>│   - Implementar sistemas: 6+ meses                          │</p>
+<p>│ • RESULTADO: Puro Surf tiene ventaja defensible de 2+ años  │</p>
+<p>│                                                              │</p>
+<p>│ Ventaja estratégica:                                         │</p>
+<p>│ • Primero al mercado con &quot;Official TSS Academy&quot;            │</p>
+<p>│ • Testimonial global de credibilidad                        │</p>
+<p>│ • Flagship para expansión de TSS a otras academias         │</p>
+<p>│ • Potential para participación en crecimiento de TSS        │</p>
+<p>└─────────────────────────────────────────────────────────────┘</p>
+<p>                           ↓</p>
+<p>┌─────────────────────────────────────────────────────────────┐</p>
+<p>│         EXPANSION PATH: THE LONG-TERM OPPORTUNITY           │</p>
+<p>│                  (10 minutos)                                │</p>
+<p>├─────────────────────────────────────────────────────────────┤</p>
+<p>│ Visión de futuro:                                            │</p>
+<p>│                                                              │</p>
+<p>│ FASE 1 (Y1-2): Puro Surf Flagship                           │</p>
+<p>│ • Full implementation de TSS en Puro Surf                   │</p>
+<p>│ • Exclusive first-mover advantage                           │</p>
+<p>│ • Testimonial de éxito                                      │</p>
+<p>│                                                              │</p>
+<p>│ FASE 2 (Y2-3): Licensing a Otras Academias                 │</p>
+<p>│ • 5-10 academias adicionales adoptan TSS                    │</p>
+<p>│ • Puro Surf se beneficia de ecosystem growth                │</p>
+<p>│ • Ingresos consolidados: $50K-100K/año                      │</p>
+<p>│                                                              │</p>
+<p>│ FASE 3 (Y3+): Franchising &amp; International                   │</p>
+<p>│ • Modelo de franquicia de Puro Surf                         │</p>
+<p>│ • Expansion a Latinoamérica, USA, Europa, Australia         │</p>
+<p>│ • Potential value: $1M+ over 5-10 years                     │</p>
+<p>│                                                              │</p>
+<p>│ MARCELO&#x27;S ROLE:                                              │</p>
+<p>│ • Evolución: Director Deportivo → Arquitecto + Licenciante  │</p>
+<p>│ • Participación en crecimiento de ecosystem                 │</p>
+<p>│ • Equity upside si Puro Surf crece                         │</p>
+<p>│ • Royalty stream desde todas las academias                  │</p>
+<p>└─────────────────────────────────────────────────────────────┘</p>
+<p>                           ↓</p>
+<p>┌─────────────────────────────────────────────────────────────┐</p>
+<p>│            CALL TO ACTION: WHAT WE NEED                      │</p>
+<p>│                  (5 minutos)                                 │</p>
+<p>├─────────────────────────────────────────────────────────────┤</p>
+<p>│ Decisiones requeridas HOY:                                   │</p>
+<p>│                                                              │</p>
+<p>│ 1. APROBACIÓN DE FULL IMPLEMENTATION                        │</p>
+<p>│    • Adoptar TSS como framework operacional oficial         │</p>
+<p>│    • Budget para completar P0 items (manuals, corrections)  │</p>
+<p>│    • Timeline: Full implementation por Q3 2026              │</p>
+<p>│                                                              │</p>
+<p>│ 2. GOVERNANCE &amp; ROLES                                       │</p>
+<p>│    • Marcelo: IP Owner + Licenciante + Arquitecto           │</p>
+<p>│    • Designar TSS Coordinator interno                       │</p>
+<p>│    • Define support structure                               │</p>
+<p>│                                                              │</p>
+<p>│ 3. FINANCIAL TERMS                                          │</p>
+<p>│    • License fee: $10K (one-time)                           │</p>
+<p>│    • Royalty rate: 0% para PS (12% otras academias)        │</p>
+<p>│    • Upside participation: 20% on revenue above base        │</p>
+<p>│    • Coach certs: Free Y1, paid Y2+                        │</p>
+<p>│                                                              │</p>
+<p>│ 4. TIMELINE &amp; MILESTONES                                    │</p>
+<p>│    • Q2 2026: Complete P0 items, full documentation        │</p>
+<p>│    • Q3 2026: Full coach training &amp; certification           │</p>
+<p>│    • Q4 2026: Student migration to full TSS system          │</p>
+<p>│    • Q1 2027: Data-driven assessment of impact              │</p>
+<p>│                                                              │</p>
+<p>│ INVESTMENT REQUIRED FROM PURO SURF: ~$15K-25K (staff time) │</p>
+<p>│ RETURN ON INVESTMENT: 5-7x within 5 years (conservative)    │</p>
+<p>│ RISK PROFILE: LOW (costs tied to sales, no capex required)  │</p>
+<p>└─────────────────────────────────────────────────────────────┘</p>
+<p>```</p>
+<p>---</p>
+<h3 class="doc-h3">8.2 Mensajes Clave para Enfatizar</h3>
+<p>1. **TSS ES ÚNICO EN MUNDO**</p>
+<p>   - Única metodología de educación de surf estructurada, progresiva, basada en evidencia</p>
+<p>   - Creada por experto olímpico ISA (credibilidad global)</p>
+<p>   - Completamente documentada y sistemática</p>
+<p>2. **PURO SURF USA PARTES, NO EL SISTEMA COMPLETO**</p>
+<p>   - Actualmente: Ad-hoc implementation de algunos componentes</p>
+<p>   - Pérdida de valor: Dejando ~$500K+ de upside sobre la mesa</p>
+<p>   - Full implementation = transformación, no simplemente &quot;agregar cosas&quot;</p>
+<p>3. **NO ES COSTO, ES INVERSIÓN QUE SE PAGA A SÍ MISMA**</p>
+<p>   - Premisa: &quot;Si no se vende, no gastan; si se vende, todos ganan&quot;</p>
+<p>   - Costo de implementation: Esencialmente $0 (infrastructure ya existe)</p>
+<p>   - Revenue impact: 10-15% annual growth, conservador</p>
+<p>4. **VENTAJA COMPETITIVA INSUPERABLE**</p>
+<p>   - Tecnología (TSS Brain App) inexistente en industria de surf</p>
+<p>   - Metodología no replicable (IP protegida legalmente)</p>
+<p>   - First-mover advantage único</p>
+<p>   - 2+ años de ventaja antes que competencia pueda igualar</p>
+<p>5. **EXPANSIÓN FUTURA MULTIPLICA VALOR**</p>
+<p>   - Puro Surf como flagship global de TSS</p>
+<p>   - Licensing a otras academias incrementa ingresos de ecosystem</p>
+<p>   - Potential franchising model</p>
+<p>   - Upside para Puro Surf Y para Marcelo</p>
+<p>---</p>
+<h3 class="doc-h3">8.3 Slides Recomendadas (PowerPoint Deck)</h3>
+<p>1. **Opening Slide**: The Problem (Surf Education Today)</p>
+<p>2. **What is TSS**: Definition, Creator, Completeness</p>
+<p>3. **The 4 Layers**: Arquitectura visual</p>
+<p>4. **Key Statistics**: 60+ files, 25+ tools, 6 belt levels, 98% doctrine maturity</p>
+<p>5. **Puro Surf Today**: Partial implementation (Venn diagram)</p>
+<p>6. **Puro Surf Future**: Full implementation (Venn diagram completado)</p>
+<p>7. **The Transformation**: Session standardization, coach certification, student progression, technology</p>
+<p>8. **Business Case**: Year 1, Year 3, Year 5 financials</p>
+<p>9. **Competitive Advantage**: Why this matters (barriers to entry)</p>
+<p>10. **Expansion Path**: Licensing, franchising, international</p>
+<p>11. **Governance**: Roles &amp; responsibilities clearly separated</p>
+<p>12. **Implementation Timeline**: Q2-Q4 2026 roadmap</p>
+<p>13. **Call to Action**: 4 decisions needed</p>
+<p>14. **The Ask**: Budget, timeline, governance approval</p>
+<p>---</p>
+<h2 class="doc-h2" id="s12">CONCLUSIÓN</h2>
+<p>The Surf Sequence® representa la oportunidad más significativa de transformación estratégica para Puro Surf en su historia.</p>
+<p>**El momento es AHORA porque:**</p>
+<p>1. Doctrina está COMPLETA (98% madurez, 7 contradiciones RESUELTAS)</p>
+<p>2. Tecnología está DEPLOYADA (TSS Brain App Phases 1-2 operational)</p>
+<p>3. Puro Surf está POSICIONADO como flagship implementador único</p>
+<p>4. Mercado está LISTO para diferenciación en educación de surf</p>
+<p>5. Riesgo es BAJO (costos vinculados a ventas, no capex requerido)</p>
+<p>6. ROI es ALTO (5-7x potencial en 5 años)</p>
+<p>**Acción recomendada: APROBACIÓN INMEDIATA para implementación completa, con timeline Q2-Q4 2026.**</p>
+<p>---</p>
+<p>**Documento preparado por el Arquitecto del Sistema**</p>
+<p>**The Surf Sequence®**</p>
+<p>**Enkrateia SA de CV**</p>
+<p>**Marzo 19, 2026**</p>
+<p>---</p>
+<p>*Este documento contiene información confidencial y propietaria de Enkrateia SA de CV. Distribución limitada a socios estratégicos y junta directiva de Puro Surf únicamente.*</p>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Strategic Audit — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

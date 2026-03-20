@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Developer Brief — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#5AC3E7;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">💻</span>
+    <div>
+      <div class="top-bar__title">Developer Brief</div>
+      <div class="top-bar__sub">The Surf Sequence® — PLATFORM</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">PLATFORM</span>
+    <span>1,679 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">TSS BRAIN</a><a href="#s2">DEVELOPER BRIEF</a><a href="#s3">SECTION 1: CURRENT STATE</a><a href="#s4">Technology Stack</a><a href="#s5">Database Status</a><a href="#s6">Deployed Features</a><a href="#s7">Next Phase</a><a href="#s8">SECTION 2: ROLES &amp; PERMISSIONS (Deployed — DO NOT Change)</a><a href="#s9">Admin</a><a href="#s10">Coordinator</a><a href="#s11">Coach</a><a href="#s12">Assistant</a><a href="#s13">SECTION 3: THE CASCADE — Session Creation Flow (22 Steps)</a><a href="#s14">MOMENT 1 — CONTEXT (Steps 1-5)</a><a href="#s15">MOMENT 2 — PLANNING (Steps 6-13)</a><a href="#s16">MOMENT 3 — CLOSE (Steps 14-22, Mandatory)</a><a href="#s17">SECTION 4: CRITICAL DATA DISTINCTION</a><a href="#s18">SECTION 5: BELT SYSTEM — Complete Reference</a><a href="#s19">SECTION 6: PILAR PARTS — Complete Dropdown Values (78 Total)</a><a href="#s20">Technical (45)</a><a href="#s21">Tactical (7)</a><a href="#s22">Mental (7)</a><a href="#s23">Physical (8)</a><a href="#s24">Safety (11 — NOT a Dropdown Selection)</a><a href="#s25">SECTION 7: ALL OTHER DROPDOWN VALUES</a><a href="#s26">SECTION 8: RATING SCALES BY BELT LEVEL (Progressive)</a><a href="#s27">SECTION 9: COACH CERTIFICATION LEVELS — Belt Requirements</a><a href="#s28">SECTION 10: OCEAN RULES MATRIX</a><a href="#s29">SECTION 11: BOARD TRANSITION LOGIC</a><a href="#s30">Softboard to Hardtop Transition Criteria</a><a href="#s31">Implementation</a><a href="#s32">SECTION 12: PRIORITY BUILD ORDER</a><a href="#s33">SECTION 13: TABLES TO CREATE/UPDATE</a><a href="#s34">New Tables Needed</a><a href="#s35">Existing Tables to Update</a><a href="#s36">SECTION 14: DOCTRINAL AUTHORITY &amp; REFERENCES</a><a href="#s37">Authority Hierarchy</a><a href="#s38">Complete Context</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">TSS BRAIN</h1>
+<h1 class="doc-h1" id="s2">DEVELOPER BRIEF</h1>
+<p>Context Document for App Development</p>
+<p>Load this document as initial context in Claude Code / development environment</p>
+<p>Version 1.0 — March 2026</p>
+<p>Based on Canon Oficial v5.0</p>
+<p>© The Surf Sequence® — Enkrateia SA de CV — March 2026</p>
+<h1 class="doc-h1" id="s3">SECTION 1: CURRENT STATE</h1>
+<h2 class="doc-h2" id="s4">Technology Stack</h2>
+<p>Framework: Next.js 14 + Tailwind CSS</p>
+<p>Hosting: Vercel (Production URL: tss-brain-app.vercel.app)</p>
+<p>Database: Supabase (PostgreSQL + Auth + Storage)</p>
+<p>Supabase Project: cssewjefhnamconoyuso (São Paulo)</p>
+<p>GitHub Repository: marcelocsurf/TSS-BRAIN-APP</p>
+<h2 class="doc-h2" id="s5">Database Status</h2>
+<p>Tables: 14 total</p>
+<p>Drill Seeds: 50+ drills configured</p>
+<p>Sequence Seeds: 17 sequences seeded</p>
+<p>Completion: Stage 1 partially complete</p>
+<h2 class="doc-h2" id="s6">Deployed Features</h2>
+<p>Session Flow: 6-step session flow (516 lines of code)</p>
+<p>Coach Portal: Dashboard, student roster, camp management, audit logs</p>
+<p>Student Intake: 5-step form with public endpoint /intake/[token]</p>
+<p>Coach Invitations: System for sending invite links</p>
+<p>Role-Based Access Control: Admin, Coordinator, Coach, Assistant roles</p>
+<h2 class="doc-h2" id="s7">Next Phase</h2>
+<p>Phase 3 — Session Flow Cascade Rebuild: Core product upgrade. Replace free-text fields with filtered dropdowns. Implement complete 22-step session creation flow.</p>
+<h1 class="doc-h1" id="s8">SECTION 2: ROLES &amp; PERMISSIONS (Deployed — DO NOT Change)</h1>
+<h2 class="doc-h2" id="s9">Admin</h2>
+<p>Full system access. Creates coaches, manages all system settings.</p>
+<h2 class="doc-h2" id="s10">Coordinator</h2>
+<p>Creates students, sends intake links, assigns camps/coaches.</p>
+<p>CONSTRAINT: Cannot change student belt level.</p>
+<h2 class="doc-h2" id="s11">Coach</h2>
+<p>Sees assigned students only. Access includes: surf profile, goals, safety alerts, progression status, session history, own notes.</p>
+<p>CONSTRAINT: Cannot see contact info, logistics details, or other coaches&#x27; notes.</p>
+<h2 class="doc-h2" id="s12">Assistant</h2>
+<p>Safety-critical info only: name, belt level, ocean level, allergies, injuries, emergency contact.</p>
+<p>CONSTRAINT: No edit access. View only.</p>
+<h1 class="doc-h1" id="s13">SECTION 3: THE CASCADE — Session Creation Flow (22 Steps)</h1>
+<p>This is THE core feature to rebuild. Each step filters the next. The flow is organized into three moments: CONTEXT (Steps 1-5), PLANNING (Steps 6-13), and CLOSE (Steps 14-22).</p>
+<h2 class="doc-h2" id="s14">MOMENT 1 — CONTEXT (Steps 1-5)</h2>
+<p>Step 1: Student</p>
+<p>Type: Dropdown selector</p>
+<p>Display: Student name + current belt level</p>
+<p>Auto-loads: belt_level, sequence, step, ocean_level, medical alerts, last_session date</p>
+<p>Filtering: Shows only students assigned to this coach</p>
+<p>Step 2: Training Venue</p>
+<p>Type: Dropdown selector</p>
+<p>Options: Beachbreak, Pointbreak, Reefbreak, White water, Training pool, Surf skate, Gym, Tatami, Video Analysis Room</p>
+<p>Logic: If non-water venue selected → skip Step 3 (Ocean Conditions)</p>
+<p>Step 3: Ocean Conditions</p>
+<p>Type: Dropdown selector</p>
+<p>Options: Flat, 1-2 feet, 3-4 feet, 4-6 feet, 6+ feet</p>
+<p>Display: Only shown if water venue selected in Step 2</p>
+<p>Safety Check: Crosses student belt_level + ocean_level with ocean_rules table → produces risk state</p>
+<p>Safety Override Rule: If ocean_rules return &quot;blocked&quot; → Session does NOT cancel. Instead: (a) System switches venue options to dry-land only, (b) Filters drills to land-based only, (c) Pilar part is maintained</p>
+<p>Step 4: Session Type</p>
+<p>Type: Dropdown selector</p>
+<p>Options: Training (default), Competition, Evaluation</p>
+<p>Step 5: Date</p>
+<p>Type: Date picker</p>
+<p>Default: Today&#x27;s date</p>
+<h2 class="doc-h2" id="s15">MOMENT 2 — PLANNING (Steps 6-13)</h2>
+<p>Step 6: Pilar Part</p>
+<p>Type: Dropdown selector (filtered)</p>
+<p>Filtering: Filtered by student belt_level only</p>
+<p>Content: Shows Technical + Tactical parts appropriate for that belt level</p>
+<p>Important: Coach does NOT select a pilar first. Coach goes directly to pilar part. System internally tags which pilar each part belongs to.</p>
+<p>Special: Mental is implicit (Step 11). Physical is diagnostic (evaluation). Safety is automatic (Step 3).</p>
+<p>Step 7: Mission</p>
+<p>Type: Text field with AI suggestions</p>
+<p>Coach writes: Session objective/goal</p>
+<p>System can suggest: Based on pilar part + student history</p>
+<p>Step 8: Drill</p>
+<p>Type: Dropdown selector (filtered) with search</p>
+<p>Filtering: Filtered by pilar_part + belt_level + venue + ocean_conditions</p>
+<p>Display: Shows only relevant drills. Includes search box.</p>
+<p>Step 9: Warm-up</p>
+<p>Type: Dropdown selector</p>
+<p>Options: Head to toe dynamic warm-up, Unnatural animal (for kids), Specific warm-up, Flow motion simulation</p>
+<p>Step 10: Simulation</p>
+<p>Type: Dropdown selector</p>
+<p>Options: Surf skate, Flow motion, Visualization, Finger surfing the waves in front of you</p>
+<p>Step 11: Mental Hack</p>
+<p>Type: Dropdown selector</p>
+<p>Options: Key words, Do it with intention, Breathe and reset, Positive self-talk, Visualize success, Process over outcome, One wave at a time</p>
+<p>Step 12: Mission Time</p>
+<p>Type: Dropdown selector</p>
+<p>Options: 10 min, 15 min, 20 min, 30 min, 45 min, 60 min</p>
+<p>Step 13: Repetitions</p>
+<p>Type: Number input</p>
+<h2 class="doc-h2" id="s16">MOMENT 3 — CLOSE (Steps 14-22, Mandatory)</h2>
+<p>Step 14: Status</p>
+<p>Type: Dropdown selector</p>
+<p>Options: Not Achieved, Partial, Competent, Mastered</p>
+<p>Step 15: Focus Rating</p>
+<p>Type: 1-5 button group</p>
+<p>Applies to: All belt levels</p>
+<p>Step 16: Frustration/Composure Rating</p>
+<p>Type: 1-5 button group (progressive by belt level)</p>
+<p>Rule: White/Yellow belts display Frustration (1-5) with label &quot;Frustration&quot;</p>
+<p>Rule: Blue+ belts display Composure (1-5) with label &quot;Composure&quot;</p>
+<p>Implementation: Check student.belt_level and display correct scale with correct label</p>
+<p>Step 17: Coach Feedback</p>
+<p>Type: Dropdown selector + text field</p>
+<p>Quick Options: Not collaborating, Good effort, Very good, Excellent</p>
+<p>Plus: Free text field for detailed feedback</p>
+<p>Step 18: Achieved</p>
+<p>Type: Text field</p>
+<p>Coach documents: What student accomplished during session</p>
+<p>Step 19: What&#x27;s Next</p>
+<p>Type: Dropdown selector (filtered)</p>
+<p>Filtering: Same pilar part universe as Step 6</p>
+<p>Purpose: Feeds continuity to next session</p>
+<p>Step 20: Homework</p>
+<p>Type: Dropdown selector + text field</p>
+<p>Cues (predefined): Look forward, Weight on front foot, Knee in, Bend knees, Foot centered, Shoulders aligned with board nose, Activate scapula, Activate hands, Stay calm breath</p>
+<p>Plus: Free text for custom homework</p>
+<p>Step 21: Total Duration</p>
+<p>Type: Dropdown selector</p>
+<p>Options: 30 min, 45 min, 60 min, 90 min, 120 min</p>
+<p>Step 22: Incident Report</p>
+<p>Type: Optional toggle + conditional fields</p>
+<p>If activated: Type (dropdown), Description (text), Action taken (text)</p>
+<p>Type Options: Minor injury, Major injury, Equipment failure, Near miss, Other</p>
+<h1 class="doc-h1" id="s17">SECTION 4: CRITICAL DATA DISTINCTION</h1>
+<p>students.belt_level</p>
+<p>Definition: Current TRAINING level (what they are learning)</p>
+<p>Critical: This is independent of what was purchased</p>
+<p>student_level_access</p>
+<p>Definition: What was PURCHASED (what they have access to)</p>
+<p>Critical: Never conflate with belt_level. Example: A student can have purchased Blue Belt access but still be training at Yellow Belt.</p>
+<p>students.ocean_level</p>
+<p>Definition: Independent from belt_level</p>
+<p>Determined by: Quiz (initial) + coach assessment (override)</p>
+<p>Governs: Safety rules in ocean_rules matrix</p>
+<p>student_path</p>
+<p>Values: &quot;Competitive&quot; or &quot;Recreational&quot;</p>
+<p>Affects: Which evaluation criteria display in Moment 3</p>
+<p>Does NOT affect: Which sequences or drills are available</p>
+<p>age_group</p>
+<p>Values: &quot;Adult&quot; (14+) or &quot;Junior&quot; (8-14)</p>
+<p>Affects: Drill variant suggestions and session_duration defaults</p>
+<p>Does NOT affect: The progression sequence</p>
+<h1 class="doc-h1" id="s18">SECTION 5: BELT SYSTEM — Complete Reference</h1>
+<h1 class="doc-h1" id="s19">SECTION 6: PILAR PARTS — Complete Dropdown Values (78 Total)</h1>
+<h2 class="doc-h2" id="s20">Technical (45)</h2>
+<p>Grab Board, Walk Out, Board Control in White Water, Turn Around Walking, Get on the Board, Sweet Spot, Paddling Turn Around, Paddling Speed and Breathing, Turtle Roll, Identify the Pocket, Paddling Angle, Cobra Pick Line, Dismount, Pop Up Connection, Foot Positioning, Posture, Frontside Rotation, Backside Rotation, Starfish Dismount, Hold, Impulse, Pump Frontside, Pump Backside, Bottom Turn Frontside, Bottom Turn Backside, Projection Frontside, Projection Backside, Cruz de Cristo, Tapaloco, Cutback Frontside, Cutback Backside, Carve Frontside, Carve Backside, Reentry Frontside, Reentry Backside, Floater Frontside, Floater Backside, Tube Riding Frontside, Tube Riding Backside, Straight Air Frontside, Straight Air Backside, Reverse Frontside, Backside 360 Air, Tail Slide Frontside, Tail Slide Backside</p>
+<h2 class="doc-h2" id="s21">Tactical (7)</h2>
+<p>Pre-Competition Routine, Venue Analysis, Plan Creation, Positioning, Wave Selection, Score Generation, Wave Energy Usage</p>
+<h2 class="doc-h2" id="s22">Mental (7)</h2>
+<p>Motivation, Visualization, Focus, Relaxation, Mission, Feedback, Goal Setting</p>
+<h2 class="doc-h2" id="s23">Physical (8)</h2>
+<p>Balance, Coordination, Mobility, Stability, Strength, Endurance, Explosiveness, Body Awareness</p>
+<h2 class="doc-h2" id="s24">Safety (11 — NOT a Dropdown Selection)</h2>
+<p>IMPORTANT: Safety is NOT selected as a dropdown. Safety is an automatic layer applied to all sessions.</p>
+<p>Safety Parts: Safety Signals, Surf Etiquette, Venue Analysis, Equipment Handling, Whitewater Management, Dismount Protocol, Lineup Awareness, Decision Making, Emergency Awareness, Physical Readiness, Mental Readiness</p>
+<h1 class="doc-h1" id="s25">SECTION 7: ALL OTHER DROPDOWN VALUES</h1>
+<p>Note: Board Type is coach-assigned, NOT automatic by belt level.</p>
+<h1 class="doc-h1" id="s26">SECTION 8: RATING SCALES BY BELT LEVEL (Progressive)</h1>
+<p>Implementation: When rendering Moment 3, check student.belt_level and display ONLY the applicable scales.</p>
+<h1 class="doc-h1" id="s27">SECTION 9: COACH CERTIFICATION LEVELS — Belt Requirements</h1>
+<p>Implementation: Store coaches.max_belt_permission based on certification level. Coach CANNOT be assigned students above their max_belt_permission.</p>
+<h1 class="doc-h1" id="s28">SECTION 10: OCEAN RULES MATRIX</h1>
+<p>The ocean_rules table crosses belt_level with ocean_conditions to produce a risk state: &quot;allowed&quot;, &quot;caution&quot;, or &quot;blocked&quot;.</p>
+<p>* Yellow Belt at 3–4 feet: &quot;caution&quot; means allowed only if ocean_level (coach assessment) confirms the student can handle it. If no coach assessment on record, default to &quot;blocked&quot;.</p>
+<p>Safety Override: When &quot;blocked&quot; is returned → Session is NOT cancelled → System automatically switches venue options to dry-land only → Drills are filtered to land-based only.</p>
+<h1 class="doc-h1" id="s29">SECTION 11: BOARD TRANSITION LOGIC</h1>
+<p>board_type is coach-assigned, NOT automatic by belt_level.</p>
+<h2 class="doc-h2" id="s30">Softboard to Hardtop Transition Criteria</h2>
+<p>Student must demonstrate ALL of the following before transitioning to hardtop:</p>
+<p>1. Effective turtle roll or duck dive</p>
+<p>2. Left/right crossing while prone (paddling)</p>
+<p>3. Left/right crossing while standing (riding)</p>
+<p>4. Safe dismount (star fall) consistently</p>
+<p>5. Coach sign-off recorded</p>
+<h2 class="doc-h2" id="s31">Implementation</h2>
+<p>Add boolean field board_clearance_hardtop on student record.</p>
+<p>Coach checks off criteria in a board transition checklist.</p>
+<p>board_type dropdown shows all options, but system shows warning if board_clearance_hardtop is false and coach selects &quot;Hardtop&quot;.</p>
+<h1 class="doc-h1" id="s32">SECTION 12: PRIORITY BUILD ORDER</h1>
+<p>P1 (Immediate): Session Flow Cascade Rebuild</p>
+<p>Replace free-text fields with filtered dropdowns. Implement complete 22-step flow. This IS the core product.</p>
+<p>P2: Student Edit Page</p>
+<p>Allow Coordinator to edit student profiles.</p>
+<p>P3: Camp &amp; Session Management</p>
+<p>Create camps from templates, assign students/coaches.</p>
+<p>P4: Student Continuity View</p>
+<p>Full history, last session details, homework, previous notes.</p>
+<p>P5: Student List Filters</p>
+<p>Filter by name, belt, age, intake status, camp.</p>
+<p>P6: Progressive Rating Scales</p>
+<p>Display correct scales by belt level in Moment 3.</p>
+<p>P7: Ocean Rules Integration</p>
+<p>Safety override with automatic venue switching.</p>
+<p>P8: Board Transition Tracking</p>
+<p>Checklist + clearance field.</p>
+<h1 class="doc-h1" id="s33">SECTION 13: TABLES TO CREATE/UPDATE</h1>
+<h2 class="doc-h2" id="s34">New Tables Needed</h2>
+<p>pilar_parts</p>
+<p>Columns: id, name, pilar_id, description, min_belt, max_belt</p>
+<p>dropdown_options</p>
+<p>Columns: id, category, value, display_order, active</p>
+<p>board_clearance</p>
+<p>Columns: student_id, turtle_roll, crossing_prone, crossing_standing, safe_dismount, coach_sign_off, cleared_date</p>
+<p>rating_scales</p>
+<p>Columns: id, scale_name, min_belt, max_belt, min_value, max_value</p>
+<h2 class="doc-h2" id="s35">Existing Tables to Update</h2>
+<p>students</p>
+<p>Add: ocean_level, student_path, age_group, board_clearance_hardtop</p>
+<p>standalone_sessions</p>
+<p>Rebuild: Match 22-step cascade structure</p>
+<p>ocean_rules</p>
+<p>Verify: Data matches matrix in Section 10</p>
+<h1 class="doc-h1" id="s36">SECTION 14: DOCTRINAL AUTHORITY &amp; REFERENCES</h1>
+<h2 class="doc-h2" id="s37">Authority Hierarchy</h2>
+<p>Tier 1:</p>
+<p>Tier 2: TSS_Brain_Architecture_Decisions.docx</p>
+<p>Tier 3: This Developer Brief (operational guidance)</p>
+<p>If there is any conflict between this brief and the Canon, the Canon wins.</p>
+<h2 class="doc-h2" id="s38">Complete Context</h2>
+<p>The three documents that together provide complete context:</p>
+<p>1. Canon Oficial v5.0 — Strategic and pedagogical authority</p>
+<p>2. TSS_Brain_Architecture_Decisions.docx — Technical architecture</p>
+<p>3. TSS_Developer_Brief_para_App.docx — This document (operational implementation)</p>
+<p>© The Surf Sequence® — Enkrateia SA de CV — March 2026</p>
+<div class="table-wrap"><table>
+<tr><th>Belt</th><th>Hex Color</th><th>Sequences</th><th>Condition Limit</th></tr>
+<tr><td>White</td><td>#E8E8E8</td><td>#1–#5</td><td>Waist-deep water, standing on sand</td></tr>
+<tr><td>Yellow</td><td>#F5C518</td><td>#6–#7</td><td>Base 2–3ft green, adjustable by ocean_level</td></tr>
+<tr><td>Blue</td><td>#1E6FBF</td><td>#8–#13</td><td>3–6ft green waves</td></tr>
+<tr><td>Purple</td><td>#7B4FBE</td><td>#14–#17</td><td>Up to 6ft, overhead optional</td></tr>
+<tr><td>Brown</td><td>#7D4E27</td><td>#18–#22</td><td>No limit (self-regulated)</td></tr>
+<tr><td>Black</td><td>#111111</td><td>#23–#26</td><td>No limit (self-regulated)</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Category</th><th>Options</th></tr>
+<tr><td>Training Venue</td><td>Beachbreak, Pointbreak, Reefbreak, White water, Training pool, Surf skate, Gym, Tatami, Video Analysis Room</td></tr>
+<tr><td>Ocean Conditions</td><td>Flat, 1–2 feet, 3–4 feet, 4–6 feet, 6+ feet</td></tr>
+<tr><td>Session Type</td><td>Training, Competition, Evaluation</td></tr>
+<tr><td>Warm-up</td><td>Head to toe dynamic warm-up, Unnatural animal (kids), Specific warm-up, Flow motion simulation</td></tr>
+<tr><td>Simulation</td><td>Surf skate, Flow motion, Visualization, Finger surfing the waves in front of you</td></tr>
+<tr><td>Mental Hack</td><td>Key words, Do it with intention, Breathe and reset, Positive self-talk, Visualize success, Process over outcome, One wave at a time</td></tr>
+<tr><td>Session Status</td><td>Not Achieved, Partial, Competent, Mastered</td></tr>
+<tr><td>Coach Feedback (Quick)</td><td>Not collaborating, Good effort, Very good, Excellent</td></tr>
+<tr><td>Homework Cues</td><td>Look forward, Weight on front foot, Knee in, Bend knees, Foot centered, Shoulders aligned with board nose, Activate scapula, Activate hands, Stay calm breath</td></tr>
+<tr><td>Incident Type</td><td>Minor injury, Major injury, Equipment failure, Near miss, Other</td></tr>
+<tr><td>Mission Time</td><td>10 min, 15 min, 20 min, 30 min, 45 min, 60 min</td></tr>
+<tr><td>Total Duration</td><td>30 min, 45 min, 60 min, 90 min, 120 min</td></tr>
+<tr><td>Student Path</td><td>Competitive, Recreational</td></tr>
+<tr><td>Age Group</td><td>Adult (14+), Junior (8–14)</td></tr>
+<tr><td>Board Type</td><td>Softboard, Funboard, Hardtop</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Scale</th><th>White</th><th>Yellow</th><th>Blue</th><th>Purple</th><th>Brown</th><th>Black</th></tr>
+<tr><td>Focus (1–5)</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Frustration (1–5)</td><td>Yes</td><td>Yes</td><td>No</td><td>No</td><td>No</td><td>No</td></tr>
+<tr><td>Composure (1–5)</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Control (1–5)</td><td>No</td><td>No</td><td>Yes</td><td>No</td><td>No</td><td>No</td></tr>
+<tr><td>Autonomy (1–5)</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Linking (1–5)</td><td>No</td><td>No</td><td>Yes</td><td>No</td><td>No</td><td>No</td></tr>
+<tr><td>Commitment (1–5)</td><td>No</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Variety (1–5)</td><td>No</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Precision (1–5)</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+<tr><td>Knowledge (1–5)</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr>
+<tr><td>Integration (1–5)</td><td>No</td><td>No</td><td>No</td><td>No</td><td>No</td><td>Yes</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Level</th><th>Name</th><th>Min Belt</th><th>Can Teach</th></tr>
+<tr><td>L1</td><td>Foundation Coach</td><td>Blue Belt</td><td>White + Yellow (Seq #1–#7)</td></tr>
+<tr><td>L2</td><td>Practitioner Coach</td><td>Purple Belt</td><td>Up to Blue (Seq #1–#13)</td></tr>
+<tr><td>L3</td><td>Advanced Coach</td><td>Brown Belt</td><td>Up to Brown. Mentors L1/L2.</td></tr>
+<tr><td>L4</td><td>Master Coach</td><td>Black Belt</td><td>All levels</td></tr>
+<tr><td>L5</td><td>Coach Educator</td><td>Black Belt + L4 exp</td><td>Forms and certifies coaches</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Condition</th><th>White</th><th>Yellow</th><th>Blue</th><th>Purple</th><th>Brown</th><th>Black</th></tr>
+<tr><td>Flat</td><td>allowed</td><td>allowed</td><td>allowed</td><td>allowed</td><td>allowed</td><td>allowed</td></tr>
+<tr><td>1–2 feet</td><td>allowed</td><td>allowed</td><td>allowed</td><td>allowed</td><td>allowed</td><td>allowed</td></tr>
+<tr><td>3–4 feet</td><td>blocked</td><td>caution*</td><td>allowed</td><td>allowed</td><td>allowed</td><td>allowed</td></tr>
+<tr><td>4–6 feet</td><td>blocked</td><td>blocked</td><td>allowed</td><td>allowed</td><td>allowed</td><td>allowed</td></tr>
+<tr><td>6+ feet</td><td>blocked</td><td>blocked</td><td>caution</td><td>caution</td><td>allowed</td><td>allowed</td></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Developer Brief — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

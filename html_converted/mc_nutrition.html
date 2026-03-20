@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nutrition & Hydration — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FF8C42;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #3D2510 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🍎</span>
+    <div>
+      <div class="top-bar__title">Nutrition & Hydration</div>
+      <div class="top-bar__sub">TSS Masterclass — 22 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button><button class="nav-dot" onclick="goSlide(14)" title="Slide 14">14</button><button class="nav-dot" onclick="goSlide(15)" title="Slide 15">15</button><button class="nav-dot" onclick="goSlide(16)" title="Slide 16">16</button><button class="nav-dot" onclick="goSlide(17)" title="Slide 17">17</button><button class="nav-dot" onclick="goSlide(18)" title="Slide 18">18</button><button class="nav-dot" onclick="goSlide(19)" title="Slide 19">19</button><button class="nav-dot" onclick="goSlide(20)" title="Slide 20">20</button><button class="nav-dot" onclick="goSlide(21)" title="Slide 21">21</button><button class="nav-dot" onclick="goSlide(22)" title="Slide 22">22</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 22</span>
+    <ul class="slide-list">
+<li>THE SURF SEQUENCE®</li>
+<li>ONE WAVE SERIES — MODULE 7</li>
+</ul>
+<h2 class="slide-hero">The Science of</h2>
+<h2 class="slide-hero">Nutrition &amp;</h2>
+<h2 class="slide-hero">Hydration</h2>
+<h2 class="slide-hero">for Surfers</h2>
+<h3 class="slide-heading">Fuel the Machine. Feed the Mind.</h3>
+<ul class="slide-list">
+<li>Physical Pillar — Nutrition Component</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 22</span>
+    <ul class="slide-list">
+<li>2 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h2 class="slide-hero">WHY NUTRITION</h2>
+<h2 class="slide-hero">MATTERS</h2>
+<h3 class="slide-heading">This is not a diet. This is a fuel strategy.</h3>
+<h3 class="slide-heading">BRAIN</h3>
+<ul class="slide-list">
+<li>Decision speed, focus, and reaction time depend on blood glucose &amp; hydration</li>
+</ul>
+<h3 class="slide-heading">BODY</h3>
+<ul class="slide-list">
+<li>Muscle endurance, recovery speed, and injury prevention are nutrition-dependent</li>
+</ul>
+<h3 class="slide-heading">STAMINA</h3>
+<ul class="slide-list">
+<li>A 2-hour surf session can burn 400–700 kcal. Without fuel strategy, you fade.</li>
+<li>&quot;A surfer who doesn&#x27;t manage nutrition is leaving 20–30% of their performance in the kitchen.&quot;</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 22</span>
+    <ul class="slide-list">
+<li>3 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h2 class="slide-hero">THE 3 MACROS</h2>
+<p class="body-text">Your body runs on three fuel types. Know them.</p>
+<h3 class="slide-heading">CARBS</h3>
+<ul class="slide-list">
+<li>FUEL</li>
+<li>Primary energy source. Glycogen stores power paddling &amp; explosive pop-ups. Complex carbs = sustained release.</li>
+<li>Rice, oats, sweet potato, banana, quinoa, pasta</li>
+</ul>
+<h3 class="slide-heading">PROTEIN</h3>
+<ul class="slide-list">
+<li>REPAIR</li>
+<li>Rebuilds muscle fibers damaged during sessions. Essential for adaptation &amp; strength gains. 1.6g/kg/day = optimal plateau (Morton et al., 2018).</li>
+<li>Chicken, fish, eggs, beans, Greek yogurt, tofu</li>
+</ul>
+<h3 class="slide-heading">FATS</h3>
+<ul class="slide-list">
+<li>ENDURANCE + BRAIN</li>
+<li>Slow-burn energy for long sessions. Essential for brain function, hormone production, and joint health. Omega-3s reduce inflammation.</li>
+<li>Avocado, nuts, olive oil, salmon, seeds, coconut</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 22</span>
+    <ul class="slide-list">
+<li>4 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">CARBOHYDRATES</h3>
+<ul class="slide-list">
+<li>THE PRIMARY FUEL</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">COMPLEX CARBS</span></div>
+</div>
+<ul class="slide-list">
+<li>Slow Release — Pre-Session</li>
+</ul>
+<p class="body-text">Brown rice, oats, sweet potato,</p>
+<p class="body-text">whole grain bread, quinoa</p>
+<ul class="slide-list">
+<li>Sustained energy over 2–3 hours</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">SIMPLE CARBS</span></div>
+</div>
+<ul class="slide-list">
+<li>Fast Release — Post-Session</li>
+</ul>
+<p class="body-text">Banana, white rice, honey,</p>
+<p class="body-text">fruit juice, dates</p>
+<ul class="slide-list">
+<li>Rapid glycogen replenishment</li>
+<li>KEY INSIGHT</li>
+<li>Your muscles store ~400g of glycogen. A 90-min surf session can deplete 40–60% of that. Without carb replenishment, your pop-up slows, your paddle weakens, and your brain fog increases.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 22</span>
+    <ul class="slide-list">
+<li>5 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">PROTEIN</h3>
+<ul class="slide-list">
+<li>THE REPAIR SYSTEM</li>
+</ul>
+<h2 class="slide-hero">1.6</h2>
+<h3 class="slide-heading">g/kg/day</h3>
+<ul class="slide-list">
+<li>Optimal daily protein intake</li>
+<li>for muscle adaptation</li>
+<li>(Morton et al., 2018)</li>
+<li>TOP SOURCES FOR SURFERS</li>
+<li>Chicken breast — 31g per 100g</li>
+<li>Salmon — 25g per 100g + Omega-3</li>
+<li>Eggs — 6g each, complete amino profile</li>
+<li>Greek yogurt — 10g per 100g + probiotics</li>
+<li>Lentils/beans — 9g per 100g + fiber</li>
+<li>Whey protein — 20–25g per scoop (post-session)</li>
+<li>FOR A 70KG SURFER</li>
+<li>70 kg × 1.6 g = 112g protein/day — spread across 4 meals = ~28g per meal.</li>
+<li>This is about a chicken breast + a handful of nuts per meal, or a protein shake + eggs at breakfast.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 22</span>
+    <ul class="slide-list">
+<li>6 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">HEALTHY FATS</h3>
+<ul class="slide-list">
+<li>ENDURANCE + BRAIN FUEL</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">OMEGA-3</span></div>
+</div>
+<ul class="slide-list">
+<li>Anti-inflammatory powerhouse. Reduces joint pain, speeds recovery, improves brain function.</li>
+<li>Salmon, sardines, walnuts, chia seeds, flaxseed</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">MONOUNSATURATED</span></div>
+</div>
+<ul class="slide-list">
+<li>Heart health, sustained energy, supports hormone production (testosterone, cortisol regulation).</li>
+<li>Avocado, olive oil, almonds, peanut butter</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">MCTs</span></div>
+</div>
+<ul class="slide-list">
+<li>Medium-chain triglycerides. Rapid energy without insulin spike. Brain fuel.</li>
+<li>Coconut oil, coconut milk</li>
+<li>AVOID: Trans fats, excessive saturated fat, deep-fried foods — these increase inflammation and slow recovery.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 22</span>
+    <ul class="slide-list">
+<li>7 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h2 class="slide-hero">2%</h2>
+<h3 class="slide-heading">DEHYDRATION</h3>
+<h2 class="slide-hero">20%</h2>
+<ul class="slide-list">
+<li>COGNITIVE</li>
+<li>DECLINE</li>
+<li>Slower decisions, reduced</li>
+<li>focus, impaired judgment</li>
+</ul>
+<h2 class="slide-hero">25%</h2>
+<ul class="slide-list">
+<li>PHYSICAL</li>
+<li>PERFORMANCE DROP</li>
+<li>Reduced endurance, slower</li>
+<li>reaction time, early fatigue</li>
+<li>Wittbrodt &amp; Millard-Stafford, 2018 — Meta-analysis, Medicine &amp; Science in Sports &amp; Exercise</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 22</span>
+    <ul class="slide-list">
+<li>8 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">HYDRATION</h3>
+<h3 class="slide-heading">PROTOCOL</h3>
+<ul class="slide-list">
+<li>2 HRS BEFORE</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">500 ml water</span></div>
+</div>
+<ul class="slide-list">
+<li>Start session hydrated</li>
+<li>15 MIN BEFORE</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">250 ml + electrolytes</span></div>
+</div>
+<ul class="slide-list">
+<li>Top off with Na/K/Mg</li>
+<li>DURING (if &gt;90 min)</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">Sip every 20 min</span></div>
+</div>
+<ul class="slide-list">
+<li>150–200 ml per interval</li>
+<li>IMMEDIATELY AFTER</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">500–750 ml</span></div>
+</div>
+<ul class="slide-list">
+<li>Replace ~150% of sweat lost</li>
+<li>KEY ELECTROLYTES</li>
+</ul>
+<h4 class="slide-sub">SODIUM (Na⁺)</h4>
+<ul class="slide-list">
+<li>Fluid balance, nerve signaling</li>
+<li>Salt, pickles, broth</li>
+</ul>
+<h4 class="slide-sub">POTASSIUM (K⁺)</h4>
+<ul class="slide-list">
+<li>Muscle contraction, cramp prevention</li>
+<li>Banana, coconut water, avocado</li>
+</ul>
+<h4 class="slide-sub">MAGNESIUM (Mg²⁺)</h4>
+<ul class="slide-list">
+<li>Muscle relaxation, sleep quality, recovery</li>
+<li>Nuts, dark chocolate, spinach</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 22</span>
+    <ul class="slide-list">
+<li>9 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">THE URINE COLOR TEST</h3>
+<p class="body-text">Simplest daily hydration check — no lab required.</p>
+<h4 class="slide-sub">PALE YELLOW</h4>
+<ul class="slide-list">
+<li>WELL HYDRATED</li>
+</ul>
+<h4 class="slide-sub">LIGHT YELLOW</h4>
+<ul class="slide-list">
+<li>GOOD</li>
+</ul>
+<h4 class="slide-sub">YELLOW</h4>
+<ul class="slide-list">
+<li>MILD DEHYDRATION</li>
+</ul>
+<h4 class="slide-sub">DARK YELLOW</h4>
+<ul class="slide-list">
+<li>DEHYDRATED</li>
+</ul>
+<h4 class="slide-sub">AMBER</h4>
+<ul class="slide-list">
+<li>SIGNIFICANTLY DEHYDRATED</li>
+</ul>
+<h4 class="slide-sub">DARK AMBER</h4>
+<ul class="slide-list">
+<li>SEVERE — DRINK NOW</li>
+<li>Check first thing in the morning and post-session. Aim for colors 1–2.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 22</span>
+    <ul class="slide-list">
+<li>10 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h2 class="slide-hero">NUTRIENT</h2>
+<h2 class="slide-hero">TIMING</h2>
+<p class="body-text">WHEN you eat is almost as important as WHAT you eat.</p>
+<ul class="slide-list">
+<li>ISSN POSITION STAND</li>
+<li>Kerksick et al., 2017</li>
+<li>Post-exercise protein + carbs within</li>
+<li>30–60 min maximizes glycogen</li>
+<li>resynthesis and muscle protein synthesis.</li>
+<li>Recommended ratio:</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">4:1 CARBS : PROTEIN</span></div>
+</div>
+<ul class="slide-list">
+<li>META-ANALYSIS 2025</li>
+<li>Front. Nutr., 2025</li>
+<li>Immediate post-exercise protein</li>
+<li>supplementation produces significantly</li>
+<li>greater muscle recovery and strength</li>
+<li>gains compared to delayed intake.</li>
+<li>The window matters.</li>
+<li>PRACTICAL RULE: Within 30 minutes post-session, consume protein + fast carbs + hydration.</li>
+<li>Example: Protein shake + banana + 500ml water with electrolytes.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 22</span>
+    <ul class="slide-list">
+<li>11 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">ANTI-INFLAMMATORY</h3>
+<h3 class="slide-heading">FOODS</h3>
+<p class="body-text">Recovery accelerators — your body&#x27;s repair kit.</p>
+<h4 class="slide-sub">OMEGA-3 FATTY ACIDS</h4>
+<ul class="slide-list">
+<li>Salmon, mackerel, sardines, walnuts, chia</li>
+<li>Reduce prostaglandin-mediated inflammation</li>
+</ul>
+<h4 class="slide-sub">TURMERIC (CURCUMIN)</h4>
+<ul class="slide-list">
+<li>Fresh turmeric, golden milk, supplements</li>
+<li>Blocks NF-κB inflammatory pathway</li>
+</ul>
+<h4 class="slide-sub">GINGER</h4>
+<ul class="slide-list">
+<li>Fresh ginger, ginger tea, ginger shots</li>
+<li>Inhibits COX-2 enzyme (like natural ibuprofen)</li>
+</ul>
+<h4 class="slide-sub">BERRIES</h4>
+<ul class="slide-list">
+<li>Blueberries, açaí, strawberries, dark cherries</li>
+<li>Anthocyanins reduce oxidative stress</li>
+</ul>
+<h4 class="slide-sub">LEAFY GREENS</h4>
+<ul class="slide-list">
+<li>Spinach, kale, swiss chard, arugula</li>
+<li>Vitamin K + folate support tissue repair</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 22</span>
+    <ul class="slide-list">
+<li>12 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">PRO-INFLAMMATORY</h3>
+<h3 class="slide-heading">FOODS</h3>
+<p class="body-text">Recovery killers — avoid or minimize.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">ALCOHOL</span></div>
+</div>
+<h3 class="slide-heading">-70%</h3>
+<ul class="slide-list">
+<li>HGH SUPPRESSION</li>
+<li>Alcohol suppresses human growth hormone by up to 70% overnight. This is your primary muscle repair hormone. One heavy night = days of impaired recovery.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">EXCESS SUGAR</span></div>
+</div>
+<h3 class="slide-heading">↑</h3>
+<ul class="slide-list">
+<li>INSULIN SPIKES</li>
+<li>Chronic high sugar intake promotes systemic inflammation, impairs immune function, and destabilizes energy levels during sessions.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">FRIED / PROCESSED FOOD</span></div>
+</div>
+<h3 class="slide-heading">↑↑</h3>
+<ul class="slide-list">
+<li>OXIDATIVE STRESS</li>
+<li>Trans fats and seed oils increase inflammatory markers. Heavy meals pre-session divert blood to digestion, reducing muscle performance.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 22</span>
+    <ul class="slide-list">
+<li>13 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h2 class="slide-hero">THE SURFER&#x27;S</h2>
+<h2 class="slide-hero">PLATE</h2>
+<p class="body-text">Universal model. Works at any restaurant in the world.</p>
+<h3 class="slide-heading">50%</h3>
+<h3 class="slide-heading">CARBS</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">30%</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">PROTEIN</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">20%</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">FATS</span></div>
+</div>
+<ul class="slide-list">
+<li>+ VEGETABLES WITH EVERY MEAL</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">50% CARBS</span></div>
+</div>
+<ul class="slide-list">
+<li>Rice, potato, pasta, bread, quinoa</li>
+<li>→ Energy for paddling &amp; pop-ups</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">30% PROTEIN</span></div>
+</div>
+<ul class="slide-list">
+<li>Chicken, fish, eggs, beans, tofu</li>
+<li>→ Muscle repair &amp; adaptation</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FF8C42">20% HEALTHY FATS</span></div>
+</div>
+<ul class="slide-list">
+<li>Avocado, nuts, olive oil, seeds</li>
+<li>→ Endurance &amp; brain function</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="slide-badge">14 / 22</span>
+    <ul class="slide-list">
+<li>14 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">PRE-SESSION MEAL</h3>
+<ul class="slide-list">
+<li>2 HOURS BEFORE — FUEL LOADING</li>
+<li>GOAL: Load glycogen stores without feeling heavy. Complex carbs + moderate protein + low fat.</li>
+</ul>
+<p class="body-text">OPTION A</p>
+<ul class="slide-list">
+<li>Oatmeal with banana, honey,</li>
+<li>and a handful of almonds</li>
+</ul>
+<p class="body-text">OPTION B</p>
+<ul class="slide-list">
+<li>Brown rice + grilled chicken breast</li>
+<li>+ steamed vegetables</li>
+</ul>
+<p class="body-text">OPTION C</p>
+<ul class="slide-list">
+<li>Whole grain toast + scrambled eggs</li>
+<li>+ avocado slice</li>
+<li>AVOID PRE-SESSION</li>
+<li>Heavy fried food • High-fat meals • Large portions &lt; 1hr before • Excess fiber • Spicy food</li>
+<li>These divert blood to digestion → less blood for muscles → reduced performance + potential nausea.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="slide-badge">15 / 22</span>
+    <ul class="slide-list">
+<li>15 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">POST-SESSION MEAL</h3>
+<ul class="slide-list">
+<li>WITHIN 30 MINUTES — THE GOLDEN WINDOW</li>
+<li>GOAL: Fast glycogen replenishment + protein synthesis activation. Ratio 4:1 carbs:protein.</li>
+</ul>
+<p class="body-text">OPTION A</p>
+<ul class="slide-list">
+<li>Protein shake (whey 25g) +</li>
+<li>banana + 500ml electrolyte water</li>
+</ul>
+<p class="body-text">OPTION B</p>
+<ul class="slide-list">
+<li>White rice + grilled fish +</li>
+<li>steamed greens + coconut water</li>
+</ul>
+<p class="body-text">OPTION C</p>
+<ul class="slide-list">
+<li>Greek yogurt + granola +</li>
+<li>honey + mixed berries</li>
+<li>THE SCIENCE</li>
+<li>Post-exercise, GLUT4 transporters are maximally active for ~30–60 minutes — glucose uptake into muscle cells is</li>
+<li>2–3x faster than at rest. Missing this window doesn&#x27;t ruin recovery, but delays it significantly.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s16">
+  <div class="slide-inner">
+    <span class="slide-badge">16 / 22</span>
+    <ul class="slide-list">
+<li>16 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">RECOVERY DINNER</h3>
+<ul class="slide-list">
+<li>EVENING — REPAIR + SLEEP OPTIMIZATION</li>
+<li>GOAL: Balanced plate + anti-inflammatory foods + sleep-promoting nutrients (Mg, tryptophan, Vit B6).</li>
+</ul>
+<p class="body-text">OPTION A</p>
+<ul class="slide-list">
+<li>Grilled salmon + quinoa +</li>
+<li>roasted vegetables + turmeric</li>
+<li>drizzle + side salad</li>
+</ul>
+<p class="body-text">OPTION B</p>
+<ul class="slide-list">
+<li>Chicken stir-fry with ginger +</li>
+<li>brown rice + steamed broccoli</li>
+<li>+ sesame seeds</li>
+</ul>
+<p class="body-text">OPTION C</p>
+<ul class="slide-list">
+<li>Lentil soup + whole grain bread</li>
+<li>+ avocado + dark leafy greens</li>
+<li>+ chamomile tea</li>
+<li>SLEEP-PROMOTING FOODS</li>
+</ul>
+<h4 class="slide-sub">Tryptophan: Turkey, milk, pumpkin seeds → precursor to serotonin &amp; melatonin</h4>
+<h4 class="slide-sub">Magnesium: Dark chocolate, almonds, spinach → muscle relaxation + deep sleep</h4>
+<p class="body-bold">Tart cherry juice: Natural melatonin source — shown to improve sleep duration (Howatson et al., 2012)</p>
+  </div>
+</section>
+<section class="slide" id="s17">
+  <div class="slide-inner">
+    <span class="slide-badge">17 / 22</span>
+    <ul class="slide-list">
+<li>17 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">SMART SNACKS</h3>
+<h3 class="slide-heading">BETWEEN SESSIONS</h3>
+<p class="body-text">Portable. No refrigeration needed. Energy-dense.</p>
+<h4 class="slide-sub">Trail mix</h4>
+<ul class="slide-list">
+<li>Nuts + dried fruit + dark chocolate chips</li>
+<li>Fats + Carbs + Antioxidants</li>
+</ul>
+<h4 class="slide-sub">Banana + peanut butter</h4>
+<ul class="slide-list">
+<li>Fast carbs + fats + potassium</li>
+<li>Carbs + Fats + Electrolytes</li>
+</ul>
+<h4 class="slide-sub">Protein bar</h4>
+<ul class="slide-list">
+<li>Look for &gt;15g protein, &lt;10g sugar</li>
+<li>Protein + Carbs</li>
+</ul>
+<h4 class="slide-sub">Rice cakes + honey</h4>
+<ul class="slide-list">
+<li>Ultra-light, fast energy</li>
+<li>Carbs (fast)</li>
+</ul>
+<h4 class="slide-sub">Greek yogurt cup</h4>
+<ul class="slide-list">
+<li>If access to cooler — add granola</li>
+<li>Protein + Carbs + Probiotics</li>
+</ul>
+<h4 class="slide-sub">Dates + almonds</h4>
+<ul class="slide-list">
+<li>Natural energy bombs</li>
+<li>Carbs + Fats + Fiber</li>
+</ul>
+<h4 class="slide-sub">Coconut water</h4>
+<ul class="slide-list">
+<li>Natural electrolyte drink</li>
+<li>Hydration + K⁺ + Na⁺</li>
+</ul>
+<h4 class="slide-sub">Hard-boiled eggs</h4>
+<ul class="slide-list">
+<li>Compact protein, easy transport</li>
+<li>Protein + Fats</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s18">
+  <div class="slide-inner">
+    <span class="slide-badge">18 / 22</span>
+    <ul class="slide-list">
+<li>18 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h2 class="slide-hero">DO vs DON&#x27;T</h2>
+<h3 class="slide-heading">DO</h3>
+<ul class="slide-list">
+<li>Eat complex carbs 2hrs before session</li>
+<li>Hydrate with electrolytes pre &amp; post</li>
+<li>Protein + carbs within 30 min after</li>
+<li>Include anti-inflammatory foods daily</li>
+<li>Check urine color every morning</li>
+<li>Eat balanced plate (50/30/20)</li>
+<li>Pack portable snacks between sessions</li>
+<li>Sleep-promoting foods at dinner</li>
+</ul>
+<h3 class="slide-heading">DON&#x27;T</h3>
+<ul class="slide-list">
+<li>Heavy/fried food before surfing</li>
+<li>Alcohol night before session days</li>
+<li>Caffeine after 2:00 PM</li>
+<li>Skip meals → energy crash in water</li>
+<li>Sugary drinks as hydration</li>
+<li>Surf on an empty stomach</li>
+<li>Ignore thirst signals</li>
+<li>Rely on willpower instead of fuel</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s19">
+  <div class="slide-inner">
+    <span class="slide-badge">19 / 22</span>
+    <ul class="slide-list">
+<li>19 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">THE SURFER&#x27;S</h3>
+<h3 class="slide-heading">DAY</h3>
+<ul class="slide-list">
+<li>Nutrition timeline for a double-session day.</li>
+<li>6:00 AM</li>
+</ul>
+<h4 class="slide-sub">WAKE + HYDRATE</h4>
+<ul class="slide-list">
+<li>500ml water + electrolytes</li>
+<li>6:30 AM</li>
+</ul>
+<h4 class="slide-sub">PRE-SESSION MEAL</h4>
+<ul class="slide-list">
+<li>Oatmeal + banana + honey</li>
+<li>8:30 AM</li>
+</ul>
+<h4 class="slide-sub">MORNING SESSION</h4>
+<ul class="slide-list">
+<li>1.5–2 hrs surf</li>
+<li>10:30 AM</li>
+</ul>
+<h4 class="slide-sub">POST-SESSION</h4>
+<ul class="slide-list">
+<li>Shake + banana + 500ml H₂O</li>
+<li>12:30 PM</li>
+</ul>
+<h4 class="slide-sub">LUNCH</h4>
+<ul class="slide-list">
+<li>Surfer&#x27;s Plate (50/30/20)</li>
+<li>2:00 PM</li>
+</ul>
+<h4 class="slide-sub">SMART SNACK</h4>
+<ul class="slide-list">
+<li>Trail mix + coconut water</li>
+<li>3:00 PM</li>
+</ul>
+<h4 class="slide-sub">AFTERNOON SESSION</h4>
+<ul class="slide-list">
+<li>1–1.5 hrs surf</li>
+<li>4:30 PM</li>
+</ul>
+<h4 class="slide-sub">POST-SESSION</h4>
+<ul class="slide-list">
+<li>Protein bar + electrolytes</li>
+<li>7:00 PM</li>
+</ul>
+<h4 class="slide-sub">RECOVERY DINNER</h4>
+<ul class="slide-list">
+<li>Salmon + quinoa + greens</li>
+<li>9:00 PM</li>
+</ul>
+<h4 class="slide-sub">SLEEP PREP</h4>
+<ul class="slide-list">
+<li>Chamomile tea + Mg supplement</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s20">
+  <div class="slide-inner">
+    <span class="slide-badge">20 / 22</span>
+    <ul class="slide-list">
+<li>20 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h2 class="slide-hero">WHAT TO AVOID</h2>
+<p class="body-text">Evidence-based performance killers.</p>
+<h4 class="slide-sub">ALCOHOL (post-session)</h4>
+<ul class="slide-list">
+<li>-70% HGH overnight</li>
+<li>Suppresses growth hormone release during sleep — primary recovery window destroyed. Dehydrates. Impairs protein synthesis by 24%.</li>
+</ul>
+<h4 class="slide-sub">CAFFEINE AFTER 2 PM</h4>
+<ul class="slide-list">
+<li>Sleep latency +40 min</li>
+<li>Caffeine half-life is 5–6 hours. Afternoon coffee disrupts deep sleep (Walker, 2017). Deep sleep = when muscles repair.</li>
+</ul>
+<h4 class="slide-sub">HEAVY MEALS PRE-SESSION</h4>
+<ul class="slide-list">
+<li>Blood flow diverted to gut</li>
+<li>Digestion demands 20–30% of cardiac output. Less blood for working muscles → early fatigue, nausea, cramping risk.</li>
+</ul>
+<h4 class="slide-sub">DEHYDRATION (IGNORING THIRST)</h4>
+<ul class="slide-list">
+<li>2% loss = 20–25% decline</li>
+<li>Wittbrodt &amp; Millard-Stafford (2018): Even mild dehydration impairs attention, motor coordination, and decision-making.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s21">
+  <div class="slide-inner">
+    <span class="slide-badge">21 / 22</span>
+    <ul class="slide-list">
+<li>21 / 22</li>
+<li>ONE WAVE — MODULE 7: NUTRITION &amp; HYDRATION</li>
+</ul>
+<h3 class="slide-heading">RESOURCES &amp;</h3>
+<h3 class="slide-heading">TSS INTEGRATION</h3>
+<ul class="slide-list">
+<li>NUT-01</li>
+</ul>
+<h4 class="slide-sub">Pre-Session Fueling Guide</h4>
+<ul class="slide-list">
+<li>Visual walkthrough of pre-session meal prep + timing protocol</li>
+<li>NUT-02</li>
+</ul>
+<h4 class="slide-sub">Hydration Check Routine</h4>
+<ul class="slide-list">
+<li>Morning urine check + electrolyte mixing demo + session hydration plan</li>
+<li>NUT-03</li>
+</ul>
+<h4 class="slide-sub">The Surfer&#x27;s Plate Explained</h4>
+<ul class="slide-list">
+<li>Audio guide to building a balanced plate anywhere in the world</li>
+</ul>
+<p class="body-text">TSS INTEGRATION</p>
+<h4 class="slide-sub">PHYSICAL PILLAR</h4>
+<h4 class="slide-sub">Endurance</h4>
+<ul class="slide-list">
+<li>Module 5 (Recovery)</li>
+</ul>
+<h4 class="slide-sub">Strength</h4>
+<ul class="slide-list">
+<li>Session drills</li>
+</ul>
+<h4 class="slide-sub">Proprioception</h4>
+<ul class="slide-list">
+<li>Balance training</li>
+</ul>
+<h4 class="slide-sub">NUTRITION</h4>
+<ul class="slide-list">
+<li>THIS MODULE ★</li>
+<li>Nutrition is the fourth component</li>
+<li>of the Physical Pillar — alongside</li>
+<li>endurance, strength, and proprioception.</li>
+<li>This module completes the system.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s22">
+  <div class="slide-inner">
+    <span class="slide-badge">22 / 22</span>
+    <ul class="slide-list">
+<li>THE SURF SEQUENCE®</li>
+</ul>
+<h2 class="slide-hero">You are what</h2>
+<h2 class="slide-hero">you eat.</h2>
+<h2 class="slide-hero">You surf what</h2>
+<h2 class="slide-hero">you fuel.</h2>
+<ul class="slide-list">
+<li>ONE WAVE SERIES — MODULE 7: NUTRITION &amp; HYDRATION</li>
+<li>© The Surf Sequence® — All Rights Reserved</li>
+</ul>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Nutrition & Hydration — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

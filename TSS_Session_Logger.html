@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSS Session Logger — Register & Export</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:#060e1a;color:#e0e0e0;min-height:100vh}
+.header{padding:16px 24px;background:#0A1628;border-bottom:1px solid rgba(90,195,231,.1);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.header h1{font-size:1.2rem;font-weight:800;color:#fff}.header h1 span{color:#5AC3E7}
+.header .badge{font-size:.75rem;padding:3px 10px;border-radius:4px;background:rgba(90,195,231,.08);color:#5AC3E7}
+.tabs{display:flex;gap:2px;padding:0 24px;background:#0A1628}
+.tab{padding:10px 20px;font-size:.88rem;font-weight:600;color:rgba(255,255,255,.35);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s}
+.tab.active{color:#5AC3E7;border-bottom-color:#5AC3E7}
+.tab:hover{color:rgba(255,255,255,.6)}
+.content{max-width:900px;margin:0 auto;padding:24px}
+.form-section{background:#0d1a2e;border:1px solid rgba(90,195,231,.08);border-radius:12px;padding:24px;margin-bottom:16px}
+.form-section h3{font-size:1rem;font-weight:700;color:#5AC3E7;margin-bottom:16px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field.full{grid-column:1/-1}
+.field label{font-size:.72rem;font-weight:600;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.06em}
+.field input,.field select,.field textarea{padding:9px 12px;border:1px solid rgba(90,195,231,.12);border-radius:6px;background:rgba(255,255,255,.04);color:#fff;font-family:inherit;font-size:.88rem}
+.field textarea{min-height:60px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:#5AC3E7}
+.field select option{background:#0A1628}
+.btn{padding:10px 24px;border-radius:6px;font-weight:600;font-size:.88rem;cursor:pointer;border:none;font-family:inherit;transition:all .2s}
+.btn-primary{background:#5AC3E7;color:#0A1628}.btn-primary:hover{background:#3db8e0}
+.btn-danger{background:rgba(255,107,107,.15);color:#FF6B6B;border:1px solid rgba(255,107,107,.2)}.btn-danger:hover{background:rgba(255,107,107,.25)}
+.btn-export{background:rgba(6,214,160,.12);color:#06D6A0;border:1px solid rgba(6,214,160,.2)}.btn-export:hover{background:rgba(6,214,160,.22)}
+.btn-group{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+/* Table */
+.log-table{width:100%;border-collapse:collapse;font-size:.78rem;margin-top:12px}
+.log-table th{background:rgba(90,195,231,.06);color:#5AC3E7;padding:8px 10px;text-align:left;border:1px solid rgba(90,195,231,.08);font-weight:600;white-space:nowrap}
+.log-table td{padding:6px 10px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.55);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.log-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+.log-table tr:hover td{background:rgba(90,195,231,.03)}
+.scroll-x{overflow-x:auto;margin-top:12px}
+.stats-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.stat-card{padding:12px 16px;border-radius:8px;background:rgba(90,195,231,.04);border:1px solid rgba(90,195,231,.06);text-align:center;min-width:100px}
+.stat-card .num{font-size:1.5rem;font-weight:800;color:#5AC3E7}
+.stat-card .lbl{font-size:.68rem;color:rgba(255,255,255,.3)}
+.empty{text-align:center;padding:40px;color:rgba(255,255,255,.15)}
+.status-tag{padding:2px 8px;border-radius:4px;font-size:.72rem;font-weight:600}
+.status-tag.competent{background:rgba(6,214,160,.1);color:#06D6A0}
+.status-tag.mastered{background:rgba(90,195,231,.1);color:#5AC3E7}
+.status-tag.partial{background:rgba(255,209,102,.1);color:#FFD166}
+.status-tag.not-achieved{background:rgba(255,107,107,.1);color:#FF6B6B}
+.toast{position:fixed;bottom:24px;right:24px;padding:12px 24px;border-radius:8px;background:#06D6A0;color:#0A1628;font-weight:600;font-size:.88rem;display:none;z-index:100;animation:slideUp .3s}
+@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+@media(max-width:768px){.form-grid,.form-grid-3{grid-template-columns:1fr}.tabs{overflow-x:auto}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>TSS <span>SESSION LOGGER</span></h1>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center">
+    <span class="badge" id="countBadge">0 sessions</span>
+    <span class="badge" id="studentBadge">0 students</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('session')">📋 New Session</div>
+  <div class="tab" onclick="switchTab('student')">👤 New Student</div>
+  <div class="tab" onclick="switchTab('history')">📊 Session Log</div>
+  <div class="tab" onclick="switchTab('students')">👥 Students</div>
+  <div class="tab" onclick="switchTab('export')">📥 Export</div>
+</div>
+
+<div class="content">
+  <!-- ===== NEW SESSION TAB ===== -->
+  <div id="tab-session">
+    <div class="form-section">
+      <h3>📋 Setup & Context</h3>
+      <div class="form-grid">
+        <div class="field"><label>Date</label><input type="date" id="s-date"></div>
+        <div class="field"><label>Coach Name</label>
+          <select id="s-coach"><option>Marcelo Castellanos</option><option>Stanley Perez</option><option value="_other">Other...</option></select>
+        </div>
+        <div class="field"><label>Student ID</label>
+          <select id="s-student"><option value="">Select student...</option></select>
+        </div>
+        <div class="field"><label>Session Type</label>
+          <select id="s-type"><option>Training</option><option>Competition</option><option>Video Analysis</option><option>Theory</option></select>
+        </div>
+        <div class="field"><label>Training Venue</label>
+          <select id="s-venue"><option>Beachbreak</option><option>Pointbreak</option><option>Reefbreak</option><option>Pool</option></select>
+        </div>
+        <div class="field"><label>Ocean Conditions</label>
+          <select id="s-ocean"><option>Flat</option><option>1-2 feet</option><option>2-3 feet</option><option>3-4 feet</option><option>4-6 feet</option><option>6-8 feet</option><option>8+ feet</option></select>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>🎯 Planning (Cascade)</h3>
+      <div class="form-grid">
+        <div class="field full"><label>Mission</label><input type="text" id="s-mission" placeholder="e.g. Dominar Go Up and Down en olas verdes"></div>
+        <div class="field"><label>Pillar</label>
+          <select id="s-pillar"><option>Technical</option><option>Tactical</option><option>Mental</option><option>Physical</option><option>Safety</option></select>
+        </div>
+        <div class="field"><label>Pilar Part</label><input type="text" id="s-part" placeholder="e.g. Bottom Turn, Sweet Spot..."></div>
+        <div class="field"><label>Drill Name</label><input type="text" id="s-drill" placeholder="e.g. DRL-TEC-BT-001"></div>
+        <div class="field"><label>Warm-Up</label><input type="text" id="s-warmup" placeholder="e.g. Head to toe + Flow motion"></div>
+        <div class="field"><label>Simulation</label><input type="text" id="s-sim" placeholder="e.g. Shadow surfing"></div>
+        <div class="field"><label>Mental Hack</label><input type="text" id="s-mental" placeholder="e.g. Process over outcome"></div>
+        <div class="field"><label>Total Duration (min)</label><input type="number" id="s-duration" value="60" min="15" max="240"></div>
+      </div>
+    </div>
+
+    <div class="form-section">
+      <h3>✅ Close & Evaluation</h3>
+      <div class="form-grid">
+        <div class="field"><label>Status</label>
+          <select id="s-status"><option>Competent</option><option>Mastered</option><option>Partial</option><option>Not Achieved</option></select>
+        </div>
+        <div class="field"><label>Focus Rating (1-5)</label>
+          <select id="s-focus"><option>5</option><option>4</option><option selected>3</option><option>2</option><option>1</option></select>
+        </div>
+        <div class="field"><label>Frustration Level (1-5)</label>
+          <select id="s-frustration"><option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option></select>
+        </div>
+        <div class="field full"><label>Coach Feedback</label><textarea id="s-feedback" placeholder="Observations, progress, corrections..."></textarea></div>
+        <div class="field full"><label>What's Next</label><input type="text" id="s-next" placeholder="Next session focus"></div>
+        <div class="field full"><label>Homework</label><input type="text" id="s-homework" placeholder="e.g. Visualización 5 min antes de dormir"></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="saveSession()">💾 Save Session</button>
+        <button class="btn btn-danger" onclick="clearForm()">🗑 Clear Form</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NEW STUDENT TAB ===== -->
+  <div id="tab-student" style="display:none">
+    <div class="form-section">
+      <h3>👤 Student Registration</h3>
+      <div class="form-grid">
+        <div class="field"><label>First Name</label><input type="text" id="st-first"></div>
+        <div class="field"><label>Last Name</label><input type="text" id="st-last"></div>
+        <div class="field"><label>Age</label><input type="number" id="st-age" min="4" max="80"></div>
+        <div class="field"><label>Gender</label>
+          <select id="st-gender"><option>Male</option><option>Female</option><option>Other</option></select>
+        </div>
+        <div class="field"><label>Nationality</label><input type="text" id="st-nat" placeholder="e.g. El Salvador"></div>
+        <div class="field"><label>Belt Level</label>
+          <select id="st-belt"><option>Cinta Blanca (Beginner)</option><option>Cinta Amarilla (Novice)</option><option>Cinta Azul (Foundation)</option><option>Cinta Morada (Emerging)</option><option>Cinta Café (Pre-Elite)</option><option>Cinta Negra (Elite)</option></select>
+        </div>
+        <div class="field"><label>Ocean Level</label>
+          <select id="st-oceanlvl"><option>Assisted</option><option>Supervised</option><option>Autonomous</option><option>Functional Leader</option></select>
+        </div>
+        <div class="field"><label>Learning Style</label>
+          <select id="st-learn"><option>Visual</option><option>Kinesthetic</option><option>Auditory</option><option>Kinesthetic (Learns by Doing)</option></select>
+        </div>
+        <div class="field"><label>Primary Mental</label>
+          <select id="st-mentaltype"><option>Driven</option><option>Focused</option><option>Anxious</option><option>Competitive</option><option>Relaxed</option></select>
+        </div>
+        <div class="field"><label>Modalidad</label>
+          <select id="st-mod"><option value="">—</option><option>Shortboard</option><option>Longboard</option><option>Bodyboard</option></select>
+        </div>
+        <div class="field full"><label>One Year Goal</label><input type="text" id="st-goal1" placeholder="e.g. Competir en circuito nacional"></div>
+        <div class="field"><label>Six Month Goal</label><input type="text" id="st-goal6" placeholder=""></div>
+        <div class="field"><label>One Month Goal</label><input type="text" id="st-goal1m" placeholder=""></div>
+        <div class="field full"><label>Injuries / Notes</label><input type="text" id="st-injuries" placeholder="Any injuries, allergies, special needs"></div>
+      </div>
+      <div class="btn-group">
+        <button class="btn btn-primary" onclick="saveStudent()">💾 Register Student</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SESSION LOG TAB ===== -->
+  <div id="tab-history" style="display:none">
+    <div class="stats-row" id="logStats"></div>
+    <div class="scroll-x" id="logTable"></div>
+  </div>
+
+  <!-- ===== STUDENTS TAB ===== -->
+  <div id="tab-students" style="display:none">
+    <div class="stats-row" id="studentStats"></div>
+    <div class="scroll-x" id="studentTable"></div>
+  </div>
+
+  <!-- ===== EXPORT TAB ===== -->
+  <div id="tab-export" style="display:none">
+    <div class="form-section">
+      <h3>📥 Export Data</h3>
+      <p style="font-size:.88rem;color:rgba(255,255,255,.5);margin-bottom:16px">Export your logged data as CSV files compatible with the TSS Bitácora Excel. Open in Excel and copy-paste into the corresponding sheets.</p>
+      <div class="btn-group">
+        <button class="btn btn-export" onclick="exportCSV('sessions')">📥 Export Sessions (CSV)</button>
+        <button class="btn btn-export" onclick="exportCSV('students')">📥 Export Students (CSV)</button>
+        <button class="btn btn-export" onclick="exportCSV('evaluations')">📥 Export Eval History (CSV)</button>
+      </div>
+      <div style="margin-top:20px;padding:16px;border-radius:8px;background:rgba(255,209,102,.04);border:1px solid rgba(255,209,102,.1)">
+        <p style="font-size:.82rem;color:rgba(255,255,255,.4)"><strong style="color:#FFD166">Instructions:</strong> Download the CSV → Open in Excel → Select all → Copy → Paste into the corresponding sheet in your Bitácora v6.1. Columns match the exact structure.</p>
+      </div>
+      <div class="btn-group" style="margin-top:16px">
+        <button class="btn btn-danger" onclick="if(confirm('Delete ALL session data? This cannot be undone.'))clearAllData()">🗑 Clear All Data</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA STORE (localStorage) =====
+function getSessions() { return JSON.parse(localStorage.getItem('tss_sessions') || '[]'); }
+function setSessions(d) { localStorage.setItem('tss_sessions', JSON.stringify(d)); }
+function getStudents() { return JSON.parse(localStorage.getItem('tss_students') || '[]'); }
+function setStudents(d) { localStorage.setItem('tss_students', JSON.stringify(d)); }
+
+function nextId(prefix, list) {
+  const nums = list.map(i => parseInt(i.id.replace(prefix, '')) || 0);
+  const next = (nums.length ? Math.max(...nums) : 0) + 1;
+  return prefix + String(next).padStart(3, '0');
+}
+
+// ===== TABS =====
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach((t, i) => {
+    t.classList.toggle('active', ['session','student','history','students','export'][i] === tab);
+  });
+  ['session','student','history','students','export'].forEach(t => {
+    const el = document.getElementById('tab-' + t);
+    if (el) el.style.display = t === tab ? 'block' : 'none';
+  });
+  if (tab === 'history') renderLog();
+  if (tab === 'students') renderStudents();
+  updateCounts();
+}
+
+// ===== SAVE SESSION =====
+function saveSession() {
+  const sessions = getSessions();
+  const session = {
+    id: nextId('SES-', sessions),
+    date: document.getElementById('s-date').value || new Date().toISOString().split('T')[0],
+    coach: document.getElementById('s-coach').value,
+    studentId: document.getElementById('s-student').value,
+    studentName: document.getElementById('s-student').selectedOptions[0]?.text || '',
+    type: document.getElementById('s-type').value,
+    venue: document.getElementById('s-venue').value,
+    ocean: document.getElementById('s-ocean').value,
+    mission: document.getElementById('s-mission').value,
+    pillar: document.getElementById('s-pillar').value,
+    part: document.getElementById('s-part').value,
+    drill: document.getElementById('s-drill').value,
+    warmup: document.getElementById('s-warmup').value,
+    sim: document.getElementById('s-sim').value,
+    mentalHack: document.getElementById('s-mental').value,
+    duration: document.getElementById('s-duration').value,
+    status: document.getElementById('s-status').value,
+    focus: document.getElementById('s-focus').value,
+    frustration: document.getElementById('s-frustration').value,
+    feedback: document.getElementById('s-feedback').value,
+    next: document.getElementById('s-next').value,
+    homework: document.getElementById('s-homework').value,
+  };
+  sessions.push(session);
+  setSessions(sessions);
+  showToast('Session saved: ' + session.id);
+  clearForm();
+  updateCounts();
+}
+
+// ===== SAVE STUDENT =====
+function saveStudent() {
+  const students = getStudents();
+  const student = {
+    id: nextId('STD-', students),
+    first: document.getElementById('st-first').value,
+    last: document.getElementById('st-last').value,
+    age: document.getElementById('st-age').value,
+    gender: document.getElementById('st-gender').value,
+    nationality: document.getElementById('st-nat').value,
+    belt: document.getElementById('st-belt').value,
+    oceanLevel: document.getElementById('st-oceanlvl').value,
+    learning: document.getElementById('st-learn').value,
+    mental: document.getElementById('st-mentaltype').value,
+    modalidad: document.getElementById('st-mod').value,
+    goal1y: document.getElementById('st-goal1').value,
+    goal6m: document.getElementById('st-goal6').value,
+    goal1m: document.getElementById('st-goal1m').value,
+    injuries: document.getElementById('st-injuries').value,
+    registered: new Date().toISOString().split('T')[0],
+  };
+  students.push(student);
+  setStudents(students);
+  showToast('Student registered: ' + student.id + ' — ' + student.first + ' ' + student.last);
+  populateStudentDropdown();
+  updateCounts();
+  // Clear fields
+  ['st-first','st-last','st-age','st-nat','st-goal1','st-goal6','st-goal1m','st-injuries'].forEach(id => document.getElementById(id).value = '');
+}
+
+// ===== RENDER LOG =====
+function renderLog() {
+  const sessions = getSessions();
+  const el = document.getElementById('logTable');
+  const statsEl = document.getElementById('logStats');
+
+  if (!sessions.length) {
+    el.innerHTML = '<div class="empty">No sessions logged yet. Go to "New Session" to start.</div>';
+    statsEl.innerHTML = '';
+    return;
+  }
+
+  const competent = sessions.filter(s => s.status === 'Competent').length;
+  const mastered = sessions.filter(s => s.status === 'Mastered').length;
+  const partial = sessions.filter(s => s.status === 'Partial').length;
+  const avgFocus = (sessions.reduce((a, s) => a + parseInt(s.focus || 3), 0) / sessions.length).toFixed(1);
+
+  statsEl.innerHTML = `
+    <div class="stat-card"><div class="num">${sessions.length}</div><div class="lbl">Total Sessions</div></div>
+    <div class="stat-card"><div class="num" style="color:#06D6A0">${competent}</div><div class="lbl">Competent</div></div>
+    <div class="stat-card"><div class="num" style="color:#5AC3E7">${mastered}</div><div class="lbl">Mastered</div></div>
+    <div class="stat-card"><div class="num" style="color:#FFD166">${partial}</div><div class="lbl">Partial</div></div>
+    <div class="stat-card"><div class="num">${avgFocus}</div><div class="lbl">Avg Focus</div></div>`;
+
+  let html = '<table class="log-table"><thead><tr><th>ID</th><th>Date</th><th>Coach</th><th>Student</th><th>Mission</th><th>Pillar</th><th>Status</th><th>Focus</th><th>Feedback</th></tr></thead><tbody>';
+  sessions.slice().reverse().forEach(s => {
+    const cls = s.status.toLowerCase().replace(' ', '-');
+    html += `<tr><td>${s.id}</td><td>${s.date}</td><td>${s.coach}</td><td>${s.studentName || s.studentId}</td><td>${s.mission}</td><td>${s.pillar}</td><td><span class="status-tag ${cls}">${s.status}</span></td><td>${s.focus}</td><td>${(s.feedback||'').substring(0,60)}...</td></tr>`;
+  });
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+// ===== RENDER STUDENTS =====
+function renderStudents() {
+  const students = getStudents();
+  const el = document.getElementById('studentTable');
+  const statsEl = document.getElementById('studentStats');
+
+  if (!students.length) {
+    el.innerHTML = '<div class="empty">No students registered yet.</div>';
+    statsEl.innerHTML = '';
+    return;
+  }
+
+  statsEl.innerHTML = `<div class="stat-card"><div class="num">${students.length}</div><div class="lbl">Total Students</div></div>`;
+
+  let html = '<table class="log-table"><thead><tr><th>ID</th><th>Name</th><th>Age</th><th>Belt</th><th>Ocean Level</th><th>Learning</th><th>Mental</th><th>1-Year Goal</th></tr></thead><tbody>';
+  students.forEach(s => {
+    html += `<tr><td>${s.id}</td><td>${s.first} ${s.last}</td><td>${s.age}</td><td>${s.belt}</td><td>${s.oceanLevel}</td><td>${s.learning}</td><td>${s.mental}</td><td>${s.goal1y}</td></tr>`;
+  });
+  html += '</tbody></table>';
+  el.innerHTML = html;
+}
+
+// ===== EXPORT CSV =====
+function exportCSV(type) {
+  let csv = '', filename = '';
+
+  if (type === 'sessions') {
+    const sessions = getSessions();
+    csv = 'Session_ID,Date,Coach_Name,Student_ID,Student_Name,Session_Type,Training_Venue,Ocean_Conditions,Mission,Pilar,Pilar_Part,Drill_Name,Warm_Up,Simulation,Mental_Hack,Total_Duration,Status,Focus_Rating,Frustration_Rating,Coach_Feedback,Whats_Next,Homework\n';
+    sessions.forEach(s => {
+      csv += [s.id,s.date,s.coach,s.studentId,s.studentName,s.type,s.venue,s.ocean,`"${s.mission}"`,s.pillar,s.part,s.drill,s.warmup,s.sim,s.mentalHack,s.duration,s.status,s.focus,s.frustration,`"${(s.feedback||'').replace(/"/g,'""')}"`,s.next,s.homework].join(',') + '\n';
+    });
+    filename = 'TSS_Sessions_Export.csv';
+  } else if (type === 'students') {
+    const students = getStudents();
+    csv = 'Student_ID,First_Name,Last_Name,Age,Gender,Nationality,Belt_Level,Ocean_Level,Learning_Style,Primary_Mental,Modalidad,One_Year_Goal,Six_Month_Goal,One_Month_Goal,Injuries,Registered\n';
+    students.forEach(s => {
+      csv += [s.id,s.first,s.last,s.age,s.gender,s.nationality,s.belt,s.oceanLevel,s.learning,s.mental,s.modalidad,`"${s.goal1y}"`,`"${s.goal6m}"`,`"${s.goal1m}"`,`"${s.injuries}"`,s.registered].join(',') + '\n';
+    });
+    filename = 'TSS_Students_Export.csv';
+  } else if (type === 'evaluations') {
+    const sessions = getSessions();
+    csv = '#,Date,Coach,Student_ID,Student_Name,Belt_Level,Pilar,Pilar_Part,Drill,Status,Focus,Frustration,Feedback\n';
+    sessions.forEach((s, i) => {
+      const student = getStudents().find(st => st.id === s.studentId);
+      csv += [i+1,s.date,s.coach,s.studentId,s.studentName,student?.belt||'',s.pillar,s.part,s.drill,s.status,s.focus,s.frustration,`"${(s.feedback||'').replace(/"/g,'""')}"`].join(',') + '\n';
+    });
+    filename = 'TSS_Eval_History_Export.csv';
+  }
+
+  const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename; a.click();
+  URL.revokeObjectURL(url);
+  showToast('Exported: ' + filename);
+}
+
+// ===== HELPERS =====
+function clearForm() {
+  ['s-mission','s-part','s-drill','s-warmup','s-sim','s-mental','s-feedback','s-next','s-homework'].forEach(id => document.getElementById(id).value = '');
+}
+
+function clearAllData() {
+  localStorage.removeItem('tss_sessions');
+  localStorage.removeItem('tss_students');
+  showToast('All data cleared');
+  updateCounts();
+  populateStudentDropdown();
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.display = 'block';
+  setTimeout(() => t.style.display = 'none', 3000);
+}
+
+function updateCounts() {
+  document.getElementById('countBadge').textContent = getSessions().length + ' sessions';
+  document.getElementById('studentBadge').textContent = getStudents().length + ' students';
+}
+
+function populateStudentDropdown() {
+  const sel = document.getElementById('s-student');
+  const students = getStudents();
+  sel.innerHTML = '<option value="">Select student...</option>' +
+    students.map(s => `<option value="${s.id}">${s.id} — ${s.first} ${s.last}</option>`).join('');
+}
+
+// ===== INIT =====
+document.getElementById('s-date').value = new Date().toISOString().split('T')[0];
+populateStudentDropdown();
+updateCounts();
+</script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TSS Cert Exam Prep — L1 & L2 Study Tool</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700&family=Playfair+Display:wght@700;900&family=DM+Mono:wght@400;500&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--dk:#0A0E1A;--card:#1C2333;--gold:#F5B731;--teal:#0D9488;--purple:#7C3AED;--coral:#F97066;--green:#34D399;--blue:#3B82F6;--amber:#F59E0B;--white:#F8FAFC;--light:#CBD5E1;--muted:#64748B;--bg:#050810}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden}
+.app{max-width:800px;margin:0 auto;padding:20px 16px 80px}
+/* Header */
+.header{text-align:center;padding:40px 0 30px;border-bottom:1px solid rgba(245,183,49,0.15)}
+.header h1{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,42px);color:var(--gold);line-height:1.15;margin-bottom:8px}
+.header p{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase}
+/* Nav tabs */
+.nav{display:flex;gap:4px;overflow-x:auto;padding:20px 0 10px;-webkit-overflow-scrolling:touch}
+.nav button{flex-shrink:0;padding:8px 14px;border:1px solid rgba(255,255,255,0.08);border-radius:8px;background:transparent;color:var(--muted);font-family:'DM Mono',monospace;font-size:11px;cursor:pointer;transition:all .2s;letter-spacing:0.5px}
+.nav button:hover{border-color:var(--gold);color:var(--gold)}
+.nav button.active{background:var(--gold);color:var(--dk);border-color:var(--gold);font-weight:700}
+/* Section */
+.section{display:none;animation:fadeIn .3s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.section-title{font-family:'Playfair Display',serif;font-size:26px;color:var(--gold);margin:28px 0 6px}
+.section-sub{color:var(--muted);font-size:13px;margin-bottom:20px}
+/* Cards */
+.card{background:var(--card);border-radius:12px;padding:20px;margin-bottom:14px;border-left:3px solid var(--teal);position:relative;cursor:pointer;transition:all .2s}
+.card:hover{border-left-color:var(--gold);transform:translateX(2px)}
+.card.gold{border-left-color:var(--gold)}.card.purple{border-left-color:var(--purple)}
+.card.coral{border-left-color:var(--coral)}.card.green{border-left-color:var(--green)}
+.card.blue{border-left-color:var(--blue)}.card.amber{border-left-color:var(--amber)}
+.card-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:6px}
+.card-q{font-weight:700;font-size:15px;color:var(--white);line-height:1.4}
+.card-a{display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);color:var(--light);font-size:14px;line-height:1.65}
+.card-a.show{display:block;animation:fadeIn .25s ease}
+.card-hint{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-top:10px;text-align:right}
+.card-a strong{color:var(--gold)}
+.card-a em{color:var(--teal);font-style:normal}
+/* Quiz mode */
+.quiz-container{background:var(--card);border-radius:16px;padding:28px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.05)}
+.quiz-progress{display:flex;gap:4px;margin-bottom:20px}
+.quiz-dot{width:100%;height:4px;border-radius:2px;background:rgba(255,255,255,0.08)}
+.quiz-dot.correct{background:var(--green)}.quiz-dot.wrong{background:var(--coral)}.quiz-dot.current{background:var(--gold)}
+.quiz-q{font-size:17px;font-weight:700;line-height:1.5;margin-bottom:20px}
+.quiz-opts{display:flex;flex-direction:column;gap:8px}
+.quiz-opt{padding:14px 16px;border:1px solid rgba(255,255,255,0.08);border-radius:10px;cursor:pointer;font-size:14px;transition:all .15s;background:transparent;color:var(--light);text-align:left;font-family:'DM Sans',sans-serif;line-height:1.4}
+.quiz-opt:hover{border-color:var(--gold);background:rgba(245,183,49,0.05)}
+.quiz-opt.selected{border-color:var(--gold);background:rgba(245,183,49,0.1);color:var(--white)}
+.quiz-opt.correct-answer{border-color:var(--green);background:rgba(52,211,153,0.12);color:var(--green)}
+.quiz-opt.wrong-answer{border-color:var(--coral);background:rgba(249,112,102,0.12);color:var(--coral)}
+.quiz-opt.disabled{pointer-events:none;opacity:0.7}
+.quiz-explain{margin-top:16px;padding:14px;background:rgba(13,148,136,0.08);border-radius:8px;font-size:13px;color:var(--teal);line-height:1.5;display:none}
+.quiz-explain.show{display:block;animation:fadeIn .2s ease}
+.quiz-btn{margin-top:16px;padding:12px 28px;border:none;border-radius:8px;background:var(--gold);color:var(--dk);font-family:'DM Mono',monospace;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:1px;text-transform:uppercase;transition:all .15s}
+.quiz-btn:hover{transform:scale(1.02);filter:brightness(1.1)}
+.quiz-score{text-align:center;padding:40px 20px}
+.quiz-score h2{font-family:'Playfair Display',serif;font-size:36px;color:var(--gold);margin-bottom:8px}
+.quiz-score .pct{font-family:'DM Mono',monospace;font-size:48px;font-weight:700;margin:16px 0}
+.quiz-score .pct.pass{color:var(--green)}.quiz-score .pct.fail{color:var(--coral)}
+.quiz-score p{color:var(--muted);font-size:14px}
+/* Footer */
+.footer{text-align:center;padding:30px 0;border-top:1px solid rgba(255,255,255,0.05);margin-top:40px}
+.footer p{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:1px}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="header">
+<h1>TSS Coach Certification<br>Exam Prep</h1>
+<p>L1 Foundation & L2 Practitioner — Study Tool</p>
+</div>
+
+<div class="nav" id="nav"></div>
+<div id="content"></div>
+
+<div class="footer">
+<p>The Surf Sequence® — Core Canon v4 Aligned — 2026</p>
+<p style="margin-top:6px">Confidential Training Material</p>
+</div>
+</div>
+
+<script>
+const sections = [
+  { id:'identity', label:'A · Identity', title:'TSS Identity & Doctrine', sub:'What TSS is, what it certifies, how it\'s different', cards:[
+    {q:'What is The Surf Sequence?',a:'A structured, progressive <strong>methodology</strong> for teaching surf. Core concept: <em>aprender a aprender aplicado al surf</em>. TSS is NOT a surf school — it is a methodology that surf schools <strong>license</strong>.',cl:'gold'},
+    {q:'Who owns TSS?',a:'100% owned by <strong>Marcelo Castellanos</strong> through <strong>Enkrateia SA de CV</strong>. Puro Surf is the flagship operator — not the owner.',cl:'gold'},
+    {q:'What is the highest doctrinal authority?',a:'The <strong>TSS Core Canon</strong> (currently v4). All manuals, certifications, tools, and derivative materials must align with it and <strong>cannot contradict it</strong>.',cl:'coral'},
+    {q:'What are the 3 non-negotiable doctrinal rules?',a:'1. The Core Canon is the highest authority<br>2. <strong>Fidelity is structural, not optional</strong> — the method works because it is followed<br>3. Progression is sequential — <strong>no skipping</strong> sequences or belt levels',cl:'coral'},
+    {q:'What does "Evolve through play" mean?',a:'The TSS brand promise: learning is designed to be <strong>experiential, engaging, and progressive</strong>. Fun is not opposed to rigor — it accelerates internalization. The Flow Channel principle underpins this.',cl:'purple'},
+  ]},
+  { id:'pillars', label:'B · Pillars', title:'The 4 Pillars + Safety Layer', sub:'The development framework behind every session', cards:[
+    {q:'What are the 4 Holistic Development Pillars?',a:'<strong>Physical</strong> (the body as engine), <strong>Technical</strong> (mechanics of movement), <strong>Tactical</strong> (wave reading, timing, positioning), <strong>Mental</strong> (focus, flow, confidence).',cl:'teal'},
+    {q:'Is Safety a pillar?',a:'<strong>NO.</strong> Safety is a non-negotiable <em>operational layer</em> that exists across all levels, all sessions, and all environments. It does not compete with the four pillars — it <strong>underlies them</strong>.',cl:'coral'},
+    {q:'What pillar governs pop-up mechanics?',a:'<strong>Technical</strong> — the HOW of surfing. All mechanics of movement (pop-up, posture, rotation, projection) live here.',cl:'gold'},
+    {q:'What pillar governs wave selection?',a:'<strong>Tactical</strong> — the WHEN and WHERE of surfing. Wave reading, positioning, timing, lineup strategy.',cl:'teal'},
+    {q:'What pillar governs arousal management before a heat?',a:'<strong>Mental</strong> — focus, presence, error management, flow state, emotional regulation, confidence.',cl:'purple'},
+  ]},
+  { id:'belts', label:'C · Belts', title:'Belt System & Sequences', sub:'7 levels, 6 colors, and what each means', cards:[
+    {q:'How many levels does TSS have?',a:'<strong>7 levels</strong> organized in <strong>6 belt colors</strong>. Yellow and Blue each contain 2 internal sub-levels, bringing the total to 7.',cl:'purple'},
+    {q:'Name the 6 belt colors in order.',a:'<strong>White</strong> (Beginner) → <strong>Yellow</strong> (Novice) → <strong>Blue</strong> (Foundation) → <strong>Purple</strong> (Emerging) → <strong>Brown</strong> (Pre-Elite) → <strong>Black</strong> (Elite)',cl:'gold'},
+    {q:'What sequences does White Belt cover?',a:'Sequences <strong>#1 through #5</strong>. First contact with the ocean: board control, sweet spot, pop-up, safety foundations.',cl:'teal'},
+    {q:'What sequences does Yellow Belt cover?',a:'Sequences <strong>#6 and #7</strong>. Transition from whitewater to green waves: angled takeoffs, paddling speed, pocket awareness.',cl:'gold'},
+    {q:'What sequences does Blue Belt cover?',a:'Sequences <strong>#8 through #13</strong>. Bottom turns, linking, named sequence expressions. The Infinite Circle becomes fully active.',cl:'blue'},
+    {q:'What is an L1 coach authorized to teach?',a:'<strong>White + Yellow Belt</strong> (Sequences #1–7). Must have completed the method as a student through Yellow Belt. Delivers in whitewater and early green-wave environments. Blocks 0–4 as primary focus.',cl:'green'},
+    {q:'What is an L2 coach authorized to teach?',a:'<strong>Through Blue Belt</strong> (Sequences #1–13). Demonstrates bottom turn, linking, and named expression delivery. All Blocks active. <strong>Infinite Circle operational.</strong>',cl:'teal'},
+    {q:'Can progression skip belt levels?',a:'<strong>Absolutely not.</strong> Progression is sequential. No skipping. Two parallel paths (Competitor and Recreational) share the same belts but apply different evaluation criteria.',cl:'coral'},
+  ]},
+  { id:'blocks', label:'D · Blocks', title:'Block System & Infinite Circle', sub:'The 8 Learning Blocks and the operational loop', cards:[
+    {q:'How many Learning Blocks are there?',a:'<strong>8 blocks</strong> numbered 0 through 7.',cl:'blue'},
+    {q:'What is Block 0?',a:'<strong>Orientation & Surf Literacy</strong>: History, ocean respect, wave types, etiquette, safety rules, equipment, minimum physical preparation, level and condition awareness. Literacy <em>before</em> execution.',cl:'teal'},
+    {q:'What are Blocks 1-3?',a:'<strong>1</strong>: Preparation & Positioning (venue, safe zone, lineup)<br><strong>2</strong>: Wave Entry (catching waves: angle, timing, cobra)<br><strong>3</strong>: Pop-Up & Board Connection (feet placement, board as extension)',cl:'blue'},
+    {q:'What are Blocks 4-7?',a:'<strong>4</strong>: Power Posture (attack position)<br><strong>5</strong>: Rotation & Bottom Turn (oblique + gaze)<br><strong>6</strong>: Projection (angle + speed)<br><strong>7</strong>: Maneuvers + Recovery (named expressions)',cl:'purple'},
+    {q:'What is the Infinite Circle?',a:'Blocks <strong>4→5→6→7</strong> form a continuous loop within every wave: Posture → Rotation → Projection → Maneuver → Recovery → back to Posture. It becomes fully active at <strong>Blue Belt</strong>.',cl:'purple'},
+    {q:'At which belt do Blocks 0-3 become autonomous?',a:'At <strong>Blue Belt</strong>. By this level, Blocks 0-3 should be executed without coach prompting. The focus shifts to Blocks 4-7 (the Infinite Circle loop).',cl:'green'},
+  ]},
+  { id:'circles', label:'E · Circles', title:'3 Circles of Power & P·R·C·H', sub:'The diagnostic language and force model', cards:[
+    {q:'What are the 3 Circles of Power?',a:'<strong>1. 4 Basic Movements (P·R·C·H)</strong><br><strong>2. Feet Position on the Board</strong><br><strong>3. Dynamic of the Wave</strong><br>Where all three intersect = <strong>FLOW</strong>.',cl:'gold'},
+    {q:'What does P·R·C·H stand for?',a:'<strong>Posture, Rotate, Compress, Hold</strong> — the four fundamental forces that generate direction and speed on the board. This is the shared <em>diagnostic language</em> across all belts.',cl:'gold'},
+    {q:'Is P·R·C·H a tracked metric in TSS Brain?',a:'<strong>No.</strong> P·R·C·H is a diagnostic language used by the coach, not a tracked field. The coach uses it to identify what movement pattern needs correction.',cl:'amber'},
+    {q:'What is External Force vs Internal Force?',a:'<strong>External</strong>: comes from the environment (wave pitch, wind, water speed, surface texture).<br><strong>Internal</strong>: generated by the body (extension, flexion, torque, compression, energy release).',cl:'teal'},
+    {q:'What are the 5 principles of Ecological Dynamics?',a:'1. <strong>Perception-Action</strong> coupling<br>2. <strong>Constraints-Led Approach</strong> (task/environment/individual)<br>3. <strong>Variability</strong> (not rigid repetition)<br>4. <strong>Affordances</strong> (environmental opportunities)<br>5. <strong>Self-Organization</strong> (body finds efficient solutions)',cl:'blue'},
+  ]},
+  { id:'cert', label:'F · Certification', title:'Certification Route & Assessment', sub:'How coaches get certified — prerequisites, levels, assessment', cards:[
+    {q:'What are the 3 external prerequisites before TSS certification?',a:'1. <strong>Lifeguard Certification</strong><br>2. <strong>ISA Surf Instructor Level 1</strong><br>3. <strong>ISA Surf Instructor Level 2</strong><br>These must be completed <em>before</em> entering the TSS internal route.',cl:'coral'},
+    {q:'How many internal TSS certification levels exist?',a:'<strong>5 levels</strong>:<br>L1 Foundation Coach (White+Yellow)<br>L2 Practitioner Coach (through Blue)<br>L3 Advanced Coach (through Purple+Brown)<br>L4 Master Coach (all belts including Black)<br>L5 Coach Educator (trains + certifies coaches)',cl:'gold'},
+    {q:'What does TSS certify?',a:'<strong>Demonstrated capability</strong>, not knowledge alone. Five dimensions: Embodiment, Observational Competence, Teaching Ability, Fidelity to the Method, Professional Delivery.',cl:'green'},
+    {q:'What are the 4 assessment components?',a:'1. <strong>Knowledge Check</strong> (theoretical understanding)<br>2. <strong>Practical Demonstration</strong> (physical execution)<br>3. <strong>Teaching Practicum</strong> (live coaching under observation)<br>4. <strong>Portfolio / Evidence Log</strong> (documented proof)',cl:'teal'},
+    {q:'Are certifications portable?',a:'<strong>Yes.</strong> Certifications belong to the coach, not to any academy. They are auditable (public registry) and <strong>renewable annually</strong>. An expired certification suspends the right to deliver under the TSS name.',cl:'amber'},
+    {q:'What does L5 Coach Educator do differently?',a:'L5 does <strong>not teach surfers directly</strong>. They train, evaluate, mentor, and recommend certification of other coaches. They lead the Coach Formation Program and design assessment instruments.',cl:'purple'},
+  ]},
+  { id:'session', label:'G · Sessions', title:'Session Design & Diagnostic System', sub:'How to run a session and diagnose problems', cards:[
+    {q:'What is the 7-step diagnostic cycle?',a:'1. Video → Diagnosis (5 min)<br>2. Choose <strong>1 step</strong> to fix (first fault)<br>3. Define root cause (Mental/Physical/Timing/Technical)<br>4. Choose intervention (correct drill)<br>5. Execute <strong>3-5 conscious reps</strong><br>6. Back to video/feedback<br>7. Infinite Circle — iterate',cl:'amber'},
+    {q:'What is the teaching method for every drill?',a:'<strong>Explain → Demonstrate → Participate → Feedback</strong>. Every drill follows this 4-step delivery sequence. No exceptions.',cl:'gold'},
+    {q:'How many corrections per repetition?',a:'<strong>ONE.</strong> Give one correction per repetition. Never overload the student. Focus on the <em>first</em> fault in the sequence.',cl:'coral'},
+    {q:'What are the 4 root cause categories?',a:'<strong>Mental</strong> (fear, lack of focus, overthinking)<br><strong>Physical</strong> (strength, flexibility, endurance deficit)<br><strong>Timing/Positioning</strong> (too early, too late, wrong spot)<br><strong>Technical</strong> (wrong mechanic, sequence break)',cl:'teal'},
+    {q:'What is the Flow Channel principle in session design?',a:'Match drill difficulty to student level. <strong>Too hard = anxiety. Too easy = boredom.</strong> The sweet spot is where challenge and skill are balanced. The belt system is designed to maintain students in this channel.',cl:'purple'},
+    {q:'What must happen before prescribing any drill?',a:'<strong>Read conditions.</strong> Ocean conditions determine what drills are possible. Venue analysis is Block 0. You cannot prescribe a bottom turn drill in 1-foot onshore slop.',cl:'blue'},
+  ]},
+];
+
+// Quiz questions
+const quizQuestions = [
+  {q:'TSS is best described as:',opts:['A surf school franchise','A methodology that surf schools license','A coaching app','A competition training program'],correct:1,explain:'TSS is a methodology — not a school. Surf schools and academies license it.'},
+  {q:'How many development pillars does TSS have?',opts:['3','4','5','6'],correct:1,explain:'4 Pillars: Physical, Technical, Tactical, Mental. Safety is a transversal layer, NOT a fifth pillar.'},
+  {q:'Safety in TSS is:',opts:['The fifth pillar','A non-negotiable operational layer','Optional in controlled environments','Only relevant for beginners'],correct:1,explain:'Safety underlies all pillars, all levels, all sessions. It is never optional.'},
+  {q:'How many levels are in the TSS belt system?',opts:['5','6','7','8'],correct:2,explain:'7 levels in 6 colors. Yellow and Blue each have 2 internal sub-levels.'},
+  {q:'What sequences does an L1 Foundation Coach teach?',opts:['#1–#5','#1–#7','#1–#13','All sequences'],correct:1,explain:'L1 covers White + Yellow Belt = Sequences #1–7.'},
+  {q:'What is Block 0?',opts:['Pop-Up','Orientation & Surf Literacy','Power Posture','Wave Entry'],correct:1,explain:'Block 0 covers history, ocean respect, safety, equipment — literacy before execution.'},
+  {q:'The Infinite Circle consists of which blocks?',opts:['Blocks 0–3','Blocks 1–4','Blocks 4–7','All 8 blocks'],correct:2,explain:'Blocks 4→5→6→7 form the Infinite Circle: Posture → Rotation → Projection → Maneuver → Recovery.'},
+  {q:'P·R·C·H stands for:',opts:['Position, Rotation, Compression, Hold','Posture, Rotate, Compress, Hold','Power, Reach, Control, Height','Paddle, Rise, Center, Hold'],correct:1,explain:'Posture, Rotate, Compress, Hold — the 4 fundamental forces for direction and speed.'},
+  {q:'What are the external prerequisites for TSS certification?',opts:['None','ISA Level 1 only','Lifeguard + ISA Level 1 + ISA Level 2','5 years of surf coaching'],correct:2,explain:'All three must be completed before entering the TSS internal certification route.'},
+  {q:'How many corrections should a coach give per repetition?',opts:['As many as needed','One','Two maximum','Three maximum'],correct:1,explain:'ONE correction per rep. Focus on the first fault. Never overload.'},
+  {q:'The teaching method for every drill is:',opts:['Watch → Try → Repeat','Explain → Demonstrate → Participate → Feedback','Show → Tell → Practice','Brief → Execute → Debrief'],correct:1,explain:'Explain → Demonstrate → Participate → Feedback. No exceptions.'},
+  {q:'At which belt does the Infinite Circle become fully active?',opts:['White','Yellow','Blue','Purple'],correct:2,explain:'At Blue Belt, Blocks 0–3 are autonomous and Blocks 4–7 (the Infinite Circle) become the focus.'},
+  {q:'How many TSS internal certification levels exist?',opts:['3','4','5','6'],correct:2,explain:'5 levels: L1 Foundation, L2 Practitioner, L3 Advanced, L4 Master, L5 Coach Educator.'},
+  {q:'TSS certifies:',opts:['Knowledge alone','Physical ability alone','Demonstrated capability across multiple dimensions','Years of experience'],correct:2,explain:'Embodiment, observational competence, teaching ability, fidelity, and professional delivery.'},
+  {q:'Can a student skip from White Belt to Blue Belt?',opts:['Yes, if they show talent','Only with coach approval','Never — progression is sequential','Only in the Competitor path'],correct:2,explain:'Progression is sequential — no skipping. Both Competitor and Recreational paths follow the same order.'},
+  {q:'What does an L5 Coach Educator do?',opts:['Teaches all belt levels','Trains and certifies other coaches','Runs surf competitions','Manages academy operations'],correct:1,explain:'L5 does not teach surfers directly. They train, evaluate, mentor, and certify coaches.'},
+  {q:'The 3 Circles of Power are:',opts:['Physical, Technical, Mental','Wave, Wind, Current','4 Basic Movements, Feet Position, Dynamic of the Wave','Beginner, Foundation, Elite'],correct:2,explain:'P·R·C·H movements + Feet Position + Wave Dynamic. Where they intersect = Flow.'},
+  {q:'Which root cause category includes "fear of the wave"?',opts:['Physical','Technical','Timing','Mental'],correct:3,explain:'Fear, lack of focus, overthinking — these are Mental root causes.'},
+  {q:'Certifications in TSS belong to:',opts:['The academy','The coach','TSS Global','The country federation'],correct:1,explain:'Portable: belongs to the coach. Auditable: public registry. Renewable annually.'},
+  {q:'The Flow Channel principle means:',opts:['Always push to maximum difficulty','Match challenge to skill level','Only practice in calm conditions','Focus on speed over technique'],correct:1,explain:'Too hard = anxiety. Too easy = boredom. Balance = Flow. The belt system is designed for this.'},
+];
+
+// State
+let currentSection = 'identity';
+let quizState = { idx:0, answers:[], started:false, finished:false };
+
+function render() {
+  // Nav
+  const nav = document.getElementById('nav');
+  nav.innerHTML = sections.map(s =>
+    `<button class="${s.id===currentSection?'active':''}" onclick="switchSection('${s.id}')">${s.label}</button>`
+  ).join('') + `<button class="${currentSection==='quiz'?'active':''}" onclick="switchSection('quiz')" style="background:${currentSection==='quiz'?'var(--coral)':'transparent'};color:${currentSection==='quiz'?'var(--dk)':'var(--coral)'};border-color:var(--coral);font-weight:700">⚡ QUIZ</button>`;
+
+  const content = document.getElementById('content');
+  if (currentSection === 'quiz') { renderQuiz(content); return; }
+  const sec = sections.find(s => s.id === currentSection);
+  content.innerHTML = `
+    <h2 class="section-title">${sec.title}</h2>
+    <p class="section-sub">${sec.sub}</p>
+    ${sec.cards.map((c,i) => `
+      <div class="card ${c.cl}" onclick="toggleCard(this)">
+        <div class="card-label">Question ${i+1} of ${sec.cards.length}</div>
+        <div class="card-q">${c.q}</div>
+        <div class="card-a">${c.a}</div>
+        <div class="card-hint">tap to reveal</div>
+      </div>
+    `).join('')}
+  `;
+}
+
+function switchSection(id) { currentSection = id; if(id==='quiz'){quizState={idx:0,answers:[],started:true,finished:false}} render(); window.scrollTo({top:0,behavior:'smooth'}); }
+function toggleCard(el) { const a=el.querySelector('.card-a'); const h=el.querySelector('.card-hint'); a.classList.toggle('show'); h.style.display=a.classList.contains('show')?'none':'block'; }
+
+function renderQuiz(container) {
+  if (quizState.finished) {
+    const correct = quizState.answers.filter((a,i) => a === quizQuestions[i].correct).length;
+    const pct = Math.round(correct / quizQuestions.length * 100);
+    container.innerHTML = `<div class="quiz-score">
+      <h2>Results</h2>
+      <div class="pct ${pct>=70?'pass':'fail'}">${pct}%</div>
+      <p>${correct} of ${quizQuestions.length} correct</p>
+      <p style="margin-top:12px;color:${pct>=70?'var(--green)':'var(--coral)'}; font-weight:700">${pct>=80?'Excellent — ready for certification.':pct>=70?'Passing — review weak areas.':'Below passing — study and retake.'}</p>
+      <button class="quiz-btn" onclick="switchSection('quiz')" style="margin-top:24px">RETAKE QUIZ</button>
+    </div>`;
+    return;
+  }
+  const q = quizQuestions[quizState.idx];
+  const answered = quizState.answers.length > quizState.idx;
+  container.innerHTML = `
+    <div class="quiz-container">
+      <div class="quiz-progress">${quizQuestions.map((_,i) => {
+        let cls = '';
+        if (i < quizState.answers.length) cls = quizState.answers[i] === quizQuestions[i].correct ? 'correct' : 'wrong';
+        else if (i === quizState.idx) cls = 'current';
+        return `<div class="quiz-dot ${cls}"></div>`;
+      }).join('')}</div>
+      <div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:12px;letter-spacing:1px">QUESTION ${quizState.idx+1} OF ${quizQuestions.length}</div>
+      <div class="quiz-q">${q.q}</div>
+      <div class="quiz-opts">${q.opts.map((o,i) => {
+        let cls = '';
+        if (answered) {
+          cls = 'disabled';
+          if (i === q.correct) cls += ' correct-answer';
+          else if (i === quizState.answers[quizState.idx] && i !== q.correct) cls += ' wrong-answer';
+        }
+        return `<button class="quiz-opt ${cls}" onclick="answerQuiz(${i})">${o}</button>`;
+      }).join('')}</div>
+      <div class="quiz-explain ${answered?'show':''}">${answered?q.explain:''}</div>
+      ${answered ? `<button class="quiz-btn" onclick="nextQuiz()">${quizState.idx < quizQuestions.length-1 ? 'NEXT →' : 'SEE RESULTS'}</button>` : ''}
+    </div>`;
+}
+
+function answerQuiz(idx) {
+  if (quizState.answers.length > quizState.idx) return;
+  quizState.answers.push(idx);
+  renderQuiz(document.getElementById('content'));
+}
+function nextQuiz() {
+  if (quizState.idx < quizQuestions.length - 1) { quizState.idx++; } else { quizState.finished = true; }
+  renderQuiz(document.getElementById('content'));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+render();
+</script>
+</body>
+</html>

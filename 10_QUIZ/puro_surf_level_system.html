@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Puro Surf — Sistema de Nivel Simplificado</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#e0e0e0;line-height:1.6;padding:40px 20px}
+.container{max-width:900px;margin:0 auto}
+h1{font-size:2rem;font-weight:800;color:#fff;margin-bottom:8px}
+.subtitle{color:#00b4d8;font-size:.95rem;font-weight:500;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid #222}
+h2{font-size:1.3rem;font-weight:700;color:#fff;margin:40px 0 16px;display:flex;align-items:center;gap:10px}
+h2 .n{background:#00b4d8;color:#000;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:800;flex-shrink:0}
+.s{background:#141414;border:1px solid #222;border-radius:12px;padding:24px;margin-bottom:20px}
+.level-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+@media(max-width:600px){.level-grid{grid-template-columns:1fr}}
+.lc{border-radius:10px;padding:16px;border-left:4px solid}
+.lc.b{background:#1a1a2e;border-color:#6c63ff}.lc.no{background:#1a2e1a;border-color:#4caf50}.lc.f{background:#2e2a1a;border-color:#ff9800}.lc.em{background:#2e1a1a;border-color:#f44336}.lc.pe{background:#1a2e2e;border-color:#00bcd4}.lc.el{background:#2e1a2e;border-color:#e040fb}
+.lc .nm{font-weight:700;font-size:1rem;color:#fff}
+.lc .rng{font-size:.85rem;color:#999;margin-top:2px}
+.lc .pct{font-size:.8rem;color:#666;margin-top:4px}
+.flow{display:flex;gap:16px;margin:16px 0;align-items:flex-start}
+.flow .ph{background:#00b4d8;color:#000;font-weight:800;font-size:.75rem;padding:4px 10px;border-radius:20px;white-space:nowrap;flex-shrink:0;margin-top:2px}
+.flow .q{font-weight:600;color:#fff;margin-bottom:4px}
+.flow .r{color:#888;font-size:.9rem}
+.flow .r strong{color:#00b4d8}
+.arr{text-align:center;color:#333;font-size:1.2rem;margin:4px 0}
+.sr{display:flex;justify-content:space-between;padding:12px 0;border-bottom:1px solid #1a1a1a}
+.sr:last-child{border-bottom:none}
+.sl{color:#888;font-size:.9rem}.sv{color:#fff;font-weight:700;font-size:.9rem}
+.hb{background:linear-gradient(135deg,#00b4d8,#0077b6);border-radius:12px;padding:20px 24px;color:#000;margin:20px 0}
+.hb h3{font-weight:800;font-size:1.1rem;margin-bottom:8px}
+.hb p{font-size:.9rem;color:#002233;line-height:1.5}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.85rem}
+th{text-align:left;padding:10px 12px;background:#1a1a1a;color:#00b4d8;font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.5px}
+td{padding:10px 12px;border-bottom:1px solid #1a1a1a;color:#ccc}
+tr:hover td{background:#111}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75rem;font-weight:600}
+.tb{background:#6c63ff22;color:#6c63ff}.tn{background:#4caf5022;color:#4caf50}.tf{background:#ff980022;color:#ff9800}.te{background:#f4433622;color:#f44336}
+.alert{background:#2a1a00;border:1px solid #ff9800;border-radius:8px;padding:16px;margin:16px 0;font-size:.9rem;color:#ffcc80}
+.alert strong{color:#ff9800}
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+@media(max-width:600px){.mg{grid-template-columns:1fr}}
+.m{background:#1a1a1a;border-radius:8px;padding:16px;text-align:center}
+.m .v{font-size:1.8rem;font-weight:800;color:#00b4d8}
+.m .l{font-size:.75rem;color:#666;margin-top:4px;text-transform:uppercase;letter-spacing:.5px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Sistema de Evaluacion de Nivel — Puro Surf</h1>
+<p class="subtitle">Analisis de 3,287 cuestionarios (2022-2026) → Sistema simplificado validado con data real</p>
+
+<h2><span class="n">1</span> Diagnostico Real</h2>
+<div class="s">
+<p style="margin-bottom:12px">El sistema actual <strong style="color:#fff">ya funciona perfectamente</strong> en la mecanica de scoring: 22 preguntas x 0-10 puntos = total → nivel. Tiene 100% de consistencia interna.</p>
+<p style="margin-bottom:12px">El problema no es la formula. <strong style="color:#ff9800">El problema es la experiencia:</strong></p>
+<p>Un Beginner que nunca ha surfeado tiene que contestar 22 preguntas de las cuales 15+ son irrelevantes para el (contesta 0 en todas). Eso genera frustracion, datos basura, y una primera impresion pobre del servicio.</p>
+<div class="mg">
+<div class="m"><div class="v">3,287</div><div class="l">Surfers analizados</div></div>
+<div class="m"><div class="v">79%</div><div class="l">Son Beginner o Novice</div></div>
+<div class="m"><div class="v">37%</div><div class="l">Se sobrevaloran</div></div>
+</div>
+</div>
+
+<h2><span class="n">2</span> Variable Critica</h2>
+<div class="s">
+<p><strong style="color:#00b4d8;font-size:1.1rem">El 79% de tus guests son Beginner o Novice y estan contestando 15+ preguntas innecesarias.</strong></p>
+<p style="margin-top:8px;color:#888">El 20% que mueve el 80%: hacer el cuestionario ADAPTIVO — que se detenga cuando ya tiene suficiente info para clasificar.</p>
+</div>
+
+<h2><span class="n">3</span> Que Eliminar Antes de Agregar</h2>
+<div class="s">
+<p style="margin-bottom:8px">No cambies la formula de scoring (funciona al 100%)</p>
+<p style="margin-bottom:8px">No elimines preguntas del cuestionario (todas son necesarias para niveles altos)</p>
+<p style="margin-bottom:8px">No inventes un sistema nuevo desde cero</p>
+<p>Elimina la experiencia de que TODOS contesten TODO. Haz que el quiz se adapte al nivel.</p>
+</div>
+
+<h2><span class="n">4</span> La Solucion: Quiz Progresivo Adaptivo</h2>
+<div class="hb">
+<h3>Concepto Central</h3>
+<p>Mismas 22 preguntas. Mismos rangos de puntaje. Mismos niveles. Pero el quiz SE DETIENE cuando ya tiene suficiente data para clasificarte. Un Beginner contesta 7 preguntas en vez de 22.</p>
+</div>
+
+<div class="s">
+<div class="flow">
+<span class="ph">FASE 1</span>
+<div>
+<div class="q">Q1-Q7: Fitness, Duck Dive, Pop-up, Giro en la ola</div>
+<div class="r">Si el total de Q1-Q7 es menor o igual a 20 → <strong>BEGINNER</strong> (se detiene aqui)</div>
+<div class="r">Captura el 79% de Beginners correctamente, con solo 0.7% de error.</div>
+</div>
+</div>
+<div class="arr">↓</div>
+<div class="flow">
+<span class="ph">FASE 2</span>
+<div>
+<div class="q">Q8-Q14: Velocidad, Maniobras, Bottom Turn, Cutback</div>
+<div class="r">Total acumulado menor o igual a 80 → <strong>NOVICE</strong> (se detiene)</div>
+<div class="r">Total acumulado menor o igual a 110 → <strong>FOUNDATION</strong> (se detiene)</div>
+</div>
+</div>
+<div class="arr">↓</div>
+<div class="flow">
+<span class="ph">FASE 3</span>
+<div>
+<div class="q">Q15-Q22: Cutbacks avanzados, Lip hits, Reentries, Floaters</div>
+<div class="r">Total menor o igual a 160 → <strong>EMERGING</strong></div>
+<div class="r">Total menor o igual a 200 → <strong>PRE-ELITE</strong></div>
+<div class="r">Total mayor a 200 → <strong>ELITE</strong></div>
+</div>
+</div>
+</div>
+
+<h2><span class="n">5</span> Rangos de Nivel (Sin Cambios)</h2>
+<div class="level-grid">
+<div class="lc b"><div class="nm">Beginner</div><div class="rng">0 - 20 pts</div><div class="pct">26% de guests | Solo Fase 1 (7 Qs)</div></div>
+<div class="lc no"><div class="nm">Novice</div><div class="rng">21 - 80 pts</div><div class="pct">53% de guests | Fase 1+2 (14 Qs)</div></div>
+<div class="lc f"><div class="nm">Foundation</div><div class="rng">81 - 110 pts</div><div class="pct">11% de guests | Fase 1+2 (14 Qs)</div></div>
+<div class="lc em"><div class="nm">Emerging</div><div class="rng">111 - 160 pts</div><div class="pct">8% de guests | Todas las fases (22 Qs)</div></div>
+<div class="lc pe"><div class="nm">Pre-Elite</div><div class="rng">161 - 200 pts</div><div class="pct">1.6% de guests | Todas las fases (22 Qs)</div></div>
+<div class="lc el"><div class="nm">Elite</div><div class="rng">201 - 220 pts</div><div class="pct">0.2% de guests | Todas las fases (22 Qs)</div></div>
+</div>
+
+<h2><span class="n">6</span> Diagnostico de Coaching Automatico</h2>
+<div class="s">
+<p style="margin-bottom:16px;color:#888">Donde la persona "se cae" (empieza a poner 0s) = exactamente lo que necesita entrenar. Esto convierte el quiz en herramienta de coaching, no solo de clasificacion.</p>
+<table>
+<tr><th>Se cae en...</th><th>Diagnostico</th><th>Entrenar</th></tr>
+<tr><td>Q2-Q3</td><td><span class="tag tb">Beginner</span></td><td>Remada + Duck Dive</td></tr>
+<tr><td>Q4-Q5</td><td><span class="tag tb">Beginner</span></td><td>Tecnica de Pop-up</td></tr>
+<tr><td>Q6-Q7</td><td><span class="tag tn">Novice bajo</span></td><td>Lectura de ola + Giros basicos</td></tr>
+<tr><td>Q8-Q9</td><td><span class="tag tn">Novice alto</span></td><td>Generacion de velocidad</td></tr>
+<tr><td>Q11-Q13</td><td><span class="tag tf">Foundation</span></td><td>Bottom turns + Maniobras basicas</td></tr>
+<tr><td>Q14-Q16</td><td><span class="tag tf">Foundation alto</span></td><td>Cutbacks + Transiciones</td></tr>
+<tr><td>Q17-Q18</td><td><span class="tag te">Emerging</span></td><td>Lip hits + Reentries</td></tr>
+<tr><td>Q19-Q22</td><td><span class="tag te">Emerging alto</span></td><td>Floaters + Finishing maneuvers</td></tr>
+</table>
+</div>
+
+<h2><span class="n">7</span> El Self-Assessment Miente</h2>
+<div class="s">
+<div class="sr"><span class="sl">Se evaluan correctamente</span><span class="sv">55%</span></div>
+<div class="sr"><span class="sl">Se sobrevaloran (creen que son mejor)</span><span class="sv" style="color:#f44336">37%</span></div>
+<div class="sr"><span class="sl">Se subvaloran</span><span class="sv" style="color:#4caf50">8%</span></div>
+<div class="alert"><strong>Implicacion:</strong> La pregunta "Cual crees que es tu nivel?" NO debe usarse para clasificar. Solo como dato cualitativo. El scoring del quiz es la fuente de verdad.</div>
+</div>
+
+<h2><span class="n">8</span> Metricas del Sistema</h2>
+<div class="s">
+<div class="sr"><span class="sl">Preguntas promedio por guest (adaptivo)</span><span class="sv">11 (vs 22 actual) — 51% reduccion</span></div>
+<div class="sr"><span class="sl">Precision del scoring</span><span class="sv">100% (misma formula)</span></div>
+<div class="sr"><span class="sl">Beginners capturados en Fase 1</span><span class="sv">79% con solo 7 preguntas</span></div>
+<div class="sr"><span class="sl">Falsos positivos (parar antes de tiempo)</span><span class="sv">0.7%</span></div>
+</div>
+
+<h2><span class="n">9</span> Riesgos y Puntos Ciegos</h2>
+<div class="s">
+<p style="margin-bottom:8px"><strong style="color:#ff9800">1. Self-reporting bias:</strong> 37% se sobrevalora. Solucion: video review al llegar como validacion.</p>
+<p style="margin-bottom:8px"><strong style="color:#ff9800">2. Early stopping error:</strong> 0.7% de non-Beginners podrian ser detenidos en Fase 1. Solucion: re-evaluar si el coach detecta discrepancia el primer dia.</p>
+<p><strong style="color:#ff9800">3. Q1 (Fitness) es la menos predictiva:</strong> Correlacion de solo 0.38 con el nivel total. Considerar moverla fuera del quiz y usarla solo como dato medico.</p>
+</div>
+
+<h2><span class="n">!</span> La Pregunta Incomoda</h2>
+<div class="s" style="border-color:#ff9800">
+<p style="font-size:1.05rem;color:#fff;font-weight:600">Realmente necesitas que el guest se auto-evalue ANTES de llegar, o seria mas preciso (y mas premium) hacer una evaluacion in-water de 15 minutos el primer dia?</p>
+<p style="margin-top:12px;color:#888">El quiz pre-arrival sirve para logistica (agrupar niveles, asignar coaches). Pero para coaching real, nada reemplaza ver al surfista en el agua. El sistema adaptivo es el bridge: clasifica rapido pre-arrival y se refina con observacion real.</p>
+</div>
+
+<h2><span class="n">R</span> Recomendacion Final</h2>
+<div class="hb">
+<h3>Implementar en 2 fases</h3>
+<p style="margin-bottom:8px"><strong>Fase A (inmediata, 0 costo):</strong> Reestructurar el Google Form actual en 3 secciones condicionales. Google Forms ya soporta "ir a seccion X segun respuesta". Cuando el total parcial indica Beginner → salta directo al final.</p>
+<p><strong>Fase B (escalable):</strong> Migrar a un formulario web propio (Typeform, Tally, o custom) que calcule el score en tiempo real, muestre el nivel al final, y genere automaticamente el diagnostico de coaching para el equipo. Esto es un activo de IP licenciable.</p>
+</div>
+
+</div>
+</body>
+</html>

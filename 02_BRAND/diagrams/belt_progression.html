@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Belt Progression Map — The Surf Sequence®</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0A1628 0%, #0D2D5E 100%);
+            color: #C8D0DC;
+            font-family: 'Work Sans', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            text-align: center;
+            margin-bottom: 60px;
+            letter-spacing: -0.5px;
+        }
+
+        /* Surfer Belt Progression */
+        .progression-section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #5AC3E7;
+            text-align: center;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .progression-timeline {
+            position: relative;
+            padding: 0 30px;
+        }
+
+        .progression-timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, #5AC3E7 0%, #0D2D5E 50%, #5AC3E7 100%);
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .belt-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .belt-item:nth-child(even) .belt-content {
+            order: 2;
+        }
+
+        .belt-item:nth-child(even) .belt-visual {
+            order: 1;
+        }
+
+        .belt-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .belt-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .belt-item:nth-child(1) { animation-delay: 0.1s; }
+        .belt-item:nth-child(2) { animation-delay: 0.2s; }
+        .belt-item:nth-child(3) { animation-delay: 0.3s; }
+        .belt-item:nth-child(4) { animation-delay: 0.4s; }
+        .belt-item:nth-child(5) { animation-delay: 0.5s; }
+        .belt-item:nth-child(6) { animation-delay: 0.6s; }
+
+        .belt-swatch {
+            width: 120px;
+            height: 120px;
+            border-radius: 12px;
+            border: 2px solid rgba(200, 208, 220, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .belt-swatch::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+            pointer-events: none;
+        }
+
+        .belt-info {
+            position: relative;
+            z-index: 1;
+        }
+
+        .belt-rank {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .belt-subtitle {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.95rem;
+            color: #5AC3E7;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .belt-detail {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .belt-detail strong {
+            color: #FFFFFF;
+            font-weight: 600;
+        }
+
+        .belt-detail-label {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.75rem;
+            color: #C8D0DC;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
+            display: block;
+            margin-top: 8px;
+        }
+
+        .belt-conditions {
+            background: rgba(13, 45, 94, 0.2);
+            border-left: 3px solid #5AC3E7;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-top: 16px;
+            font-size: 0.85rem;
+        }
+
+        .belt-conditions ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .belt-conditions li {
+            padding-left: 16px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .belt-conditions li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #5AC3E7;
+        }
+
+        /* Arrows between belts */
+        .belt-arrow {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, #5AC3E7, #0D2D5E);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            font-weight: bold;
+            font-size: 1.2rem;
+            z-index: 2;
+            bottom: -45px;
+        }
+
+        /* Coach Certification Pathway */
+        .coach-section {
+            margin-top: 100px;
+            padding-top: 80px;
+            border-top: 2px solid rgba(90, 195, 231, 0.2);
+        }
+
+        .coach-pathway {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .coach-level {
+            background: rgba(13, 45, 94, 0.3);
+            border: 2px solid #5AC3E7;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            flex: 1;
+            min-width: 180px;
+            transition: all 0.3s ease;
+            opacity: 0;
+            animation: slideUpFade 0.6s ease forwards;
+            position: relative;
+        }
+
+        @keyframes slideUpFade {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .coach-level:nth-child(1) { animation-delay: 0.1s; }
+        .coach-level:nth-child(2) { animation-delay: 0.2s; }
+        .coach-level:nth-child(3) { animation-delay: 0.3s; }
+        .coach-level:nth-child(4) { animation-delay: 0.4s; }
+        .coach-level:nth-child(5) { animation-delay: 0.5s; }
+
+        .coach-level:hover {
+            background: rgba(90, 195, 231, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(90, 195, 231, 0.15);
+        }
+
+        .coach-level-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #5AC3E7;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .coach-requirement {
+            font-size: 0.85rem;
+            color: #C8D0DC;
+            line-height: 1.5;
+        }
+
+        .coach-arrow {
+            color: #5AC3E7;
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin: 0 10px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        @media (max-width: 1024px) {
+            .belt-item {
+                grid-template-columns: 1fr;
+            }
+
+            .belt-item:nth-child(even) .belt-content,
+            .belt-item:nth-child(even) .belt-visual {
+                order: initial;
+            }
+
+            .progression-timeline::before {
+                left: 15px;
+            }
+
+            .belt-arrow {
+                left: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .coach-pathway {
+                flex-direction: column;
+            }
+
+            .coach-arrow {
+                transform: rotate(90deg);
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Complete Belt Progression Map</h1>
+
+        <!-- SURFER BELTS -->
+        <div class="progression-section">
+            <div class="section-title">Surfer Belt System</div>
+
+            <div class="progression-timeline">
+                <!-- WHITE BELT -->
+                <div class="belt-item">
+                    <div class="belt-visual">
+                        <div class="belt-swatch" style="background-color: #E8E8E8;"></div>
+                    </div>
+                    <div class="belt-content">
+                        <div class="belt-rank">White Belt</div>
+                        <div class="belt-subtitle">Beginner</div>
+                        <div class="belt-detail"><strong>Sequences:</strong> #1–#5</div>
+                        <div class="belt-detail"><strong>Theme:</strong> Discovery & Safety</div>
+                        <div class="belt-detail"><strong>Focus:</strong> Board familiarity, water comfort, pop-up mechanics, paddling technique</div>
+                        <div class="belt-conditions">
+                            <ul>
+                                <li>Beginner break (waist to chest high)</li>
+                                <li>Mellow, forgiving waves</li>
+                                <li>Supervised learning environment</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="belt-arrow">↓</div>
+                </div>
+
+                <!-- YELLOW BELT -->
+                <div class="belt-item">
+                    <div class="belt-visual">
+                        <div class="belt-swatch" style="background-color: #F5C518;"></div>
+                    </div>
+                    <div class="belt-content">
+                        <div class="belt-rank">Yellow Belt</div>
+                        <div class="belt-subtitle">Novice</div>
+                        <div class="belt-detail"><strong>Sequences:</strong> #6–#7</div>
+                        <div class="belt-detail"><strong>Theme:</strong> Foundation & Confidence</div>
+                        <div class="belt-detail"><strong>Focus:</strong> Positioning, wave entry, first turns, basic maneuvers</div>
+                        <div class="belt-conditions">
+                            <ul>
+                                <li>Chest to head high waves</li>
+                                <li>Consistent sets</li>
+                                <li>Foundational posture work</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="belt-arrow">↓</div>
+                </div>
+
+                <!-- BLUE BELT -->
+                <div class="belt-item">
+                    <div class="belt-visual">
+                        <div class="belt-swatch" style="background-color: #1E6FBF;"></div>
+                    </div>
+                    <div class="belt-content">
+                        <div class="belt-rank">Blue Belt</div>
+                        <div class="belt-subtitle">Foundation</div>
+                        <div class="belt-detail"><strong>Sequences:</strong> #8–#13</div>
+                        <div class="belt-detail"><strong>Theme:</strong> Consistency & Independence</div>
+                        <div class="belt-detail"><strong>Focus:</strong> Power posture, rail changes, bottom turns, reliable positioning</div>
+                        <div class="belt-conditions">
+                            <ul>
+                                <li>Head high to overhead waves</li>
+                                <li>Independent decision-making</li>
+                                <li>Infinite Circle introduction</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="belt-arrow">↓</div>
+                </div>
+
+                <!-- PURPLE BELT -->
+                <div class="belt-item">
+                    <div class="belt-visual">
+                        <div class="belt-swatch" style="background-color: #7B4FBE;"></div>
+                    </div>
+                    <div class="belt-content">
+                        <div class="belt-rank">Purple Belt</div>
+                        <div class="belt-subtitle">Emerging</div>
+                        <div class="belt-detail"><strong>Sequences:</strong> #14–#17</div>
+                        <div class="belt-detail"><strong>Theme:</strong> Commitment & Expression</div>
+                        <div class="belt-detail"><strong>Focus:</strong> Projection, rotations, maneuver variation, wave reading</div>
+                        <div class="belt-conditions">
+                            <ul>
+                                <li>Overhead+ consistent conditions</li>
+                                <li>Multiple maneuvers per wave</li>
+                                <li>Creative expression begins</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="belt-arrow">↓</div>
+                </div>
+
+                <!-- BROWN BELT -->
+                <div class="belt-item">
+                    <div class="belt-visual">
+                        <div class="belt-swatch" style="background-color: #7D4E27;"></div>
+                    </div>
+                    <div class="belt-content">
+                        <div class="belt-rank">Brown Belt</div>
+                        <div class="belt-subtitle">Pre-Elite</div>
+                        <div class="belt-detail"><strong>Sequences:</strong> #18–#22</div>
+                        <div class="belt-detail"><strong>Theme:</strong> Mastery, Aerials & Competition</div>
+                        <div class="belt-detail"><strong>Focus:</strong> Aerials, aerial launches, competitive application, high-performance maneuvers</div>
+                        <div class="belt-conditions">
+                            <ul>
+                                <li>Double overhead+ wave mastery</li>
+                                <li>Aerial execution and consistency</li>
+                                <li>Competition-ready performance</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="belt-arrow">↓</div>
+                </div>
+
+                <!-- BLACK BELT -->
+                <div class="belt-item">
+                    <div class="belt-visual">
+                        <div class="belt-swatch" style="background-color: #111111; border-color: #5AC3E7;"></div>
+                    </div>
+                    <div class="belt-content">
+                        <div class="belt-rank">Black Belt</div>
+                        <div class="belt-subtitle">Elite</div>
+                        <div class="belt-detail"><strong>Sequences:</strong> #23–#26</div>
+                        <div class="belt-detail"><strong>Theme:</strong> Knowledge, Legacy & Maximum Potential</div>
+                        <div class="belt-detail"><strong>Focus:</strong> Mastery of all blocks, innovation, teaching readiness, legacy building</div>
+                        <div class="belt-conditions">
+                            <ul>
+                                <li>All conditions mastery</li>
+                                <li>Advanced technical knowledge</li>
+                                <li>Coaching pathway eligible</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COACH CERTIFICATION PATHWAY -->
+        <div class="coach-section">
+            <div class="section-title">Coach Certification Pathway</div>
+
+            <div class="coach-pathway">
+                <div class="coach-level">
+                    <div class="coach-level-title">L1 Foundation Coach</div>
+                    <div class="coach-requirement">Minimum: Blue Belt</div>
+                </div>
+
+                <div class="coach-arrow">→</div>
+
+                <div class="coach-level">
+                    <div class="coach-level-title">L2 Practitioner</div>
+                    <div class="coach-requirement">Minimum: Purple Belt</div>
+                </div>
+
+                <div class="coach-arrow">→</div>
+
+                <div class="coach-level">
+                    <div class="coach-level-title">L3 Advanced</div>
+                    <div class="coach-requirement">Minimum: Brown Belt</div>
+                </div>
+
+                <div class="coach-arrow">→</div>
+
+                <div class="coach-level">
+                    <div class="coach-level-title">L4 Master</div>
+                    <div class="coach-requirement">Minimum: Black Belt</div>
+                </div>
+
+                <div class="coach-arrow">→</div>
+
+                <div class="coach-level">
+                    <div class="coach-level-title">L5 Coach Educator</div>
+                    <div class="coach-requirement">Black Belt + Experience</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

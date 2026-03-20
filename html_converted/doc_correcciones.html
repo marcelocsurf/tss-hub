@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Correcciones Canon v5 — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FF8C42;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🔧</span>
+    <div>
+      <div class="top-bar__title">Correcciones Canon v5</div>
+      <div class="top-bar__sub">The Surf Sequence® — AUDIT</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">AUDIT</span>
+    <span>403 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">SECCIÓN 1: CORRECCIONES UNIVERSALES</a><a href="#s3">1.1 Posiciones de Pies — CORRECCIÓN CRÍTICA</a><a href="#s4">1.2 Safety como Capa, no Pilar</a><a href="#s5">1.3 Nomenclatura de Maniobras — Renombramiento</a><a href="#s6">1.4 TSS Execution Sequences — CONTENIDO NUEVO</a><a href="#s7">FRONTSIDE:</a><a href="#s8">BACKSIDE:</a><a href="#s9">1.5 Choke Reclasificado</a><a href="#s10">SECCIÓN 2: CORRECCIONES POR MANUAL</a><a href="#s11">2.1 WHITE BELT — Beginner v1.2</a><a href="#s12">2.2 YELLOW BELT — Novato v1.2</a><a href="#s13">2.3 BLUE BELT — Foundation v1.2</a><a href="#s14">2.4 PURPLE BELT — Emerging v1.0</a><a href="#s15">SECCIÓN 3: CORRECCIONES PARA STUDENT MANUALS</a><a href="#s16">SECCIÓN 4: CORRECCIONES PARA COACH MANUAL</a><a href="#s17">Yellow Belt Coach Manual</a><a href="#s18">SECCIÓN 5: PRIORIDAD DE IMPLEMENTACIÓN</a><a href="#s19">P0 (Inmediato — bloquea app)</a><a href="#s20">P1 (Corto plazo)</a><a href="#s21">P2 (Cuando se editen los docs)</a><a href="#s22">SECCIÓN 6: CHECKLIST DE VERIFICACIÓN</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<p class="doc-bold">CORRECCIONES Y ALINEAMIENTO CANON v5.0</p>
+<p>Guía de actualización para manuales existentes</p>
+<p>(White, Yellow, Blue, Purple)</p>
+<p class="doc-bold">Marzo 2026</p>
+<h1 class="doc-h1" id="s2">SECCIÓN 1: CORRECCIONES UNIVERSALES</h1>
+<p>Las siguientes correcciones aplican a TODOS los manuales de cinturones.</p>
+<h2 class="doc-h2" id="s3">1.1 Posiciones de Pies — CORRECCIÓN CRÍTICA</h2>
+<p class="doc-bold">ANTES (incorrecto):</p>
+<p>FP1 = Neutral | FP2 = Engaged | FP3 = Full Tail</p>
+<p class="doc-bold">AHORA (Canon v5.0):</p>
+<p>FP1 = Full Tail (máximo leverage) | FP2 = Neutral (default riding) | FP3 = Forward (máxima velocidad y estabilidad)</p>
+<p class="doc-bold">Acción:</p>
+<p>Buscar y reemplazar toda referencia a Feet Position / Foot Position en todos los manuales. Verificar que cada mención use la nomenclatura correcta FP1/FP2/FP3.</p>
+<p class="doc-bold">Documentos afectados:</p>
+<h2 class="doc-h2" id="s4">1.2 Safety como Capa, no Pilar</h2>
+<p>Canon v5.0: Safety is NOT a pillar. It is a non-negotiable operational layer.</p>
+<p class="doc-bold">Acción:</p>
+<p>Verificar que ningún manual liste Safety como &quot;5to pilar.&quot; Debe aparecer como capa transversal.</p>
+<h2 class="doc-h2" id="s5">1.3 Nomenclatura de Maniobras — Renombramiento</h2>
+<p>ANTES: Gallina Muerta | AHORA: M Cabeza Invertida</p>
+<p class="doc-bold">Acción:</p>
+<p>Buscar &quot;Gallina Muerta&quot; en Purple Belt manual y reemplazar.</p>
+<p class="doc-bold">Documentos afectados:</p>
+<h2 class="doc-h2" id="s6">1.4 TSS Execution Sequences — CONTENIDO NUEVO</h2>
+<p>Las cadenas de ejecución frontside/backside con nombres propios TSS NO existían en los manuales anteriores. Deben añadirse como sección nueva.</p>
+<h1 class="doc-h1" id="s7">FRONTSIDE:</h1>
+<p>Posture → Bottom Turn → Projection → Cruz (Avioncito) → Maneuver Variation → Granada → Return to Posture</p>
+<h1 class="doc-h1" id="s8">BACKSIDE:</h1>
+<p>Posture → Bottom Turn → Choke → Tapaloco → Elbow → Maneuver Variation → Touch the Board → Return to Posture</p>
+<p class="doc-bold">Acción:</p>
+<p>Añadir como nueva subsección en Field 06 (Technical Focus) de Blue Belt y Purple Belt.</p>
+<h2 class="doc-h2" id="s9">1.5 Choke Reclasificado</h2>
+<p>ANTES: Choke aparecía como maniobra individual.</p>
+<p>AHORA: Choke es la FASE DE PROYECCIÓN BACKSIDE, no una maniobra final.</p>
+<p class="doc-bold">Acción:</p>
+<p>En Blue Belt y Purple Belt, reclasificar Choke de &quot;maniobra&quot; a &quot;fase de ejecución (proyección backside).&quot;</p>
+<h1 class="doc-h1" id="s10">SECCIÓN 2: CORRECCIONES POR MANUAL</h1>
+<h2 class="doc-h2" id="s11">2.1 WHITE BELT — Beginner v1.2</h2>
+<h2 class="doc-h2" id="s12">2.2 YELLOW BELT — Novato v1.2</h2>
+<h2 class="doc-h2" id="s13">2.3 BLUE BELT — Foundation v1.2</h2>
+<h2 class="doc-h2" id="s14">2.4 PURPLE BELT — Emerging v1.0</h2>
+<h1 class="doc-h1" id="s15">SECCIÓN 3: CORRECCIONES PARA STUDENT MANUALS</h1>
+<h1 class="doc-h1" id="s16">SECCIÓN 4: CORRECCIONES PARA COACH MANUAL</h1>
+<h2 class="doc-h2" id="s17">Yellow Belt Coach Manual</h2>
+<h1 class="doc-h1" id="s18">SECCIÓN 5: PRIORIDAD DE IMPLEMENTACIÓN</h1>
+<h2 class="doc-h2" id="s19">P0 (Inmediato — bloquea app)</h2>
+<p>• FP nomenclatura en todos los docs</p>
+<p>• Choke reclasificación</p>
+<p>• Condiciones por cinturón (profundidad de agua)</p>
+<h2 class="doc-h2" id="s20">P1 (Corto plazo)</h2>
+<p>• TSS Execution Sequences en Blue/Purple</p>
+<p>• M Cabeza Invertida renombramiento</p>
+<h2 class="doc-h2" id="s21">P2 (Cuando se editen los docs)</h2>
+<p>• Sesiones mínimas</p>
+<p>• Progression map updates</p>
+<p>• Student manual alignment</p>
+<h1 class="doc-h1" id="s22">SECCIÓN 6: CHECKLIST DE VERIFICACIÓN</h1>
+<p>Comprehensive editorial checklist. Mark each correction as applied.</p>
+<div class="table-wrap"><table>
+<tr><th>Manual</th></tr>
+<tr><td>White Belt v1.2</td></tr>
+<tr><td>Yellow Belt v1.2</td></tr>
+<tr><td>Blue Belt v1.2</td></tr>
+<tr><td>Purple Belt v1.0</td></tr>
+<tr><td>Yellow Belt Student Manual</td></tr>
+<tr><td>Blue Belt Student Manual</td></tr>
+<tr><td>Purple Belt Student Manual</td></tr>
+<tr><td>Yellow Belt Coach Manual</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Manual</th></tr>
+<tr><td>Purple Belt v1.0</td></tr>
+<tr><td>Purple Belt Student Manual v2</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Sección</th><th>Corrección</th><th>Tipo</th></tr>
+<tr><td>Field 10 (Safety)</td><td>Cambiar &quot;Max 1-2 feet whitewater&quot; a &quot;Agua hasta la cintura haciendo pie en arena.&quot;</td><td>Corrección</td></tr>
+<tr><td>Field 06</td><td>Verificar FP references usen FP1/FP2/FP3 correctos</td><td>Nomenclatura</td></tr>
+<tr><td>Field 17</td><td>Añadir sesiones mínimas: Camp de 6 sesiones</td><td>Adición</td></tr>
+<tr><td>Field 21</td><td>Añadir mención de Brown/Black Belt</td><td>Actualización</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Sección</th><th>Corrección</th><th>Tipo</th></tr>
+<tr><td>Field 10</td><td>Cambiar límite a &quot;Base 2-3 feet green waves&quot;</td><td>Corrección</td></tr>
+<tr><td>Field 10</td><td>Añadir: belt_level y ocean_level son independientes</td><td>Adición</td></tr>
+<tr><td>Field 06</td><td>Verificar FP references</td><td>Nomenclatura</td></tr>
+<tr><td>Field 17</td><td>Actualizar sesiones mínimas</td><td>Corrección</td></tr>
+<tr><td>General</td><td>Verificar escala Frustration 1-5</td><td>Verificación</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Sección</th><th>Corrección</th><th>Tipo</th></tr>
+<tr><td>Field 06</td><td>AÑADIR: TSS Execution Sequences completas</td><td>Adición mayor</td></tr>
+<tr><td>Field 06</td><td>RECLASIFICAR: Choke a &quot;fase de proyección&quot;</td><td>Corrección</td></tr>
+<tr><td>Field 06</td><td>Verificar y corregir FP references</td><td>Nomenclatura</td></tr>
+<tr><td>Field 19</td><td>Verificar escalas: Focus, Composure, Control, Autonomy</td><td>Verificación</td></tr>
+<tr><td>Field 17</td><td>Actualizar sesiones mínimas</td><td>Corrección</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Sección</th><th>Corrección</th><th>Tipo</th></tr>
+<tr><td>Field 06</td><td>AÑADIR: TSS Execution Sequences expandidas</td><td>Adición</td></tr>
+<tr><td>Field 06</td><td>RENOMBRAR: Gallina Muerta → M Cabeza Invertida</td><td>Renombramiento</td></tr>
+<tr><td>Field 06</td><td>RECLASIFICAR: Choke como fase</td><td>Corrección</td></tr>
+<tr><td>Field 06</td><td>Verificar FP references</td><td>Nomenclatura</td></tr>
+<tr><td>Field 19</td><td>Verificar escalas: Focus, Composure, Commitment, Variety</td><td>Verificación</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Manual</th><th>Corrección</th><th>Prioridad</th></tr>
+<tr><td>White Belt Student v2</td><td>FP nomenclatura, condiciones actualizadas</td><td>Alta</td></tr>
+<tr><td>Yellow Belt Student v1</td><td>FP nomenclatura, condiciones 2-3ft green</td><td>Alta</td></tr>
+<tr><td>Blue Belt Student v1</td><td>FP nomenclatura, execution sequences</td><td>Media</td></tr>
+<tr><td>Purple Belt Student v2</td><td>FP, Gallina Muerta → M Cabeza Invertida</td><td>Alta</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Sección</th><th>Corrección</th></tr>
+<tr><td>Diagnostic Framework</td><td>Añadir TSS Execution Sequences como herramienta</td></tr>
+<tr><td>Coaching Cue Library</td><td>Verificar FP references</td></tr>
+<tr><td>Progression &amp; Regression</td><td>Actualizar sesiones mínimas</td></tr>
+<tr><td>Assessment</td><td>Alinear con Canon v5.0</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Documento</th><th>Corrección</th><th>Estado</th><th>Notas</th></tr>
+<tr><td>White Belt v1.2</td><td>FP1/FP2/FP3 nomenclatura</td><td>☐</td><td></td></tr>
+<tr><td>White Belt v1.2</td><td>Safety condición cintura</td><td>☐</td><td></td></tr>
+<tr><td>White Belt v1.2</td><td>Safety NO es 5to pilar</td><td>☐</td><td></td></tr>
+<tr><td>White Belt v1.2</td><td>Field 17: Sesiones mínimas</td><td>☐</td><td></td></tr>
+<tr><td>White Belt v1.2</td><td>Field 21: Progression con Brown/Black</td><td>☐</td><td></td></tr>
+<tr><td>White Belt Student v2</td><td>FP nomenclatura</td><td>☐</td><td></td></tr>
+<tr><td>Yellow Belt v1.2</td><td>FP1/FP2/FP3 nomenclatura</td><td>☐</td><td></td></tr>
+<tr><td>Yellow Belt v1.2</td><td>Safety 2-3ft green waves</td><td>☐</td><td></td></tr>
+<tr><td>Yellow Belt v1.2</td><td>belt_level vs ocean_level</td><td>☐</td><td></td></tr>
+<tr><td>Yellow Belt v1.2</td><td>Field 17: Sesiones mínimas</td><td>☐</td><td></td></tr>
+<tr><td>Yellow Belt v1.2</td><td>Frustration 1-5 verificada</td><td>☐</td><td></td></tr>
+<tr><td>Yellow Belt Student v1</td><td>FP nomenclatura</td><td>☐</td><td></td></tr>
+<tr><td>Yellow Belt Coach Manual</td><td>TSS Sequences en framework</td><td>☐</td><td></td></tr>
+<tr><td>Blue Belt v1.2</td><td>FP1/FP2/FP3 nomenclatura</td><td>☐</td><td>CRÍTICO</td></tr>
+<tr><td>Blue Belt v1.2</td><td>TSS Sequences FRONTSIDE</td><td>☐</td><td>CRÍTICO</td></tr>
+<tr><td>Blue Belt v1.2</td><td>TSS Sequences BACKSIDE</td><td>☐</td><td>CRÍTICO</td></tr>
+<tr><td>Blue Belt v1.2</td><td>Choke → fase de proyección</td><td>☐</td><td>CRÍTICO</td></tr>
+<tr><td>Blue Belt v1.2</td><td>Coach Notes escalas</td><td>☐</td><td></td></tr>
+<tr><td>Blue Belt Student v1</td><td>Execution sequences</td><td>☐</td><td></td></tr>
+<tr><td>Purple Belt v1.0</td><td>FP1/FP2/FP3 nomenclatura</td><td>☐</td><td>CRÍTICO</td></tr>
+<tr><td>Purple Belt v1.0</td><td>TSS Sequences expandidas</td><td>☐</td><td>CRÍTICO</td></tr>
+<tr><td>Purple Belt v1.0</td><td>Gallina Muerta → M Cabeza</td><td>☐</td><td>CRÍTICO</td></tr>
+<tr><td>Purple Belt v1.0</td><td>Choke → fase de proyección</td><td>☐</td><td>CRÍTICO</td></tr>
+<tr><td>Purple Belt v1.0</td><td>Coach Notes escalas</td><td>☐</td><td></td></tr>
+<tr><td>Purple Belt v1.0</td><td>Brown #18-#22, Black #23-#26</td><td>☐</td><td></td></tr>
+<tr><td>Purple Belt Student v2</td><td>M Cabeza Invertida</td><td>☐</td><td></td></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Correcciones Canon v5 — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

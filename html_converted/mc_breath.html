@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Breath Science Training — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#06D6A0;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #0D3B2E 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🫁</span>
+    <div>
+      <div class="top-bar__title">Breath Science Training</div>
+      <div class="top-bar__sub">TSS Masterclass — 16 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button><button class="nav-dot" onclick="goSlide(14)" title="Slide 14">14</button><button class="nav-dot" onclick="goSlide(15)" title="Slide 15">15</button><button class="nav-dot" onclick="goSlide(16)" title="Slide 16">16</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 16</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">THE SURF SEQUENCE® — ONE WAVE</span></div>
+</div>
+<h2 class="slide-hero">The Science</h2>
+<h2 class="slide-hero">of Breath</h2>
+<h3 class="slide-heading">Based on James Nestor’s Breath:</h3>
+<h3 class="slide-heading">The New Science of a Lost Art</h3>
+<ul class="slide-list">
+<li>Coach &amp; Student Theory Module — The Surf Sequence® — Marcelo Castellanos</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 16</span>
+    <h3 class="slide-heading">WE FORGOT HOW TO BREATHE</h3>
+<h3 class="slide-heading">We breathe 25,000 times a day.
+Most of us do it wrong.
+
+James Nestor spent 10 years researching breathing across pulmonology, biochemistry, ancient traditions, and athletic performance. His book Breath (2020) — translated into 44 languages, 3 million copies sold — revealed that modern humans have developed breathing habits that damage health, reduce performance, and increase anxiety.
+
+The good news: small changes in how you breathe produce immediate, measurable improvements.</h3>
+<h3 class="slide-heading">25%</h3>
+<ul class="slide-list">
+<li>of oxygen absorbed per breath (average person)</li>
+</ul>
+<h3 class="slide-heading">1300%</h3>
+<ul class="slide-list">
+<li>increase in snoring with 10 days mouth breathing</li>
+</ul>
+<h3 class="slide-heading">6x</h3>
+<ul class="slide-list">
+<li>more nitric oxide through nose vs mouth</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 16</span>
+    <h3 class="slide-heading">NOSE vs MOUTH — THE FUNDAMENTAL CHOICE</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">NASAL BREATHING</span></div>
+</div>
+<ul class="slide-list">
+<li>Filters, warms, humidifies air</li>
+<li>Activates diaphragm efficiently</li>
+<li>Produces nitric oxide (6x more)</li>
+<li>Improves oxygen absorption</li>
+<li>Slows breathing rate naturally</li>
+<li>Increases HRV (stress resilience)</li>
+<li>Enhances endurance during exercise</li>
+<li>Supports deep sleep quality</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">MOUTH BREATHING</span></div>
+</div>
+<ul class="slide-list">
+<li>No filtration — raw air to lungs</li>
+<li>Chest breathing (shallow)</li>
+<li>Minimal nitric oxide</li>
+<li>Poor oxygen exchange</li>
+<li>Faster, inefficient breathing</li>
+<li>Lowers HRV (more stress)</li>
+<li>Exhausts faster during exercise</li>
+<li>Disrupts sleep (apnea, snoring)</li>
+<li>Nestor’s Stanford experiment: 10 days mouth-only breathing → blood pressure spiked, sleep apnea appeared, stress markers surged. All reversed within days of nasal breathing.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 16</span>
+    <h3 class="slide-heading">CO₂ — THE MISUNDERSTOOD MOLECULE</h3>
+<h3 class="slide-heading">CO₂ is NOT just a waste product.
+
+The Bohr Effect: Carbon dioxide is required for hemoglobin to release oxygen into your tissues. Without adequate CO₂, your blood carries oxygen but can’t deliver it. You’re oxygenated but starving.
+
+CO₂ tolerance is trainable. Elite athletes like freedivers and climbers have trained their chemoreceptors to handle strong CO₂ fluctuations without triggering panic. The same training applies to surfers during hold-downs.
+
+“Carbon dioxide is, in fact, a more fundamental component of living matter than is oxygen.”
+— Yandell Henderson, Yale Physiologist</h3>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 16</span>
+    <h2 class="slide-hero">5.5 seconds in.</h2>
+<h2 class="slide-hero">5.5 seconds out.</h2>
+<h2 class="slide-hero">5.5 breaths per minute.</h2>
+<h3 class="slide-heading">This is the resonant breathing rate — where heart and lungs synchronize.
+
+Nestor found that virtually every prayer, meditation, and chanting tradition in the world — from Buddhist mantras to Catholic rosaries to Hindu kirtans — produces breathing patterns at approximately this rate.
+
+At 5.5 breaths per minute: heart rate slows, blood pressure drops, the body enters coherence.</h3>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 16</span>
+    <h3 class="slide-heading">NITRIC OXIDE — YOUR SECRET WEAPON</h3>
+<p class="body-text">Nasal breathing produces 6x more nitric oxide than mouth breathing. Humming increases it 15x.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Widens blood vessels</span></div>
+<span class="stat-label">More blood flow to muscles, brain, and organs. Better paddling endurance.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Increases oxygen absorption</span></div>
+<span class="stat-label">More efficient O₂ exchange in the lungs. Less effort per breath.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Supports immune function</span></div>
+<span class="stat-label">First line of defense against airborne bacteria and viruses.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Relaxes smooth muscles</span></div>
+<span class="stat-label">Reduces tension in airways and blood vessels. Calmer physiology.</span></div>
+<ul class="slide-list">
+<li>Try it now: close your mouth, breathe through your nose, and hum for 10 seconds. That’s a nitric oxide boost.</li>
+</ul>
+</div>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 16</span>
+    <h3 class="slide-heading">WHY BREATH MATTERS FOR SURFING</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Paddle endurance</span></div>
+</div>
+<ul class="slide-list">
+<li>Nasal breathing during paddling cuts exertion nearly in half (Douillard, cited by Nestor). You arrive at the peak less exhausted.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Hold-down tolerance</span></div>
+</div>
+<ul class="slide-list">
+<li>CO₂ tolerance training directly extends how long you stay calm underwater. The panic is in the CO₂ sensitivity, not the oxygen.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Wave reading</span></div>
+</div>
+<ul class="slide-list">
+<li>Slow breathing expands peripheral awareness. Mouth breathing creates tunnel vision. You read the wave better when breathing slowly.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Pre-heat calm</span></div>
+</div>
+<ul class="slide-list">
+<li>5.5-second coherent breathing before a competition heat activates parasympathetic response. Heart rate drops. Focus sharpens.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Recovery between waves</span></div>
+</div>
+<ul class="slide-list">
+<li>A single long exhale while sitting on your board resets your nervous system between sets.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Sleep and learning</span></div>
+</div>
+<ul class="slide-list">
+<li>Nasal breathing during sleep improves recovery and learning consolidation. Tape your mouth at night (Nestor’s recommendation).</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 16</span>
+    <h3 class="slide-heading">5 BREATHING TECHNIQUES FOR SURFERS</h3>
+<h3 class="slide-heading">01</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Coherent Breathing</span></div>
+<span class="stat-label">5.5 sec in, 5.5 sec out. The universal rhythm. Use daily and before sessions.</span></div>
+<h3 class="slide-heading">02</h3>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Box Breathing</span></div>
+<p class="body-text">4-4-4-4. Inhale, hold, exhale, hold. Used by Navy SEALs. Maximum focus under pressure.</p>
+<h3 class="slide-heading">03</h3>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">4-7-8 Method</span></div>
+<p class="body-text">Inhale 4, hold 7, exhale 8. Activates vagus nerve. Fastest parasympathetic trigger.</p>
+<h3 class="slide-heading">04</h3>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Nasal-Only Training</span></div>
+<p class="body-text">Breathe only through nose during warm-up and low-intensity paddling. Builds efficiency.</p>
+<h3 class="slide-heading">05</h3>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">CO₂ Tolerance Walk</span></div>
+<p class="body-text">Walk normally, exhale + pinch nose, hold until air hunger, release and breathe gently. Extends hold-down capacity.</p>
+</div>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 16</span>
+    <h3 class="slide-heading">COHERENT BREATHING</h3>
+<h3 class="slide-heading">The Perfect Rhythm</h3>
+<h2 class="slide-hero">5.5</h2>
+<h3 class="slide-heading">sec IN</h3>
+<h2 class="slide-hero">5.5</h2>
+<h3 class="slide-heading">sec OUT</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">= 5.5 breaths per minute = coherence</span></div>
+<span class="stat-label">Practice 5 minutes daily. Before every session. Before sleep.</span></div>
+<span class="stat-label">This one technique alone will change your surfing.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 16</span>
+    <h3 class="slide-heading">BOX BREATHING — SEAL METHOD</h3>
+<p class="body-text">Used by US Navy SEALs, elite military, and high-performance athletes for maximum focus under pressure.</p>
+<h3 class="slide-heading">4 sec</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">INHALE</span></div>
+</div>
+<h3 class="slide-heading">4 sec</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">HOLD</span></div>
+</div>
+<h3 class="slide-heading">4 sec</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">EXHALE</span></div>
+</div>
+<h3 class="slide-heading">4 sec</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">HOLD</span></div>
+</div>
+<h3 class="slide-heading">→</h3>
+<h3 class="slide-heading">↓</h3>
+<h3 class="slide-heading">←</h3>
+<h3 class="slide-heading">↑</h3>
+<p class="body-text">4 rounds before a heat. 4 rounds during a hold-down recovery. 4 rounds before a critical decision.</p>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 16</span>
+    <h3 class="slide-heading">CO₂ TOLERANCE TRAINING FOR SURFERS</h3>
+<p class="body-text">This is what separates surfers who panic during hold-downs from surfers who stay calm. The difference is not lung size — it’s CO₂ sensitivity.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">1</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Walk or jog</span></div>
+<span class="stat-label">Breathe normally through your nose for 60 seconds.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">2</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Exhale normally</span></div>
+<span class="stat-label">Then pinch your nose closed. Keep walking at the same pace.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">3</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Hold until air hunger</span></div>
+<span class="stat-label">Not until desperation — just until you feel the urge to breathe.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">4</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Release and recover</span></div>
+<span class="stat-label">Breathe very gently, about half your normal volume, for 10–15 seconds.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">5</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Repeat</span></div>
+<span class="stat-label">3–5 rounds. Gradually extend the hold time over weeks.</span></div>
+<ul class="slide-list">
+<li>From Nestor: “Simply training nasal breathing could cut total exertion in half and offer huge gains in endurance.” — Dr. John Douillard</li>
+</ul>
+</div>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 16</span>
+    <h3 class="slide-heading">WHEN TO USE EACH TECHNIQUE</h3>
+<h4 class="slide-sub">Daily practice (5 min)</h4>
+<h4 class="slide-sub">Coherent 5.5-5.5</h4>
+<ul class="slide-list">
+<li>Builds baseline. Resets nervous system. Improves HRV over time.</li>
+</ul>
+<h4 class="slide-sub">Before session</h4>
+<h4 class="slide-sub">Coherent or 4-7-8</h4>
+<ul class="slide-list">
+<li>Activates parasympathetic. Centers focus. Lowers pre-session anxiety.</li>
+</ul>
+<h4 class="slide-sub">During warm-up</h4>
+<h4 class="slide-sub">Nasal-only</h4>
+<ul class="slide-list">
+<li>Trains efficiency. Primes diaphragm. Sets breathing rhythm for session.</li>
+</ul>
+<h4 class="slide-sub">Paddling out</h4>
+<h4 class="slide-sub">Nasal breathing</h4>
+<ul class="slide-list">
+<li>Reduces exertion. Maintains calm. Builds endurance reserve.</li>
+</ul>
+<h4 class="slide-sub">Between waves</h4>
+<h4 class="slide-sub">Long exhale (8 sec)</h4>
+<ul class="slide-list">
+<li>Single technique: long slow exhale resets arousal immediately.</li>
+</ul>
+<h4 class="slide-sub">During hold-down</h4>
+<h4 class="slide-sub">CO₂ tolerance response</h4>
+<ul class="slide-list">
+<li>Stay calm. Protect head. Exhale slowly. Do not fight. Wait.</li>
+</ul>
+<h4 class="slide-sub">Post-session</h4>
+<h4 class="slide-sub">Coherent 5.5-5.5</h4>
+<ul class="slide-list">
+<li>Accelerates recovery. Shifts back to parasympathetic dominance.</li>
+</ul>
+<h4 class="slide-sub">Before sleep</h4>
+<h4 class="slide-sub">4-7-8 + nasal tape</h4>
+<ul class="slide-list">
+<li>Deepens sleep quality. Brain consolidates session learning.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 16</span>
+    <h3 class="slide-heading">HOLD-DOWN BREATHING PROTOCOL</h3>
+<h3 class="slide-heading">What to do when the wave pushes you under.</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">BEFORE the set arrives</span></div>
+<span class="stat-label">Take 3 deep breaths through the nose. Fill the belly. Don’t hyperventilate.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">As the wave hits</span></div>
+<span class="stat-label">Exhale slightly to reduce buoyancy. Cover your head. Relax your body.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Underwater</span></div>
+<p class="body-text">Do NOT fight. Relax every muscle. The wave will release you. Count slowly: 1…2…3…</p>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">The urge to breathe hits</span></div>
+<span class="stat-label">This is CO₂, not lack of oxygen. You have more time than you think. Stay calm.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Surface</span></div>
+<span class="stat-label">One strong exhale to clear airways. Then slow nasal inhale. Do NOT gasp.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">Recovery</span></div>
+<span class="stat-label">3 cycles of coherent breathing (5.5 in, 5.5 out) while sitting on board. Reset.</span></div>
+<p class="body-bold">The panic is not from lack of oxygen. It is from CO₂ sensitivity. You have trained for this.</p>
+</div>
+  </div>
+</section>
+<section class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="slide-badge">14 / 16</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#06D6A0">BREATHING MODULE</span></div>
+</div>
+<h3 class="slide-heading">Guided Audio / Video</h3>
+<ul class="slide-list">
+<li>BRE-01 — Coherent Breathing Practice (5 min)</li>
+<li>BRE-02 — Box Breathing for Focus (4 min)</li>
+<li>BRE-03 — 4-7-8 Pre-Sleep Routine (5 min)</li>
+<li>BRE-04 — CO₂ Tolerance Walk (guided, 8 min)</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="slide-badge">15 / 16</span>
+    <h2 class="slide-hero">In TSS, breath is</h2>
+<h2 class="slide-hero">not background.</h2>
+<h2 class="slide-hero">It is Block 0.</h2>
+<h3 class="slide-heading">Block 0 — Orientation &amp; Surf Literacy includes safety rules, ocean respect, and minimum physical preparation. Breathing is part of that preparation.</h3>
+<h3 class="slide-heading">Pilar MEN (Mental) includes Presence, Motivation, Relaxation, and Visualization. All four require breath control as foundation.</h3>
+<h3 class="slide-heading">Pilar FÍS (Physical) includes endurance, strength, and proprioception. Nasal breathing training directly builds aerobic efficiency.</h3>
+  </div>
+</section>
+<section class="slide" id="s16">
+  <div class="slide-inner">
+    <span class="slide-badge">16 / 16</span>
+    <h2 class="slide-hero">You breathe</h2>
+<h2 class="slide-hero">25,000 times</h2>
+<h2 class="slide-hero">a day.</h2>
+<h2 class="slide-hero">Make each one</h2>
+<h2 class="slide-hero">count.</h2>
+<ul class="slide-list">
+<li>THE SURF SEQUENCE® — ONE WAVE — Breath Module — Based on Nestor (2020) — Enkrateia SA de CV</li>
+</ul>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Breath Science Training — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

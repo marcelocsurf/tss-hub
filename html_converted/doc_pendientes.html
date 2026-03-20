@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pendientes Críticos v2 — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FF6B6B;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">⚠️</span>
+    <div>
+      <div class="top-bar__title">Pendientes Críticos v2</div>
+      <div class="top-bar__sub">The Surf Sequence® — AUDIT</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">AUDIT</span>
+    <span>446 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">BLOQUE D — PENDIENTES CRÍTICOS Y RECOMENDACIONES</a><a href="#s3">CONFIDENCIAL — NO DISTRIBUIR</a><a href="#s4">1. CONTRADICTIONS — ALL RESOLVED</a><a href="#s5">2. REMAINING GAPS FOR APP IMPLEMENTATION</a><a href="#s6">2.1 P0 — BLOCKERS (Immediate)</a><a href="#s7">2.2 P1 — QUALITY DEGRADATION (Short Term)</a><a href="#s8">2.3 P2 — NICE TO HAVE (Long Term)</a><a href="#s9">3. EDITORIAL DECISIONS IN THIS CONSOLIDATION</a><a href="#s10">4. IMPLEMENTATION ROADMAP</a><a href="#s11">4.1 IMMEDIATE (This Month)</a><a href="#s12">4.2 SHORT TERM (Next 60 Days)</a><a href="#s13">4.3 MEDIUM TERM (Next 6 Months)</a><a href="#s14">5. THE UNCOMFORTABLE QUESTION</a><a href="#s15">CLOSING</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">BLOQUE D — PENDIENTES CRÍTICOS Y RECOMENDACIONES</h1>
+<p>Versión 2.0</p>
+<p class="doc-bold">ACTUALIZADO post-correcciones</p>
+<p>Marzo 2026</p>
+<h1 class="doc-h1" id="s3">CONFIDENCIAL — NO DISTRIBUIR</h1>
+<h1 class="doc-h1" id="s4">1. CONTRADICTIONS — ALL RESOLVED</h1>
+<p>Status: All 7 major contradictions identified in v1.0 have been resolved through direct validation with Marcelo (March 2026). No open contradictions remain in the canon.</p>
+<h1 class="doc-h1" id="s5">2. REMAINING GAPS FOR APP IMPLEMENTATION</h1>
+<p>These gaps degrade quality or block deployment. Prioritized by impact.</p>
+<h2 class="doc-h2" id="s6">2.1 P0 — BLOCKERS (Immediate)</h2>
+<p>Tasks that MUST be completed before app launch:</p>
+<h2 class="doc-h2" id="s7">2.2 P1 — QUALITY DEGRADATION (Short Term)</h2>
+<p>These gaps weaken the system but do not block launch:</p>
+<h2 class="doc-h2" id="s8">2.3 P2 — NICE TO HAVE (Long Term)</h2>
+<p>Enhancements that improve experience but are not critical:</p>
+<h1 class="doc-h1" id="s9">3. EDITORIAL DECISIONS IN THIS CONSOLIDATION</h1>
+<p>These decisions shaped the structure of v2.0. All validated by Marcelo.</p>
+<h1 class="doc-h1" id="s10">4. IMPLEMENTATION ROADMAP</h1>
+<p>Sequenced recommendations for building assets on v5.0 canon.</p>
+<h2 class="doc-h2" id="s11">4.1 IMMEDIATE (This Month)</h2>
+<p>Build Coach Manuals for White and Blue Belt using Yellow Belt Coach Manual as template</p>
+<p>Seed the Drill Library into TSS Brain database with belt-level filtering</p>
+<p>Update TSS Brain app cascade to reflect corrected foot positions (FP1/FP2/FP3)</p>
+<p>Implement belt-level-dependent rating scales in session close flow</p>
+<h2 class="doc-h2" id="s12">4.2 SHORT TERM (Next 60 Days)</h2>
+<p>Complete remaining Coach Manuals (Purple, Brown, Black)</p>
+<p>Build Student Manuals for Brown and Black Belt</p>
+<p>Create Board Selection Guide by conditions</p>
+<p>Begin Yellow Belt video production (40 videos)</p>
+<p>Build comprehensive Coach Certification Manual (L1-L5)</p>
+<h2 class="doc-h2" id="s13">4.3 MEDIUM TERM (Next 6 Months)</h2>
+<p>TSS Academy Operations Manual for Puro Surf</p>
+<p>Full drill library with sequence-level mapping</p>
+<p>TSS Brain Phases 3-5 implementation</p>
+<p>First licensing package preparation</p>
+<p>Video production for remaining belts</p>
+<h1 class="doc-h1" id="s14">5. THE UNCOMFORTABLE QUESTION</h1>
+<p>&quot;Is the Canon truly closed, or are you going to keep finding &#x27;one more thing&#x27; to add?&quot;</p>
+<p class="doc-bold">The Canon v5.0 is structurally complete:</p>
+<p>15 sections</p>
+<p>26 sequences across 6 belts</p>
+<p>21 fields per belt</p>
+<p>Complete execution chain documentation</p>
+<p>All 7 contradictions resolved</p>
+<p>What remains is DERIVATIVE work — manuals, videos, drills, app implementation — not doctrinal additions.</p>
+<p class="doc-bold">The Rule Going Forward</p>
+<p>No new doctrinal content enters without a formal Canon Amendment process:</p>
+<p>Version control</p>
+<p>Written justification</p>
+<p>Impact analysis on dependent documents</p>
+<p>This is how constitutional documents work.</p>
+<p class="doc-bold">Build vs Wait</p>
+<p class="doc-bold">Build the app on v5.0.</p>
+<p class="doc-bold">Do not wait for perfection.</p>
+<p class="doc-bold">Perfection is the enemy of execution.</p>
+<h1 class="doc-h1" id="s15">CLOSING</h1>
+<p>The Surf Sequence® consolidation (v5.0) is structurally complete and ready for implementation.</p>
+<p class="doc-bold">The following documents form the official canon:</p>
+<p>Bloque A: Documentary Audit (inventory and classification)</p>
+<p>Bloque B: Canon (doctrinal foundation)</p>
+<p>Bloque C: App Structure (database/API schema)</p>
+<p>Bloque D: Critical Gaps (implementation roadmap)</p>
+<p class="doc-bold">All contradictions have been resolved. All decision points have been validated.</p>
+<p>The Surf Sequence® — Enkrateia SA de CV — All Rights Reserved — March 2026</p>
+<p class="doc-bold">Build assets, not tasks.</p>
+<div class="table-wrap"><table>
+<tr><th>#</th><th>Contradiction</th><th>Resolution</th></tr>
+<tr><td>1</td><td>Frustration vs Composure rating scales</td><td>RESOLVED: Progressive by belt level. White/Yellow use Frustration (1-5). Blue+ use Composure (1-5) as inverse of frustration.</td></tr>
+<tr><td>2</td><td>Safety as pilar vs operational layer</td><td>RESOLVED: Safety is an automatic operational layer, NOT a pilar. Triggered independently of coach selection.</td></tr>
+<tr><td>3</td><td>Levels vs belts vs sub-levels — semantic confusion</td><td>RESOLVED: Belt (6 main levels). Sub-levels (Yellow 1/2, Blue 1/2) as internal steps. Sequences 1-26 map to belt/sub-level.</td></tr>
+<tr><td>4</td><td>Minimum sessions for progression — undefined</td><td>RESOLVED: 6-session camp minimum + demonstrated competence in core pilar parts. No arbitrary session counts.</td></tr>
+<tr><td>5</td><td>Foot positions (FP1/FP2/FP3) — ambiguous naming</td><td>RESOLVED: FP1=Full Tail, FP2=Neutral, FP3=Forward. Clear board position reference.</td></tr>
+<tr><td>6</td><td>Ocean conditions — when do they block access?</td><td>RESOLVED: Ocean Rules matrix by belt+condition defines allowed/caution/blocked. Experience override by coach.</td></tr>
+<tr><td>7</td><td>Board transition — skill-based or belt-based?</td><td>RESOLVED: Safety-based checklist (turtle roll, duck dive, crossing, dismount, coach sign-off). Not belt-gated.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Gap</th><th>Impact</th><th>Recommended Action</th><th>Effort</th></tr>
+<tr><td>Coach Manuals (White, Blue, Purple, Brown, Black)</td><td>5 of 6 belts lack coach-specific guidance</td><td>Build using Yellow Belt Coach Manual as template. Priority: White and Blue first.</td><td>High</td></tr>
+<tr><td>Student Manuals (Brown, Black)</td><td>Advanced surfers have no progression manual</td><td>Build following existing Student Manual format.</td><td>Medium</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Gap</th><th>Impact</th><th>Recommended Action</th><th>Timeline</th></tr>
+<tr><td>TSS Coach Certification Manual (complete)</td><td>Only exam prep L1-L2 exists; other levels undefined</td><td>Build comprehensive manual covering all 5 levels</td><td>30 days</td></tr>
+<tr><td>Drill Library with belt-level filtering</td><td>Drills exist but not formally mapped to belt ranges</td><td>Create master drill registry: name, pilar_part, belt_range, venue_compatibility, junior_variant</td><td>45 days</td></tr>
+<tr><td>Recovery Protocol for Black Belt</td><td>Referenced but not developed; elite recovery undefined</td><td>Research and formalize surf-specific recovery protocols</td><td>30 days</td></tr>
+<tr><td>Board Selection Guide by Conditions</td><td>Marcelo requested; affects student equipment choices</td><td>Create condition → board type recommendation matrix</td><td>20 days</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Gap</th><th>Impact</th><th>Recommended Action</th><th>Timeline</th></tr>
+<tr><td>TSS Academy Operations Manual</td><td>Referenced in Canon but does not exist</td><td>Build when first licensing agreement approaches</td><td>6+ months</td></tr>
+<tr><td>Video Library Production</td><td>40 videos planned for Yellow Belt alone</td><td>Prioritize Yellow Belt videos first as reference for other belts</td><td>3-6 months</td></tr>
+<tr><td>Sequence-level drill mapping</td><td>Which drills belong to which sequence unclear</td><td>Requires detailed session-by-session curriculum design per belt</td><td>6+ months</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Decision</th><th>Rationale</th><th>Impact</th><th>Status</th></tr>
+<tr><td>Block System absorbed into Canon</td><td>Block_System document itself recommends this placement</td><td>Centralizes doctrine in single source</td><td>PROPUESTA CANÓNICA — pending formal merge</td></tr>
+<tr><td>Belt Sub-levels as internal steps, not separate manuals</td><td>Simplifies structure without losing precision</td><td>Cleaner documentation hierarchy</td><td>CONFIRMED by Marcelo</td></tr>
+<tr><td>Opción A for Competitive/Recreational paths</td><td>Scales without duplicating content</td><td>One codebase, different evaluation criteria</td><td>CONFIRMED by Marcelo</td></tr>
+<tr><td>No sub-levels within Black Belt (dan system)</td><td>Keep simple until critical mass of Black Belt surfers</td><td>Future flexibility if needed</td><td>CONFIRMED by Marcelo — revisit in future</td></tr>
+<tr><td>Named Expression nomenclature as TSS proprietary</td><td>No external attribution required</td><td>Cleaner terminology</td><td>CONFIRMED by Marcelo</td></tr>
+<tr><td>Execution chain (Cruz/Tapaloco system) as canonical doctrine</td><td>First time formally documented</td><td>New foundational content</td><td>CONFIRMED by Marcelo — new canonical content</td></tr>
+<tr><td>Aerial System as three-part architecture (Ramp/Air/Landing)</td><td>New TSS framework for Brown Belt</td><td>Advanced technique systematization</td><td>CONFIRMED by Marcelo</td></tr>
+<tr><td>Junior adaptations: same method, adapted delivery</td><td>Simplest approach maintaining system integrity</td><td>No doctrinally separate tracks</td><td>CONFIRMED by Marcelo</td></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Pendientes Críticos v2 — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

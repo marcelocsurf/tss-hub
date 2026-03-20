@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canon v5 Presentation — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FFD166;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #2D2510 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">📜</span>
+    <div>
+      <div class="top-bar__title">Canon v5 Presentation</div>
+      <div class="top-bar__sub">TSS Masterclass — 27 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button><button class="nav-dot" onclick="goSlide(14)" title="Slide 14">14</button><button class="nav-dot" onclick="goSlide(15)" title="Slide 15">15</button><button class="nav-dot" onclick="goSlide(16)" title="Slide 16">16</button><button class="nav-dot" onclick="goSlide(17)" title="Slide 17">17</button><button class="nav-dot" onclick="goSlide(18)" title="Slide 18">18</button><button class="nav-dot" onclick="goSlide(19)" title="Slide 19">19</button><button class="nav-dot" onclick="goSlide(20)" title="Slide 20">20</button><button class="nav-dot" onclick="goSlide(21)" title="Slide 21">21</button><button class="nav-dot" onclick="goSlide(22)" title="Slide 22">22</button><button class="nav-dot" onclick="goSlide(23)" title="Slide 23">23</button><button class="nav-dot" onclick="goSlide(24)" title="Slide 24">24</button><button class="nav-dot" onclick="goSlide(25)" title="Slide 25">25</button><button class="nav-dot" onclick="goSlide(26)" title="Slide 26">26</button><button class="nav-dot" onclick="goSlide(27)" title="Slide 27">27</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 27</span>
+    <h2 class="slide-hero">THE SURF SEQUENCE®</h2>
+<h2 class="slide-hero">CANON OFICIAL v5.0</h2>
+<h3 class="slide-heading">Evolve through play</h3>
+<p class="body-text">Marcelo Castellanos · ISA Olympic Expert Coach · Paris 2024</p>
+<p class="body-text">Enkrateia SA de CV · 2026 · Confidential</p>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 27</span>
+    <h2 class="slide-hero">TABLE OF CONTENTS</h2>
+<h3 class="slide-heading">1. Identity &amp; Philosophy</h3>
+<h3 class="slide-heading">2. Architecture &amp; Doctrine</h3>
+<h3 class="slide-heading">3. The Four Basic Movements (P·R·C·H)</h3>
+<h3 class="slide-heading">4. Three Circles of Power</h3>
+<h3 class="slide-heading">5. Foot Positions</h3>
+<h3 class="slide-heading">6. Four Pillars + Safety Layer</h3>
+<h3 class="slide-heading">7. Block System</h3>
+<h3 class="slide-heading">8. The Infinite Circle</h3>
+<h3 class="slide-heading">9. TSS Execution Sequences</h3>
+<h3 class="slide-heading">10. Phase Equivalence</h3>
+<h3 class="slide-heading">11. Belt System Overview</h3>
+<h3 class="slide-heading">12. Belt Details &amp; Progressions</h3>
+<h3 class="slide-heading">13. Named Expressions Registry</h3>
+<h3 class="slide-heading">14. Session Structure &amp; Evaluation</h3>
+<h3 class="slide-heading">15. Safety &amp; Certification</h3>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 27</span>
+    <h2 class="slide-hero">IDENTITY</h2>
+<h3 class="slide-heading">What TSS IS</h3>
+<p class="body-text">✓ Educational System</p>
+<p class="body-text">✓ Progression System</p>
+<p class="body-text">✓ Coaching System</p>
+<p class="body-text">✓ Evaluation System</p>
+<p class="body-text">✓ Shared Language</p>
+<h3 class="slide-heading">What TSS IS NOT</h3>
+<p class="body-text">✗ Surf School</p>
+<p class="body-text">✗ Lifestyle Brand</p>
+<p class="body-text">✗ Standalone App</p>
+<p class="body-text">✗ Franchise Model</p>
+<p class="body-text">✗ Personal Brand</p>
+<p class="body-text">IP: 100% Marcelo Castellanos / Enkrateia SA de CV</p>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 27</span>
+    <h2 class="slide-hero">PHILOSOPHY</h2>
+<h3 class="slide-heading">&quot;Surfing is learned, taught, and progressed through sequences.&quot;</h3>
+<h3 class="slide-heading">Transform surf teaching into a structured, progressive, measurable, replicable discipline</h3>
+<h3 class="slide-heading">&quot;Each level expands the previous without replacing it&quot;</h3>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 27</span>
+    <h2 class="slide-hero">ARCHITECTURE</h2>
+<h3 class="slide-heading">DOCTRINE (Immutable)</h3>
+<h3 class="slide-heading">Core Canon</h3>
+<h3 class="slide-heading">ARCHITECTURE (Stable)</h3>
+<h3 class="slide-heading">Frameworks</h3>
+<h3 class="slide-heading">APPLICATION (Adaptive)</h3>
+<h3 class="slide-heading">Delivery</h3>
+<h3 class="slide-heading">Tier 1 &gt; Tier 2 &gt; Tier 3</h3>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 27</span>
+    <h2 class="slide-hero">THE FOUR BASIC MOVEMENTS: P·R·C·H</h2>
+<h2 class="slide-hero">P</h2>
+<h3 class="slide-heading">POSTURE</h3>
+<p class="body-text">Back straight, head up, aligned</p>
+<h2 class="slide-hero">R</h2>
+<h3 class="slide-heading">ROTATION</h3>
+<p class="body-text">Eyes→neck→torso→obliques→hips</p>
+<h2 class="slide-hero">C</h2>
+<h3 class="slide-heading">COMPRESSION</h3>
+<p class="body-text">Lower center, compress/extend power</p>
+<h2 class="slide-hero">H</h2>
+<h3 class="slide-heading">HOLD</h3>
+<p class="body-text">Maintain position through apex</p>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 27</span>
+    <h2 class="slide-hero">THREE CIRCLES OF POWER</h2>
+<h3 class="slide-heading">SURFER VERSION</h3>
+<h4 class="slide-sub">Circle 1</h4>
+<h4 class="slide-sub">Body/P·R·C·H</h4>
+<h4 class="slide-sub">Circle 2</h4>
+<h4 class="slide-sub">Feet Position</h4>
+<h4 class="slide-sub">Circle 3</h4>
+<h4 class="slide-sub">Wave Dynamics</h4>
+<h3 class="slide-heading">COACH VERSION</h3>
+<h4 class="slide-sub">Circle 1</h4>
+<h4 class="slide-sub">Student Level</h4>
+<h4 class="slide-sub">Circle 2</h4>
+<h4 class="slide-sub">Environment</h4>
+<h4 class="slide-sub">Circle 3</h4>
+<h4 class="slide-sub">Task/Game</h4>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 27</span>
+    <h2 class="slide-hero">FOOT POSITIONS (CORRECTED)</h2>
+<h2 class="slide-hero">FP1</h2>
+<h3 class="slide-heading">Full Tail</h3>
+<p class="body-text">Maximum leverage for radical maneuvers</p>
+<h2 class="slide-hero">FP2</h2>
+<h3 class="slide-heading">Neutral</h3>
+<p class="body-text">Default riding position</p>
+<h2 class="slide-hero">FP3</h2>
+<h3 class="slide-heading">Forward</h3>
+<p class="body-text">Maximum speed and stability</p>
+<p class="body-text">CORRECTED — Canon v5.0 · Validated March 2026</p>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 27</span>
+    <h2 class="slide-hero">FOUR PILLARS + SAFETY LAYER</h2>
+<h3 class="slide-heading">Physical</h3>
+<h3 class="slide-heading">Technical</h3>
+<h3 class="slide-heading">Tactical</h3>
+<h3 class="slide-heading">Mental</h3>
+<h3 class="slide-heading">Safety: NOT a pillar. Non-negotiable operational layer.</h3>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 27</span>
+    <h2 class="slide-hero">BLOCK SYSTEM</h2>
+<p class="body-text">Block 0: Orientation &amp; Surf Literacy</p>
+<p class="body-text">Block 1: Preparation &amp; Positioning</p>
+<p class="body-text">Block 2: Wave Entry</p>
+<p class="body-text">Block 3: Pop-Up &amp; Board Connection</p>
+<p class="body-text">Block 4: Power Posture</p>
+<p class="body-text">Block 5: Rotation + Bottom Turn</p>
+<p class="body-text">Block 6: Projection</p>
+<p class="body-text">Block 7: Maneuvers / Expression</p>
+<p class="body-text">Blocks 1-3 = Sequential (once per wave)</p>
+<p class="body-text">Blocks 4-7 = Cyclical (Infinite Circle)</p>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 27</span>
+    <h2 class="slide-hero">THE INFINITE CIRCLE</h2>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Posture</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Rotation/BT</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Projection</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Maneuver</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Return</span></div>
+<span class="stat-label">Entry Sequence: Sweet spot → Chase wave → Paddling angle → Cobra → Pop-up</span></div>
+<h3 class="slide-heading">&quot;Blocks 4-7 repeat as many times as the wave allows&quot;</h3>
+</div>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 27</span>
+    <h2 class="slide-hero">TSS EXECUTION SEQUENCES</h2>
+<h3 class="slide-heading">FRONTSIDE CHAIN</h3>
+<p class="body-text">Posture</p>
+<p class="body-text">Bottom Turn</p>
+<p class="body-text">Projection</p>
+<p class="body-text">Cruz</p>
+<p class="body-text">Variation</p>
+<p class="body-text">Granada</p>
+<p class="body-text">Return</p>
+<h3 class="slide-heading">BACKSIDE CHAIN</h3>
+<p class="body-text">Posture</p>
+<p class="body-text">Bottom Turn</p>
+<p class="body-text">Choke</p>
+<p class="body-text">Tapaloco</p>
+<p class="body-text">Elbow</p>
+<p class="body-text">Variation</p>
+<p class="body-text">Touch the Board</p>
+<p class="body-text">Return</p>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 27</span>
+    <h2 class="slide-hero">PHASE EQUIVALENCE TABLE</h2>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Phase</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Frontside</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Backside</span></div>
+<span class="stat-label">Projection</span></div>
+<span class="stat-label">Projection</span></div>
+<span class="stat-label">Choke</span></div>
+<span class="stat-label">Rail Change</span></div>
+<span class="stat-label">Cruz</span></div>
+<span class="stat-label">Tapaloco</span></div>
+<span class="stat-label">Kinetic Chain</span></div>
+<span class="stat-label">(implicit)</span></div>
+<span class="stat-label">Elbow</span></div>
+<span class="stat-label">Closure</span></div>
+<span class="stat-label">Granada</span></div>
+<span class="stat-label">Touch the Board</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="slide-badge">14 / 27</span>
+    <h2 class="slide-hero">BELT SYSTEM OVERVIEW</h2>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">White</span></div>
+</div>
+<ul class="slide-list">
+<li>Beginner</li>
+<li>Seq #1-#5</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Yellow</span></div>
+</div>
+<ul class="slide-list">
+<li>Novice</li>
+<li>Seq #6-#7</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Blue</span></div>
+</div>
+<ul class="slide-list">
+<li>Foundation</li>
+<li>Seq #8-#13</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Purple</span></div>
+</div>
+<ul class="slide-list">
+<li>Emerging</li>
+<li>Seq #14-#17</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Brown</span></div>
+</div>
+<ul class="slide-list">
+<li>Pre-Elite</li>
+<li>Seq #18-#22</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Black</span></div>
+</div>
+<ul class="slide-list">
+<li>Elite</li>
+<li>Seq #23-#26</li>
+</ul>
+<p class="body-text">26 sequences. 6 cinturones. Sequential progression.</p>
+  </div>
+</section>
+<section class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="slide-badge">15 / 27</span>
+    <h2 class="slide-hero">BELT DETAILS: WHITE &amp; YELLOW</h2>
+<h3 class="slide-heading">WHITE BELT</h3>
+<p class="body-text">Discovery &amp; Safety</p>
+<p class="body-text">Whitewater, board control, pop-up, safe dismount.</p>
+<p class="body-text">Waist-deep water.</p>
+<h3 class="slide-heading">YELLOW BELT</h3>
+<p class="body-text">Foundation &amp; Confidence</p>
+<p class="body-text">Paddling speeds, pocket awareness, green wave transition.</p>
+<p class="body-text">2-3ft waves.</p>
+  </div>
+</section>
+<section class="slide" id="s16">
+  <div class="slide-inner">
+    <span class="slide-badge">16 / 27</span>
+    <h2 class="slide-hero">BELT DETAILS: BLUE &amp; PURPLE</h2>
+<h3 class="slide-heading">BLUE BELT</h3>
+<p class="body-text">Consistency &amp; Independence</p>
+<p class="body-text">Bottom turns, linking, Cruz/Tapaloco intro.</p>
+<p class="body-text">3-6ft waves.</p>
+<h3 class="slide-heading">PURPLE BELT</h3>
+<p class="body-text">Commitment &amp; Expression</p>
+<p class="body-text">Deep commitment, variety, personal style.</p>
+<p class="body-text">Up to 6ft waves.</p>
+  </div>
+</section>
+<section class="slide" id="s17">
+  <div class="slide-inner">
+    <span class="slide-badge">17 / 27</span>
+    <h2 class="slide-hero">BELT DETAILS: BROWN &amp; BLACK</h2>
+<h3 class="slide-heading">BROWN BELT</h3>
+<p class="body-text">Mastery, Aerials &amp; Competition</p>
+<p class="body-text">Re-mastery 8/10+, aerial system, combos.</p>
+<p class="body-text">No limit.</p>
+<h3 class="slide-heading">BLACK BELT</h3>
+<p class="body-text">Knowledge, Legacy &amp; Max Potential</p>
+<p class="body-text">System mastery, transmission, max potential.</p>
+<p class="body-text">No limit.</p>
+  </div>
+</section>
+<section class="slide" id="s18">
+  <div class="slide-inner">
+    <span class="slide-badge">18 / 27</span>
+    <h2 class="slide-hero">NAMED EXPRESSIONS REGISTRY</h2>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">White</span></div>
+<span class="stat-label">Mission 1-5</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Yellow</span></div>
+<span class="stat-label">Paddling Speeds, Angled Takeoff, Cobra Pick</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Blue</span></div>
+<span class="stat-label">Cruz, Tapaloco, Granada, Choke, Elbow, Touch Board</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Purple</span></div>
+<span class="stat-label">Deep BT, Floater, Snap, Layback, Tail Slide</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Brown</span></div>
+<span class="stat-label">Aerial 360, Alley-oop, Power Combos</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Black</span></div>
+<span class="stat-label">Total Mastery + Knowledge Transmission</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s19">
+  <div class="slide-inner">
+    <span class="slide-badge">19 / 27</span>
+    <h2 class="slide-hero">SESSION STRUCTURE: 3 MOMENTS</h2>
+<h3 class="slide-heading">MOMENT 1</h3>
+<h3 class="slide-heading">CONTEXT</h3>
+<p class="body-text">Who, where, when, risk assessment</p>
+<h3 class="slide-heading">MOMENT 2</h3>
+<h3 class="slide-heading">PLANNING</h3>
+<p class="body-text">The cascade. What to work, with what drill, with what preparation</p>
+<h3 class="slide-heading">MOMENT 3</h3>
+<h3 class="slide-heading">CLOSE</h3>
+<p class="body-text">Mandatory evaluation, feedback, homework, continuity</p>
+<p class="body-text">Teaching Method: EDPF (Explain → Demonstrate → Participate → Feedback)</p>
+  </div>
+</section>
+<section class="slide" id="s20">
+  <div class="slide-inner">
+    <span class="slide-badge">20 / 27</span>
+    <h2 class="slide-hero">EVALUATION MODEL</h2>
+<h3 class="slide-heading">Multi-faceted Assessment</h3>
+<p class="body-text">✓ Knowledge Check</p>
+<p class="body-text">✓ Practical Demo</p>
+<p class="body-text">✓ Teaching Practicum</p>
+<p class="body-text">✓ Evidence Log</p>
+<h3 class="slide-heading">Feedback Protocol</h3>
+<p class="body-text">1. Surfer speaks first → 2. Coach adds ONE → 3. Surfer states next priority</p>
+  </div>
+</section>
+<section class="slide" id="s21">
+  <div class="slide-inner">
+    <span class="slide-badge">21 / 27</span>
+    <h2 class="slide-hero">SAFETY</h2>
+<h3 class="slide-heading">Safety Override Rule</h3>
+<p class="body-text">If conditions exceed level → switch to dry-land. Session NEVER cancelled.</p>
+<h3 class="slide-heading">Board Transition Rule</h3>
+<p class="body-text">By safety criteria, not belt. Validated 5-point checklist required.</p>
+<h3 class="slide-heading">&quot;Safety is a LAYER, not a PILLAR&quot;</h3>
+  </div>
+</section>
+<section class="slide" id="s22">
+  <div class="slide-inner">
+    <span class="slide-badge">22 / 27</span>
+    <h2 class="slide-hero">COACH CERTIFICATION: 5 LEVELS</h2>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">L1</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Foundation</span></div>
+<span class="stat-label">Blue Belt min</span></div>
+<span class="stat-label">White/Yellow</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">L2</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Practitioner</span></div>
+<span class="stat-label">Purple min</span></div>
+<span class="stat-label">up to Blue</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">L3</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Advanced</span></div>
+<span class="stat-label">Brown min</span></div>
+<span class="stat-label">up to Brown</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">L4</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Master</span></div>
+<span class="stat-label">Black min</span></div>
+<span class="stat-label">All levels</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">L5</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Educator</span></div>
+<span class="stat-label">Black + exp</span></div>
+<span class="stat-label">Certifies coaches</span></div>
+<span class="stat-label">&quot;Coach first lives the method as student, then learns to teach it&quot;</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s23">
+  <div class="slide-inner">
+    <span class="slide-badge">23 / 27</span>
+    <h2 class="slide-hero">DIGITAL TAXONOMY</h2>
+<h3 class="slide-heading">Technical Parts</h3>
+<p class="body-text">45 Technical</p>
+<p class="body-text">7 Tactical</p>
+<p class="body-text">7 Mental</p>
+<p class="body-text">8 Physical</p>
+<p class="body-text">11 Safety (layer)</p>
+<h3 class="slide-heading">System Breadth</h3>
+<p class="body-text">9 Training Venues</p>
+<p class="body-text">5 Ocean Conditions</p>
+<p class="body-text">3 Session Types</p>
+<p class="body-text">&quot;78 pillar parts. Every dropdown validated. Every field canonical.&quot;</p>
+  </div>
+</section>
+<section class="slide" id="s24">
+  <div class="slide-inner">
+    <span class="slide-badge">24 / 27</span>
+    <h2 class="slide-hero">AERIAL SYSTEM</h2>
+<h3 class="slide-heading">Three-part Architecture</h3>
+<h3 class="slide-heading">RAMP</h3>
+<h3 class="slide-heading">AIR</h3>
+<h3 class="slide-heading">LANDING</h3>
+<p class="body-text">Competitive: Must stick landings</p>
+<p class="body-text">Recreational: Demonstrate commitment and power</p>
+<p class="body-text">ISA Scoring Criteria reference</p>
+  </div>
+</section>
+<section class="slide" id="s25">
+  <div class="slide-inner">
+    <span class="slide-badge">25 / 27</span>
+    <h2 class="slide-hero">CONSISTENCY RULES</h2>
+<h3 class="slide-heading">Canon Supremacy</h3>
+<p class="body-text">If contradiction → Canon prevails</p>
+<h3 class="slide-heading">Integration Rule</h3>
+<p class="body-text">Every element must have a place in the system</p>
+<h3 class="slide-heading">Fidelity Rule</h3>
+<p class="body-text">Integrity compromised when sequences skipped, order altered, language inconsistent</p>
+<h3 class="slide-heading">&quot;The method works because it is followed with fidelity.&quot;</h3>
+  </div>
+</section>
+<section class="slide" id="s26">
+  <div class="slide-inner">
+    <span class="slide-badge">26 / 27</span>
+    <h2 class="slide-hero">THE SYSTEM ARCHITECTURE</h2>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Methodology</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Belt</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Progression</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Coach</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Certification</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Academy</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Licensing</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">TSS</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Brain</span></div>
+<p class="body-text">&quot;Together: a closed system. Any TSS academy, any TSS coach, any country — same standard.&quot;</p>
+</div>
+  </div>
+</section>
+<section class="slide" id="s27">
+  <div class="slide-inner">
+    <span class="slide-badge">27 / 27</span>
+    <h2 class="slide-hero">THE SURF SEQUENCE®</h2>
+<h2 class="slide-hero">Evolve through play</h2>
+<p class="body-text">Fibonacci: 5 · 8 · 13 · 21</p>
+<p class="body-text">Canon v5.0 · Marzo 2026</p>
+<p class="body-text">&quot;Build assets, not tasks.&quot;</p>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Canon v5 Presentation — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

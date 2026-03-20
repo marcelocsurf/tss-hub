@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visualization Science Training — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FFD166;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #3D2D0E 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🧠</span>
+    <div>
+      <div class="top-bar__title">Visualization Science Training</div>
+      <div class="top-bar__sub">TSS Masterclass — 20 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button><button class="nav-dot" onclick="goSlide(14)" title="Slide 14">14</button><button class="nav-dot" onclick="goSlide(15)" title="Slide 15">15</button><button class="nav-dot" onclick="goSlide(16)" title="Slide 16">16</button><button class="nav-dot" onclick="goSlide(17)" title="Slide 17">17</button><button class="nav-dot" onclick="goSlide(18)" title="Slide 18">18</button><button class="nav-dot" onclick="goSlide(19)" title="Slide 19">19</button><button class="nav-dot" onclick="goSlide(20)" title="Slide 20">20</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 20</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">THE SURF SEQUENCE® — ONE WAVE</span></div>
+</div>
+<h2 class="slide-hero">The Science of</h2>
+<h2 class="slide-hero">Visualization</h2>
+<h3 class="slide-heading">How your brain rehearses surfing</h3>
+<h3 class="slide-heading">without touching water.</h3>
+<ul class="slide-list">
+<li>Coach Theory Module — The Surf Sequence® — Marcelo Castellanos</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 20</span>
+    <h3 class="slide-heading">WHY VISUALIZATION MATTERS</h3>
+<h3 class="slide-heading">Your brain cannot tell the difference between</h3>
+<h3 class="slide-heading">a vividly imagined experience and a real one.</h3>
+<h3 class="slide-heading">When you visualize a movement, your brain activates the same neural pathways that fire during actual physical execution. The motor cortex, the cerebellum, and the neuromuscular system all respond — even though your body is still.</h3>
+<h3 class="slide-heading">d = 0.53</h3>
+<ul class="slide-list">
+<li>Effect size of mental practice on performance</li>
+</ul>
+<h3 class="slide-heading">50+ years</h3>
+<ul class="slide-list">
+<li>of scientific evidence supporting mental imagery</li>
+</ul>
+<h3 class="slide-heading">94%</h3>
+<ul class="slide-list">
+<li>of students salivated from lemon imagery alone</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 20</span>
+    <h3 class="slide-heading">THE LEMON EXPERIMENT</h3>
+<h3 class="slide-heading">Let’s try it right now.</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">1.</span></div>
+<span class="stat-label">Close your eyes. Imagine you are in a kitchen.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">2.</span></div>
+<span class="stat-label">On the counter, there is a bright yellow lemon.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">3.</span></div>
+<span class="stat-label">Pick it up. Feel its weight. Feel the bumpy texture of the skin.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">4.</span></div>
+<span class="stat-label">Now place it on a cutting board. Pick up a knife.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">5.</span></div>
+<span class="stat-label">Cut the lemon in half. See the juice bead on the surface.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">6.</span></div>
+<span class="stat-label">Smell the sharp, clean citrus scent.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">7.</span></div>
+<span class="stat-label">Now cut a thin slice. Bring it to your mouth. Bite into it.</span></div>
+<ul class="slide-list">
+<li>Is your mouth watering? Your brain just triggered a real physiological response from an imagined experience.</li>
+</ul>
+</div>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 20</span>
+    <h3 class="slide-heading">THE NEUROSCIENCE</h3>
+<h3 class="slide-heading">What happens in your brain during visualization:</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Motor cortex activates</span></div>
+<p class="body-text">The same brain regions that fire when you physically surf activate when you vividly imagine surfing.</p>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Neural pathways strengthen</span></div>
+<p class="body-text">Repeated mental rehearsal strengthens the neural connections for that movement — like carving a groove.</p>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Sensory cortex responds</span></div>
+<p class="body-text">Visual, auditory, and kinesthetic brain areas all engage. Your brain processes imagery as a weak version of real perception.</p>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Neuromuscular priming</span></div>
+<p class="body-text">Tiny electrical signals travel to your muscles during imagery. Not enough to move, but enough to prime the pattern.</p>
+</div>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 20</span>
+    <h3 class="slide-heading">WHAT THE RESEARCH SAYS</h3>
+<ul class="slide-list">
+<li>“Feltz &amp; Landers (1983)”</li>
+</ul>
+<p class="body-text">First major meta-analysis: mental practice moderately benefits performance over no practice at all.</p>
+<ul class="slide-list">
+<li>“Driskell et al. (1994)”</li>
+</ul>
+<p class="body-text">Controlled meta-analysis confirmed moderate significant effect (d = 0.53) of mental practice on performance. Effect validated again in 2020 follow-up.</p>
+<ul class="slide-list">
+<li>“Hardwick et al. (2018)”</li>
+</ul>
+<p class="body-text">Neuroimaging studies confirm that mental imagery activates brain regions that partially overlap with those engaged in motor execution.</p>
+<ul class="slide-list">
+<li>“Jeannerod (2001)”</li>
+</ul>
+<p class="body-text">Functional equivalence theory: motor imagery involves neural mechanisms similar to those operating during real action.</p>
+<ul class="slide-list">
+<li>“Cumming &amp; Williams (2012)”</li>
+</ul>
+<p class="body-text">Imagery effectiveness depends on frequency, duration, and consistency. 2 sessions/week, 15–20 min each, is effective.</p>
+<ul class="slide-list">
+<li>“Peper et al. (2002)”</li>
+</ul>
+<p class="body-text">94% of 131 college students reported increased salivation from lemon imagery alone — demonstrating mind-body connection.</p>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 20</span>
+    <h3 class="slide-heading">THE PETTLEP MODEL — GOLD STANDARD</h3>
+<p class="body-text">Holmes &amp; Collins (2001) — The most validated framework for sport imagery</p>
+<h3 class="slide-heading">P</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Physical</span></div>
+<span class="stat-label">Feel your body — weight, stance, board under feet</span></div>
+<h3 class="slide-heading">E</h3>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Environment</span></div>
+<span class="stat-label">See the beach, hear the waves, smell the salt</span></div>
+<h3 class="slide-heading">T</h3>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Task</span></div>
+<span class="stat-label">The specific skill: bottom turn, pop-up, paddle</span></div>
+<h3 class="slide-heading">T</h3>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Timing</span></div>
+<span class="stat-label">Match the real speed — not slow motion</span></div>
+<h3 class="slide-heading">L</h3>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Learning</span></div>
+<span class="stat-label">Adjust imagery as your skill improves</span></div>
+<h3 class="slide-heading">E</h3>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Emotion</span></div>
+<span class="stat-label">Feel the confidence, excitement, calm focus</span></div>
+<h3 class="slide-heading">P</h3>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Perspective</span></div>
+<span class="stat-label">First person (internal) or watching yourself (external)</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 20</span>
+    <h2 class="slide-hero">Why visualization</h2>
+<h2 class="slide-hero">is perfect for surfing.</h2>
+<h3 class="slide-heading">You can’t repeat a wave.</h3>
+<p class="body-text">Every wave is different. You can’t pause it, rewind it, or practice it again.</p>
+<h3 class="slide-heading">But you CAN replay it in your mind.</h3>
+<p class="body-text">Visualization gives you unlimited repetitions of situations the ocean only gives you once.</p>
+<h3 class="slide-heading">And it works between sessions.</h3>
+<p class="body-text">While other athletes can train daily, surfers depend on conditions. Visualization fills the gap.</p>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 20</span>
+    <h3 class="slide-heading">5 ELEMENTS OF SURF VISUALIZATION</h3>
+<h3 class="slide-heading">01</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Breathing</span></div>
+</div>
+<ul class="slide-list">
+<li>Feel your breath: deep inhale before paddling, exhale through the duck dive, calm rhythmic breathing while waiting. Breath is the foundation of everything.</li>
+</ul>
+<h3 class="slide-heading">02</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Paddling &amp; Entry</span></div>
+</div>
+<ul class="slide-list">
+<li>Feel the water on your hands, the board gliding, the moment you commit to the wave. See the angle, feel the acceleration.</li>
+</ul>
+<h3 class="slide-heading">03</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">The Sequence</span></div>
+</div>
+<ul class="slide-list">
+<li>Your specific sequence for your level: pop-up, posture, rotation, bottom turn, projection. Walk through each block in order.</li>
+</ul>
+<h3 class="slide-heading">04</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Controlled Chaos</span></div>
+</div>
+<ul class="slide-list">
+<li>Waves don’t cooperate. Visualize turbulence: the wipeout, the hold-down, the unexpected set. Practice staying calm in imagined pressure.</li>
+</ul>
+<h3 class="slide-heading">05</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Wave Completion</span></div>
+</div>
+<ul class="slide-list">
+<li>See yourself riding the wave from takeoff to natural end. Multiple Infinite Circle loops. The complete architecture of surfing.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 20</span>
+    <h3 class="slide-heading">HOW TO PRACTICE VISUALIZATION</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">1</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Find a quiet place</span></div>
+<span class="stat-label">Sit or lie down. Close your eyes. 3 deep breaths to settle.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">2</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Set the scene</span></div>
+<span class="stat-label">Where are you? What does the beach look like? Feel the sun, hear the waves.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">3</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Choose ONE skill</span></div>
+<span class="stat-label">Don’t visualize everything. Pick one: paddling, pop-up, bottom turn.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">4</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Use all senses</span></div>
+<span class="stat-label">See it, feel it, hear it. The more vivid, the more effective.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">5</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Real speed</span></div>
+<span class="stat-label">Don’t slow it down. Match the real timing of the movement.</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">6</span></div>
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">Repeat 5–10 times</span></div>
+<span class="stat-label">Each repetition strengthens the neural pathway. Then open your eyes.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 20</span>
+    <h2 class="slide-hero">2x per week.</h2>
+<h2 class="slide-hero">15–20 minutes.</h2>
+<h2 class="slide-hero">Consistency over intensity.</h2>
+<p class="body-text">Cumming &amp; Williams (2012): regular, manageable sessions reinforce</p>
+<p class="body-text">neuromuscular pathways without cognitive fatigue.</p>
+<p class="body-text">Combine imagery with physical practice for maximum effect.</p>
+<p class="body-text">Imagery alone works. Imagery + practice works better.</p>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 20</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">GUIDED VISUALIZATION — WHITE BELT</span></div>
+</div>
+<h3 class="slide-heading">Breathing, Board, &amp; First Wave</h3>
+<ul class="slide-list">
+<li>Close your eyes. Three deep breaths. In through the nose… out through the mouth.</li>
+<li>You are on the beach. Feel the warm sand under your feet. Your board is next to you.</li>
+<li>Pick up the board. Feel its weight. Walk toward the water. Feel the cool water on your ankles.</li>
+<li>Lie on the board in the sweet spot. Feel the board float. Your chest is up, your legs are together.</li>
+<li>Start paddling. Feel the water on your hands. Deep strokes. The board accelerates.</li>
+<li>A whitewater wave approaches. You feel it push you. Stand up: hands on the board, push, feet land, look forward.</li>
+<li>You are standing. Knees bent. Arms balanced. The foam pushes you toward shore.</li>
+<li>You ride all the way to the beach. You step off. You feel the sand again. You smile.</li>
+<li>Repeat the ride two more times in your mind. Each time, feel more confident. Breathe.</li>
+<li>Focus: Sweet spot, paddling rhythm, pop-up sequence, calm breathing</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 20</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">WHITE BELT</span></div>
+</div>
+<h3 class="slide-heading">Guided Audio / Video</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">VIS-WB-01 — Guided Visualization (5 min)</span></div>
+</div>
+<ul class="slide-list">
+<li>Tap to play / Insert audio or video link here</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 20</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">GUIDED VISUALIZATION — YELLOW BELT</span></div>
+</div>
+<h3 class="slide-heading">Green Wave Commitment</h3>
+<ul class="slide-list">
+<li>Close your eyes. Three deep breaths. Let your body relax.</li>
+<li>You are in the lineup. Sitting on your board. You can feel the ocean moving underneath you.</li>
+<li>Look at the horizon. A set is coming. You see the wave you want.</li>
+<li>Turn toward shore. Start paddling. Three speeds: cruise, engage, commit. Feel the acceleration.</li>
+<li>The wave lifts you. You feel the angle. Cobra — look left or right — pick your line.</li>
+<li>Pop up. Feet land. Front foot forward, back foot on the tail. You are on the wave face.</li>
+<li>You feel the speed. Slight compression. You move down the face. Look at the pocket.</li>
+<li>Pump: compress down, extend up. Feel the speed build. You are generating your own energy.</li>
+<li>The wave reaches the shore. You kick out or step off. Deep breath. You are calm and focused.</li>
+<li>Repeat. This time, feel the angle of the takeoff more clearly. Commit earlier.</li>
+<li>Focus: Paddling speeds, green wave commitment, angled takeoff, pocket awareness</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="slide-badge">14 / 20</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">YELLOW BELT</span></div>
+</div>
+<h3 class="slide-heading">Guided Audio / Video</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">VIS-YB-01 — Guided Visualization (5 min)</span></div>
+</div>
+<ul class="slide-list">
+<li>Tap to play / Insert audio or video link here</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="slide-badge">15 / 20</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">GUIDED VISUALIZATION — BLUE BELT</span></div>
+</div>
+<h3 class="slide-heading">Bottom Turn, Hold, Projection</h3>
+<ul class="slide-list">
+<li>Close your eyes. Deep breath. Feel your body settle. You are already in the water.</li>
+<li>You are on a wave. Moving fast. The face opens up in front of you.</li>
+<li>You see the bottom approaching. Weight shifts to front foot. Rail engages.</li>
+<li>The bottom turn begins. Compression. You go LOW. Feel your elbow close to the water.</li>
+<li>HOLD. Stay compressed. Two seconds. Feel the power accumulate. Don’t rush.</li>
+<li>Now — PROJECTION. Hips forward and up. Chest points at your target. Scapula locked.</li>
+<li>You feel the energy release. The board drives toward the lip.</li>
+<li>Cruz Snap: rail changes. You rotate through. The board snaps at the top of the wave.</li>
+<li>Recovery: impulse, posture, re-engage. You are back in the pocket. Ready for the next loop.</li>
+<li>See the complete circle: Posture → Bottom Turn → Hold → Projection → Maneuver → Recovery.</li>
+<li>Repeat the circle on the same wave. Two loops. Then three. Wave completion.</li>
+<li>Focus: Bottom turn compression, hold duration, projection direction, Infinite Circle</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s16">
+  <div class="slide-inner">
+    <span class="slide-badge">16 / 20</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">BLUE BELT</span></div>
+</div>
+<h3 class="slide-heading">Guided Audio / Video</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">VIS-BB-01 — Guided Visualization (5 min)</span></div>
+</div>
+<ul class="slide-list">
+<li>Tap to play / Insert audio or video link here</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s17">
+  <div class="slide-inner">
+    <span class="slide-badge">17 / 20</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">GUIDED VISUALIZATION — PURPLE BELT</span></div>
+</div>
+<h3 class="slide-heading">Expression, Linking, &amp; Controlled Chaos</h3>
+<ul class="slide-list">
+<li>Close your eyes. Deep breath. You are in overhead surf. Feel the power of the ocean.</li>
+<li>A set arrives. You read it: the second wave has the best wall. You let the first pass.</li>
+<li>Paddle. Commit. The drop is steep. You feel gravity pull you down the face.</li>
+<li>Bottom turn: DEEP compression. Full rail. Hold it longer than feels natural. Trust.</li>
+<li>Project toward the lip. HARD. Feel everything release upward.</li>
+<li>Snap at the top. The spray flies. You feel the fins release and re-engage.</li>
+<li>Recovery — but the section ahead is closing. You read it in real time.</li>
+<li>Decision: cutback to the pocket or race the section. You choose. You execute.</li>
+<li>Second maneuver. Linking. Rail to rail. The wave is your canvas.</li>
+<li>Now: visualize a wipeout. The lip hits you. You go under. Turbulence.</li>
+<li>Calm. Protect your head. Don’t fight. Let the energy pass. Surface. Board nearby.</li>
+<li>You are okay. Paddle back. Deep breath. The next wave is coming. You are ready.</li>
+<li>Focus: Deep turns, linking maneuvers, real-time decisions, wipeout composure</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s18">
+  <div class="slide-inner">
+    <span class="slide-badge">18 / 20</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">PURPLE BELT</span></div>
+</div>
+<h3 class="slide-heading">Guided Audio / Video</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">VIS-PB-01 — Guided Visualization (5 min)</span></div>
+</div>
+<ul class="slide-list">
+<li>Tap to play / Insert audio or video link here</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s19">
+  <div class="slide-inner">
+    <span class="slide-badge">19 / 20</span>
+    <h3 class="slide-heading">TIPS &amp; COMMON MISTAKES</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">DO: Use first person</span></div>
+</div>
+<ul class="slide-list">
+<li>See through your own eyes, not watching yourself from outside (internal &gt; external for motor skills)</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">DO: Include all senses</span></div>
+</div>
+<ul class="slide-list">
+<li>Hear the wave, feel the spray, smell the salt. The more senses, the stronger the neural response.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">DO: Visualize success AND failure</span></div>
+</div>
+<ul class="slide-list">
+<li>Practice staying calm during wipeouts. Mental composure training is as valuable as technique.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">DON’T: Rush through it</span></div>
+</div>
+<ul class="slide-list">
+<li>Real timing matters. If a bottom turn takes 2 seconds in reality, it should take 2 seconds in your mind.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">DON’T: Visualize while distracted</span></div>
+</div>
+<ul class="slide-list">
+<li>No phone, no noise, no interruptions. Focused attention is what activates the neural pathways.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#FFD166">DON’T: Skip it when you’re tired</span></div>
+</div>
+<ul class="slide-list">
+<li>Visualization works even when your body is fatigued. It’s training that doesn’t require physical energy.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s20">
+  <div class="slide-inner">
+    <span class="slide-badge">20 / 20</span>
+    <h2 class="slide-hero">Your brain</h2>
+<h2 class="slide-hero">doesn’t know</h2>
+<h2 class="slide-hero">you’re not</h2>
+<h2 class="slide-hero">surfing.</h2>
+<h2 class="slide-hero">Use that.</h2>
+<ul class="slide-list">
+<li>THE SURF SEQUENCE® — ONE WAVE — Visualization Module — Enkrateia SA de CV</li>
+</ul>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Visualization Science Training — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

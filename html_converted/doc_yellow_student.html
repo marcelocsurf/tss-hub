@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yellow Belt Student Manual — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#F5C518;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🟡</span>
+    <div>
+      <div class="top-bar__title">Yellow Belt Student Manual</div>
+      <div class="top-bar__sub">The Surf Sequence® — BELT</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">BELT</span>
+    <span>3,940 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">STUDENT MANUAL</a><a href="#s3">YOUR JOURNEY</a><a href="#s4">SECTION 1: UNDERSTANDING THE WAVE</a><a href="#s5">SECTION 2: SAFETY &amp; ETIQUETTE</a><a href="#s6">SECTION 3: THE SEQUENCE</a><a href="#s7">BLOCK 1 — PREPARATION</a><a href="#s8">STEP 01  VENUE ANALYSIS</a><a href="#s9">STEP 02  SET GOAL &amp; EXPECTATIONS</a><a href="#s10">STEP 03  WARM-UP</a><a href="#s11">BLOCK 2 — ENTRY &amp; CONTROL</a><a href="#s12">STEP 04  GRAB BOARD</a><a href="#s13">STEP 05  WALK OUT</a><a href="#s14">STEP 06  PUT BOARD IN THE WATER &amp; FIND SWEET SPOT</a><a href="#s15">STEP 07  PADDLE OUT</a><a href="#s16">STEP 08  TURTLE ROLL</a><a href="#s17">BLOCK 3 — WAVE INTERACTION</a><a href="#s18">STEP 09  PADDLING SPEEDS (1-2-3-4)</a><a href="#s19">STEP 10  CHASE THE POCKET</a><a href="#s20">STEP 11  CORRECT PADDLE ANGLE</a><a href="#s21">STEP 12  COBRA — PICK YOUR LINE</a><a href="#s22">BLOCK 4 — CONNECT WITH THE BOARD</a><a href="#s23">STEP 13  POP-UP &amp; FOOT POSITION</a><a href="#s24">STEP 14  POSTURE — POWER STANCE</a><a href="#s25">STEP 15  IMPULSE</a><a href="#s26">BLOCK 5 — FLOW &amp; EXIT</a><a href="#s27">STEP 16  TURN LEFT / RIGHT</a><a href="#s28">STEP 17  GO UP AND DOWN (SEQUENCE #7)</a><a href="#s29">STEP 18  STARFISH DISMOUNT</a><a href="#s30">SECTION 4: THE INFINITE CIRCLE</a><a href="#s31">SECTION 5: YOUR MISSIONS</a><a href="#s32">SECTION 6: ON-LAND DRILLS</a><a href="#s33">SECTION 7: KEY CONCEPTS REFERENCE</a><a href="#s34">SECTION 8: YOUR PROGRESSION</a><a href="#s35">APPENDIX: VIDEO PRODUCTION GUIDE</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">STUDENT MANUAL</h1>
+<p>Sequences #6 &amp; #7</p>
+<p>From Whitewater to Green Waves</p>
+<p>By Marcelo Castellanos</p>
+<p>ISA Olympic Expert Coach | Founder, The Surf Sequence®</p>
+<p>Enkrateia SA de CV — All Rights Reserved</p>
+<h1 class="doc-h1" id="s3">YOUR JOURNEY</h1>
+<p class="doc-bold">Where You Are</p>
+<p>Congratulations. You have completed your White Belt foundation. You can control your board, find your sweet spot, pop up, hold a power stance, and ride whitewater with intention. Now everything changes.</p>
+<p>The Yellow Belt is your transition from whitewater to green waves — unbroken waves with real structure, real energy, and real decisions. This is the most significant shift in your entire surfing journey.</p>
+<p class="doc-bold">What Changes at Yellow Belt</p>
+<p>At White Belt, you reacted to the wave. At Yellow Belt, you begin to make decisions. You will learn to read the wave before it breaks, choose where to position yourself, manage your paddling speed, and angle your takeoff in the direction the wave is moving.</p>
+<p>You will also experience your first real autonomy. Catching waves without assistance. Paddling out through breaking waves on your own. Making session decisions with less coach direction.</p>
+<p class="doc-bold">The Progression Map</p>
+<p class="doc-bold">You are here: Yellow Belt — Novice. Sequences #6 and #7.</p>
+<p class="doc-bold">How to Use This Manual</p>
+<p>This manual is your companion throughout the Yellow Belt program. Each section covers one part of the surfing sequence. Scan the QR codes to watch video explanations of each step. Use the mission trackers to record your progress after every session.</p>
+<p>Read each section before your water session. Review it after. The goal is not to memorize — it is to understand the sequence so deeply that it becomes automatic.</p>
+<h1 class="doc-h1" id="s4">SECTION 1: UNDERSTANDING THE WAVE</h1>
+<p>Before you can ride a green wave, you need to understand it. This section gives you the language and awareness to read the ocean like a surfer, not a swimmer.</p>
+<p class="doc-bold">Parts of a Wave</p>
+<p>A wave is not a wall of water. It has distinct parts, and each part has a different function for the surfer.</p>
+<p>Face: The clean, unbroken surface of the wave. This is where you ride.</p>
+<p>Pocket: The steepest section where the wave is about to break. This is where energy is strongest. The pocket is your source of speed and power.</p>
+<p>Lip: The top edge of the wave as it curls over. This is the impact zone.</p>
+<p>Shoulder: The softer, less steep section ahead of the breaking point. Easier to ride but less powerful.</p>
+<p>Whitewater: The broken foam after the wave has collapsed. This is where you trained at White Belt.</p>
+<p class="doc-bold">Types of Waves</p>
+<p>Spilling: The wave crumbles gently from the top. Soft, rolling, forgiving. Best for learning.</p>
+<p>Plunging: The wave throws its lip forward with force. Steep, powerful, higher impact. More risk.</p>
+<p>Closeout: The entire wave breaks at once with no open face. Avoid these — there is nowhere to go.</p>
+<p>Rule: If it looks like a closeout or heavy plunging section, do not paddle for it. Choose a wave where you can complete the mission safely.</p>
+<p class="doc-bold">Wave Stages — The Journey of a Wave</p>
+<p>Every wave passes through stages as it travels from deep water to shore:</p>
+<p>Stage 1: The swell approaches — a smooth, rising bump of energy moving toward shore.</p>
+<p>Stage 2: The wave steepens as the ocean floor gets shallower. The face forms.</p>
+<p>Stage 3: The pocket forms. Maximum energy is concentrated here. This is your target.</p>
+<p>Stage 4: The wave breaks into whitewater and the energy dissipates toward shore.</p>
+<p class="doc-bold">Lefts and Rights</p>
+<p>Waves break in a direction. A left is a wave that opens to the left (from the surfer&#x27;s perspective facing shore). A right opens to the right.</p>
+<p>At Yellow Belt, you must be able to identify whether a wave is a left or right before you paddle for it. This determines which direction you will ride and how you angle your takeoff.</p>
+<p class="doc-bold">The Pocket Relationship</p>
+<p>This is the most important concept at Yellow Belt. The pocket is not just a part of the wave — it is your energy source.</p>
+<p>When you lose speed on a wave, it means you have drifted too far from the pocket. The solution is always the same: return to the pocket.</p>
+<p>When you feel the wave pushing you with power, it means you are in or near the pocket. Stay there.</p>
+<h1 class="doc-h1" id="s5">SECTION 2: SAFETY &amp; ETIQUETTE</h1>
+<p>Safety is not optional. It is a non-negotiable layer that exists across every session, every level, every condition. At Yellow Belt, safety becomes more complex because you are now in deeper water, with bigger waves, among other surfers.</p>
+<p class="doc-bold">Communication Signals</p>
+<p>These signals must be automatic. Practice them until they require zero thinking.</p>
+<p>Coach asks: ARE YOU OK? — You respond with the appropriate hand signal.</p>
+<p>You are OK: Both arms form a triangle above your head.</p>
+<p>You need help: One arm waving side to side above your head.</p>
+<p>Coach signals OUT OF THE WATER: Cross both arms in an X above your head. Return to shore immediately.</p>
+<p class="doc-bold">Safety Rules</p>
+<p>Never place the surfboard between yourself and an incoming wave.</p>
+<p>Never position yourself in front of another surfer&#x27;s board.</p>
+<p>When you fall: cover your head with both arms and fall away from the board.</p>
+<p>Never grab the surfboard by the tail or leash when it is being pulled by a wave.</p>
+<p>If you lose your board: protect your head, surface calmly, retrieve the board without swimming into the impact zone of other surfers.</p>
+<p>If in doubt, do not go out. If conditions feel beyond your level, tell your coach.</p>
+<p class="doc-bold">Rip Currents</p>
+<p>A rip current is a channel of water flowing away from shore. If you get caught in one:</p>
+<p>Do not panic. Do not fight it by swimming directly toward shore.</p>
+<p>Swim parallel to the beach until you exit the current, then swim back to shore at an angle.</p>
+<p>If you cannot escape: stay calm, float, conserve energy, and signal for help.</p>
+<p class="doc-bold">Surf Etiquette</p>
+<p>Etiquette is not just politeness — it is safety. Violating etiquette causes collisions, injuries, and conflict.</p>
+<p>Priority: The surfer closest to the peak (where the wave breaks first) has the right of way. If someone is already riding, do not drop in.</p>
+<p>Do not snake: Do not paddle around another surfer to steal their priority position.</p>
+<p>Do not ditch your board: Always maintain control. A loose board is a danger to everyone.</p>
+<p>Paddle wide: When paddling back out, go around the breaking zone, not through it. Do not interfere with surfers who are riding.</p>
+<p>Respect the lineup: Wait your turn. Observe spacing. Communicate your intentions.</p>
+<p class="doc-bold">Conditions for Yellow Belt</p>
+<p class="doc-bold">Maximum wave height: 2-4 feet (green waves). No overhead conditions. No strong currents.</p>
+<p>If conditions exceed this limit, the session drops back to whitewater drills or theory review.</p>
+<p>Equipment: Leash checked every session. Appropriate board for your size and skill level. Rash guard or wetsuit as needed.</p>
+<h1 class="doc-h1" id="s6">SECTION 3: THE SEQUENCE</h1>
+<p>This is the heart of The Surf Sequence. Every surf session follows this order. At Yellow Belt, you are performing this entire sequence on green waves for the first time.</p>
+<p>Each step builds on the previous one. Skip a step and the sequence breaks. Master each step and the next one becomes easier.</p>
+<h1 class="doc-h1" id="s7">BLOCK 1 — PREPARATION</h1>
+<p>Purpose: Create awareness, safety, and intention before entering the water.</p>
+<h1 class="doc-h1" id="s8">STEP 01  VENUE ANALYSIS</h1>
+<p>Before touching the water, read the ocean. Identify where the waves are breaking, which direction they go, where the safe zones are, and where the hazards are. Look for rip currents, rocks, other surfers, and changing conditions. At Yellow Belt, you should be able to do this with minimal coach correction.</p>
+<h1 class="doc-h1" id="s9">STEP 02  SET GOAL &amp; EXPECTATIONS</h1>
+<p>Every session needs a clear mission. Not &#x27;have fun&#x27; — a specific, measurable objective. Example: &#x27;Catch 5 green waves with an angled takeoff.&#x27; Your coach will help you set this, but at Yellow Belt, you start contributing to the goal-setting process.</p>
+<h1 class="doc-h1" id="s10">STEP 03  WARM-UP</h1>
+<p>Activate your body before entering the water. Mobility, body awareness, and mental focus. The warm-up is not just physical — it is the transition from daily life into surf mode. Enter the &#x27;body zone&#x27; where your body is ready to perform.</p>
+<h1 class="doc-h1" id="s11">BLOCK 2 — ENTRY &amp; CONTROL</h1>
+<p>Purpose: Enter the ocean safely and maintain control of your board.</p>
+<h1 class="doc-h1" id="s12">STEP 04  GRAB BOARD</h1>
+<p>Handle your board with intention. Carry it correctly to the water&#x27;s edge. The board is your tool — control starts before you enter the ocean.</p>
+<h1 class="doc-h1" id="s13">STEP 05  WALK OUT</h1>
+<p>Navigate to the water safely. Be aware of other people, rocks, and the shore break. Keep the board at your side, not in front of you.</p>
+<h1 class="doc-h1" id="s14">STEP 06  PUT BOARD IN THE WATER &amp; FIND SWEET SPOT</h1>
+<p>Enter the water and position yourself on the board. Your sweet spot is the position where the board is perfectly balanced — nose not sinking, not popping up. At Yellow Belt, finding the sweet spot should be automatic from White Belt training.</p>
+<h1 class="doc-h1" id="s15">STEP 07  PADDLE OUT</h1>
+<p>Paddle from shore to the lineup. At Yellow Belt, this means paddling through breaking waves to reach the takeoff zone. Use efficient technique: centered position, long deep strokes, elbows high, push water backward not downward. Conserve energy — you need it for catching waves, not just getting out.</p>
+<h1 class="doc-h1" id="s16">STEP 08  TURTLE ROLL</h1>
+<p>When a broken wave is coming toward you, the turtle roll lets you pass through it without losing your board. Read the whitewater direction, align the nose against it, take cobra position, flip the board (fins up), grab the rails with elbows on the board to protect your face, stay calm through turbulence, then punch forward with a scissor kick and flip back.</p>
+<h1 class="doc-h1" id="s17">BLOCK 3 — WAVE INTERACTION</h1>
+<p>Purpose: Connect with the wave&#x27;s energy and position yourself to catch it.</p>
+<p>This is where Yellow Belt diverges most from White Belt. You are no longer waiting for whitewater. You are actively pursuing green waves.</p>
+<h1 class="doc-h1" id="s18">STEP 09  PADDLING SPEEDS (1-2-3-4)</h1>
+<p>Paddling is not one speed. It has gears. Speed 1: slow positioning paddle for moving around the lineup. Speed 2: medium readiness paddle when you see a set approaching. Speed 3: committed paddle when you choose your wave. Speed 4: full sprint — maximum power to match the wave&#x27;s speed and catch it. The right speed at the right moment is more effective than paddling hard all the time.</p>
+<h1 class="doc-h1" id="s19">STEP 10  CHASE THE POCKET</h1>
+<p>The pocket is your target. Before the wave arrives, position yourself near where you expect the pocket to form. As the wave approaches, adjust. If the pocket moves, you move. This is active positioning, not passive waiting.</p>
+<h1 class="doc-h1" id="s20">STEP 11  CORRECT PADDLE ANGLE</h1>
+<p>At White Belt, you paddled straight toward shore. At Yellow Belt, you angle your board in the direction the wave is breaking. For a right-breaking wave, angle your nose to the right. For a left, angle left. This single adjustment changes everything — instead of racing toward the sand, you ride along the face of the wave.</p>
+<h1 class="doc-h1" id="s21">STEP 12  COBRA — PICK YOUR LINE</h1>
+<p>Once the wave catches you, immediately go into cobra position: chest up, eyes scanning the wave. This is where you choose your line — the direction you will ride. Look where you want to go. The cobra is not just a position. It is a decision moment.</p>
+<h1 class="doc-h1" id="s22">BLOCK 4 — CONNECT WITH THE BOARD</h1>
+<p>Purpose: Stand up and establish stability on a moving green wave.</p>
+<h1 class="doc-h1" id="s23">STEP 13  POP-UP &amp; FOOT POSITION</h1>
+<p>Your pop-up was trained at White Belt. Now you execute it on a moving, curving green wave. The technique does not change, but the environment does. Front foot lands in the center of the board. Back foot over the fins. Head up, eyes forward. Lower your hips before releasing the board. Precision matters more than speed.</p>
+<h1 class="doc-h1" id="s24">STEP 14  POSTURE — POWER STANCE</h1>
+<p>Once standing, establish your power stance. Knees bent, back straight, arms open for balance, weight centered. At Yellow Belt, posture on a green wave is more demanding because the surface is moving and curving. Compression and extension are no longer just for stability — they become tools for speed generation.</p>
+<h1 class="doc-h1" id="s25">STEP 15  IMPULSE</h1>
+<p>Impulse is the technique for generating or recovering speed on the wave. When you feel slow or off-balance, impulse gets you moving again. Backside: get low, touch the water with both hands, grab water and push yourself forward, return to posture. Frontside: get low, touch water with leading hand, push forward while extending legs, return to posture. Use impulse after pop-up, after a maneuver, and at closings.</p>
+<h1 class="doc-h1" id="s26">BLOCK 5 — FLOW &amp; EXIT</h1>
+<p>Purpose: Ride the wave with intention and exit safely.</p>
+<h1 class="doc-h1" id="s27">STEP 16  TURN LEFT / RIGHT</h1>
+<p>Basic directional turns on the wave face. Use your eyes to lead: look where you want to go. Your head follows your eyes, your torso follows your head, your hips follow your torso, and the board follows your feet. This is the kinetic chain. At Yellow Belt, turns should be intentional and directional, not accidental.</p>
+<h1 class="doc-h1" id="s28">STEP 17  GO UP AND DOWN (SEQUENCE #7)</h1>
+<p>This is the new element at Yellow Belt. You begin riding the wave face vertically — going up toward the lip and down toward the trough. Going up generates potential energy. Coming down converts it to speed. This is not a maneuver. It is the physics of wave riding. Stay close to the pocket while moving up and down to maintain energy.</p>
+<h1 class="doc-h1" id="s29">STEP 18  STARFISH DISMOUNT</h1>
+<p>Every wave ends. The starfish dismount is your controlled exit. When the wave is closing or you are exiting from the shoulder, extend your arms and legs like a starfish as you fall backward away from the board. This keeps your body flat on the surface and prevents going deep. Always fall away from your board. Cover your head when surfacing.</p>
+<h1 class="doc-h1" id="s30">SECTION 4: THE INFINITE CIRCLE</h1>
+<p>Here is the secret that changes how you see surfing: once you are standing on the wave, the sequence repeats.</p>
+<p>You pop up. You establish posture. You rotate. You project. You execute a movement. Then you return to posture and do it again. And again. Each cycle is one loop of the Infinite Circle.</p>
+<p>A single wave can contain multiple loops. Each time you return to stable posture, you have the opportunity to rotate again, project again, and ride again. Surfing is not a single move — it is a repeated architecture.</p>
+<p>At Yellow Belt, you are experiencing this circle for the first time on green waves. Your goal is not to complete multiple perfect loops. Your goal is to understand that after every action on the wave, you return to posture and start again.</p>
+<h1 class="doc-h1" id="s31">SECTION 5: YOUR MISSIONS</h1>
+<p>Missions are your in-water practice assignments. Each mission has a specific objective. Focus on one mission per session or per set of waves. Record your results using the tracker.</p>
+<p class="doc-bold">MISSION 1  Control My Board</p>
+<p>▸ Control the board using your hands in the water</p>
+<p>▸ Maneuver the board with intention through whitewater</p>
+<p>▸ Pass through whitewater while maintaining control of the board</p>
+<p>▸ Perform a successful turtle roll</p>
+<p class="doc-bold">MISSION 2  Sweet Spot + Alignment + Wave Catch</p>
+<p>▸ Find the sweet spot on the board automatically</p>
+<p>▸ Align with the incoming wave or whitewater</p>
+<p>▸ Catch the wave with intentional paddling</p>
+<p>▸ Cobra position immediately after catching</p>
+<p>▸ Turn right or left based on your line choice</p>
+<p>▸ Controlled dismount (starfish)</p>
+<p class="doc-bold">MISSION 3  Technical Pop-Up + Power Stance</p>
+<p>▸ Execute a stable, technical pop-up on a green wave</p>
+<p>▸ Establish a clear power stance immediately</p>
+<p>▸ Starfish dismount after riding</p>
+<p class="doc-bold">MISSION 4  Front Foot Lands in the Center</p>
+<p>▸ Precise front-foot placement in the center of the board during pop-up</p>
+<p>▸ Maintain balance and longitudinal control</p>
+<p>▸ Repeat across multiple waves</p>
+<p class="doc-bold">MISSION 5  Brake and Accelerator Control</p>
+<p>▸ Move forward and backward on the board while standing</p>
+<p>▸ Apply braking pressure (weight back)</p>
+<p>▸ Apply acceleration pressure (weight forward)</p>
+<p>▸ Add impulse intentionally to recover speed</p>
+<p class="doc-bold">MISSION 6  Find the Pocket</p>
+<p>▸ Seek the pocket of the wave before and during your ride</p>
+<p>▸ Choose the best paddling angle based on where the pocket is</p>
+<p>▸ Position yourself to catch the wave near the pocket, not from the shoulder</p>
+<p class="doc-bold">MISSION 7  Catch + Cobra + Pick Your Line</p>
+<p>▸ Catch the green wave with committed paddling</p>
+<p>▸ Perform cobra immediately</p>
+<p>▸ Choose your line (left or right) and commit to the direction</p>
+<p class="doc-bold">MISSION 8  Backside Rotation</p>
+<p>▸ Catch the wave</p>
+<p>▸ Cobra and pick your backside line</p>
+<p>▸ Execute backside rotation using the kinetic chain</p>
+<p>▸ Return to posture after the turn</p>
+<p class="doc-bold">MISSION 9  Frontside Rotation</p>
+<p>▸ Catch the wave</p>
+<p>▸ Cobra and pick your frontside line</p>
+<p>▸ Execute frontside rotation using the kinetic chain</p>
+<p>▸ Return to posture after the turn</p>
+<p class="doc-bold">MISSION 10  Rotation + Impulse</p>
+<p>▸ Catch and execute a turn (backside or frontside)</p>
+<p>▸ Add impulse immediately after the turn</p>
+<p>▸ Return to posture</p>
+<p>▸ Attempt a second loop if the wave allows</p>
+<p class="doc-bold">MISSION 11  Go Up and Down — Play with the Pocket</p>
+<p>▸ Surf the face of the wave from top to bottom</p>
+<p>▸ Stay close to the pocket while moving vertically</p>
+<p>▸ Use gravity (going down) to generate speed</p>
+<p>▸ Use momentum (going up) to create potential energy</p>
+<h1 class="doc-h1" id="s32">SECTION 6: ON-LAND DRILLS</h1>
+<p>On-land drills prepare your nervous system, simplify technique, reduce errors in the water, and accelerate real learning. Practice these before every session and between sessions at home.</p>
+<p class="doc-bold">DRILL L1  Pop-Up + Power Stance (Flat Surface)</p>
+<p class="doc-bold">Objective: Learn a clean, technical pop-up and immediately connect it to a stable power stance.</p>
+<p class="doc-bold">1. Lie flat on the board (or marked area). Hands at rib height.</p>
+<p class="doc-bold">2. Cobra position: chest up, eyes forward.</p>
+<p class="doc-bold">3. Pop up in one movement. Front foot lands in the center.</p>
+<p class="doc-bold">4. Immediately lower hips and establish power stance.</p>
+<p class="doc-bold">5. Hold for 2 seconds. Eyes forward, back straight.</p>
+<p class="doc-bold">6. Repeat 10 times. Focus on precision, not speed.</p>
+<p class="doc-bold">DRILL L2  Pop-Up with Transitions &amp; Rotations</p>
+<p class="doc-bold">Objective: Master stance transitions and practice rotations in both directions.</p>
+<p class="doc-bold">1. Perform pop-up and hold for 2 seconds.</p>
+<p class="doc-bold">2. Move front foot to position 1 (center). Execute frontside rotation, then backside rotation.</p>
+<p class="doc-bold">3. Shift to position 2 (slightly back). Generate momentum.</p>
+<p class="doc-bold">4. Return to position 1 and repeat rotations.</p>
+<p class="doc-bold">5. Repeat 5 times. Ensure fluid, controlled movements.</p>
+<p class="doc-bold">DRILL L3  Rotation — Kinetic Chain Activation</p>
+<p class="doc-bold">Objective: Introduce rotation as a result of vision and kinetic chain activation.</p>
+<p class="doc-bold">1. Stand in power stance on the board.</p>
+<p class="doc-bold">2. Look to your frontside. Let your neck rotate, then torso, then hips.</p>
+<p class="doc-bold">3. Feel the board respond to the kinetic chain.</p>
+<p class="doc-bold">4. Repeat backside: look, rotate neck, torso, hips.</p>
+<p class="doc-bold">5. Do 5 frontside and 5 backside rotations. Start slow, build speed.</p>
+<p class="doc-bold">DRILL L4  Wave Simulation — Top to Bottom Flow</p>
+<p class="doc-bold">Objective: Simulate vertical wave-face movement on land.</p>
+<p class="doc-bold">1. Stand in power stance on the board.</p>
+<p class="doc-bold">2. Simulate dropping down the wave face: compress, shift weight frontside.</p>
+<p class="doc-bold">3. Simulate going up the wave face: extend, shift weight backside.</p>
+<p class="doc-bold">4. Transition smoothly between frontside and backside rail pressure.</p>
+<p class="doc-bold">5. Repeat fluid transitions until the movement feels natural.</p>
+<p class="doc-bold">DRILL L5  Guided Visualization — Returning to the Pocket</p>
+<p>Objective: Train the ability to visualize specific movements and reinforce the habit of returning to the pocket.</p>
+<p class="doc-bold">1. Close your eyes. Imagine yourself on a wave.</p>
+<p class="doc-bold">2. Visualize the pocket. See where the energy is strongest.</p>
+<p class="doc-bold">3. Imagine executing a turn. See yourself moving away from the pocket.</p>
+<p class="doc-bold">4. Now visualize returning to the pocket. Feel the energy increase as you get closer.</p>
+<p class="doc-bold">5. Repeat for 3-5 waves in your mind. Each time, the return to the pocket gets faster.</p>
+<p class="doc-bold">DRILL L6  Bottom Turn Mechanics (No Skateboard)</p>
+<p class="doc-bold">Objective: Develop correct mechanics for the bottom turn and cutback without balance challenges.</p>
+<p class="doc-bold">1. Stand in power stance. Simulate dropping into the bottom turn using flexion and extension.</p>
+<p class="doc-bold">2. Transition into the cutback: engage torso rotation and obliques.</p>
+<p class="doc-bold">3. 5 backside repetitions. Focus on compression at the bottom, extension at the top.</p>
+<p class="doc-bold">4. 5 frontside repetitions. Same focus.</p>
+<p class="doc-bold">5. Coach provides feedback on posture, torso activation, and arm movement.</p>
+<h1 class="doc-h1" id="s33">SECTION 7: KEY CONCEPTS REFERENCE</h1>
+<p>These are the mental models that drive your surfing at Yellow Belt. Return to this page whenever you need a reminder.</p>
+<p class="doc-bold">P·R·C·H — The Four Basic Movements</p>
+<p>Every movement in surfing can be understood through four patterns:</p>
+<p>P — Posture: The foundation of all power transfer. Back straight, head up, aligned with center of board.</p>
+<p>R — Rotation: The engine of every turn. Eyes lead, body follows, energy transfers to feet and board.</p>
+<p>C — Compression: Creates internal energy. Lower your center of gravity. Compress then extend for speed.</p>
+<p>H — Hold: Sustain the position longer than feels natural. Hold through the apex, then release.</p>
+<p class="doc-bold">Three Circles of Power</p>
+<p>Your surfing performance depends on three elements working together:</p>
+<p>Circle 1 — Body: Your posture, rotation, compression, and hold. How you move.</p>
+<p>Circle 2 — Board: Your foot position and weight distribution. How the board responds.</p>
+<p>Circle 3 — Wave: The energy, direction, and structure of the wave. What the ocean gives you.</p>
+<p class="doc-bold">When all three circles align, you experience FLOW. When one breaks, the ride breaks.</p>
+<p class="doc-bold">Feet Position on the Board</p>
+<p>Your rear foot position determines how the board responds:</p>
+<p>Position 1 (Neutral): Rear foot centered over the fins. Default for wave-face riding and speed management.</p>
+<p>Position 2 (Engaged): Rear foot shifted back toward the tail. More board response for turns.</p>
+<p>Position 3 (Full Tail): Rear foot at the very end. Maximum leverage for advanced maneuvers (future belts).</p>
+<p class="doc-bold">Your front foot should always be centered on the stringer. This is the axis of rotation.</p>
+<p class="doc-bold">Quick Reference: Yellow Belt Concepts</p>
+<h1 class="doc-h1" id="s34">SECTION 8: YOUR PROGRESSION</h1>
+<p>Progression at Yellow Belt is not measured in days. It is measured in observable behaviors across multiple sessions. Here is what advancement looks like.</p>
+<p class="doc-bold">Early Yellow Belt (Sequence #6 Entry)</p>
+<p>You paddle out through whitewater without assistance, even if turtle rolls are imperfect.</p>
+<p>You catch at least one green wave per session with an intentional paddle.</p>
+<p>You attempt to angle the takeoff, even if the angle is sometimes wrong.</p>
+<p>You can identify left-breaking and right-breaking waves before paddling.</p>
+<p class="doc-bold">Mid Yellow Belt (Sequence #6 to #7 Transition)</p>
+<p>You catch green waves consistently (more catches than misses).</p>
+<p>Your paddling speed changes visibly between positioning and wave-catching.</p>
+<p>You take off closer to the pocket more often than from the shoulder.</p>
+<p>You turn intentionally on the wave face (not just going straight).</p>
+<p>You perform venue analysis with minimal coach correction.</p>
+<p class="doc-bold">Late Yellow Belt (Approaching Promotion to Blue Belt)</p>
+<p>You ride along the wave face with clear directional intent on most waves.</p>
+<p>You attempt vertical movement (up and down on the face), even if inconsistent.</p>
+<p>You manage a full session flow independently: paddle out, select, commit, ride, reset.</p>
+<p>You self-assess after waves without prompting.</p>
+<p>You recognize when conditions are beyond your level and communicate this.</p>
+<p class="doc-bold">What Comes Next: Blue Belt (Foundation)</p>
+<p>At Blue Belt, you move toward consistency and independence on green waves. Angled takeoffs are expected. Pocket awareness is habitual. Turns become linked. Named maneuver expressions begin. You are building a surfing vocabulary, not just surviving the wave.</p>
+<p class="doc-bold">The Surf Sequence®</p>
+<p>By Marcelo Castellanos</p>
+<p>Enkrateia SA de CV — All Rights Reserved</p>
+<h1 class="doc-h1" id="s35">APPENDIX: VIDEO PRODUCTION GUIDE</h1>
+<p>This appendix lists all videos referenced in this manual. Use it as your shot list for production.</p>
+<p class="doc-bold">Total videos: 40. Estimated total production time: 70-85 minutes of finished content.</p>
+<p>Recommended format: 1080p vertical (9:16) for mobile scanning, with horizontal (16:9) alternative for classroom projection.</p>
+<p>Host on a platform that supports unlisted/private links. Each QR code in the printed manual will link to the corresponding video URL.</p>
+<div class="table-wrap"><table>
+<tr><th>YELLOW BELT
+NOVICE</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>WHITE
+#1-#5</th><th>YELLOW
+#6-#7</th><th>BLUE
+#8-#13</th><th>PURPLE
+TBD</th><th>BROWN
+TBD</th><th>BLACK
+TBD</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-00  |  2-3 min
+Welcome to Yellow Belt
+Overview of what you will learn, what changes from White Belt, and how to use this manual.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-01  |  3-4 min
+The Wave — Understanding Energy
+Complete overview of wave anatomy, energy direction, and why the pocket matters.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Energy lives in the pocket.
+Everything you do on the wave depends on your relationship with the pocket. Stay close to the pocket = more speed, more power, more options. Drift to the shoulder = less energy, slower, fewer options.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-02  |  1-2 min
+Parts of the Wave
+Visual breakdown of face, pocket, lip, shoulder, and whitewater with real wave footage.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-03  |  2 min
+Types of Waves &amp; Breaks
+How to recognize spilling, plunging, and closeout waves. Beach breaks vs. point breaks vs. reef breaks.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Read the stage, choose your moment.
+You want to catch the wave between Stage 2 and Stage 3 — when the face is formed and the pocket is building, but before it collapses into whitewater.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-04  |  1-2 min
+Wave Stages
+Animation or footage showing the four stages of a wave from swell to whitewater.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-05  |  1-2 min
+Reading Lefts and Rights
+How to identify wave direction from the lineup and adjust your positioning.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Energy first. Maneuvers later.
+If you have not found the energy, no technique will save you. Connect with the pocket before attempting any movement on the wave.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-06  |  2 min
+The Pocket Relationship
+Why the pocket is your energy source, how to stay close to it, and what happens when you drift away.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-07  |  2-3 min
+Safety at Yellow Belt
+What changes from White Belt: deeper water, green waves, other surfers in the lineup. How to stay safe.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-08  |  1 min
+Safety Signals
+Demonstration of all hand signals between coach and student.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-09  |  2 min
+Rip Currents &amp; Emergency Protocol
+How to identify rip currents, what to do if caught, and when to ask for help.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-10  |  2-3 min
+Surf Etiquette in Action
+Real lineup scenarios showing priority, drop-in avoidance, and proper paddle-out routes.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-11  |  3-4 min
+The Complete Yellow Belt Sequence
+Full walkthrough of the sequence from beach to wave and back. Overview before the detail.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-12  |  1-2 min
+Venue Analysis
+How to read a surf spot: what to look for, how to identify safe zones and hazards.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-13  |  1-2 min
+Setting Session Goals
+How to define a clear mission for each session and why it matters for progress.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-14  |  1-2 min
+Surf Warm-Up Routine
+Complete warm-up sequence for Yellow Belt sessions: mobility, activation, and mental preparation.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-15  |  1-2 min
+Sweet Spot &amp; Board Entry
+Quick review of finding the sweet spot. Should be automatic by now — this video is a refresher.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-16  |  1-2 min
+Paddling Technique &amp; Efficiency
+Detailed breakdown of paddle mechanics: hand entry, stroke path, body position, and breathing.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-17  |  1-2 min
+Turtle Roll Technique
+Step-by-step turtle roll demonstration in real conditions. Common mistakes and corrections.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-18  |  1-2 min
+Paddling Speeds 1-2-3-4
+Demonstration of each speed with explanation of when and why to use each one.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Paddling is speed management.
+Think of your paddling like gears in a car. You do not drive in fifth gear through a parking lot. Match your paddling intensity to the situation.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-19  |  1-2 min
+Chase the Pocket
+How to identify where the pocket will form and how to adjust your position as the wave approaches.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-20  |  1-2 min
+Correct Paddle Angle
+Visual demonstration of angled vs. straight takeoffs. Why angle = longer rides and more control.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Angle of approach.
+Going straight wastes the wave. Angling the takeoff in the direction the wave is breaking allows you to ride along the face instead of racing toward shore.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-21  |  1-2 min
+Cobra &amp; Picking Your Line
+Cobra position on green waves. How to scan the wave and commit to your direction.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-22  |  1-2 min
+Pop-Up on Green Waves
+Pop-up execution on green waves. Focus on foot placement accuracy and timing with wave energy.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-23  |  1-2 min
+Power Stance on Green Waves
+How posture changes from whitewater to green waves. Using compression and extension for speed.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-24  |  1-2 min
+Impulse Technique
+Backside and frontside impulse demonstrated. When to use it and how to return to posture.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-25  |  1-2 min
+Basic Turns: Frontside &amp; Backside
+Rotation mechanics and kinetic chain. Eyes lead, body follows, board responds.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: The Kinetic Chain
+Sight → Neck &amp; Head Rotation → Torso → Hips → Ankles. Rotation starts with your eyes. If you do not look, you do not turn.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-26  |  1-2 min
+Go Up and Down — Playing with the Pocket
+Vertical movement on the wave face. How to use gravity and the pocket to generate speed.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Vertical movement is a speed tool.
+Going up creates potential energy. Going down converts it to kinetic energy (speed). This is how surfers maintain and generate speed on the wave face.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-27  |  1-2 min
+Starfish Dismount
+Safe exit from green waves. Shoulder exit vs. whitewater exit techniques.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>THE INFINITE CIRCLE
+POSTURE  →  ROTATION  →  PROJECTION  →  EXECUTION  →  RECOVERY
+↻  Return to POSTURE and repeat</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-28  |  2-3 min
+The Infinite Circle
+How the riding sequence repeats within a single wave. Real footage with loops identified.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-29  |  1-2 min
+How Missions Work
+Explanation of the mission system, how to track your progress, and why focused practice beats random surfing.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: The board is a tool, not something that drags you.
+You control the board. The board does not control you. Every interaction with the board should be intentional.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Body–board–wave relationship.
+The sweet spot connects you to the board. Alignment connects you to the wave. Together they create a chain of control.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Stability before speed.
+When the pop-up is stable, confidence appears naturally. Do not rush to move — establish your base first.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: A stable base creates control.
+If the front foot is not centered, the board does not respond to your rotation. Precision here enables everything that follows.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Active speed control.
+You have a brake and an accelerator. Learn to use them. Weight forward = speed. Weight back = brake. Impulse = recovery.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: If the pocket moves, you move.
+The pocket is not fixed. It moves as the wave breaks. Your job is to track it and stay close.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Cobra is a decision moment.
+The cobra is not a pause. It is the instant where you scan the wave and choose where to go. Look, decide, commit.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Eyes lead the rotation.
+Look where you want to go. Your body will follow your eyes through the kinetic chain.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Same chain, different direction.
+The mechanics are identical. Eyes → head → torso → hips → ankles. Only the direction changes.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Turn, recover, repeat.
+This is your first taste of the Infinite Circle. Turn, add impulse to recover speed, return to posture, and go again.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: The wave face is your playground.
+Going up and down is how surfers generate and manage speed. Think of it as pumping energy from the wave itself.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th></th></tr>
+<tr><td>Repetitions:</td><td></td></tr>
+<tr><td>Focus (1-10):</td><td></td></tr>
+<tr><td>Difficulty (1-10):</td><td></td></tr>
+<tr><td>Accomplished:</td><td>YES  /  NO</td></tr>
+<tr><td>What to work next:</td><td></td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-30  |  1-2 min
+On-Land Drill Overview
+Why on-land practice matters and how to get the most from each drill.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Key Idea
+Stability before speed. When the pop-up is stable, confidence appears naturally.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-31  |  1-2 min
+Pop-Up Drill
+Detailed pop-up drill on flat surface with corrections for common errors.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th>Repetitions:</th><th>Notes:</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Key Idea
+If the foot is not centered, the board does not rotate.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-32  |  1-2 min
+Transitions &amp; Rotations Drill
+Stance transitions on land. Foot positions, rotation mechanics, and common errors.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th>Repetitions:</th><th>Notes:</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Key Idea
+Rotation starts with the eyes. Sight → Neck → Torso → Hips → Ankles.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-33  |  1-2 min
+Kinetic Chain Drill
+Step-by-step kinetic chain activation. How vision drives rotation.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th>Repetitions:</th><th>Notes:</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Key Idea
+Going down = speed. Going up = potential energy. The rhythm of up and down is the rhythm of surfing.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-34  |  1-2 min
+Wave Simulation Drill
+Top-to-bottom flow simulation. Rail-to-rail transitions on land.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th>Repetitions:</th><th>Notes:</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Key Idea
+The pocket is always there. When you lose speed, the answer is the same: go back to the source.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-35  |  1-2 min
+Guided Visualization
+Audio-guided visualization exercise for pocket awareness and wave riding.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th>Repetitions:</th><th>Notes:</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>KEY CONCEPT: Key Idea
+The bottom turn is the foundation of every maneuver. No bottom turn = no setup = no execution.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-36  |  1-2 min
+Bottom Turn Mechanics
+Frontside and backside bottom turn mechanics on flat ground. Body position and common errors.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Time:</th><th>Repetitions:</th><th>Notes:</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-37  |  2-3 min
+P·R·C·H Explained
+The four basic movement patterns with real surf footage examples.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-38  |  2 min
+Three Circles of Power
+How body, board, and wave interact. Simple visual explanation with wave footage.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>SCAN
+QR</th><th>VIDEO YB-39  |  1-2 min
+Feet Position
+Board foot positions demonstrated. How each position changes the board&#x27;s response.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Energy First, Maneuvers Later</th><th>Connect with the pocket before attempting any movement.</th></tr>
+<tr><td>The Wave Has Structure</td><td>Face, pocket, lip, shoulder, whitewater. Read the parts.</td></tr>
+<tr><td>Angle of Approach</td><td>Angle your takeoff in the direction the wave is breaking.</td></tr>
+<tr><td>Paddling is Speed Management</td><td>4 gears. Right speed at the right moment.</td></tr>
+<tr><td>The Pocket Relationship</td><td>The pocket is your energy source. Stay close.</td></tr>
+<tr><td>Vertical Movement = Speed</td><td>Up creates potential energy. Down converts it to speed.</td></tr>
+<tr><td>Autonomy is a Skill</td><td>Making decisions without the coach is practiced, not given.</td></tr>
+<tr><td>Session Flow</td><td>Paddle out, position, wait, select, commit, ride, exit, reset.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>REMEMBER
+The sequence is the method.
+Trust the process. Master each step.
+The wave will reward your preparation.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>ID</th><th>Title</th><th>Description</th><th>Duration</th></tr>
+<tr><td>YB-00</td><td>Welcome to Yellow Belt</td><td>Overview, what changes, how to use manual</td><td>2-3 min</td></tr>
+<tr><td>YB-01</td><td>The Wave — Understanding Energy</td><td>Wave anatomy, energy direction, pocket</td><td>3-4 min</td></tr>
+<tr><td>YB-02</td><td>Parts of the Wave</td><td>Face, pocket, lip, shoulder, whitewater</td><td>1-2 min</td></tr>
+<tr><td>YB-03</td><td>Types of Waves &amp; Breaks</td><td>Spilling, plunging, closeout. Beach/point/reef</td><td>2 min</td></tr>
+<tr><td>YB-04</td><td>Wave Stages</td><td>Four stages from swell to whitewater</td><td>1-2 min</td></tr>
+<tr><td>YB-05</td><td>Reading Lefts and Rights</td><td>Identify wave direction from lineup</td><td>1-2 min</td></tr>
+<tr><td>YB-06</td><td>The Pocket Relationship</td><td>Pocket as energy source</td><td>2 min</td></tr>
+<tr><td>YB-07</td><td>Safety at Yellow Belt</td><td>What changes: deeper water, green waves</td><td>2-3 min</td></tr>
+<tr><td>YB-08</td><td>Safety Signals</td><td>All hand signals demonstration</td><td>1 min</td></tr>
+<tr><td>YB-09</td><td>Rip Currents &amp; Emergency</td><td>Identify and escape rip currents</td><td>2 min</td></tr>
+<tr><td>YB-10</td><td>Surf Etiquette in Action</td><td>Priority, drop-in, paddle-out routes</td><td>2-3 min</td></tr>
+<tr><td>YB-11</td><td>Complete Yellow Belt Sequence</td><td>Full walkthrough beach to wave</td><td>3-4 min</td></tr>
+<tr><td>YB-12</td><td>Venue Analysis</td><td>How to read a surf spot</td><td>2 min</td></tr>
+<tr><td>YB-13</td><td>Setting Session Goals</td><td>Define clear mission per session</td><td>1-2 min</td></tr>
+<tr><td>YB-14</td><td>Surf Warm-Up Routine</td><td>Complete warm-up sequence</td><td>2-3 min</td></tr>
+<tr><td>YB-15</td><td>Sweet Spot &amp; Board Entry</td><td>Refresher on sweet spot</td><td>1 min</td></tr>
+<tr><td>YB-16</td><td>Paddling Technique</td><td>Stroke mechanics, body position</td><td>2 min</td></tr>
+<tr><td>YB-17</td><td>Turtle Roll Technique</td><td>Step-by-step in real conditions</td><td>2 min</td></tr>
+<tr><td>YB-18</td><td>Paddling Speeds 1-2-3-4</td><td>Each speed demonstrated</td><td>2 min</td></tr>
+<tr><td>YB-19</td><td>Chase the Pocket</td><td>Positioning before and during catch</td><td>2 min</td></tr>
+<tr><td>YB-20</td><td>Correct Paddle Angle</td><td>Angled vs. straight takeoffs</td><td>2 min</td></tr>
+<tr><td>YB-21</td><td>Cobra &amp; Picking Your Line</td><td>Cobra on green waves, line selection</td><td>2 min</td></tr>
+<tr><td>YB-22</td><td>Pop-Up on Green Waves</td><td>Foot placement and timing</td><td>2 min</td></tr>
+<tr><td>YB-23</td><td>Power Stance on Green Waves</td><td>Compression/extension for speed</td><td>2 min</td></tr>
+<tr><td>YB-24</td><td>Impulse Technique</td><td>Backside and frontside impulse</td><td>2 min</td></tr>
+<tr><td>YB-25</td><td>Basic Turns: FS &amp; BS</td><td>Rotation and kinetic chain</td><td>2 min</td></tr>
+<tr><td>YB-26</td><td>Go Up and Down</td><td>Vertical movement on wave face</td><td>2-3 min</td></tr>
+<tr><td>YB-27</td><td>Starfish Dismount</td><td>Safe exit techniques</td><td>1 min</td></tr>
+<tr><td>YB-28</td><td>The Infinite Circle</td><td>How the riding sequence repeats</td><td>2-3 min</td></tr>
+<tr><td>YB-29</td><td>How Missions Work</td><td>Mission system explanation</td><td>1-2 min</td></tr>
+<tr><td>YB-30</td><td>On-Land Drill Overview</td><td>Why on-land practice matters</td><td>1-2 min</td></tr>
+<tr><td>YB-31</td><td>Pop-Up Drill</td><td>Detailed pop-up on flat surface</td><td>2 min</td></tr>
+<tr><td>YB-32</td><td>Transitions &amp; Rotations Drill</td><td>Stance transitions on land</td><td>2 min</td></tr>
+<tr><td>YB-33</td><td>Kinetic Chain Drill</td><td>Vision-driven rotation</td><td>2 min</td></tr>
+<tr><td>YB-34</td><td>Wave Simulation Drill</td><td>Top-to-bottom flow on land</td><td>1-2 min</td></tr>
+<tr><td>YB-35</td><td>Guided Visualization</td><td>Audio-guided pocket awareness</td><td>2-3 min</td></tr>
+<tr><td>YB-36</td><td>Bottom Turn Mechanics</td><td>Frontside/backside on ground</td><td>2 min</td></tr>
+<tr><td>YB-37</td><td>P·R·C·H Explained</td><td>Four basic movements</td><td>2-3 min</td></tr>
+<tr><td>YB-38</td><td>Three Circles of Power</td><td>Body, board, wave interaction</td><td>2 min</td></tr>
+<tr><td>YB-39</td><td>Feet Position</td><td>Board foot positions demonstrated</td><td>1-2 min</td></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Yellow Belt Student Manual — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

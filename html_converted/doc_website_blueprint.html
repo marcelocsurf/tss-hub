@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Strategy Blueprint — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#5AC3E7;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🌐</span>
+    <div>
+      <div class="top-bar__title">Website Strategy Blueprint</div>
+      <div class="top-bar__sub">The Surf Sequence® — WEBSITE</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">WEBSITE</span>
+    <span>4,561 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">WEBSITE STRATEGY BLUEPRINT</a><a href="#s3">A. DIAGNÓSTICO ESTRATÉGICO DEL SITIO ACTUAL</a><a href="#s4">Lo que está bien</a><a href="#s5">Lo que está mal</a><a href="#s6">Lo que confunde</a><a href="#s7">Lo que no conecta emocionalmente</a><a href="#s8">Lo que no vende</a><a href="#s9">Lo que debe desaparecer</a><a href="#s10">Lo que debe fortalecerse</a><a href="#s11">Mensaje principal que debe dominar el sitio</a><a href="#s12">B. NUEVA LÓGICA MAESTRA DEL WEBSITE</a><a href="#s13">Secuencia Lógica del Journey</a><a href="#s14">Por qué este orden</a><a href="#s15">C. MAPA COMPLETO DEL WEBSITE (SITEMAP)</a><a href="#s16">Páginas principales</a><a href="#s17">Páginas secundarias (opcionales pero recomendadas)</a><a href="#s18">D. ESTRUCTURA FINAL DE LA HOME, SECCIÓN POR SECCIÓN</a><a href="#s19">SECCIÓN: 02 — EL PROBLEMA</a><a href="#s20">SECCIÓN: 03 — LA SOLUCIÓN: TSS</a><a href="#s21">SECCIÓN: 05 — RESULTADOS Y PRUEBA SOCIAL</a><a href="#s22">SECCIÓN: 08 — EL ECOSISTEMA TSS</a><a href="#s23">SECCIÓN: 10 — CTA FINAL</a><a href="#s24">SECCIÓN: 11 — FOOTER</a><a href="#s25">E. COPY COMPLETO PROPUESTO PARA LA HOME</a><a href="#s26">HERO</a><a href="#s27">THE SURF SEQUENCE®</a><a href="#s28">EL PROBLEMA</a><a href="#s29">LA SOLUCIÓN: THE SURF SEQUENCE®</a><a href="#s30">TU PROGRESIÓN TIENE ESTRUCTURA</a><a href="#s31">RESULTADOS REALES</a><a href="#s32">[ESPACIO PARA TESTIMONIOS CON FOTO, NOMBRE Y RESULTADO ESPECÍFICO]</a><a href="#s33">CREADO POR MARCELO CASTELLANOS</a><a href="#s34">¿POR DÓNDE EMPIEZAS?</a><a href="#s35">SOY SURFISTA</a><a href="#s36">SOY COACH</a><a href="#s37">SOY ACADEMIA / ESCUELA</a><a href="#s38">EL ECOSISTEMA TSS</a><a href="#s39">[DIAGRAMA VISUAL DEL ECOSISTEMA]</a><a href="#s40">TU PRIMER PASO</a><a href="#s41">TU PROGRESIÓN EMPIEZA HOY</a><a href="#s42">F. MEJORAS DE DISEÑO Y EXPERIENCIA</a><a href="#s43">Jerarquía visual ideal</a><a href="#s44">Ritmo de lectura</a><a href="#s45">Dónde usar cada tipo de contenido</a><a href="#s46">Cómo hacer que el sitio se sienta premium</a><a href="#s47">G. RECOMENDACIONES ESPECÍFICAS PARA WIX</a><a href="#s48">Organización de páginas</a><a href="#s49">Bloques recomendados en Wix</a><a href="#s50">Optimización mobile en Wix</a><a href="#s51">Velocidad y claridad</a><a href="#s52">Para que no se sienta improvisado</a><a href="#s53">H. VERSIÓN FINAL RESUMIDA — LISTA PARA IMPLEMENTAR</a><a href="#s54">Estructura final del sitio</a><a href="#s55">Orden final de secciones de la Home</a><a href="#s56">CTAs principales (en orden de prioridad)</a><a href="#s57">Assets necesarios para implementar</a><a href="#s58">Prioridades de implementación</a><a href="#s59">FIN DEL DOCUMENTO</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">WEBSITE STRATEGY BLUEPRINT</h1>
+<p>Propuesta integral de reconstrucción web: diagnóstico, arquitectura, copy, UX y plan de implementación</p>
+<p>Preparado por: Estrategia Web Senior</p>
+<p>Para: Marcelo Castellanos — Enkrateia / TSS</p>
+<p>Fecha: 19 de marzo, 2026</p>
+<p>Clasificación: Estratégico — Uso interno</p>
+<h1 class="doc-h1" id="s3">A. DIAGNÓSTICO ESTRATÉGICO DEL SITIO ACTUAL</h1>
+<p>Análisis realizado a partir del sitio en Wix (marcelocsurf.wixsite.com/misitio), la información pública disponible sobre TSS y Marcelo Castellanos, y el universo documental completo del proyecto (Canon v5.0, Brand Manual v5.0, Business Model Blueprint, Three Systems Framework, Belt Progression System, y materiales complementarios).</p>
+<h2 class="doc-h2" id="s4">Lo que está bien</h2>
+<ul class="doc-list">
+<li>Existe un sitio. El primer paso está dado. Hay presencia digital activa.</li>
+<li>La marca TSS tiene un universo intelectual extraordinariamente profundo detrás: Canon v5.0, sistema de cintas de 6 niveles, 26 secuencias de ejecución, 4 pilares + capa de seguridad, modelo de negocio definido, manual de marca completo.</li>
+<li>Hay activos visuales (logos, paleta, tipografía) ya definidos y alineados con Canon.</li>
+<li>El posicionamiento como “el PADI del surf” es poderoso y diferenciado.</li>
+<li>Hay validación olímpica real (París 2024, LA 2028) que la mayoría de competidores no tienen.</li>
+</ul>
+<h2 class="doc-h2" id="s5">Lo que está mal</h2>
+<ul class="doc-list">
+<li>El sitio actual no refleja ni el 10% de la profundidad real de TSS. Hay una desproporción brutal entre lo que existe detrás (60+ documentos, sistema completo) y lo que se muestra al mundo.</li>
+<li>El dominio es un subdominio de Wix (marcelocsurf.wixsite.com/misitio). Esto destruye autoridad y credibilidad inmediatamente. Un sistema que aspira a ser estándar global no puede vivir en un subdominio gratuito de Wix.</li>
+<li>La estructura no tiene lógica de conversión. No hay un journey claro del visitante: ¿qué es TSS? → ¿por qué importa? → ¿cómo funciona? → ¿qué hago ahora?</li>
+<li>No hay diferenciación clara entre TSS (la metodología/IP) y Puro Surf (el operador). Esto confunde al visitante y diluye el posicionamiento de TSS como sistema independiente.</li>
+<li>El copy es genérico y no transmite la filosofía real. Suena como cualquier escuela de surf, no como un sistema metodológico con rigor científico.</li>
+</ul>
+<h2 class="doc-h2" id="s6">Lo que confunde</h2>
+<ul class="doc-list">
+<li>No queda claro si TSS es una escuela de surf, un método, una app, una certificación, o todo a la vez. El sitio no establece la categoría correcta desde el primer segundo.</li>
+<li>La relación TSS/Puro Surf/Marcelo Castellanos no está articulada. El visitante no sabe quién es quién ni por qué importa.</li>
+<li>No hay un mapa mental claro de la oferta. ¿Soy surfista principiante? ¿Soy coach? ¿Soy dueño de academia? ¿Soy inversor? Cada uno necesita un camino diferente.</li>
+<li>El sistema de cintas — que es el corazón del producto — no se presenta de forma clara ni atractiva.</li>
+</ul>
+<h2 class="doc-h2" id="s7">Lo que no conecta emocionalmente</h2>
+<ul class="doc-list">
+<li>No hay storytelling. La historia de Marcelo, de TSS, del por qué existe este sistema, no aparece de forma que genere conexión humana.</li>
+<li>No hay testimonios o resultados tangibles que demuestren transformación real.</li>
+<li>El tono es informativo pero no inspirador. TSS tiene una filosofía profunda (“Evolve through play”) que debería sentirse en cada sección.</li>
+<li>No hay elementos de prueba social (medios, menciones, datos, validación olímpica).</li>
+</ul>
+<h2 class="doc-h2" id="s8">Lo que no vende</h2>
+<ul class="doc-list">
+<li>No hay un CTA claro y repetido. El visitante no sabe qué acción tomar en ningún momento.</li>
+<li>No hay diseño de oferta. No se estructura lo que el visitante puede obtener: ¿una evaluación gratuita? ¿un PDF? ¿una llamada? ¿una certificación? ¿un camp?</li>
+<li>No hay urgencia ni exclusividad. TSS es un sistema nuevo y único, pero el sitio no transmite por qué actuar ahora.</li>
+<li>No hay lead magnet ni mecanismo de captura. Todo el tráfico que llega, se pierde.</li>
+</ul>
+<h2 class="doc-h2" id="s9">Lo que debe desaparecer</h2>
+<ul class="doc-list">
+<li>El subdominio de Wix. Debe migrarse a un dominio propio (thesurfsequence.com o similar).</li>
+<li>Cualquier lenguaje genérico de “escuela de surf”. TSS no es una escuela. Es una metodología.</li>
+<li>Secciones que no tienen propósito estratégico claro. Cada página debe justificar su existencia.</li>
+<li>Imágenes genéricas de stock. Todo debe ser real, de TSS, de Puro Surf, de sesiones reales.</li>
+</ul>
+<h2 class="doc-h2" id="s10">Lo que debe fortalecerse</h2>
+<ul class="doc-list">
+<li>El posicionamiento como SISTEMA GLOBAL de educación en surf (no como escuela).</li>
+<li>La visualización del sistema de cintas como el corazón de la experiencia.</li>
+<li>La historia del fundador como elemento de autoridad y conexión.</li>
+<li>La prueba social y validación (ISA, Olimpiadas, atletas formados, años de experiencia).</li>
+<li>Los CTAs y el diseño de oferta para cada tipo de visitante.</li>
+</ul>
+<h2 class="doc-h2" id="s11">Mensaje principal que debe dominar el sitio</h2>
+<p>TSS es el primer sistema integral, progresivo y certificable de educación en surf del mundo. No es una escuela. Es el estándar. Creado por un coach olímpico ISA, validado en competencia de élite, diseñado para cualquier surfista que quiera progresar con estructura, seguridad y propósito.</p>
+<h1 class="doc-h1" id="s12">B. NUEVA LÓGICA MAESTRA DEL WEBSITE</h1>
+<p>La lógica del sitio debe seguir un journey psicológico que lleva al visitante de la curiosidad a la convicción. No es un brochure estático. Es una máquina de conversión estratégica.</p>
+<h2 class="doc-h2" id="s13">Secuencia Lógica del Journey</h2>
+<p>Fase 1 — CAPTURA: ¿Qué es esto y por qué debería importarme? El hero debe responder esto en 3 segundos.</p>
+<p>Fase 2 — PROBLEMA: Nombrar el dolor que el surfista ya siente: progresión estancada, falta de estructura, no saber qué practicar, sensación de plateau.</p>
+<p>Fase 3 — SOLUCIÓN: Presentar TSS como la respuesta estructural a ese problema. No una opinión, un sistema.</p>
+<p>Fase 4 — CÓMO FUNCIONA: Mostrar el sistema de cintas, los 4 pilares, la progresión. Hacer tangible lo abstracto.</p>
+<p class="doc-bold">Fase 5 — PRUEBA: Demostrar que funciona: resultados, testimonios, validación olímpica, números.</p>
+<p class="doc-bold">Fase 6 — AUTORIDAD: Mostrar quién creó esto y por qué tiene la legitimidad para hacerlo.</p>
+<p class="doc-bold">Fase 7 — OFERTA: Qué puede hacer el visitante ahora mismo. Caminos claros por perfil.</p>
+<p class="doc-bold">Fase 8 — ACCIÓN: CTA final claro, sin fricción, con urgencia real.</p>
+<p>Esta secuencia es universal: funciona para surfistas, coaches, dueños de academia e inversores. La diferencia está en qué camino toman después de la Fase 4.</p>
+<h2 class="doc-h2" id="s14">Por qué este orden</h2>
+<ul class="doc-list">
+<li>Abre con impacto visual y declaración de categoría (no con descripción genérica).</li>
+<li>Nombra el problema antes de la solución: esto genera identificación emocional y prepara al cerebro para recibir la respuesta.</li>
+<li>Muestra el sistema antes de pedir acción: el visitante necesita entender QUÉ es antes de decidir si lo quiere.</li>
+<li>La prueba social viene después de la explicación: primero entiende el sistema, luego ve que funciona.</li>
+<li>La autoridad del fundador cierra el ciclo de confianza antes de la oferta.</li>
+<li>La oferta se presenta cuando el visitante ya está convencido, no antes.</li>
+</ul>
+<h1 class="doc-h1" id="s15">C. MAPA COMPLETO DEL WEBSITE (SITEMAP)</h1>
+<h2 class="doc-h2" id="s16">Páginas principales</h2>
+<ul class="doc-list">
+<li>1. HOME — Página principal con el journey completo. Es la pieza maestra.</li>
+<li>2. EL MÉTODO — Explicación profunda de TSS: filosofía, pilares, Círculo Infinito, sistema de bloques.</li>
+<li>3. CINTAS &amp; PROGRESIÓN — Visualización completa del sistema de cintas (White → Black) con lo que incluye cada nivel.</li>
+<li>4. PARA SURFISTAS — Landing para surfistas individuales: qué obtienen, cómo empezar, qué esperar.</li>
+<li>5. PARA COACHES — Landing para coaches: certificación L1-L5, beneficios, requisitos.</li>
+<li>6. PARA ACADEMIAS — Landing para dueños de escuela/academia: afiliación, licencia, TSS Brain.</li>
+<li>7. SOBRE MARCELO — Historia del fundador, credenciales, filosofía personal, trayectoria.</li>
+<li>8. RESULTADOS — Testimonios, casos reales, datos, validación olímpica.</li>
+<li>9. RECURSOS — Quiz de nivel, PDFs descargables, blog/contenido educativo.</li>
+<li>10. CONTACTO / APLICA — Formulario segmentado por perfil: surfista, coach, academia, otro.</li>
+</ul>
+<h2 class="doc-h2" id="s17">Páginas secundarias (opcionales pero recomendadas)</h2>
+<ul class="doc-list">
+<li>FAQ — Preguntas frecuentes segmentadas por perfil.</li>
+<li>PURO SURF (referencia) — Explicación de Puro Surf como operador flagship, claramente separado de TSS.</li>
+<li>COMPARTIENDO OLAS — Brazo de impacto social, para posicionamiento y diferenciación.</li>
+<li>BLOG / INSIGHTS — Contenido de autoridad: artículos, videos, podcast.</li>
+<li>PRIVACIDAD / TÉRMINOS — Legal básico.</li>
+</ul>
+<h1 class="doc-h1" id="s18">D. ESTRUCTURA FINAL DE LA HOME, SECCIÓN POR SECCIÓN</h1>
+<p>La Home es la página más importante. Debe funcionar como una historia completa que lleve al visitante de la curiosidad a la acción. A continuación, cada sección con su lógica.</p>
+<p class="doc-bold">SECCIÓN: 01 — HERO (Above the fold)</p>
+<p class="doc-bold">Objetivo estratégico: Capturar atención, declarar categoría, generar interés inmediato.</p>
+<p class="doc-bold">Mensaje principal: El primer sistema integral de educación en surf del mundo.</p>
+<p class="doc-bold">Submensaje: Progresión estructurada. Validación olímpica. De principiante a elite.</p>
+<p>Contenido sugerido: Video de fondo o imagen hero de alta calidad (sesión real TSS, no stock). Logo TSS prominente. Tagline “Evolve through play” debajo. Dos botones CTA.</p>
+<p class="doc-bold">CTA: Botón primario: “Descubre tu nivel” (quiz). Botón secundario: “Conoce el método”.</p>
+<p>UX / Diseño: Full-width. Video loop sutil o imagen dinámica. Texto centrado sobre overlay oscuro. Fuente Outfit Bold para headline. Máximo 2 líneas de texto. Sin scroll automático. Mobile: imagen estática optimizada, CTAs apilados.</p>
+<p class="doc-bold">Transición: Scroll natural hacia la sección de problema. Flecha sutil o indicador de scroll.</p>
+<h1 class="doc-h1" id="s19">SECCIÓN: 02 — EL PROBLEMA</h1>
+<p>Objetivo estratégico: Generar identificación emocional. Nombrar lo que el surfista siente pero no sabe articular.</p>
+<p class="doc-bold">Mensaje principal: ¿Por qué la mayoría de los surfistas se estancan?</p>
+<p class="doc-bold">Submensaje: No es falta de talento. Es falta de sistema.</p>
+<p>Contenido sugerido: 3-4 pain points visuales con iconos: 1) Progresión sin estructura = frustración, 2) Consejos sueltos en lugar de metodología, 3) No saber qué practicar ni en qué orden, 4) Saltar niveles sin fundamento = malos hábitos.</p>
+<p class="doc-bold">CTA: Ninguno directo. Esta sección prepara la solución.</p>
+<p>UX / Diseño: Fondo claro. Iconos minimalistas en cyan. Texto corto y contundente. Grid de 2x2 en desktop, stack en mobile. Sin imágenes pesadas.</p>
+<p class="doc-bold">Transición: Flujo natural: “Si te identificas, hay una solución…” hacia la sección de solución.</p>
+<h1 class="doc-h1" id="s20">SECCIÓN: 03 — LA SOLUCIÓN: TSS</h1>
+<p>Objetivo estratégico: Presentar TSS como la respuesta directa al problema. Declarar qué es sin rodeos.</p>
+<p class="doc-bold">Mensaje principal: The Surf Sequence®: el estándar que el surf necesitaba.</p>
+<p>Submensaje: Un sistema de progresión en 6 niveles, 4 pilares de desarrollo, 26 secuencias de ejecución. Creado por un coach olímpico ISA. Validado en competencia de élite.</p>
+<p>Contenido sugerido: Bloque de texto breve con los datos duros del sistema. Tres columnas con los pilares principales. Diagrama visual del Círculo Infinito o los Tres Círculos.</p>
+<p>CTA: “Ver cómo funciona” (scroll a siguiente sección) o “Explorar el método” (link a página del método).</p>
+<p>UX / Diseño: Fondo navy oscuro con texto blanco y acentos cyan. Diagrama visual centrado. Datos en números grandes y legibles. Sensación de profundidad y solidez.</p>
+<p class="doc-bold">Transición: Del concepto abstracto al sistema tangible: “Así funciona en la práctica…”</p>
+<p class="doc-bold">SECCIÓN: 04 — SISTEMA DE CINTAS (Cómo funciona)</p>
+<p>Objetivo estratégico: Hacer tangible la progresión. Mostrar que hay un camino claro de principiante a elite.</p>
+<p class="doc-bold">Mensaje principal: 6 cintas. Un camino claro. Tu progresión tiene estructura.</p>
+<p>Submensaje: Cada cinta tiene su contenido, sus secuencias, sus condiciones oceánicas y sus criterios de evaluación.</p>
+<p>Contenido sugerido: Visualización horizontal o vertical de las 6 cintas (White → Yellow → Blue → Purple → Brown → Black) con nombre de nivel, breve descripción, y condiciones clave. Botón para explorar cada una.</p>
+<p class="doc-bold">CTA: “Descubre tu nivel actual” (quiz) o “Ver programa completo” (página de cintas).</p>
+<p>UX / Diseño: Card-based layout con el color de cada cinta como acento. Hover effect que revela más info. En mobile: carrusel horizontal o acordeones. Imágenes reales de surfistas en cada nivel.</p>
+<p class="doc-bold">Transición: De entender el sistema a ver que funciona: “Pero no tomes nuestra palabra…”</p>
+<h1 class="doc-h1" id="s21">SECCIÓN: 05 — RESULTADOS Y PRUEBA SOCIAL</h1>
+<p class="doc-bold">Objetivo estratégico: Demostrar que TSS funciona con evidencia real, no con promesas.</p>
+<p class="doc-bold">Mensaje principal: Resultados reales. Progresión medible. Transformación documentada.</p>
+<p>Submensaje: De principiante a competidor. De coach informal a coach certificado. De academia desordenada a sistema replicable.</p>
+<p>Contenido sugerido: Datos duros: años de experiencia, surfistas formados, coaches certificados, validación olímpica (ISA París 2024, LA 2028). 2-3 testimonios con foto real, nombre, nivel, resultado. Video corto de transformación.</p>
+<p class="doc-bold">CTA: “Comienza tu progresión” o “Habla con nosotros”.</p>
+<p>UX / Diseño: Fondo claro. Números grandes con animación de conteo. Testimonios en cards con foto circular. Video embed limpio. Logos de validación (ISA, Olimpiadas).</p>
+<p class="doc-bold">Transición: De la prueba a la confianza en el creador: “Conoce a quien creó todo esto…”</p>
+<p class="doc-bold">SECCIÓN: 06 — EL FUNDADOR (Marcelo Castellanos)</p>
+<p class="doc-bold">Objetivo estratégico: Humanizar la marca. Establecer autoridad. Generar confianza personal.</p>
+<p class="doc-bold">Mensaje principal: Creado por Marcelo Castellanos. Coach olímpico ISA. Arquitecto de sistemas.</p>
+<p class="doc-bold">Submensaje: +20 años formando surfistas. Metodología validada en el máximo nivel competitivo.</p>
+<p>Contenido sugerido: Foto profesional de Marcelo. Bio condensada: trayectoria, credenciales ISA, experiencia olímpica, filosofía. Cita personal sobre por qué creó TSS. Mención de One Wave (libro).</p>
+<p class="doc-bold">CTA: “Conoce más sobre Marcelo” (link a página de fundador).</p>
+<p>UX / Diseño: Layout split: foto a la izquierda, texto a la derecha. Fondo ligeramente texturizado. Cita destacada en Lora Italic. Sensación personal pero profesional.</p>
+<p class="doc-bold">Transición: De la confianza personal a la oferta: “¿Listo para dar el paso?”</p>
+<p class="doc-bold">SECCIÓN: 07 — TU CAMINO (Oferta segmentada)</p>
+<p class="doc-bold">Objetivo estratégico: Segmentar la audiencia y dirigir cada perfil a su camino específico.</p>
+<p class="doc-bold">Mensaje principal: ¿Dónde encajas tú?</p>
+<p class="doc-bold">Submensaje: Tres caminos claros. Uno para cada perfil.</p>
+<p>Contenido sugerido: Tres cards grandes: 1) SOY SURFISTA — Quiero progresar con estructura, 2) SOY COACH — Quiero certificarme en TSS, 3) SOY ACADEMIA — Quiero implementar TSS. Cada card con icono, breve descripción, y botón.</p>
+<p>CTA: Cada card tiene su propio CTA: “Explora tu programa”, “Ver certificación”, “Solicitar información”.</p>
+<p>UX / Diseño: Grid de 3 columnas, fondo navy. Cards con borde cyan al hover. Iconos claros. En mobile: stack vertical. Cada card clickeable completa.</p>
+<p class="doc-bold">Transición: De la segmentación a la acción final: “Estás a un paso…”</p>
+<h1 class="doc-h1" id="s22">SECCIÓN: 08 — EL ECOSISTEMA TSS</h1>
+<p>Objetivo estratégico: Mostrar que TSS es más grande que un curso: es una red, una comunidad, un estándar global.</p>
+<p class="doc-bold">Mensaje principal: Más que un método. Un ecosistema.</p>
+<p class="doc-bold">Submensaje: TSS, Puro Surf, Compartiendo Olas, TSS Brain. Un sistema interconectado que crece.</p>
+<p>Contenido sugerido: Diagrama visual del ecosistema: TSS (metodología central) → Puro Surf (operador flagship) → Compartiendo Olas (impacto social) → TSS Brain (plataforma digital). Breve descripción de cada componente.</p>
+<p class="doc-bold">CTA: “Explora el ecosistema” o “Solicita información para tu academia”.</p>
+<p>UX / Diseño: Fondo claro. Diagrama interactivo simple o infografía estática. Iconos representativos de cada componente. Conexiones visuales entre elementos.</p>
+<p class="doc-bold">Transición: Del ecosistema al CTA final: “Todo empieza con un primer paso…”</p>
+<p class="doc-bold">SECCIÓN: 09 — RECURSO GRATUITO (Lead Magnet)</p>
+<p>Objetivo estratégico: Capturar leads. Dar valor antes de pedir compromiso. Construir lista de email.</p>
+<p class="doc-bold">Mensaje principal: Descarga gratis: Tu guía de inicio en TSS.</p>
+<p class="doc-bold">Submensaje: Descubre tu nivel actual y recibe un plan de progresión personalizado.</p>
+<p>Contenido sugerido: Preview del PDF o recurso. Formulario simple: nombre, email, “qué nivel crees que tienes”. Entrega automática por email.</p>
+<p class="doc-bold">CTA: “Descarga tu guía gratuita”.</p>
+<p>UX / Diseño: Fondo con acento cyan. Mockup del PDF. Formulario inline, no popup. Máximo 3 campos. Botón grande y contrastante.</p>
+<p class="doc-bold">Transición: Del valor gratuito al cierre final.</p>
+<h1 class="doc-h1" id="s23">SECCIÓN: 10 — CTA FINAL</h1>
+<p class="doc-bold">Objetivo estratégico: Cerrar con fuerza. Una última oportunidad de conversión.</p>
+<p class="doc-bold">Mensaje principal: Tu progresión empieza hoy.</p>
+<p class="doc-bold">Submensaje: El surf sin estructura es solo recreación. Con TSS, es evolución.</p>
+<p>Contenido sugerido: Headline potente. Botón grande. Datos de contacto básicos. Links a redes sociales.</p>
+<p class="doc-bold">CTA: “Comienza ahora” o “Contacta con TSS”.</p>
+<p>UX / Diseño: Full-width. Fondo navy oscuro. Texto blanco. Botón cyan grande. Sin distracciones. Solo el mensaje final y la acción.</p>
+<p class="doc-bold">Transición: Footer del sitio.</p>
+<h1 class="doc-h1" id="s24">SECCIÓN: 11 — FOOTER</h1>
+<p class="doc-bold">Objetivo estratégico: Navegación secundaria, credibilidad legal, redes sociales.</p>
+<p class="doc-bold">Mensaje principal: The Surf Sequence® — El estándar global en educación de surf.</p>
+<p class="doc-bold">Submensaje: Propiedad intelectual de Enkrateia.</p>
+<p>Contenido sugerido: Logo TSS. Links de navegación organizados por columnas: Método, Programas, Sobre, Legal. Redes sociales. Copyright y créditos.</p>
+<p class="doc-bold">CTA: Links internos del sitio.</p>
+<p>UX / Diseño: 3-4 columnas de links. Fondo navy más oscuro que el body. Tipografía pequeña y limpia. Logo en versión reducida.</p>
+<p class="doc-bold">Transición: Fin del sitio.</p>
+<h1 class="doc-h1" id="s25">E. COPY COMPLETO PROPUESTO PARA LA HOME</h1>
+<p>A continuación, el copy listo para implementar. Escrito en español con tono premium, directo, humano y con autoridad. Sin clichés, sin humo, sin frases vacías.</p>
+<h1 class="doc-h1" id="s26">HERO</h1>
+<h1 class="doc-h1" id="s27">THE SURF SEQUENCE®</h1>
+<p>El primer sistema integral de educación en surf del mundo.</p>
+<p>Progresión estructurada en 6 niveles. 4 pilares de desarrollo. Validación olímpica. De tu primera ola a tu mejor maniobra.</p>
+<p>Evolve through play.</p>
+<p class="doc-bold">[BOTÓN] Descubre tu nivel  |  [BOTÓN] Conoce el método</p>
+<h1 class="doc-h1" id="s28">EL PROBLEMA</h1>
+<p class="doc-bold">¿Por qué la mayoría de los surfistas se estancan?</p>
+<p>No es falta de talento. No es falta de olas. Es falta de sistema.</p>
+<p>El surf es el único deporte olímpico que no tiene un estándar global de enseñanza. No hay una ruta clara de progresión. No hay evaluación objetiva. No hay certificación de calidad para quien enseña.</p>
+<p>El resultado: surfistas frustrados que no saben qué practicar, coaches que enseñan por intuición, y academias que no pueden garantizar resultados.</p>
+<p class="doc-bold">Hasta ahora.</p>
+<h1 class="doc-h1" id="s29">LA SOLUCIÓN: THE SURF SEQUENCE®</h1>
+<p class="doc-bold">El estándar que el surf necesitaba.</p>
+<p>TSS es un sistema de educación integral, progresivo y certificable que estructura el aprendizaje del surf desde cero hasta el nivel más avanzado.</p>
+<p>No es una opinión. No es un curso. Es una arquitectura de desarrollo completa, respaldada por ciencia del deporte, validada en competencia olímpica, y diseñada para escalar globalmente.</p>
+<p class="doc-bold">6 niveles de progresión (cintas)     4 pilares de desarrollo     26 secuencias de ejecución</p>
+<p class="doc-bold">Técnica. Cómo te mueves en la tabla.</p>
+<p class="doc-bold">Táctica. Cómo lees el océano.</p>
+<p class="doc-bold">Mental. Cómo decides bajo presión.</p>
+<p class="doc-bold">Físico. Cómo entrenas tu cuerpo para el agua.</p>
+<p class="doc-bold">+ Capa de Seguridad transversal: las condiciones del océano siempre mandan.</p>
+<p class="doc-bold">[BOTÓN] Explorar el método completo</p>
+<h1 class="doc-h1" id="s30">TU PROGRESIÓN TIENE ESTRUCTURA</h1>
+<p class="doc-bold">6 cintas. Un camino claro. Sin atajos.</p>
+<p>Inspirado en el sistema de artes marciales, TSS organiza la progresión del surfista en 6 niveles verificables. Cada cinta tiene sus secuencias, sus condiciones oceánicas, y sus criterios de evaluación. No se sube de nivel por tiempo ni por pago. Se sube por competencia demostrada.</p>
+<p>CINTA BLANCA — Foundational. Control básico, postura, pop-up, posiciones de pie. Aguas poco profundas, olas de 1-2 pies.</p>
+<p>CINTA AMARILLA — Entry &amp; Paddling. 4 velocidades de remo, despegue angulado, identificación de línea. Olas de 2-3 pies.</p>
+<p>CINTA AZUL — Rail Changes &amp; Maniobras. 11 expresiones nombradas: Cruz, Tapaloco, Granada, Elbow, Bottom Turn. Olas de 4-6 pies.</p>
+<p>CINTA PÚRPURA — Advanced. 15 expresiones: Floater, Snap, Tango, Layback, Tail Slide. Olas de 4-8 pies, overhead.</p>
+<p>CINTA MARRÓN — Aéreos. Sistema aéreo completo: Aerial 360, Alley-oop, Power Combos. Condiciones variables.</p>
+<p>CINTA NEGRA — Maestría &amp; Transmisión. Dominio integral. Capacidad de enseñar y evaluar. El Círculo Infinito: maestría = transmisión de conocimiento.</p>
+<p class="doc-bold">[BOTÓN] Descubre tu nivel actual  |  [BOTÓN] Ver programa completo</p>
+<h1 class="doc-h1" id="s31">RESULTADOS REALES</h1>
+<p class="doc-bold">No promesas. Evidencia.</p>
+<p class="doc-bold">+20 años de experiencia formando surfistas</p>
+<p class="doc-bold">ISA Coach Experto certificado al máximo nivel</p>
+<p class="doc-bold">2024 &amp; 2028 Validación olímpica (París + LA)</p>
+<p class="doc-bold">6 niveles de progresión documentada y verificable</p>
+<p class="doc-bold">26 secuencias de ejecución catalogadas y evaluables</p>
+<h1 class="doc-h1" id="s32">[ESPACIO PARA TESTIMONIOS CON FOTO, NOMBRE Y RESULTADO ESPECÍFICO]</h1>
+<p class="doc-bold">[BOTÓN] Comienza tu progresión</p>
+<h1 class="doc-h1" id="s33">CREADO POR MARCELO CASTELLANOS</h1>
+<p class="doc-bold">Coach olímpico ISA. Arquitecto de sistemas. Formador de formadores.</p>
+<p>Marcelo no enseña surf de la forma tradicional. Diseña sistemas de aprendizaje.</p>
+<p>Con más de dos décadas dedicadas a la formación de surfistas de todos los niveles, Marcelo identificó una brecha que nadie había cerrado: el surf no tenía un estándar educativo. No había una ruta de progresión universal, no había certificación de calidad, no había sistema.</p>
+<p>Entonces lo construyó.</p>
+<p>TSS es el resultado de años de observación, investigación, prueba en campo, y refinamiento constante. Validado en Puro Surf (El Salvador), probado en competencia olímpica, y diseñado para escalar a cualquier playa del mundo.</p>
+<p>“Lo que PADI hizo por el buceo, TSS lo hará por el surf. No con marketing, sino con método.”</p>
+<p>— Marcelo Castellanos</p>
+<p class="doc-bold">[BOTÓN] Conoce más sobre Marcelo</p>
+<h1 class="doc-h1" id="s34">¿POR DÓNDE EMPIEZAS?</h1>
+<p class="doc-bold">Tres caminos. Uno para ti.</p>
+<h1 class="doc-h1" id="s35">SOY SURFISTA</h1>
+<p>Quiero progresar con estructura real. Quiero saber dónde estoy, qué me falta, y cómo llegar al siguiente nivel. Quiero dejar de adivinar y empezar a evolucionar.</p>
+<p class="doc-bold">[BOTÓN] Explora tu programa</p>
+<h1 class="doc-h1" id="s36">SOY COACH</h1>
+<p>Quiero certificarme en una metodología reconocida. Quiero enseñar con sistema, no con intuición. Quiero que mi certificación signifique algo real.</p>
+<p class="doc-bold">[BOTÓN] Ver certificación de coaches</p>
+<h1 class="doc-h1" id="s37">SOY ACADEMIA / ESCUELA</h1>
+<p>Quiero implementar un estándar que diferencie mi operación. Quiero una metodología que escale, que certifique a mi equipo, y que me conecte a una red global.</p>
+<p class="doc-bold">[BOTÓN] Solicitar información</p>
+<h1 class="doc-h1" id="s38">EL ECOSISTEMA TSS</h1>
+<p class="doc-bold">Más que un método. Un sistema interconectado.</p>
+<p class="doc-bold">THE SURF SEQUENCE® — La metodología central. La propiedad intelectual. El estándar.</p>
+<p class="doc-bold">PURO SURF — El operador flagship. Donde TSS se ejecuta, valida y perfecciona cada día.</p>
+<p>COMPARTIENDO OLAS — El brazo de impacto social. Surf como herramienta de transformación comunitaria.</p>
+<p>TSS BRAIN — La plataforma digital. Tracking de progresión, gestión de academias, datos en tiempo real.</p>
+<h1 class="doc-h1" id="s39">[DIAGRAMA VISUAL DEL ECOSISTEMA]</h1>
+<h1 class="doc-h1" id="s40">TU PRIMER PASO</h1>
+<p class="doc-bold">Descarga gratis: Guía de inicio TSS.</p>
+<p>Descubre en qué nivel estás, qué necesitas trabajar, y cuál es tu próxima cinta. Recibe un plan de progresión inicial personalizado directo en tu email.</p>
+<p>[FORMULARIO: Nombre, Email, ¿Qué nivel crees que tienes?]</p>
+<p class="doc-bold">[BOTÓN] Descargar mi guía gratuita</p>
+<h1 class="doc-h1" id="s41">TU PROGRESIÓN EMPIEZA HOY</h1>
+<p>El surf sin estructura es solo recreación.</p>
+<p class="doc-bold">Con TSS, es evolución.</p>
+<p class="doc-bold">[BOTÓN GRANDE] Comienza ahora</p>
+<p>contacto@thesurfsequence.com  |  @thesurfsequence</p>
+<h1 class="doc-h1" id="s42">F. MEJORAS DE DISEÑO Y EXPERIENCIA</h1>
+<h2 class="doc-h2" id="s43">Jerarquía visual ideal</h2>
+<ul class="doc-list">
+<li>Headline en Outfit Bold (grande, navy) siempre es lo primero que se lee en cada sección.</li>
+<li>Submensaje en Work Sans (mediano, grey) da contexto inmediato.</li>
+<li>Datos numéricos en tamaño grande con color cyan para impacto visual.</li>
+<li>Body text en Work Sans regular (11pt) para lectura cómoda.</li>
+<li>CTAs en botón con fondo cyan y texto navy, siempre visibles sin necesidad de scroll adicional.</li>
+</ul>
+<h2 class="doc-h2" id="s44">Ritmo de lectura</h2>
+<ul class="doc-list">
+<li>Alternar secciones de fondo oscuro (navy) y claro (blanco/gris) para crear ritmo visual y evitar fatiga.</li>
+<li>Cada sección tiene UN mensaje principal. No dos. No tres. Uno.</li>
+<li>Longitud de sección: máximo 1 viewport en desktop. Si es más larga, dividir.</li>
+<li>Espaciado generoso entre secciones (mínimo 80px en desktop).</li>
+<li>Nunca más de 3-4 párrafos de texto seguido sin un elemento visual que rompa.</li>
+</ul>
+<h2 class="doc-h2" id="s45">Dónde usar cada tipo de contenido</h2>
+<ul class="doc-list">
+<li>Video: Hero (loop de fondo), sección de resultados (transformación), página del método (explicación de cintas).</li>
+<li>Imagen: Hero, fundador, testimonios (fotos reales), cards de cintas (surfistas en acción).</li>
+<li>Iconos: Sección de problema (pain points), pilares del método, caminos de oferta.</li>
+<li>Diagramas: Círculo Infinito, Tres Círculos, ecosistema, progresión de cintas.</li>
+<li>Testimonios: Sección de resultados, al lado de CTAs principales.</li>
+<li>PDFs/Descargas: Sección de lead magnet, página de recursos.</li>
+<li>Botones: Mínimo 1 CTA visible en cada sección. Nunca más de 2 por sección.</li>
+<li>Comparativas: Página de coaches (TSS vs enseñanza tradicional), página de academias (con TSS vs sin TSS).</li>
+</ul>
+<h2 class="doc-h2" id="s46">Cómo hacer que el sitio se sienta premium</h2>
+<ul class="doc-list">
+<li>Espacio en blanco generoso. El premium no es llenar, es dejar respirar.</li>
+<li>Tipografía consistente y jerárquica. Nunca más de 3 fuentes (Outfit, Work Sans, Lora).</li>
+<li>Paleta de colores restringida: navy, cyan, blanco, gris. Pop colors solo para acentos específicos.</li>
+<li>Fotografía real, nunca stock. Si no hay foto real, mejor un fondo sólido con texto que una imagen genérica.</li>
+<li>Animaciones sutiles: fade-in al scroll, hover effects suaves, conteo animado en números.</li>
+<li>Navegación limpia: máximo 6-7 items. Sin mega-menus ni dropdowns complicados.</li>
+<li>Loading rápido. Nada que tarde más de 3 segundos. Comprimir imágenes, lazy loading, fuentes optimizadas.</li>
+</ul>
+<h1 class="doc-h1" id="s47">G. RECOMENDACIONES ESPECÍFICAS PARA WIX</h1>
+<h2 class="doc-h2" id="s48">Organización de páginas</h2>
+<ul class="doc-list">
+<li>Menú principal: El Método | Cintas | Para Ti (dropdown: Surfistas, Coaches, Academias) | Resultados | Sobre Marcelo | Contacto.</li>
+<li>No saturar el menú. Máximo 6 items visibles. Todo lo demás va en footer o sub-páginas.</li>
+<li>Usar anclas (anchor links) en la Home para navegación interna rápida.</li>
+</ul>
+<h2 class="doc-h2" id="s49">Bloques recomendados en Wix</h2>
+<ul class="doc-list">
+<li>Hero: Wix Video Background o Image Box full-width con overlay. Texto centrado con TextBox sobre fondo oscuro.</li>
+<li>Problema: Columns (2x2 grid) con Icon Box en cada celda. Fondo claro.</li>
+<li>Solución: Strip full-width con fondo navy. Container centrado con texto y números grandes.</li>
+<li>Cintas: Repeater horizontal con cards individuales. Cada card con color accent, título, descripción y botón. En Wix Studio: mejor usar CSS Grid.</li>
+<li>Resultados: Strip con counters animados + Pro Gallery para testimonios con foto.</li>
+<li>Fundador: Columns 50/50: imagen a la izquierda, texto a la derecha. Quote en TextBox con Lora Italic.</li>
+<li>Caminos: 3 columnas con Hover Box o clickable containers.</li>
+<li>Lead Magnet: Strip con fondo cyan. Wix Forms embebido con 3 campos máximo.</li>
+<li>CTA Final: Strip full-width fondo navy con un solo botón grande centrado.</li>
+</ul>
+<h2 class="doc-h2" id="s50">Optimización mobile en Wix</h2>
+<ul class="doc-list">
+<li>Activar siempre el editor mobile de Wix y ajustar cada sección manualmente.</li>
+<li>Hero: reducir tamaño de headline, usar imagen estática en vez de video, apilar CTAs verticalmente.</li>
+<li>Cards de cintas: carrusel horizontal o acordeones en vez de grid.</li>
+<li>Formularios: campos full-width, botones grandes (mínimo 48px de altura).</li>
+<li>Eliminar elementos decorativos que no aporten en mobile. Menos es más.</li>
+<li>Testear en múltiples dispositivos antes de publicar.</li>
+</ul>
+<h2 class="doc-h2" id="s51">Velocidad y claridad</h2>
+<ul class="doc-list">
+<li>Comprimir TODAS las imágenes antes de subir (TinyPNG o similar). Máximo 200KB por imagen.</li>
+<li>Usar Wix’s built-in lazy loading para imágenes below the fold.</li>
+<li>Minimizar uso de animaciones pesadas (parallax, video autoplay múltiple).</li>
+<li>No usar más de 2 fuentes custom (Outfit + Work Sans). Lora solo para tagline.</li>
+<li>Conectar Google Analytics y Search Console desde el día uno.</li>
+</ul>
+<h2 class="doc-h2" id="s52">Para que no se sienta improvisado</h2>
+<ul class="doc-list">
+<li>Comprar dominio propio: thesurfsequence.com (o .co, o .io).</li>
+<li>Favicon personalizado con el isotipo TSS.</li>
+<li>Metadatos SEO en cada página: título, descripción, imagen social.</li>
+<li>Open Graph configurado para que al compartir en redes se vea profesional.</li>
+<li>SSL activo (Wix lo incluye con dominio propio).</li>
+<li>Página 404 personalizada con CTA de regreso a Home.</li>
+</ul>
+<h1 class="doc-h1" id="s53">H. VERSIÓN FINAL RESUMIDA — LISTA PARA IMPLEMENTAR</h1>
+<h2 class="doc-h2" id="s54">Estructura final del sitio</h2>
+<p>10 páginas principales + 4-5 secundarias. Arquitectura clara por perfil de visitante.</p>
+<h2 class="doc-h2" id="s55">Orden final de secciones de la Home</h2>
+<ul class="doc-list">
+<li>Hero (captura + declaración de categoría)</li>
+<li>El problema (identificación emocional)</li>
+<li>La solución: TSS (presentación del sistema)</li>
+<li>Sistema de cintas (cómo funciona)</li>
+<li>Resultados y prueba social (evidencia)</li>
+<li>El fundador (autoridad + conexión)</li>
+<li>Tu camino (oferta segmentada por perfil)</li>
+<li>El ecosistema TSS (visión ampliada)</li>
+<li>Lead magnet (captura de email)</li>
+<li>CTA final (cierre)</li>
+<li>Footer</li>
+</ul>
+<h2 class="doc-h2" id="s56">CTAs principales (en orden de prioridad)</h2>
+<ul class="doc-list">
+<li>“Descubre tu nivel” — lleva al quiz interactivo (conversión principal)</li>
+<li>“Conoce el método” — lleva a la página del método (educación)</li>
+<li>“Descarga tu guía gratuita” — lead magnet (captura)</li>
+<li>“Comienza ahora” / “Contacta con TSS” — formulario de contacto (conversión final)</li>
+</ul>
+<h2 class="doc-h2" id="s57">Assets necesarios para implementar</h2>
+<ul class="doc-list">
+<li>Fotografía: Hero (sesión real TSS), Marcelo (retrato profesional), surfistas por nivel (6 fotos mínimo), testimonios (3-4 fotos con permiso).</li>
+<li>Video: Hero loop (15-30 seg, sesión real TSS), video de transformación (1-2 min, opcional).</li>
+<li>Diagramas: Círculo Infinito, Tres Círculos de Progresión, Ecosistema TSS, Progresión de Cintas. Ya existen en HTML interactivo, se pueden adaptar o capturar como imagen.</li>
+<li>Logo: Suite completa ya disponible en 02_BRAND (14 archivos PNG).</li>
+<li>PDF Lead Magnet: Guía de inicio TSS (debe crearse: 8-12 páginas con resumen del sistema + quiz de autoevaluación).</li>
+<li>Copy: Incluido en este documento (Sección E).</li>
+<li>Testimonios: Recopilar 3-5 testimonios reales con nombre, foto y resultado específico.</li>
+<li>Dominio: Comprar thesurfsequence.com (verificar disponibilidad).</li>
+</ul>
+<h2 class="doc-h2" id="s58">Prioridades de implementación</h2>
+<p class="doc-bold">FASE 1 — FUNDACIÓN (Semana 1-2)</p>
+<ul class="doc-list">
+<li>Comprar dominio propio y configurar en Wix.</li>
+<li>Implementar Home completa con las 11 secciones definidas.</li>
+<li>Configurar navegación principal y footer.</li>
+<li>Optimizar mobile para cada sección.</li>
+<li>Configurar favicon, metadatos SEO, Open Graph.</li>
+</ul>
+<p class="doc-bold">FASE 2 — PÁGINAS CORE (Semana 3-4)</p>
+<ul class="doc-list">
+<li>Página “El Método” con explicación profunda + diagramas.</li>
+<li>Página “Cintas &amp; Progresión” con detalle de cada nivel.</li>
+<li>Página “Sobre Marcelo” con bio completa, credenciales y filosofía.</li>
+<li>Página de contacto con formulario segmentado.</li>
+</ul>
+<p class="doc-bold">FASE 3 — SEGMENTACIÓN Y CONVERSIÓN (Semana 5-6)</p>
+<ul class="doc-list">
+<li>Landing “Para Surfistas” con oferta específica.</li>
+<li>Landing “Para Coaches” con ruta de certificación L1-L5.</li>
+<li>Landing “Para Academias” con modelo de afiliación/licencia.</li>
+<li>Crear e integrar PDF lead magnet.</li>
+<li>Configurar email marketing básico (Mailchimp o Wix nativo).</li>
+</ul>
+<p class="doc-bold">FASE 4 — CONTENIDO Y OPTIMIZACIÓN (Semana 7-8)</p>
+<ul class="doc-list">
+<li>Página de Resultados con testimonios completos.</li>
+<li>FAQ completo segmentado por perfil.</li>
+<li>Página de recursos (quiz interactivo, blog, contenido educativo).</li>
+<li>Integración de analytics y tracking de conversiones.</li>
+<li>Testeo final de velocidad, mobile y UX general.</li>
+</ul>
+<h1 class="doc-h1" id="s59">FIN DEL DOCUMENTO</h1>
+<p>Preparado como estrategia integral de reconstrucción web para The Surf Sequence®</p>
+<p>Propiedad intelectual: Marcelo Castellanos / Enkrateia</p>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Website Strategy Blueprint — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

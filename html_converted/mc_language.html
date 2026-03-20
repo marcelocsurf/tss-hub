@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Language of Performance — TSS Masterclass</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#5AC3E7;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+/* Header */
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+.nav-dot{width:28px;height:28px;border-radius:6px;border:1px solid rgba(90,195,231,.1);background:rgba(255,255,255,.02);color:rgba(255,255,255,.25);font-size:.65rem;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s}
+.nav-dot:hover{background:rgba(90,195,231,.08);color:var(--accent);border-color:var(--accent)}
+.nav-dot.active{background:var(--accent);color:var(--navy);border-color:var(--accent)}
+
+/* Slides */
+.slides-container{max-width:960px;margin:0 auto;padding:24px}
+.slide{background:#0d1a2e;border:1px solid rgba(90,195,231,.06);border-radius:16px;margin-bottom:20px;overflow:hidden;transition:all .3s;position:relative}
+.slide:hover{border-color:rgba(90,195,231,.12)}
+.slide:target{border-color:var(--accent);box-shadow:0 0 30px rgba(90,195,231,.08)}
+.slide--cover{background:linear-gradient(135deg, #0A1628 0%, #1A2A4E 100%);border-color:rgba(90,195,231,.15)}
+.slide-inner{padding:36px 40px}
+.slide-badge{position:absolute;top:16px;right:20px;font-family:'Outfit',sans-serif;font-size:.65rem;font-weight:600;color:rgba(255,255,255,.15);background:rgba(255,255,255,.03);padding:3px 10px;border-radius:4px}
+
+/* Typography */
+.slide-hero{font-family:'Outfit',sans-serif;font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.2;margin-bottom:16px}
+.slide-heading{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:700;color:var(--accent);margin:20px 0 12px;padding-bottom:8px;border-bottom:2px solid rgba(90,195,231,.06)}
+.slide-sub{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:#fff;margin:12px 0 8px}
+.body-text{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.8;margin-bottom:8px}
+.body-bold{font-size:.92rem;color:rgba(255,255,255,.75);line-height:1.8;margin-bottom:8px;font-weight:600}
+
+/* Lists */
+.slide-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.slide-list li{position:relative;padding:6px 0 6px 24px;font-size:.88rem;color:rgba(255,255,255,.55);line-height:1.7}
+.slide-list li::before{content:'';position:absolute;left:0;top:13px;width:8px;height:8px;border-radius:2px;background:var(--accent);opacity:.4}
+.slide-list li.bold{color:rgba(255,255,255,.8);font-weight:600}
+.slide-list li.bold::before{opacity:.8}
+
+/* Stats */
+.stat-row{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}
+.stat-item{background:rgba(255,255,255,.03);border:1px solid rgba(90,195,231,.06);border-radius:12px;padding:16px 20px;min-width:100px;text-align:center}
+.stat-num{font-family:'Outfit',sans-serif;font-size:2rem;font-weight:800;display:block}
+.stat-label{font-size:.75rem;color:rgba(255,255,255,.35);display:block;margin-top:2px}
+
+/* Tables */
+.slide-table-wrap{overflow-x:auto;margin:12px 0}
+.slide-table{width:100%;border-collapse:collapse;font-size:.82rem}
+.slide-table th{background:rgba(90,195,231,.06);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600}
+.slide-table td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.5)}
+.slide-table tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+/* Footer */
+.mc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04);margin-top:16px}
+.mc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.85rem;margin-bottom:8px;display:block}
+
+/* Responsive */
+@media(max-width:768px){
+  .slide-inner{padding:24px 20px}
+  .top-bar__nav{display:none}
+  .stat-row{flex-direction:column}
+  .stat-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🗣️</span>
+    <div>
+      <div class="top-bar__title">Language of Performance</div>
+      <div class="top-bar__sub">TSS Masterclass — 15 slides</div>
+    </div>
+  </div>
+  <div class="top-bar__nav"><button class="nav-dot" onclick="goSlide(1)" title="Slide 1">1</button><button class="nav-dot" onclick="goSlide(2)" title="Slide 2">2</button><button class="nav-dot" onclick="goSlide(3)" title="Slide 3">3</button><button class="nav-dot" onclick="goSlide(4)" title="Slide 4">4</button><button class="nav-dot" onclick="goSlide(5)" title="Slide 5">5</button><button class="nav-dot" onclick="goSlide(6)" title="Slide 6">6</button><button class="nav-dot" onclick="goSlide(7)" title="Slide 7">7</button><button class="nav-dot" onclick="goSlide(8)" title="Slide 8">8</button><button class="nav-dot" onclick="goSlide(9)" title="Slide 9">9</button><button class="nav-dot" onclick="goSlide(10)" title="Slide 10">10</button><button class="nav-dot" onclick="goSlide(11)" title="Slide 11">11</button><button class="nav-dot" onclick="goSlide(12)" title="Slide 12">12</button><button class="nav-dot" onclick="goSlide(13)" title="Slide 13">13</button><button class="nav-dot" onclick="goSlide(14)" title="Slide 14">14</button><button class="nav-dot" onclick="goSlide(15)" title="Slide 15">15</button></div>
+</div>
+
+<div class="slides-container">
+<section class="slide  slide--cover" id="s1">
+  <div class="slide-inner">
+    <span class="slide-badge">1 / 15</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">THE SURF SEQUENCE® — ONE WAVE</span></div>
+</div>
+<h2 class="slide-hero">The Language</h2>
+<h2 class="slide-hero">of Performance</h2>
+<h3 class="slide-heading">How your body, your words, and your</h3>
+<h3 class="slide-heading">internal programming shape how you surf.</h3>
+<ul class="slide-list">
+<li>Coach &amp; Student Theory Module — Based on CBT, Embodied Cognition &amp; Sport Psychology</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="slide-badge">2 / 15</span>
+    <h2 class="slide-hero">Your body talks</h2>
+<h2 class="slide-hero">to your brain.</h2>
+<h2 class="slide-hero">Your words</h2>
+<h2 class="slide-hero">program your body.</h2>
+<h2 class="slide-hero">Both are trainable.</h2>
+<p class="body-text">This is not motivation. This is neuroscience.</p>
+<p class="body-text">Your posture, your facial expression, your self-talk, and the way you frame experiences literally change your neurochemistry, your muscle activation, and your performance.</p>
+  </div>
+</section>
+<section class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="slide-badge">3 / 15</span>
+    <h3 class="slide-heading">6 TOOLS TO REPROGRAM YOUR INNER GAME</h3>
+<h4 class="slide-sub">POSTURE &amp; BODY LANGUAGE</h4>
+<p class="body-text">Your physical shape changes your chemistry</p>
+<h4 class="slide-sub">SMILE &amp; FACIAL FEEDBACK</h4>
+<p class="body-text">Your face tells your brain how to feel</p>
+<h4 class="slide-sub">SELF-TALK</h4>
+<p class="body-text">The voice in your head is programmable</p>
+<h4 class="slide-sub">COGNITIVE REFRAMING</h4>
+<p class="body-text">Same situation, different meaning, different outcome</p>
+<h4 class="slide-sub">ANCHORING</h4>
+<p class="body-text">Trigger your peak state on demand</p>
+<h4 class="slide-sub">PERCEPTUAL POSITIONS</h4>
+<p class="body-text">See yourself from the outside to learn faster</p>
+  </div>
+</section>
+<section class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="slide-badge">4 / 15</span>
+    <h3 class="slide-heading">TOOL 1 — POSTURE &amp; BODY LANGUAGE</h3>
+<p class="body-text">Expansive postures increase feelings of power. Contractive postures decrease them.</p>
+<ul class="slide-list">
+<li>33 independent experiments, 2,521 participants (Carney et al., 2015 review)</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">EXPANSIVE</span></div>
+</div>
+<ul class="slide-list">
+<li>Shoulders back, chest open</li>
+<li>Head up, eye contact</li>
+<li>Arms uncrossed, space taken</li>
+<li>Weight distributed evenly</li>
+<li>→ Increased testosterone</li>
+<li>→ Decreased cortisol</li>
+<li>→ Greater risk tolerance</li>
+<li>→ Subjective feeling of power</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">CONTRACTIVE</span></div>
+</div>
+<ul class="slide-list">
+<li>Shoulders forward, hunched</li>
+<li>Head down, avoiding gaze</li>
+<li>Arms crossed, space minimized</li>
+<li>Weight on one leg</li>
+<li>→ Decreased testosterone</li>
+<li>→ Increased cortisol</li>
+<li>→ Avoidance behavior</li>
+<li>→ Feeling of powerlessness</li>
+<li>Furley &amp; Schweizer (2014): Athletes who displayed positive body language after mistakes recovered faster and performed better on subsequent tasks.</li>
+</ul>
+<p class="body-bold">In TSS: Power Posture (Block 4) is not just biomechanics — it’s a neurochemical command to your brain.</p>
+  </div>
+</section>
+<section class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="slide-badge">5 / 15</span>
+    <h3 class="slide-heading">POSTURE EXERCISES FOR SURFERS</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Pre-session power reset</span></div>
+</div>
+<ul class="slide-list">
+<li>Stand on the beach. Feet shoulder-width. Shoulders back. Chest open. Head up. Arms at sides or hands on hips. Hold 60 seconds. Breathe slowly. This is your starting state.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">After a bad wave</span></div>
+</div>
+<ul class="slide-list">
+<li>Immediately: stand tall on your board. Shoulders back. Head up. Look at the horizon. DO NOT hunch, slump, or drop your head. Your body language determines the next wave.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Paddle posture awareness</span></div>
+</div>
+<ul class="slide-list">
+<li>While paddling: chest lifted, chin forward (not down), active scapula. This is both biomechanically better AND psychologically activating.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">Beach briefing presence</span></div>
+</div>
+<ul class="slide-list">
+<li>When your coach speaks, stand expansive. When you speak, use open gestures. Body language affects how you receive AND deliver information.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">The 3-second rule</span></div>
+</div>
+<ul class="slide-list">
+<li>After every wipeout: surface, take one breath, and within 3 seconds adopt full expansive posture on your board. The faster you reset physically, the faster you reset mentally.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="slide-badge">6 / 15</span>
+    <h3 class="slide-heading">TOOL 2 — SMILE &amp; FACIAL FEEDBACK</h3>
+<h3 class="slide-heading">Your face tells your brain how to feel. Not the other way around.</h3>
+<h4 class="slide-sub">Facial Feedback Hypothesis</h4>
+<ul class="slide-list">
+<li>Confirmed in 19 countries, 3,878 participants (Coles et al., Nature Human Behaviour, 2022). Voluntary smiling amplifies and initiates feelings of happiness.</li>
+</ul>
+<h4 class="slide-sub">Running economy</h4>
+<ul class="slide-list">
+<li>Smiling while running improved movement economy vs. frowning. Lower perceived effort, reduced O₂ cost. Your face literally affects your efficiency (study cited by Fitzgerald, 2014).</li>
+</ul>
+<h4 class="slide-sub">Neurological mechanism</h4>
+<ul class="slide-list">
+<li>Smiling activates the zygomaticus major muscle, which sends feedback to the brain that modulates emotional processing. The brain interprets the smile as evidence of a positive state.</li>
+</ul>
+<h4 class="slide-sub">After mistakes</h4>
+<ul class="slide-list">
+<li>Athletes who smiled or maintained neutral expressions after errors recovered performance faster than those who showed frustration (Furley &amp; Schweizer, 2014).</li>
+</ul>
+<h4 class="slide-sub">Contagion effect</h4>
+<ul class="slide-list">
+<li>Your smile affects your partner, your coach, your group. Mirror neurons cause others to unconsciously mimic your expression. One smile shifts the energy of a lineup.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s7">
+  <div class="slide-inner">
+    <span class="slide-badge">7 / 15</span>
+    <h2 class="slide-hero">Smile when</h2>
+<h2 class="slide-hero">you paddle out.</h2>
+<h2 class="slide-hero">Smile after</h2>
+<h2 class="slide-hero">you fall.</h2>
+<p class="body-text">It’s not positive thinking. It’s neuroscience.</p>
+<p class="body-text">Your zygomaticus major muscle sends a signal to your brain that changes your neurochemistry. The smile is not the result of feeling good. It is the cause.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">TSS Rule: Start every session with a smile. Return to it after every wipeout.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s8">
+  <div class="slide-inner">
+    <span class="slide-badge">8 / 15</span>
+    <h3 class="slide-heading">TOOL 3 — SELF-TALK</h3>
+<ul class="slide-list">
+<li>Meta-analysis: self-talk interventions have a positive, moderate effect on sport performance (Hatzigeorgiadis et al., 2011).</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">INSTRUCTIONAL</span></div>
+</div>
+<ul class="slide-list">
+<li>Tells you WHAT to do.</li>
+<li>“Low. Hold. Project.”</li>
+<li>“Front foot. Look at target.”</li>
+<li>“Commit. Don’t hesitate.”</li>
+<li>Best for: technical execution,</li>
+<li>new skills, precision tasks.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">MOTIVATIONAL</span></div>
+</div>
+<ul class="slide-list">
+<li>Tells you HOW to feel.</li>
+<li>“I’ve got this.”</li>
+<li>“One more wave. I’m strong.”</li>
+<li>“Trust the process.”</li>
+<li>Best for: confidence, endurance,</li>
+<li>pressure situations.</li>
+</ul>
+<h4 class="slide-sub">DESTRUCTIVE</h4>
+<ul class="slide-list">
+<li>“I always choke.” “I’m not good enough.”</li>
+<li>“Why do I even try?” “Everyone is watching.”</li>
+</ul>
+<h4 class="slide-sub">CONSTRUCTIVE</h4>
+<ul class="slide-list">
+<li>“Next wave, fresh start.” “I trained for this.”</li>
+<li>“Focus on process, not outcome.” “One thing at a time.”</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">You can’t stop the voice. But you CAN choose what it says.</span></div>
+</div>
+  </div>
+</section>
+<section class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="slide-badge">9 / 15</span>
+    <h3 class="slide-heading">TOOL 4 — COGNITIVE REFRAMING</h3>
+<h3 class="slide-heading">Same event. Different interpretation. Different outcome.</h3>
+<p class="body-text">“I feel nervous”</p>
+<h3 class="slide-heading">→</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">“I feel excited”</span></div>
+</div>
+<ul class="slide-list">
+<li>Same adrenaline. Different label. Research shows relabeling anxiety as excitement improves performance (Brooks, 2014).</li>
+</ul>
+<p class="body-text">“I fell again”</p>
+<h3 class="slide-heading">→</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">“I found the limit”</span></div>
+</div>
+<ul class="slide-list">
+<li>Reframing failure as data collection. The fall teaches you exactly where the edge is.</li>
+</ul>
+<p class="body-text">“The waves are bad”</p>
+<h3 class="slide-heading">→</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">“This is adaptive training”</span></div>
+</div>
+<ul class="slide-list">
+<li>Difficult conditions train reading, patience, and decision-making. Every session has value.</li>
+</ul>
+<p class="body-text">“I’m not improving”</p>
+<h3 class="slide-heading">→</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">“I’m in a consolidation phase”</span></div>
+</div>
+<ul class="slide-list">
+<li>Progress is not linear. Plateaus are where the brain integrates new patterns.</li>
+</ul>
+<p class="body-text">“They’re better than me”</p>
+<h3 class="slide-heading">→</h3>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">“They show me what’s possible”</span></div>
+</div>
+<ul class="slide-list">
+<li>Comparison as aspiration, not diminishment. Watch, learn, then execute your own sequence.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="slide-badge">10 / 15</span>
+    <h3 class="slide-heading">TOOL 5 — ANCHORING</h3>
+<p class="body-text">Create a trigger that instantly accesses your peak performance state.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">1. RECALL</span></div>
+</div>
+<ul class="slide-list">
+<li>Close your eyes. Remember your BEST wave ever. See it. Feel the board. Hear the water. Feel the emotions: confidence, joy, power. Make it vivid.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">2. INTENSIFY</span></div>
+</div>
+<ul class="slide-list">
+<li>Amplify the memory. Make it brighter, louder, closer. Feel it in your body. Where do you feel that confidence? Chest? Arms? Core?</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">3. ANCHOR</span></div>
+</div>
+<ul class="slide-list">
+<li>At the peak of the feeling, create a physical trigger: squeeze your fist, touch your thumb to your finger, or slap the board. Hold it for 5 seconds.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">4. BREAK</span></div>
+</div>
+<ul class="slide-list">
+<li>Open your eyes. Shake it off. Think about something neutral for 10 seconds.</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">5. TEST</span></div>
+</div>
+<ul class="slide-list">
+<li>Fire the anchor: do the gesture. Does the feeling return? If yes — it’s set. If not — repeat steps 1–4 with more intensity. Build it daily.</li>
+</ul>
+<p class="body-bold">Use your anchor before every session, before every heat, before every wave that matters.</p>
+  </div>
+</section>
+<section class="slide" id="s11">
+  <div class="slide-inner">
+    <span class="slide-badge">11 / 15</span>
+    <h3 class="slide-heading">TOOL 6 — PERCEPTUAL POSITIONS</h3>
+<p class="body-text">See yourself from different angles to learn faster and regulate emotions.</p>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">1st PERSON</span></div>
+</div>
+<ul class="slide-list">
+<li>Your own eyes. Feel the wave, the board, the wind. Internal perspective. Best for: execution, anchoring, peak state recall.</li>
+<li>“You feel the compression. You see the lip. You rotate.”</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">2nd PERSON</span></div>
+</div>
+<ul class="slide-list">
+<li>Your coach’s eyes. What does the coach see? Imagine their corrections. Best for: receiving feedback, understanding corrections.</li>
+<li>“The coach sees your back knee. Your shoulders are too open.”</li>
+</ul>
+<div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">3rd PERSON</span></div>
+</div>
+<ul class="slide-list">
+<li>Neutral camera. Watch yourself from above or from the beach. No judgment. Best for: post-session review, learning from mistakes.</li>
+<li>“The surfer hesitated on the takeoff. The angle was too shallow.”</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s12">
+  <div class="slide-inner">
+    <span class="slide-badge">12 / 15</span>
+    <h3 class="slide-heading">WHEN TO USE EACH TOOL</h3>
+<h4 class="slide-sub">Walking to the water</h4>
+<h4 class="slide-sub">Posture + Smile</h4>
+<ul class="slide-list">
+<li>Stand tall, shoulders back, smile. Set the neurochemical tone.</li>
+</ul>
+<h4 class="slide-sub">Before paddling out</h4>
+<h4 class="slide-sub">Anchoring</h4>
+<ul class="slide-list">
+<li>Fire your peak-state trigger. 3 seconds. Then go.</li>
+</ul>
+<h4 class="slide-sub">Waiting for waves</h4>
+<h4 class="slide-sub">Self-talk (instructional)</h4>
+<ul class="slide-list">
+<li>One-word cue: ‘commit,’ ‘low,’ ‘hold.’ Pre-program the next ride.</li>
+</ul>
+<h4 class="slide-sub">After a fall</h4>
+<h4 class="slide-sub">Posture + Smile + Reframing</h4>
+<ul class="slide-list">
+<li>3-second rule: tall posture, smile, ‘I found the edge.’</li>
+</ul>
+<h4 class="slide-sub">Between waves in a heat</h4>
+<h4 class="slide-sub">Self-talk (motivational)</h4>
+<ul class="slide-list">
+<li>&#x27;I trained for this. One wave at a time. Trust the process.&#x27;</li>
+</ul>
+<h4 class="slide-sub">Post-session review</h4>
+<h4 class="slide-sub">Perceptual Positions</h4>
+<ul class="slide-list">
+<li>3rd person: watch yourself like a camera. No emotion. Just data.</li>
+</ul>
+<h4 class="slide-sub">Before sleep</h4>
+<h4 class="slide-sub">Anchoring + 1st Person replay</h4>
+<ul class="slide-list">
+<li>Replay your best wave. Fire the anchor. Fall asleep in peak state.</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s13">
+  <div class="slide-inner">
+    <span class="slide-badge">13 / 15</span>
+    <div class="stat-row">
+<div class="stat-item"><span class="stat-num" style="color:#5AC3E7">LANGUAGE OF PERFORMANCE</span></div>
+</div>
+<h3 class="slide-heading">Guided Audio / Video</h3>
+<ul class="slide-list">
+<li>LOP-01 — Anchoring Exercise — Build Your Peak State (5 min)</li>
+<li>LOP-02 — Pre-Session Power Protocol: Posture + Smile + Anchor (3 min)</li>
+<li>LOP-03 — Cognitive Reframing Drill (4 min)</li>
+<li>LOP-04 — Post-Session 3rd Person Review (5 min)</li>
+</ul>
+  </div>
+</section>
+<section class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="slide-badge">14 / 15</span>
+    <h2 class="slide-hero">In TSS, your internal</h2>
+<h2 class="slide-hero">language is as</h2>
+<h2 class="slide-hero">important as your</h2>
+<h2 class="slide-hero">technique.</h2>
+<p class="body-text">Pilar MEN (Mental): Presence, Motivation, Relaxation, Visualization. Every tool in this module operates within the Mental Pillar. Posture feeds into Block 4 (Power Posture). Self-talk integrates with the 3 Questions self-assessment. Reframing is how coaches teach students to process failure constructively. Anchoring is how athletes access their peak state before every wave.</p>
+<p class="body-text">These are not soft skills. They are performance architecture.</p>
+  </div>
+</section>
+<section class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="slide-badge">15 / 15</span>
+    <h2 class="slide-hero">Stand tall.</h2>
+<h2 class="slide-hero">Smile first.</h2>
+<h2 class="slide-hero">Speak right.</h2>
+<h2 class="slide-hero">Surf better.</h2>
+<ul class="slide-list">
+<li>THE SURF SEQUENCE® — ONE WAVE — Language of Performance — Enkrateia SA de CV</li>
+</ul>
+  </div>
+</section>
+
+</div>
+
+<div class="mc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Language of Performance — The Surf Sequence® — Marcelo Castellanos / Enkrateia
+</div>
+
+<script>
+// Highlight active nav dot on scroll
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      document.querySelectorAll('.nav-dot').forEach((d,i) => {
+        d.classList.toggle('active', d.textContent.trim() === id.replace('s',''));
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.slide').forEach(s => observer.observe(s));
+
+function goSlide(n) {
+  document.getElementById('s'+n)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>

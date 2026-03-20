@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three Systems Framework v1 — TSS</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#5AC3E7;--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(90,195,231,.08);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(90,195,231,.06);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(90,195,231,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:4px 8px;margin-bottom:2px;font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(90,195,231,.06);color:var(--accent)}
+
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(90,195,231,.06)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(90,195,231,.7);margin:16px 0 8px}
+p{font-size:.9rem;color:rgba(255,255,255,.55);line-height:1.85;margin-bottom:10px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.75)}
+
+.doc-list{margin:8px 0 16px;padding-left:0;list-style:none}
+.doc-list li{position:relative;padding:4px 0 4px 20px;font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.7}
+.doc-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:2px;background:var(--accent);opacity:.35}
+
+.table-wrap{overflow-x:auto;margin:16px 0}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+th{background:rgba(90,195,231,.05);color:var(--accent);padding:10px 14px;text-align:left;border:1px solid rgba(90,195,231,.06);font-family:'Outfit',sans-serif;font-weight:600;font-size:.78rem}
+td{padding:8px 14px;border:1px solid rgba(90,195,231,.04);color:rgba(255,255,255,.45)}
+tr:nth-child(even) td{background:rgba(255,255,255,.01)}
+
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(90,195,231,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+
+@media(max-width:768px){
+  .doc-toc{display:none}
+  .doc-body{padding:20px 16px}
+}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">🔗</span>
+    <div>
+      <div class="top-bar__title">Three Systems Framework v1</div>
+      <div class="top-bar__sub">The Surf Sequence® — BUSINESS</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">BUSINESS</span>
+    <span>591 words</span>
+  </div>
+</div>
+
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contents</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">THREE SYSTEMS FRAMEWORK</a><a href="#s3">Purpose of This Document</a><a href="#s4">How to Read This Document</a><a href="#s5">HARD SYSTEM</a><a href="#s6">Definition</a><a href="#s7">1.1 Equipment</a><a href="#s8">1.2 Safety Equipment</a><a href="#s9">1.3 Facilities</a><a href="#s10">1.4 Printed Materials</a><a href="#s11">1.5 Transport</a><a href="#s12">Hard System — Priority Gaps</a><a href="#s13">SOFT SYSTEM</a><a href="#s14">Definition</a><a href="#s15">2.1 Student Journey — Full Flow</a><a href="#s16">2.2 Coach Operations</a><a href="#s17">2.3 Safety Protocols</a><a href="#s18">2.4 Inclusion Protocols</a><a href="#s19">2.5 Doctrinal Documents</a><a href="#s20">Soft System — Priority Gaps</a><a href="#s21">INFO SYSTEM</a><a href="#s22">Definition</a><a href="#s23">3.1 TSS Brain App</a><a href="#s24">3.2 Field Tools (HTML Ecosystem)</a><a href="#s25">3.3 Digital Forms Integration</a><a href="#s26">Info System — Priority Gaps</a><a href="#s27">SYSTEM DEPENDENCIES &amp; BUILD ORDER</a><a href="#s28">Cross-System Dependencies</a><a href="#s29">Recommended Build Order</a><a href="#s30">Current Completion Scorecard</a><a href="#s31">The Uncomfortable Question</a><a href="#s32">THE SURF SEQUENCE®</a></nav>
+  <div class="doc-body">
+    <h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<h1 class="doc-h1" id="s2">THREE SYSTEMS FRAMEWORK</h1>
+<p>Hard System · Soft System · Info System</p>
+<p>Implementation Blueprint for Puro Surf Academy</p>
+<p>Marcelo Castellanos</p>
+<p>Founder, The Surf Sequence® — ISA Olympic Expert Coach</p>
+<p>Enkrateia SA de CV — All Rights Reserved</p>
+<p class="doc-bold">Version 1.0 — March 2026 — CONFIDENTIAL</p>
+<h1 class="doc-h1" id="s3">Purpose of This Document</h1>
+<p>This framework maps the three operational systems required to implement The Surf Sequence® at Puro Surf Academy — and eventually at any licensed academy. It inventories what exists, identifies what is missing, defines dependencies, and establishes the build order.</p>
+<h2 class="doc-h2" id="s4">How to Read This Document</h2>
+<p>Each system section contains: a definition, a complete inventory table with status codes, identified gaps, dependencies on the other two systems, and a prioritized action list.</p>
+<p>Status codes: GREEN = complete and operational. AMBER = exists but needs formalization or update. RED = does not exist yet and must be built.</p>
+<p>Owner codes: MC = Marcelo Castellanos. PS = Puro Surf operations. TSS = TSS Global (Enkrateia). DEV = Development (Brain App).</p>
+<h1 class="doc-h1" id="s5">HARD SYSTEM</h1>
+<p>Physical infrastructure, equipment, materials, and tangible assets</p>
+<h1 class="doc-h1" id="s6">Definition</h1>
+<p>The Hard System is everything that exists in the physical world. What you can touch, see, count, and audit. It includes surfboards, wetsuits, facilities, printed materials, safety equipment, signage, and transport. A licensing auditor could verify every item on a walk-through.</p>
+<h1 class="doc-h1" id="s7">1.1 Equipment</h1>
+<h1 class="doc-h1" id="s8">1.2 Safety Equipment</h1>
+<h1 class="doc-h1" id="s9">1.3 Facilities</h1>
+<h1 class="doc-h1" id="s10">1.4 Printed Materials</h1>
+<h1 class="doc-h1" id="s11">1.5 Transport</h1>
+<h1 class="doc-h1" id="s12">Hard System — Priority Gaps</h1>
+<h1 class="doc-h1" id="s13">SOFT SYSTEM</h1>
+<p>Processes, protocols, culture, and operational flows</p>
+<h1 class="doc-h1" id="s14">Definition</h1>
+<p>The Soft System is how things are done. It converts doctrine into daily behavior. It includes every protocol from the moment a student books to the moment they leave, every coach workflow, every safety procedure, and the culture that makes the method feel consistent regardless of which coach is delivering.</p>
+<h1 class="doc-h1" id="s15">2.1 Student Journey — Full Flow</h1>
+<h1 class="doc-h1" id="s16">2.2 Coach Operations</h1>
+<h1 class="doc-h1" id="s17">2.3 Safety Protocols</h1>
+<h1 class="doc-h1" id="s18">2.4 Inclusion Protocols</h1>
+<h1 class="doc-h1" id="s19">2.5 Doctrinal Documents</h1>
+<h1 class="doc-h1" id="s20">Soft System — Priority Gaps</h1>
+<h1 class="doc-h1" id="s21">INFO SYSTEM</h1>
+<p>Digital platform, tools, data capture, and operational visibility</p>
+<h1 class="doc-h1" id="s22">Definition</h1>
+<p>The Info System is TSS Brain and its ecosystem of digital tools. It captures what happens in the Hard and Soft systems, makes it searchable, trackable, and auditable. Without it, the method depends on individual memory. With it, the method scales to any number of academies.</p>
+<h1 class="doc-h1" id="s23">3.1 TSS Brain App</h1>
+<h1 class="doc-h1" id="s24">3.2 Field Tools (HTML Ecosystem)</h1>
+<h1 class="doc-h1" id="s25">3.3 Digital Forms Integration</h1>
+<h1 class="doc-h1" id="s26">Info System — Priority Gaps</h1>
+<h1 class="doc-h1" id="s27">SYSTEM DEPENDENCIES &amp; BUILD ORDER</h1>
+<h1 class="doc-h1" id="s28">Cross-System Dependencies</h1>
+<p>The three systems are not independent. Each has requirements on the others.</p>
+<ul class="doc-list">
+<li>Hard → Soft: Equipment standards (board sizes, flag colors) must exist before coach protocols can reference them. The ratio matrix needs physical flags to implement formations.</li>
+<li>Soft → Hard: Operational protocols determine what equipment is needed. The Academy Operations Manual defines the physical requirements list.</li>
+<li>Soft → Info: The session flow protocol defines what TSS Brain must capture. Build the process first, then digitize it.</li>
+<li>Info → Soft: Once Brain captures session data, coach evaluation and student progression become data-driven instead of opinion-based.</li>
+<li>Info → Hard: Brain can track equipment condition, replacement cycles, and audit compliance — but only after P3+ is built.</li>
+</ul>
+<h1 class="doc-h1" id="s29">Recommended Build Order</h1>
+<h1 class="doc-h1" id="s30">Current Completion Scorecard</h1>
+<p>23 of 66 items complete (35%). 14 in progress (21%). 29 not started (44%). The doctrinal foundation is strong — most Tier 1 and Tier 2 documents exist. The gaps are in Tier 3 operational documents, physical implementation at Puro Surf, and TSS Brain development phases 3–5.</p>
+<h1 class="doc-h1" id="s31">The Uncomfortable Question</h1>
+<h1 class="doc-h1" id="s32">THE SURF SEQUENCE®</h1>
+<p>Three Systems Framework v1.0</p>
+<p>Enkrateia SA de CV — All Rights Reserved — March 2026</p>
+<p>Build assets, not tasks.</p>
+<div class="table-wrap"><table>
+<tr><th>Strategic Context
+TSS operates through three interdependent systems. The Hard System is the physical infrastructure. The Soft System is the operational processes and protocols. The Info System is the digital platform that captures, connects, and scales. None works without the others. The Hard System without the Soft System is equipment without process. The Soft System without the Info System is process that depends on individual memory. The Info System without the other two is a platform with nothing to track.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Board inventory by weight/level (Inclusion Canon table)</td><td>Defined</td><td>MC/TSS</td><td>Table exists in Inclusion Canon. PS must match physical inventory to spec.</td></tr>
+<tr><td>Softboards — beginner fleet (White Belt)</td><td>Operational</td><td>PS</td><td>Puro Surf has fleet. Needs formal sizing audit vs Inclusion Canon specs.</td></tr>
+<tr><td>Funboards / mini mals — novice-foundation fleet</td><td>Operational</td><td>PS</td><td>Exists. Needs labeling by weight range.</td></tr>
+<tr><td>Hardtops — Blue Belt+ fleet</td><td>Operational</td><td>PS</td><td>Exists. Needs condition audit and rotation protocol.</td></tr>
+<tr><td>Leash inventory + replacement protocol</td><td>Partial</td><td>PS</td><td>Leashes exist but no formal check/replace cycle documented.</td></tr>
+<tr><td>Wetsuit / rash vest fleet (color-coded by role)</td><td>Partial</td><td>PS</td><td>Rash vests exist. Color-coding system for coach/student/assistant not formalized.</td></tr>
+<tr><td>Fins inventory + security check</td><td>Partial</td><td>PS</td><td>No formal pre-session fin check protocol in practice.</td></tr>
+<tr><td>Equipment check form (digital or printed)</td><td>Defined</td><td>MC/TSS</td><td>Form exists in Forms Pack. Not consistently used pre-session.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>First-aid kit — beach accessible</td><td>Operational</td><td>PS</td><td>Exists. Needs contents audit vs Safety Canon requirements.</td></tr>
+<tr><td>Communication device on beach (phone/radio)</td><td>Operational</td><td>PS</td><td>Phones used. No backup radio protocol.</td></tr>
+<tr><td>Emergency contacts sheet (printed, on-site)</td><td>Defined</td><td>MC/TSS</td><td>Template exists. Needs Puro Surf local version with hospital routes.</td></tr>
+<tr><td>Beach flags / zone markers</td><td>Not standardized</td><td>PS</td><td>Flags used informally. No TSS-standard flag system (width + depth).</td></tr>
+<tr><td>Spine board / rescue equipment</td><td>Partial</td><td>PS</td><td>Depends on lifeguard availability. No TSS-owned rescue board.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Theory / video analysis room</td><td>Operational</td><td>PS</td><td>Puro Surf has classroom space. Needs standardized setup for TSS sessions.</td></tr>
+<tr><td>Dry drill / land practice area</td><td>Operational</td><td>PS</td><td>Beach and campus available. No dedicated marked area.</td></tr>
+<tr><td>Equipment storage (organized by level)</td><td>Operational</td><td>PS</td><td>Storage exists. Labeling by belt level not implemented.</td></tr>
+<tr><td>Student check-in / intake station</td><td>Partial</td><td>PS</td><td>Reception exists. No TSS-specific intake workflow at check-in.</td></tr>
+<tr><td>Signage — TSS branding + safety rules visible</td><td>Not present</td><td>TSS</td><td>No TSS-branded safety signage at beach or facility.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Student Safety Manual (printed)</td><td>Ready</td><td>MC/TSS</td><td>DOCX created (v1.0). Needs print run.</td></tr>
+<tr><td>Yellow Belt Student Manual (printed)</td><td>Ready</td><td>MC/TSS</td><td>DOCX exists (v1.2). Needs print run.</td></tr>
+<tr><td>Blue Belt Student Manual (printed)</td><td>Ready</td><td>MC/TSS</td><td>DOCX exists (v1.0). Needs print run.</td></tr>
+<tr><td>Pre-session checklist (laminated, on-beach)</td><td>Defined</td><td>MC/TSS</td><td>Form exists. Needs laminated field version.</td></tr>
+<tr><td>Incident report forms (printed pad)</td><td>Defined</td><td>MC/TSS</td><td>Form exists. Needs printed pads for field use.</td></tr>
+<tr><td>Beach briefing template (laminated)</td><td>Defined</td><td>MC/TSS</td><td>Content exists in Safety Canon. No standalone laminated card.</td></tr>
+<tr><td>Arm signals / commands reference card</td><td>Defined</td><td>MC/TSS</td><td>Referenced in Safety Canon. No physical card created yet.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Vehicle loading protocol (boards)</td><td>Informal</td><td>PS</td><td>Done by practice. No documented standard.</td></tr>
+<tr><td>Route to hospital / clinic documented</td><td>Partial</td><td>PS</td><td>Staff knows routes. Not documented in Emergency Action Plan.</td></tr>
+<tr><td>Transport safety check form</td><td>Defined</td><td>MC/TSS</td><td>Listed in Safety Canon annex. Not created as standalone form.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Critical Gap
+Beach zone signage (flags) and color-coded identification system (rash vests by role). Without these, the coach alignment formations (Dupla, Triángulo, Imán) cannot be deployed as designed. This is the #1 Hard System gap.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>High Priority
+Laminated field cards for pre-session checklist, beach briefing, arm signals, and incident reporting. All content exists in documents — needs physical production for field use.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Operational
+Equipment audit: match physical board inventory to Inclusion Canon weight/level table. Label boards by range. Establish leash replacement cycle. Formalize fin check.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Online booking / pre-arrival communication</td><td>Operational</td><td>PS</td><td>PS handles booking. No TSS-specific pre-arrival flow integrated.</td></tr>
+<tr><td>Pre-arrival learning channel quiz</td><td>Complete</td><td>MC/TSS</td><td>HTML tool built and deployed (learning-quiz). Needs WhatsApp integration into booking flow.</td></tr>
+<tr><td>Pre-arrival diagnostic / intake questionnaire</td><td>Exists</td><td>MC/TSS</td><td>Pre-arrival diagnostic created as integration module. Not linked to booking.</td></tr>
+<tr><td>Day 1 check-in protocol</td><td>Not formalized</td><td>PS/TSS</td><td>No documented step-by-step for what happens when student arrives at Puro Surf.</td></tr>
+<tr><td>Student profile creation (coordinator)</td><td>Defined</td><td>DEV</td><td>TSS Brain P3 Student CRUD — next build phase.</td></tr>
+<tr><td>Camp assignment (coordinator)</td><td>Defined</td><td>DEV</td><td>TSS Brain P4 Camp+Session Management — planned.</td></tr>
+<tr><td>Daily session flow (coach)</td><td>Complete</td><td>MC/TSS</td><td>Pre-arrival quiz → coordinator creates student → assigns to camp/session → coach runs session. Session flow: Objectives→Conditions→Execution→Evaluation→Close mandatory.</td></tr>
+<tr><td>Session delivery protocol</td><td>Complete</td><td>MC/TSS</td><td>Safety Canon v2 + Coach Internal Handbook cover full pre/during/post session.</td></tr>
+<tr><td>Mid-camp evaluation</td><td>Not formalized</td><td>MC/TSS</td><td>Coaches evaluate informally. No structured mid-camp checkpoint.</td></tr>
+<tr><td>End-of-camp evaluation + promotion decision</td><td>Defined</td><td>MC/TSS</td><td>Belt Progression Template defines promotion criteria. No operational protocol for how the decision is made and communicated at PS.</td></tr>
+<tr><td>Post-camp feedback (student → academy)</td><td>Not formalized</td><td>PS</td><td>No structured feedback form from student to academy.</td></tr>
+<tr><td>Post-camp feedback (coach → student)</td><td>Not formalized</td><td>MC/TSS</td><td>No automated or standardized post-camp report to student.</td></tr>
+<tr><td>Student history persistence</td><td>Defined</td><td>DEV</td><td>Core product value in TSS Brain. Depends on P3+P5 build.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Coach certification route (L1–L5)</td><td>Complete</td><td>MC/TSS</td><td>Defined in Core Canon. 5 levels with prerequisites and scope.</td></tr>
+<tr><td>Coach Internal Safety Handbook</td><td>Complete</td><td>MC/TSS</td><td>v1.0 created and canon-aligned.</td></tr>
+<tr><td>Coach Delivery Tools (per belt)</td><td>Complete</td><td>MC/TSS</td><td>White, Yellow, Blue, Purple Belt HTML tools deployed.</td></tr>
+<tr><td>Inclusive coaching certification</td><td>Defined</td><td>MC/TSS</td><td>Inclusion Canon v1.0 defines 4-stage certification path and rubric.</td></tr>
+<tr><td>Coach schedule / assignment protocol</td><td>Informal</td><td>PS</td><td>Done by PS management. No TSS-standard assignment logic.</td></tr>
+<tr><td>Coach performance evaluation</td><td>Not formalized</td><td>MC/TSS</td><td>No periodic evaluation form or process for active coaches.</td></tr>
+<tr><td>Coach debrief protocol (post-session)</td><td>Partial</td><td>MC/TSS</td><td>Mentioned in Handbook. No standalone form or required frequency.</td></tr>
+<tr><td>Coach dress code / presentation standard</td><td>Informal</td><td>PS</td><td>Practice exists. Not documented as TSS standard.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Safety Canon v2.0</td><td>Complete</td><td>MC/TSS</td><td>31 sections. Tier 2 document. All session protocols defined.</td></tr>
+<tr><td>Ratio matrix (instructor-to-student)</td><td>Complete</td><td>MC/TSS</td><td>9 condition levels with age/level restrictions. In Safety Canon + HTML tool.</td></tr>
+<tr><td>Coach alignment formations</td><td>Complete</td><td>MC/TSS</td><td>La Dupla, El Triángulo, El Imán documented with roles and capacity.</td></tr>
+<tr><td>Stop / Adapt / Relocate / Cancel thresholds</td><td>Complete</td><td>MC/TSS</td><td>Defined in Safety Canon with escalation criteria.</td></tr>
+<tr><td>Red Code + Plan B protocol</td><td>Complete</td><td>MC/TSS</td><td>Environmental hazard triggers + 6 alternative session options.</td></tr>
+<tr><td>Incident reporting protocol</td><td>Complete</td><td>MC/TSS</td><td>Form exists in Forms Pack + interactive form in HTML tool.</td></tr>
+<tr><td>Emergency Action Plan (Puro Surf specific)</td><td>Not created</td><td>PS/TSS</td><td>Canon requires local EAP. PS-specific version with hospital routes, contacts, and roles not yet created.</td></tr>
+<tr><td>First-aid competence tracking (coaches)</td><td>Not formalized</td><td>PS</td><td>Canon requires current certifications. No tracking system for expiration dates.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Inclusion Canon v1.0</td><td>Complete</td><td>MC/TSS</td><td>20 sections. Tier 2 document. All profiles and adaptations.</td></tr>
+<tr><td>Learning Channel Quiz</td><td>Complete</td><td>MC/TSS</td><td>5-question HTML tool deployed. Ready for WhatsApp distribution.</td></tr>
+<tr><td>Inclusive Coach Training presentation</td><td>Complete</td><td>MC/TSS</td><td>20-slide PPTX for coach formation module.</td></tr>
+<tr><td>Equipment adaptation by weight/profile</td><td>Complete</td><td>MC/TSS</td><td>Table in Inclusion Canon with 6 weight ranges + 4 special profiles.</td></tr>
+<tr><td>Multilingual coaching phrase card</td><td>Defined</td><td>MC/TSS</td><td>Content exists in Inclusion Canon. Standalone printed card not created.</td></tr>
+<tr><td>Learner profile intake form (expanded)</td><td>Defined</td><td>MC/TSS</td><td>Current intake captures medical. Needs learning channel + language + physical profile.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Core Canon v4 (Tier 1)</td><td>Complete</td><td>MC/TSS</td><td>Constitutional foundation. Source of truth.</td></tr>
+<tr><td>Safety Canon v2 (Tier 2)</td><td>Complete</td><td>MC/TSS</td><td>Formal DOCX + interactive HTML tool.</td></tr>
+<tr><td>Inclusion Canon v1 (Tier 2)</td><td>Complete</td><td>MC/TSS</td><td>Formal DOCX + training PPTX.</td></tr>
+<tr><td>Brand Manual v4.2 (Tier 2)</td><td>Complete</td><td>MC/TSS</td><td>Canon-aligned HTML.</td></tr>
+<tr><td>Belt Progression Master Template v2.1 (Tier 2)</td><td>Complete</td><td>MC/TSS</td><td>Template for all belt manuals.</td></tr>
+<tr><td>Block System &amp; Infinite Circle (Tier 2)</td><td>Complete</td><td>MC/TSS</td><td>Transversal architecture document.</td></tr>
+<tr><td>Business Model Blueprint v2 (Tier 2)</td><td>Complete</td><td>MC/TSS</td><td>Revenue engine and licensing logic.</td></tr>
+<tr><td>Academy Operations Manual (Tier 3)</td><td>Not created</td><td>MC/TSS</td><td>THE MISSING DOCUMENT. Connects all Tier 2 docs into operational reality.</td></tr>
+<tr><td>Coach Certification Manual (Tier 3)</td><td>Not created</td><td>MC/TSS</td><td>Formation program, assessment instruments, renewal protocols.</td></tr>
+<tr><td>Student Progression Manuals — White Belt</td><td>Not created</td><td>MC/TSS</td><td>Yellow and Blue exist. White Belt student manual not yet built.</td></tr>
+<tr><td>Student Progression Manuals — Purple Belt</td><td>Partial</td><td>MC/TSS</td><td>Purple Belt tool exists. Student-facing manual not yet built.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Critical Gap #1
+Academy Operations Manual — the Tier 3 document that says ‘this is how you run a TSS academy.’ Without it, every other document floats in isolation. This is the single most important missing piece in the entire ecosystem.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Critical Gap #2
+Day 1 Check-In Protocol for Puro Surf — what happens step by step when a student arrives. Who greets them, what forms they fill, who reviews their learning quiz results, who assigns them to a camp, and who introduces them to their coach.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Critical Gap #3
+Puro Surf Emergency Action Plan — the local version connecting the Safety Canon to PS-specific hospital routes, lifeguard contacts, staff emergency roles, and venue-specific hazards.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>High Priority
+Post-camp feedback loop (both directions) and coach performance evaluation system. Without these, quality degrades invisibly over time.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Architecture (Next.js 14 + Supabase, 18 tables)</td><td>Complete</td><td>DEV</td><td>tss-brain-app.vercel.app. Foundation built.</td></tr>
+<tr><td>Role system (admin, coordinator, coach, assistant)</td><td>Complete</td><td>DEV</td><td>Migrated March 2026. 8 files corrected. MC is sole admin.</td></tr>
+<tr><td>P2 — Coach CRUD</td><td>Complete</td><td>DEV</td><td>Coaches can be created, read, updated, deleted.</td></tr>
+<tr><td>P3 — Student CRUD</td><td>Not started</td><td>DEV</td><td>NEXT BUILD. Student creation, profile, history.</td></tr>
+<tr><td>P4 — Camp + Session Management</td><td>Not started</td><td>DEV</td><td>Camps: 6 days, max 4 students. Session assignment flow.</td></tr>
+<tr><td>P5 — Session Flow (heart of the product)</td><td>Not started</td><td>DEV</td><td>Objectives→Conditions→Execution→Evaluation→Close mandatory. Feedback/Video/DryDrills optional. This is the bitácora.</td></tr>
+<tr><td>Dashboard / metrics</td><td>Not started</td><td>DEV</td><td>Coach performance, student progression, session analytics.</td></tr>
+<tr><td>Automated post-session email</td><td>Not started</td><td>DEV</td><td>Student receives session summary after each class.</td></tr>
+<tr><td>Bidirectional rating system</td><td>Defined</td><td>MC/TSS</td><td>Student rates session, coach rates student. In project doc.</td></tr>
+<tr><td>TSS Global visibility layer</td><td>Not started</td><td>DEV</td><td>Multi-academy dashboard for licensing oversight.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Coach Tool — White Belt (Beginner)</td><td>Deployed</td><td>MC/TSS</td><td>marcelocsurf.github.io/coach-tool-beginner</td></tr>
+<tr><td>Coach Tool — Yellow Belt (Novice)</td><td>Deployed</td><td>MC/TSS</td><td>marcelocsurf.github.io/coach-tool-novice</td></tr>
+<tr><td>Coach Tool — Blue Belt (Foundation)</td><td>Deployed</td><td>MC/TSS</td><td>marcelocsurf.github.io/coach-tool-foundation</td></tr>
+<tr><td>Coach Tool — Purple Belt (Emerging)</td><td>Deployed</td><td>MC/TSS</td><td>marcelocsurf.github.io/coach-tool-emerging</td></tr>
+<tr><td>Safety Canon Tool (interactive)</td><td>Deployed</td><td>MC/TSS</td><td>marcelocsurf.github.io/Safty-manual — 21 screens with Decision Engine, formations, forms.</td></tr>
+<tr><td>Learning Channel Quiz</td><td>Deployed</td><td>MC/TSS</td><td>marcelocsurf.github.io/learning-quiz — 5 questions, donut chart, WhatsApp share.</td></tr>
+<tr><td>TSS Quiz App</td><td>Deployed</td><td>MC/TSS</td><td>tss-quiz.vercel.app — Knowledge assessment.</td></tr>
+<tr><td>Coach Tool — Brown Belt</td><td>Not created</td><td>MC/TSS</td><td>Brown Belt sequences not yet fully documented.</td></tr>
+<tr><td>Coach Tool — Black Belt</td><td>Not created</td><td>MC/TSS</td><td>Black Belt sequences not yet fully documented.</td></tr>
+<tr><td>Inclusion Coach Tool (interactive HTML)</td><td>Not created</td><td>MC/TSS</td><td>Content exists in Canon + PPTX. HTML tool not built.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Asset / Component</th><th>Status</th><th>Owner</th><th>Notes / Gap</th></tr>
+<tr><td>Pre-session checklist (digital in Brain)</td><td>Not started</td><td>DEV</td><td>Currently paper. Needs digital version in P5 session flow.</td></tr>
+<tr><td>Incident report (digital in Brain)</td><td>Not started</td><td>DEV</td><td>Interactive form exists in HTML tool. Needs Brain integration.</td></tr>
+<tr><td>Venue analysis (digital in Brain)</td><td>Not started</td><td>DEV</td><td>Form exists in Forms Pack. Needs digital capture.</td></tr>
+<tr><td>Student intake / medical form (digital)</td><td>Not started</td><td>DEV</td><td>Current form is paper. Needs digital with learning channel data.</td></tr>
+<tr><td>Promotion clearance form (digital)</td><td>Not started</td><td>DEV</td><td>Criteria defined in Belt Progression Template. Needs digital checklist.</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Critical Gap
+P3 Student CRUD — without student records in TSS Brain, nothing downstream works. No session tracking, no progression history, no evaluation. This is the immediate next build.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Critical Gap
+P5 Session Flow — the bitácora. This is the heart of the entire Info System. Until coaches log sessions digitally with the mandatory flow (Objectives→Conditions→Execution→Evaluation→Close), student history does not persist and the product has no defensible data layer.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Strategic Note
+The HTML field tools (7 deployed) are the bridge. They work NOW without requiring Brain completion. Coaches use them in the field today. As Brain matures, the tools integrate. Do not wait for Brain to deploy operational improvements.</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Phase 1 — NOW (Weeks 1–4)
+1. Academy Operations Manual (Soft System — the connector document). 2. Puro Surf Emergency Action Plan (Soft System — safety-critical). 3. Day 1 Check-In Protocol (Soft System — student journey start). 4. Laminated field cards from existing content (Hard System — low cost, high impact). 5. Beach flag/zone signage standard (Hard System — enables formations).</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Phase 2 — NEXT (Weeks 5–12)
+1. TSS Brain P3 Student CRUD (Info System — critical path). 2. Equipment audit + labeling at Puro Surf (Hard System). 3. Coach performance evaluation protocol (Soft System). 4. Post-camp feedback system (Soft System). 5. White Belt Student Manual (doctrinal completeness).</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Phase 3 — SCALE (Weeks 13–24)
+1. TSS Brain P4 Camp+Session Management (Info System). 2. TSS Brain P5 Session Flow / Bitácora (Info System — the heart). 3. Coach Certification Manual (Soft System — Tier 3). 4. Digital forms integration (Info System). 5. TSS Global visibility dashboard (Info System — licensing enabler).</th></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>System</th><th>Complete</th><th>In Progress</th><th>Not Started</th><th>Total Items</th></tr>
+<tr><td>HARD SYSTEM</td><td>1</td><td>7</td><td>7</td><td>15</td></tr>
+<tr><td>SOFT SYSTEM</td><td>14</td><td>7</td><td>10</td><td>31</td></tr>
+<tr><td>INFO SYSTEM</td><td>8</td><td>0</td><td>12</td><td>20</td></tr>
+<tr><td>TOTAL</td><td>23</td><td>14</td><td>29</td><td>66</td></tr>
+</table></div>
+<div class="table-wrap"><table>
+<tr><th>Strategic Decision Required
+This framework reveals the real bottleneck: the Academy Operations Manual. It is the only document that connects all three systems into a single operational reality. Without it, you have excellent doctrine, excellent tools, and no documented process for how a person walks through the door at Puro Surf and experiences TSS. Every week this document does not exist is a week where implementation depends on your memory and presence — which is the exact opposite of what a scalable system requires.</th></tr>
+</table></div>
+  </div>
+</div>
+
+<div class="doc-footer">
+  <span class="tagline">Evolve through play.</span>
+  Three Systems Framework v1 — The Surf Sequence® / Enkrateia
+</div>
+</body>
+</html>

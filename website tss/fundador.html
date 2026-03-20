@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marcelo Castellanos — The Surf Sequence®</title>
+<meta name="description" content="Coach olímpico ISA, arquitecto de sistemas y fundador de The Surf Sequence. Más de 20 años formando surfistas de todos los niveles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth;font-size:16px}body{font-family:'Work Sans',sans-serif;color:#4E4D4D;line-height:1.7;background:#fff;overflow-x:hidden}a{text-decoration:none;color:inherit;transition:all .3s}
+:root{--navy:#0A1628;--blue:#0D2D5E;--cyan:#5AC3E7;--grey:#4E4D4D;--light:#F5F7FA;--white:#FFFFFF}
+h1,h2,h3{font-family:'Outfit',sans-serif;color:var(--navy);line-height:1.2}h1{font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800}h2{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700}h3{font-size:clamp(1.1rem,2vw,1.4rem);font-weight:600}
+.tagline{font-family:'Lora',serif;font-style:italic;color:var(--cyan)}
+.container{max-width:1140px;margin:0 auto;padding:0 24px}.section{padding:100px 0}.section--dark{background:var(--navy);color:var(--white)}.section--dark h2{color:var(--white)}.section--light{background:var(--light)}
+.btn{display:inline-block;padding:16px 36px;border-radius:6px;font-family:'Outfit',sans-serif;font-weight:600;font-size:1rem;transition:all .3s;cursor:pointer;border:none}.btn--primary{background:var(--cyan);color:var(--navy)}.btn--primary:hover{background:#3db8e0;transform:translateY(-2px)}.btn--white{background:var(--white);color:var(--navy)}
+.nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 0;background:rgba(10,22,40,.97);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,.2)}.nav__inner{display:flex;align-items:center;justify-content:space-between;max-width:1140px;margin:0 auto;padding:0 24px}.nav__logo{font-family:'Outfit',sans-serif;font-weight:800;font-size:1.1rem;color:var(--white)}.nav__logo span{color:var(--cyan)}.nav__links{display:flex;gap:32px;align-items:center}.nav__links a{color:rgba(255,255,255,.8);font-size:.9rem;font-weight:500}.nav__links a:hover{color:var(--cyan)}.nav__cta{padding:10px 24px;font-size:.85rem}.nav__toggle{display:none;background:none;border:none;cursor:pointer}.nav__toggle span{display:block;width:24px;height:2px;background:var(--white);margin:5px 0}
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,22,40,.98);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px}.mobile-menu.active{display:flex}.mobile-menu a{color:var(--white);font-family:'Outfit',sans-serif;font-size:1.3rem;font-weight:600}.mobile-close{position:absolute;top:24px;right:24px;background:none;border:none;color:var(--white);font-size:2rem;cursor:pointer}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.page-hero-split{padding:140px 0 80px;background:var(--navy)}.hero-img-placeholder{width:100%;aspect-ratio:3/4;max-width:400px;background:linear-gradient(135deg,var(--blue),#1a3a6e);border-radius:20px;display:flex;align-items:center;justify-content:center;color:var(--cyan);font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:600}
+.credential{display:flex;gap:16px;align-items:start;padding:20px 0;border-bottom:1px solid rgba(0,0,0,.06)}.credential__icon{width:48px;height:48px;background:rgba(90,195,231,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}.credential h3{font-size:1rem;margin-bottom:4px}.credential p{font-size:.88rem;color:var(--grey)}
+.timeline{position:relative;padding-left:40px}.timeline::before{content:'';position:absolute;left:12px;top:0;bottom:0;width:2px;background:rgba(90,195,231,.2)}.timeline-item{position:relative;padding-bottom:36px}.timeline-item::before{content:'';position:absolute;left:-32px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--cyan);border:3px solid var(--light)}.timeline-item h3{font-size:1rem;color:var(--navy);margin-bottom:4px}.timeline-item span{font-size:.8rem;color:var(--cyan);font-weight:600;display:block;margin-bottom:4px}.timeline-item p{font-size:.88rem;color:var(--grey)}
+.quote-block{padding:48px;border-radius:20px;background:linear-gradient(135deg,var(--navy),var(--blue));text-align:center}.quote-block p{font-family:'Lora',serif;font-style:italic;font-size:clamp(1.1rem,2.2vw,1.5rem);color:var(--cyan);line-height:1.6;max-width:600px;margin:0 auto}.quote-block span{display:block;margin-top:16px;font-family:'Work Sans',sans-serif;font-style:normal;font-size:.9rem;color:rgba(255,255,255,.5)}
+.fade-up{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.22,.61,.36,1)}.fade-up.visible{opacity:1;transform:translateY(0)}
+.footer{background:#060e1a;color:rgba(255,255,255,.6);padding:40px 0}.footer__inner{display:flex;justify-content:space-between;align-items:center;font-size:.85rem}
+@media(max-width:968px){.grid-2,.grid-3{grid-template-columns:1fr}.nav__links{display:none}.nav__toggle{display:block}.section{padding:72px 0}.hero-img-placeholder{max-width:100%;aspect-ratio:16/9;margin-bottom:24px}}
+@media(max-width:600px){.btn{width:100%;text-align:center}}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav__inner"><a href="index.html" class="nav__logo">THE SURF <span>SEQUENCE®</span></a><div class="nav__links"><a href="index.html#metodo">El Método</a><a href="index.html#cintas">Cintas</a><a href="index.html#resultados">Resultados</a><a href="index.html#caminos">Para Ti</a><a href="index.html#contacto" class="btn btn--primary nav__cta">Comienza ahora</a></div><button class="nav__toggle" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button></div></nav>
+<div class="mobile-menu" id="mobileMenu"><button class="mobile-close" onclick="toggleMenu()">&times;</button><a href="index.html">Home</a><a href="index.html#metodo">El Método</a><a href="index.html#cintas">Cintas</a><a href="index.html#contacto" class="btn btn--primary" onclick="toggleMenu()">Comienza ahora</a></div>
+
+<!-- Hero Split -->
+<section class="page-hero-split">
+  <div class="container">
+    <div class="grid-2">
+      <div class="hero-img-placeholder">[ FOTO MARCELO ]</div>
+      <div>
+        <p style="font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:12px">Fundador</p>
+        <h1 style="color:var(--white);margin-bottom:12px">Marcelo Castellanos</h1>
+        <p style="color:rgba(255,255,255,.65);font-size:1.1rem;margin-bottom:24px">Coach olímpico ISA. Arquitecto de sistemas de aprendizaje. Formador de formadores. Creador de The Surf Sequence®.</p>
+        <p style="color:rgba(255,255,255,.5);font-size:.95rem;line-height:1.8">Marcelo no enseña surf de la forma tradicional. Diseña sistemas. Con más de dos décadas dedicadas a la formación de surfistas de todos los niveles — desde turistas en su primera ola hasta atletas olímpicos — identificó la brecha que nadie había cerrado: el surf no tenía un estándar educativo global. Entonces lo construyó.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Credenciales -->
+<section class="section">
+  <div class="container">
+    <h2 style="margin-bottom:40px" class="fade-up">Credenciales y trayectoria</h2>
+    <div class="grid-2 fade-up">
+      <div>
+        <div class="credential">
+          <div class="credential__icon">🏅</div>
+          <div><h3>Coach ISA Nivel Experto</h3><p>Certificación al máximo nivel otorgada por la International Surfing Association, el ente rector global del surf.</p></div>
+        </div>
+        <div class="credential">
+          <div class="credential__icon">🥇</div>
+          <div><h3>Validación Olímpica</h3><p>Metodología utilizada en la preparación para París 2024 y la campaña clasificatoria de LA 2028.</p></div>
+        </div>
+        <div class="credential">
+          <div class="credential__icon">📚</div>
+          <div><h3>Creador de IP protegida</h3><p>100% propietario intelectual de TSS a través de Enkrateia. Sistema completo: Canon, manuales, certificación, plataforma digital.</p></div>
+        </div>
+        <div class="credential">
+          <div class="credential__icon">🌍</div>
+          <div><h3>+20 años de experiencia</h3><p>Más de dos décadas formando surfistas de todos los niveles, edades y nacionalidades en El Salvador y el mundo.</p></div>
+        </div>
+        <div class="credential">
+          <div class="credential__icon">🏢</div>
+          <div><h3>Fundador de Puro Surf</h3><p>Creador de Puro Surf Performance Academy, el operador flagship donde TSS se ejecuta, valida y perfecciona cada día.</p></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-bottom:24px">Hitos clave</h3>
+        <div class="timeline">
+          <div class="timeline-item"><span>2000s</span><h3>Inicio de la enseñanza del surf</h3><p>Primeras experiencias formando surfistas, desarrollo de filosofía de enseñanza basada en observación y estructura.</p></div>
+          <div class="timeline-item"><span>2010s</span><h3>Fundación de Puro Surf</h3><p>Creación de la academia que se convertiría en el laboratorio vivo de TSS en El Zonte, El Salvador.</p></div>
+          <div class="timeline-item"><span>2020s</span><h3>Formalización de TSS</h3><p>Canon v5.0, sistema de 6 cintas, 26 secuencias, modelo de negocio, manual de marca. La metodología toma forma definitiva.</p></div>
+          <div class="timeline-item"><span>2024</span><h3>Validación olímpica — París</h3><p>Metodología TSS utilizada en preparación de atletas para los Juegos Olímpicos de París 2024.</p></div>
+          <div class="timeline-item"><span>2026+</span><h3>Escalamiento global</h3><p>Red de academias afiliadas, certificación de coaches, plataforma TSS Brain. El estándar se expande.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Filosofía personal -->
+<section class="section section--light">
+  <div class="container">
+    <div class="quote-block fade-up">
+      <p>"Lo que PADI hizo por el buceo, TSS lo hará por el surf. No con marketing, sino con método. No con promesas, sino con estructura."</p>
+      <span>— Marcelo Castellanos</span>
+    </div>
+    <div style="max-width:680px;margin:48px auto 0;text-align:center" class="fade-up">
+      <h2 style="margin-bottom:16px">Filosofía</h2>
+      <p style="font-size:1.02rem;line-height:1.8">Marcelo cree que el surf es más que un deporte — es una herramienta de desarrollo integral. Pero sin estructura, el potencial se desperdicia. TSS nace de la convicción de que el surf merece el mismo rigor educativo que cualquier otra disciplina seria. Que la diversión y la ciencia no son opuestos, sino aliados. Que la verdadera maestría no es solo dominar la tabla, sino ser capaz de transmitir ese conocimiento a otros.</p>
+      <p class="tagline" style="font-size:1.2rem;margin-top:24px">Evolve through play.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Ecosistema -->
+<section class="section">
+  <div class="container">
+    <h2 style="text-align:center;margin-bottom:16px" class="fade-up">El ecosistema de Marcelo</h2>
+    <p style="text-align:center;color:var(--grey);margin-bottom:48px;max-width:560px;margin-left:auto;margin-right:auto" class="fade-up">Tres vehículos interconectados, un mismo propósito: elevar el estándar del surf a nivel global.</p>
+    <div class="grid-3 fade-up">
+      <div style="padding:32px;border-radius:16px;border:1px solid rgba(90,195,231,.12);background:var(--white)">
+        <p style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px">Propiedad intelectual</p>
+        <h3>The Surf Sequence®</h3>
+        <p style="font-size:.9rem;margin-top:8px">La metodología central. El estándar global de educación en surf. 100% propiedad de Marcelo a través de Enkrateia.</p>
+      </div>
+      <div style="padding:32px;border-radius:16px;border:1px solid rgba(90,195,231,.12);background:var(--white)">
+        <p style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px">Operador flagship</p>
+        <h3>Puro Surf</h3>
+        <p style="font-size:.9rem;margin-top:8px">Donde TSS se ejecuta, valida y perfecciona. El laboratorio vivo del sistema en El Zonte, El Salvador.</p>
+      </div>
+      <div style="padding:32px;border-radius:16px;border:1px solid rgba(90,195,231,.12);background:var(--white)">
+        <p style="font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px">Impacto social</p>
+        <h3>Compartiendo Olas</h3>
+        <p style="font-size:.9rem;margin-top:8px">El brazo de transformación comunitaria. Surf como herramienta de desarrollo social y acceso equitativo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="text-align:center;background:linear-gradient(135deg,var(--navy),var(--blue))">
+  <div class="container fade-up">
+    <h2 style="color:var(--white);margin-bottom:16px">¿Quieres trabajar con TSS?</h2>
+    <p style="color:rgba(255,255,255,.6);margin-bottom:32px">Ya seas surfista, coach o academia — hay un camino para ti.</p>
+    <a href="index.html#contacto" class="btn btn--white">Comienza ahora</a>
+  </div>
+</section>
+
+<footer class="footer"><div class="container"><div class="footer__inner"><a href="index.html" class="nav__logo">THE SURF <span>SEQUENCE®</span></a><span>© 2026 The Surf Sequence®. Enkrateia SA de CV.</span></div></div></footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('active');document.body.style.overflow=document.getElementById('mobileMenu').classList.contains('active')?'hidden':'';}
+const observer=new IntersectionObserver(e=>{e.forEach(i=>{if(i.isIntersecting)i.target.classList.add('visible')})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
