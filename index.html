@@ -252,7 +252,10 @@ body{font-family:'Work Sans',sans-serif;background:#060e1a;color:#e0e0e0;min-hei
     </div>
 
     <div class="nav-section">
-      <div class="nav-section__title">Business</div>
+      <div class="nav-section__title">Business & Legal</div>
+      <button class="nav-item" onclick="showPage('legal')">
+        <span class="nav-item__icon">⚖️</span> Legal Framework
+      </button>
       <button class="nav-item" onclick="showPage('bizmodel')">
         <span class="nav-item__icon">💰</span> Revenue Model
       </button>
@@ -1224,6 +1227,47 @@ body{font-family:'Work Sans',sans-serif;background:#060e1a;color:#e0e0e0;min-hei
     </div>
   </div>
 
+  <!-- ===== LEGAL FRAMEWORK ===== -->
+  <div class="page" id="page-legal">
+    <div class="page__header">
+      <div class="page__overline">Legal & IP Protection</div>
+      <div class="page__title">TSS Legal Framework</div>
+      <div class="page__desc">Paquete legal completo: contratos para cada servicio, políticas de protección de IP, acuerdos de licencia, NDA, y separación clara de propiedad intelectual. 10 secciones, 65+ páginas.</div>
+    </div>
+    <div style="padding:16px 20px;border-radius:12px;background:rgba(255,107,107,.04);border:1px solid rgba(255,107,107,.1);margin-bottom:20px">
+      <p style="font-size:.85rem;color:rgba(255,255,255,.4)"><strong style="color:var(--coral)">Cómo usarlo:</strong> Este es un framework de referencia. Cada contrato debe ser revisado y adaptado por un abogado local antes de firmar. Los montos, fechas, y datos específicos son placeholders que debes completar. Usa estos documentos como base para negociaciones — no como documentos finales.</p>
+    </div>
+    <div class="cards cards--2" style="margin-bottom:20px">
+      <div class="card" onclick="openTool('html_converted/doc_legal_framework.html')">
+        <div class="card__accent" style="background:var(--coral)"></div>
+        <div class="card__icon">⚖️</div>
+        <div class="card__title">Legal Framework Completo (HTML)</div>
+        <div class="card__desc">10 secciones navegables: IP Ownership, Coach Certification, Academy Affiliation, Premium License, Student Enrollment, Flagship Operator, NDA, Terms of Service, Policies, IP Protection.</div>
+        <span class="card__tag">▶ Leer framework</span>
+      </div>
+      <div class="card" onclick="viewFile('07_BUSINESS/TSS_Legal_Framework_Complete.docx')">
+        <div class="card__accent" style="background:var(--gold)"></div>
+        <div class="card__icon">📄</div>
+        <div class="card__title">Legal Framework (.docx editable)</div>
+        <div class="card__desc">Versión Word editable para personalizar con montos, nombres, fechas, y datos específicos antes de enviar al abogado.</div>
+        <span class="card__tag">📥 Abrir .docx</span>
+      </div>
+    </div>
+    <h3 style="font-family:Outfit;font-size:1rem;color:var(--white);margin-bottom:12px">Contratos incluidos</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+      <div style="padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02);border-left:3px solid var(--coral)"><strong style="color:var(--coral);font-size:.85rem">1.</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.5)">IP Ownership Declaration — Todo es de Enkrateia</span></div>
+      <div style="padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02);border-left:3px solid var(--cyan)"><strong style="color:var(--cyan);font-size:.85rem">2.</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.5)">Coach Certification Agreement (L1-L5)</span></div>
+      <div style="padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02);border-left:3px solid var(--green)"><strong style="color:var(--green);font-size:.85rem">3.</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.5)">Academy Affiliation Agreement (Tier 2)</span></div>
+      <div style="padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02);border-left:3px solid var(--gold)"><strong style="color:var(--gold);font-size:.85rem">4.</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.5)">Premium License Agreement (Tier 3)</span></div>
+      <div style="padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02);border-left:3px solid var(--cyan)"><strong style="color:var(--cyan);font-size:.85rem">5.</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.5)">Student Enrollment + Liability Waiver</span></div>
+      <div style="padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02);border-left:3px solid var(--coral)"><strong style="color:var(--coral);font-size:.85rem">6.</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.5)">Flagship Operator Agreement (Puro Surf)</span></div>
+      <div style="padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02);border-left:3px solid var(--purple)"><strong style="color:var(--purple);font-size:.85rem">7.</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.5)">Confidentiality & NDA (General)</span></div>
+      <div style="padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02);border-left:3px solid var(--blue)"><strong style="color:rgba(90,195,231,.7);font-size:.85rem">8.</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.5)">Terms of Service (TSS Brain Platform)</span></div>
+      <div style="padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02);border-left:3px solid var(--gold)"><strong style="color:var(--gold);font-size:.85rem">9.</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.5)">5 Políticas (Brand, Quality, Safety, Data, Anti-Piracy)</span></div>
+      <div style="padding:12px 16px;border-radius:8px;background:rgba(255,255,255,.02);border-left:3px solid var(--coral)"><strong style="color:var(--coral);font-size:.85rem">10.</strong> <span style="font-size:.82rem;color:rgba(255,255,255,.5)">Master IP Protection Summary + Enforcement</span></div>
+    </div>
+  </div>
+
   <!-- ===== REVENUE MODEL (INTERACTIVE) ===== -->
   <div class="page" id="page-bizmodel">
     <div class="page__header">
@@ -1467,7 +1511,7 @@ function showPage(id) {
 }
 
 function getNavLabel(id) {
-  const map = { dashboard:'dashboard', 'brand-ext':'brand (ext', 'brand-int':'brand (int', canon:'canon', onewave:'one wave', seqtool:'sequence', drills:'drill', logger:'session logger', studentkits:'student kit', belts:'belt (coach', session:'session', ratio:'ratio', conditions:'condition', safety:'safety', inclusion:'learning', quiz:'level', cert:'cert', progress:'student track', coachref:'coach quick', bizmodel:'revenue', business:'business', website:'website', diagrams:'diagram', highperf:'high', brain:'brain', masterclass:'masterclass' };
+  const map = { dashboard:'dashboard', 'brand-ext':'brand (ext', 'brand-int':'brand (int', canon:'canon', onewave:'one wave', seqtool:'sequence', drills:'drill', logger:'session logger', studentkits:'student kit', belts:'belt (coach', session:'session', ratio:'ratio', conditions:'condition', safety:'safety', inclusion:'learning', quiz:'level', cert:'cert', progress:'student track', coachref:'coach quick', legal:'legal', bizmodel:'revenue', business:'business', website:'website', diagrams:'diagram', highperf:'high', brain:'brain', masterclass:'masterclass' };
   return map[id] || id;
 }
 
