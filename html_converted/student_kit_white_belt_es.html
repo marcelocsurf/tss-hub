@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinta Blanca — Kit de Alumno — The Surf Sequence®</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:#060e1a;color:#e0e0e0;min-height:100vh}
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.05);padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+.top-bar h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:.95rem;color:#fff}
+.top-bar h1 span{color:#b0b0b0}
+.top-bar .level-badge{padding:4px 14px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;background:#E8E8E8;color:#333;letter-spacing:.06em}
+.hero{padding:40px 20px 32px;text-align:center;background:linear-gradient(135deg,#0A1628 0%,#b0b0b015 100%);border-bottom:1px solid rgba(255,255,255,.04)}
+.hero .belt-circle{width:80px;height:80px;border-radius:50%;background:#E8E8E8;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.8rem;color:#333;box-shadow:0 0 30px #b0b0b033}
+.hero h2{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:4px}
+.hero .level-name{font-size:.85rem;color:#b0b0b0;font-weight:600;margin-bottom:12px}
+.hero p{font-size:.88rem;color:rgba(255,255,255,.45);max-width:500px;margin:0 auto;line-height:1.7}
+.info-bar{padding:16px 20px;background:rgba(176,176,176,.04);border-bottom:1px solid rgba(255,255,255,.03);display:flex;gap:16px;justify-content:center;font-size:.78rem;color:rgba(255,255,255,.35)}
+.info-bar strong{color:#b0b0b0}
+.howto{max-width:700px;margin:20px auto;padding:16px 24px;border-radius:12px;background:rgba(90,195,231,.03);border:1px solid rgba(90,195,231,.08);font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.7}
+.howto strong{color:#5AC3E7}
+.progress-bar{max-width:700px;margin:12px auto 20px;padding:0 20px}
+.progress-track{height:6px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:#b0b0b0;border-radius:3px;transition:width .5s;width:0%}
+.progress-label{font-size:.7rem;color:rgba(255,255,255,.2);margin-top:4px;text-align:center}
+.content{max-width:700px;margin:0 auto;padding:0 20px 40px}
+.section-card{background:#0d1a2e;border:1px solid rgba(255,255,255,.04);border-radius:12px;margin-bottom:8px;overflow:hidden;transition:all .2s}
+.section-card:hover{border-color:rgba(255,255,255,.08)}
+.section-card.open{border-color:#b0b0b044}
+.section-header{padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.section-num{width:28px;height:28px;border-radius:8px;background:#b0b0b015;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:.8rem;color:#b0b0b0;flex-shrink:0}
+.section-title{font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:600;color:#fff;flex:1}
+.section-arrow{color:rgba(255,255,255,.15);font-size:.7rem;transition:transform .2s}
+.section-card.open .section-arrow{transform:rotate(90deg);color:#b0b0b0}
+.section-body{display:none;padding:0 18px 16px;border-top:1px solid rgba(255,255,255,.03)}
+.section-card.open .section-body{display:block;padding-top:14px}
+.footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.03)}
+.footer .tagline{font-family:'Lora',serif;font-style:italic;color:#b0b0b0;font-size:.85rem;margin-bottom:6px}
+.footer p{font-size:.7rem;color:rgba(255,255,255,.1)}
+@media(max-width:600px){.info-bar{flex-direction:column;gap:6px;align-items:center}.hero h2{font-size:1.3rem}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <h1>THE SURF <span>SEQUENCE®</span></h1>
+  <div class="level-badge">NIVEL 1 — KIT DE ALUMNO</div>
+</div>
+<div class="hero">
+  <div class="belt-circle">1</div>
+  <h2>Cinta Blanca</h2>
+  <div class="level-name">Foundational</div>
+  <p>Tu viaje empieza aquí. Domina los fundamentos: postura, pop-up, control de tabla, seguridad básica. Construye la base sobre la que crece todo lo demás.</p>
+</div>
+<div class="info-bar">
+  <span><strong>Olas:</strong> 1-2 pies</span>
+  <span><strong>Ambiente:</strong> Aguas poco profundas, espuma</span>
+  <span><strong>Secciones:</strong> 42</span>
+</div>
+<div class="howto">
+  <strong>Cómo usar este kit:</strong> Esta es tu guía personal de progresión. Cada sección cubre una habilidad que debes dominar. Trabájalas en orden. Marca lo que puedes hacer de forma consistente. Comparte tu progreso con tu coach TSS.
+</div>
+<div class="progress-bar">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">0 / 42 secciones exploradas</div>
+</div>
+<div class="content">
+
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h3 class="section-title">THE SURF SEQUENCE®</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">STUDENT MANUAL</p><p class="text-white/50 text-sm leading-relaxed mb-2">Sequences #1 through #5</p><p class="text-white/50 text-sm leading-relaxed mb-2">From Zero to Your First Ride</p><p class="text-white/50 text-sm leading-relaxed mb-2">By Marcelo Castellanos</p><p class="text-white/50 text-sm leading-relaxed mb-2">ISA Olympic Expert Coach | Founder, The Surf Sequence®</p><p class="text-white/50 text-sm leading-relaxed mb-2">Enkrateia SA de CV — All Rights Reserved</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h3 class="section-title">YOUR JOURNEY</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="font-semibold text-white/75 mb-2">Where You Are</p><p class="text-white/50 text-sm leading-relaxed mb-2">Welcome. You are about to learn to surf. Not through luck, not through chaos, and not by being thrown into the ocean hoping for the best. You are going to learn through a method — a clear, progressive, repeatable system that has trained beginners and Olympic athletes alike.</p><p class="text-white/50 text-sm leading-relaxed mb-2">The White Belt is your foundation. Everything in surfing — every turn, every wave, every session for the rest of your life — depends on what you build here. There is no shortcut past this level. If you rush it, every belt after it will be weaker. If you build it right, everything accelerates naturally.</p><p class="font-semibold text-white/75 mb-2">What You Will Learn</p><p class="text-white/50 text-sm leading-relaxed mb-2">At White Belt, you will learn to control your surfboard before the ocean does. You will find your balance point on the board, align with wave energy, catch whitewater with intention, stand up with a clean technical pop-up, hold a stable power stance, control your speed, change direction, and exit safely.</p><p class="text-white/50 text-sm leading-relaxed mb-2">You will do all of this in whitewater — the broken foam after a wave has collapsed. Whitewater is your training ground. It is predictable, manageable, and safe. You are not surfing real waves yet. You are building the control and awareness that makes real waves possible.</p><p class="font-semibold text-white/75 mb-2">The Progression Map</p><p class="font-semibold text-white/75 mb-2">You are here: White Belt — Beginner. Sequences #1 through #5.</p><p class="text-white/50 text-sm leading-relaxed mb-2">After White Belt, you will move to Yellow Belt (Novato), where you will transition from whitewater to green (unbroken) waves. But first, everything starts here.</p><p class="font-semibold text-white/75 mb-2">How to Use This Manual</p><p class="text-white/50 text-sm leading-relaxed mb-2">This manual is your companion throughout the White Belt program. Each section covers one part of the surfing sequence. Scan the QR codes to watch video explanations of each step. Use the mission tracker to log your progress.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Read each section before your water session. Review it after. The goal is not to memorize — it is to understand the sequence so deeply that it becomes automatic.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h3 class="section-title">SECTION 1: UNDERSTANDING YOUR ENVIRONMENT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Before you touch the water, you need to understand where you are. The ocean is not a swimming pool. It has patterns, zones, and forces. At White Belt, you do not need to understand everything — but you need to understand enough to be safe and intentional.</p><p class="font-semibold text-white/75 mb-2">What Is Whitewater?</p><p class="text-white/50 text-sm leading-relaxed mb-2">Whitewater is the broken foam that travels toward shore after a wave has collapsed. It is white, bubbly, and relatively low-energy compared to the wave that created it. This is your training environment at White Belt.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Whitewater is predictable: it always moves toward shore, it always pushes you forward, and it always loses energy as it gets closer to the beach. This predictability is what makes it safe for learning.</p><p class="font-semibold text-white/75 mb-2">Parts of the Beach</p><p class="font-semibold text-white/75 mb-2">Shore break: Where waves or whitewater meet the sand. Can be surprisingly powerful. Enter carefully.</p><p class="font-semibold text-white/75 mb-2">Shallow zone: Knee to waist-deep water. This is where most of your White Belt training happens.</p><p class="font-semibold text-white/75 mb-2">Safe zone: The area defined by your coach before every session. You never leave it without permission.</p><p class="font-semibold text-white/75 mb-2">Impact zone: Where waves are actively breaking. At White Belt, you stay away from this area.</p><p class="font-semibold text-white/75 mb-2">Reading Conditions</p><p class="text-white/50 text-sm leading-relaxed mb-2">Before every session, you will participate in a group venue analysis. Your coach will teach you to observe:</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Where the whitewater is coming from and in which direction it travels.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ How big the waves are and how frequently they arrive.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Where other people are in the water.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Where the safe zone is and where the hazards are (rocks, rip currents, shore break).</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h3 class="section-title">SECTION 2: SAFETY &amp; ETIQUETTE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Safety is not a topic at White Belt. It is the primary content. A beginner’s greatest risk is not wave size — it is lack of awareness. Every rule here exists because someone was hurt when it was ignored.</p><p class="font-semibold text-white/75 mb-2">Communication Signals</p><p class="text-white/50 text-sm leading-relaxed mb-2">These signals are taught on Day 1. Practice them until they require zero thinking.</p><p class="font-semibold text-white/75 mb-2">Coach asks: ARE YOU OK? — You respond with the appropriate hand signal.</p><p class="font-semibold text-white/75 mb-2">You are OK: Both arms form a triangle above your head.</p><p class="font-semibold text-white/75 mb-2">You need help: One arm waving side to side above your head.</p><p class="font-semibold text-white/75 mb-2">Coach signals COME IN: Cross both arms in an X above your head. Return to shore immediately.</p><p class="font-semibold text-white/75 mb-2">Safety Rules</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Never place the surfboard between yourself and an incoming wave or whitewater.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Never position yourself in front of another surfer’s board.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ When you fall: cover your head with both arms and fall away from the board. This is the star fall.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Never grab the surfboard by the tail or leash when it is being pulled by a wave.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ If you lose your board: protect your head, surface calmly, retrieve the board without rushing toward other surfers.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ If in doubt, do not go out. If conditions feel beyond your level, tell your coach.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Always carry the board at your side, not in front of you. Point the nose away from other people.</p><p class="font-semibold text-white/75 mb-2">The Star Fall</p><p class="text-white/50 text-sm leading-relaxed mb-2">The star fall is your non-negotiable exit at White Belt. When you fall or end your ride:</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Extend your arms and legs outward like a starfish.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Fall backward, away from the board.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Land flat on the water, distributing impact across your body.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Never jump off the board. Never dive headfirst. The star fall protects you in any depth.</p><p class="font-semibold text-white/75 mb-2">Basic Etiquette</p><p class="text-white/50 text-sm leading-relaxed mb-2">Even at White Belt, you share the water with others. Etiquette keeps everyone safe.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Do not ditch your board: Always maintain control. A loose board is a danger to everyone.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Be aware of your surroundings: Before you catch a wave, look behind you and beside you.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Stay in the safe zone: Do not drift outside the area your coach defined.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Respect spacing: Do not crowd other surfers. Give everyone room.</p><p class="font-semibold text-white/75 mb-2">Conditions for White Belt</p><p class="font-semibold text-white/75 mb-2">Maximum wave height: 1–2 feet (whitewater only). No unbroken waves. No overhead conditions. No strong currents.</p><p class="text-white/50 text-sm leading-relaxed mb-2">If conditions exceed this limit, the session moves to land drills or theory review.</p><p class="font-semibold text-white/75 mb-2">Equipment: Soft-top surfboard. Leash checked every session. Appropriate rash guard or wetsuit.</p><p class="font-semibold text-white/75 mb-2">Supervision: Maximum 1 coach per 4–6 students in water. Coach must be in the water during the session.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h3 class="section-title">SECTION 3: THE SEQUENCE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">This is the heart of The Surf Sequence. Every surf session follows this order. At White Belt, you are performing this sequence for the first time — entirely in whitewater.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Each step builds on the previous one. Skip a step and the sequence breaks. Master each step and the next one becomes easier.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h3 class="section-title">BLOCK 1 — PREPARATION</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Purpose: Create awareness, safety, and intention before entering the water.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h3 class="section-title">STEP 01  GOOFY OR REGULAR</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Before anything else, identify your stance. Goofy means left foot back. Regular means right foot back. Your coach will help you test which feels natural. Once you know your stance, use it consistently.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h3 class="section-title">STEP 02  VENUE ANALYSIS</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Before touching the water, read the beach. Where is the whitewater coming from? How big is it? Where are the other people? Where is the safe zone? Your coach will lead this analysis, but you participate actively.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h3 class="section-title">STEP 03  SAFETY RULES</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Review the safety rules before every session. Not as a formality — as a real check. Is the leash attached? Do you remember the signals? Do you know the safe zone?</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h3 class="section-title">STEP 04  WARM-UP</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Activate your body before entering the water. Mobility, body awareness, and mental focus. The warm-up is not just physical — it is the transition from daily life into surf mode.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h3 class="section-title">BLOCK 2 — ENTRY &amp; BOARD CONTROL</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Purpose: Enter the ocean safely and maintain control of your board at all times.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h3 class="section-title">STEP 05  GRAB BOARD</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Handle your board with intention. Back hand on the tail, front hand near the center. Carry it at your side, not in front of you. The nose points away from people. The board is your tool — control starts before you enter the ocean.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h3 class="section-title">STEP 06  WALK OUT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Navigate to the water safely. Be aware of the shore break, rocks, and other people. Keep the board at your side. Walk until the water is knee to waist deep. Face the incoming whitewater.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <h3 class="section-title">STEP 07  PUT BOARD IN THE WATER</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Place the board in the water with control. The nose faces the incoming whitewater. You hold the board — the board does not drift away from you.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <h3 class="section-title">STEP 08  CONTROL YOUR BOARD</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Manage your board through incoming whitewater. Use your hands to steer it. When whitewater approaches, tilt the nose slightly up so the foam passes underneath. The board responds to intentional input — not to panic. This is the first lesson: the board is an extension of your body.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">16</div>
+    <h3 class="section-title">STEP 09  GO THROUGH WHITEWATER STANDING</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Stay standing while whitewater pushes past you. Keep control of the board. Do not let the foam knock you over or rip the board away.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">17</div>
+    <h3 class="section-title">STEP 10  TURN AROUND SAFELY</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Turn your body and board to face the shore. Use the pivot concept: press the tail with your back hand to lift the nose, then swing the board around. Turn safely without hitting anyone.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">18</div>
+    <h3 class="section-title">STEP 11  WALK BACK TO THE SAND</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Exit the water calmly. Carry the board correctly. Reset for the next attempt.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">19</div>
+    <h3 class="section-title">BLOCK 3 — CATCHING WAVES PRONE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Purpose: Connect with wave energy while lying on the board and learn to ride before standing.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">20</div>
+    <h3 class="section-title">STEP 12  GET ON YOUR BOARD — FIND SWEET SPOT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Climb onto the board and find your sweet spot. This is the position where the board floats level — the nose is not diving, not popping up. Too far forward: the nose sinks. Too far back: you drag through the water. The sweet spot is the position of maximum efficiency.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">21</div>
+    <h3 class="section-title">STEP 13  GET ALIGNED WITH THE WHITEWATER</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Before you paddle, make sure your board is pointing straight toward shore and aligned with the incoming whitewater. If the board is angled or crooked, the wave energy will push you sideways. Alignment determines success before the wave arrives.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">22</div>
+    <h3 class="section-title">STEP 14  PADDLE TO CATCH WHITEWATER</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">When whitewater is approaching, paddle with continuous, committed strokes. Long, deep strokes. Elbows high. Push water behind you, not to the side. The goal is to match the speed of the whitewater so it catches you and carries you forward.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">23</div>
+    <h3 class="section-title">STEP 15  COBRA — PICK YOUR LINE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Once the whitewater catches you, immediately go into cobra position: push your chest up with your hands, eyes forward, scanning. This is where you make your first decision: will you go left or right? Look in the direction you want to go. The cobra is not just a position — it is the moment you choose your line.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">24</div>
+    <h3 class="section-title">STEP 16  DISMOUNT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">At this stage, you exit the board safely after riding prone. Let the whitewater carry you, then slide off the board to the side, protecting your head.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">25</div>
+    <h3 class="section-title">BLOCK 4 — STANDING UP</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Purpose: Transition from prone to standing and establish stability on a moving board.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">26</div>
+    <h3 class="section-title">STEP 17  POP-UP + FEET POSITION</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">This is the moment you stand up on the surfboard. The pop-up starts from a good cobra position with hands at rib height. Drag your back leg forward into a figure-four position, load weight onto your back foot, bring your front foot between your hands near the center of the board. Hips lower before hands release. This is not a jump — it is a controlled, technical movement.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">27</div>
+    <h3 class="section-title">STEP 18  POSTURE — POWER STANCE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Once standing, establish your power stance. Knees bent, back straight, chest open, eyes forward, arms open for balance, weight centered. This is the foundation of all power transfer in surfing. If your posture is good, everything else gets easier.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">28</div>
+    <h3 class="section-title">STEP 19  IMPULSE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Impulse is the technique for maintaining or recovering speed on the wave. At White Belt, it is introduced as a concept and first practice. A coordinated knee flexion combined with a double-arm push that creates forward momentum. When you feel the board slowing down, impulse keeps you moving.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">29</div>
+    <h3 class="section-title">STEP 20  STARFISH DISMOUNT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">The controlled exit from every wave. When your ride is ending, extend your arms and legs like a starfish, fall backward away from the board. Do not jump off. Do not dive. At White Belt, this is non-negotiable. Every ride ends with a starfish.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">30</div>
+    <h3 class="section-title">BLOCK 5 — DIRECTIONAL CONTROL &amp; PADDLE-OUT READINESS</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Purpose: Add intentional direction changes and prepare for independent paddle-out.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">31</div>
+    <h3 class="section-title">STEP 21  SET GOAL</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Every session needs a clear mission. Not ‘have fun’ — a specific, measurable objective. Example: ‘Catch 5 whitewater waves with a clean pop-up.’ Your coach will help you set this, but you should understand why you are in the water.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">32</div>
+    <h3 class="section-title">STEP 22  TURN BACKSIDE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Initiate a small directional change to your backside. The rotation starts from your eyes: look where you want to go. Your head follows your eyes, your torso follows your head, your hips follow your torso, and the board follows your body. At White Belt, this is a small direction change in whitewater — not a full turn.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">33</div>
+    <h3 class="section-title">STEP 23  TURN FRONTSIDE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Same as the backside turn, but in the opposite direction — toward the side your chest faces. Eyes lead, body follows, board responds.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">34</div>
+    <h3 class="section-title">STEP 24  PADDLE OUT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Paddle from shore toward the lineup. At White Belt, this means paddling through incoming whitewater with continuous effort. Centered position on the board, long strokes, and the determination to keep going.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">35</div>
+    <h3 class="section-title">STEP 25  TURTLE ROLL</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">When a wave of whitewater is about to hit you while paddling out, the turtle roll lets you pass through it. Grip the rails, flip the board upside down over you, hold tight, let the whitewater pass, then roll back. At White Belt, this is introduced. Mastery comes at Yellow Belt.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">36</div>
+    <h3 class="section-title">STEP 26  TURN LEFT AND RIGHT LYING ON BOARD</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">While lying on the board, use your hands and weight to adjust your direction. This helps you reposition between waves without having to stand up or start over.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">37</div>
+    <h3 class="section-title">SECTION 4: THE INFINITE CIRCLE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Here is the secret that will change how you see surfing: the sequence you just learned repeats. It repeats at every level. It repeats on every wave. It repeats for the rest of your surfing life.</p><p class="text-white/50 text-sm leading-relaxed mb-2">At White Belt, you experience the full circle for the first time: you prepare, you enter, you catch, you stand, you ride, you exit, you reset. Then you do it again.</p><p class="text-white/50 text-sm leading-relaxed mb-2">What changes at each level is not the structure — it is the depth. At White Belt, most of your attention goes to the early steps: controlling the board, finding the sweet spot, aligning. The later steps — turning, speed control — are present but receive less attention.</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Yellow Belt, the same circle operates on green waves. The early steps become more automatic, and your attention shifts to the middle and later steps.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">38</div>
+    <h3 class="section-title">SECTION 5: YOUR MISSIONS</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Missions are your in-water practice assignments. Each mission has a specific objective. Focus on one mission per session or per set of waves. Record your results using the tracker.</p><p class="font-semibold text-white/75 mb-2">MISSION 1  Board Control</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Carry the board safely to the water using correct hand placement</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Control the board through incoming whitewater using your hands</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Tilt the nose up to let whitewater pass underneath</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Perform a safe pivot turn to change direction</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Pass through whitewater standing without losing the board</p><p class="font-semibold text-white/75 mb-2">MISSION 2  Sweet Spot + Alignment + Wave Catch</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Get on the board and find the sweet spot within 1–2 attempts</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Align the nose with incoming whitewater before paddling</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Paddle with continuous, committed strokes until the wave catches you</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Go into cobra position immediately after catching</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Choose left or right in cobra</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Controlled dismount (slide off or starfish)</p><p class="font-semibold text-white/75 mb-2">MISSION 3  Technical Pop-Up + Power Stance</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Execute a clean, controlled pop-up from cobra position</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Front foot lands near the center of the board</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Hips lower before hands release</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Establish a recognizable power stance: knees bent, chest open, eyes forward</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Hold the stance for 3+ seconds</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Starfish dismount after riding</p><p class="font-semibold text-white/75 mb-2">MISSION 4  Front Foot Placement</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Precise front foot landing in the center of the board during pop-up</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Use the Two-Second Pop-Up: keep at least one point of contact until foot position is confirmed</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Hands stay on the board until the foot is correctly placed</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Repeat across multiple waves with improving consistency</p><p class="font-semibold text-white/75 mb-2">MISSION 5  Brake &amp; Accelerator</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Move weight forward on the board while standing (accelerator)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Move weight backward on the board while standing (brake)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Feel the speed change when shifting weight intentionally</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Attempt impulse: coordinated knee flexion + arm push to maintain speed</p><p class="font-semibold text-white/75 mb-2">MISSION 6  Basic Direction Change</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Catch a whitewater wave and pop up</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Initiate a small frontside direction change using the kinetic chain (eyes → neck → torso → hips)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Initiate a small backside direction change</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Return to power stance after each direction change</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Starfish dismount</p><p class="font-semibold text-white/75 mb-2">MISSION 7  Paddle-Out + Turtle Roll</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Paddle out through incoming whitewater with continuous effort</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Perform a basic turtle roll when whitewater approaches</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Recover to prone position after the turtle roll</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Adjust board direction while lying down using hand and weight shifts</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Complete a full cycle: paddle out, reposition, catch, ride, exit</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">39</div>
+    <h3 class="section-title">SECTION 6: ON-LAND DRILLS</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">On-land drills prepare your nervous system, simplify technique, reduce errors in the water, and accelerate real learning. Practice these before every session and between sessions at home.</p><p class="font-semibold text-white/75 mb-2">DRILL L1  Pop-Up + Power Stance (Flat Surface)</p><p class="font-semibold text-white/75 mb-2">Objective: Learn a clean, technical pop-up and immediately connect it to a stable power stance.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. Lie flat on the board (or marked area). Hands at rib height.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. Cobra position: chest up, eyes forward.</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Drag back leg into figure-four. Load weight on back foot.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Bring front foot between hands, near center of board.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. Hips lower. Hands release. Stand into power stance.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. Hold for 2 seconds. Eyes forward, back straight, knees bent.</p><p class="text-white/50 text-sm leading-relaxed mb-2">7. Repeat 10 times. Focus on precision, not speed.</p><p class="font-semibold text-white/75 mb-2">DRILL L2  Sweet Spot Discovery</p><p class="font-semibold text-white/75 mb-2">Objective: Develop awareness of the correct body position on the board.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. Place the board on flat ground or soft sand.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. Lie on the board in different positions: too far forward, too far back, then centered.</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Feel the difference: nose-heavy, tail-heavy, balanced.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Have a partner gently push the board from behind. Notice which position moves most efficiently.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. Mark your sweet spot position mentally. Practice finding it in under 2 seconds.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. Repeat 5 times. Close your eyes on the last attempt.</p><p class="font-semibold text-white/75 mb-2">DRILL L3  Board Handling Circuit</p><p class="font-semibold text-white/75 mb-2">Objective: Build confidence and control carrying, placing, and managing the board on land.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. Pick up the board using correct hand placement (back hand on tail, front hand center).</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. Walk 20 meters carrying it at your side, nose pointing away from people.</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Place the board on the ground gently, fins up.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Pick it up again. Perform a pivot turn: press the tail, swing the nose 180 degrees.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. Repeat the full circuit 3 times. Each time, increase speed slightly.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. Coach evaluates: control, awareness of surroundings, correct hand placement.</p><p class="font-semibold text-white/75 mb-2">DRILL L4  Cobra + Direction Choice</p><p class="font-semibold text-white/75 mb-2">Objective: Train the transition from catching to deciding direction.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. Lie on the board in prone position. Hands at rib height.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. Coach calls a whitewater wave (imaginary). Paddle 5 strokes.</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Go into cobra position: chest up, eyes scanning.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Coach calls ‘Left!’ or ‘Right!’ — look in that direction immediately.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. Hold cobra with eyes locked on your chosen line for 2 seconds.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. Return to prone. Repeat 10 times, alternating directions.</p><p class="font-semibold text-white/75 mb-2">DRILL L5  Star Fall Practice</p><p class="font-semibold text-white/75 mb-2">Objective: Make the star fall automatic and remove fear of falling.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. Stand on the board on soft sand or grass.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. On the coach’s signal, perform a star fall: extend arms and legs, fall backward.</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Land flat, away from the board. Cover your head during the fall.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Stand up. Return to the board. Repeat.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. 5 repetitions with eyes open. 3 repetitions with eyes closed.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. Coach evaluates: controlled extension, backward fall, head protection.</p><p class="font-semibold text-white/75 mb-2">DRILL L6  Kinetic Chain Rotation</p><p class="font-semibold text-white/75 mb-2">Objective: Introduce rotation as a result of vision and body chain activation.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. Stand in power stance on the board.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. Look to your frontside. Let your neck rotate, then torso, then hips.</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Feel the board respond to the chain: eyes → neck → torso → hips → ankles.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Return to center. Repeat backside.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. Do 5 frontside and 5 backside rotations. Start slow, build smoothness.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. Coach evaluates: sequence of rotation (eyes first), posture maintenance, board response.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">40</div>
+    <h3 class="section-title">SECTION 7: KEY CONCEPTS REFERENCE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">These are the mental models that drive your surfing at White Belt. Return to this page whenever you need a reminder.</p><p class="font-semibold text-white/75 mb-2">The Board Is Your Tool</p><p class="text-white/50 text-sm leading-relaxed mb-2">The surfboard is not something that drags you around. It is something you control. Every interaction with the board should be intentional. When you treat the board as an extension of your body, everything changes.</p><p class="font-semibold text-white/75 mb-2">Alignment Before Action</p><p class="text-white/50 text-sm leading-relaxed mb-2">Nothing happens until the board is aligned with wave energy. Alignment determines success before the wave arrives. This principle applies at every level of surfing.</p><p class="font-semibold text-white/75 mb-2">Stability Before Speed</p><p class="text-white/50 text-sm leading-relaxed mb-2">You must be stable before adding complexity. A clean pop-up builds confidence automatically. A rushed pop-up builds fear. At White Belt, control matters more than anything else.</p><p class="font-semibold text-white/75 mb-2">The Sequence Is the Method</p><p class="text-white/50 text-sm leading-relaxed mb-2">Every surf session follows the same structure. What changes is what you focus on inside the sequence. The structure never changes. This creates predictability, reduces anxiety, and makes progress measurable.</p><p class="font-semibold text-white/75 mb-2">Control Before Performance</p><p class="text-white/50 text-sm leading-relaxed mb-2">At White Belt, you are not measured by tricks, wave count, or style. You are measured by how much control and awareness you demonstrate.</p><p class="font-semibold text-white/75 mb-2">P·R·C·H — The Four Basic Movements</p><p class="text-white/50 text-sm leading-relaxed mb-2">Every movement in surfing can be understood through four patterns:</p><p class="text-white/50 text-sm leading-relaxed mb-2">P — Posture: The foundation of all power transfer. Back straight, head up, aligned with center of board.</p><p class="text-white/50 text-sm leading-relaxed mb-2">R — Rotation: The engine of every turn. Eyes lead, body follows, energy transfers to feet and board.</p><p class="text-white/50 text-sm leading-relaxed mb-2">C — Compression: Creates internal energy. Lower your center of gravity. Compress then extend for speed.</p><p class="text-white/50 text-sm leading-relaxed mb-2">H — Hold: Sustain the position longer than feels natural. Hold through the apex, then release.</p><p class="text-white/50 text-sm leading-relaxed mb-2">At White Belt, Posture is your primary focus. Rotation is introduced through basic direction changes. Compression appears in your pop-up and stance. Hold will develop at higher levels.</p><p class="font-semibold text-white/75 mb-2">Three Circles of Power</p><p class="text-white/50 text-sm leading-relaxed mb-2">Your surfing depends on three elements working together:</p><p class="font-semibold text-white/75 mb-2">Circle 1 — Body: Your posture, rotation, compression, and hold. How you move.</p><p class="font-semibold text-white/75 mb-2">Circle 2 — Board: Your foot position and weight distribution. How the board responds.</p><p class="font-semibold text-white/75 mb-2">Circle 3 — Wave: The energy, direction, and structure of the wave. What the ocean gives you.</p><p class="text-white/50 text-sm leading-relaxed mb-2">At White Belt, you are learning each circle as a separate concept. When all three align, you experience your first real ride.</p><p class="font-semibold text-white/75 mb-2">Feet Position on the Board</p><p class="font-semibold text-white/75 mb-2">Sweet Spot (Prone): The position where the board floats level. Not nose-heavy, not tail-heavy.</p><p class="font-semibold text-white/75 mb-2">Center (Standing): Front foot in the center of the board on the stringer. This is your axis of rotation.</p><p class="font-semibold text-white/75 mb-2">Brake: Weight shifts toward the tail. The board slows down.</p><p class="font-semibold text-white/75 mb-2">Accelerator: Weight shifts toward the nose. The board speeds up.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">41</div>
+    <h3 class="section-title">SECTION 8: YOUR PROGRESSION</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Progression at White Belt is not measured in days. It is measured in observable behaviors across multiple sessions. Here is what advancement looks like.</p><p class="font-semibold text-white/75 mb-2">Early White Belt (Sequences #1–#2)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You pick up and carry the board correctly without verbal cues.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You enter the water facing waves and maintain board control.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You find the sweet spot on the first or second attempt.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You align with whitewater before paddling — not after.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You catch whitewater consistently (more catches than misses).</p><p class="font-semibold text-white/75 mb-2">Mid White Belt (Sequences #3–#4)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You hold cobra position and make a directional choice before popping up.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Your pop-up is smooth enough that you maintain balance for 3+ seconds.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Your front foot lands near the center of the board without major correction.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You apply brake or accelerator intentionally at least once per wave.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You perform a star fall consistently — no jumping off the board.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You initiate basic direction changes (frontside and backside) in whitewater.</p><p class="font-semibold text-white/75 mb-2">Late White Belt (Sequence #5 / Approaching Promotion)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You paddle out through whitewater with continuous effort.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You attempt a basic turtle roll when whitewater approaches.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You choose direction intentionally before popping up.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You manage the full cycle independently: enter, catch, ride, exit, reset.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You participate actively in venue analysis and can identify the safe zone.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You show reduced frustration over consecutive sessions — you accept falls and reset calmly.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You can describe in your own words what the mission of the session was.</p><p class="font-semibold text-white/75 mb-2">What Comes Next: Yellow Belt (Novato)</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Yellow Belt, you move from whitewater to green (unbroken) waves. The entire sequence repeats, but the environment changes everything. You will learn to read the wave before it breaks, choose where to position yourself, manage paddling speeds, angle your takeoff, and find the pocket — the power source of the wave.</p><p class="text-white/50 text-sm leading-relaxed mb-2">But that only happens if your White Belt is solid. Everything you build here is the foundation Yellow Belt demands.</p><p class="font-semibold text-white/75 mb-2">The Surf Sequence®</p><p class="text-white/50 text-sm leading-relaxed mb-2">By Marcelo Castellanos</p><p class="text-white/50 text-sm leading-relaxed mb-2">Enkrateia SA de CV — All Rights Reserved</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">42</div>
+    <h3 class="section-title">APPENDIX: VIDEO PRODUCTION GUIDE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">This appendix lists all videos referenced in this manual. Use it as your shot list for production.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Total videos: 26 unique video references. Estimated total production time: 50–60 minutes of finished content.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Recommended format: 1080p vertical (9:16) for mobile scanning, with horizontal (16:9) alternative for classroom projection.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Host on a platform that supports unlisted/private links. Each QR code in the printed manual will link to the corresponding video URL.</p></div>
+</div>
+</div>
+<div class="footer">
+  <div class="tagline">Evolve through play.</div>
+  <p>The Surf Sequence® — Cinta Blanca Kit de Alumno — Enkrateia SA de CV</p>
+</div>
+<script>
+let opened = new Set();
+const total = 42;
+document.querySelectorAll('.section-card').forEach((card, i) => {
+  card.addEventListener('click', () => {
+    opened.add(i);
+    const pct = Math.round(opened.size / total * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = opened.size + ' / ' + total + ' secciones exploradas (' + pct + '%)';
+  });
+});
+</script>
+</body>
+</html>

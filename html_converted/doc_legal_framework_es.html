@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marco Legal TSS — Contratos y Políticas Completos</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--accent:#FF6B6B;--navy:#0A1628;--cyan:#5AC3E7}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:var(--navy);color:#e0e0e0;min-height:100vh}
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,107,107,.1);padding:12px 24px;display:flex;justify-content:space-between;align-items:center}
+.top-bar__brand{display:flex;align-items:center;gap:12px}
+.top-bar__icon{font-size:1.5rem}
+.top-bar__title{font-family:'Outfit',sans-serif;font-weight:700;font-size:.95rem;color:#fff}
+.top-bar__sub{font-size:.72rem;color:rgba(255,255,255,.3)}
+.top-bar__meta{font-size:.72rem;color:rgba(255,255,255,.2);display:flex;gap:12px}
+.top-bar__tag{padding:2px 10px;border-radius:4px;background:rgba(255,107,107,.08);color:var(--accent);font-family:'Outfit',sans-serif;font-weight:600;font-size:.65rem;letter-spacing:.06em}
+.doc-container{display:flex;max-width:1100px;margin:0 auto}
+.doc-toc{width:220px;position:sticky;top:60px;height:calc(100vh - 60px);overflow-y:auto;padding:24px 16px;border-right:1px solid rgba(255,107,107,.04);flex-shrink:0}
+.doc-toc h4{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:600;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.doc-toc a{display:block;padding:3px 8px;margin-bottom:2px;font-size:.7rem;color:rgba(255,255,255,.25);text-decoration:none;border-radius:4px;transition:all .2s;line-height:1.4}
+.doc-toc a:hover{background:rgba(255,107,107,.06);color:var(--accent)}
+.doc-body{flex:1;padding:36px 40px;max-width:780px}
+h1.doc-h1{font-family:'Outfit',sans-serif;font-size:clamp(1.3rem,3vw,1.8rem);font-weight:800;color:var(--accent);margin:36px 0 16px;padding-top:28px;border-top:1px solid rgba(255,107,107,.08)}
+h1.doc-h1:first-of-type{border-top:none;margin-top:0;padding-top:0}
+h2.doc-h2{font-family:'Outfit',sans-serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-weight:700;color:#fff;margin:28px 0 12px}
+h3.doc-h3{font-family:'Outfit',sans-serif;font-size:1rem;font-weight:600;color:rgba(255,107,107,.7);margin:16px 0 8px}
+p{font-size:.88rem;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:8px}
+p.doc-bold{font-weight:600;color:rgba(255,255,255,.7)}
+ol.doc-list{margin:8px 0 16px;padding-left:24px}
+ol.doc-list li{font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.7;margin-bottom:4px}
+.doc-footer{text-align:center;padding:32px;font-size:.72rem;color:rgba(255,255,255,.1);border-top:1px solid rgba(255,107,107,.04)}
+.doc-footer .tagline{font-family:'Lora',serif;font-style:italic;color:var(--accent);font-size:.82rem;margin-bottom:6px;display:block}
+@media(max-width:768px){.doc-toc{display:none}.doc-body{padding:20px 16px}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar__brand">
+    <span class="top-bar__icon">⚖️</span>
+    <div>
+      <div class="top-bar__title">Marco Legal TSS</div>
+      <div class="top-bar__sub">Contratos, Licencias, Políticas y Protección de PI</div>
+    </div>
+  </div>
+  <div class="top-bar__meta">
+    <span class="top-bar__tag">LEGAL</span>
+    <span>6,008 palabras · 10 secciones</span>
+  </div>
+</div>
+<div class="doc-container">
+  <nav class="doc-toc"><h4>Contenidos</h4><a href="#s1">THE SURF SEQUENCE®</a><a href="#s2">DOCUMENTO CONFIDENCIAL</a><a href="#s3">DESCARGO DE RESPONSABILIDAD LEGAL</a><a href="#s4">TABLA DE CONTENIDOS</a><a href="#s5">SECCIÓN 1: DECLARACIÓN DE PROPIEDAD INTELECTUAL</a><a href="#s6">1.1 Declaración de Propiedad Exclusiva</a><a href="#s7">1.2 Activos Protegidos</a><a href="#s8">1.3 Estatus de Operadores y Licenciatarios</a><a href="#s9">1.4 Aclaración: Ningún Derecho Creado por Afiliación</a><a href="#s10">1.5 IP Registrada y No Registrada</a><a href="#s11">SECCIÓN 2: ACUERDO DE CERTIFICACIÓN DE COACH (L1-L5)</a><a href="#s12">2.1 Otorgamiento de Licencia</a><a href="#s13">2.2 Niveles de Certificación (L1-L5)</a><a href="#s14">2.3 Requisito de Renovación Anual</a><a href="#s15">2.4 Estándares de Calidad</a><a href="#s16">2.5 Prohibición de Modificación y Obras Derivadas</a><a href="#s17">2.6 Prohibición de Capacitación de Coach (Bajo L4)</a><a href="#s18">2.7 Confidencialidad de Materiales Internos</a><a href="#s19">2.8 Condiciones de Terminación</a><a href="#s20">2.9 No Competencia Durante Certificación Activa</a><a href="#s21">2.10 Obligaciones Post-Terminación</a><a href="#s22">2.11 Asignación de PI de Mejoras</a><a href="#s23">2.12 Indemnización</a><a href="#s24">PÁGINA DE FIRMA</a><a href="#s25">ENKRATEIA SA DE CV</a><a href="#s26">[NOMBRE DE LA PARTE]</a><a href="#s27">SECCIÓN 3: ACUERDO DE AFILIACIÓN DE ACADEMIA (NIVEL 2)</a><a href="#s28">3.1 Otorgamiento de Licencia</a><a href="#s29">3.2 Definición de Territorio</a><a href="#s30">3.3 Requisitos de Coach Certificados Mínimos</a><a href="#s31">3.4 Auditorías de Calidad y Cumplimiento</a><a href="#s32">3.5 Estructura de Cuotas y Términos de Pago</a><a href="#s33">3.6 Requisitos de Intercambio de Datos</a><a href="#s34">3.7 Plazo y Terminación</a><a href="#s35">3.8 Obligaciones Post-Terminación</a><a href="#s36">3.9 Indemnización</a><a href="#s37">3.10 Requisitos de Seguros</a><a href="#s38">PÁGINA DE FIRMA</a><a href="#s39">ENKRATEIA SA DE CV</a><a href="#s40">[NOMBRE DE LA PARTE]</a><a href="#s41">SECCIÓN 4: ACUERDO DE LICENCIA PREMIUM (NIVEL 3)</a><a href="#s42">4.1 Otorgamiento de Licencia Exclusiva</a><a href="#s43">4.2 Definición de Territorio</a><a href="#s44">4.3 Estructura de Regalías</a><a href="#s45">4.4 Derechos de Co-Marca y Restricciones</a><a href="#s46">4.5 Requisitos de Reportes Trimestrales</a><a href="#s47">4.6 Estándares de Desempeño Mínimo</a><a href="#s48">4.7 Derecho de Auditar Finanzas</a><a href="#s49">4.8 Condiciones de Exclusividad</a><a href="#s50">4.9 Duración y Renovación</a><a href="#s51">4.10 Post-Terminación</a><a href="#s52">4.11 Mejoras y Asignación de PI</a><a href="#s53">PÁGINA DE FIRMA</a><a href="#s54">ENKRATEIA SA DE CV</a><a href="#s55">[NOMBRE DE LA PARTE]</a><a href="#s56">SECCIÓN 5: ACUERDO DE INSCRIPCIÓN DE ALUMNO</a><a href="#s57">5.1 Asunción de Riesgo</a><a href="#s58">5.2 Exención de Responsabilidad y Liberación</a><a href="#s59">5.3 Autorización Médica</a><a href="#s60">5.4 Liberación de Medios</a><a href="#s61">5.5 Política de Privacidad y Gestión de Datos</a><a href="#s62">5.6 Progresión de Cinturones y Avance por Mérito</a><a href="#s63">5.7 Cuotas y Política de Reembolso</a><a href="#s64">5.8 Código de Conducta</a><a href="#s65">5.9 Reconocimiento y Firma</a><a href="#s66">PÁGINA DE FIRMA</a><a href="#s67">ENKRATEIA SA DE CV</a><a href="#s68">[NOMBRE DE LA PARTE]</a><a href="#s69">SECCIÓN 6: ACUERDO DE OPERADOR FLAGSHIP (PURO SURF)</a><a href="#s70">6.1 Definición de Estado Flagship</a><a href="#s71">6.2 Aclaración Crítica: Puro Surf OPERA TSS, No</a><a href="#s72">6.3 Otorgamiento de Licencia</a><a href="#s73">6.4 Estructura de Cuota de Ingresos o Tarifa de Licencia</a><a href="#s74">6.5 Propiedad de PI - Declaración Cristalina</a><a href="#s75">6.6 Mejoras y Mejora de Metodología</a><a href="#s76">6.7 Derechos de Marketing y Reglas de Co-Marca</a><a href="#s77">6.8 Estándares de Calidad y Auditorías</a><a href="#s78">6.9 Reporte Financiero y Derechos de Auditoría</a><a href="#s79">6.10 Disposiciones de Terminación</a><a href="#s80">6.11 Plan de Transición en Terminación</a><a href="#s81">6.12 Indemnización</a><a href="#s82">PÁGINA DE FIRMA</a><a href="#s83">ENKRATEIA SA DE CV</a><a href="#s84">[NOMBRE DE LA PARTE]</a><a href="#s85">SECCIÓN 7: CONFIDENCIALIDAD Y NDA (GENERAL)</a><a href="#s86">7.1 Definición de Información Confidencial</a><a href="#s87">7.2 Obligaciones de la Parte Receptora</a><a href="#s88">7.3 Duración de las Obligaciones de Confidencialidad</a><a href="#s89">7.4 Divulgaciones Permitidas</a><a href="#s90">7.5 Devolución de Materiales</a><a href="#s91">7.6 Medidas Cautelares</a><a href="#s92">7.7 Excepciones</a><a href="#s93">PÁGINA DE FIRMA</a><a href="#s94">ENKRATEIA SA DE CV</a><a href="#s95">[NOMBRE DE LA PARTE]</a><a href="#s96">SECCIÓN 8: TÉRMINOS DE SERVICIO (PLATAFORMA TSS BRAIN)</a><a href="#s97">8.1 Creación de Cuenta y Responsabilidades</a><a href="#s98">8.2 Propiedad de Datos</a><a href="#s99">8.3 Política de Uso Aceptable</a><a href="#s100">8.4 Propiedad Intelectual del Contenido de Plataforma</a><a href="#s101">8.5 Disponibilidad y Limitaciones de Servicio</a><a href="#s102">8.6 Terminación de Cuentas</a><a href="#s103">8.7 Privacidad y Protección de Datos</a><a href="#s104">8.8 Enlaces de Terceros</a><a href="#s105">8.9 Limitación de Responsabilidad</a><a href="#s106">8.10 Cambios en Términos</a><a href="#s107">PÁGINA DE FIRMA</a><a href="#s108">ENKRATEIA SA DE CV</a><a href="#s109">[NOMBRE DE LA PARTE]</a><a href="#s110">SECCIÓN 9: POLÍTICAS</a><a href="#s111">9.1 POLÍTICA DE USO DE MARCA TSS</a><a href="#s112">9.2 POLÍTICA DE ESTÁNDARES DE CALIDAD TSS</a><a href="#s113">9.3 POLÍTICA DE SEGURIDAD TSS</a><a href="#s114">9.4 POLÍTICA DE PROTECCIÓN DE DATOS TSS</a><a href="#s115">9.5 POLÍTICA ANTI-PIRATERÍA TSS</a><a href="#s116">SECCIÓN 10: RESUMEN GENERAL DE PROTECCIÓN DE PI</a><a href="#s117">10.1 Lista Completa de Activos de PI Protegibles</a><a href="#s118">Marcas Registradas (Marcas de Palabra y Marcas de Diseño):</a><a href="#s119">Obras Protegidas por Derechos de Autor:</a><a href="#s120">Secretos Comerciales:</a><a href="#s121">Invenciones Potencialmente Patentables:</a><a href="#s122">10.2 Recomendaciones de Registro</a><a href="#s123">10.3 Estrategia de Cumplimiento</a><a href="#s124">10.4 Plan de Vigilancia</a><a href="#s125">— FIN DEL DOCUMENTO —</a></nav>
+  <div class="doc-body"><h1 class="doc-h1" id="s1">THE SURF SEQUENCE®</h1>
+<p>Marco Legal &amp; Acuerdos</p>
+<p>Paquete de Contratos Completo</p>
+<p>Enkrateia SA de CV</p>
+<p>Marcelo Castellanos, Propietario</p>
+<p>Fecha Efectiva: 20 de marzo de 2026</p>
+<h1 class="doc-h1" id="s2">DOCUMENTO CONFIDENCIAL</h1>
+<p>Este documento contiene información propietaria y confidencial de Enkrateia SA de CV y está destinado únicamente a destinatarios autorizados. Se prohíbe el acceso, uso o distribución no autorizado.</p>
+<h1 class="doc-h1" id="s3">DESCARGO DE RESPONSABILIDAD LEGAL</h1>
+<p>Este documento sirve como un marco legal integral para The Surf Sequence y sus acuerdos asociados. AVISO IMPORTANTE:</p>
+<p>• Este marco NO es un sustituto del asesoramiento legal y NO debe ejecutarse sin revisión de abogados licenciados en cada jurisdicción aplicable.</p>
+<p>• Las leyes y regulaciones varían significativamente por país, estado y localidad. La revisión legal profesional es OBLIGATORIA.</p>
+<p>• Las disposiciones específicas deben ser adaptadas a la jurisdicción relevante y las circunstancias de las partes.</p>
+<p>• La asignación de riesgo, indemnización y disposiciones de responsabilidad deben negociarse con asesor legal.</p>
+<p>• Este documento no constituye asesoramiento legal y no crea relación abogado-cliente.</p>
+<p>Antes de ejecutar cualquier acuerdo contenido aquí, ambas partes deben obtener asesoramiento legal independiente para revisar los términos y garantizar el cumplimiento con las leyes aplicables.</p>
+<h1 class="doc-h1" id="s4">TABLA DE CONTENIDOS</h1>
+<p>SECCIÓN 1: Declaración de Propiedad de PI</p>
+<p>SECCIÓN 2: Acuerdo de Certificación de Coach (L1-L5)</p>
+<p>SECCIÓN 3: Acuerdo de Afiliación de Academia (Nivel 2)</p>
+<p>SECCIÓN 4: Acuerdo de Licencia Premium (Nivel 3)</p>
+<p>SECCIÓN 5: Acuerdo de Inscripción de Alumno</p>
+<p>SECCIÓN 6: Acuerdo de Operador Flagship (Puro Surf)</p>
+<p>SECCIÓN 7: Confidencialidad &amp; NDA (General)</p>
+<p>SECCIÓN 8: Términos de Servicio (Plataforma TSS Brain)</p>
+<p>SECCIÓN 9: Políticas</p>
+<p>SECCIÓN 10: Resumen General de Protección de PI</p>
+<h1 class="doc-h1" id="s5">SECCIÓN 1: DECLARACIÓN DE PROPIEDAD INTELECTUAL</h1>
+<p>Esta Declaración establece propiedad de propiedad intelectual exclusiva por Enkrateia SA de CV para todos los componentes y derivados de la metodología y sistema de The Surf Sequence.</p>
+<h2 class="doc-h2" id="s6">1.1 Declaración de Propiedad Exclusiva</h2>
+<p>Enkrateia SA de CV, propiedad 100% de Marcelo Castellanos, declara y certifica que es propietaria exclusivamente, sin limitación, restricción o gravamen, de todos los derechos, título e interés en The Surf Sequence, incluyendo pero no limitado a toda propiedad intelectual, ya sea patentable, protegible por derecho de autor, o de naturaleza de secreto comercial.</p>
+<h2 class="doc-h2" id="s7">1.2 Activos Protegidos</h2>
+<p>Los activos de propiedad intelectual propiedad de Enkrateia SA de CV incluyen, sin limitación:</p>
+<p>(a) The Surf Sequence Metodología - el sistema educativo completo, marco pedagógico y enfoque de instrucción;</p>
+<p>(b) Canon v5.0 - los principios fundacionales y especificaciones técnicas que gobiernan la metodología;</p>
+<p>(c) Sistema de Progresión de Cinturones - todos los niveles (blanco, amarillo, naranja, verde, azul, púrpura, marrón, negro) y criterios de avance;</p>
+<p>(d) Las 26 Secuencias - todas las progresiones programadas, ejercicios, movimientos y contenido de instrucción relacionado;</p>
+<p>(e) Nombres y Terminología de Expresiones - todos los nombres propietarios, términos y lenguaje descriptivo único de TSS;</p>
+<p>(f) Plataforma TSS Brain - la plataforma digital, software, arquitectura de base de datos, interfaz de usuario y toda tecnología relacionada;</p>
+<p>(g) Identidad de Marca - el nombre &quot;The Surf Sequence®&quot;, todas las variaciones, eslóganes y elementos de marca asociados;</p>
+<p>(h) Logo e Identidad Visual - el logo de espiral de Fibonacci, todas las variaciones de diseño y representaciones visuales;</p>
+<p>(i) Eslogan y Mensajería - &quot;Evolve through play&quot; y todo el texto de marketing asociado y mensajería de marca;</p>
+<p>(j) Materiales de Capacitación - todos los manuales de coach, documentos educativos, guías de instrucción y recursos de capacitación;</p>
+<p>(k) Biblioteca de Ejercicios - la colección completa de ejercicios documentados, movimientos y progresiones de entrenamiento;</p>
+<p>(l) Sistema de Certificación - todos los criterios, estándares, procedimientos de prueba y materiales de certificación;</p>
+<p>(m) Datos y Análisis - todos los datos de alumno agregados, métricas de progresión y análisis del sistema;</p>
+<p>(n) Obras Derivadas y Mejoras - todas las mejoras, modificaciones, variaciones y derivados creados durante o después del desarrollo de TSS.</p>
+<h2 class="doc-h2" id="s8">1.3 Estatus de Operadores y Licenciatarios</h2>
+<p>Puro Surf y cualquier otra entidad que opera bajo la marca The Surf Sequence son LICENCIATARIOS y OPERADORES solamente. Estas entidades:</p>
+<p>(a) NO poseen ningún derecho de propiedad intelectual en The Surf Sequence;</p>
+<p>(b) NO tienen derecho de sublicenciar, asignar o transferir ninguna propiedad intelectual de TSS;</p>
+<p>(c) Pueden utilizar materiales TSS solo como expresamente permitido por acuerdo de licencia escrito;</p>
+<p>(d) Deben cumplir con todos los estándares de calidad, directrices de marca y requisitos operacionales;</p>
+<p>(e) Deben devolver o destruir todos los materiales TSS al término de la licencia.</p>
+<h2 class="doc-h2" id="s9">1.4 Aclaración: Ningún Derecho Creado por Afiliación</h2>
+<p>Notwithstanding any collaboration, operational partnership, revenue sharing, or other business relationship, no employment, partnership, equity interest, affiliation, or other relationship shall create, imply, or grant any ownership right, intellectual property right, or license right in The Surf Sequence except as expressly stated in a written agreement executed by Enkrateia SA de CV.</p>
+<p>Sin perjuicio de cualquier colaboración, asociación operacional, intercambio de ingresos u otra relación comercial, ningún empleo, asociación, interés de capital, afiliación u otra relación creará, implicará u otorgará ningún derecho de propiedad, derecho de propiedad intelectual o derecho de licencia en The Surf Sequence excepto como se indique expresamente en un acuerdo escrito ejecutado por Enkrateia SA de CV.</p>
+<h2 class="doc-h2" id="s10">1.5 IP Registrada y No Registrada</h2>
+<p>Enkrateia SA de CV reclama propiedad de toda la propiedad intelectual de The Surf Sequence, ya sea o no formalmente registrada con oficinas de marca registrada, oficinas de derechos de autor u otros organismos gubernamentales. La ausencia de registro no disminuye ni limita estos derechos de propiedad.</p>
+<p>Para protección legal, Enkrateia SA de CV tiene la intención de buscar registro de todos los activos de propiedad intelectual central incluyendo marcas registradas, derechos de autor y potencialmente patentes en todas las jurisdicciones donde TSS opera o puede operar.</p>
+<h1 class="doc-h1" id="s11">SECCIÓN 2: ACUERDO DE CERTIFICACIÓN DE COACH (L1-L5)</h1>
+<p>Este Acuerdo otorga al Coach el derecho no transferible, no exclusivo de enseñar la metodología de The Surf Sequence bajo los términos y condiciones aquí establecidos.</p>
+<h2 class="doc-h2" id="s12">2.1 Otorgamiento de Licencia</h2>
+<p>Enkrateia SA de CV otorga al Coach una licencia limitada, no exclusiva, no transferible para enseñar The Surf Sequence en la academia afiliada del Coach (como se especifica en el Acuerdo de Afiliación de Academia). Esta licencia es personal para el Coach nombrado y no puede ser transferida, asignada o delegada.</p>
+<h2 class="doc-h2" id="s13">2.2 Niveles de Certificación (L1-L5)</h2>
+<p>El Coach debe mantener uno de los siguientes niveles de certificación:</p>
+<p>(a) Nivel 1: Coach Fundamental - Puede enseñar secuencias para principiantes bajo supervisión L3+.</p>
+<p>(b) Nivel 2: Coach Intermedio - Puede enseñar secuencias para principiantes e intermedias independientemente.</p>
+<p>(c) Nivel 3: Coach Avanzado - Puede enseñar todos los niveles de alumno, responsable de calidad de la academia.</p>
+<p>(d) Nivel 4: Coach Maestro - Puede capacitar y certificar nuevos coaches, desarrollar currículo de la academia.</p>
+<p>(e) Nivel 5: Instructor Maestro - Puede desarrollar nuevo contenido de TSS, liderar evolución de metodología, representar TSS globalmente.</p>
+<h2 class="doc-h2" id="s14">2.3 Requisito de Renovación Anual</h2>
+<p>Esta certificación vence en la fecha del aniversario cada año. El Coach debe renovar la certificación anualmente por:</p>
+<p>(a) Enviar aplicación de renovación a Enkrateia SA de CV;</p>
+<p>(b) Demostrar cumplimiento continuo con estándares de calidad;</p>
+<p>(c) Pagar cuota de renovación anual (cantidad establecida por Enkrateia SA de CV);</p>
+<p>(d) Completar cualquier educación continua o actualizaciones requeridas.</p>
+<h2 class="doc-h2" id="s15">2.4 Estándares de Calidad</h2>
+<p>El Coach acuerda mantener los siguientes estándares de calidad:</p>
+<p>(a) Enseñar todas las secuencias de acuerdo a TSS Canon v5.0 sin modificación;</p>
+<p>(b) Mantener estándares de seguridad como se especifica en TSS Canon v2.0;</p>
+<p>(c) Evaluar apropiadamente la progresión del alumno y solo avanzar alumnos que cumplen criterios;</p>
+<p>(d) Proporcionar instrucción profesional y mantener compromiso del alumno;</p>
+<p>(e) Representar apropiadamente la marca TSS y mantener estándares de marca;</p>
+<p>(f) Responder a auditorías, evaluaciones de calidad y retroalimentación de alumno.</p>
+<h2 class="doc-h2" id="s16">2.5 Prohibición de Modificación y Obras Derivadas</h2>
+<p>Se prohíbe estrictamente al Coach:</p>
+<p>(a) Modificar, adaptar, traducir o alterar ninguna secuencia, ejercicio o metodología de TSS;</p>
+<p>(b) Crear obras derivadas, variaciones o enfoques alternativos basados en TSS;</p>
+<p>(c) Combinar TSS con otras metodologías sin aprobación escrita expresa;</p>
+<p>(d) Utilizar materiales TSS para desarrollar sistemas de educación competidores o alternativos.</p>
+<h2 class="doc-h2" id="s17">2.6 Prohibición de Capacitación de Coach (Bajo L4)</h2>
+<p>Los Coaches en Niveles 1-3 están explícitamente prohibidos de:</p>
+<p>(a) Entrenar, instruir o certificar otros individuos en The Surf Sequence;</p>
+<p>(b) Conducir programas de certificación de coach;</p>
+<p>(c) Autorizar o supervisar capacitación de coach por otros.</p>
+<p>Solo coaches de Nivel 4 y Nivel 5, con autorización escrita expresa de Enkrateia SA de CV, pueden capacitar y certificar nuevos coaches.</p>
+<h2 class="doc-h2" id="s18">2.7 Confidencialidad de Materiales Internos</h2>
+<p>El Coach reconoce que todos los materiales TSS son propietarios y confidenciales, incluyendo pero no limitado a:</p>
+<p>(a) Manuales de coach y guías de capacitación;</p>
+<p>(b) La biblioteca de ejercicios completa y especificaciones de ejercicios;</p>
+<p>(c) Progresiones detalladas de secuencias y notas de enseñanza;</p>
+<p>(d) Criterios de evaluación y estándares de progresión de cinturones;</p>
+<p>(e) Cualquier acceso de plataforma digital o credenciales de sistemas backend.</p>
+<p>El Coach debe proteger estos materiales y no puede divulgarlos a terceros sin consentimiento escrito expreso de Enkrateia SA de CV.</p>
+<h2 class="doc-h2" id="s19">2.8 Condiciones de Terminación</h2>
+<p>Enkrateia SA de CV puede terminar esta certificación por:</p>
+<p>(a) Violaciones de calidad o falla en mantener estándares;</p>
+<p>(b) No pago de cuotas de renovación u otras cuotas requeridas;</p>
+<p>(c) Uso indebido de marca TSS o propiedad intelectual;</p>
+<p>(d) Violación de confidencialidad o divulgación de información propietaria;</p>
+<p>(e) Violación de no competencia u otros términos de acuerdo;</p>
+<p>(f) Falla en renovar certificación o pagar cuotas anuales;</p>
+<p>(g) Cualquier violación material de este Acuerdo.</p>
+<h2 class="doc-h2" id="s20">2.9 No Competencia Durante Certificación Activa</h2>
+<p>Durante el período de certificación activa, el Coach acuerda no:</p>
+<p>(a) Desarrollar, enseñar o promover ninguna metodología competidora de educación de surf;</p>
+<p>(b) Crear un sistema de cinturón o progresión alternativo;</p>
+<p>(c) Enseñar o promover métodos explícitamente diseñados para competir con TSS.</p>
+<h2 class="doc-h2" id="s21">2.10 Obligaciones Post-Terminación</h2>
+<p>Al término de la certificación por cualquier razón, el Coach debe dentro de 30 días:</p>
+<p>(a) Cesar el uso del nombre TSS, marcas registradas y marca en enseñanza o comunicaciones;</p>
+<p>(b) Dejar de enseñar la metodología de The Surf Sequence;</p>
+<p>(c) Devolver o destruir todos los materiales propietarios de TSS;</p>
+<p>(d) Remover todas las certificaciones de TSS de credenciales y marketing;</p>
+<p>(e) Cooperar en transición de cualquier alumno a coaches TSS certificados.</p>
+<h2 class="doc-h2" id="s22">2.11 Asignación de PI de Mejoras</h2>
+<p>Cualquier mejora, refinamiento, variación o contenido derivado creado por el Coach mientras está bajo certificación será automáticamente propiedad exclusiva de Enkrateia SA de CV. El Coach por este medio asigna todos los derechos, títulos e intereses en tales mejoras a Enkrateia SA de CV.</p>
+<h2 class="doc-h2" id="s23">2.12 Indemnización</h2>
+<p>El Coach acuerda indemni zar y mantener indemne a Enkrateia SA de CV, sus oficiales, empleados y agentes de cualquier reclamo, daño o responsabilidades que surjan de la instrucción del Coach, acciones o violaciones de este Acuerdo.</p>
+<h1 class="doc-h1" id="s24">PÁGINA DE FIRMA</h1>
+<p>EN FE DE LO CUAL, las partes han ejecutado este Acuerdo a partir de la fecha aquí escrita arriba.</p>
+<h1 class="doc-h1" id="s25">ENKRATEIA SA DE CV</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<p>_________________________________</p>
+<p>Nombre Impreso y Título</p>
+<p>_________________________________</p>
+<p>Fecha</p>
+<h1 class="doc-h1" id="s26">[NOMBRE DE LA PARTE]</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<p>_________________________________</p>
+<p>Nombre Impreso y Título</p>
+<p>_________________________________</p>
+<p>Fecha</p>
+<h1 class="doc-h1" id="s27">SECCIÓN 3: ACUERDO DE AFILIACIÓN DE ACADEMIA (NIVEL 2)</h1>
+<p>Este Acuerdo otorga a la Academia una licencia no exclusiva para operar un programa de TSS en una ubicación especificada bajo estándares de calidad y marca.</p>
+<h2 class="doc-h2" id="s28">3.1 Otorgamiento de Licencia</h2>
+<p>Enkrateia SA de CV otorga a la Academia una licencia limitada, no exclusiva, no transferible para operar un programa de The Surf Sequence en la ubicación especificada (como se describe en este Acuerdo). Esta licencia se otorga personalmente a la Academia nombrada y a sus coaches certificados y no puede ser transferida, asignada o sublicenciada.</p>
+<h2 class="doc-h2" id="s29">3.2 Definición de Territorio</h2>
+<p>La Academia opera TSS solo en el territorio geografico especificado:  _____________________. La Academia no puede expandir a nuevos territorios sin aprobación escrita de Enkrateia SA de CV y un Acuerdo de Afiliación separado.</p>
+<h2 class="doc-h2" id="s30">3.3 Requisitos de Coach Certificados Mínimos</h2>
+<p>La Academia debe mantener al menos:</p>
+<p>(a) 1 Coach de Nivel 3 o superior;</p>
+<p>(b) Un mínimo de 2 coaches TSS certificados en cualquier nivel;</p>
+<p>(c) Renovación anual de certificaciones de todos los coaches.</p>
+<h2 class="doc-h2" id="s31">3.4 Auditorías de Calidad y Cumplimiento</h2>
+<p>Enkrateia SA de CV tiene derecho a conducir auditorías en cualquier momento para verificar:</p>
+<p>(a) Cumplimiento de estándares de calidad TSS;</p>
+<p>(b) Enseñanza correcta de The Surf Sequence sin modificación;</p>
+<p>(c) Estándares de seguridad adecuados;</p>
+<p>(d) Evaluación apropiada de progresión del alumno;</p>
+<p>(e) Representación correcta de marca y marketing;</p>
+<p>(f) Materiales propietarios TSS están apropiadamente protegidos.</p>
+<h2 class="doc-h2" id="s32">3.5 Estructura de Cuotas y Términos de Pago</h2>
+<p>La Academia pagará a Enkrateia SA de CV:</p>
+<p>(a) Cuota de Afiliación Anual: $___________ pagadera anualmente;</p>
+<p>(b) Cuota por Alumno: $___________ por alumno/año;</p>
+<p>(c) Términos de Pago: Debido 30 días de facturación.</p>
+<h2 class="doc-h2" id="s33">3.6 Requisitos de Intercambio de Datos</h2>
+<p>La Academia debe:</p>
+<p>(a) Reportar mensualmente el número de alumnos, niveles de cinturones y progresiones;</p>
+<p>(a) Proporcionar acceso a Enkrateia SA de CV a datos de alumnos para análisis y mejora;</p>
+<p>(c) Permitir acceso a la plataforma TSS Brain para seguimiento de datos;</p>
+<p>(d) Mantener confidencialidad de datos de alumno de acuerdo con políticas TSS.</p>
+<h2 class="doc-h2" id="s34">3.7 Plazo y Terminación</h2>
+<p>Este Acuerdo es por un término inicial de 2 años. Después de eso, se renueva automáticamente por períodos de 1 año a menos que Enkrateia SA de CV proporcione notificación de 60 días de no renovación. Enkrateia SA de CV puede terminar este Acuerdo por:</p>
+<p>(a) Violaciones de calidad o incumplimiento de estándares;</p>
+<p>(b) No pago de cuotas;</p>
+<p>(c) Uso indebido de marca TSS;</p>
+<p>(d) Violaciones de confidencialidad;</p>
+<p>(e) Violaciones de seguridad;</p>
+<p>(f) Cualquier violación material del Acuerdo.</p>
+<h2 class="doc-h2" id="s35">3.8 Obligaciones Post-Terminación</h2>
+<p>Al término, la Academia debe dentro de 30 días:</p>
+<p>(a) Cesar toda operación de programa TSS;</p>
+<p>(b) Cesará uso de marca TSS y publicidad;</p>
+<p>(c) Devolveras o destruirá todos los materiales propietarios TSS;</p>
+<p>(d) Remover certificaciones TSS de todos los espacios y marketing;</p>
+<p>(e) Cooperar en transición de alumnos a academias certificadas de TSS;</p>
+<p>(f) Restaurar cualquier plataforma TSS Brain.</p>
+<h2 class="doc-h2" id="s36">3.9 Indemnización</h2>
+<p>La Academia acuerda indemnizar y mantener indemne a Enkrateia SA de CV de cualquier reclamo que surja de las operaciones de la Academia.</p>
+<h2 class="doc-h2" id="s37">3.10 Requisitos de Seguros</h2>
+<p>La Academia debe mantener Seguro de Responsabilidad General con mínimo cobertura de $1,000,000 USD. Prueba de seguros debe ser proporcionada anualmente.</p>
+<h1 class="doc-h1" id="s38">PÁGINA DE FIRMA</h1>
+<p>IN WITNESS WHEREOF:</p>
+<h1 class="doc-h1" id="s39">ENKRATEIA SA DE CV</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s40">[NOMBRE DE LA PARTE]</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s41">SECCIÓN 4: ACUERDO DE LICENCIA PREMIUM (NIVEL 3)</h1>
+<p>Este Acuerdo otorga al Licenciatario una licencia EXCLUSIVA para operar un programa TSS premium en un territorio exclusivo, incluyendo derechos de marketing y estructura de regalías.</p>
+<h2 class="doc-h2" id="s42">4.1 Otorgamiento de Licencia Exclusiva</h2>
+<p>Enkrateia SA de CV otorga al Licenciatario una licencia EXCLUSIVA, no transferible para operar un programa de The Surf Sequence premium en el territorio exclusivo especificado: ______________________. Durante el plazo de esta licencia, Enkrateia SA de CV no otorgará licencias competidoras en este territorio a otra parte.</p>
+<h2 class="doc-h2" id="s43">4.2 Definición de Territorio</h2>
+<p>El Territorio Exclusivo se define como: ___________________. El Licenciatario tiene derechos exclusivos para operar TSS solo dentro de este territorio exacto.</p>
+<h2 class="doc-h2" id="s44">4.3 Estructura de Regalías</h2>
+<p>El Licenciatario pagará a Enkrateia SA de CV:</p>
+<p>(a) Royalty de Ingresos: ___% de ingresos netos mensuales de programa TSS;</p>
+<p>(b) Cuota Mínima Anual: $__________ anual, independientemente de ingresos;</p>
+<p>(c) Términos de Pago: Regalías pagaderas el día 15 de cada mes.</p>
+<h2 class="doc-h2" id="s45">4.4 Derechos de Co-Marca y Restricciones</h2>
+<p>El Licenciatario puede usar co-branding como "Operador Premium de The Surf Sequence [Licenciatario Name]" pero:</p>
+<p>(a) Debe usar marca TSS exactamente como aprobado por Enkrateia SA de CV;</p>
+<p>(b) No puede modificar o crear variaciones de logo TSS;</p>
+<p>(c) Debe incluir en todo marketing: "Licencia Premium Autorizada de Enkrateia SA de CV";</p>
+<p>(d) Debe obtener aprobación previa escrita para todo marketing TSS.</p>
+<h2 class="doc-h2" id="s46">4.5 Requisitos de Reportes Trimestrales</h2>
+<p>El Licenciatario proporcionará reportes trimestrales incluyendo:</p>
+<p>(a) Ingresos del programa totales;</p>
+<p>(b) Número de alumnos inscritos;</p>
+<p>(c) Niveles y progresiones de alumnos;</p>
+<p>(d) Actividades de marketing y alcance;</p>
+<p>(e) Cualquier violación de estándares o problemas.</p>
+<h2 class="doc-h2" id="s47">4.6 Estándares de Desempeño Mínimo</h2>
+<p>El Licenciatario debe mantener:</p>
+<p>(a) Mínimo 1 Coach de Nivel 4 o superior (Master Coach);</p>
+<p>(b) Mínimo 3 coaches TSS certificados en cualquier nivel;</p>
+<p>(c) Mínimo 50 alumnos activos enrolados;</p>
+<p>(d) Crecimiento anual de al menos 15% en inscritos o ingresos.</p>
+<h2 class="doc-h2" id="s48">4.7 Derecho de Auditar Finanzas</h2>
+<p>Enkrateia SA de CV tiene derecho de auditar los libros financieros del Licenciatario en cualquier momento para verificar reportes de ingresos y conformidad con estructura de regalías. Auditorías pueden ser conducidas hasta 2 veces por año.</p>
+<h2 class="doc-h2" id="s49">4.8 Condiciones de Exclusividad</h2>
+<p>Durante el plazo de esta licencia, el Licenciatario acuerda:</p>
+<p>(a) No enseñar o promover metodologías educativas competidoras de surf;</p>
+<p>(b) Enfoque exclusivamente en The Surf Sequence como su programa principal;</p>
+<p>(c) No permitir que coaches enseñen metodologías competidoras;</p>
+<p>(d) Dedicar 100% de capacitación de surf a TSS.</p>
+<h2 class="doc-h2" id="s50">4.9 Duración y Renovación</h2>
+<p>Plazo inicial de 3 años. Después de eso, puede ser renovado por períodos de 1 año sujeto a:</p>
+<p>(a) Cumplimiento con estándares de desempeño mínimo;</p>
+<p>(b) Pago de todas las regalías adeudadas;</p>
+<p>(c) Ninguna violación material del Acuerdo.</p>
+<h2 class="doc-h2" id="s51">4.10 Post-Terminación</h2>
+<p>Al término, el Licenciatario debe:</p>
+<p>(a) Cesar inmediatamente toda operación TSS;</p>
+<p>(b) Remover toda marca TSS de ubicaciones y materiales;</p>
+<p>(c) Devolver todos los materiales propietarios TSS;</p>
+<p>(d) Cuidado de alumnos debe ser transferido a otra operación TSS autorizada;</p>
+<p>(e) Cumplir con obligaciones de confidencialidad post-terminación.</p>
+<h2 class="doc-h2" id="s52">4.11 Mejoras y Asignación de PI</h2>
+<p>Cualquier mejora o mejora de metodología creada por el Licenciatario se convierte automáticamente en propiedad exclusiva de Enkrateia SA de CV. El Licenciatario asigna todos los derechos en tales mejoras.</p>
+<h1 class="doc-h1" id="s53">PÁGINA DE FIRMA</h1>
+<p>IN WITNESS WHEREOF:</p>
+<h1 class="doc-h1" id="s54">ENKRATEIA SA DE CV</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s55">[NOMBRE DE LA PARTE]</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s56">SECCIÓN 5: ACUERDO DE INSCRIPCIÓN DE ALUMNO</h1>
+<p>Este Acuerdo es entre la Academia TSS y el Alumno (o Padre/Guardián si menor). Establece términos de participación, seguridad, privacidad y conducta.</p>
+<h2 class="doc-h2" id="s57">5.1 Asunción de Riesgo</h2>
+<p>El Alumno y/o Padre/Guardián reconoce que The Surf Sequence es un programa educativo atlético que implica actividad física y riesgo de lesión. Participación es voluntaria y bajo la aceptación de riesgo.</p>
+<h2 class="doc-h2" id="s58">5.2 Exención de Responsabilidad y Liberación</h2>
+<p>El Alumno y/o Padre/Guardián libera y renuncia a cualquier reclamo contra Enkrateia SA de CV, la Academia, coaches y personal de cualquier lesión o daño que ocurra durante The Surf Sequence excepto en caso de negligencia grave.</p>
+<h2 class="doc-h2" id="s59">5.3 Autorización Médica</h2>
+<p>El Alumno debe completar un cuestionario de salud. Si hay cualquier condición médica, se requiere autorización del médico antes de participación.</p>
+<h2 class="doc-h2" id="s60">5.4 Liberación de Medios</h2>
+<p>El Alumno y/o Padre/Guardián consiente que la Academia y Enkrateia SA de CV pueden fotografiar y/o video grabar el Alumno durante programas y usar en marketing, redes sociales y materiales educativos, a menos que se opte por no participar por escrito.</p>
+<h2 class="doc-h2" id="s61">5.5 Política de Privacidad y Gestión de Datos</h2>
+<p>Datos de alumno (nombre, edad, nivel, progresión, fotos/video) se recopilan para administración de programa y mejora. Todos los datos se mantienen confidenciales y no se venden. El Alumno puede solicitar acceso a sus datos en cualquier momento.</p>
+<h2 class="doc-h2" id="s62">5.6 Progresión de Cinturones y Avance por Mérito</h2>
+<p>La progresión de cinturones se basa únicamente en demostración de habilidades y cumplimiento con criterios TSS. Los coaches harán la determinación final de avance. Los cinturones no pueden ser "comprados" - solo ganados.</p>
+<h2 class="doc-h2" id="s63">5.7 Cuotas y Política de Reembolso</h2>
+<p>Cuota Mensual de Programa: $__________ pagadera el _____ de cada mes. Los reembolsos por cancelación de inscripción son permitidos con 30 días de notificación escrita. No hay reembolsos por lecciones perdidas.</p>
+<h2 class="doc-h2" id="s64">5.8 Código de Conducta</h2>
+<p>El Alumno acuerda:</p>
+<p>(a) Seguir todas las instrucciones del Coach;</p>
+<p>(b) Mantener comportamiento respetuoso y seguro;</p>
+<p>(c) No denigrar el programa o The Surf Sequence;</p>
+<p>(d) Reportar lesiones o problemas de seguridad;</p>
+<p>(e) Mantener confidencialidad de técnicas TSS si así se requiera;</p>
+<p>(f) Cumplir con todas las políticas de la Academia.</p>
+<h2 class="doc-h2" id="s65">5.9 Reconocimiento y Firma</h2>
+<p>Al firmar, el Alumno y/o Padre/Guardián reconoce haber leído, entendido y aceptado todos los términos de este Acuerdo.</p>
+<h1 class="doc-h1" id="s66">PÁGINA DE FIRMA</h1>
+<p>ALUMNO (si mayor de 18 años):</p>
+<p>_________________________________</p>
+<p>Firma</p>
+<p>PADRE/GUARDIÁN (si menor):</p>
+<p>_________________________________</p>
+<p>Firma</p>
+<h1 class="doc-h1" id="s67">ENKRATEIA SA DE CV</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s68">[NOMBRE DE LA PARTE]</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s69">SECCIÓN 6: ACUERDO DE OPERADOR FLAGSHIP (PURO SURF)</h1>
+<p>Este Acuerdo establece la relación entre Enkrateia SA de CV y Puro Surf como el Operador Flagship de The Surf Sequence en México.</p>
+<h2 class="doc-h2" id="s70">6.1 Definición de Estado Flagship</h2>
+<p>Puro Surf es designado como "Operador Flagship de The Surf Sequence" para México. El estado Flagship reconoce que Puro Surf:</p>
+<p>(a) Fue el primer operador de TSS;</p>
+<p>(b) Ha demostrado excelencia y cumplimiento superior;</p>
+<p>(c) Sirve como modelo de estándar para otros operadores;</p>
+<p>(d) Mantiene privilegios operacionales especiales bajo este Acuerdo.</p>
+<h2 class="doc-h2" id="s71">6.2 Aclaración Crítica: Puro Surf OPERA TSS, No</a></h2>
+<p>PROPIEDAD CRÍTICA: Puro Surf OPERA The Surf Sequence bajo licencia pero NO posee, controla, tiene derechos a, o reclama propiedad de ningun componente de The Surf Sequence, incluyendo pero no limitado a:</p>
+<p>(a) No posee la marca "The Surf Sequence®";</p>
+<p>(b) No posee el logo Fibonacci o identidad visual;</p>
+<p>(c) No posee la metodología, secuencias o currículo;</p>
+<p>(d) No posee la plataforma TSS Brain;</p>
+<p>(e) No posee derechos a sublicenciar o transferir TSS a otros.</p>
+<p>Puro Surf es un OPERADOR LICENCIADO exclusivamente. Toda propiedad intelectual permanece con Enkrateia SA de CV.</p>
+<h2 class="doc-h2" id="s72">6.3 Otorgamiento de Licencia</h2>
+<p>Enkrateia SA de CV otorga a Puro Surf una licencia no exclusiva para operar The Surf Sequence en México incluyendo:</p>
+<p>(a) Derecho de enseñar TSS en todas las ubicaciones operadas por Puro Surf;</p>
+<p>(b) Derecho de capacitar y certificar coaches en México (con aprobación de Enkrateia SA de CV);</p>
+<p>(c) Derecho de acceso a plataforma TSS Brain para alumnos;</p>
+<p>(d) Derecho de usar marca TSS bajo guías aprobadas.</p>
+<h2 class="doc-h2" id="s73">6.4 Estructura de Cuota de Ingresos o Tarifa de Licencia</h2>
+<p>Puro Surf pagará a Enkrateia SA de CV:</p>
+<p>(a) OPCIÓN A - Royalty de Ingresos: ___% de ingresos netos mensuales de todas las operaciones TSS;</p>
+<p>(b) OPCIÓN B - Cuota de Licencia Fija: $__________ anual;</p>
+<p>(c) Términos de Pago: Pagadero el día 15 de cada mes o trimestre según acuerdo.</p>
+<h2 class="doc-h2" id="s74">6.5 Propiedad de PI - Declaración Cristalina</h2>
+<p>Toda la propiedad intelectual de The Surf Sequence, incluidas pero no limitadas a:</p>
+<p>(a) Marca "The Surf Sequence®";</p>
+<p>(b) Metodología, secuencias, ejercicios, drills;</p>
+<p>(c) Plataforma TSS Brain y tecnología;</p>
+<p>(d) Materiales de entrenamiento y documentación;</p>
+<p>(e) Datos de estudiantes y análisis;</p>
+<p>(f) Cualquier mejora o derivado;</p>
+<p>Es propiedad EXCLUSIVAMENTE de Enkrateia SA de CV. Puro Surf tiene NINGÚN reclamo de propiedad. Puro Surf renuncia a cualquier reclamo futuro.</p>
+<h2 class="doc-h2" id="s75">6.6 Mejoras y Mejora de Metodología</h2>
+<p>Si Puro Surf sugiere o desarrolla mejoras a la metodología TSS:</p>
+<p>(a) Puro Surf debe reportar todas las mejoras a Enkrateia SA de CV;</p>
+<p>(b) Enkrateia SA de CV retiene derechos de evaluación y aprobación;</p>
+<p>(c) Si aprobadas, mejoras se convierten en propiedad de Enkrateia SA de CV;</p>
+<p>(d) Puro Surf retiene crédito como "Contribuidor de Mejora" pero no propiedad.</p>
+<h2 class="doc-h2" id="s76">6.7 Derechos de Marketing y Reglas de Co-Marca</h2>
+<p>Puro Surf puede marketing como "Operador Flagship de The Surf Sequence en México" pero:</p>
+<p>(a) Debe usar marca TSS exactamente como aprobado por Enkrateia SA de CV;</p>
+<p>(b) No puede modificar logo TSS;</p>
+<p>(c) Debe incluir: "Licencia Autorizada de Enkrateia SA de CV" en toda publicidad;</p>
+<p>(d) Debe obtener aprobación previa de cualquier campaña TSS mayor;</p>
+<p>(e) No puede usar marca en manera que implique propiedad.</p>
+<h2 class="doc-h2" id="s77">6.8 Estándares de Calidad y Auditorías</h2>
+<p>Puro Surf debe mantener estándares TSS. Enkrateia SA de CV puede conducir auditorías:</p>
+<p>(a) Anualmente o más frecuentemente;</p>
+<p>(b) Para verificar enseñanza, seguridad, marca, datos;</p>
+<p>(c) Sin notificación previa;</p>
+<p>(d) Con acceso a ubicaciones, registros y alumnos.</p>
+<h2 class="doc-h2" id="s78">6.9 Reporte Financiero y Derechos de Auditoría</h2>
+<p>Puro Surf proporcionará:</p>
+<p>(a) Reportes mensuales de ingresos y alumnos;</p>
+<p>(b) Acceso a libros financieros para auditoría;</p>
+<p>(c) Certificación de cumplimiento de regalías;</p>
+<p>(d) Auditorías pueden ocurrir hasta 4 veces anualmente.</p>
+<h2 class="doc-h2" id="s79">6.10 Disposiciones de Terminación</h2>
+<p>Enkrateia SA de CV puede terminar si:</p>
+<p>(a) Puro Surf viola estándares de calidad;</p>
+<p>(b) Puro Surf no paga cuotas a tiempo;</p>
+<p>(c) Puro Surf reclama propiedad de IP o actúa como si poseyera TSS;</p>
+<p>(d) Puro Surf sublicencia sin autorización;</p>
+<p>(e) Violación material de cualquier término.</p>
+<h2 class="doc-h2" id="s80">6.11 Plan de Transición en Terminación</h2>
+<p>Si esta licencia termina:</p>
+<p>(a) Puro Surf tiene 30 días para cesar operación TSS;</p>
+<p>(b) Todos los alumnos deben ser transferidos a operador autorizado;</p>
+<p>(c) Toda marca TSS debe ser removida;</p>
+<p>(d) Todos los materiales propietarios deben ser devueltos o destruidos;</p>
+<p>(e) Acceso a plataforma TSS Brain se revoca.</p>
+<h2 class="doc-h2" id="s81">6.12 Indemnización</h2>
+<p>Puro Surf indemniza a Enkrateia SA de CV de reclamaciones que surjan de operaciones de Puro Surf.</p>
+<h1 class="doc-h1" id="s82">PÁGINA DE FIRMA</h1>
+<p>IN WITNESS WHEREOF:</p>
+<h1 class="doc-h1" id="s83">ENKRATEIA SA DE CV</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s84">[NOMBRE DE LA PARTE]</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s85">SECCIÓN 7: CONFIDENCIALIDAD Y NDA (GENERAL)</h1>
+<p>Este Acuerdo de Confidencialidad y Acuerdo de No Divulgación se aplica a todos los que reciben acceso a información confidencial de The Surf Sequence.</p>
+<h2 class="doc-h2" id="s86">7.1 Definición de Información Confidencial</h2>
+<p>Información Confidencial incluye:</p>
+<p>(a) Toda la metodología, secuencias, ejercicios y técnicas de enseñanza;</p>
+<p>(b) Manuales de coach, materiales de capacitación y documentación;</p>
+<p>(c) Especificaciones de plataforma TSS Brain, algoritmos y arquitectura;</p>
+<p>(d) Datos de alumno, progresiones y análisis;</p>
+<p>(e) Información financiera y planes comerciales;</p>
+<p>(f) Cualquier información marcada como Confidencial o que razonablemente debiera entenderse como confidencial.</p>
+<h2 class="doc-h2" id="s87">7.2 Obligaciones de la Parte Receptora</h2>
+<p>El Receptor de información confidencial acuerda:</p>
+<p>(a) Mantener confidencialidad de toda información recibida;</p>
+<p>(b) No divulgar a terceros sin consentimiento escrito;</p>
+<p>(c) Usar información solo para propósito autorizado;</p>
+<p>(d) Proteger información con estándares comerciales razonables;</p>
+<p>(e) Cooperar con medidas de protección implementadas por Enkrateia SA de CV.</p>
+<h2 class="doc-h2" id="s88">7.3 Duración de las Obligaciones de Confidencialidad</h2>
+<p>Obligaciones de confidencialidad continúan:</p>
+<p>(a) Durante el período de la relación;</p>
+<p>(b) Por 5 años después de términación de relación;</p>
+<p>(c) Indefinidamente para secretos comerciales;</p>
+<p>(d) Hasta información es públicamente disponible a través de no-culpa.</p>
+<h2 class="doc-h2" id="s89">7.4 Divulgaciones Permitidas</h2>
+<p>Información puede ser divulgada a:</p>
+<p>(a) Empleados de la parte, con necesidad de conocer y obligados por NDA;</p>
+<p>(b) Abogados y profesionales de negocios necesarios, obligados por confidencialidad profesional;</p>
+<p>(c) Como requerido por ley o orden de corte, con notificación previa si permisible.</p>
+<h2 class="doc-h2" id="s90">7.5 Devolución de Materiales</h2>
+<p>Todos los materiales confidenciales deben ser devueltos o certificados como destruidos dentro de 30 días de término de relación.</p>
+<h2 class="doc-h2" id="s91">7.6 Medidas Cautelares</h2>
+<p>Receptor reconoce que violaciones de confidencialidad causarían daño irreparable para el cual dinero compensatorio sería insuficiente. Enkrateia SA de CV está autorizada a buscar medidas cautelares.</p>
+<h2 class="doc-h2" id="s92">7.7 Excepciones</h2>
+<p>Información NO es confidencial si:</p>
+<p>(a) Está en dominio público sin culpa del Receptor;</p>
+<p>(b) Fue legítimamente obtenida antes de divulgación;</p>
+<p>(c) Es independientemente desarrollada;</p>
+<p>(d) Es legalmente requerido divulgar.</p>
+<h1 class="doc-h1" id="s93">PÁGINA DE FIRMA</h1>
+<p>IN WITNESS WHEREOF:</p>
+<h1 class="doc-h1" id="s94">ENKRATEIA SA DE CV</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s95">[NOMBRE DE LA PARTE]</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s96">SECCIÓN 8: TÉRMINOS DE SERVICIO (PLATAFORMA TSS BRAIN)</h1>
+<p>Estos Términos de Servicio gobiernan el acceso y uso de la plataforma digital TSS Brain.</p>
+<h2 class="doc-h2" id="s97">8.1 Creación de Cuenta y Responsabilidades</h2>
+<p>El Usuario crea una cuenta TSS Brain con:</p>
+<p>(a) Información de identificación verdadera y completa;</p>
+<p>(b) Contraseña segura (Usuario es responsable de confidencialidad);</p>
+<p>(c) Mantenimiento de información de cuenta completa;</p>
+<p>(d) Notificación inmediata de acceso no autorizado.</p>
+<h2 class="doc-h2" id="s98">8.2 Propiedad de Datos</h2>
+<p>Usuario retiene propiedad de datos de alumno personal (nombre, edad, fotos). Enkrateia SA de CV retiene propiedad de:</p>
+<p>(a) Datos de progresión de alumno;</p>
+<p>(b) Métricas de rendimiento;</p>
+<p>(c) Análisis agregado;</p>
+<p>(d) Copia de plataforma y estructura.</p>
+<h2 class="doc-h2" id="s99">8.3 Política de Uso Aceptable</h2>
+<p>Usuario acuerda no:</p>
+<p>(a) Usar plataforma para cosas ilegales o no autorizadas;</p>
+<p>(b) Acceder no autorizado o transferir contenido de otros usuarios;</p>
+<p>(c) Publicar contenido ofensivo, difamatorio o dañino;</p>
+<p>(d) Intentar hackear o obtener acceso no autorizado;</p>
+<p>(e) Usar para fin competitivo sin consentimiento;</p>
+<p>(f) Reselling, redistribuir o transferir acceso a otros.</p>
+<h2 class="doc-h2" id="s100">8.4 Propiedad Intelectual del Contenido de Plataforma</h2>
+<p>Todo el contenido de TSS Brain, incluyendo software, metodología, ejercicios, assessments, es propiedad intelectual de Enkrateia SA de CV. Usuario obtiene licencia limitada para uso personal solo. Reproducción, copia o distribución está prohibida.</p>
+<h2 class="doc-h2" id="s101">8.5 Disponibilidad y Limitaciones de Servicio</h2>
+<p>Enkrateia SA de CV no garantiza disponibilidad 100% de plataforma. Se permiten tiempos de inactividad por mantenimiento. Enkrateia SA de CV no es responsable por interrupciones no causadas.</p>
+<h2 class="doc-h2" id="s102">8.6 Terminación de Cuentas</h2>
+<p>Enkrateia SA de CV puede terminar cuenta si:</p>
+<p>(a) Violación de Política de Uso Aceptable;</p>
+<p>(b) No pago de cuotas asociadas;</p>
+<p>(c) Inactividad extendida (90+ días);</p>
+<p>(d) Uso inapropiado o dañino;</p>
+<p>(e) Cualquier violación de Términos.</p>
+<h2 class="doc-h2" id="s103">8.7 Privacidad y Protección de Datos</h2>
+<p>Datos son protegidos de acuerdo a política de privacidad de TSS. Datos son NO vendidos a terceros. Usuario puede solicitar acceso o eliminación en cualquier momento.</p>
+<h2 class="doc-h2" id="s104">8.8 Enlaces de Terceros</h2>
+<p>Plataforma puede contener enlaces a sitios externos. Enkrateia SA de CV NO es responsable por contenido de terceros o privacidad de esos sitios.</p>
+<h2 class="doc-h2" id="s105">8.9 Limitación de Responsabilidad</h2>
+<p>EN LA MÁXIMA MEDIDA PERMITIDA POR LEY, Enkrateia SA de CV NO es responsable por daños directos, indirectos, incidentales, especiales o punitivos que surjan del acceso o uso de la plataforma.</p>
+<h2 class="doc-h2" id="s106">8.10 Cambios en Términos</h2>
+<p>Enkrateia SA de CV se reserva derecho de cambiar estos Términos en cualquier momento. Cambios serán publicados en plataforma. Uso continuo constituye aceptación de cambios.</p>
+<h1 class="doc-h1" id="s107">PÁGINA DE FIRMA</h1>
+<p>IN WITNESS WHEREOF:</p>
+<h1 class="doc-h1" id="s108">ENKRATEIA SA DE CV</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s109">[NOMBRE DE LA PARTE]</h1>
+<p>_________________________________</p>
+<p>Firma Autorizada</p>
+<h1 class="doc-h1" id="s110">SECCIÓN 9: POLÍTICAS</h1>
+<p>Las siguientes Políticas gobiernan el uso de The Surf Sequence y compliance de todos los operadores, coaches y alumnos.</p>
+<h2 class="doc-h2" id="s111">9.1 POLÍTICA DE USO DE MARCA TSS</h2>
+<p>Marca Apropiada:</p>
+<p>• Siempre use "The Surf Sequence®" con símbolo de marca registrada cuando se refiera a la metodología completa</p>
+<p>• Use "TSS" solo como abreviatura cuando contexto es claro</p>
+<p>• Use co-branding permitido (eg. "Academia XYZ, Operador Autorizado de The Surf Sequence")</p>
+<p>Marca Prohibida:</p>
+<p>• NO modifique logo TSS o cree variaciones</p>
+<p>• NO use marca de manera que implique propiedad o posesión</p>
+<p>• NO sublicencia marca a otras partes</p>
+<p>• NO use marca para productos o servicios no aprobados</p>
+<p>Cumplimiento:</p>
+<p>• Todas las academias deben completar Auditoría de Cumplimiento de Marca anualmente</p>
+<p>• Violaciones pueden resultar en carta de cese/desista o terminación de acuerdo</p>
+<h2 class="doc-h2" id="s112">9.2 POLÍTICA DE ESTÁNDARES DE CALIDAD TSS</h2>
+<p>Enseñanza de Secuencias:</p>
+<p>• Todas las secuencias deben enseñarse de acuerdo a TSS Canon v5.0 sin modificación</p>
+<p>• Las 26 Secuencias han sido probadas y optimizadas - cambios no están autorizados</p>
+<p>• Coaches deben enseñar exactamente como capacitados</p>
+<p>Evaluación de Alumnos:</p>
+<p>• Evaluaciones deben estar basadas en criterios específicos TSS</p>
+<p>• Cinturones no pueden ser otorgados por seniority, apariencia u otros factores - SOLO HABILIDAD</p>
+<p>• Assessments deben documentarse</p>
+<p>Instrucción de Coach:</p>
+<p>• Solo Coaches L3+ pueden llevar clase de programa principal</p>
+<p>• Coaches deben mantener demostración clara de movimientos</p>
+<p>• Coaches deben comunicarse claramente en idioma local</p>
+<p>Auditorías:</p>
+<p>• Enkrateia SA de CV puede hacer auditoría de calidad sin notificación previa</p>
+<p>• Auditorías incluirán observación de clase y revisión de evaluaciones</p>
+<p>• Violaciones de calidad resultarán en Planes de Mejora o terminación</p>
+<h2 class="doc-h2" id="s113">9.3 POLÍTICA DE SEGURIDAD TSS</h2>
+<p>Responsabilidades del Coach:</p>
+<p>• Coaches están responsables por seguridad de alumnos en todo momento</p>
+<p>• Coaches deben ejecutar técnicas de seguridad de acuerdo a TSS Canon v2.0</p>
+<p>• Coaches deben verificar espacio es seguro antes de clases</p>
+<p>• Coaches deben monitorear alumnos para lesiones o problemas médicos</p>
+<p>Reportes de Lesión:</p>
+<p>• Cualquier lesión debe ser reportada inmediatamente a la Academia</p>
+<p>• Academia debe reportar a Enkrateia SA de CV dentro de 24 horas</p>
+<p>• Documentación de lesión debe ser guardada</p>
+<p>Estándares de Espacio:</p>
+<p>• Espacio de clase debe tener suficiente materia de espuma/seguridad</p>
+<p>• Equipo debe estar en condición segura</p>
+<p>• Espacio debe ser limpios y libres de peligros</p>
+<h2 class="doc-h2" id="s114">9.4 POLÍTICA DE PROTECCIÓN DE DATOS TSS</h2>
+<p>Recopilación de Datos:</p>
+<p>• Los datos de alumno se recopilan para administración de programa y seguimiento de progresión</p>
+<p>• La recopilación de datos debe tener consentimiento de alumno (o consentimiento parental para menores)</p>
+<p>Uso de Datos:</p>
+<p>• Los datos de alumno individual se usan solo para entrega de programa TSS</p>
+<p>• Los datos agregados se usan para mejora de metodología</p>
+<p>• Los datos NO se venden a terceros</p>
+<p>Seguridad de Datos:</p>
+<p>• Coaches y personal deben proteger privacidad de alumno</p>
+<p>• Los datos deben ser almacenados de forma segura</p>
+<p>• Las violaciones de datos deben ser reportadas inmediatamente a Enkrateia SA de CV</p>
+<h2 class="doc-h2" id="s115">9.5 POLÍTICA ANTI-PIRATERÍA TSS</h2>
+<p>Copia No Autorizada Prohibida:</p>
+<p>• La copia o reproducción de materiales TSS sin autorización está estrictamente prohibida</p>
+<p>• El compartir de manuales de coach, drills o contenido de plataforma está prohibido</p>
+<p>• La publicación de materiales TSS en línea sin consentimiento es una violación</p>
+<p>Cumplimiento:</p>
+<p>• Enkrateia SA de CV monitorea activamente el uso no autorizado</p>
+<p>• Las violaciones pueden resultar en acción legal, terminación de cuenta y daños</p>
+<p>• Los coaches que descubren piratería deben reportar a Enkrateia SA de CV inmediatamente</p>
+<h1 class="doc-h1" id="s116">SECCIÓN 10: RESUMEN GENERAL DE PROTECCIÓN DE PI</h1>
+<h2 class="doc-h2" id="s117">10.1 Lista Completa de Activos de PI Protegibles</h2>
+<p>Los siguientes activos constituyen la propiedad intelectual de The Surf Sequence propiedad exclusivamente de Enkrateia SA de CV:</p>
+<h2 class="doc-h2" id="s118">Marcas Registradas (Marcas de Palabra y Marcas de Diseño):</h2>
+<p>• "The Surf Sequence®" (marca de palabra)</p>
+<p>• Variaciones de eslogan "The Surf Sequence"</p>
+<p>• Logo de espiral de Fibonacci (marca de diseño)</p>
+<p>• "Evolve through play" (eslogan)</p>
+<p>• Abreviatura "TSS"</p>
+<p>• Nombres de niveles de cinturón y colores (nombres propietarios)</p>
+<h2 class="doc-h2" id="s119">Obras Protegidas por Derechos de Autor:</h2>
+<p>• Manuales de capacitación de coach y guías de instrucción (obras literarias)</p>
+<p>• Las 26 Secuencias (contenido de instrucción detallado)</p>
+<p>• Documentación de biblioteca de ejercicios</p>
+<p>• Criterios de evaluación y estándares de progresión de cinturones</p>
+<p>• Contenido de instrucción en video</p>
+<p>• Software y código fuente de plataforma TSS Brain</p>
+<p>• Diseño de interfaz de usuario y elementos visuales</p>
+<p>• Materiales de marketing y contenido promocional</p>
+<h2 class="doc-h2" id="s120">Secretos Comerciales:</h2>
+<p>• El sistema de metodología detallada y enfoque de enseñanza</p>
+<p>• Principios fundacionales de Canvas v5.0</p>
+<p>• Diseño de secuencia propietaria y lógica de progresión</p>
+<p>• Técnicas de coaching y metodologías de evaluación</p>
+<p>• Algoritmos de plataforma TSS Brain y arquitectura de base de datos</p>
+<p>• Planes de negocios e información estratégica</p>
+<h2 class="doc-h2" id="s121">Invenciones Potencialmente Patentables:</h2>
+<p>• Métodos pedagógicos únicos (si son novedosos y no obvios)</p>
+<p>• Innovaciones técnicas de plataforma TSS Brain</p>
+<p>• Sistemas de evaluación propietarios</p>
+<h2 class="doc-h2" id="s122">10.2 Recomendaciones de Registro</h2>
+<p>Prioridad 1 - Presentación Inmediata (IP Crítica):</p>
+<p>(a) Registro de Marca: "The Surf Sequence®" - Presentar en todos los países primarios (USA, México, Europa, Australia, Japón) con USPTO, WIPO y oficinas nacionales</p>
+<p>(b) Marca de Logo: Diseño de espiral de Fibonacci - Presentar como marca de diseño</p>
+<p>(c) Registro de Derechos de Autor: Manuales de coach, documentación de secuencia, software - Registrar con oficinas de derechos de autor nacionales</p>
+<p>Prioridad 2 - Presentación Estratégica (Activos Centrales):</p>
+<p>(a) Solicitud de Patente: Métodos pedagógicos únicos de TSS (si novedosos) - Considerar presentación de patente provisional</p>
+<p>(b) Derechos de Autor: Software de plataforma TSS Brain</p>
+<p>(c) Protección de Secreto Comercial: Todos los sistemas propietarios - Implementar protocolos de secreto comercial documentados</p>
+<p>Prioridad 3 - Registros de Apoyo:</p>
+<p>(a) Registro de Dominio: Asegurar tssurfsequence.com, thesurf sequence.com, tss-academy.com</p>
+<p>(b) Redes Sociales: Asegurar @tssurfsequence, @thesurfsequence en todas las plataformas</p>
+<p>(c) Patentes de Diseño: Considerar patentes de diseño para elementos visuales únicos</p>
+<h2 class="doc-h2" id="s123">10.3 Estrategia de Cumplimiento</h2>
+<p>Monitoreo y Detección:</p>
+<p>(a) Realizar búsquedas de Internet trimestrales para uso no autorizado de nombre, logo o materiales de TSS</p>
+<p>(b) Monitorear redes sociales por infracción de marca registrada</p>
+<p>(c) Suscribirse a servicios de monitoreo de dominio</p>
+<p>(d) Establecer mecanismo de reportes para que coaches reporten uso no autorizado</p>
+<p>Protocolo de Cese y Desista:</p>
+<p>(a) Al descubrir infracción, enviar carta formal de Cese y Desista de asesor legal</p>
+<p>(b) Exigir remoción de materiales infractores dentro de marco de tiempo especificado (típicamente 10 días)</p>
+<p>(c) Solicitar certificación de cumplimiento</p>
+<p>Litigio Como Último Recurso:</p>
+<p>(a) Si infractor no cumple, presentar para medidas cautelares para detener infracción</p>
+<p>(b) Perseguir daños incluyendo daños reales, ganancias o daños estatutarios</p>
+<p>(c) Buscar honorarios de abogado si aplicable</p>
+<h2 class="doc-h2" id="s124">10.4 Plan de Vigilancia</h2>
+<p>Vigilancia Continua:</p>
+<p>(a) Auditoría Trimestral de PI: Revisar todos los acuerdos de licenciatario por cumplimiento, monitorear uso de marca</p>
+<p>(b) Monitoreo de Internet: Búsquedas bi-mensuales de menciones de TSS, uso no autorizado</p>
+<p>(c) Reportes de Coach: Establecer línea de reportes confidencial para coaches por infracción sospechada</p>
+<p>(d) Monitoreo de Plataforma: Escanear redes oscuras, redes P2P y sitios de compartición de archivos</p>
+<p>Verificación de Cumplimiento:</p>
+<p>(a) Auditorías Anuales: Verificar que todos coaches y academias usan apropiadamente marca y materiales</p>
+<p>(b) Documentación de Auditoría: Incluir lista de verificación de cumplimiento de PI en todas las auditorías de academia</p>
+<p>(c) Capacitación: Garantizar todos coaches entienden propiedad de PI y restricciones de uso</p>
+<p>(d) Actualizaciones: Mantener todos acuerdos actuales con últimos registros de marca y reclamos de derechos de autor</p>
+<p>Equipo de Cumplimiento:</p>
+<p>(a) Designar Oficial de PI responsable por protección de PI de TSS</p>
+<p>(b) Retener asesor de PI experimentado en casos de metodología de surf/deportes</p>
+<p>(c) Mantener relaciones con servicios de vigilancia de marca y servicios de monitoreo de dominio</p>
+<p>(d) Establecer procedimientos de escalada por infracción seria</p>
+<h1 class="doc-h1" id="s125">— FIN DEL DOCUMENTO —</h1></div>
+</div>
+<div class="doc-footer">
+  <span class="tagline">Protegiendo el estándar.</span>
+  Marco Legal TSS — Enkrateia SA de CV — Confidencial
+</div>
+</body>
+</html>

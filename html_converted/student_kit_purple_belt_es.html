@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cinta Púrpura — Kit de Alumno — The Surf Sequence®</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Work Sans',sans-serif;background:#060e1a;color:#e0e0e0;min-height:100vh}
+.top-bar{position:sticky;top:0;z-index:20;background:rgba(10,22,40,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.05);padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+.top-bar h1{font-family:'Outfit',sans-serif;font-weight:800;font-size:.95rem;color:#fff}
+.top-bar h1 span{color:#5a35a0}
+.top-bar .level-badge{padding:4px 14px;border-radius:6px;font-family:'Outfit',sans-serif;font-size:.7rem;font-weight:700;background:#7B4FBE;color:#fff;letter-spacing:.06em}
+.hero{padding:40px 20px 32px;text-align:center;background:linear-gradient(135deg,#0A1628 0%,#5a35a015 100%);border-bottom:1px solid rgba(255,255,255,.04)}
+.hero .belt-circle{width:80px;height:80px;border-radius:50%;background:#7B4FBE;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:800;font-size:1.8rem;color:#fff;box-shadow:0 0 30px #5a35a033}
+.hero h2{font-family:'Outfit',sans-serif;font-size:1.6rem;font-weight:800;color:#fff;margin-bottom:4px}
+.hero .level-name{font-size:.85rem;color:#5a35a0;font-weight:600;margin-bottom:12px}
+.hero p{font-size:.88rem;color:rgba(255,255,255,.45);max-width:500px;margin:0 auto;line-height:1.7}
+.info-bar{padding:16px 20px;background:rgba(90,53,160,.04);border-bottom:1px solid rgba(255,255,255,.03);display:flex;gap:16px;justify-content:center;font-size:.78rem;color:rgba(255,255,255,.35)}
+.info-bar strong{color:#5a35a0}
+.howto{max-width:700px;margin:20px auto;padding:16px 24px;border-radius:12px;background:rgba(90,195,231,.03);border:1px solid rgba(90,195,231,.08);font-size:.82rem;color:rgba(255,255,255,.4);line-height:1.7}
+.howto strong{color:#5AC3E7}
+.progress-bar{max-width:700px;margin:12px auto 20px;padding:0 20px}
+.progress-track{height:6px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden}
+.progress-fill{height:100%;background:#5a35a0;border-radius:3px;transition:width .5s;width:0%}
+.progress-label{font-size:.7rem;color:rgba(255,255,255,.2);margin-top:4px;text-align:center}
+.content{max-width:700px;margin:0 auto;padding:0 20px 40px}
+.section-card{background:#0d1a2e;border:1px solid rgba(255,255,255,.04);border-radius:12px;margin-bottom:8px;overflow:hidden;transition:all .2s}
+.section-card:hover{border-color:rgba(255,255,255,.08)}
+.section-card.open{border-color:#5a35a044}
+.section-header{padding:14px 18px;display:flex;align-items:center;gap:12px;cursor:pointer}
+.section-num{width:28px;height:28px;border-radius:8px;background:#5a35a015;display:flex;align-items:center;justify-content:center;font-family:'Outfit',sans-serif;font-weight:700;font-size:.8rem;color:#5a35a0;flex-shrink:0}
+.section-title{font-family:'Outfit',sans-serif;font-size:.9rem;font-weight:600;color:#fff;flex:1}
+.section-arrow{color:rgba(255,255,255,.15);font-size:.7rem;transition:transform .2s}
+.section-card.open .section-arrow{transform:rotate(90deg);color:#5a35a0}
+.section-body{display:none;padding:0 18px 16px;border-top:1px solid rgba(255,255,255,.03)}
+.section-card.open .section-body{display:block;padding-top:14px}
+.footer{text-align:center;padding:32px 20px;border-top:1px solid rgba(255,255,255,.03)}
+.footer .tagline{font-family:'Lora',serif;font-style:italic;color:#5a35a0;font-size:.85rem;margin-bottom:6px}
+.footer p{font-size:.7rem;color:rgba(255,255,255,.1)}
+@media(max-width:600px){.info-bar{flex-direction:column;gap:6px;align-items:center}.hero h2{font-size:1.3rem}}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <h1>THE SURF <span>SEQUENCE®</span></h1>
+  <div class="level-badge">NIVEL 4 — KIT DE ALUMNO</div>
+</div>
+<div class="hero">
+  <div class="belt-circle">4</div>
+  <h2>Cinta Púrpura</h2>
+  <div class="level-name">Avanzado</div>
+  <p>15 expresiones avanzadas: Floater, Snap, Tango, Layback, Tail Slide, Roundhouse. Te estás convirtiendo en un surfista completo.</p>
+</div>
+<div class="info-bar">
+  <span><strong>Olas:</strong> 4-8 pies</span>
+  <span><strong>Ambiente:</strong> Condiciones overhead</span>
+  <span><strong>Secciones:</strong> 25</span>
+</div>
+<div class="howto">
+  <strong>Cómo usar este kit:</strong> Púrpura demanda compromiso. Estas maniobras requieren velocidad, timing y coraje. Trabaja con tu coach en análisis de video. Cada ola es un lienzo.
+</div>
+<div class="progress-bar">
+  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-label" id="progressLabel">0 / 25 secciones exploradas</div>
+</div>
+<div class="content">
+
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h3 class="section-title">THE SURF SEQUENCE®</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">STUDENT MANUAL</p><p class="text-white/50 text-sm leading-relaxed mb-2">Sequences #14 through #17</p><p class="text-white/50 text-sm leading-relaxed mb-2">Commitment &amp; Expression</p><p class="text-white/50 text-sm leading-relaxed mb-2">By Marcelo Castellanos</p><p class="text-white/50 text-sm leading-relaxed mb-2">ISA Olympic Expert Coach | Founder, The Surf Sequence®</p><p class="text-white/50 text-sm leading-relaxed mb-2">Enkrateia SA de CV — All Rights Reserved</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h3 class="section-title">YOUR JOURNEY</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="font-semibold text-white/75 mb-2">Where You Are</p><p class="text-white/50 text-sm leading-relaxed mb-2">You have earned the Blue Belt. You ride complete waves. You link sections. You execute named maneuvers — Cruz Snap, Tapaloco Snap, cutbacks — with consistency. You generate speed, you manage the pocket, and you complete rides through multiple sections. You own your sessions.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Now everything deepens.</p><p class="font-semibold text-white/75 mb-2">What Changes at Purple Belt</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Blue Belt, you asked: “Can I surf a complete wave consistently?” At Purple Belt, you ask: “How do I express myself on it?”</p><p class="text-white/50 text-sm leading-relaxed mb-2">The Purple Belt is not about learning more moves. It is about committing fully to the moves you already know, adding variety, and discovering who you are as a surfer. This is where consistent surfing becomes expressive surfing.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Your bottom turns become deeper. Your projection becomes more powerful. Your repertoire expands: floaters, snaps, laybacks, tail slides, and expressions you have never tried. You will commit to steeper takeoffs, more critical sections, and higher-consequence maneuvers. You will fail — repeatedly — and that is exactly how personal style develops.</p><p class="text-white/50 text-sm leading-relaxed mb-2">You will also take full ownership of your surfing. You design your sessions. You identify your weaknesses. You select waves for specific practice. Your coach transitions from mentor to consultant. The decisions are yours.</p><p class="font-semibold text-white/75 mb-2">The Progression Map</p><p class="font-semibold text-white/75 mb-2">You are here: Purple Belt — Emerging. Sequences #14 through #17.</p><p class="text-white/50 text-sm leading-relaxed mb-2">After Purple Belt, you advance to Brown Belt (Pre-Elite), where your commitment and variety become the raw material for competition-ready precision across all conditions.</p><p class="font-semibold text-white/75 mb-2">How to Use This Manual</p><p class="text-white/50 text-sm leading-relaxed mb-2">This manual follows the same structure you know from White, Yellow, and Blue Belt. Each section covers one dimension of your surfing. Scan the QR codes for video references. Use the mission tracker to log progress.</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Purple Belt, read this manual as a strategic tool: identify which sections demand your focus, design sessions around them, and return to the concepts when your surfing stalls.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h3 class="section-title">SECTION 1: READING THE WAVE FOR EXPRESSION</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">At Purple Belt, wave reading is no longer about whether you can catch the wave. It is about what you can do on it. You read the wave to select expressions.</p><p class="font-semibold text-white/75 mb-2">Section Reading at Speed</p><p class="text-white/50 text-sm leading-relaxed mb-2">During your ride, the wave changes. Sections form, steepen, flatten, and close. At Purple Belt, you learn to read these changes 3–5 seconds ahead and select your expression accordingly.</p><p class="font-semibold text-white/75 mb-2">Critical section: Steep, powerful, with a defined pocket. Ideal for committed maneuvers — deep bottom turns, snaps, reentries.</p><p class="font-semibold text-white/75 mb-2">Open section: Mellow, wide, with less urgency. Ideal for flow, linking, cutbacks, or speed generation.</p><p class="font-semibold text-white/75 mb-2">Closeout section: The wave breaks all at once. No open face. Your options: floater over the closeout, or exit safely.</p><p class="font-semibold text-white/75 mb-2">Hollow section: The wave throws its lip over, creating a barrel-like shape. Laybacks and tube attempts live here. Approach with caution.</p><p class="font-semibold text-white/75 mb-2">Maneuver-Wave Matching</p><p class="text-white/50 text-sm leading-relaxed mb-2">This is the tactical intelligence of Purple Belt: choosing which expression fits which section.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ A floater fits a crumbling lip.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ A snap fits a steep pocket.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ A layback fits a hollow section.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ A cutback fits an open section when you have drifted from the pocket.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ A reentry fits a section with a defined lip that allows vertical approach.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Choosing the wrong maneuver wastes energy. Choosing the right maneuver makes the wave do the work for you.</p><p class="font-semibold text-white/75 mb-2">Wave Selection for Maneuver Intent</p><p class="text-white/50 text-sm leading-relaxed mb-2">“I need a steep right for backside commitment” replaces “Is this wave catchable?”</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Purple Belt, you stop catching waves just because they are available. You select waves based on what expression you want to practice. This changes how you sit in the lineup, which waves you let pass, and how you manage priority.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h3 class="section-title">SECTION 2: SAFETY &amp; RISK MANAGEMENT</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Purple Belt introduces risk as a skill. You are committing to steeper takeoffs, more critical sections, and higher-consequence maneuvers. Safety does not decrease — it evolves.</p><p class="font-semibold text-white/75 mb-2">Calculated Risk</p><p class="text-white/50 text-sm leading-relaxed mb-2">Risk at Purple Belt is not about being reckless. It is about assessing before you commit:</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Is this section appropriate for this maneuver at my level?</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ What happens if the maneuver fails? Is the landing zone safe?</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Am I physically and mentally ready for the consequence?</p><p class="text-white/50 text-sm leading-relaxed mb-2">If the answer to any is uncertain, choose a safer expression or exit the wave.</p><p class="font-semibold text-white/75 mb-2">Wipeout Management</p><p class="text-white/50 text-sm leading-relaxed mb-2">With committed maneuvers come harder falls. Wipeout management is a trained skill at Purple Belt:</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Protect your head with both arms on every fall — non-negotiable at any level.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Maintain board awareness during dynamic wipeouts. Know where your board is.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Stay calm during turbulence. Do not fight the wave. Let the energy pass, then surface.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ After surfacing: check your surroundings before swimming back to your board.</p><p class="font-semibold text-white/75 mb-2">Conditions for Purple Belt</p><p class="font-semibold text-white/75 mb-2">Wave size: Up to 6 feet (green waves) confidently. Overhead (6+ feet) optional with coach assessment.</p><p class="font-semibold text-white/75 mb-2">Wave type: All manageable wave types. Hollow sections attempted with caution.</p><p class="font-semibold text-white/75 mb-2">Break type: Beach break, point break, reef break (with experience).</p><p class="font-semibold text-white/75 mb-2">Supervision: Coach as consultant. 1 coach per 8–12 surfers. Strategic feedback only.</p><p class="font-semibold text-white/75 mb-2">Self-regulation: Fully autonomous. Includes recognizing fatigue, managing adrenaline, and choosing to end a session when conditions or performance deteriorate.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h3 class="section-title">SECTION 3: THE SEQUENCE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">At Purple Belt, the full sequence operates at high intensity. Every step from White through Blue is present and expected. What changes is the depth of commitment, the power of execution, and the variety of expression.</p><p class="font-semibold text-white/75 mb-2">BLOCKS 1–2 — PREPARATION &amp; ENTRY (Autonomous)</p><p class="text-white/50 text-sm leading-relaxed mb-2">All preparation and entry steps are fully autonomous at Purple Belt. You design your session plan before entering the water.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h3 class="section-title">STEP 01  VENUE ANALYSIS (SURFER-LED)</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">You identify sections, lineup strategy, entry and exit timing, wave direction, and session zones independently. You share your analysis with the coach for confirmation, not instruction.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h3 class="section-title">STEP 02  SET GOAL (SURFER-DESIGNED)</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">You design your session goal. Not ‘surf well’ — a specific, expression-focused objective. Example: ‘Practice deep bottom turns into Cruz Reentry on frontside. Attempt at least one backside floater.’</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h3 class="section-title">STEP 03  WARM-UP</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">High-intensity dynamic mobility, explosive pop-up drills, rotation power exercises. Your warm-up prepares you for committed, powerful surfing.</p><p class="font-semibold text-white/75 mb-2">BLOCK 3 — WAVE ENGAGEMENT (Aggressive &amp; Strategic)</p><p class="text-white/50 text-sm leading-relaxed mb-2">Paddling speeds, pocket pursuit, and takeoff angles are instinctive. What changes is the intent:</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h3 class="section-title">STEP 04  CHASE THE POCKET (AGGRESSIVE)</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">At Purple Belt, you pursue the most critical section. You position yourself where the wave is steepest and most powerful, because committed maneuvers demand maximum energy.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h3 class="section-title">STEP 05  PADDLE WITH THE CORRECT ANGLE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Your takeoff angle sets up the maneuver you plan to execute. A deeper angle supports a committed bottom turn. A shallower angle supports a floater or a quick snap. The angle is strategic.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h3 class="section-title">STEP 06  COBRA — PICK YOUR LINE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Cobra is stable and fast. Your line choice is based on section reading: you see the wave, you know the section, you commit to the expression before you stand up.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h3 class="section-title">STEP 07  POP-UP + FEET POSITION (1 OR 2)</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Pop-up is explosive. You actively choose Feet Position 1 (neutral, for speed and wave-face riding) or Position 2 (engaged, back foot toward tail for aggressive maneuvers) based on your intent.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h3 class="section-title">BLOCK 4 — THE RIDE: COMMITTED EXPRESSION</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">This is the core of Purple Belt. Every ride is an opportunity for committed, varied expression.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <h3 class="section-title">STEP 08  POSTURE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Power stance adapts dynamically. You load and unload compression and extension as tools for generating power. Posture is not static — it pulses with the wave.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <h3 class="section-title">STEP 09  BOTTOM TURN — DEEP</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">The deep bottom turn is the foundation of everything at Purple Belt. Full rail engagement, maximum compression, held longer than feels comfortable. If the bottom turn is flat, the maneuver will be flat. If the bottom turn is deep and committed, the projection will carry the power you need.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">16</div>
+    <h3 class="section-title">STEP 10  HOLD</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Rail engagement is maintained through power sections. The hold is where you store energy. At Purple Belt, the hold is strong and sustained — you do not release early.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">17</div>
+    <h3 class="section-title">STEP 11  PROJECTION</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Projection carries more force because the bottom turn was deeper and the hold was longer. You project through critical sections, not around them.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">18</div>
+    <h3 class="section-title">STEP 12  IMPULSE (SPEED RECOVERY)</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">After every maneuver, speed recovery is immediate. The maneuver is not complete until speed is recovered. Impulse is automatic.</p><p class="font-semibold text-white/75 mb-2">Named Sequence Expressions</p><p class="text-white/50 text-sm leading-relaxed mb-2">These are the maneuver vocabulary of Purple Belt. The base sequence is the structure. The expressions below are what lives inside ‘action.’</p><p class="font-semibold text-white/75 mb-2">Backside Commitment (Sequence #14)</p><p class="font-semibold text-white/75 mb-2">Tapaloco Reentry: Committed backside reentry from deep bottom turn. More vertical and more powerful than the Tapaloco Snap from Blue Belt.</p><p class="font-semibold text-white/75 mb-2">Choke (Deepened): Backside compression through power sections with greater power and in more critical sections.</p><p class="font-semibold text-white/75 mb-2">Elbow (Deepened): Upper-body rotation engagement for backside maneuvers, now driving more powerful turns.</p><p class="font-semibold text-white/75 mb-2">Touch the Board: Hand interaction with the board during maneuvers for balance, style, or rail control.</p><p class="font-semibold text-white/75 mb-2">Frontside Commitment (Sequence #15)</p><p class="font-semibold text-white/75 mb-2">Cruz Reentry: Fluid frontside section crossing from deep bottom turn through projection. Connected transitions, maintained speed.</p><p class="font-semibold text-white/75 mb-2">Praying: Upper-body positioning demonstrating full commitment during frontside maneuvers. Arms and torso engage forward.</p><p class="font-semibold text-white/75 mb-2">Grenade (Deepened): Explosive energy release from projection. Full power through contact, controlled recovery.</p><p class="font-semibold text-white/75 mb-2">Maneuver Variety (Sequences #16–17)</p><p class="text-white/50 text-sm leading-relaxed mb-2">These expressions expand your repertoire. Not all are required for promotion — they are explored with commitment.</p><p class="font-semibold text-white/75 mb-2">Frontside Variety: Floater, Snap, Tango, Felipe Toledo (Asking God), Layback, Tail Slide, Sandwich, Ollie, Chop Pop.</p><p class="font-semibold text-white/75 mb-2">Backside Variety: Tapaloco (deepened), Tail Slide, Floater, Gallina Muerta.</p><p class="text-white/50 text-sm leading-relaxed mb-2">The goal is to explore with full commitment, discover which expressions feel natural, and begin building the vocabulary that defines your personal style.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">19</div>
+    <h3 class="section-title">STEP 13  STARFISH DISMOUNT OR OUT FROM THE SHOULDER</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">At Purple Belt, you ride out from the shoulder when the wave allows, completing the ride fully. When the wave closes, the starfish dismount remains your controlled exit.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">20</div>
+    <h3 class="section-title">SECTION 4: THE INFINITE CIRCLE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">At Purple Belt, the Infinite Circle operates at maximum frequency. The loop — Posture → Rotation/Bottom Turn → Projection → Maneuver → Recovery → Return to Posture — repeats multiple times per wave with high intensity.</p><p class="text-white/50 text-sm leading-relaxed mb-2">The key shift from Blue Belt: at Blue, the loop was functional. At Purple, the loop is powerful. Compression is deeper, rotation is more committed, projection carries more force, and the expressions are more varied and explosive.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Recovery must be faster because the next cycle begins immediately. A single wave at Purple Belt can contain 3–5 complete loops, each with a different expression.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">21</div>
+    <h3 class="section-title">SECTION 5: YOUR MISSIONS</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Missions at Purple Belt focus on commitment, variety, and self-direction. Design your own mission focus for each session using these as your framework.</p><p class="font-semibold text-white/75 mb-2">MISSION 1  Deep Bottom Turn — Frontside</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Execute deep bottom turns with full rail engagement on frontside waves</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Hold compression through the turn — do not release early</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Project from the bottom turn toward a target section</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Recover speed and posture after projection</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Repeat across multiple waves, increasing commitment each attempt</p><p class="font-semibold text-white/75 mb-2">MISSION 2  Deep Bottom Turn — Backside</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Same commitment on backside waves</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Full rail engagement — do not pull back at the bottom</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Hold through the compression and project with power</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Track FS/BS ratio across the session — do not avoid your weaker side</p><p class="font-semibold text-white/75 mb-2">MISSION 3  Tapaloco Reentry</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Committed backside reentry from a deep bottom turn</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Vertical approach toward the lip</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Full commitment at the point of release — no hesitation</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Controlled landing with compression</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Speed recovery immediately after landing</p><p class="font-semibold text-white/75 mb-2">MISSION 4  Cruz Reentry</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Fluid frontside section crossing from deep bottom turn</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Connected transitions through the wave face</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Maintained speed through the crossing</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Return to posture and prepare for the next cycle</p><p class="font-semibold text-white/75 mb-2">MISSION 5  Grenade — Full Commitment</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Explosive energy release from projection</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Full power through the contact point</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Controlled recovery after the explosion</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Speed recovery before the next section</p><p class="font-semibold text-white/75 mb-2">MISSION 6  Maneuver Variety Session</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Attempt 3+ different named expressions in one session</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Select each expression based on the wave section — do not force</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Log which expressions were attempted and which succeeded</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Identify which expressions feel most natural to your style</p><p class="font-semibold text-white/75 mb-2">MISSION 7  Backside Variety Session</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Dedicate an entire session to backside waves only</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Attempt varied backside expressions: Tapaloco, Tail Slide, Floater, Gallina Muerta</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Track commitment level on each attempt</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Do not switch to frontside even when easier waves appear</p><p class="font-semibold text-white/75 mb-2">MISSION 8  Session Design</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Write a full session plan before entering the water: goals, wave criteria, maneuver focus, risk assessment</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Execute the plan during the session</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Debrief after: what worked, what needs adjustment, next-session priority</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Coach confirms or adds one strategic observation</p><p class="font-semibold text-white/75 mb-2">MISSION 9  Section Selection Drill</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ During your ride, identify the section type before choosing your expression</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Critical section = committed maneuver. Open section = flow and linking. Closeout = floater or exit.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Post-session, review: did you match the maneuver to the section?</p><p class="font-semibold text-white/75 mb-2">MISSION 10  Commitment Under Consequence</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Select waves at the upper range of your comfortable wave size</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Commit fully to every maneuver — no pulling back at the point of release</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Manage wipeouts with composure: head protection, calm surfacing, board awareness</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Post-session: was each commitment calculated or impulsive?</p><p class="font-semibold text-white/75 mb-2">MISSION 11  Personal Style Exploration</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Surf 3 complete waves focusing on what feels most natural to you</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Do not copy anyone else’s style. Trust your instinct.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ After the session: what did my surfing look like? What expressions felt like me?</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ This mission has no right answer — it has a discovery</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">22</div>
+    <h3 class="section-title">SECTION 6: ON-LAND &amp; SKATE DRILLS</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Purple Belt drills shift from connected-sequence practice to committed-expression practice. Land and skate training becomes shorter but more intense.</p><p class="font-semibold text-white/75 mb-2">DRILL P1  Deep Bottom Turn Simulation (Skate)</p><p class="font-semibold text-white/75 mb-2">Objective: Develop the compression, hold, and release pattern of a deep bottom turn.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. On a skateboard ramp or pump track, approach the bottom with speed.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. Compress deeply at the bottom: knees bent, center of gravity low, arms loaded.</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Hold the compression through the turn. Do not release early.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Extend explosively at the top, projecting up the transition.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. Recover posture and repeat. 5 frontside, 5 backside.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. Coach evaluates: depth of compression, hold duration, explosion quality.</p><p class="font-semibold text-white/75 mb-2">DRILL P2  Commitment Drill — Point of No Return</p><p class="font-semibold text-white/75 mb-2">Objective: Train the mental and physical habit of full commitment at the point of release.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. On flat ground or board, simulate the bottom turn into a maneuver.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. At the point of release, the coach calls ‘GO!’</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. On ‘GO,’ extend fully, rotate completely, and project with maximum energy.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Do NOT pull back. Do NOT hesitate. Even if form is imperfect, commit fully.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. 10 repetitions. Frontside and backside alternating.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. Coach evaluates: hesitation (any pull-back = repeat), power, follow-through.</p><p class="font-semibold text-white/75 mb-2">DRILL P3  Rotation Power Circuit</p><p class="font-semibold text-white/75 mb-2">Objective: Develop explosive rotational power for committed maneuvers.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. Power stance on the board. Resistance band attached at waist height.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. Frontside rotation against resistance: full kinetic chain, eyes lead. 10 reps.</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Backside rotation against resistance. 10 reps.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Remove resistance. Repeat both directions — feel the speed difference.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. Add a simulated bottom turn before each rotation. Compress, hold, explode.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. 3 full sets. Rest 60 seconds between sets.</p><p class="font-semibold text-white/75 mb-2">DRILL P4  Maneuver Visualization — Section Matching</p><p class="font-semibold text-white/75 mb-2">Objective: Train the cognitive skill of reading a section and choosing an expression.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. Coach shows 10 wave photos or video clips, paused at the moment of section reveal.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. For each: identify the section type (critical, open, closeout, hollow).</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Name the expression you would choose and explain why.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Coach provides feedback on section reading and maneuver selection.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. No physical movement — this is a purely cognitive drill.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. Goal: correct identification and appropriate choice on 8 of 10.</p><p class="font-semibold text-white/75 mb-2">DRILL P5  Backside Commitment Block</p><p class="font-semibold text-white/75 mb-2">Objective: Force backside practice and eliminate frontside bias.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. Entire drill session is backside only. No frontside allowed.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. Skateboard: 10 backside bottom turns with maximum compression.</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Board simulation: 10 backside Tapaloco movements with full commitment.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Visualization: 5 backside waves with different expressions.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. Coach tracks any instinctive switching to frontside and corrects.</p><p class="font-semibold text-white/75 mb-2">DRILL P6  Wipeout Recovery Simulation</p><p class="font-semibold text-white/75 mb-2">Objective: Train calm, controlled behavior during and after dynamic wipeouts.</p><p class="text-white/50 text-sm leading-relaxed mb-2">1. In controlled pool or shallow water, simulate a fall from standing.</p><p class="text-white/50 text-sm leading-relaxed mb-2">2. On entry: protect head with both arms. Fall away from the board.</p><p class="text-white/50 text-sm leading-relaxed mb-2">3. Underwater: stay calm. Do not fight. Wait for turbulence to pass.</p><p class="text-white/50 text-sm leading-relaxed mb-2">4. Surface: check surroundings before swimming. Retrieve board safely.</p><p class="text-white/50 text-sm leading-relaxed mb-2">5. Repeat 5 times with increasing simulated turbulence.</p><p class="text-white/50 text-sm leading-relaxed mb-2">6. Coach evaluates: head protection, calm demeanor, board awareness.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">23</div>
+    <h3 class="section-title">SECTION 7: KEY CONCEPTS REFERENCE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">These are the mental models that drive your surfing at Purple Belt.</p><p class="font-semibold text-white/75 mb-2">Commitment Before Creativity</p><p class="text-white/50 text-sm leading-relaxed mb-2">A fully committed medium maneuver is worth more than a tentative advanced one. Every new expression must be attempted with full commitment. If you cannot commit, simplify and commit to the simpler version.</p><p class="font-semibold text-white/75 mb-2">Expression Within Structure</p><p class="text-white/50 text-sm leading-relaxed mb-2">Personal style does not mean abandoning the method. It means applying the method with individual flair. The base sequence remains. What varies is how you express each step.</p><p class="font-semibold text-white/75 mb-2">Variety as Intelligence</p><p class="text-white/50 text-sm leading-relaxed mb-2">Attempting different maneuvers on different waves is tactical intelligence: reading the wave and choosing the expression that fits. A surfer who does the same thing on every wave is not reading the wave — they are repeating a pattern.</p><p class="font-semibold text-white/75 mb-2">Backside Parity</p><p class="text-white/50 text-sm leading-relaxed mb-2">Purple Belt demands that your weaker side develops. Frontside-only expression is incomplete. Sequences #14 and #17 specifically target backside commitment and variety.</p><p class="font-semibold text-white/75 mb-2">Calculated Risk</p><p class="text-white/50 text-sm leading-relaxed mb-2">Risk is a skill. Commit to steeper takeoffs and more critical sections while maintaining safety awareness. Before every commitment: is the consequence acceptable? If yes, go. If no, choose safer.</p><p class="font-semibold text-white/75 mb-2">Self-Direction as Standard</p><p class="text-white/50 text-sm leading-relaxed mb-2">You design sessions, identify priorities, select waves for specific practice, and self-correct in real time. The coach is a consultant, not a director. This is required.</p><p class="font-semibold text-white/75 mb-2">Three Circles of Power (Fully Integrated)</p><p class="font-semibold text-white/75 mb-2">Circle 1 — Body: Rotation is powerful and committed. Compression reaches maximum depth. Extension is explosive. Full kinetic chain through every maneuver.</p><p class="font-semibold text-white/75 mb-2">Circle 2 — Board: Rail engagement is strong and sustained. Feet Position 1 and 2 used intentionally. Board response felt intuitively and adjusted mid-maneuver.</p><p class="font-semibold text-white/75 mb-2">Circle 3 — Wave: You read 3–5 seconds ahead. Pocket management is aggressive. The wave is your partner in expression.</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Purple Belt, you no longer think about the circles separately. You feel their interaction instinctively.</p><p class="font-semibold text-white/75 mb-2">P·R·C·H at Purple Belt</p><p class="text-white/50 text-sm leading-relaxed mb-2">P — Posture: Dynamic, pulsing with the wave. Loads and unloads as power tools.</p><p class="text-white/50 text-sm leading-relaxed mb-2">R — Rotation: Powerful and committed. Full kinetic chain. The engine of expression.</p><p class="text-white/50 text-sm leading-relaxed mb-2">C — Compression: Maximum depth before release. Deeper compression = more powerful projection.</p><p class="text-white/50 text-sm leading-relaxed mb-2">H — Hold: Sustained through power sections. Do not release early. Hold through the apex, then explode.</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">24</div>
+    <h3 class="section-title">SECTION 8: YOUR PROGRESSION</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Progression at Purple Belt is measured in commitment quality, maneuver variety, and self-direction across multiple sessions and conditions.</p><p class="font-semibold text-white/75 mb-2">Early Purple Belt (Sequences #14–#15 Entry)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Bottom turns are visibly deeper and more committed than Blue Belt standard.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Backside maneuvers show intention and power, not just execution.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You attempt committed reentries (Tapaloco Reentry, Cruz Reentry) on most sessions.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Session design is attempted independently, even if imperfect.</p><p class="font-semibold text-white/75 mb-2">Mid Purple Belt (#15–#16 Transition)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You project through critical sections with visible power.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ New expressions (Floater, Snap, Layback) are attempted with commitment, not hesitation.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Backside and frontside session balance is maintained without coach prompting.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Self-correction happens in real time during the ride, not just between waves.</p><p class="font-semibold text-white/75 mb-2">Late Purple Belt (#16–#17 / Approaching Promotion)</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You demonstrate 4+ different expressions across sessions.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ A recognizable personal style is emerging: your riding is distinguishable.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Full session ownership across multiple conditions and wave types.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ Risk assessment is autonomous and accurate.</p><p class="text-white/50 text-sm leading-relaxed mb-2">▸ You articulate your development priorities and surfing identity.</p><p class="font-semibold text-white/75 mb-2">What Comes Next: Brown Belt (Pre-Elite)</p><p class="text-white/50 text-sm leading-relaxed mb-2">At Brown Belt, your commitment and variety become the raw material for competition-ready precision across all conditions and break types. Brown Belt asks: “Now that you know who you are as a surfer, can you perform under any conditions?”</p><p class="text-white/50 text-sm leading-relaxed mb-2">Purple Belt provides the answer to the prerequisite question: “Who am I as a surfer?”</p><p class="font-semibold text-white/75 mb-2">The Surf Sequence®</p><p class="text-white/50 text-sm leading-relaxed mb-2">By Marcelo Castellanos</p><p class="text-white/50 text-sm leading-relaxed mb-2">Enkrateia SA de CV — All Rights Reserved</p></div>
+</div>
+<div class="section-card" onclick="this.classList.toggle('open')">
+  <div class="section-header">
+    <div class="section-num">25</div>
+    <h3 class="section-title">APPENDIX: VIDEO PRODUCTION GUIDE</h3>
+    <span class="section-arrow">▶</span>
+  </div>
+  <div class="section-body"><p class="text-white/50 text-sm leading-relaxed mb-2">Total videos: 22 unique video references + 11 mission videos + 6 drill videos = 39 total.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Estimated total production time: 80–95 minutes of finished content.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Recommended format: 1080p vertical (9:16) for mobile scanning, with horizontal (16:9) alternative for classroom projection.</p><p class="text-white/50 text-sm leading-relaxed mb-2">Host on a platform that supports unlisted/private links. Each QR code in the printed manual will link to the corresponding video URL.</p></div>
+</div>
+</div>
+<div class="footer">
+  <div class="tagline">Evolve through play.</div>
+  <p>The Surf Sequence® — Cinta Púrpura Kit de Alumno — Enkrateia SA de CV</p>
+</div>
+<script>
+let opened = new Set();
+const total = 25;
+document.querySelectorAll('.section-card').forEach((card, i) => {
+  card.addEventListener('click', () => {
+    opened.add(i);
+    const pct = Math.round(opened.size / total * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = opened.size + ' / ' + total + ' secciones exploradas (' + pct + '%)';
+  });
+});
+</script>
+</body>
+</html>
